@@ -21,6 +21,7 @@ Canonical list. Keep broad (target ≤20). Use tags for fine-grained attributes.
 | `arch` | System design, boundaries, scaling, consistency |
 | `docs` | Documentation writing, API docs, diagrams, changelog |
 | `workflow` | Process/team patterns, review protocols, release flows |
+| `game-dev` | Game engines, combat, RNG/gacha, progression, status effects, turn systems |
 | `misc` | Doesn't fit above — revisit during `/skills_cleanup` |
 
 ## Proposing a New Category
