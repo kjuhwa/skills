@@ -225,6 +225,28 @@
       ]
     },
     {
+      "name": "immutable-action-event-log",
+      "category": "arch",
+      "path": "skills/arch/immutable-action-event-log",
+      "version": "0.1.0-draft",
+      "description": "Model state transitions as `(state, action) → (newState, List<Event>)` where the event list is an append-only, serializable log. Enables deterministic replay, audit trails, cheat detection, and UI choreography without coupling engine to presentation.",
+      "tags": [
+        "event-sourcing",
+        "immutable-state",
+        "action-log",
+        "deterministic",
+        "replay",
+        "audit"
+      ],
+      "triggers": [
+        "action result log",
+        "state transition events",
+        "replay log",
+        "deterministic engine",
+        "audit trail events"
+      ]
+    },
+    {
       "name": "layered-risk-gates",
       "category": "arch",
       "path": "skills/arch/layered-risk-gates",
@@ -314,6 +336,29 @@
       "triggers": ""
     },
     {
+      "name": "json-seeded-jpa-loader",
+      "category": "backend",
+      "path": "skills/backend/json-seeded-jpa-loader",
+      "version": "0.1.0-draft",
+      "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
+      "tags": [
+        "spring-boot",
+        "jpa",
+        "seeding",
+        "flyway",
+        "commandlinerunner",
+        "jackson",
+        "reference-data"
+      ],
+      "triggers": [
+        "seed reference data spring",
+        "CommandLineRunner JSON",
+        "populate static content",
+        "data initializer spring",
+        "load catalog JSON"
+      ]
+    },
+    {
       "name": "mcp-capability-negotiated-initialize",
       "category": "backend",
       "path": "skills/backend/mcp-capability-negotiated-initialize",
@@ -383,6 +428,50 @@
         "\"JsonSubTypes\"",
         "\"command pattern json\"",
         "\"polymorphic deserialization\""
+      ]
+    },
+    {
+      "name": "spring-dual-profile-flyway",
+      "category": "backend",
+      "path": "skills/backend/spring-dual-profile-flyway",
+      "version": "0.1.0-draft",
+      "description": "Spring Boot dual-profile setup — H2 file-mode for dev (zero install, console enabled), PostgreSQL for prod — with Flyway managing DDL and JPA set to validate-only. The profile split that keeps local dev fast without drifting from prod schema.",
+      "tags": [
+        "spring-boot",
+        "flyway",
+        "h2",
+        "postgresql",
+        "profiles",
+        "migrations",
+        "jpa"
+      ],
+      "triggers": [
+        "spring profiles dev prod",
+        "flyway migrations spring",
+        "h2 file mode dev",
+        "ddl-auto validate",
+        "postgresql production profile"
+      ]
+    },
+    {
+      "name": "spring-typed-config-properties",
+      "category": "backend",
+      "path": "skills/backend/spring-typed-config-properties",
+      "version": "0.1.0-draft",
+      "description": "Type-safe, nested `@ConfigurationProperties` pattern for Spring Boot — centralizes tunable constants (rate limits, formula coefficients, balance numbers) in YAML with a single injected POJO tree. Beats scattered `@Value` strings.",
+      "tags": [
+        "spring-boot",
+        "configuration-properties",
+        "yaml",
+        "typed-config",
+        "constructor-binding"
+      ],
+      "triggers": [
+        "ConfigurationProperties nested",
+        "centralize tunable constants",
+        "spring typed config",
+        "balance config",
+        "constructor binding yaml"
       ]
     },
     {
@@ -461,6 +550,117 @@
       ]
     },
     {
+      "name": "axios-refresh-queue-zustand",
+      "category": "frontend",
+      "path": "skills/frontend/axios-refresh-queue-zustand",
+      "version": "0.1.0-draft",
+      "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
+      "tags": [
+        "axios",
+        "jwt",
+        "refresh-token",
+        "interceptor",
+        "zustand",
+        "auth"
+      ],
+      "triggers": [
+        "axios 401 refresh",
+        "token refresh queue",
+        "isRefreshing flag",
+        "axios interceptor zustand",
+        "refresh thundering herd",
+        "retry original request"
+      ]
+    },
+    {
+      "name": "zustand-preset-manager",
+      "category": "frontend",
+      "path": "skills/frontend/zustand-preset-manager",
+      "version": "0.1.0-draft",
+      "description": "Zustand + persist middleware pattern for managing N named presets (team comps, saved filters, dashboard layouts) with active-selection, max-count guard, and auto-reselect on delete.",
+      "tags": [
+        "zustand",
+        "localstorage",
+        "preset",
+        "state-management",
+        "persist-middleware"
+      ],
+      "triggers": [
+        "zustand persist",
+        "saved presets",
+        "team presets",
+        "named configurations",
+        "localStorage preset",
+        "multi-preset selector"
+      ]
+    },
+    {
+      "name": "gacha-soft-hard-pity",
+      "category": "game-dev",
+      "path": "skills/game-dev/gacha-soft-hard-pity",
+      "version": "0.1.0-draft",
+      "description": "Server-authoritative gacha with soft pity (rate ramp after N pulls), hard pity (guaranteed top rarity at M pulls), and 50/50 guarantee carryover. Split rate calculation from result resolution so probability is testable.",
+      "tags": [
+        "gacha",
+        "pity",
+        "probability",
+        "securerandom",
+        "loot",
+        "rng-fairness"
+      ],
+      "triggers": [
+        "gacha pity system",
+        "soft pity hard pity",
+        "50/50 pity",
+        "banner rate up",
+        "rate calculator"
+      ]
+    },
+    {
+      "name": "stateless-turn-combat-engine",
+      "category": "game-dev",
+      "path": "skills/game-dev/stateless-turn-combat-engine",
+      "version": "0.1.0-draft",
+      "description": "Turn-based combat as a pure function — `(state, action) → newState + events`. Speed-based turn order, deterministic damage, no hidden mutation. Makes combat unit-testable, replayable, and server-authoritative.",
+      "tags": [
+        "combat-engine",
+        "turn-based",
+        "rpg",
+        "pure-function",
+        "deterministic",
+        "server-authoritative"
+      ],
+      "triggers": [
+        "turn based combat",
+        "combat engine design",
+        "speed based turn order",
+        "server authoritative combat",
+        "stateless combat"
+      ]
+    },
+    {
+      "name": "status-effect-enum-system",
+      "category": "game-dev",
+      "path": "skills/game-dev/status-effect-enum-system",
+      "version": "0.1.0-draft",
+      "description": "Model status effects (burn, stun, buff, debuff) as enum-tagged records attached to units, with per-turn tick logic split between application, duration decay, and removal. Keeps damage-over-time and crowd control uniform and testable.",
+      "tags": [
+        "status-effect",
+        "buff-debuff",
+        "dot",
+        "cc",
+        "enum",
+        "turn-based"
+      ],
+      "triggers": [
+        "status effect system",
+        "buff debuff",
+        "damage over time",
+        "burn stun freeze",
+        "crowd control turn based"
+      ]
+    },
+    {
       "name": "react-native-android-emulator-localhost",
       "category": "mobile",
       "path": "skills/mobile/react-native-android-emulator-localhost",
@@ -483,6 +683,29 @@
         "\"React Native API base\"",
         "\"fetch failed\"",
         "\"Network request failed\""
+      ]
+    },
+    {
+      "name": "jwt-refresh-rotation-spring",
+      "category": "security",
+      "path": "skills/security/jwt-refresh-rotation-spring",
+      "version": "0.1.0-draft",
+      "description": "Spring Boot 3 JWT with short-lived access token + long-lived refresh token, filter-chain integration, and stateless session config. Avoids common mistakes that silently break refresh flows.",
+      "tags": [
+        "jwt",
+        "spring-boot",
+        "auth",
+        "refresh-token",
+        "jjwt",
+        "security-filter"
+      ],
+      "triggers": [
+        "jwt spring boot",
+        "refresh token rotation",
+        "JwtAuthenticationFilter",
+        "jjwt 0.12",
+        "SessionCreationPolicy.STATELESS",
+        "access token refresh token"
       ]
     },
     {
