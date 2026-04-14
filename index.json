@@ -1,5 +1,33 @@
 {
   "version": 1,
-  "generated_at": null,
-  "skills": []
+  "generated_at": "2026-04-14",
+  "skills": [
+    {
+      "name": "build-error-triage",
+      "category": "debug",
+      "path": "skills/debug/build-error-triage",
+      "version": "1.0.0",
+      "description": "Systematic triage workflow for build/compilation errors — classify by root cause (missing symbol, signature mismatch, instantiation failure), then isolate the first error before chasing cascades.",
+      "tags": ["build", "compilation", "java", "javac", "errors", "triage"],
+      "triggers": ["Unresolved compilation", "Cannot instantiate", "method is undefined", "cannot find symbol", "compilation error"]
+    },
+    {
+      "name": "slash-command-authoring",
+      "category": "workflow",
+      "path": "skills/workflow/slash-command-authoring",
+      "version": "1.0.0",
+      "description": "Author Claude Code slash commands that read cleanly, include safety rules, and compose with OMC skills — frontmatter, argument-hint, step ordering, and dry-run patterns.",
+      "tags": ["claude-code", "slash-command", "skill", "authoring", "frontmatter"],
+      "triggers": ["slash command", "/skills_", "/init_", ".claude/commands", "argument-hint", "command frontmatter"]
+    },
+    {
+      "name": "opentelemetry-java-bootstrap",
+      "category": "apm",
+      "path": "skills/apm/opentelemetry-java-bootstrap",
+      "version": "1.0.0",
+      "description": "Minimal OpenTelemetry bootstrap for a Java service — OTLP exporter, resource attributes, auto-instrumentation agent, and graceful shutdown. Covers the common setup mistakes that cause spans to silently drop.",
+      "tags": ["opentelemetry", "otel", "java", "tracing", "otlp", "observability"],
+      "triggers": ["OpenTelemetry", "OTEL", "otel-javaagent", "otlp", "tracing setup", "service.name", "span exporter"]
+    }
+  ]
 }
