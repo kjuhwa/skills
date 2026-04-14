@@ -46,6 +46,60 @@
       "description": "Minimal OpenTelemetry bootstrap for a Java service — OTLP exporter, resource attributes, auto-instrumentation agent, and graceful shutdown. Covers the common setup mistakes that cause spans to silently drop.",
       "tags": ["opentelemetry", "otel", "java", "tracing", "otlp", "observability"],
       "triggers": ["OpenTelemetry", "OTEL", "otel-javaagent", "otlp", "tracing setup", "service.name", "span exporter"]
+    },
+    {
+      "name": "dotenv-multi-env-routing",
+      "category": "backend",
+      "path": "skills/backend/dotenv-multi-env-routing",
+      "version": "0.1.0-draft",
+      "description": "Single ENV variable flips an entire stack (REST base URL, WebSocket base, per-operation transaction IDs) between production and sandbox tiers, loaded via dotenv with OS-env precedence.",
+      "tags": ["dotenv", "config", "environments", "sandbox", "production", "routing"],
+      "triggers": ["KIS_ENV", "prod", "vts", "sandbox", "dotenv", "Dotenv.configure", "multi-environment", "openapi host"]
+    },
+    {
+      "name": "oauth-token-env-persistence",
+      "category": "security",
+      "path": "skills/security/oauth-token-env-persistence",
+      "version": "0.1.0-draft",
+      "description": "Persist OAuth access tokens to a sidecar env file (token + refresh + issue_time), refresh N minutes before expiry with a thread-safe guard, auto-inject into outgoing API calls — survives process restart without re-login.",
+      "tags": ["oauth", "token", "refresh", "dotenv", "persistence", "auth", "thread-safety"],
+      "triggers": ["access_token", "refresh_token", "token refresh", "access_token.env", "token issue time", "bearer auto inject", "token expiry"]
+    },
+    {
+      "name": "adaptive-strategy-hot-swap",
+      "category": "arch",
+      "path": "skills/arch/adaptive-strategy-hot-swap",
+      "version": "0.1.0-draft",
+      "description": "Periodically re-evaluate candidate strategies/policies against recent data, swap the active one only when a weighted composite score beats the incumbent by a hysteresis threshold — prevents flapping while staying adaptive.",
+      "tags": ["strategy", "adaptive", "hot-swap", "hysteresis", "rebalance", "composite-score", "backtest"],
+      "triggers": ["shouldUpdateStrategy", "reanalyze", "strategy update", "hot swap", "policy rotation", "best strategy", "composite score", "hysteresis threshold"]
+    },
+    {
+      "name": "tiered-rebalance-schedule",
+      "category": "arch",
+      "path": "skills/arch/tiered-rebalance-schedule",
+      "version": "0.1.0-draft",
+      "description": "Run three cadences against the same managed set — fast performance review, mid-frequency policy re-analysis, slow portfolio rebalance — each with its own trigger interval and mutation budget, so urgency scales with cost.",
+      "tags": ["scheduler", "rebalance", "tiers", "cadence", "cron", "portfolio", "lifecycle"],
+      "triggers": ["scheduleWithFixedDelay", "periodic review", "rebalance", "reanalysis interval", "tiered schedule", "performance review", "portfolio rebalance"]
+    },
+    {
+      "name": "layered-risk-gates",
+      "category": "arch",
+      "path": "skills/arch/layered-risk-gates",
+      "version": "0.1.0-draft",
+      "description": "Three-layer safety pattern for autonomous action loops — pre-action admission gate, in-flight monitor (stop/target thresholds), and a consecutive-failure circuit breaker — so a single runaway loop can't clear out the account before a human sees it.",
+      "tags": ["risk", "circuit-breaker", "safety", "autonomous", "limits", "guardrails"],
+      "triggers": ["risk management", "position sizing", "max daily loss", "consecutive losses", "stop loss", "take profit", "kill switch", "circuit breaker"]
+    },
+    {
+      "name": "domain-category-endpoint-registry",
+      "category": "arch",
+      "path": "skills/arch/domain-category-endpoint-registry",
+      "version": "0.1.0-draft",
+      "description": "Organize a large vendor-API client (100s of endpoints) under a three-level `{domain}/{category}/{Action}{Entity}` package convention with a shared base class and a single `initializeEndpoints()` registry — scalable, greppable, and uniformly logged.",
+      "tags": ["api-client", "registry", "code-organization", "vendor-sdk", "base-class", "sdk-wrapping"],
+      "triggers": ["BaseApiEndpoint", "initializeEndpoints", "ApiEndpoint", "api registry", "vendor sdk", "many endpoints", "endpoint catalog"]
     }
   ]
 }
