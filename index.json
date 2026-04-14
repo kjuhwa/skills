@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-14",
+  "generated_at": "2026-04-15",
   "skills": [
     {
       "name": "build-error-triage",
@@ -19,6 +19,24 @@
       "description": "Author Claude Code slash commands that read cleanly, include safety rules, and compose with OMC skills — frontmatter, argument-hint, step ordering, and dry-run patterns.",
       "tags": ["claude-code", "slash-command", "skill", "authoring", "frontmatter"],
       "triggers": ["slash command", "/skills_", "/init_", ".claude/commands", "argument-hint", "command frontmatter"]
+    },
+    {
+      "name": "stale-persistent-context-detection",
+      "category": "workflow",
+      "path": "skills/workflow/stale-persistent-context-detection",
+      "version": "1.0.0",
+      "description": "Detect and remove stale error snapshots that LLM tools inject via persistent-context files (CLAUDE.md, AGENTS.md, system prompts, memory) before chasing a fix. If the current source already compiles, the injected error is a ghost from a previous session, not a real bug.",
+      "tags": ["llm", "context", "claude-code", "cursor", "agents-md", "memory", "stale", "debugging", "hygiene"],
+      "triggers": ["CLAUDE.md", "AGENTS.md", "persistent context", "stale error", "system-reminder", "injected error", "claudeMd context", "system prompt", "agent instructions", "injected context"]
+    },
+    {
+      "name": "skill-repo-bootstrap-architecture",
+      "category": "workflow",
+      "path": "skills/workflow/skill-repo-bootstrap-architecture",
+      "version": "1.0.0",
+      "description": "Lay out a shared skill/knowledge git repo so it is simultaneously a catalog and a self-installer — separate bootstrap (commands + umbrella skill + installers) from skills (category/name/SKILL.md). Covers repo layout, safety gates, registry pinning, and skill deprecation lifecycle.",
+      "tags": ["skill-hub", "repo-layout", "bootstrap", "claude-code", "cursor", "git", "architecture", "deprecation"],
+      "triggers": ["skill repo", "skill hub", "bootstrap install", "category-separated", "skills registry", "skill deprecation", "umbrella skill"]
     },
     {
       "name": "opentelemetry-java-bootstrap",
