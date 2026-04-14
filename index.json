@@ -372,6 +372,63 @@
         "agent instructions",
         "injected context"
       ]
+      "description": "Organize a large vendor-API client (100s of endpoints) under a three-level `{domain}/{category}/{Action}{Entity}` package convention with a shared base class and a single `initializeEndpoints()` registry — scalable, greppable, and uniformly logged.",
+      "tags": ["api-client", "registry", "code-organization", "vendor-sdk", "base-class", "sdk-wrapping"],
+      "triggers": ["BaseApiEndpoint", "initializeEndpoints", "ApiEndpoint", "api registry", "vendor sdk", "many endpoints", "endpoint catalog"]
+    },
+    {
+      "name": "llm-json-extraction",
+      "category": "ai",
+      "path": "skills/ai/llm-json-extraction",
+      "version": "0.1.0-draft",
+      "description": "Robustly extract a JSON object from free-form LLM text output — strip markdown fences, locate outermost braces, tolerate prelude/postlude prose.",
+      "tags": ["llm", "json", "parsing", "prompt-engineering", "robustness"],
+      "triggers": ["extract JSON", "parse LLM response", "strip code fence", "ObjectMapper.readValue", "JSON from model", "```json"]
+    },
+    {
+      "name": "stable-horde-async-poll",
+      "category": "ai",
+      "path": "skills/ai/stable-horde-async-poll",
+      "version": "0.1.0-draft",
+      "description": "Submit-then-poll integration pattern for Stable Horde image generation — anonymous apikey, model fallback list, negative-prompt separator, bounded poll loop.",
+      "tags": ["stable-horde", "image-generation", "stable-diffusion", "async", "polling", "anonymous-api"],
+      "triggers": ["stablehorde.net", "generate/async", "generate/status", "apikey 0000000000", "image generation", "Stable Horde", "horde"]
+    },
+    {
+      "name": "ai-call-with-mock-fallback",
+      "category": "ai",
+      "path": "skills/ai/ai-call-with-mock-fallback",
+      "version": "0.1.0-draft",
+      "description": "Wrap unreliable LLM/AI calls with a deterministic mock fallback so the UI always receives a valid shape — annotate the response with a `mock: true` or `error:` field so the client can show a badge.",
+      "tags": ["llm", "resilience", "fallback", "mock", "ux", "error-handling"],
+      "triggers": ["AI 생성 실패", "mock data", "ANTHROPIC_API_KEY", "fallback response", "mock: true", "degraded mode"]
+    },
+    {
+      "name": "character-sheet-multi-panel-consistency",
+      "category": "ai",
+      "path": "skills/ai/character-sheet-multi-panel-consistency",
+      "version": "0.1.0-draft",
+      "description": "Keep a consistent character across multiple diffusion-model image generations by emitting a reusable \"character sheet\" description string from the LLM and prefixing it into every panel's image prompt.",
+      "tags": ["stable-diffusion", "prompt-engineering", "character-consistency", "comic", "storyboard", "multi-panel"],
+      "triggers": ["character sheet", "characterSheet", "consistent character", "multi-panel", "storyboard", "comic", "same character in all panels"]
+    },
+    {
+      "name": "claude-cli-from-jvm-via-node-wrapper",
+      "category": "ai",
+      "path": "skills/ai/claude-cli-from-jvm-via-node-wrapper",
+      "version": "0.1.0-draft",
+      "description": "Shell out to the `claude` CLI from a JVM / Spring Boot app by going through a tiny Node.js wrapper that supplies the required empty stdin — the CLI hangs when invoked with a directly-inherited TTY-less stdin from ProcessBuilder.",
+      "tags": ["claude-cli", "subprocess", "spring-boot", "processbuilder", "node-wrapper", "stdin", "hang"],
+      "triggers": ["claude -p", "ProcessBuilder", "claude CLI", "node claude-runner", "execFileSync", "subprocess hang", "cli stdin"]
+    },
+    {
+      "name": "react-native-android-emulator-localhost",
+      "category": "mobile",
+      "path": "skills/mobile/react-native-android-emulator-localhost",
+      "version": "0.1.0-draft",
+      "description": "Use Platform.select to pick the right loopback host when a React Native dev build talks to a backend on the host machine — Android emulator needs 10.0.2.2, iOS simulator uses localhost.",
+      "tags": ["react-native", "android", "emulator", "localhost", "10.0.2.2", "networking", "dev-environment"],
+      "triggers": ["10.0.2.2", "Platform.select", "localhost:8080", "android emulator network", "React Native API base", "fetch failed", "Network request failed"]
     }
   ]
 }
