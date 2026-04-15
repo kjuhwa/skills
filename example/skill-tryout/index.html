@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Skill Tryout — Trigger Matcher</title>
+<style>
+:root {
+  --bg: #0b0d10; --bg-2: #11151a; --bg-3: #161b22;
+  --fg: #c9d1d9; --fg-dim: #7d8590; --border: #21262d;
+  --accent: #7ee787; --accent-2: #79c0ff; --amber: #ffa657;
+  --mag: #d2a8ff; --red: #ff7b72;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px; line-height: 1.5; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 24px 28px 60px; }
+header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+header h1 { font-family: system-ui, sans-serif; font-size: 22px; margin: 0; color: var(--accent); font-weight: 600; }
+header h1::before { content: "▶ "; color: var(--fg-dim); }
+header .sub { color: var(--fg-dim); font-size: 12px; }
+.query-box { margin-bottom: 18px; }
+.query-box textarea { width: 100%; min-height: 84px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--bg-2); color: var(--fg); font: inherit; resize: vertical; }
+.query-box textarea:focus { outline: none; border-color: var(--accent-2); }
+.controls { display: flex; gap: 10px; align-items: center; margin-top: 8px; font-size: 11px; color: var(--fg-dim); }
+.controls label { cursor: pointer; user-select: none; }
+.controls input { accent-color: var(--accent); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.pill { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 2px 10px; font-size: 10px; color: var(--fg-dim); cursor: pointer; }
+.pill:hover { border-color: var(--accent-2); color: var(--accent-2); }
+.summary { font-size: 11px; color: var(--fg-dim); margin-bottom: 10px; }
+.result { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 8px; }
+.result .head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.result .slug { color: var(--accent); font-weight: 600; font-size: 14px; }
+.result .score { color: var(--amber); font-size: 11px; }
+.result .cat { color: var(--fg-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.result .desc { font-size: 12px; color: var(--fg); line-height: 1.5; }
+.result .desc mark { background: rgba(255, 166, 87, 0.25); color: var(--amber); padding: 0 2px; border-radius: 2px; }
+.result .trig { font-size: 10px; color: var(--fg-dim); margin-top: 6px; }
+.result .trig mark { background: rgba(126, 231, 135, 0.2); color: var(--accent); padding: 0 2px; border-radius: 2px; }
+footer { color: var(--fg-dim); text-align: right; font-size: 10px; margin-top: 24px; }
+.empty { text-align: center; color: var(--fg-dim); padding: 40px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>skill-tryout</h1>
+    <span class="sub" id="sub">loading…</span>
+  </header>
+
+  <div class="query-box">
+    <textarea id="q" placeholder="Describe what you want to do. e.g., “I need to debounce a burst of kafka events per tenant”"></textarea>
+    <div class="controls">
+      <label><input type="checkbox" id="boost-trig" checked /> boost triggers 3×</label>
+      <label><input type="checkbox" id="boost-tag" checked /> boost tags 2×</label>
+      <span style="margin-left:auto" id="topn-label">top 10</span>
+    </div>
+    <div class="pills" id="samples"></div>
+  </div>
+
+  <div class="summary" id="summary">type a query above.</div>
+  <div id="results"></div>
+
+  <footer>generated <span id="gen"></span> · rebuild: <b>node build-tryout.mjs</b></footer>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const SAMPLES = [
+  'debounce kafka events per tenant',
+  'multi-tenant mongodb routing by threadlocal',
+  'spring boot jwt refresh token rotation',
+  'playwright dockerfile with java',
+  'force directed graph visualization',
+  'git hooks to prevent bad pushes',
+];
+let STATE = { docs: [], df: new Map(), n: 0 };
+
+fetch('skills.json').then(r => r.json()).then(init).catch(e => {
+  $('#sub').textContent = 'error: ' + e.message;
+});
+
+const STOP = new Set(['the','a','an','of','to','and','or','in','on','for','with','by','from','is','be','as','at','that','this','these','those','it','its','are','was','were','use','used','using','your','my','we','you']);
+function tokenize(s) {
+  return (s || '').toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, ' ')
+    .split(/\s+/)
+    .filter(t => t && t.length > 1 && !STOP.has(t));
+}
+
+function init(data) {
+  $('#sub').textContent = `${data.count} skills indexed`;
+  $('#gen').textContent = data.generatedAt;
+  $('#samples').innerHTML = SAMPLES.map(s => `<span class="pill" data-q="${s}">${s}</span>`).join('');
+  document.querySelectorAll('.pill').forEach(p => p.addEventListener('click', () => {
+    $('#q').value = p.dataset.q; search();
+  }));
+
+  // build term frequency per doc + document frequency
+  for (const s of data.skills) {
+    const descToks = tokenize(s.description);
+    const trigToks = (s.triggers || []).flatMap(tokenize);
+    const tagToks = (s.tags || []).flatMap(tokenize);
+    const slugToks = tokenize(s.slug.replace(/-/g, ' '));
+    const nameToks = tokenize(s.name);
+    const all = [...descToks, ...trigToks, ...tagToks, ...slugToks, ...nameToks];
+    const tf = new Map();
+    for (const t of all) tf.set(t, (tf.get(t) || 0) + 1);
+    STATE.docs.push({ s, tf, descToks, trigToks, tagToks, slugToks, nameToks });
+    for (const t of new Set(all)) STATE.df.set(t, (STATE.df.get(t) || 0) + 1);
+  }
+  STATE.n = STATE.docs.length;
+  $('#q').addEventListener('input', debounce(search, 120));
+  $('#boost-trig').addEventListener('change', search);
+  $('#boost-tag').addEventListener('change', search);
+}
+
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+function score(doc, qToks, boosts) {
+  let s = 0;
+  const hits = { desc: new Set(), trig: new Set() };
+  for (const q of qToks) {
+    const df = STATE.df.get(q) || 0;
+    if (!df) continue;
+    const idf = Math.log(1 + STATE.n / df);
+    const tfD = doc.descToks.filter(t => t === q).length;
+    const tfT = doc.trigToks.filter(t => t === q).length;
+    const tfG = doc.tagToks.filter(t => t === q).length;
+    const tfS = doc.slugToks.filter(t => t === q).length + doc.nameToks.filter(t => t === q).length;
+    if (tfD) hits.desc.add(q);
+    if (tfT) hits.trig.add(q);
+    const triMul = boosts.trig ? 3 : 1;
+    const tagMul = boosts.tag ? 2 : 1;
+    s += idf * (tfD + triMul * tfT + tagMul * tfG + 2 * tfS);
+  }
+  return { s, hits };
+}
+
+function highlight(text, set) {
+  if (!set.size) return escapeHtml(text);
+  const esc = escapeHtml(text);
+  return esc.split(/(\b[a-zA-Z0-9-]+\b)/).map(w => set.has(w.toLowerCase()) ? `<mark>${w}</mark>` : w).join('');
+}
+function escapeHtml(s) { return (s || '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]); }
+
+function search() {
+  const q = $('#q').value.trim();
+  const qToks = [...new Set(tokenize(q))];
+  if (!qToks.length) { $('#summary').textContent = 'type a query above.'; $('#results').innerHTML = ''; return; }
+  const boosts = { trig: $('#boost-trig').checked, tag: $('#boost-tag').checked };
+  const scored = STATE.docs.map(d => ({ d, ...score(d, qToks, boosts) })).filter(x => x.s > 0).sort((a, b) => b.s - a.s).slice(0, 10);
+  $('#summary').textContent = `${scored.length} match${scored.length === 1 ? '' : 'es'} for: ${qToks.join(' · ')}`;
+  $('#topn-label').textContent = `top ${scored.length}`;
+  if (!scored.length) { $('#results').innerHTML = `<div class="empty">no skills matched.</div>`; return; }
+  $('#results').innerHTML = scored.map(({ d, s, hits }) => `
+    <div class="result">
+      <div class="head">
+        <div><span class="slug">${d.s.slug}</span> <span class="cat">${d.s.category}</span></div>
+        <div class="score">score ${s.toFixed(2)}</div>
+      </div>
+      <div class="desc">${highlight(d.s.description, hits.desc)}</div>
+      ${d.s.triggers && d.s.triggers.length ? `<div class="trig">triggers: ${highlight(d.s.triggers.join(' · '), hits.trig)}</div>` : ''}
+    </div>
+  `).join('');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Skill Diff</title>
+<style>
+:root {
+  --bg: #0b0d10; --bg-2: #11151a; --bg-3: #161b22;
+  --fg: #c9d1d9; --fg-dim: #7d8590; --border: #21262d;
+  --accent: #7ee787; --accent-2: #79c0ff; --amber: #ffa657;
+  --mag: #d2a8ff; --red: #ff7b72;
+  --add: #238636; --del: #da3633; --mod: #d29922;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px; line-height: 1.5; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 28px 60px; }
+header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+header h1 { font-family: system-ui, sans-serif; font-size: 22px; margin: 0; color: var(--accent); font-weight: 600; }
+header h1::before { content: "▶ "; color: var(--fg-dim); }
+header .sub { color: var(--fg-dim); font-size: 12px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.kpi { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+.kpi .label { color: var(--fg-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+.kpi .value { font-size: 22px; font-weight: 600; }
+.kpi.A .value { color: var(--accent); }
+.kpi.M .value { color: var(--amber); }
+.kpi.D .value { color: var(--red); }
+.filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--border); background: var(--bg-2); color: var(--fg-dim); padding: 4px 12px; border-radius: 14px; font-size: 11px; cursor: pointer; user-select: none; }
+.chip.on { border-color: var(--accent-2); color: var(--accent-2); }
+.kindmix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
+.km { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+.km .k { color: var(--fg-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.km .v { display: flex; gap: 8px; font-size: 12px; }
+.km .add { color: var(--accent); } .km .mod { color: var(--amber); } .km .del { color: var(--red); }
+.card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; margin-bottom: 6px; }
+.card .head { display: grid; grid-template-columns: 70px 1fr auto auto; gap: 10px; align-items: center; cursor: pointer; }
+.card .head .badge { border-radius: 3px; padding: 2px 8px; font-size: 10px; text-align: center; font-weight: 600; text-transform: uppercase; }
+.card[data-s="A"] .badge { background: var(--add); color: #fff; }
+.card[data-s="M"] .badge { background: var(--mod); color: #000; }
+.card[data-s="D"] .badge { background: var(--del); color: #fff; }
+.card .slug { font-weight: 600; color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card .kind { color: var(--fg-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card .fcount { color: var(--fg-dim); font-size: 10px; }
+.card.open .body { display: block; }
+.card .body { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 11px; }
+.card .body .lbl { color: var(--fg-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; margin-bottom: 3px; }
+.card .body .before, .card .body .after { padding: 6px 8px; border-radius: 4px; white-space: pre-wrap; word-break: break-word; }
+.card .body .before { background: rgba(218, 54, 51, 0.08); border-left: 2px solid var(--red); }
+.card .body .after { background: rgba(35, 134, 54, 0.1); border-left: 2px solid var(--accent); }
+.card .body .eq { color: var(--fg-dim); font-style: italic; }
+.card .body ul.files { margin: 4px 0; padding-left: 18px; color: var(--fg-dim); font-size: 10px; }
+.card .body ul.files li { list-style: none; position: relative; }
+.card .body ul.files li::before { content: attr(data-s); position: absolute; left: -14px; width: 10px; font-weight: 600; }
+.card .body ul.files li[data-s="A"]::before { color: var(--accent); }
+.card .body ul.files li[data-s="M"]::before { color: var(--amber); }
+.card .body ul.files li[data-s="D"]::before { color: var(--red); }
+.section { margin-bottom: 22px; }
+.section h2 { font-family: system-ui, sans-serif; font-size: 14px; margin: 0 0 10px; color: var(--accent-2); font-weight: 600; display: flex; justify-content: space-between; }
+.section h2 .count { color: var(--fg-dim); font-size: 11px; font-weight: 400; }
+footer { color: var(--fg-dim); text-align: right; font-size: 10px; margin-top: 24px; }
+.empty { color: var(--fg-dim); font-style: italic; padding: 14px 0; text-align: center; }
+.tag { display: inline-block; background: var(--bg-3); border-radius: 10px; padding: 1px 8px; margin: 2px 3px 2px 0; font-size: 10px; color: var(--fg-dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>skill-diff</h1>
+    <span class="sub" id="sub">loading…</span>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+  <div class="kindmix" id="kindmix"></div>
+
+  <div class="filters">
+    <div class="chip on" data-k="all">all</div>
+    <div class="chip on" data-k="skill">skill</div>
+    <div class="chip on" data-k="knowledge">knowledge</div>
+    <div class="chip on" data-k="example">example</div>
+    <div class="chip on" data-k="bootstrap">bootstrap</div>
+  </div>
+
+  <div class="section" id="sec-added"><h2>added <span class="count" id="c-A"></span></h2><div id="list-A"></div></div>
+  <div class="section" id="sec-modified"><h2>modified <span class="count" id="c-M"></span></h2><div id="list-M"></div></div>
+  <div class="section" id="sec-removed"><h2>removed <span class="count" id="c-D"></span></h2><div id="list-D"></div></div>
+
+  <footer>generated <span id="gen"></span> · rebuild: <b>node build-diff.mjs --from=REF --to=REF</b></footer>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+let DATA = null;
+let FILTER = new Set(['skill', 'knowledge', 'example', 'bootstrap']);
+
+fetch('diff.json').then(r => r.json()).then(render).catch(e => {
+  $('#sub').textContent = 'error: ' + e.message;
+});
+
+function escapeHtml(s) { return (s || '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]); }
+
+function render(d) {
+  DATA = d;
+  const { range } = d;
+  $('#sub').textContent = `${range.from} (${range.fromSha}) → ${range.to} (${range.toSha}) · ${range.fromDate.slice(0, 10)} → ${range.toDate.slice(0, 10)}`;
+  $('#gen').textContent = d.generatedAt;
+  $('#kpis').innerHTML = [
+    ['A', 'added', d.totals.added],
+    ['M', 'modified', d.totals.modified],
+    ['D', 'removed', d.totals.removed],
+    ['', 'other files', d.totals.otherFiles],
+    ['', 'skills', d.totals.byKind.find(k => k.k === 'skill') ? d.totals.byKind.find(k => k.k === 'skill').added + d.totals.byKind.find(k => k.k === 'skill').modified + d.totals.byKind.find(k => k.k === 'skill').removed : 0],
+  ].map(([cls, l, v]) => `<div class="kpi ${cls}"><div class="label">${l}</div><div class="value">${v}</div></div>`).join('');
+  $('#kindmix').innerHTML = d.totals.byKind.map(k => `
+    <div class="km"><div class="k">${k.k}</div>
+      <div class="v"><span class="add">+${k.added}</span><span class="mod">~${k.modified}</span><span class="del">-${k.removed}</span></div>
+    </div>`).join('');
+
+  $$('.chip').forEach(c => c.addEventListener('click', () => {
+    const k = c.dataset.k;
+    if (k === 'all') {
+      const allOn = [...FILTER].length === 4;
+      FILTER = allOn ? new Set() : new Set(['skill', 'knowledge', 'example', 'bootstrap']);
+    } else {
+      FILTER.has(k) ? FILTER.delete(k) : FILTER.add(k);
+    }
+    $$('.chip').forEach(cc => {
+      const kk = cc.dataset.k;
+      const on = kk === 'all' ? FILTER.size === 4 : FILTER.has(kk);
+      cc.classList.toggle('on', on);
+    });
+    redraw();
+  }));
+  redraw();
+}
+
+function redraw() {
+  for (const [bucket, label] of [['added', 'A'], ['modified', 'M'], ['removed', 'D']]) {
+    const items = DATA[bucket].filter(e => FILTER.has(e.kind));
+    $('#c-' + label).textContent = `${items.length}`;
+    $('#list-' + label).innerHTML = items.length ? items.map(e => renderCard(e, label)).join('') : `<div class="empty">nothing</div>`;
+  }
+  $$('.card .head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
+}
+
+function renderCard(e, s) {
+  const hasBody = (e.before || e.after) || e.files.length > 1;
+  return `<div class="card" data-s="${s}">
+    <div class="head">
+      <div class="badge">${s === 'A' ? 'added' : s === 'M' ? 'mod' : 'del'}</div>
+      <div><span class="slug">${escapeHtml(e.slug)}</span> <span class="kind">${e.kind}${e.category ? ' / ' + escapeHtml(e.category) : ''}</span></div>
+      <div class="fcount">${e.files.length} file${e.files.length === 1 ? '' : 's'}</div>
+      <div>${hasBody ? '▸' : ''}</div>
+    </div>
+    ${hasBody ? `<div class="body">${renderBody(e)}</div>` : ''}
+  </div>`;
+}
+
+function renderBody(e) {
+  let out = '';
+  if (e.before || e.after) {
+    const b = e.before || {};
+    const a = e.after || {};
+    out += `<div class="lbl">description</div>`;
+    if (!e.before) out += `<div class="after">${escapeHtml(a.description || '(empty)')}</div>`;
+    else if (!e.after) out += `<div class="before">${escapeHtml(b.description || '(empty)')}</div>`;
+    else if (b.description === a.description) out += `<div class="eq">(unchanged)</div>`;
+    else out += `<div class="before">- ${escapeHtml(b.description || '(empty)')}</div><div class="after">+ ${escapeHtml(a.description || '(empty)')}</div>`;
+
+    const tagsB = (b.tags || []).join(','); const tagsA = (a.tags || []).join(',');
+    if (tagsB !== tagsA) {
+      out += `<div class="lbl">tags</div>`;
+      if (b.tags && b.tags.length) out += `<div class="before">- ${b.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`;
+      if (a.tags && a.tags.length) out += `<div class="after">+ ${a.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`;
+    }
+
+    const trB = (b.triggers || []).join('|'); const trA = (a.triggers || []).join('|');
+    if (trB !== trA) {
+      out += `<div class="lbl">triggers</div>`;
+      if (b.triggers && b.triggers.length) out += `<div class="before">- ${escapeHtml(b.triggers.join(' · '))}</div>`;
+      if (a.triggers && a.triggers.length) out += `<div class="after">+ ${escapeHtml(a.triggers.join(' · '))}</div>`;
+    }
+  }
+  if (e.files.length > 1) {
+    out += `<div class="lbl">files (${e.files.length})</div>`;
+    out += `<ul class="files">${e.files.slice(0, 15).map(f => `<li data-s="${f.s}">${escapeHtml(f.p)}</li>`).join('')}${e.files.length > 15 ? `<li data-s="·">… ${e.files.length - 15} more</li>` : ''}</ul>`;
+  }
+  return out;
+}
+</script>
+</body>
+</html>

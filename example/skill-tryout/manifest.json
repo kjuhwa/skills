@@ -1,0 +1,12 @@
+{
+  "slug": "skill-tryout",
+  "title": "Skill Tryout",
+  "summary": "Zero-dep offline trigger simulator — paste a sentence, get top-10 skills by TF-IDF over description/triggers/tags with match highlighting.",
+  "stack": ["node", "html", "js"],
+  "tags": ["tfidf", "matcher", "triggers", "discoverability", "skills-hub"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "serve.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}
