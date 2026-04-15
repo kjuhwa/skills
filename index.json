@@ -856,6 +856,27 @@
       ]
     },
     {
+      "name": "module-federation-expose-react-component",
+      "category": "frontend",
+      "path": "skills/frontend/module-federation-expose-react-component",
+      "version": "1.0.0",
+      "description": "Expose a React component from one MF remote to be consumed by other remotes via a stable 6-step pipeline (implementation → expose wrapper → config → MF constant → RemoteApp wrapper → consumer import).",
+      "tags": [
+        "module-federation",
+        "micro-frontend",
+        "react",
+        "webpack",
+        "expose",
+        "monorepo"
+      ],
+      "triggers": [
+        "expose a component across module federation remotes",
+        "share React component between MFA remotes",
+        "MFA expose pipeline",
+        "cross-remote import forbidden"
+      ]
+    },
+    {
       "name": "zustand-preset-manager",
       "category": "frontend",
       "path": "skills/frontend/zustand-preset-manager",
