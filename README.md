@@ -31,7 +31,8 @@ bootstrap/
     skills_remove.md
     skills_bootstrap_update.md      # pull command files (latest or tagged version)
     skills_bootstrap_publish.md     # publish command edits + bootstrap/v<ver> tag
-    skills_extract_knowledge.md     # extract skills + non-executable knowledge (facts, decisions, pitfalls)
+    skills_extract_knowledge.md     # extract skills + non-executable knowledge (session/diff/commits)
+    skills_extract_project.md       # full-project scan → drafts BOTH skills and knowledge
     knowledge_list.md               # list locally installed knowledge entries
     knowledge_search.md             # search knowledge and optionally inject matches into context
   skills/
@@ -93,6 +94,7 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/skills_bootstrap_update [--version=x.y.z]` | Install/rollback the slash-command files themselves | local commands |
 | `/skills_bootstrap_publish [--bump=...]` | Publish command edits + `bootstrap/v<ver>` tag | remote branch + tag |
 | `/skills_extract_knowledge [--from ...]` | Extract **both** executable skills *and* non-executable knowledge (facts, decisions, pitfalls) from session / git diff / commits | local drafts + knowledge |
+| `/skills_extract_project [--scope=... --max=... --only=...]` | **Full project scan** → drafts BOTH skills *and* knowledge (project-wide counterpart of `/skills_extract_knowledge`) | local drafts |
 | `/knowledge_list [--category/--tag/--linked-to/--orphans]` | List locally installed knowledge entries | no |
 | `/knowledge_search <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
 
