@@ -21,6 +21,16 @@
       "path": "ai/ai-call-with-mock-fallback"
     },
     {
+      "name": "ai-subagent-scope-narrowing",
+      "description": "Orchestrator-first pattern for multi-agent AI coding — humans triage and curate context per task, subagents execute in isolated worktrees with narrowly-scoped briefs. Trades parallel throughput for reduced hallucination.",
+      "category": "ai",
+      "tags": "[agents, subagents, orchestration, context-isolation, worktree, hallucination]",
+      "triggers": "[\"subagent\",\"multiple agents\",\"parallel agents\",\"worktree\",\"agent hallucination\",\"narrow scope\",\"orchestrator agent\",\"context engineering\"]",
+      "source_project": "skills_research:trend:2026-04-16",
+      "version": "1.0.0",
+      "path": "ai/ai-subagent-scope-narrowing"
+    },
+    {
       "name": "async-subagent-resume-on-missing-artifact",
       "description": "When an async subagent is reported \"completed\" but its final message hints at unfinished work (e.g., \"Now let me build…\"), verify the expected on-disk artifact before moving on; if missing, use SendMessage to the agent id to finalize rather than re-dispatching a fresh agent.",
       "category": "workflow",
@@ -802,6 +812,16 @@
       "path": "frontend/jest-test-file-naming-test-only"
     },
     {
+      "name": "jj-jujutsu-day-one-workflow",
+      "description": "Minimum viable jj (Jujutsu) workflow for a git user — init on top of an existing git repo, the five commands that cover 95% of day-1 usage, and the mental-model shift from git's staging area.",
+      "category": "git",
+      "tags": "[jj, jujutsu, version-control, git-compatible, workflow, onboarding]",
+      "triggers": "[\"jj\",\"jujutsu\",\"jj git init\",\"jj describe\",\"jj bookmark\",\"jj st\",\"jj new\",\"jj log\"]",
+      "source_project": "skills_research:trend:2026-04-16",
+      "version": "1.0.0",
+      "path": "git/jj-jujutsu-day-one-workflow"
+    },
+    {
       "name": "json-seeded-jpa-loader",
       "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
       "category": "backend",
@@ -979,6 +999,29 @@
       "source_project": "kis-java-bundle",
       "version": "0.1.0-draft",
       "path": "arch/layered-risk-gates"
+    },
+    {
+      "name": "lean-verified-code-threat-boundary",
+      "description": "When shipping formally-verified code (Lean 4, Coq, F*), explicitly map what is inside and outside the verification boundary — untrusted parsers, runtime, and TCB assumptions almost always harbor the real bugs.",
+      "category": "security",
+      "tags": "[formal-verification, lean, coq, threat-modeling, fuzzing, tcb, security]",
+      "triggers": "[\"formally verified\",\"lean 4\",\"formal proof\",\"Coq\",\"F-star\",\"lean_alloc_sarray\",\"trusted computing base\",\"TCB\",\"verified library\",\"CompCert\"]",
+      "source_project": "skills_research:trend:2026-04-16",
+      "version": "1.0.0",
+      "path": "security/lean-verified-code-threat-boundary",
+      "linked_knowledge": [
+        "lean-verification-spec-coverage-gap"
+      ]
+    },
+    {
+      "name": "llm-integration-test-failure-diagnosis",
+      "description": "Wire an LLM-based diagnosis step into your CI for integration-test failures — summarize noisy logs, identify probable root cause, post findings to the code-review/PR UI. Based on Google's Auto-Diagnose (90%+ accuracy on 71-case study, adopted across 52k tests).",
+      "category": "testing",
+      "tags": "[llm, ci, integration-tests, test-diagnosis, log-analysis, root-cause, auto-diagnose]",
+      "triggers": "[\"test failure diagnosis\",\"integration test flaky\",\"log summarization\",\"auto-diagnose\",\"test failure LLM\",\"root cause analysis\"]",
+      "source_project": "skills_research:trend:2026-04-16",
+      "version": "1.0.0",
+      "path": "testing/llm-integration-test-failure-diagnosis"
     },
     {
       "name": "llm-json-extraction",
@@ -1293,6 +1336,16 @@
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
       "path": "ai/openapi-to-mcp-tag-grouping"
+    },
+    {
+      "name": "openssl-4-migration-checklist",
+      "description": "Step-by-step migration checklist for upgrading a C/C++ codebase from OpenSSL 3.x to 4.0.0 — const-qualified APIs, removed SSLv3 support, opaque ASN1_STRING, engine removal, cleanup semantics.",
+      "category": "security",
+      "tags": "[openssl, tls, cryptography, migration, c-api, breaking-changes, upgrade]",
+      "triggers": "[\"openssl 4\",\"OpenSSL 4.0.0\",\"openssl upgrade\",\"SSLv3_method\",\"ENGINE_load\",\"ASN1_STRING opaque\",\"X509_cmp_time\",\"openssl deprecated\"]",
+      "source_project": "skills_research:trend:2026-04-16",
+      "version": "1.0.0",
+      "path": "security/openssl-4-migration-checklist"
     },
     {
       "name": "opentelemetry-java-bootstrap",
@@ -2221,69 +2274,6 @@
   ],
   "knowledge": [
     {
-      "slug": "Annotation-driven coarse-grained authorization via @FunctionId",
-      "category": "arch",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "arch/annotation-driven-authz-via-function-id",
-      "linked_skills": []
-    },
-    {
-      "slug": "Gate startup initialization on dependent-service readiness via @WaitForServices",
-      "category": "arch",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "arch/wait-for-services-eureka-startup-init",
-      "linked_skills": []
-    },
-    {
-      "slug": "Per-request tenant context via HandlerInterceptor",
-      "category": "arch",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "arch/tenant-context-per-request-interceptor",
-      "linked_skills": []
-    },
-    {
-      "slug": "Polymorphic metadata persisted as BSON via enum-switch deserialization",
-      "category": "arch",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "arch/polymorphic-metadata-via-enum-switch",
-      "linked_skills": []
-    },
-    {
-      "slug": "account-lockout-configurable-threshold",
-      "category": "domain",
-      "summary": "Failed-login counter locks the account after a configurable threshold (ACCOUNT_LOCKOUT, default 10).",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "domain/account-lockout-configurable-threshold",
-      "linked_skills": []
-    },
-    {
-      "slug": "actuator-endpoints-skip-auth-by-design",
-      "category": "decision",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/actuator-endpoints-skip-auth-by-design",
-      "linked_skills": []
-    },
-    {
-      "slug": "actuator-metric-call-aggressive-timeout",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/actuator-metric-call-aggressive-timeout",
-      "linked_skills": []
-    },
-    {
       "slug": "actuator-path-dual-compatibility",
       "category": "api",
       "summary": "Actuator endpoints must respond at both /actuator/** and /actuator/{appName}/** for deployment compatibility.",
@@ -2293,261 +2283,12 @@
       "linked_skills": []
     },
     {
-      "slug": "additive-registry-schema-versioning",
-      "category": "arch",
-      "summary": "JSON registry 진화는 version bump + 새 키 empty container + 첫 쓰기 시 자동 마이그레이션으로 하라",
+      "slug": "Claude Code Routines: scheduled/API/GitHub-triggered cloud sessions",
+      "category": "api",
+      "summary": "Routines are saved cloud Claude Code sessions (prompt+repos+connectors+environment) triggered by schedule, HTTP POST to /fire, or GitHub events. One routine can combine all three; daily run cap; pushes restricted to claude/* by default.",
       "confidence": "high",
-      "source_project": "",
-      "path": "arch/additive-registry-schema-versioning",
-      "linked_skills": []
-    },
-    {
-      "slug": "admin-role-disabled-secretkey",
-      "category": "decision",
-      "summary": "Default `admins` role is disabled and the shared `SecretKey` was removed from `config.properties` — never re-enable without a per-install key",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/admin-role-disabled-secretkey",
-      "linked_skills": []
-    },
-    {
-      "slug": "ai-guess-mark-and-review-checklist",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/ai-guess-mark-and-review-checklist",
-      "linked_skills": []
-    },
-    {
-      "slug": "alarm-raw-over-1min-aggregate",
-      "category": "decision",
-      "summary": "Alarm judgement reads raw metrics, not 1-minute aggregates — accuracy over storage cost",
-      "confidence": "high",
-      "source_project": "lucida-measurement",
-      "path": "decision/alarm-raw-over-1min-aggregate",
-      "linked_skills": [
-        "kafka-consumer-semaphore-chunking"
-      ]
-    },
-    {
-      "slug": "anonymize-examples-in-skill-docs",
-      "category": "pitfall",
-      "summary": "실사 티켓 번호·실명·프로젝트명이 예시에 들어가면 보안 감사에서 지적됨. 공용 repo 기준 모든 예시는 익명 더미여야 한다.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/anonymize-examples-in-skill-docs",
-      "linked_skills": []
-    },
-    {
-      "slug": "asm-based-classloader-instrumentation-caveats",
-      "category": "pitfall",
-      "summary": "ASM-based JVM agents miss Java 8+ lambda forms, annotation-processor classes, and Spring proxies unless explicitly handled; misses manifest as XLog gaps or skipped trace points",
-      "confidence": "high",
-      "source_project": "scouter",
-      "path": "pitfall/asm-based-classloader-instrumentation-caveats",
-      "linked_skills": []
-    },
-    {
-      "slug": "assume-semantics-for-compiler-hints",
-      "category": "decision",
-      "summary": "Three-tier assertion strategy (Assert / CHECK_NONFATAL / Assume) separates fatal invariants from recoverable logic bugs and pure compiler hints.",
-      "confidence": "high",
-      "source_project": "bitcoin",
-      "path": "decision/assume-semantics-for-compiler-hints",
-      "linked_skills": []
-    },
-    {
-      "slug": "assumeutxo-snapshot-chainstate-phases",
-      "category": "arch",
-      "summary": "(Blockchain-specific) Multi-chainstate snapshot validation — active chainstate syncs from a trusted-but-unverified UTXO snapshot while a background chainstate validates the snapshot's base, with a phased state machine for clean cutover.",
-      "confidence": "high",
-      "source_project": "bitcoin",
-      "path": "arch/assumeutxo-snapshot-chainstate-phases",
-      "linked_skills": []
-    },
-    {
-      "slug": "audit-changed-prev-after-field-swap-bug",
-      "category": "pitfall",
-      "summary": "Audit diff logic had before/after swapped — iterating the wrong doc and putting the wrong value into changedPrev corrupted the audit trail silently",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "pitfall/audit-changed-prev-after-field-swap-bug",
-      "linked_skills": [
-        "audit-change-data-capture-pattern"
-      ]
-    },
-    {
-      "slug": "auto-lock-must-not-bump-lastEditedTime",
-      "category": "pitfall",
-      "summary": "|",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/auto-lock-must-not-bump-lastEditedTime",
-      "linked_skills": []
-    },
-    {
-      "slug": "avro-private-fields-no-setters",
-      "category": "decision",
-      "summary": "Avro-generated classes are configured with `fieldVisibility=PRIVATE` and `createSetters=false` to enforce immutability on event payloads",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/avro-private-fields-no-setters",
-      "linked_skills": []
-    },
-    {
-      "slug": "bilingual-user-facing-strings",
-      "category": "arch",
-      "summary": "A bilingual_str struct carrying both original and translated forms lets GUI show translated text while logs/stderr keep the original — no locale branching in business code.",
-      "confidence": "high",
-      "source_project": "bitcoin",
-      "path": "arch/bilingual-user-facing-strings",
-      "linked_skills": []
-    },
-    {
-      "slug": "binsize-zero-fallback-to-one",
-      "category": "pitfall",
-      "summary": "Substitute binSize=1 whenever the computed interval is 0 in MongoDB time-bucket aggregation",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/binsize-zero-fallback-to-one",
-      "linked_skills": []
-    },
-    {
-      "slug": "boilerplate-generated-business-logic-manual",
-      "category": "arch",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "arch/boilerplate-generated-business-logic-manual",
-      "linked_skills": []
-    },
-    {
-      "slug": "build-gradle-secret-and-insecure-protocol",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/sonar-token-hardcoded-build-gradle",
-      "linked_skills": []
-    },
-    {
-      "slug": "cache-even-when-enable-false",
-      "category": "decision",
-      "summary": "Notification configs with `enable=false` are still loaded into the cache manager rather than skipped, so toggling enable on/off doesn't require a cache reload",
-      "confidence": "high",
-      "source_project": "lucida-notification",
-      "path": "decision/cache-even-when-enable-false",
-      "linked_skills": []
-    },
-    {
-      "slug": "catalina-urlencoder-internal-api",
-      "category": "pitfall",
-      "summary": "org.apache.catalina.util.URLEncoder is Tomcat internal — use java.net.URLEncoder or Spring UriUtils",
-      "confidence": "medium",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/catalina-urlencoder-internal-api",
-      "linked_skills": []
-    },
-    {
-      "slug": "caveats-absence-confidence-cap",
-      "category": "decision",
-      "summary": "반증 조건(Counter/Caveats)이 비어 있는 knowledge는 confidence 최대 medium으로 강등한다 — 미확인 = 과신 위험",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/caveats-absence-confidence-cap",
-      "linked_skills": []
-    },
-    {
-      "slug": "circular-dependency-detection-script",
-      "category": "decision",
-      "summary": "A small Python script that parses #include directives across the tree and reports the shortest cycle in the module graph — cheap CI gate against architectural decay.",
-      "confidence": "high",
-      "source_project": "bitcoin",
-      "path": "decision/circular-dependency-detection-script",
-      "linked_skills": []
-    },
-    {
-      "slug": "classifier-both-verdict-self-reference",
-      "category": "pitfall",
-      "summary": "LLM classifier의 both-verdict에 suggested_links를 허용하면 자기 자신을 가리키는 self-link가 나온다 — 링크는 post-process에서 붙일 것",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/classifier-both-verdict-self-reference",
-      "linked_skills": []
-    },
-    {
-      "slug": "claude-plugin-marketplace-owner-required",
-      "category": "pitfall",
-      "summary": "플러그인 설치 스키마 오류: marketplace.json 최상위에 `owner` 객체 없으면 플러그인 설치가 실패.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/claude-plugin-marketplace-owner-required",
-      "linked_skills": []
-    },
-    {
-      "slug": "claude-plugin-skill-md-is-sufficient",
-      "category": "arch",
-      "summary": "스킬 = SKILL.md 하나. 코드, 빌드, 의존성, 스크립트 없이도 완전히 동작한다.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "arch/claude-plugin-skill-md-is-sufficient",
-      "linked_skills": []
-    },
-    {
-      "slug": "common-alarm-policy-init-gotcha",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/common-alarm-policy-init-gotcha",
-      "linked_skills": [
-        "kafka-debounce-event-coalescing"
-      ]
-    },
-    {
-      "slug": "commons-logging-exclusion-strategy",
-      "category": "arch",
-      "summary": "Globally exclude commons-logging, log4j, and slf4j-log4j12 in Gradle so SLF4J+Logback is the only logging backend on the classpath",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "arch/commons-logging-exclusion-strategy",
-      "linked_skills": []
-    },
-    {
-      "slug": "compare-counts-exclude-added-deleted",
-      "category": "pitfall",
-      "summary": "An earlier query filtered change-count by `latest` / `added` / `deleted` flags, which silently dropped newly-added resources from the \"number of changes between two points in time\" metric.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/compare-counts-exclude-added-deleted",
-      "linked_skills": []
-    },
-    {
-      "slug": "composite-alarm-all-deleted-npe",
-      "category": "pitfall",
-      "summary": "Composite/aggregated monitors must validate their child set before reducing — empty aggregation throws NPE",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/composite-alarm-all-deleted-npe",
-      "linked_skills": []
-    },
-    {
-      "slug": "conf-info-may-lack-resource-type",
-      "category": "pitfall",
-      "summary": "The `conf_info` collection is NOT guaranteed to carry `resourceType` for every metric; criteria builders must tolerate missing field",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/conf-info-may-lack-resource-type",
-      "linked_skills": []
-    },
-    {
-      "slug": "confid-only-query-over-resource-tuple",
-      "category": "decision",
-      "summary": "Performance queries key off `confId` (config id) whenever available, falling back to (resourceType, resourceName) only when confId is absent",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/confid-only-query-over-resource-tuple",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "api/claude-code-routines-cloud-automation-model",
       "linked_skills": []
     },
     {
@@ -2560,30 +2301,147 @@
       "linked_skills": []
     },
     {
-      "slug": "copy-naming-suffix-numbered",
-      "category": "decision",
-      "summary": "|",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/copy-naming-suffix-numbered",
-      "linked_skills": []
-    },
-    {
-      "slug": "cors-allow-credentials-star-origin",
-      "category": "decision",
-      "summary": "Service-level allowCredentials+allowedOriginPatterns(*) kept because edge proxy (Traefik/Istio) enforces CORS",
-      "confidence": "medium",
-      "source_project": "lucida-domain-automation",
-      "path": "decision/cors-allow-credentials-star-origin",
-      "linked_skills": []
-    },
-    {
-      "slug": "csp-frame-ancestors-required",
-      "category": "decision",
-      "summary": "Send a Content-Security-Policy header (including `frame-ancestors`) on every response to block clickjacking",
+      "slug": "es-xpack-transport-vs-rest-ssl",
+      "category": "api",
+      "summary": "Elasticsearch transport SSL and REST SSL are independent X-Pack configs; enabling one does not enable the other",
       "confidence": "high",
       "source_project": "",
-      "path": "decision/csp-frame-ancestors-required",
+      "path": "api/es-xpack-transport-vs-rest-ssl",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-avro-change-flag-contract",
+      "category": "api",
+      "summary": "Every Configuration-domain Avro event carries an `actionType` enum (INSERT/UPDATE/DELETE) plus boolean change flags per mutable section (e.g. `parentChanged`, `tagFiltersChanged`, `configurationsChanged`) rather than full before/after payloads.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/kafka-avro-change-flag-contract",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-organization-id-record-header",
+      "category": "api",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/kafka-organization-id-record-header",
+      "linked_skills": []
+    },
+    {
+      "slug": "live-chart-timestamp-normalization",
+      "category": "api",
+      "summary": "LIVE charts accept `normalizeTimestamp` + `normalizeIntervalMs` to align per-agent millisecond offsets into a single x-axis",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "api/live-chart-timestamp-normalization",
+      "linked_skills": []
+    },
+    {
+      "slug": "stomp-heartbeat-10s-bidirectional",
+      "category": "api",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/stomp-heartbeat-10s-bidirectional",
+      "linked_skills": []
+    },
+    {
+      "slug": "timeselector-mode-interval-range-mapping",
+      "category": "api",
+      "summary": "Clients send a `mode` enum (RAW..YEAR); the server maps it to a (bin-interval, query-range) pair and picks the right pre-aggregated collection",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/timeselector-mode-interval-range-mapping",
+      "linked_skills": []
+    },
+    {
+      "slug": "xlog-extended-transaction-trace-with-compression",
+      "category": "api",
+      "summary": "XLog is scouter's per-request transaction trace format — hierarchical typed steps stored as compressed binary, indexed by end-time, with flat metadata for server-side filtering",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "api/xlog-extended-transaction-trace-with-compression",
+      "linked_skills": []
+    },
+    {
+      "slug": "additive-registry-schema-versioning",
+      "category": "arch",
+      "summary": "JSON registry 진화는 version bump + 새 키 empty container + 첫 쓰기 시 자동 마이그레이션으로 하라",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/additive-registry-schema-versioning",
+      "linked_skills": []
+    },
+    {
+      "slug": "Agent memory: binding, not recall, is the real bottleneck",
+      "category": "arch",
+      "summary": "A 500-run OrKa benchmark showed 0/250 stored skills were used even though retrieval worked. Fix is a bundle (skill record + episode record + bidirectional link) returned together on recall.",
+      "confidence": "medium",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "arch/agent-memory-binding-vs-recall",
+      "linked_skills": []
+    },
+    {
+      "slug": "Annotation-driven coarse-grained authorization via @FunctionId",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/annotation-driven-authz-via-function-id",
+      "linked_skills": []
+    },
+    {
+      "slug": "Archon: deterministic AI coding via YAML workflow DAGs",
+      "category": "arch",
+      "summary": "Workflows as YAML DAGs in the repo; deterministic nodes (tests/git) bracket AI-driven nodes; each run isolated in its own git worktree. Pattern generalizes beyond Archon.",
+      "confidence": "medium",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "arch/archon-deterministic-ai-coding-harness",
+      "linked_skills": []
+    },
+    {
+      "slug": "assumeutxo-snapshot-chainstate-phases",
+      "category": "arch",
+      "summary": "(Blockchain-specific) Multi-chainstate snapshot validation — active chainstate syncs from a trusted-but-unverified UTXO snapshot while a background chainstate validates the snapshot's base, with a phased state machine for clean cutover.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "arch/assumeutxo-snapshot-chainstate-phases",
+      "linked_skills": []
+    },
+    {
+      "slug": "bilingual-user-facing-strings",
+      "category": "arch",
+      "summary": "A bilingual_str struct carrying both original and translated forms lets GUI show translated text while logs/stderr keep the original — no locale branching in business code.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "arch/bilingual-user-facing-strings",
+      "linked_skills": []
+    },
+    {
+      "slug": "boilerplate-generated-business-logic-manual",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/boilerplate-generated-business-logic-manual",
+      "linked_skills": []
+    },
+    {
+      "slug": "claude-plugin-skill-md-is-sufficient",
+      "category": "arch",
+      "summary": "스킬 = SKILL.md 하나. 코드, 빌드, 의존성, 스크립트 없이도 완전히 동작한다.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/claude-plugin-skill-md-is-sufficient",
+      "linked_skills": []
+    },
+    {
+      "slug": "commons-logging-exclusion-strategy",
+      "category": "arch",
+      "summary": "Globally exclude commons-logging, log4j, and slf4j-log4j12 in Gradle so SLF4J+Logback is the only logging backend on the classpath",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "arch/commons-logging-exclusion-strategy",
       "linked_skills": []
     },
     {
@@ -2593,33 +2451,6 @@
       "confidence": "medium",
       "source_project": "",
       "path": "arch/data-patch-package-for-migrations",
-      "linked_skills": []
-    },
-    {
-      "slug": "dataavro-json-wrapper-pattern",
-      "category": "decision",
-      "summary": "Single DataAvro{jsonData,jsonDataClass} wrapper avoids per-event Avro schema proliferation (TCM pattern)",
-      "confidence": "medium",
-      "source_project": "lucida-domain-automation",
-      "path": "decision/dataavro-json-wrapper-pattern",
-      "linked_skills": []
-    },
-    {
-      "slug": "do-not-ask-planners-for-api-design",
-      "category": "decision",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/do-not-ask-planners-for-api-design",
-      "linked_skills": []
-    },
-    {
-      "slug": "docker-engine-29-requires-traefik-upgrade",
-      "category": "pitfall",
-      "summary": "Docker Engine 29.x raises the minimum client API to 1.44, breaking older Traefik versions that pin an older API",
-      "confidence": "high",
-      "source_project": "lucida-for-docker",
-      "path": "pitfall/docker-engine-29-requires-traefik-upgrade",
       "linked_skills": []
     },
     {
@@ -2641,30 +2472,12 @@
       "linked_skills": []
     },
     {
-      "slug": "encrypted-pii-decode-on-export",
-      "category": "domain",
-      "summary": "PII fields (phone, email) are stored encrypted; only decrypted for explicit export/API response, never for logs.",
+      "slug": "DuckDB's five architectural pillars for analytical execution",
+      "category": "arch",
+      "summary": "Vectorized execution, pipelined operators, explicit memory + grouped aggregation, ART indexing, and query rewriting as a dedicated phase — the pillars that separate embedded analytical engines from row-at-a-time OLTP.",
       "confidence": "medium",
-      "source_project": "",
-      "path": "domain/encrypted-pii-decode-on-export",
-      "linked_skills": []
-    },
-    {
-      "slug": "enum-notnull-comparison-pitfall",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/enum-notnull-comparison-pitfall",
-      "linked_skills": []
-    },
-    {
-      "slug": "enum-whitelist-blocks-time-based-sqli",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/enum-whitelist-blocks-time-based-sqli",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "arch/duckdb-vectorized-analytical-execution",
       "linked_skills": []
     },
     {
@@ -2677,39 +2490,12 @@
       "linked_skills": []
     },
     {
-      "slug": "es-xpack-transport-vs-rest-ssl",
-      "category": "api",
-      "summary": "Elasticsearch transport SSL and REST SSL are independent X-Pack configs; enabling one does not enable the other",
-      "confidence": "high",
-      "source_project": "",
-      "path": "api/es-xpack-transport-vs-rest-ssl",
-      "linked_skills": []
-    },
-    {
       "slug": "event-driven-init-wait-for-services",
       "category": "arch",
       "summary": "Initialization work is deferred until leader status and dependent-service readiness are confirmed via a `@WaitForServices` event listener",
       "confidence": "high",
       "source_project": "",
       "path": "arch/event-driven-init-wait-for-services",
-      "linked_skills": []
-    },
-    {
-      "slug": "existing-code-patterns-over-standard-rules",
-      "category": "decision",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/existing-code-patterns-over-standard-rules",
-      "linked_skills": []
-    },
-    {
-      "slug": "god-controller-split-by-resource",
-      "category": "decision",
-      "summary": "",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/god-controller-split-by-resource",
       "linked_skills": []
     },
     {
@@ -2722,57 +2508,12 @@
       "linked_skills": []
     },
     {
-      "slug": "gridfs-template-upload-data-loss-pitfall",
-      "category": "pitfall",
-      "summary": "MongoDB GridFS uploads can silently drop file bytes if the bucket/db selection or stream flush is wrong - always verify metadata size equals input size",
-      "confidence": "medium",
-      "source_project": "lucida-report",
-      "path": "pitfall/gridfs-template-upload-data-loss-pitfall",
-      "linked_skills": []
-    },
-    {
-      "slug": "hibernate-date-format-lowercase",
-      "category": "pitfall",
-      "summary": "Use lowercase `yyyy` for calendar year — `YYYY` is ISO week-year and produces wrong values near Jan 1 / Dec 31",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/hibernate-date-format-lowercase",
-      "linked_skills": []
-    },
-    {
       "slug": "hierarchical-agents-md-catalog",
       "category": "arch",
       "summary": "루트 AGENTS.md(프로젝트 개요) + `skills/AGENTS.md`(스킬 카탈로그) 2계층 구조. 하위는 상위를 `<!-- Parent: ../AGENTS.md -->` 주석으로 가리킨다.",
       "confidence": "medium",
       "source_project": "",
       "path": "arch/hierarchical-agents-md-catalog",
-      "linked_skills": []
-    },
-    {
-      "slug": "history-view-yearly-partition-pitfall",
-      "category": "pitfall",
-      "summary": "A history/reporting view or materialized collection created with a year-bounded clause silently stops returning rows when the calendar year rolls over",
-      "confidence": "high",
-      "source_project": "lucida-notification",
-      "path": "pitfall/history-view-yearly-partition-pitfall",
-      "linked_skills": []
-    },
-    {
-      "slug": "hyperloglog-for-unique-user-counting",
-      "category": "decision",
-      "summary": "Scouter uses HyperLogLog (Clearspring stream-lib) to estimate recent and daily unique user counts with ~100 bytes of memory and ~2% error, avoiding O(n) hash sets",
-      "confidence": "medium",
-      "source_project": "scouter",
-      "path": "decision/hyperloglog-for-unique-user-counting",
-      "linked_skills": []
-    },
-    {
-      "slug": "injectmocks-generics-type-erasure",
-      "category": "pitfall",
-      "summary": "@InjectMocks picks wrong mock for same raw-type generic fields due to type erasure — flaky test root cause",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/injectmocks-generics-type-erasure",
       "linked_skills": []
     },
     {
@@ -2785,88 +2526,12 @@
       "linked_skills": []
     },
     {
-      "slug": "ipv6-colon-detection-edge",
-      "category": "pitfall",
-      "summary": "Detecting IPv6 by colon count breaks on compressed notation — use a regex character class",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/ipv6-colon-detection-edge",
-      "linked_skills": []
-    },
-    {
-      "slug": "jackson-version-pinning-2.17.1",
-      "category": "pitfall",
-      "summary": "Jackson must be pinned via Gradle resolutionStrategy across all com.fasterxml.jackson.* groups to avoid NoSuchMethodError from transitive version drift",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "pitfall/jackson-version-pinning-2.17.1",
-      "linked_skills": []
-    },
-    {
-      "slug": "jacoco-exclude-business-layers",
-      "category": "decision",
-      "summary": "In this project's Jacoco config, nearly every layer (service, repository, dto, entity, kafka, config, constants, helper, exception, schedule, provider) is excluded from coverage measurement — only controllers/business orchestration code is measured.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/jacoco-exclude-business-layers",
-      "linked_skills": []
-    },
-    {
-      "slug": "jacoco-sonar-exclusion-policy",
-      "category": "decision",
-      "summary": "Single exclusion list drives Jacoco + Sonar + test excludes; generated/boilerplate code never counts toward coverage",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "decision/jacoco-sonar-exclusion-policy",
-      "linked_skills": [
-        "querydsl-q-class-exclusion-pattern"
-      ]
-    },
-    {
-      "slug": "jacoco-sonar-exclusion-rationale",
-      "category": "decision",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/jacoco-sonar-exclusion-rationale",
-      "linked_skills": []
-    },
-    {
       "slug": "jar-task-disabled-bootjar-only",
       "category": "arch",
       "summary": "Gradle `jar` task is disabled so only `bootJar` produces an artifact — CI/Docker consumers never receive an ambiguous plain JAR",
       "confidence": "medium",
       "source_project": "lucida-audit",
       "path": "arch/jar-task-disabled-bootjar-only",
-      "linked_skills": []
-    },
-    {
-      "slug": "java-21-upgrade-rationale",
-      "category": "decision",
-      "summary": "Java 17 → 21 + Spring Boot 3.5.x upgrade rationale and required Gradle/JVM flag adjustments",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "decision/java-21-upgrade-rationale",
-      "linked_skills": [
-        "java-21-upgrade-rationale"
-      ]
-    },
-    {
-      "slug": "jdbc-template-var-xml-escape-bypass",
-      "category": "pitfall",
-      "summary": "When the template engine XML-escapes values but the downstream channel is raw SQL / plain text, the escaped `&amp; &lt; &gt;` leaks into stored data",
-      "confidence": "medium",
-      "source_project": "lucida-notification",
-      "path": "pitfall/jdbc-template-var-xml-escape-bypass",
-      "linked_skills": []
-    },
-    {
-      "slug": "jest-coverage-80-threshold",
-      "category": "decision",
-      "summary": "Global Jest coverage threshold is 80% on branches, functions, lines, and statements",
-      "confidence": "medium",
-      "source_project": "lucida-builder-r3",
-      "path": "decision/jest-coverage-80-threshold",
       "linked_skills": []
     },
     {
@@ -2879,39 +2544,12 @@
       "linked_skills": []
     },
     {
-      "slug": "jwt-stateless-refresh-24h-default",
-      "category": "decision",
-      "summary": "JWT stateless auth with 1h access / 24h refresh token defaults, both env-tunable.",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/jwt-stateless-refresh-24h-default",
-      "linked_skills": []
-    },
-    {
       "slug": "k-git-tag-registry-versioning",
       "category": "arch",
       "summary": "Git tag를 semver registry로 쓰면 별도 version manifest 없이 rollback·pinning을 얻는다",
       "confidence": "high",
       "source_project": "",
       "path": "arch/k-git-tag-registry-versioning",
-      "linked_skills": []
-    },
-    {
-      "slug": "k-kafka-message-header-metadata",
-      "category": "decision",
-      "summary": "멀티테넌트 Kafka routing 메타는 payload 대신 RecordHeader에 두어 business schema 오염을 막는다",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/k-kafka-message-header-metadata",
-      "linked_skills": []
-    },
-    {
-      "slug": "k8s-clusterrole-aggregation-npe",
-      "category": "pitfall",
-      "summary": "ClusterRole `aggregationRule` and its `clusterRoleSelectors` are both nullable — iterate only after null-check",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/k8s-clusterrole-aggregation-npe",
       "linked_skills": []
     },
     {
@@ -2924,15 +2562,6 @@
       "linked_skills": [
         "kafka-consumer-semaphore-chunking"
       ]
-    },
-    {
-      "slug": "kafka-avro-change-flag-contract",
-      "category": "api",
-      "summary": "Every Configuration-domain Avro event carries an `actionType` enum (INSERT/UPDATE/DELETE) plus boolean change flags per mutable section (e.g. `parentChanged`, `tagFiltersChanged`, `configurationsChanged`) rather than full before/after payloads.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "api/kafka-avro-change-flag-contract",
-      "linked_skills": []
     },
     {
       "slug": "kafka-avro-schedule-event-chain",
@@ -2953,44 +2582,6 @@
       "linked_skills": []
     },
     {
-      "slug": "kafka-batch-size-timeout-tuning",
-      "category": "decision",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/kafka-batch-size-timeout-tuning",
-      "linked_skills": [
-        "kafka-batch-consumer-partition-tuning"
-      ]
-    },
-    {
-      "slug": "kafka-consumer-group-id-hostname-not-timezone",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/kafka-consumer-group-id-hostname-not-timezone",
-      "linked_skills": []
-    },
-    {
-      "slug": "kafka-error-handling-deserializer-fallback",
-      "category": "pitfall",
-      "summary": "Wrap Avro/JSON deserializers in ErrorHandlingDeserializer so a single bad record doesn't poison the consumer and crash-loop the container",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "pitfall/kafka-error-handling-deserializer-fallback",
-      "linked_skills": []
-    },
-    {
-      "slug": "kafka-organization-id-record-header",
-      "category": "api",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "api/kafka-organization-id-record-header",
-      "linked_skills": []
-    },
-    {
       "slug": "kafka-partition-topology-design",
       "category": "arch",
       "summary": "",
@@ -3002,77 +2593,21 @@
       ]
     },
     {
-      "slug": "kafka-sticky-partitioner-key-null",
-      "category": "pitfall",
-      "summary": "Kafka Sticky Partitioner batches key=null messages into one partition — explains dev vs prod distribution gap",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/kafka-sticky-partitioner-key-null",
-      "linked_skills": []
-    },
-    {
-      "slug": "konva-center-coord-system",
-      "category": "pitfall",
-      "summary": "Konva node coordinates can be center-based; when converting to top-left boxes subtract half width/height",
-      "confidence": "medium",
-      "source_project": "lucida-builder-r3",
-      "path": "pitfall/konva-center-coord-system",
-      "linked_skills": []
-    },
-    {
-      "slug": "large-range-query-raw-collections",
-      "category": "decision",
-      "summary": "For long time-range queries over day-partitioned data, hit raw daily collections instead of aggregated views to avoid timeouts",
-      "confidence": "high",
-      "source_project": "lucida-domain-apm",
-      "path": "decision/large-range-query-raw-collections",
-      "linked_skills": []
-    },
-    {
-      "slug": "latest-availability-deletion-risk",
-      "category": "pitfall",
-      "summary": "Latest-availability collection can lose data when upstream source is stale but not actually missing",
-      "confidence": "high",
-      "source_project": "lucida-measurement",
-      "path": "pitfall/latest-availability-deletion-risk",
-      "linked_skills": [
-        "availability-ttl-punctuate-processor"
-      ]
-    },
-    {
-      "slug": "legacy-datasource-naming",
-      "category": "pitfall",
-      "summary": "`dataSource` / `dataSourceFilter` in the codebase actually mean data-pipeline-select and data-pipeline-filter — not datasource",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "pitfall/legacy-datasource-naming",
-      "linked_skills": []
-    },
-    {
-      "slug": "license-apply-window-15d",
-      "category": "decision",
-      "summary": "Issued licenses must be applied within 15 days; expired licenses are immutable.",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/license-apply-window-15d",
-      "linked_skills": []
-    },
-    {
-      "slug": "live-chart-timestamp-normalization",
-      "category": "api",
-      "summary": "LIVE charts accept `normalizeTimestamp` + `normalizeIntervalMs` to align per-agent millisecond offsets into a single x-axis",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "api/live-chart-timestamp-normalization",
-      "linked_skills": []
-    },
-    {
       "slug": "live-mode-aggregation-exceptions",
       "category": "arch",
       "summary": "LIVE mode reads raw data by default, but equalizer / multi-resource / TopN charts still aggregate raw at query time",
       "confidence": "medium",
       "source_project": "lucida-measurement",
       "path": "arch/live-mode-aggregation-exceptions",
+      "linked_skills": []
+    },
+    {
+      "slug": "The MxN problem of LLM tool calling across open-source models",
+      "category": "arch",
+      "summary": "Each OSS LLM family encodes tool calls in a different wire format (special tokens, XML, channel notation, JSON blocks), forcing M inference apps x N models of parser duplication. Fix is declarative tool-call specs shipped with the model.",
+      "confidence": "medium",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "arch/llm-tool-calling-mxn-wire-format-problem",
       "linked_skills": []
     },
     {
@@ -3085,122 +2620,12 @@
       "linked_skills": []
     },
     {
-      "slug": "measurement-batch-send-per-config",
-      "category": "decision",
-      "summary": "",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/measurement-batch-send-per-config",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongo-direct-connection-flag",
-      "category": "pitfall",
-      "summary": "MongoDB datasource connectionString requires directConnection=true in this deployment",
-      "confidence": "medium",
-      "source_project": "lucida-builder-r3",
-      "path": "pitfall/mongo-direct-connection-flag",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongo-timeseries-forced-hint-kills-pushdown",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/mongo-timeseries-forced-hint-kills-pushdown",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongo-timeseries-match-split-for-pushdown",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/mongo-timeseries-match-split-for-pushdown",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongo-timeseries-view-pushdown-broken-8_2_3",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/mongo-timeseries-view-pushdown-broken-8_2_3",
-      "linked_skills": []
-    },
-    {
       "slug": "mongodb-aggregated-stats-as-views",
       "category": "arch",
       "summary": "",
       "confidence": "high",
       "source_project": "",
       "path": "arch/mongodb-aggregated-stats-as-views",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongodb-changestream-resubscribe",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/mongodb-changestream-resubscribe",
-      "linked_skills": [
-        "mongodb-changestream-field-filter"
-      ]
-    },
-    {
-      "slug": "mongodb-compound-index-on-views",
-      "category": "pitfall",
-      "summary": "Spring Data @CompoundIndex annotations on a view-backed @Document are silently ignored — index the collection class",
-      "confidence": "high",
-      "source_project": "lucida-domain-apm",
-      "path": "pitfall/mongodb-compound-index-on-views",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongodb-documentreference-lazy-removal",
-      "category": "pitfall",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "pitfall/mongodb-documentreference-lazy-removal",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongodb-exclude-system-databases",
-      "category": "domain",
-      "summary": "When enumerating tenant databases in a shared MongoDB cluster, filter out admin/config/local plus third-party DBs (yorkie-meta, migration) to avoid touching shared state",
-      "confidence": "medium",
-      "source_project": "lucida-audit",
-      "path": "domain/mongodb-exclude-system-databases",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongodb-field-name-underscore-to-dot",
-      "category": "pitfall",
-      "summary": "|",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/mongodb-field-name-underscore-to-dot",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongodb-single-node-directconnection",
-      "category": "pitfall",
-      "summary": "MongoDB clients must pass directConnection=true when connecting to a single-node replSet, otherwise they hang on primary discovery",
-      "confidence": "high",
-      "source_project": "lucida-for-docker",
-      "path": "pitfall/mongodb-single-node-directconnection",
-      "linked_skills": []
-    },
-    {
-      "slug": "mongodb-string-id-field-type-mapping",
-      "category": "pitfall",
-      "summary": "Spring Data MongoDB coerces 24-char-hex @Id String values to ObjectId unless @Field(targetType = FieldType.STRING) is set",
-      "confidence": "high",
-      "source_project": "lucida-domain-dpm",
-      "path": "pitfall/mongodb-string-id-field-type-mapping",
       "linked_skills": []
     },
     {
@@ -3222,30 +2647,12 @@
       "linked_skills": []
     },
     {
-      "slug": "mysql-mariadb-performance-schema-detection",
-      "category": "domain",
-      "summary": "MySQL/MariaDB metric availability depends on per-instance Performance Schema state; detect at runtime, don't assume",
-      "confidence": "medium",
-      "source_project": "lucida-domain-dpm",
-      "path": "domain/mysql-mariadb-performance-schema-detection",
-      "linked_skills": []
-    },
-    {
       "slug": "nfs-backed-volumes-for-docker-swarm",
       "category": "arch",
       "summary": "Cross-node Docker Swarm persistence via a single NFS share mounted at the same host path on every swarm node",
       "confidence": "high",
       "source_project": "lucida-for-docker",
       "path": "arch/nfs-backed-volumes-for-docker-swarm",
-      "linked_skills": []
-    },
-    {
-      "slug": "node-npm-pin-matches-jenkins",
-      "category": "decision",
-      "summary": "UI build is pinned to Node 24.6.0 + npm 11.5.1 to match the Jenkins build environment",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "decision/node-npm-pin-matches-jenkins",
       "linked_skills": []
     },
     {
@@ -3582,77 +2989,12 @@
       "linked_skills": []
     },
     {
-      "slug": "one-default-template-per-type-rule",
-      "category": "domain",
-      "summary": "Exactly one default message template may exist per notification type; creating a second default is rejected, but editing the existing default is allowed",
-      "confidence": "high",
-      "source_project": "lucida-notification",
-      "path": "domain/one-default-template-per-type-rule",
-      "linked_skills": []
-    },
-    {
       "slug": "openapi-as-single-fe-be-contract",
       "category": "arch",
       "summary": "",
       "confidence": "high",
       "source_project": "",
       "path": "arch/openapi-as-single-fe-be-contract",
-      "linked_skills": []
-    },
-    {
-      "slug": "organization-soft-delete-grace-period",
-      "category": "decision",
-      "summary": "Organization deletion uses a 30-day grace period before permanent removal (DELETE_ORGANIZATION_INTERVAL_DAYS).",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/organization-soft-delete-grace-period",
-      "linked_skills": []
-    },
-    {
-      "slug": "oz-license-file-placement-flip-flop",
-      "category": "pitfall",
-      "summary": "Vendor engines (OZ Report, Crystal, Jasper-Pro) often hard-code license file search paths - pin the path in the image and document it, or you will ship it broken repeatedly",
-      "confidence": "medium",
-      "source_project": "lucida-report",
-      "path": "pitfall/oz-license-file-placement-flip-flop",
-      "linked_skills": []
-    },
-    {
-      "slug": "page-map-returns-new-instance",
-      "category": "pitfall",
-      "summary": "Spring Data Page is immutable — Page.map() returns a new instance; forgetting to reassign silently loses the mapping",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/page-map-returns-new-instance",
-      "linked_skills": []
-    },
-    {
-      "slug": "period-interval-naming-convention",
-      "category": "domain",
-      "summary": "Period.Mode names encode both unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not the unit itself",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "domain/period-interval-naming-convention",
-      "linked_skills": [
-        "period-mode-enum-config"
-      ]
-    },
-    {
-      "slug": "pims-write-requires-dryrun-confirm",
-      "category": "domain",
-      "summary": "PIMS 시간 기록/제출/일괄 갱신 등 모든 쓰기 API는 미리보기 → 사용자 확인 → 재시도 가능한 실행 플로우를 반드시 거친다. `--dry-run`은 API 쓰기 호출 자체가 금지.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "domain/pims-write-requires-dryrun-confirm",
-      "linked_skills": []
-    },
-    {
-      "slug": "planning-doc-in-issue-description",
-      "category": "decision",
-      "summary": "",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "decision/planning-doc-in-issue-description",
       "linked_skills": []
     },
     {
@@ -3665,24 +3007,13 @@
       "linked_skills": []
     },
     {
-      "slug": "plugin-repo-scope-generic-skills-only",
-      "category": "decision",
-      "summary": "nkia-skills 같은 공용 플러그인에는 범용 스킬만. 프로젝트 특화 스킬은 각 프로젝트의 `.claude/skills/`에 둔다.",
+      "slug": "Polymorphic metadata persisted as BSON via enum-switch deserialization",
+      "category": "arch",
+      "summary": "",
       "confidence": "high",
       "source_project": "",
-      "path": "decision/plugin-repo-scope-generic-skills-only",
+      "path": "arch/polymorphic-metadata-via-enum-switch",
       "linked_skills": []
-    },
-    {
-      "slug": "policy-edit-saveraw-loss",
-      "category": "pitfall",
-      "summary": "Editing a common collection policy can silently drop individual `saveRaw`/interval settings if not re-applied",
-      "confidence": "high",
-      "source_project": "lucida-measurement",
-      "path": "pitfall/policy-edit-saveraw-loss",
-      "linked_skills": [
-        "non-metric-saveraw-null-rule"
-      ]
     },
     {
       "slug": "port-out-no-optional-raise-in-adapter",
@@ -3691,6 +3022,383 @@
       "confidence": "medium",
       "source_project": "",
       "path": "arch/port-out-no-optional-raise-in-adapter",
+      "linked_skills": []
+    },
+    {
+      "slug": "published-vs-realtime-view-pages",
+      "category": "arch",
+      "summary": "PublishedViewPage renders a frozen deploy snapshot; RealTimeViewPage renders the live editable dashboard",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "arch/published-vs-realtime-view-pages",
+      "linked_skills": []
+    },
+    {
+      "slug": "redis-change-counter-for-versioning-trigger",
+      "category": "arch",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/redis-change-counter-for-versioning-trigger",
+      "linked_skills": []
+    },
+    {
+      "slug": "scouter-three-tier-architecture",
+      "category": "arch",
+      "summary": "Scouter APM enforces strict agent → server → client separation, with an optional standalone HTTP webapp for horizontal scaling of query load",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "arch/scouter-three-tier-architecture",
+      "linked_skills": []
+    },
+    {
+      "slug": "shallow-clone-mktemp-cleanup-pattern",
+      "category": "arch",
+      "summary": "publish/install/원격 목록 조회처럼 원격 git repo를 만질 때는 `mktemp -d → git clone --depth 1 → 작업 → rm -rf`. 작업 디렉토리를 오염시키지 않는다.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/shallow-clone-mktemp-cleanup-pattern",
+      "linked_skills": []
+    },
+    {
+      "slug": "Per-request tenant context via HandlerInterceptor",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/tenant-context-per-request-interceptor",
+      "linked_skills": []
+    },
+    {
+      "slug": "Gate startup initialization on dependent-service readiness via @WaitForServices",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/wait-for-services-eureka-startup-init",
+      "linked_skills": []
+    },
+    {
+      "slug": "widget-is-frozen-group-snapshot",
+      "category": "arch",
+      "summary": "Widgets are snapshots of a group at save time; later edits to the source group do not propagate",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "arch/widget-is-frozen-group-snapshot",
+      "linked_skills": []
+    },
+    {
+      "slug": "yorkie-team-server-split",
+      "category": "arch",
+      "summary": "Yorkie holds live canvas state; the team server holds metadata (projects, assets, datasources) — never mix",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "arch/yorkie-team-server-split",
+      "linked_skills": []
+    },
+    {
+      "slug": "actuator-endpoints-skip-auth-by-design",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/actuator-endpoints-skip-auth-by-design",
+      "linked_skills": []
+    },
+    {
+      "slug": "admin-role-disabled-secretkey",
+      "category": "decision",
+      "summary": "Default `admins` role is disabled and the shared `SecretKey` was removed from `config.properties` — never re-enable without a per-install key",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/admin-role-disabled-secretkey",
+      "linked_skills": []
+    },
+    {
+      "slug": "alarm-raw-over-1min-aggregate",
+      "category": "decision",
+      "summary": "Alarm judgement reads raw metrics, not 1-minute aggregates — accuracy over storage cost",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "decision/alarm-raw-over-1min-aggregate",
+      "linked_skills": [
+        "kafka-consumer-semaphore-chunking"
+      ]
+    },
+    {
+      "slug": "assume-semantics-for-compiler-hints",
+      "category": "decision",
+      "summary": "Three-tier assertion strategy (Assert / CHECK_NONFATAL / Assume) separates fatal invariants from recoverable logic bugs and pure compiler hints.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "decision/assume-semantics-for-compiler-hints",
+      "linked_skills": []
+    },
+    {
+      "slug": "avro-private-fields-no-setters",
+      "category": "decision",
+      "summary": "Avro-generated classes are configured with `fieldVisibility=PRIVATE` and `createSetters=false` to enforce immutability on event payloads",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/avro-private-fields-no-setters",
+      "linked_skills": []
+    },
+    {
+      "slug": "cache-even-when-enable-false",
+      "category": "decision",
+      "summary": "Notification configs with `enable=false` are still loaded into the cache manager rather than skipped, so toggling enable on/off doesn't require a cache reload",
+      "confidence": "high",
+      "source_project": "lucida-notification",
+      "path": "decision/cache-even-when-enable-false",
+      "linked_skills": []
+    },
+    {
+      "slug": "caveats-absence-confidence-cap",
+      "category": "decision",
+      "summary": "반증 조건(Counter/Caveats)이 비어 있는 knowledge는 confidence 최대 medium으로 강등한다 — 미확인 = 과신 위험",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/caveats-absence-confidence-cap",
+      "linked_skills": []
+    },
+    {
+      "slug": "circular-dependency-detection-script",
+      "category": "decision",
+      "summary": "A small Python script that parses #include directives across the tree and reports the shortest cycle in the module graph — cheap CI gate against architectural decay.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "decision/circular-dependency-detection-script",
+      "linked_skills": []
+    },
+    {
+      "slug": "confid-only-query-over-resource-tuple",
+      "category": "decision",
+      "summary": "Performance queries key off `confId` (config id) whenever available, falling back to (resourceType, resourceName) only when confId is absent",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/confid-only-query-over-resource-tuple",
+      "linked_skills": []
+    },
+    {
+      "slug": "copy-naming-suffix-numbered",
+      "category": "decision",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/copy-naming-suffix-numbered",
+      "linked_skills": []
+    },
+    {
+      "slug": "cors-allow-credentials-star-origin",
+      "category": "decision",
+      "summary": "Service-level allowCredentials+allowedOriginPatterns(*) kept because edge proxy (Traefik/Istio) enforces CORS",
+      "confidence": "medium",
+      "source_project": "lucida-domain-automation",
+      "path": "decision/cors-allow-credentials-star-origin",
+      "linked_skills": []
+    },
+    {
+      "slug": "csp-frame-ancestors-required",
+      "category": "decision",
+      "summary": "Send a Content-Security-Policy header (including `frame-ancestors`) on every response to block clickjacking",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/csp-frame-ancestors-required",
+      "linked_skills": []
+    },
+    {
+      "slug": "dataavro-json-wrapper-pattern",
+      "category": "decision",
+      "summary": "Single DataAvro{jsonData,jsonDataClass} wrapper avoids per-event Avro schema proliferation (TCM pattern)",
+      "confidence": "medium",
+      "source_project": "lucida-domain-automation",
+      "path": "decision/dataavro-json-wrapper-pattern",
+      "linked_skills": []
+    },
+    {
+      "slug": "do-not-ask-planners-for-api-design",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/do-not-ask-planners-for-api-design",
+      "linked_skills": []
+    },
+    {
+      "slug": "existing-code-patterns-over-standard-rules",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/existing-code-patterns-over-standard-rules",
+      "linked_skills": []
+    },
+    {
+      "slug": "5NF applies when AB-BC-AC triangles or ABC+D stars appear; otherwise stop at 4NF",
+      "category": "decision",
+      "summary": "5NF catches join dependencies that 4NF/BCNF miss, but in practice you rarely reason about it directly. Design from business entities and recognize the two patterns that force 5NF.",
+      "confidence": "medium",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "decision/fifth-normal-form-join-dependency-tradeoff",
+      "linked_skills": []
+    },
+    {
+      "slug": "god-controller-split-by-resource",
+      "category": "decision",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/god-controller-split-by-resource",
+      "linked_skills": []
+    },
+    {
+      "slug": "hyperloglog-for-unique-user-counting",
+      "category": "decision",
+      "summary": "Scouter uses HyperLogLog (Clearspring stream-lib) to estimate recent and daily unique user counts with ~100 bytes of memory and ~2% error, avoiding O(n) hash sets",
+      "confidence": "medium",
+      "source_project": "scouter",
+      "path": "decision/hyperloglog-for-unique-user-counting",
+      "linked_skills": []
+    },
+    {
+      "slug": "jacoco-exclude-business-layers",
+      "category": "decision",
+      "summary": "In this project's Jacoco config, nearly every layer (service, repository, dto, entity, kafka, config, constants, helper, exception, schedule, provider) is excluded from coverage measurement — only controllers/business orchestration code is measured.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/jacoco-exclude-business-layers",
+      "linked_skills": []
+    },
+    {
+      "slug": "jacoco-sonar-exclusion-policy",
+      "category": "decision",
+      "summary": "Single exclusion list drives Jacoco + Sonar + test excludes; generated/boilerplate code never counts toward coverage",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "decision/jacoco-sonar-exclusion-policy",
+      "linked_skills": [
+        "querydsl-q-class-exclusion-pattern"
+      ]
+    },
+    {
+      "slug": "jacoco-sonar-exclusion-rationale",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/jacoco-sonar-exclusion-rationale",
+      "linked_skills": []
+    },
+    {
+      "slug": "java-21-upgrade-rationale",
+      "category": "decision",
+      "summary": "Java 17 → 21 + Spring Boot 3.5.x upgrade rationale and required Gradle/JVM flag adjustments",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "decision/java-21-upgrade-rationale",
+      "linked_skills": [
+        "java-21-upgrade-rationale"
+      ]
+    },
+    {
+      "slug": "jest-coverage-80-threshold",
+      "category": "decision",
+      "summary": "Global Jest coverage threshold is 80% on branches, functions, lines, and statements",
+      "confidence": "medium",
+      "source_project": "lucida-builder-r3",
+      "path": "decision/jest-coverage-80-threshold",
+      "linked_skills": []
+    },
+    {
+      "slug": "jwt-stateless-refresh-24h-default",
+      "category": "decision",
+      "summary": "JWT stateless auth with 1h access / 24h refresh token defaults, both env-tunable.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/jwt-stateless-refresh-24h-default",
+      "linked_skills": []
+    },
+    {
+      "slug": "k-kafka-message-header-metadata",
+      "category": "decision",
+      "summary": "멀티테넌트 Kafka routing 메타는 payload 대신 RecordHeader에 두어 business schema 오염을 막는다",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/k-kafka-message-header-metadata",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-batch-size-timeout-tuning",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/kafka-batch-size-timeout-tuning",
+      "linked_skills": [
+        "kafka-batch-consumer-partition-tuning"
+      ]
+    },
+    {
+      "slug": "large-range-query-raw-collections",
+      "category": "decision",
+      "summary": "For long time-range queries over day-partitioned data, hit raw daily collections instead of aggregated views to avoid timeouts",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "decision/large-range-query-raw-collections",
+      "linked_skills": []
+    },
+    {
+      "slug": "license-apply-window-15d",
+      "category": "decision",
+      "summary": "Issued licenses must be applied within 15 days; expired licenses are immutable.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/license-apply-window-15d",
+      "linked_skills": []
+    },
+    {
+      "slug": "measurement-batch-send-per-config",
+      "category": "decision",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/measurement-batch-send-per-config",
+      "linked_skills": []
+    },
+    {
+      "slug": "node-npm-pin-matches-jenkins",
+      "category": "decision",
+      "summary": "UI build is pinned to Node 24.6.0 + npm 11.5.1 to match the Jenkins build environment",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "decision/node-npm-pin-matches-jenkins",
+      "linked_skills": []
+    },
+    {
+      "slug": "organization-soft-delete-grace-period",
+      "category": "decision",
+      "summary": "Organization deletion uses a 30-day grace period before permanent removal (DELETE_ORGANIZATION_INTERVAL_DAYS).",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/organization-soft-delete-grace-period",
+      "linked_skills": []
+    },
+    {
+      "slug": "planning-doc-in-issue-description",
+      "category": "decision",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/planning-doc-in-issue-description",
+      "linked_skills": []
+    },
+    {
+      "slug": "plugin-repo-scope-generic-skills-only",
+      "category": "decision",
+      "summary": "nkia-skills 같은 공용 플러그인에는 범용 스킬만. 프로젝트 특화 스킬은 각 프로젝트의 `.claude/skills/`에 둔다.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/plugin-repo-scope-generic-skills-only",
       "linked_skills": []
     },
     {
@@ -3709,15 +3417,6 @@
       "confidence": "high",
       "source_project": "",
       "path": "decision/prefer-static-import-over-constant-inheritance",
-      "linked_skills": []
-    },
-    {
-      "slug": "published-vs-realtime-view-pages",
-      "category": "arch",
-      "summary": "PublishedViewPage renders a frozen deploy snapshot; RealTimeViewPage renders the live editable dashboard",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "arch/published-vs-realtime-view-pages",
       "linked_skills": []
     },
     {
@@ -3748,39 +3447,12 @@
       "linked_skills": []
     },
     {
-      "slug": "redis-change-counter-for-versioning-trigger",
-      "category": "arch",
-      "summary": "|",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "arch/redis-change-counter-for-versioning-trigger",
-      "linked_skills": []
-    },
-    {
-      "slug": "refresh-token-do-not-regenerate",
-      "category": "pitfall",
-      "summary": "A refresh call must issue a new ACCESS token only, never a new refresh token.",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "pitfall/refresh-token-do-not-regenerate",
-      "linked_skills": []
-    },
-    {
       "slug": "resource-mount-unmount-use-jar-defaults",
       "category": "decision",
       "summary": "Don't bind-mount i18n/exception/menu resource files into Spring Boot containers; let the jar ship its own defaults",
       "confidence": "high",
       "source_project": "lucida-for-docker",
       "path": "decision/resource-mount-unmount-use-jar-defaults",
-      "linked_skills": []
-    },
-    {
-      "slug": "root-span-error-propagation",
-      "category": "domain",
-      "summary": "Root span isError must aggregate descendant errors; otherwise scatter and list views disagree on a trace's error state",
-      "confidence": "medium",
-      "source_project": "lucida-domain-apm",
-      "path": "domain/root-span-error-propagation",
       "linked_skills": []
     },
     {
@@ -3802,12 +3474,602 @@
       "linked_skills": []
     },
     {
-      "slug": "scouter-three-tier-architecture",
-      "category": "arch",
-      "summary": "Scouter APM enforces strict agent → server → client separation, with an optional standalone HTTP webapp for horizontal scaling of query load",
+      "slug": "skill-registry-vs-skill-config-split",
+      "category": "decision",
+      "summary": "원격 저장소 정보는 `.claude/skill-registry.yaml`, 스킬별 런타임 옵션(출력 경로 등)은 `.claude/skill-config.yaml`. 파일 단위로 관심사 분리.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/skill-registry-vs-skill-config-split",
+      "linked_skills": []
+    },
+    {
+      "slug": "stub-in-service-unblocks-fe-parallelism",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/stub-in-service-unblocks-fe-parallelism",
+      "linked_skills": []
+    },
+    {
+      "slug": "system-notification-shared-with-2fa-and-password-find",
+      "category": "decision",
+      "summary": "The `system_notification` config (SMTP/SMS credentials) is intentionally shared between 2FA and password-find flows rather than duplicated per flow",
+      "confidence": "medium",
+      "source_project": "lucida-notification",
+      "path": "decision/system-notification-shared-with-2fa-and-password-find",
+      "linked_skills": []
+    },
+    {
+      "slug": "tabular-metric-excluded-from-list",
+      "category": "decision",
+      "summary": "TABULAR measurement type is intentionally excluded from searchable metric-definition list endpoints",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/tabular-metric-excluded-from-list",
+      "linked_skills": []
+    },
+    {
+      "slug": "tag-values-separate-collection",
+      "category": "decision",
+      "summary": "TagValueInfo's `values` array was extracted from the parent tag document into a separate `tag_value_detail` collection to bound document size and index cost.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/tag-values-separate-collection",
+      "linked_skills": []
+    },
+    {
+      "slug": "tomcat-request-timeout-1h-for-oz-report",
+      "category": "decision",
+      "summary": "Report-generation services should raise Tomcat connection/read timeout to ~1 hour because export of large OZ/Jasper reports is genuinely long-running",
+      "confidence": "high",
+      "source_project": "lucida-report",
+      "path": "decision/tomcat-request-timeout-1h-for-oz-report",
+      "linked_skills": []
+    },
+    {
+      "slug": "Typed wikilinks for an LLM-facing knowledge base",
+      "category": "decision",
+      "summary": "Flat [[wikilinks]] carry one bit of information. Tag each link with a relationship type (supersedes, contradicts, causes, supports) so the graph becomes queryable, and sync types into frontmatter for external tools.",
+      "confidence": "medium",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "decision/typed-wikilinks-for-llm-knowledge-base",
+      "linked_skills": []
+    },
+    {
+      "slug": "udp-for-throughput-tcp-for-reliability",
+      "category": "decision",
+      "summary": "Scouter streams periodic metrics over UDP (lossy but cheap) and reserves TCP for config fetch, agent registration, and XLog profile uploads that demand delivery guarantees",
       "confidence": "high",
       "source_project": "scouter",
-      "path": "arch/scouter-three-tier-architecture",
+      "path": "decision/udp-for-throughput-tcp-for-reliability",
+      "linked_skills": []
+    },
+    {
+      "slug": "variable-length-integer-encoding-for-metrics-bandwidth",
+      "category": "decision",
+      "summary": "Scouter's DataOutputX uses 3-byte (INT3) and 5-byte (LONG5) integer encodings to shrink UDP metric packs by 20-40% when most values fit within 24 / 40 bits",
+      "confidence": "medium",
+      "source_project": "scouter",
+      "path": "decision/variable-length-integer-encoding-for-metrics-bandwidth",
+      "linked_skills": []
+    },
+    {
+      "slug": "vllm-kv-cache-fp8-with-mtp",
+      "category": "decision",
+      "summary": "vLLM serving chose fp8_e4m3 KV cache + prefix caching + MTP speculative decoding for Qwen3.5 throughput",
+      "confidence": "medium",
+      "source_project": "lucida-for-docker",
+      "path": "decision/vllm-kv-cache-fp8-with-mtp",
+      "linked_skills": []
+    },
+    {
+      "slug": "account-lockout-configurable-threshold",
+      "category": "domain",
+      "summary": "Failed-login counter locks the account after a configurable threshold (ACCOUNT_LOCKOUT, default 10).",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "domain/account-lockout-configurable-threshold",
+      "linked_skills": []
+    },
+    {
+      "slug": "encrypted-pii-decode-on-export",
+      "category": "domain",
+      "summary": "PII fields (phone, email) are stored encrypted; only decrypted for explicit export/API response, never for logs.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "domain/encrypted-pii-decode-on-export",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-exclude-system-databases",
+      "category": "domain",
+      "summary": "When enumerating tenant databases in a shared MongoDB cluster, filter out admin/config/local plus third-party DBs (yorkie-meta, migration) to avoid touching shared state",
+      "confidence": "medium",
+      "source_project": "lucida-audit",
+      "path": "domain/mongodb-exclude-system-databases",
+      "linked_skills": []
+    },
+    {
+      "slug": "mysql-mariadb-performance-schema-detection",
+      "category": "domain",
+      "summary": "MySQL/MariaDB metric availability depends on per-instance Performance Schema state; detect at runtime, don't assume",
+      "confidence": "medium",
+      "source_project": "lucida-domain-dpm",
+      "path": "domain/mysql-mariadb-performance-schema-detection",
+      "linked_skills": []
+    },
+    {
+      "slug": "one-default-template-per-type-rule",
+      "category": "domain",
+      "summary": "Exactly one default message template may exist per notification type; creating a second default is rejected, but editing the existing default is allowed",
+      "confidence": "high",
+      "source_project": "lucida-notification",
+      "path": "domain/one-default-template-per-type-rule",
+      "linked_skills": []
+    },
+    {
+      "slug": "period-interval-naming-convention",
+      "category": "domain",
+      "summary": "Period.Mode names encode both unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not the unit itself",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "domain/period-interval-naming-convention",
+      "linked_skills": [
+        "period-mode-enum-config"
+      ]
+    },
+    {
+      "slug": "pims-write-requires-dryrun-confirm",
+      "category": "domain",
+      "summary": "PIMS 시간 기록/제출/일괄 갱신 등 모든 쓰기 API는 미리보기 → 사용자 확인 → 재시도 가능한 실행 플로우를 반드시 거친다. `--dry-run`은 API 쓰기 호출 자체가 금지.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "domain/pims-write-requires-dryrun-confirm",
+      "linked_skills": []
+    },
+    {
+      "slug": "root-span-error-propagation",
+      "category": "domain",
+      "summary": "Root span isError must aggregate descendant errors; otherwise scatter and list views disagree on a trace's error state",
+      "confidence": "medium",
+      "source_project": "lucida-domain-apm",
+      "path": "domain/root-span-error-propagation",
+      "linked_skills": []
+    },
+    {
+      "slug": "topresource-immediate-generation-invariant",
+      "category": "domain",
+      "summary": "In report immediate-generation, the topResource flag decides whether to query by resource-id (fast path) or the full conf-id set (slow path)",
+      "confidence": "medium",
+      "source_project": "lucida-report",
+      "path": "domain/topresource-immediate-generation-invariant",
+      "linked_skills": []
+    },
+    {
+      "slug": "actuator-metric-call-aggressive-timeout",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/actuator-metric-call-aggressive-timeout",
+      "linked_skills": []
+    },
+    {
+      "slug": "ai-guess-mark-and-review-checklist",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/ai-guess-mark-and-review-checklist",
+      "linked_skills": []
+    },
+    {
+      "slug": "anonymize-examples-in-skill-docs",
+      "category": "pitfall",
+      "summary": "실사 티켓 번호·실명·프로젝트명이 예시에 들어가면 보안 감사에서 지적됨. 공용 repo 기준 모든 예시는 익명 더미여야 한다.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/anonymize-examples-in-skill-docs",
+      "linked_skills": []
+    },
+    {
+      "slug": "asm-based-classloader-instrumentation-caveats",
+      "category": "pitfall",
+      "summary": "ASM-based JVM agents miss Java 8+ lambda forms, annotation-processor classes, and Spring proxies unless explicitly handled; misses manifest as XLog gaps or skipped trace points",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "pitfall/asm-based-classloader-instrumentation-caveats",
+      "linked_skills": []
+    },
+    {
+      "slug": "audit-changed-prev-after-field-swap-bug",
+      "category": "pitfall",
+      "summary": "Audit diff logic had before/after swapped — iterating the wrong doc and putting the wrong value into changedPrev corrupted the audit trail silently",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/audit-changed-prev-after-field-swap-bug",
+      "linked_skills": [
+        "audit-change-data-capture-pattern"
+      ]
+    },
+    {
+      "slug": "auto-lock-must-not-bump-lastEditedTime",
+      "category": "pitfall",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/auto-lock-must-not-bump-lastEditedTime",
+      "linked_skills": []
+    },
+    {
+      "slug": "binsize-zero-fallback-to-one",
+      "category": "pitfall",
+      "summary": "Substitute binSize=1 whenever the computed interval is 0 in MongoDB time-bucket aggregation",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/binsize-zero-fallback-to-one",
+      "linked_skills": []
+    },
+    {
+      "slug": "catalina-urlencoder-internal-api",
+      "category": "pitfall",
+      "summary": "org.apache.catalina.util.URLEncoder is Tomcat internal — use java.net.URLEncoder or Spring UriUtils",
+      "confidence": "medium",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/catalina-urlencoder-internal-api",
+      "linked_skills": []
+    },
+    {
+      "slug": "classifier-both-verdict-self-reference",
+      "category": "pitfall",
+      "summary": "LLM classifier의 both-verdict에 suggested_links를 허용하면 자기 자신을 가리키는 self-link가 나온다 — 링크는 post-process에서 붙일 것",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/classifier-both-verdict-self-reference",
+      "linked_skills": []
+    },
+    {
+      "slug": "claude-plugin-marketplace-owner-required",
+      "category": "pitfall",
+      "summary": "플러그인 설치 스키마 오류: marketplace.json 최상위에 `owner` 객체 없으면 플러그인 설치가 실패.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/claude-plugin-marketplace-owner-required",
+      "linked_skills": []
+    },
+    {
+      "slug": "common-alarm-policy-init-gotcha",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/common-alarm-policy-init-gotcha",
+      "linked_skills": [
+        "kafka-debounce-event-coalescing"
+      ]
+    },
+    {
+      "slug": "compare-counts-exclude-added-deleted",
+      "category": "pitfall",
+      "summary": "An earlier query filtered change-count by `latest` / `added` / `deleted` flags, which silently dropped newly-added resources from the \"number of changes between two points in time\" metric.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/compare-counts-exclude-added-deleted",
+      "linked_skills": []
+    },
+    {
+      "slug": "composite-alarm-all-deleted-npe",
+      "category": "pitfall",
+      "summary": "Composite/aggregated monitors must validate their child set before reducing — empty aggregation throws NPE",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/composite-alarm-all-deleted-npe",
+      "linked_skills": []
+    },
+    {
+      "slug": "conf-info-may-lack-resource-type",
+      "category": "pitfall",
+      "summary": "The `conf_info` collection is NOT guaranteed to carry `resourceType` for every metric; criteria builders must tolerate missing field",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/conf-info-may-lack-resource-type",
+      "linked_skills": []
+    },
+    {
+      "slug": "docker-engine-29-requires-traefik-upgrade",
+      "category": "pitfall",
+      "summary": "Docker Engine 29.x raises the minimum client API to 1.44, breaking older Traefik versions that pin an older API",
+      "confidence": "high",
+      "source_project": "lucida-for-docker",
+      "path": "pitfall/docker-engine-29-requires-traefik-upgrade",
+      "linked_skills": []
+    },
+    {
+      "slug": "enum-notnull-comparison-pitfall",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/enum-notnull-comparison-pitfall",
+      "linked_skills": []
+    },
+    {
+      "slug": "enum-whitelist-blocks-time-based-sqli",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/enum-whitelist-blocks-time-based-sqli",
+      "linked_skills": []
+    },
+    {
+      "slug": "gridfs-template-upload-data-loss-pitfall",
+      "category": "pitfall",
+      "summary": "MongoDB GridFS uploads can silently drop file bytes if the bucket/db selection or stream flush is wrong - always verify metadata size equals input size",
+      "confidence": "medium",
+      "source_project": "lucida-report",
+      "path": "pitfall/gridfs-template-upload-data-loss-pitfall",
+      "linked_skills": []
+    },
+    {
+      "slug": "hibernate-date-format-lowercase",
+      "category": "pitfall",
+      "summary": "Use lowercase `yyyy` for calendar year — `YYYY` is ISO week-year and produces wrong values near Jan 1 / Dec 31",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/hibernate-date-format-lowercase",
+      "linked_skills": []
+    },
+    {
+      "slug": "history-view-yearly-partition-pitfall",
+      "category": "pitfall",
+      "summary": "A history/reporting view or materialized collection created with a year-bounded clause silently stops returning rows when the calendar year rolls over",
+      "confidence": "high",
+      "source_project": "lucida-notification",
+      "path": "pitfall/history-view-yearly-partition-pitfall",
+      "linked_skills": []
+    },
+    {
+      "slug": "injectmocks-generics-type-erasure",
+      "category": "pitfall",
+      "summary": "@InjectMocks picks wrong mock for same raw-type generic fields due to type erasure — flaky test root cause",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/injectmocks-generics-type-erasure",
+      "linked_skills": []
+    },
+    {
+      "slug": "ipv6-colon-detection-edge",
+      "category": "pitfall",
+      "summary": "Detecting IPv6 by colon count breaks on compressed notation — use a regex character class",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/ipv6-colon-detection-edge",
+      "linked_skills": []
+    },
+    {
+      "slug": "jackson-version-pinning-2.17.1",
+      "category": "pitfall",
+      "summary": "Jackson must be pinned via Gradle resolutionStrategy across all com.fasterxml.jackson.* groups to avoid NoSuchMethodError from transitive version drift",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/jackson-version-pinning-2.17.1",
+      "linked_skills": []
+    },
+    {
+      "slug": "jdbc-template-var-xml-escape-bypass",
+      "category": "pitfall",
+      "summary": "When the template engine XML-escapes values but the downstream channel is raw SQL / plain text, the escaped `&amp; &lt; &gt;` leaks into stored data",
+      "confidence": "medium",
+      "source_project": "lucida-notification",
+      "path": "pitfall/jdbc-template-var-xml-escape-bypass",
+      "linked_skills": []
+    },
+    {
+      "slug": "k8s-clusterrole-aggregation-npe",
+      "category": "pitfall",
+      "summary": "ClusterRole `aggregationRule` and its `clusterRoleSelectors` are both nullable — iterate only after null-check",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/k8s-clusterrole-aggregation-npe",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-consumer-group-id-hostname-not-timezone",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/kafka-consumer-group-id-hostname-not-timezone",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-error-handling-deserializer-fallback",
+      "category": "pitfall",
+      "summary": "Wrap Avro/JSON deserializers in ErrorHandlingDeserializer so a single bad record doesn't poison the consumer and crash-loop the container",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/kafka-error-handling-deserializer-fallback",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-sticky-partitioner-key-null",
+      "category": "pitfall",
+      "summary": "Kafka Sticky Partitioner batches key=null messages into one partition — explains dev vs prod distribution gap",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/kafka-sticky-partitioner-key-null",
+      "linked_skills": []
+    },
+    {
+      "slug": "konva-center-coord-system",
+      "category": "pitfall",
+      "summary": "Konva node coordinates can be center-based; when converting to top-left boxes subtract half width/height",
+      "confidence": "medium",
+      "source_project": "lucida-builder-r3",
+      "path": "pitfall/konva-center-coord-system",
+      "linked_skills": []
+    },
+    {
+      "slug": "latest-availability-deletion-risk",
+      "category": "pitfall",
+      "summary": "Latest-availability collection can lose data when upstream source is stale but not actually missing",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "pitfall/latest-availability-deletion-risk",
+      "linked_skills": [
+        "availability-ttl-punctuate-processor"
+      ]
+    },
+    {
+      "slug": "Formal verification only covers what the spec formalizes",
+      "category": "pitfall",
+      "summary": "Proofs bound what the spec covers, not what the system does. Fuzzing lean-zip found runtime and parser bugs outside the verified surface; ship a verified-surface / unverified-surface / TCB decomposition with any 'proven correct' claim.",
+      "confidence": "medium",
+      "source_project": "skills_research:trend:2026-04-16",
+      "path": "pitfall/lean-verification-spec-coverage-gap",
+      "linked_skills": [
+        "lean-verified-code-threat-boundary"
+      ]
+    },
+    {
+      "slug": "legacy-datasource-naming",
+      "category": "pitfall",
+      "summary": "`dataSource` / `dataSourceFilter` in the codebase actually mean data-pipeline-select and data-pipeline-filter — not datasource",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "pitfall/legacy-datasource-naming",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-direct-connection-flag",
+      "category": "pitfall",
+      "summary": "MongoDB datasource connectionString requires directConnection=true in this deployment",
+      "confidence": "medium",
+      "source_project": "lucida-builder-r3",
+      "path": "pitfall/mongo-direct-connection-flag",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-timeseries-forced-hint-kills-pushdown",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongo-timeseries-forced-hint-kills-pushdown",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-timeseries-match-split-for-pushdown",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongo-timeseries-match-split-for-pushdown",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-timeseries-view-pushdown-broken-8_2_3",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/mongo-timeseries-view-pushdown-broken-8_2_3",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-changestream-resubscribe",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongodb-changestream-resubscribe",
+      "linked_skills": [
+        "mongodb-changestream-field-filter"
+      ]
+    },
+    {
+      "slug": "mongodb-compound-index-on-views",
+      "category": "pitfall",
+      "summary": "Spring Data @CompoundIndex annotations on a view-backed @Document are silently ignored — index the collection class",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "pitfall/mongodb-compound-index-on-views",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-documentreference-lazy-removal",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongodb-documentreference-lazy-removal",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-field-name-underscore-to-dot",
+      "category": "pitfall",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/mongodb-field-name-underscore-to-dot",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-single-node-directconnection",
+      "category": "pitfall",
+      "summary": "MongoDB clients must pass directConnection=true when connecting to a single-node replSet, otherwise they hang on primary discovery",
+      "confidence": "high",
+      "source_project": "lucida-for-docker",
+      "path": "pitfall/mongodb-single-node-directconnection",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-string-id-field-type-mapping",
+      "category": "pitfall",
+      "summary": "Spring Data MongoDB coerces 24-char-hex @Id String values to ObjectId unless @Field(targetType = FieldType.STRING) is set",
+      "confidence": "high",
+      "source_project": "lucida-domain-dpm",
+      "path": "pitfall/mongodb-string-id-field-type-mapping",
+      "linked_skills": []
+    },
+    {
+      "slug": "oz-license-file-placement-flip-flop",
+      "category": "pitfall",
+      "summary": "Vendor engines (OZ Report, Crystal, Jasper-Pro) often hard-code license file search paths - pin the path in the image and document it, or you will ship it broken repeatedly",
+      "confidence": "medium",
+      "source_project": "lucida-report",
+      "path": "pitfall/oz-license-file-placement-flip-flop",
+      "linked_skills": []
+    },
+    {
+      "slug": "page-map-returns-new-instance",
+      "category": "pitfall",
+      "summary": "Spring Data Page is immutable — Page.map() returns a new instance; forgetting to reassign silently loses the mapping",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/page-map-returns-new-instance",
+      "linked_skills": []
+    },
+    {
+      "slug": "policy-edit-saveraw-loss",
+      "category": "pitfall",
+      "summary": "Editing a common collection policy can silently drop individual `saveRaw`/interval settings if not re-applied",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "pitfall/policy-edit-saveraw-loss",
+      "linked_skills": [
+        "non-metric-saveraw-null-rule"
+      ]
+    },
+    {
+      "slug": "refresh-token-do-not-regenerate",
+      "category": "pitfall",
+      "summary": "A refresh call must issue a new ACCESS token only, never a new refresh token.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/refresh-token-do-not-regenerate",
       "linked_skills": []
     },
     {
@@ -3817,15 +4079,6 @@
       "confidence": "high",
       "source_project": "",
       "path": "pitfall/serial-pipeline-failure-compounding",
-      "linked_skills": []
-    },
-    {
-      "slug": "shallow-clone-mktemp-cleanup-pattern",
-      "category": "arch",
-      "summary": "publish/install/원격 목록 조회처럼 원격 git repo를 만질 때는 `mktemp -d → git clone --depth 1 → 작업 → rm -rf`. 작업 디렉토리를 오염시키지 않는다.",
-      "confidence": "medium",
-      "source_project": "",
-      "path": "arch/shallow-clone-mktemp-cleanup-pattern",
       "linked_skills": []
     },
     {
@@ -3847,15 +4100,6 @@
       "linked_skills": []
     },
     {
-      "slug": "skill-registry-vs-skill-config-split",
-      "category": "decision",
-      "summary": "원격 저장소 정보는 `.claude/skill-registry.yaml`, 스킬별 런타임 옵션(출력 경로 등)은 `.claude/skill-config.yaml`. 파일 단위로 관심사 분리.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/skill-registry-vs-skill-config-split",
-      "linked_skills": []
-    },
-    {
       "slug": "skip-schedule-if-previous-running",
       "category": "pitfall",
       "summary": "",
@@ -3871,6 +4115,15 @@
       "confidence": "high",
       "source_project": "",
       "path": "pitfall/snmp-ifindex-not-stable",
+      "linked_skills": []
+    },
+    {
+      "slug": "build-gradle-secret-and-insecure-protocol",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/sonar-token-hardcoded-build-gradle",
       "linked_skills": []
     },
     {
@@ -3937,51 +4190,6 @@
       "linked_skills": []
     },
     {
-      "slug": "stomp-heartbeat-10s-bidirectional",
-      "category": "api",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "api/stomp-heartbeat-10s-bidirectional",
-      "linked_skills": []
-    },
-    {
-      "slug": "stub-in-service-unblocks-fe-parallelism",
-      "category": "decision",
-      "summary": "",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/stub-in-service-unblocks-fe-parallelism",
-      "linked_skills": []
-    },
-    {
-      "slug": "system-notification-shared-with-2fa-and-password-find",
-      "category": "decision",
-      "summary": "The `system_notification` config (SMTP/SMS credentials) is intentionally shared between 2FA and password-find flows rather than duplicated per flow",
-      "confidence": "medium",
-      "source_project": "lucida-notification",
-      "path": "decision/system-notification-shared-with-2fa-and-password-find",
-      "linked_skills": []
-    },
-    {
-      "slug": "tabular-metric-excluded-from-list",
-      "category": "decision",
-      "summary": "TABULAR measurement type is intentionally excluded from searchable metric-definition list endpoints",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/tabular-metric-excluded-from-list",
-      "linked_skills": []
-    },
-    {
-      "slug": "tag-values-separate-collection",
-      "category": "decision",
-      "summary": "TagValueInfo's `values` array was extracted from the parent tag document into a separate `tag_value_detail` collection to bound document size and index cost.",
-      "confidence": "high",
-      "source_project": "",
-      "path": "decision/tag-values-separate-collection",
-      "linked_skills": []
-    },
-    {
       "slug": "tenant-context-clear-after-completion",
       "category": "pitfall",
       "summary": "Multi-tenant thread-locals must be cleared in a HandlerInterceptor `afterCompletion`, regardless of request outcome",
@@ -4018,24 +4226,6 @@
       "linked_skills": []
     },
     {
-      "slug": "timeselector-mode-interval-range-mapping",
-      "category": "api",
-      "summary": "Clients send a `mode` enum (RAW..YEAR); the server maps it to a (bin-interval, query-range) pair and picks the right pre-aggregated collection",
-      "confidence": "high",
-      "source_project": "",
-      "path": "api/timeselector-mode-interval-range-mapping",
-      "linked_skills": []
-    },
-    {
-      "slug": "tomcat-request-timeout-1h-for-oz-report",
-      "category": "decision",
-      "summary": "Report-generation services should raise Tomcat connection/read timeout to ~1 hour because export of large OZ/Jasper reports is genuinely long-running",
-      "confidence": "high",
-      "source_project": "lucida-report",
-      "path": "decision/tomcat-request-timeout-1h-for-oz-report",
-      "linked_skills": []
-    },
-    {
       "slug": "top-bottom-widest-collection-range",
       "category": "pitfall",
       "summary": "For Top/Bottom selection queries, pick the collection whose bin granularity covers the widest range, not the finest-grained one",
@@ -4056,15 +4246,6 @@
       ]
     },
     {
-      "slug": "topresource-immediate-generation-invariant",
-      "category": "domain",
-      "summary": "In report immediate-generation, the topResource flag decides whether to query by resource-id (fast path) or the full conf-id set (slow path)",
-      "confidence": "medium",
-      "source_project": "lucida-report",
-      "path": "domain/topresource-immediate-generation-invariant",
-      "linked_skills": []
-    },
-    {
       "slug": "trace-context-async-execution-propagation",
       "category": "pitfall",
       "summary": "Thread-local trace context is lost across executor.submit / reactor.flatMap boundaries; scouter injects bytecode wrappers around async entry points to capture and restore it",
@@ -4080,15 +4261,6 @@
       "confidence": "high",
       "source_project": "lucida-for-docker",
       "path": "pitfall/traefik-2.11-requires-explicit-idletimeout",
-      "linked_skills": []
-    },
-    {
-      "slug": "udp-for-throughput-tcp-for-reliability",
-      "category": "decision",
-      "summary": "Scouter streams periodic metrics over UDP (lossy but cheap) and reserves TCP for config fetch, agent registration, and XLog profile uploads that demand delivery guarantees",
-      "confidence": "high",
-      "source_project": "scouter",
-      "path": "decision/udp-for-throughput-tcp-for-reliability",
       "linked_skills": []
     },
     {
@@ -4116,51 +4288,6 @@
       "confidence": "medium",
       "source_project": "",
       "path": "pitfall/user-sql-source-requires-select-only-and-readonly",
-      "linked_skills": []
-    },
-    {
-      "slug": "variable-length-integer-encoding-for-metrics-bandwidth",
-      "category": "decision",
-      "summary": "Scouter's DataOutputX uses 3-byte (INT3) and 5-byte (LONG5) integer encodings to shrink UDP metric packs by 20-40% when most values fit within 24 / 40 bits",
-      "confidence": "medium",
-      "source_project": "scouter",
-      "path": "decision/variable-length-integer-encoding-for-metrics-bandwidth",
-      "linked_skills": []
-    },
-    {
-      "slug": "vllm-kv-cache-fp8-with-mtp",
-      "category": "decision",
-      "summary": "vLLM serving chose fp8_e4m3 KV cache + prefix caching + MTP speculative decoding for Qwen3.5 throughput",
-      "confidence": "medium",
-      "source_project": "lucida-for-docker",
-      "path": "decision/vllm-kv-cache-fp8-with-mtp",
-      "linked_skills": []
-    },
-    {
-      "slug": "widget-is-frozen-group-snapshot",
-      "category": "arch",
-      "summary": "Widgets are snapshots of a group at save time; later edits to the source group do not propagate",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "arch/widget-is-frozen-group-snapshot",
-      "linked_skills": []
-    },
-    {
-      "slug": "xlog-extended-transaction-trace-with-compression",
-      "category": "api",
-      "summary": "XLog is scouter's per-request transaction trace format — hierarchical typed steps stored as compressed binary, indexed by end-time, with flat metadata for server-side filtering",
-      "confidence": "high",
-      "source_project": "scouter",
-      "path": "api/xlog-extended-transaction-trace-with-compression",
-      "linked_skills": []
-    },
-    {
-      "slug": "yorkie-team-server-split",
-      "category": "arch",
-      "summary": "Yorkie holds live canvas state; the team server holds metadata (projects, assets, datasources) — never mix",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "arch/yorkie-team-server-split",
       "linked_skills": []
     }
   ]
