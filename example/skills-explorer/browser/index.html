@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Skills Explorer</title>
+<style>
+:root {
+  --bg: #0b0d10;
+  --bg-2: #11151a;
+  --bg-3: #161b22;
+  --border: #21262d;
+  --fg: #c9d1d9;
+  --fg-dim: #7d8590;
+  --accent: #7ee787;
+  --accent-2: #79c0ff;
+  --amber: #ffa657;
+  --red: #ff7b72;
+  --mag: #d2a8ff;
+  --hl: #388bfd26;
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, Consolas, monospace;
+  --font-sans: -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100vh; overflow: hidden;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 13px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body { display: grid; grid-template-rows: 44px 1fr 22px; }
+
+/* ─── top bar ─── */
+header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 14px; border-bottom: 1px solid var(--border); background: var(--bg-2);
+}
+header .logo { color: var(--accent); font-weight: 600; letter-spacing: 0.5px; }
+header .logo::before { content: "▶ "; color: var(--fg-dim); }
+header input {
+  flex: 1; max-width: 640px; background: var(--bg-3); border: 1px solid var(--border);
+  color: var(--fg); padding: 6px 10px; border-radius: 4px; font-family: inherit; font-size: 13px;
+  outline: none; transition: border-color .1s;
+}
+header input:focus { border-color: var(--accent); }
+header input::placeholder { color: var(--fg-dim); }
+header .stats { color: var(--fg-dim); font-size: 12px; margin-left: auto; }
+header .stats b { color: var(--accent); font-weight: 600; }
+header .kbd {
+  color: var(--fg-dim); font-size: 11px; padding: 2px 6px; border: 1px solid var(--border);
+  border-radius: 3px; background: var(--bg-3);
+}
+
+/* ─── layout ─── */
+main { display: grid; grid-template-columns: 220px 1fr 1fr; overflow: hidden; }
+aside, #list, #detail { overflow-y: auto; }
+aside { border-right: 1px solid var(--border); background: var(--bg-2); padding: 10px 0; }
+aside h3 {
+  margin: 12px 14px 4px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--fg-dim); font-weight: 600;
+}
+aside button {
+  display: flex; justify-content: space-between; align-items: center; width: 100%;
+  background: transparent; border: 0; color: var(--fg); font-family: inherit; font-size: 12px;
+  padding: 4px 14px; cursor: pointer; text-align: left;
+}
+aside button:hover { background: var(--bg-3); }
+aside button.active { background: var(--hl); color: var(--accent); }
+aside button .count { color: var(--fg-dim); font-size: 11px; }
+aside button.active .count { color: var(--accent); }
+
+/* ─── list ─── */
+#list { border-right: 1px solid var(--border); }
+#list .row {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); cursor: pointer;
+  display: grid; grid-template-columns: 14px 1fr auto; gap: 8px; align-items: start;
+}
+#list .row:hover { background: var(--bg-2); }
+#list .row.selected { background: var(--hl); border-left: 2px solid var(--accent); padding-left: 12px; }
+#list .row .marker { color: var(--fg-dim); font-size: 11px; padding-top: 2px; }
+#list .row.skill .marker { color: var(--accent); }
+#list .row.knowledge .marker { color: var(--accent-2); }
+#list .row .name { color: var(--fg); font-weight: 600; font-size: 13px; }
+#list .row .desc { color: var(--fg-dim); font-size: 12px; margin-top: 2px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+#list .row .meta { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+#list .row .tag { color: var(--amber); font-size: 10px; background: #ffa65715; padding: 1px 5px; border-radius: 3px; }
+#list .row .cat { color: var(--mag); font-size: 10px; }
+#list mark { background: var(--amber); color: var(--bg); padding: 0 2px; border-radius: 2px; }
+
+#empty { text-align: center; padding: 60px 20px; color: var(--fg-dim); }
+#empty h2 { color: var(--red); font-size: 14px; margin-bottom: 8px; font-weight: 600; }
+
+/* ─── detail ─── */
+#detail { padding: 18px 22px; }
+#detail h1 { font-size: 20px; margin: 0 0 4px; color: var(--fg); font-family: var(--font-sans); }
+#detail .breadcrumb { color: var(--fg-dim); font-size: 11px; margin-bottom: 14px; }
+#detail .breadcrumb .cat { color: var(--mag); }
+#detail .breadcrumb .type { color: var(--accent); }
+#detail .summary { color: var(--fg); font-size: 13px; margin-bottom: 14px;
+  padding: 10px 12px; background: var(--bg-2); border-left: 2px solid var(--accent); border-radius: 3px; }
+#detail .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+#detail .chip { font-size: 11px; padding: 2px 8px; border-radius: 10px;
+  border: 1px solid var(--border); color: var(--fg-dim); background: var(--bg-2); }
+#detail .chip.trigger { color: var(--red); border-color: #ff7b7233; }
+#detail .chip.tag { color: var(--amber); border-color: #ffa65733; }
+#detail .chip.source { color: var(--accent-2); border-color: #79c0ff33; }
+#detail .md { font-family: var(--font-sans); font-size: 14px; color: var(--fg); }
+#detail .md h1, #detail .md h2, #detail .md h3 {
+  color: var(--accent); font-weight: 600; margin: 22px 0 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px;
+}
+#detail .md h1 { font-size: 18px; }
+#detail .md h2 { font-size: 15px; color: var(--accent-2); }
+#detail .md h3 { font-size: 14px; border: 0; color: var(--amber); }
+#detail .md p { margin: 8px 0; }
+#detail .md ul, #detail .md ol { padding-left: 22px; }
+#detail .md li { margin: 2px 0; }
+#detail .md strong { color: var(--amber); }
+#detail .md em { color: var(--accent-2); }
+#detail .md code {
+  font-family: var(--font-mono); font-size: 12px; background: var(--bg-3);
+  padding: 1px 5px; border-radius: 3px; color: var(--accent);
+}
+#detail .md pre {
+  background: var(--bg-3); border: 1px solid var(--border); border-radius: 4px;
+  padding: 10px 12px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px;
+  line-height: 1.5;
+}
+#detail .md pre code { background: transparent; padding: 0; color: var(--fg); }
+#detail .md blockquote {
+  border-left: 3px solid var(--mag); padding-left: 12px; color: var(--fg-dim); margin: 10px 0;
+}
+#detail .md a { color: var(--accent-2); text-decoration: none; }
+#detail .md a:hover { text-decoration: underline; }
+
+#placeholder { color: var(--fg-dim); text-align: center; padding-top: 30%; font-size: 12px; line-height: 2; }
+#placeholder .key { color: var(--accent); }
+
+/* ─── footer ─── */
+footer {
+  border-top: 1px solid var(--border); background: var(--bg-2); color: var(--fg-dim);
+  font-size: 11px; display: flex; gap: 16px; align-items: center; padding: 0 14px;
+}
+footer .hint { display: flex; gap: 4px; align-items: center; }
+footer .hint b { color: var(--accent); font-weight: 600; }
+
+/* scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-dim); }
+</style>
+</head>
+<body>
+<header>
+  <span class="logo">skills</span>
+  <input id="q" placeholder="fuzzy search…  (try: kafka, tenant, multi-mongo)" autocomplete="off" spellcheck="false" />
+  <span class="stats" id="stats">loading…</span>
+  <span class="kbd">/ to focus</span>
+</header>
+<main>
+  <aside id="side"></aside>
+  <section id="list"></section>
+  <section id="detail"><div id="placeholder">
+    select an entry on the left<br>
+    <span class="key">/</span> search · <span class="key">j</span>/<span class="key">k</span> nav · <span class="key">Enter</span> open · <span class="key">Esc</span> clear<br>
+    <span class="key">1-5</span> filter type · <span class="key">g</span>/<span class="key">G</span> top/bottom
+  </div></section>
+</main>
+<footer>
+  <span class="hint">built <b id="built">—</b></span>
+  <span class="hint">showing <b id="shown">0</b> of <b id="total">0</b></span>
+  <span class="hint" style="margin-left:auto">rebuild: <b>node browser/build-index.mjs</b></span>
+</footer>
+
+<script>
+const state = {
+  data: { skills: [], knowledge: [] },
+  all: [],
+  filtered: [],
+  query: '',
+  typeFilter: 'all',
+  catFilter: null,
+  selected: 0,
+};
+
+const $ = (sel) => document.querySelector(sel);
+const $list = $('#list'), $detail = $('#detail'), $side = $('#side'), $q = $('#q');
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ── minimal markdown → HTML ── */
+function md2html(src) {
+  if (!src) return '';
+  const lines = src.split(/\r?\n/);
+  let out = [], inCode = false, codeLang = '', codeBuf = [], inList = null;
+  const flushList = () => { if (inList) { out.push(`</${inList}>`); inList = null; } };
+  const inline = (t) => escapeHtml(t)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+  for (const line of lines) {
+    if (line.startsWith('```')) {
+      if (!inCode) { flushList(); inCode = true; codeLang = line.slice(3).trim(); codeBuf = []; }
+      else { out.push(`<pre><code>${escapeHtml(codeBuf.join('\n'))}</code></pre>`); inCode = false; }
+      continue;
+    }
+    if (inCode) { codeBuf.push(line); continue; }
+    if (!line.trim()) { flushList(); out.push(''); continue; }
+    let m;
+    if ((m = line.match(/^(#{1,6})\s+(.*)$/))) {
+      flushList();
+      const lvl = Math.min(m[1].length, 3);
+      out.push(`<h${lvl}>${inline(m[2])}</h${lvl}>`);
+    } else if ((m = line.match(/^(\s*)-\s+(.*)$/))) {
+      if (inList !== 'ul') { flushList(); out.push('<ul>'); inList = 'ul'; }
+      out.push(`<li>${inline(m[2])}</li>`);
+    } else if ((m = line.match(/^\s*\d+\.\s+(.*)$/))) {
+      if (inList !== 'ol') { flushList(); out.push('<ol>'); inList = 'ol'; }
+      out.push(`<li>${inline(m[1])}</li>`);
+    } else if (line.startsWith('>')) {
+      flushList();
+      out.push(`<blockquote>${inline(line.replace(/^>\s?/, ''))}</blockquote>`);
+    } else {
+      flushList();
+      out.push(`<p>${inline(line)}</p>`);
+    }
+  }
+  flushList();
+  if (inCode) out.push(`<pre><code>${escapeHtml(codeBuf.join('\n'))}</code></pre>`);
+  return out.join('\n');
+}
+
+/* ── fuzzy match: all query words must appear somewhere (space-separated) ── */
+function matches(item, q) {
+  if (!q) return { ok: true, score: 0 };
+  const hay = [
+    item.name, item.description || item.summary || '',
+    (item.tags || []).join(' '), (item.triggers || []).join(' '),
+    item.category, item.body || '',
+  ].join(' ').toLowerCase();
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  let score = 0;
+  for (const w of words) {
+    const i = hay.indexOf(w);
+    if (i === -1) return { ok: false, score: 0 };
+    if (item.name.toLowerCase().includes(w)) score += 10;
+    if ((item.description || '').toLowerCase().includes(w)) score += 5;
+    if ((item.tags || []).some(t => t.toLowerCase().includes(w))) score += 3;
+    score += 1;
+  }
+  return { ok: true, score };
+}
+
+function highlight(text, q) {
+  if (!q || !text) return escapeHtml(text || '');
+  let out = escapeHtml(text);
+  for (const w of q.toLowerCase().split(/\s+/).filter(Boolean)) {
+    const esc = w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    out = out.replace(new RegExp(`(${esc})`, 'gi'), '<mark>$1</mark>');
+  }
+  return out;
+}
+
+/* ── render ── */
+function render() {
+  const q = state.query.trim();
+  let items = state.all;
+  if (state.typeFilter !== 'all') items = items.filter(x => x.type === state.typeFilter);
+  if (state.catFilter) items = items.filter(x => x.category === state.catFilter);
+  if (q) {
+    items = items.map(x => ({ x, m: matches(x, q) }))
+      .filter(o => o.m.ok)
+      .sort((a, b) => b.m.score - a.m.score)
+      .map(o => o.x);
+  }
+  state.filtered = items;
+  state.selected = Math.min(state.selected, Math.max(0, items.length - 1));
+
+  if (!items.length) {
+    $list.innerHTML = `<div id="empty"><h2>no matches</h2>for <code>${escapeHtml(q || '(filter)')}</code></div>`;
+  } else {
+    $list.innerHTML = items.map((x, i) => {
+      const name = highlight(x.name, q);
+      const desc = highlight(x.description || x.summary || '', q);
+      const tags = (x.tags || []).slice(0, 4).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('');
+      const cat = `<span class="cat">${escapeHtml(x.category)}</span>`;
+      const marker = x.type === 'skill' ? 'S' : 'K';
+      return `<div class="row ${x.type} ${i === state.selected ? 'selected' : ''}" data-i="${i}">
+        <div class="marker">${marker}</div>
+        <div><div class="name">${name}</div><div class="desc">${desc}</div>
+          <div class="meta">${cat}${tags}</div></div>
+      </div>`;
+    }).join('');
+  }
+  $('#shown').textContent = items.length;
+  $('#total').textContent = state.all.length;
+  renderDetail();
+  const row = $list.querySelector('.row.selected');
+  if (row) row.scrollIntoView({ block: 'nearest' });
+}
+
+function renderDetail() {
+  const x = state.filtered[state.selected];
+  if (!x) {
+    $detail.innerHTML = `<div id="placeholder">no selection</div>`;
+    return;
+  }
+  const chips = [
+    ...(x.tags || []).map(t => `<span class="chip tag">#${escapeHtml(t)}</span>`),
+    ...(x.triggers || []).map(t => `<span class="chip trigger">⚡ ${escapeHtml(t)}</span>`),
+    x.source_project ? `<span class="chip source">📦 ${escapeHtml(x.source_project)}</span>` : '',
+    x.source?.ref ? `<span class="chip source">📦 ${escapeHtml(x.source.ref)}</span>` : '',
+    x.version ? `<span class="chip">v${escapeHtml(x.version)}</span>` : '',
+  ].filter(Boolean).join('');
+  const summary = x.description || x.summary || '';
+  const body = [x.body, x.content].filter(Boolean).join('\n\n');
+  $detail.innerHTML = `
+    <div class="breadcrumb"><span class="type">${x.type}</span> / <span class="cat">${escapeHtml(x.category)}</span> / <span>${escapeHtml(x.id)}</span></div>
+    <h1>${escapeHtml(x.name)}</h1>
+    ${summary ? `<div class="summary">${escapeHtml(summary)}</div>` : ''}
+    ${chips ? `<div class="chips">${chips}</div>` : ''}
+    <div class="md">${md2html(body)}</div>
+  `;
+  $detail.scrollTop = 0;
+}
+
+function renderSide() {
+  const typeBtns = [
+    ['all', 'all'],
+    ['skill', 'skills'],
+    ['knowledge', 'knowledge'],
+  ].map(([k, l]) => {
+    const n = k === 'all' ? state.all.length : state.all.filter(x => x.type === k).length;
+    return `<button data-type="${k}" class="${state.typeFilter === k ? 'active' : ''}">
+      <span>${l}</span><span class="count">${n}</span></button>`;
+  }).join('');
+
+  const cats = {};
+  for (const x of state.all) {
+    if (state.typeFilter !== 'all' && x.type !== state.typeFilter) continue;
+    cats[x.category] = (cats[x.category] || 0) + 1;
+  }
+  const catList = Object.entries(cats).sort((a, b) => b[1] - a[1]).map(([c, n]) =>
+    `<button data-cat="${escapeHtml(c)}" class="${state.catFilter === c ? 'active' : ''}">
+      <span>${escapeHtml(c)}</span><span class="count">${n}</span></button>`
+  ).join('');
+
+  $side.innerHTML = `
+    <h3>type</h3>${typeBtns}
+    <h3>categories</h3>
+    <button data-cat="" class="${state.catFilter === null ? 'active' : ''}">
+      <span>· all ·</span><span class="count">${state.filtered.length || state.all.length}</span></button>
+    ${catList}
+  `;
+}
+
+/* ── events ── */
+$q.addEventListener('input', (e) => {
+  state.query = e.target.value;
+  state.selected = 0;
+  render();
+});
+$list.addEventListener('click', (e) => {
+  const row = e.target.closest('.row'); if (!row) return;
+  state.selected = +row.dataset.i;
+  render();
+});
+$side.addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.type !== undefined) state.typeFilter = b.dataset.type;
+  if (b.dataset.cat !== undefined) state.catFilter = b.dataset.cat || null;
+  state.selected = 0;
+  renderSide(); render();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.target === $q) {
+    if (e.key === 'Escape') { $q.value = ''; state.query = ''; $q.blur(); render(); }
+    else if (e.key === 'Enter' || e.key === 'ArrowDown') { e.preventDefault(); $q.blur(); }
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); $q.focus(); $q.select(); }
+  else if (e.key === 'j' || e.key === 'ArrowDown') {
+    state.selected = Math.min(state.filtered.length - 1, state.selected + 1); render();
+  } else if (e.key === 'k' || e.key === 'ArrowUp') {
+    state.selected = Math.max(0, state.selected - 1); render();
+  } else if (e.key === 'g') { state.selected = 0; render(); }
+  else if (e.key === 'G') { state.selected = state.filtered.length - 1; render(); }
+  else if (e.key === '1') { state.typeFilter = 'all'; renderSide(); render(); }
+  else if (e.key === '2') { state.typeFilter = 'skill'; renderSide(); render(); }
+  else if (e.key === '3') { state.typeFilter = 'knowledge'; renderSide(); render(); }
+  else if (e.key === 'Escape') { state.catFilter = null; renderSide(); render(); }
+});
+
+/* ── boot ── */
+fetch('skills.json').then(r => r.json()).then(d => {
+  state.data = d;
+  state.all = [...d.skills, ...d.knowledge];
+  state.filtered = state.all;
+  $('#stats').innerHTML = `<b>${d.counts.skills}</b> skills · <b>${d.counts.knowledge}</b> knowledge`;
+  $('#built').textContent = new Date(d.generatedAt).toLocaleString();
+  renderSide(); render();
+}).catch(err => {
+  $list.innerHTML = `<div id="empty"><h2>failed to load skills.json</h2>
+    run <code>node browser/build-index.mjs</code> first, then serve this directory over http<br><br>
+    <small>${escapeHtml(err.message)}</small></div>`;
+});
+</script>
+</body>
+</html>

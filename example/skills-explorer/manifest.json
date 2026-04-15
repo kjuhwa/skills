@@ -1,0 +1,12 @@
+{
+  "slug": "skills-explorer",
+  "title": "Skills Explorer",
+  "summary": "Zero-dep offline dashboard that fuzzy-searches every SKILL.md and knowledge/*.md in a local skills-hub checkout.",
+  "stack": ["node", "html", "js", "css"],
+  "tags": ["browser", "search", "dashboard", "skills-hub", "offline", "zero-deps"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "browser/serve.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}
