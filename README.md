@@ -1,10 +1,30 @@
 # skills-hub
 
-Personal skill & knowledge hub for Claude Code. Discover, install, extract, and publish reusable skills across projects.
+> **Skill & knowledge registry for Claude Code** — 217 reusable skills you can install into any project with a single slash command.
 
-- **Remote**: `https://github.com/kjuhwa/skills.git`
-- **Layout**: category-separated skills + bootstrap scripts
-- **Client**: Claude Code + oh-my-claudecode (OMC) compatible
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Skills](https://img.shields.io/badge/skills-217-blue)](./index.json)
+![GitHub last commit](https://img.shields.io/github/last-commit/kjuhwa/skills-hub)
+![GitHub stars](https://img.shields.io/github/stars/kjuhwa/skills-hub?style=social)
+
+Stop re-deriving the same patterns in every Claude Code session. `skills-hub` is a curated, versioned catalog of battle-tested skills and domain knowledge — searchable, installable, and extractable — so your agent starts every project already knowing what worked last time.
+
+```bash
+# One-line install into ~/.claude
+curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/install.sh | bash
+
+# Then in any Claude Code session
+/init_skills react testing        # search + install matching skills
+/skills_extract_project           # mine this repo for new skills
+/skills_publish                   # ship them back to the hub
+```
+
+**Highlights**
+- 🔎 **Search before you code** — `/skills_search "kafka retry"` finds prior-art from every project you've shipped.
+- 📦 **Category-separated registry** — 19 canonical categories (`apm`, `backend`, `ai`, `arch`, …), one skill per folder, frontmatter-driven.
+- 🧠 **Two kinds of memory** — executable **skills** (recipes with triggers) + non-executable **knowledge** (facts, decisions, pitfalls).
+- 🔁 **Round-trip workflow** — extract drafts from a session or full project → review → publish via one PR.
+- 🤝 **Claude Code + [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) compatible** — works with vanilla Claude Code; integrates deeper with OMC.
 
 ---
 
