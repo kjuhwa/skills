@@ -365,6 +365,26 @@
       "path": "backend/k8s-health-via-getnodelist"
     },
     {
+      "name": "kafka-avro-producer-gzip-30mb",
+      "description": "Spring Kafka producer config for Avro values with gzip compression and a raised 30MB max.request.size for schema-registry payloads exceeding the 1MB default.",
+      "category": "backend",
+      "tags": "[kafka, avro, spring-kafka, schema-registry, producer]",
+      "triggers": "[\"KafkaAvroSerializer\", \"max.request.size\", \"schema.registry.url\", \"compression.type gzip\", \"RecordTooLargeException\"]",
+      "source_project": "lucida-performance",
+      "version": "1.0.0",
+      "path": "backend/kafka-avro-producer-gzip-30mb"
+    },
+    {
+      "name": "kafka-consumer-errorhandling-wrapper",
+      "description": "Wrap Kafka key/value deserializers in Spring Kafkas ErrorHandlingDeserializer so a poison record becomes a logged failure/DLT publish instead of a stuck partition.",
+      "category": "backend",
+      "tags": "[kafka, spring-kafka, avro, poison-pill, resilience]",
+      "triggers": "[\"ErrorHandlingDeserializer\", \"poison pill\", \"DeserializationException\", \"DeadLetterPublishingRecoverer\", \"stuck consumer\"]",
+      "source_project": "lucida-performance",
+      "version": "1.0.0",
+      "path": "backend/kafka-consumer-errorhandling-wrapper"
+    },
+    {
       "name": "kafka-consumer-tenant-fan-out",
       "description": "@KafkaListener pattern consuming a topicPattern across tenants, using a record header for tenant identity and routing to per-tenant downstream streams",
       "category": "backend",
@@ -505,6 +525,19 @@
       "source_project": "lucida-performance",
       "version": "1.0.0",
       "path": "backend/mongo-criteria-maker-elemmatch-and-or"
+    },
+    {
+      "name": "mongodb-datetrunc-binsize-zero-guard",
+      "description": "Guard MongoDB $dateTrunc binSize against 0 when your interval may be auto/unset; coerce to 1 at query-builder boundary to avoid runtime error.",
+      "category": "backend",
+      "tags": "[mongodb, aggregation, dateTrunc, pitfall]",
+      "triggers": "[\"binSize must be >= 1\", \"$dateTrunc\", \"interval=0\", \"dateTrunc binSize\"]",
+      "source_project": "lucida-performance",
+      "version": "1.0.0",
+      "path": "backend/mongodb-datetrunc-binsize-zero-guard",
+      "linked_knowledge": [
+        "binsize-zero-fallback-to-one"
+      ]
     },
     {
       "name": "multi-tenant-scheduler-iteration",
