@@ -1,1181 +1,575 @@
 {
-  "version": 1,
-  "generated_at": "2026-04-15T01:54:16.496629+00:00",
   "skills": [
     {
       "name": "ai-call-with-mock-fallback",
-      "category": "ai",
-      "path": "skills/ai/ai-call-with-mock-fallback",
-      "version": "0.1.0-draft",
       "description": "Wrap unreliable LLM/AI calls with a deterministic mock fallback so the UI always receives a valid shape — annotate the response with a `mock: true` or `error:` field so the client can show a badge.",
-      "tags": [
-        "llm",
-        "resilience",
-        "fallback",
-        "mock",
-        "ux",
-        "error-handling"
-      ],
-      "triggers": [
-        "AI 생성 실패",
-        "\"mock data\"",
-        "\"ANTHROPIC_API_KEY\"",
-        "\"fallback response\"",
-        "\"mock: true\"",
-        "\"degraded mode\""
-      ]
+      "category": "ai",
+      "tags": "[llm, resilience, fallback, mock, ux, error-handling]",
+      "triggers": "[\"AI 생성 실패\", \"mock data\", \"ANTHROPIC_API_KEY\", \"fallback response\", \"mock: true\", \"degraded mode\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "ai/ai-call-with-mock-fallback"
     },
     {
       "name": "character-sheet-multi-panel-consistency",
-      "category": "ai",
-      "path": "skills/ai/character-sheet-multi-panel-consistency",
-      "version": "0.1.0-draft",
       "description": "Keep a consistent character across multiple diffusion-model image generations by emitting a reusable \"character sheet\" description string from the LLM and prefixing it into every panel's image prompt.",
-      "tags": [
-        "stable-diffusion",
-        "prompt-engineering",
-        "character-consistency",
-        "comic",
-        "storyboard",
-        "multi-panel"
-      ],
-      "triggers": [
-        "character sheet",
-        "\"characterSheet\"",
-        "\"consistent character\"",
-        "\"multi-panel\"",
-        "\"storyboard\"",
-        "\"comic\"",
-        "\"same character in all panels\""
-      ]
+      "category": "ai",
+      "tags": "[stable-diffusion, prompt-engineering, character-consistency, comic, storyboard, multi-panel]",
+      "triggers": "[\"character sheet\", \"characterSheet\", \"consistent character\", \"multi-panel\", \"storyboard\", \"comic\", \"same character in all panels\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "ai/character-sheet-multi-panel-consistency"
     },
     {
       "name": "claude-cli-from-jvm-via-node-wrapper",
-      "category": "ai",
-      "path": "skills/ai/claude-cli-from-jvm-via-node-wrapper",
-      "version": "0.1.0-draft",
       "description": "Shell out to the `claude` CLI from a JVM / Spring Boot app by going through a tiny Node.js wrapper that supplies the required empty stdin — the CLI hangs when invoked with a directly-inherited TTY-less stdin from ProcessBuilder.",
-      "tags": [
-        "claude-cli",
-        "subprocess",
-        "spring-boot",
-        "processbuilder",
-        "node-wrapper",
-        "stdin",
-        "hang"
-      ],
-      "triggers": [
-        "claude -p",
-        "\"ProcessBuilder\"",
-        "\"claude CLI\"",
-        "\"node claude-runner\"",
-        "\"execFileSync\"",
-        "\"subprocess hang\"",
-        "\"cli stdin\""
-      ]
+      "category": "ai",
+      "tags": "[claude-cli, subprocess, spring-boot, processbuilder, node-wrapper, stdin, hang]",
+      "triggers": "[\"claude -p\", \"ProcessBuilder\", \"claude CLI\", \"node claude-runner\", \"execFileSync\", \"subprocess hang\", \"cli stdin\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "ai/claude-cli-from-jvm-via-node-wrapper"
     },
     {
       "name": "llm-json-extraction",
-      "category": "ai",
-      "path": "skills/ai/llm-json-extraction",
-      "version": "0.1.0-draft",
       "description": "Robustly extract a JSON object from free-form LLM text output — strip markdown fences, locate outermost braces, tolerate prelude/postlude prose.",
-      "tags": [
-        "llm",
-        "json",
-        "parsing",
-        "prompt-engineering",
-        "robustness"
-      ],
-      "triggers": [
-        "extract JSON",
-        "\"parse LLM response\"",
-        "\"strip code fence\"",
-        "\"ObjectMapper.readValue\"",
-        "\"JSON from model\"",
-        "\"```json\""
-      ]
+      "category": "ai",
+      "tags": "[llm, json, parsing, prompt-engineering, robustness]",
+      "triggers": "[\"extract JSON\", \"parse LLM response\", \"strip code fence\", \"ObjectMapper.readValue\", \"JSON from model\", \"```json\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "ai/llm-json-extraction"
     },
     {
       "name": "mcp-runtime-prompt-refresh",
-      "category": "ai",
-      "path": "skills/ai/mcp-runtime-prompt-refresh",
-      "version": "0.1.0-draft",
       "description": "Expose a built-in MCP tool that hot-swaps the server's prompt set at runtime, persists it to disk, and emits notifications/prompts/list_changed so clients pick it up without reconnecting.",
-      "tags": [
-        "mcp",
-        "prompts",
-        "hot-reload",
-        "json-rpc",
-        "tool-design"
-      ],
-      "triggers": ""
+      "category": "ai",
+      "tags": "[mcp, prompts, hot-reload, json-rpc, tool-design]",
+      "triggers": "",
+      "source_project": "yamltomcp",
+      "version": "0.1.0-draft",
+      "path": "ai/mcp-runtime-prompt-refresh"
     },
     {
       "name": "openapi-to-mcp-tag-grouping",
-      "category": "ai",
-      "path": "skills/ai/openapi-to-mcp-tag-grouping",
-      "version": "0.1.0-draft",
       "description": "Convert OpenAPI specs into MCP tools by grouping operations under their OpenAPI tag, exposing one tool per tag with an operation selector and per-operation arguments.",
-      "tags": [
-        "mcp",
-        "openapi",
-        "tool-design",
-        "schema",
-        "json-schema"
-      ],
-      "triggers": ""
+      "category": "ai",
+      "tags": "[mcp, openapi, tool-design, schema, json-schema]",
+      "triggers": "",
+      "source_project": "yamltomcp",
+      "version": "0.1.0-draft",
+      "path": "ai/openapi-to-mcp-tag-grouping"
     },
     {
       "name": "stable-horde-async-poll",
-      "category": "ai",
-      "path": "skills/ai/stable-horde-async-poll",
-      "version": "0.1.0-draft",
       "description": "Submit-then-poll integration pattern for Stable Horde image generation — anonymous apikey, model fallback list, negative-prompt separator, bounded poll loop.",
-      "tags": [
-        "stable-horde",
-        "image-generation",
-        "stable-diffusion",
-        "async",
-        "polling",
-        "anonymous-api"
-      ],
-      "triggers": [
-        "stablehorde.net",
-        "\"generate/async\"",
-        "\"generate/status\"",
-        "\"apikey 0000000000\"",
-        "\"image generation\"",
-        "\"Stable Horde\"",
-        "\"horde\""
-      ]
+      "category": "ai",
+      "tags": "[stable-horde, image-generation, stable-diffusion, async, polling, anonymous-api]",
+      "triggers": "[\"stablehorde.net\", \"generate/async\", \"generate/status\", \"apikey 0000000000\", \"image generation\", \"Stable Horde\", \"horde\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "ai/stable-horde-async-poll"
     },
     {
       "name": "opentelemetry-java-bootstrap",
-      "category": "apm",
-      "path": "skills/apm/opentelemetry-java-bootstrap",
-      "version": "1.0.0",
       "description": "Minimal OpenTelemetry bootstrap for a Java service — OTLP exporter, resource attributes, auto-instrumentation agent, and graceful shutdown. Covers the common setup mistakes that cause spans to silently drop.",
-      "tags": [
-        "opentelemetry",
-        "otel",
-        "java",
-        "tracing",
-        "otlp",
-        "observability"
-      ],
-      "triggers": [
-        "OpenTelemetry",
-        "OTEL",
-        "otel-javaagent",
-        "otlp",
-        "tracing setup",
-        "service.name",
-        "span exporter"
-      ]
+      "category": "apm",
+      "tags": "[opentelemetry, otel, java, tracing, otlp, observability]",
+      "triggers": "[OpenTelemetry, OTEL, otel-javaagent, otlp, tracing setup, service.name, span exporter]",
+      "source_project": "manual",
+      "version": "1.0.0",
+      "path": "apm/opentelemetry-java-bootstrap"
     },
     {
       "name": "adaptive-strategy-hot-swap",
-      "category": "arch",
-      "path": "skills/arch/adaptive-strategy-hot-swap",
-      "version": "0.1.0-draft",
       "description": "Periodically re-evaluate candidate strategies/policies against recent data, swap the active one only when a weighted composite score beats the incumbent by a hysteresis threshold — prevents flapping while staying adaptive.",
-      "tags": [
-        "strategy",
-        "adaptive",
-        "hot-swap",
-        "hysteresis",
-        "rebalance",
-        "composite-score",
-        "backtest"
-      ],
-      "triggers": [
-        "shouldUpdateStrategy",
-        "\"reanalyze\"",
-        "\"strategy update\"",
-        "\"hot swap\"",
-        "\"policy rotation\"",
-        "\"best strategy\"",
-        "\"composite score\"",
-        "\"hysteresis threshold\""
-      ]
+      "category": "arch",
+      "tags": "[strategy, adaptive, hot-swap, hysteresis, rebalance, composite-score, backtest]",
+      "triggers": "[\"shouldUpdateStrategy\", \"reanalyze\", \"strategy update\", \"hot swap\", \"policy rotation\", \"best strategy\", \"composite score\", \"hysteresis threshold\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "arch/adaptive-strategy-hot-swap"
     },
     {
       "name": "definition-registry-helper-cache",
-      "category": "arch",
-      "path": "skills/arch/definition-registry-helper-cache",
-      "version": "0.1.0-draft",
       "description": "Static helper class with ConcurrentHashMap caches populated at startup by @PostConstruct providers, enabling zero-allocation hot-path lookups via static getters",
-      "tags": [
-        "spring",
-        "cache",
-        "static",
-        "concurrenthashmap",
-        "performance"
-      ],
-      "triggers": [
-        "static helper cache",
-        "ConcurrentHashMap static cache",
-        "PostConstruct populate static map",
-        "definition helper lookup",
-        "zero allocation hot path cache"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, cache, static, concurrenthashmap, performance]",
+      "category": "arch",
+      "path": "arch/definition-registry-helper-cache"
     },
     {
       "name": "domain-category-endpoint-registry",
-      "category": "arch",
-      "path": "skills/arch/domain-category-endpoint-registry",
-      "version": "0.1.0-draft",
       "description": "Organize a large vendor-API client (100s of endpoints) under a three-level `{domain}/{category}/{Action}{Entity}` package convention with a shared base class and a single `initializeEndpoints()` registry — scalable, greppable, and uniformly logged.",
-      "tags": [
-        "api-client",
-        "registry",
-        "code-organization",
-        "vendor-sdk",
-        "base-class",
-        "sdk-wrapping"
-      ],
-      "triggers": [
-        "BaseApiEndpoint",
-        "\"initializeEndpoints\"",
-        "\"ApiEndpoint\"",
-        "\"api registry\"",
-        "\"vendor sdk\"",
-        "\"many endpoints\"",
-        "\"endpoint catalog\""
-      ]
+      "category": "arch",
+      "tags": "[api-client, registry, code-organization, vendor-sdk, base-class, sdk-wrapping]",
+      "triggers": "[\"BaseApiEndpoint\", \"initializeEndpoints\", \"ApiEndpoint\", \"api registry\", \"vendor sdk\", \"many endpoints\", \"endpoint catalog\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "arch/domain-category-endpoint-registry"
     },
     {
       "name": "git-tag-registry-versioning",
-      "category": "arch",
-      "path": "skills/arch/git-tag-registry-versioning",
-      "version": "1.0.0",
       "description": "Add semver rollback and pinning to any git-backed asset registry (skills, prompts, commands, snippets) using namespaced annotated tags per item and per-release bundle.",
-      "tags": [
-        "git",
-        "versioning",
-        "semver",
-        "registry",
-        "rollback",
-        "tags"
-      ],
-      "triggers": [
-        "version pin",
-        "rollback",
-        "git tag",
-        "registry versioning",
-        "skill versioning",
-        "prompt versioning",
-        "\"install specific version\""
-      ]
+      "category": "arch",
+      "tags": "[git, versioning, semver, registry, rollback, tags]",
+      "triggers": "[version pin, rollback, git tag, registry versioning, skill versioning, prompt versioning, \"install specific version\"]",
+      "source_project": "skills-hub",
+      "version": "1.0.0",
+      "path": "arch/git-tag-registry-versioning"
     },
     {
       "name": "immutable-action-event-log",
-      "category": "arch",
-      "path": "skills/arch/immutable-action-event-log",
-      "version": "0.1.0-draft",
       "description": "Model state transitions as `(state, action) → (newState, List<Event>)` where the event list is an append-only, serializable log. Enables deterministic replay, audit trails, cheat detection, and UI choreography without coupling engine to presentation.",
-      "tags": [
-        "event-sourcing",
-        "immutable-state",
-        "action-log",
-        "deterministic",
-        "replay",
-        "audit"
-      ],
-      "triggers": [
-        "action result log",
-        "state transition events",
-        "replay log",
-        "deterministic engine",
-        "audit trail events"
-      ]
+      "category": "arch",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "arch/immutable-action-event-log"
     },
     {
       "name": "layered-risk-gates",
-      "category": "arch",
-      "path": "skills/arch/layered-risk-gates",
-      "version": "0.1.0-draft",
       "description": "Three-layer safety pattern for autonomous action loops — pre-action admission gate, in-flight monitor (stop/target thresholds), and a consecutive-failure circuit breaker — so a single runaway loop can't clear out the account before a human sees it.",
-      "tags": [
-        "risk",
-        "circuit-breaker",
-        "safety",
-        "autonomous",
-        "limits",
-        "guardrails"
-      ],
-      "triggers": [
-        "risk management",
-        "\"position sizing\"",
-        "\"max daily loss\"",
-        "\"consecutive losses\"",
-        "\"stop loss\"",
-        "\"take profit\"",
-        "\"kill switch\"",
-        "\"circuit breaker\""
-      ]
+      "category": "arch",
+      "tags": "[risk, circuit-breaker, safety, autonomous, limits, guardrails]",
+      "triggers": "[\"risk management\", \"position sizing\", \"max daily loss\", \"consecutive losses\", \"stop loss\", \"take profit\", \"kill switch\", \"circuit breaker\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "arch/layered-risk-gates"
     },
     {
       "name": "module-federation-expose-wrapper",
-      "category": "arch",
-      "path": "skills/arch/module-federation-expose-wrapper",
-      "version": "0.1.0-draft",
       "description": "Six-step pattern for exposing a component from one Module Federation remote and consuming it from another via a shared library — implementation → expose wrapper → MF config → MF name constant → RemoteApp wrapper in shared → consumer import. Prevents direct cross-remote imports and webpack alias collisions.",
-      "tags": [
-        "module-federation",
-        "micro-frontend",
-        "webpack",
-        "react",
-        "remote",
-        "expose",
-        "mfa"
-      ],
-      "triggers": [
-        "module federation",
-        "MFA",
-        "cross-remote import",
-        "exposes",
-        "RemoteApp",
-        "webpack alias collision"
-      ]
+      "category": "arch",
+      "tags": "[module-federation, micro-frontend, webpack, react, remote, expose, mfa]",
+      "triggers": "[\"module federation\", \"MFA\", \"cross-remote import\", \"exposes\", \"RemoteApp\", \"webpack alias collision\"]",
+      "source_project": "lucida-ui",
+      "version": "0.1.0-draft",
+      "path": "arch/module-federation-expose-wrapper"
     },
     {
       "name": "resource-provider-registry",
-      "category": "arch",
-      "path": "skills/arch/resource-provider-registry",
-      "version": "0.1.0-draft",
       "description": "Spring DI plugin registry where @Component implementations of a typed interface are auto-discovered and looked up at runtime by a string type key",
-      "tags": [
-        "spring",
-        "plugin",
-        "registry",
-        "interface",
-        "component"
-      ],
-      "triggers": [
-        "plugin registry",
-        "provider lookup by type",
-        "auto-discovered handlers",
-        "resource provider pattern"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, plugin, registry, interface, component]",
+      "category": "arch",
+      "path": "arch/resource-provider-registry"
     },
     {
       "name": "shared-package-only-cross-module",
-      "category": "arch",
-      "path": "skills/arch/shared-package-only-cross-module",
-      "version": "0.1.0-draft",
       "description": "Enforce a one-way dependency graph in a multi-module repo — sibling modules may only import from a single `shared/` package, never from each other. Prevents webpack alias collisions, keeps module boundaries enforceable, and makes build/deploy units independent.",
-      "tags": [
-        "monorepo",
-        "module-boundaries",
-        "webpack",
-        "alias",
-        "micro-frontend",
-        "dependency-direction"
-      ],
-      "triggers": [
-        "cross-module import",
-        "cannot resolve @/",
-        "alias collision",
-        "webpack root",
-        "monorepo boundaries"
-      ]
+      "category": "arch",
+      "tags": "[monorepo, module-boundaries, webpack, alias, micro-frontend, dependency-direction]",
+      "triggers": "[\"cross-module import\", \"cannot resolve @/\", \"alias collision\", \"webpack root\", \"monorepo boundaries\"]",
+      "source_project": "lucida-ui",
+      "version": "0.1.0-draft",
+      "path": "arch/shared-package-only-cross-module"
     },
     {
       "name": "tenant-context-holder-propagation",
-      "category": "arch",
-      "path": "skills/arch/tenant-context-holder-propagation",
-      "version": "0.1.0-draft",
       "description": "Set TenantContextHolder.INSTANCE.setTenantId(orgId) on the current thread so MongoDB tenant-isolated templates route queries correctly, always clearing in a finally block",
-      "tags": [
-        "spring",
-        "multi-tenant",
-        "threadlocal",
-        "mongodb",
-        "isolation"
-      ],
-      "triggers": [
-        "TenantContextHolder",
-        "tenant context propagation",
-        "multi-tenant thread local",
-        "MONGODB_TEMPLATE_ISOLATION",
-        "tenant isolation mongodb"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, multi-tenant, threadlocal, mongodb, isolation]",
+      "category": "arch",
+      "path": "arch/tenant-context-holder-propagation"
     },
     {
       "name": "tiered-rebalance-schedule",
-      "category": "arch",
-      "path": "skills/arch/tiered-rebalance-schedule",
-      "version": "0.1.0-draft",
       "description": "Run three cadences against the same managed set — fast performance review, mid-frequency policy re-analysis, slow portfolio rebalance — each with its own trigger interval and mutation budget, so urgency scales with cost.",
-      "tags": [
-        "scheduler",
-        "rebalance",
-        "tiers",
-        "cadence",
-        "cron",
-        "portfolio",
-        "lifecycle"
-      ],
-      "triggers": [
-        "scheduleWithFixedDelay",
-        "\"periodic review\"",
-        "\"rebalance\"",
-        "\"reanalysis interval\"",
-        "\"tiered schedule\"",
-        "\"performance review\"",
-        "\"portfolio rebalance\""
-      ]
+      "category": "arch",
+      "tags": "[scheduler, rebalance, tiers, cadence, cron, portfolio, lifecycle]",
+      "triggers": "[\"scheduleWithFixedDelay\", \"periodic review\", \"rebalance\", \"reanalysis interval\", \"tiered schedule\", \"performance review\", \"portfolio rebalance\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "arch/tiered-rebalance-schedule"
     },
     {
       "name": "dotenv-multi-env-routing",
-      "category": "backend",
-      "path": "skills/backend/dotenv-multi-env-routing",
-      "version": "0.1.0-draft",
       "description": "Single ENV variable flips an entire stack (REST base URL, WebSocket base, per-operation transaction IDs) between production and sandbox tiers, loaded via dotenv with OS-env precedence.",
-      "tags": [
-        "dotenv",
-        "config",
-        "environments",
-        "sandbox",
-        "production",
-        "routing"
-      ],
-      "triggers": [
-        "KIS_ENV",
-        "\"prod\"",
-        "\"vts\"",
-        "\"sandbox\"",
-        "\"dotenv\"",
-        "\"Dotenv.configure\"",
-        "\"multi-environment\"",
-        "\"openapi host\""
-      ]
+      "category": "backend",
+      "tags": "[dotenv, config, environments, sandbox, production, routing]",
+      "triggers": "[\"KIS_ENV\", \"prod\", \"vts\", \"sandbox\", \"dotenv\", \"Dotenv.configure\", \"multi-environment\", \"openapi host\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "backend/dotenv-multi-env-routing"
     },
     {
       "name": "excel-export-enum-replacer",
-      "category": "backend",
-      "path": "skills/backend/excel-export-enum-replacer",
-      "version": "0.1.0-draft",
       "description": "Use DataToBeReplace.builder() to map enum/code values to display labels before passing content to ExcelExportManager.objectToExcelAndDownload()",
-      "tags": [
-        "spring",
-        "excel",
-        "export",
-        "enum",
-        "controller"
-      ],
-      "triggers": [
-        "excel export enum replace",
-        "DataToBeReplace",
-        "ExcelExportManager",
-        "objectToExcelAndDownload",
-        "excel download controller"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, excel, export, enum, controller]",
+      "category": "backend",
+      "path": "backend/excel-export-enum-replacer"
     },
     {
       "name": "grid-filter-to-criteria-converter",
-      "category": "backend",
-      "path": "skills/backend/grid-filter-to-criteria-converter",
-      "version": "0.1.0-draft",
       "description": "Convert a UI grid filter DTO (gridFilters + tagFilters + pageable) to MongoDB Criteria using CriteriaMakeHelper, supporting equals/contains/greaterThan/inRange operators",
-      "tags": [
-        "spring",
-        "mongodb",
-        "filter",
-        "criteria",
-        "pagination",
-        "grid"
-      ],
-      "triggers": [
-        "grid filter to criteria",
-        "FiltersPageableDto",
-        "CriteriaMakeHelper",
-        "mongodb dynamic filter",
-        "UI filter to query"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, mongodb, filter, criteria, pagination, grid]",
+      "category": "backend",
+      "path": "backend/grid-filter-to-criteria-converter"
     },
     {
       "name": "identifier-truncate-with-hash-suffix",
-      "category": "backend",
-      "path": "skills/backend/identifier-truncate-with-hash-suffix",
-      "version": "0.1.0-draft",
       "description": "Deterministically shrink any identifier to a length cap while preserving uniqueness by appending a short hash of the original.",
-      "tags": [
-        "identifiers",
-        "hashing",
-        "naming",
-        "collision-avoidance"
-      ],
-      "triggers": ""
+      "category": "backend",
+      "tags": "[identifiers, hashing, naming, collision-avoidance]",
+      "triggers": "",
+      "source_project": "yamltomcp",
+      "version": "0.1.0-draft",
+      "path": "backend/identifier-truncate-with-hash-suffix"
     },
     {
       "name": "json-seeded-jpa-loader",
-      "category": "backend",
-      "path": "skills/backend/json-seeded-jpa-loader",
-      "version": "0.1.0-draft",
       "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
-      "tags": [
-        "spring-boot",
-        "jpa",
-        "seeding",
-        "flyway",
-        "commandlinerunner",
-        "jackson",
-        "reference-data"
-      ],
-      "triggers": [
-        "seed reference data spring",
-        "CommandLineRunner JSON",
-        "populate static content",
-        "data initializer spring",
-        "load catalog JSON"
-      ]
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "backend/json-seeded-jpa-loader"
     },
     {
       "name": "kafka-message-header-metadata",
-      "category": "backend",
-      "path": "skills/backend/kafka-message-header-metadata",
-      "version": "0.1.0-draft",
       "description": "Attach org-id, user-id, and timestamp as RecordHeader[] on a ProducerRecord to enable multi-tenant event routing without polluting the Avro payload",
-      "tags": [
-        "kafka",
-        "avro",
-        "multi-tenant",
-        "headers",
-        "spring"
-      ],
-      "triggers": [
-        "kafka record headers",
-        "ProducerRecord headers",
-        "organization-id header kafka",
-        "multi-tenant kafka routing",
-        "RecordHeader metadata"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[kafka, avro, multi-tenant, headers, spring]",
+      "category": "backend",
+      "path": "backend/kafka-message-header-metadata"
     },
     {
       "name": "mcp-capability-negotiated-initialize",
-      "category": "backend",
-      "path": "skills/backend/mcp-capability-negotiated-initialize",
-      "version": "0.1.0-draft",
       "description": "In MCP `initialize`, advertise optional server capabilities (prompts, resources, sampling) only when the client declared matching support — avoids clients rejecting the handshake or spamming unsupported methods.",
-      "tags": [
-        "mcp",
-        "json-rpc",
-        "capability-negotiation",
-        "handshake"
-      ],
-      "triggers": ""
+      "category": "backend",
+      "tags": "[mcp, json-rpc, capability-negotiation, handshake]",
+      "triggers": "",
+      "source_project": "yamltomcp",
+      "version": "0.1.0-draft",
+      "path": "backend/mcp-capability-negotiated-initialize"
     },
     {
       "name": "migration-processor-pipeline",
-      "category": "backend",
-      "path": "skills/backend/migration-processor-pipeline",
-      "version": "0.1.0-draft",
       "description": "Abstract migration processor template — validate → load → transform → emit Kafka Avro event with org-id header → audit log, multi-tenant safe",
-      "tags": [
-        "spring",
-        "kafka",
-        "avro",
-        "migration",
-        "multi-tenant",
-        "mongodb"
-      ],
-      "triggers": [
-        "migration processor",
-        "data migration pipeline",
-        "legacy data import",
-        "migration with kafka"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, kafka, avro, migration, multi-tenant, mongodb]",
+      "category": "backend",
+      "path": "backend/migration-processor-pipeline"
     },
     {
       "name": "playwright-exception-advice",
-      "category": "backend",
-      "path": "skills/backend/playwright-exception-advice",
-      "version": "0.1.0-draft",
       "description": "Map PlaywrightException to a structured JSON error in Spring @ControllerAdvice, detecting common cases (cert errors, timeouts) and attaching actionable suggestions",
-      "tags": [
-        "spring-boot",
-        "exception-handling",
-        "playwright",
-        "controller-advice"
-      ],
-      "triggers": [
-        "ControllerAdvice playwright",
-        "\"PlaywrightException spring\"",
-        "\"ERR_CERT_AUTHORITY_INVALID\""
-      ]
+      "category": "backend",
+      "tags": "[spring-boot, exception-handling, playwright, controller-advice]",
+      "triggers": "[\"ControllerAdvice playwright\", \"PlaywrightException spring\", \"ERR_CERT_AUTHORITY_INVALID\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "backend/playwright-exception-advice"
     },
     {
       "name": "playwright-java-spring-lifecycle",
-      "category": "backend",
-      "path": "skills/backend/playwright-java-spring-lifecycle",
-      "version": "0.1.0-draft",
       "description": "Share one Playwright+Browser instance across a Spring Boot app and create per-request BrowserContext/Page, cleaning up with try-with-resources and @PreDestroy",
-      "tags": [
-        "playwright",
-        "spring-boot",
-        "java",
-        "lifecycle",
-        "browser"
-      ],
-      "triggers": [
-        "playwright",
-        "\"BrowserManager\"",
-        "\"BrowserContext\"",
-        "\"headless browser spring\""
-      ]
+      "category": "backend",
+      "tags": "[playwright, spring-boot, java, lifecycle, browser]",
+      "triggers": "[\"playwright\", \"BrowserManager\", \"BrowserContext\", \"headless browser spring\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "backend/playwright-java-spring-lifecycle"
     },
     {
       "name": "polymorphic-command-entities",
-      "category": "backend",
-      "path": "skills/backend/polymorphic-command-entities",
-      "version": "0.1.0-draft",
       "description": "Expose a list of typed commands over JSON using Jackson @JsonTypeInfo + @JsonSubTypes so clients can submit executable scripts to a REST endpoint",
-      "tags": [
-        "jackson",
-        "polymorphism",
-        "command-pattern",
-        "rest",
-        "java"
-      ],
-      "triggers": [
-        "JsonTypeInfo",
-        "\"JsonSubTypes\"",
-        "\"command pattern json\"",
-        "\"polymorphic deserialization\""
-      ]
+      "category": "backend",
+      "tags": "[jackson, polymorphism, command-pattern, rest, java]",
+      "triggers": "[\"JsonTypeInfo\", \"JsonSubTypes\", \"command pattern json\", \"polymorphic deserialization\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "backend/polymorphic-command-entities"
     },
     {
       "name": "spring-dual-profile-flyway",
-      "category": "backend",
-      "path": "skills/backend/spring-dual-profile-flyway",
-      "version": "0.1.0-draft",
       "description": "Spring Boot dual-profile setup — H2 file-mode for dev (zero install, console enabled), PostgreSQL for prod — with Flyway managing DDL and JPA set to validate-only. The profile split that keeps local dev fast without drifting from prod schema.",
-      "tags": [
-        "spring-boot",
-        "flyway",
-        "h2",
-        "postgresql",
-        "profiles",
-        "migrations",
-        "jpa"
-      ],
-      "triggers": [
-        "spring profiles dev prod",
-        "flyway migrations spring",
-        "h2 file mode dev",
-        "ddl-auto validate",
-        "postgresql production profile"
-      ]
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "backend/spring-dual-profile-flyway"
     },
     {
       "name": "spring-typed-config-properties",
-      "category": "backend",
-      "path": "skills/backend/spring-typed-config-properties",
-      "version": "0.1.0-draft",
       "description": "Type-safe, nested `@ConfigurationProperties` pattern for Spring Boot — centralizes tunable constants (rate limits, formula coefficients, balance numbers) in YAML with a single injected POJO tree. Beats scattered `@Value` strings.",
-      "tags": [
-        "spring-boot",
-        "configuration-properties",
-        "yaml",
-        "typed-config",
-        "constructor-binding"
-      ],
-      "triggers": [
-        "ConfigurationProperties nested",
-        "centralize tunable constants",
-        "spring typed config",
-        "balance config",
-        "constructor binding yaml"
-      ]
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "backend/spring-typed-config-properties"
     },
     {
       "name": "paired-flag-multi-instance-registration",
-      "category": "cli",
-      "path": "skills/cli/paired-flag-multi-instance-registration",
-      "version": "0.1.0-draft",
       "description": "CLI pattern for registering N instances of a composite config (e.g. spec+baseUrl pairs) using repeated paired flags and a pending-state parser.",
-      "tags": [
-        "argparse",
-        "cli-design",
-        "multi-instance",
-        "config"
-      ],
-      "triggers": ""
+      "category": "cli",
+      "tags": "[argparse, cli-design, multi-instance, config]",
+      "triggers": "",
+      "source_project": "yamltomcp",
+      "version": "0.1.0-draft",
+      "path": "cli/paired-flag-multi-instance-registration"
     },
     {
       "name": "build-error-triage",
-      "category": "debug",
-      "path": "skills/debug/build-error-triage",
-      "version": "1.0.0",
       "description": "Systematic triage workflow for build/compilation errors — classify by root cause (missing symbol, signature mismatch, instantiation failure), then isolate the first error before chasing cascades.",
-      "tags": [
-        "build",
-        "compilation",
-        "java",
-        "javac",
-        "errors",
-        "triage"
-      ],
-      "triggers": [
-        "Unresolved compilation",
-        "Cannot instantiate",
-        "method is undefined",
-        "cannot find symbol",
-        "compilation error"
-      ]
+      "category": "debug",
+      "tags": "[build, compilation, java, javac, errors, triage]",
+      "triggers": "[Unresolved compilation, Cannot instantiate, method is undefined, cannot find symbol, compilation error]",
+      "source_project": "manual",
+      "version": "1.0.0",
+      "path": "debug/build-error-triage"
     },
     {
       "name": "playwright-inspector-codegen",
-      "category": "debug",
-      "path": "skills/debug/playwright-inspector-codegen",
-      "version": "0.1.0-draft",
       "description": "Enable Playwright Inspector / codegen from a running Java app by setting PWDEBUG env vars before Playwright.create() and exposing an mvn codegen invocation for the user",
-      "tags": [
-        "playwright",
-        "inspector",
-        "codegen",
-        "debugging",
-        "java"
-      ],
-      "triggers": [
-        "PWDEBUG",
-        "\"playwright inspector\"",
-        "\"playwright codegen\"",
-        "\"record selectors\""
-      ]
+      "category": "debug",
+      "tags": "[playwright, inspector, codegen, debugging, java]",
+      "triggers": "[\"PWDEBUG\", \"playwright inspector\", \"playwright codegen\", \"record selectors\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "debug/playwright-inspector-codegen"
     },
     {
       "name": "playwright-java-dockerfile",
-      "category": "devops",
-      "path": "skills/devops/playwright-java-dockerfile",
-      "version": "0.1.0-draft",
       "description": "Multi-stage Dockerfile that builds a Java/Maven app in a JDK image and runs it on the official Playwright Java runtime image, avoiding manual browser installation",
-      "tags": [
-        "docker",
-        "playwright",
-        "java",
-        "maven",
-        "multi-stage"
-      ],
-      "triggers": [
-        "dockerfile playwright java",
-        "\"mcr.microsoft.com/playwright/java\"",
-        "\"playwright container\""
-      ]
+      "category": "devops",
+      "tags": "[docker, playwright, java, maven, multi-stage]",
+      "triggers": "[\"dockerfile playwright java\", \"mcr.microsoft.com/playwright/java\", \"playwright container\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "devops/playwright-java-dockerfile"
     },
     {
       "name": "axios-refresh-queue-zustand",
-      "category": "frontend",
-      "path": "skills/frontend/axios-refresh-queue-zustand",
-      "version": "0.1.0-draft",
       "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
-      "tags": [
-        "axios",
-        "jwt",
-        "refresh-token",
-        "interceptor",
-        "zustand",
-        "auth"
-      ],
-      "triggers": [
-        "axios 401 refresh",
-        "token refresh queue",
-        "isRefreshing flag",
-        "axios interceptor zustand",
-        "refresh thundering herd",
-        "retry original request"
-      ]
+      "category": "frontend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "frontend/axios-refresh-queue-zustand"
     },
     {
       "name": "menu-key-config-registry",
-      "category": "frontend",
-      "path": "skills/frontend/menu-key-config-registry",
-      "version": "0.1.0-draft",
       "description": "Centralize sidebar/drawer menu keys as a union type + config object per domain, so menu rendering, drawer view switches, and default-expand state all reference the same source of truth. Eliminates string-key drift across the three places a menu key appears.",
-      "tags": [
-        "react",
-        "menu",
-        "drawer",
-        "registry",
-        "typescript",
-        "union-type",
-        "configuration"
-      ],
-      "triggers": [
-        "menu key drift",
-        "Drawer case switch",
-        "selectedSubMenu",
-        "DetailMenuList",
-        "sidebar menu config"
-      ]
+      "category": "frontend",
+      "tags": "[react, menu, drawer, registry, typescript, union-type, configuration]",
+      "triggers": "[\"menu key drift\", \"Drawer case switch\", \"selectedSubMenu\", \"DetailMenuList\", \"sidebar menu config\"]",
+      "source_project": "lucida-ui",
+      "version": "0.1.0-draft",
+      "path": "frontend/menu-key-config-registry"
     },
     {
       "name": "mfa-memoryrouter-isolation",
-      "category": "frontend",
-      "path": "skills/frontend/mfa-memoryrouter-isolation",
-      "version": "0.1.0-draft",
       "description": "Wrap Module Federation-exposed React components in `MemoryRouter` so they own a private router context instead of inheriting the host's — avoids cross-origin router errors in dev and keeps the remote's routes from leaking into the host URL bar.",
-      "tags": [
-        "module-federation",
-        "react-router",
-        "memoryrouter",
-        "micro-frontend",
-        "cross-origin"
-      ],
-      "triggers": [
-        "MemoryRouter",
-        "Router context",
-        "cross-origin",
-        "useNavigate outside Router",
-        "MFA expose router"
-      ]
+      "category": "frontend",
+      "tags": "[module-federation, react-router, memoryrouter, micro-frontend, cross-origin]",
+      "triggers": "[\"MemoryRouter\", \"Router context\", \"cross-origin\", \"useNavigate outside Router\", \"MFA expose router\"]",
+      "source_project": "lucida-ui",
+      "version": "0.1.0-draft",
+      "path": "frontend/mfa-memoryrouter-isolation"
     },
     {
       "name": "mfa-plain-html-dropdown-escape-hatch",
-      "category": "frontend",
-      "path": "skills/frontend/mfa-plain-html-dropdown-escape-hatch",
-      "version": "0.1.0-draft",
       "description": "When a library Dropdown component infinite-loops or cross-origin-fails inside a Module Federation remote, replace it with a plain HTML `<button>` + absolutely-positioned menu `<ul>`. Cheaper than debugging the library's portal/context assumptions.",
-      "tags": [
-        "module-federation",
-        "dropdown",
-        "antd",
-        "infinite-loop",
-        "cross-origin",
-        "react"
-      ],
-      "triggers": [
-        "Dropdown infinite loop",
-        "options useMemo",
-        "MFA dropdown",
-        "portal cross-origin",
-        "library dropdown broken in remote"
-      ]
+      "category": "frontend",
+      "tags": "[module-federation, dropdown, antd, infinite-loop, cross-origin, react]",
+      "triggers": "[\"Dropdown infinite loop\", \"options useMemo\", \"MFA dropdown\", \"portal cross-origin\", \"library dropdown broken in remote\"]",
+      "source_project": "lucida-ui",
+      "version": "0.1.0-draft",
+      "path": "frontend/mfa-plain-html-dropdown-escape-hatch"
     },
     {
       "name": "module-federation-expose-react-component",
-      "category": "frontend",
-      "path": "skills/frontend/module-federation-expose-react-component",
-      "version": "1.0.0",
       "description": "Expose a React component from one MF remote to be consumed by other remotes via a stable 6-step pipeline (implementation → expose wrapper → config → MF constant → RemoteApp wrapper → consumer import).",
-      "tags": [
-        "module-federation",
-        "micro-frontend",
-        "react",
-        "webpack",
-        "expose",
-        "monorepo"
-      ],
-      "triggers": [
-        "expose a component across module federation remotes",
-        "share React component between MFA remotes",
-        "MFA expose pipeline",
-        "cross-remote import forbidden"
-      ]
+      "category": "frontend",
+      "tags": "[module-federation, micro-frontend, react, webpack, expose, monorepo]",
+      "triggers": "[\"expose a component across module federation remotes\", \"share React component between MFA remotes\", \"MFA expose pipeline\", \"cross-remote import forbidden\"]",
+      "source_project": "lucida-ui",
+      "version": "1.0.0",
+      "path": "frontend/module-federation-expose-react-component"
     },
     {
       "name": "zustand-preset-manager",
-      "category": "frontend",
-      "path": "skills/frontend/zustand-preset-manager",
-      "version": "0.1.0-draft",
       "description": "Zustand + persist middleware pattern for managing N named presets (team comps, saved filters, dashboard layouts) with active-selection, max-count guard, and auto-reselect on delete.",
-      "tags": [
-        "zustand",
-        "localstorage",
-        "preset",
-        "state-management",
-        "persist-middleware"
-      ],
-      "triggers": [
-        "zustand persist",
-        "saved presets",
-        "team presets",
-        "named configurations",
-        "localStorage preset",
-        "multi-preset selector"
-      ]
+      "category": "frontend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "frontend/zustand-preset-manager"
     },
     {
       "name": "gacha-soft-hard-pity",
-      "category": "game-dev",
-      "path": "skills/game-dev/gacha-soft-hard-pity",
-      "version": "0.1.0-draft",
       "description": "Server-authoritative gacha with soft pity (rate ramp after N pulls), hard pity (guaranteed top rarity at M pulls), and 50/50 guarantee carryover. Split rate calculation from result resolution so probability is testable.",
-      "tags": [
-        "gacha",
-        "pity",
-        "probability",
-        "securerandom",
-        "loot",
-        "rng-fairness"
-      ],
-      "triggers": [
-        "gacha pity system",
-        "soft pity hard pity",
-        "50/50 pity",
-        "banner rate up",
-        "rate calculator"
-      ]
+      "category": "game-dev",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "game-dev/gacha-soft-hard-pity"
     },
     {
       "name": "stateless-turn-combat-engine",
-      "category": "game-dev",
-      "path": "skills/game-dev/stateless-turn-combat-engine",
-      "version": "0.1.0-draft",
       "description": "Turn-based combat as a pure function — `(state, action) → newState + events`. Speed-based turn order, deterministic damage, no hidden mutation. Makes combat unit-testable, replayable, and server-authoritative.",
-      "tags": [
-        "combat-engine",
-        "turn-based",
-        "rpg",
-        "pure-function",
-        "deterministic",
-        "server-authoritative"
-      ],
-      "triggers": [
-        "turn based combat",
-        "combat engine design",
-        "speed based turn order",
-        "server authoritative combat",
-        "stateless combat"
-      ]
+      "category": "game-dev",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "game-dev/stateless-turn-combat-engine"
     },
     {
       "name": "status-effect-enum-system",
-      "category": "game-dev",
-      "path": "skills/game-dev/status-effect-enum-system",
-      "version": "0.1.0-draft",
       "description": "Model status effects (burn, stun, buff, debuff) as enum-tagged records attached to units, with per-turn tick logic split between application, duration decay, and removal. Keeps damage-over-time and crowd control uniform and testable.",
-      "tags": [
-        "status-effect",
-        "buff-debuff",
-        "dot",
-        "cc",
-        "enum",
-        "turn-based"
-      ],
-      "triggers": [
-        "status effect system",
-        "buff debuff",
-        "damage over time",
-        "burn stun freeze",
-        "crowd control turn based"
-      ]
+      "category": "game-dev",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "game-dev/status-effect-enum-system"
     },
     {
       "name": "react-native-android-emulator-localhost",
-      "category": "mobile",
-      "path": "skills/mobile/react-native-android-emulator-localhost",
-      "version": "0.1.0-draft",
       "description": "Use Platform.select to pick the right loopback host when a React Native dev build talks to a backend on the host machine — Android emulator needs 10.0.2.2, iOS simulator uses localhost.",
-      "tags": [
-        "react-native",
-        "android",
-        "emulator",
-        "localhost",
-        "10.0.2.2",
-        "networking",
-        "dev-environment"
-      ],
-      "triggers": [
-        "10.0.2.2",
-        "\"Platform.select\"",
-        "\"localhost:8080\"",
-        "\"android emulator network\"",
-        "\"React Native API base\"",
-        "\"fetch failed\"",
-        "\"Network request failed\""
-      ]
+      "category": "mobile",
+      "tags": "[react-native, android, emulator, localhost, 10.0.2.2, networking, dev-environment]",
+      "triggers": "[\"10.0.2.2\", \"Platform.select\", \"localhost:8080\", \"android emulator network\", \"React Native API base\", \"fetch failed\", \"Network request failed\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "mobile/react-native-android-emulator-localhost"
     },
     {
       "name": "jwt-refresh-rotation-spring",
-      "category": "security",
-      "path": "skills/security/jwt-refresh-rotation-spring",
-      "version": "0.1.0-draft",
       "description": "Spring Boot 3 JWT with short-lived access token + long-lived refresh token, filter-chain integration, and stateless session config. Avoids common mistakes that silently break refresh flows.",
-      "tags": [
-        "jwt",
-        "spring-boot",
-        "auth",
-        "refresh-token",
-        "jjwt",
-        "security-filter"
-      ],
-      "triggers": [
-        "jwt spring boot",
-        "refresh token rotation",
-        "JwtAuthenticationFilter",
-        "jjwt 0.12",
-        "SessionCreationPolicy.STATELESS",
-        "access token refresh token"
-      ]
+      "category": "security",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "security/jwt-refresh-rotation-spring"
     },
     {
       "name": "oauth-token-env-persistence",
-      "category": "security",
-      "path": "skills/security/oauth-token-env-persistence",
-      "version": "0.1.0-draft",
       "description": "Persist OAuth access tokens to a sidecar env file (token + refresh + issue_time), refresh N minutes before expiry with a thread-safe guard, auto-inject into outgoing API calls — survives process restart without re-login.",
-      "tags": [
-        "oauth",
-        "token",
-        "refresh",
-        "dotenv",
-        "persistence",
-        "auth",
-        "thread-safety"
-      ],
-      "triggers": [
-        "access_token",
-        "\"refresh_token\"",
-        "\"token refresh\"",
-        "\"access_token.env\"",
-        "\"token issue time\"",
-        "\"bearer auto inject\"",
-        "\"token expiry\""
-      ]
+      "category": "security",
+      "tags": "[oauth, token, refresh, dotenv, persistence, auth, thread-safety]",
+      "triggers": "[\"access_token\", \"refresh_token\", \"token refresh\", \"access_token.env\", \"token issue time\", \"bearer auto inject\", \"token expiry\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "security/oauth-token-env-persistence"
+    },
+    {
+      "name": "async-subagent-resume-on-missing-artifact",
+      "description": "When an async subagent is reported \"completed\" but its final message hints at unfinished work (e.g., \"Now let me build…\"), verify the expected on-disk artifact before moving on; if missing, use SendMessage to the agent id to finalize rather than re-dispatching a fresh agent.",
+      "category": "workflow",
+      "tags": "[agents, async, verification, send-message]",
+      "triggers": "",
+      "scope": "user",
+      "version": "1.0.0",
+      "path": "workflow/async-subagent-resume-on-missing-artifact"
+    },
+    {
+      "name": "bucket-parallel-java-annotation-dispatch",
+      "description": "For bulk Java annotation work (200+ @Operation methods across many controllers, or 500+ @Schema fields across many DTOs), dispatch N parallel executor subagents with disjoint file buckets. Leader runs a single compile at the end; agents never run gradle themselves.",
+      "category": "workflow",
+      "tags": "[parallel-agents, java, annotation, spring, swagger, gradle]",
+      "triggers": "",
+      "scope": "user",
+      "version": "1.0.0",
+      "path": "workflow/bucket-parallel-java-annotation-dispatch"
     },
     {
       "name": "parallel-bulk-annotation",
-      "category": "workflow",
-      "path": "skills/workflow/parallel-bulk-annotation",
-      "version": "0.1.0-draft",
       "description": "수십~수백 개 Java 파일에 어노테이션(@Schema, @Operation, @ApiResponse 등)을 대량 추가할 때 병렬 에이전트로 분산 실행하는 패턴",
-      "tags": [
-        "java",
-        "annotation",
-        "parallel",
-        "agent",
-        "bulk-edit",
-        "spring"
-      ],
-      "triggers": [
-        "대량 어노테이션 추가",
-        "@Schema 전수 부여",
-        "operationId 전수 부여",
-        "200개 메서드 어노테이션",
-        "bulk annotation"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "category": "workflow",
+      "path": "workflow/parallel-bulk-annotation"
     },
     {
       "name": "skill-repo-bootstrap-architecture",
-      "category": "workflow",
-      "path": "skills/workflow/skill-repo-bootstrap-architecture",
-      "version": "1.0.0",
       "description": "Lay out a shared skill/knowledge git repo so it is simultaneously a catalog and a self-installer — separate bootstrap (commands + umbrella skill + installers) from skills (category/name/SKILL.md). Covers repo layout, safety gates, registry pinning, and skill deprecation lifecycle.",
-      "tags": [
-        "skill-hub",
-        "repo-layout",
-        "bootstrap",
-        "claude-code",
-        "cursor",
-        "git",
-        "architecture",
-        "deprecation"
-      ],
-      "triggers": [
-        "skill repo",
-        "skill hub",
-        "bootstrap install",
-        "category-separated",
-        "skills registry",
-        "skill deprecation",
-        "umbrella skill"
-      ]
+      "category": "workflow",
+      "tags": "[skill-hub, repo-layout, bootstrap, claude-code, cursor, git, architecture, deprecation]",
+      "triggers": "[skill repo, skill hub, bootstrap install, category-separated, skills registry, skill deprecation, umbrella skill]",
+      "source_project": "skills-hub-setup-session",
+      "version": "1.0.0",
+      "path": "workflow/skill-repo-bootstrap-architecture"
     },
     {
       "name": "slash-command-authoring",
-      "category": "workflow",
-      "path": "skills/workflow/slash-command-authoring",
-      "version": "1.0.0",
       "description": "Author Claude Code slash commands that read cleanly, include safety rules, and compose with OMC skills — frontmatter, argument-hint, step ordering, and dry-run patterns.",
-      "tags": [
-        "claude-code",
-        "slash-command",
-        "skill",
-        "authoring",
-        "frontmatter"
-      ],
-      "triggers": [
-        "slash command",
-        "/skills_",
-        "/init_",
-        ".claude/commands",
-        "argument-hint",
-        "command frontmatter"
-      ]
+      "category": "workflow",
+      "tags": "[claude-code, slash-command, skill, authoring, frontmatter]",
+      "triggers": "[slash command, /skills_, /init_, .claude/commands, argument-hint, command frontmatter]",
+      "source_project": "manual",
+      "version": "1.0.0",
+      "path": "workflow/slash-command-authoring"
     },
     {
       "name": "stale-persistent-context-detection",
-      "category": "workflow",
-      "path": "skills/workflow/stale-persistent-context-detection",
-      "version": "1.0.0",
       "description": "Detect and remove stale error snapshots that LLM tools inject via persistent-context files (CLAUDE.md, AGENTS.md, system prompts, memory) before chasing a fix. If the current source already compiles, the injected error is a ghost from a previous session, not a real bug.",
-      "tags": [
-        "llm",
-        "context",
-        "claude-code",
-        "cursor",
-        "agents-md",
-        "memory",
-        "stale",
-        "debugging",
-        "hygiene"
-      ],
-      "triggers": [
-        "CLAUDE.md",
-        "AGENTS.md",
-        "persistent context",
-        "stale error",
-        "system-reminder",
-        "injected error",
-        "claudeMd context",
-        "system prompt",
-        "agent instructions",
-        "injected context"
-      ]
+      "category": "workflow",
+      "tags": "[llm, context, claude-code, cursor, agents-md, memory, stale, debugging, hygiene]",
+      "triggers": "[CLAUDE.md, AGENTS.md, persistent context, stale error, system-reminder, injected error, claudeMd context, system prompt, agent instructions, injected context]",
+      "source_project": "skills-hub-setup-session",
+      "version": "1.0.0",
+      "path": "workflow/stale-persistent-context-detection"
     },
     {
       "name": "swagger-ai-optimization",
-      "category": "workflow",
-      "path": "skills/workflow/swagger-ai-optimization",
-      "version": "0.1.0-draft",
       "description": "Spring Boot + springdoc 프로젝트의 Swagger/OpenAPI 스펙을 AI Agent용으로 최적화 (operationId, @Schema, @ApiResponse, x-filterable-fields 전수 적용)",
-      "tags": [
-        "swagger",
-        "openapi",
-        "ai",
-        "mcp",
-        "spring-boot",
-        "springdoc",
-        "schema",
-        "lucida"
-      ],
-      "triggers": [
-        "swagger ai 최적화",
-        "openapi ai optimization",
-        "MCP 연동 준비",
-        "swagger operationId 전수 부여",
-        "AI 이해도 테스트"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "category": "workflow",
+      "path": "workflow/swagger-ai-optimization"
+    },
+    {
+      "name": "swagger-spec-baseline-from-git",
+      "description": "Re-run spec-based optimization workflow on a clean branch without running the Spring Boot app — restore prior baseline artifacts (swagger-before.json + scripts) via `git show <sha>:<path>` from the commit on another branch that already captured them.",
+      "category": "workflow",
+      "tags": "[swagger, openapi, git, baseline, spring-boot]",
+      "triggers": "",
+      "scope": "user",
+      "version": "1.0.0",
+      "path": "workflow/swagger-spec-baseline-from-git"
     },
     {
       "name": "x-filterable-fields-extraction",
-      "category": "workflow",
-      "path": "skills/workflow/x-filterable-fields-extraction",
-      "version": "1.0.0",
       "description": "OpenAPI 스펙에 x-filterable-fields 확장을 자동 생성하는 파이프라인. lucida-ui gridColumnDefs + lucida-meta i18n properties를 조합하여 필드명/한국어 title/operators를 추출",
-      "tags": [],
-      "triggers": [
-        "x-filterable-fields",
-        "필터 가능 필드 추출",
-        "gridFilters 메타데이터",
-        "tagFilters 메타데이터",
-        "리소스 키 추출",
-        "GridFilter 정확도 개선"
-      ]
+      "triggers": "",
+      "scope": "user",
+      "category": "workflow",
+      "path": "workflow/x-filterable-fields-extraction"
     }
   ]
 }
