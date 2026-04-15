@@ -97,6 +97,16 @@
       "path": "backend/baseline-historical-comparison-threshold"
     },
     {
+      "name": "bootrun-jvmargs-jdwp-opens-java21",
+      "description": "Bake JDWP debug port and --add-opens flags into Gradle bootRun for Java 17/21-compatible local runtime",
+      "category": "backend",
+      "tags": "[gradle, spring-boot, java21, debug, jvm-args]",
+      "triggers": "Local bootRun needs IDE-attach debug and Java 17/21 reflective access without per-dev run configs",
+      "source_project": "lucida-account",
+      "version": "1.0.0",
+      "path": "backend/bootrun-jvmargs-jdwp-opens-java21"
+    },
+    {
       "name": "bucket-parallel-java-annotation-dispatch",
       "description": "For bulk Java annotation work (200+ @Operation methods across many controllers, or 500+ @Schema fields across many DTOs), dispatch N parallel executor subagents with disjoint file buckets. Leader runs a single compile at the end; agents never run gradle themselves.",
       "category": "workflow",
@@ -145,6 +155,16 @@
       "source_project": "lucida-report",
       "version": "1.0.0",
       "path": "backend/calendar-cron-vs-spring-cron-migration"
+    },
+    {
+      "name": "challenge-response-auth-redis-ttl",
+      "description": "Replay-resistant two-step login with Redis-TTL-backed random challenge and bounded attempts",
+      "category": "backend",
+      "tags": "[authentication, redis, challenge-response, security, replay-protection]",
+      "triggers": "Login flow needs replay-resistant credential exchange without full TLS client-cert or OAuth2 overhead",
+      "source_project": "lucida-account",
+      "version": "1.0.0",
+      "path": "backend/challenge-response-auth-redis-ttl"
     },
     {
       "name": "character-sheet-multi-panel-consistency",
@@ -520,6 +540,16 @@
       "path": "backend/init-deadline-guard"
     },
     {
+      "name": "ip-allowlist-cidr-validator",
+      "description": "Validate client IPs against allow-lists accepting mixed notations — plain IPv4, CIDR, octet wildcards, and ranges",
+      "category": "backend",
+      "tags": "[security, cidr, ip-allowlist, authentication, commons-net]",
+      "triggers": "Per-user or per-tenant IP allow-list supporting CIDR, plain IPs, octet wildcards, and ranges",
+      "source_project": "lucida-account",
+      "version": "1.0.0",
+      "path": "backend/ip-allowlist-cidr-validator"
+    },
+    {
       "name": "jacoco-exclude-boilerplate-layers",
       "description": "Configure JaCoCo + SonarQube to exclude generated/boilerplate layers (avro, config, dto, entity, kafka, *Dev) from coverage so coverage % reflects business logic only",
       "category": "backend",
@@ -528,6 +558,16 @@
       "source_project": "lucida-topology",
       "version": "1.0.0",
       "path": "backend/jacoco-exclude-boilerplate-layers"
+    },
+    {
+      "name": "jacoco-sonar-shared-exclusion-list",
+      "description": "Define coverage exclusions once in ext.exclusionPatterns and reuse across jacoco, sonar, and packaging tasks",
+      "category": "backend",
+      "tags": "[gradle, jacoco, sonarqube, coverage, quality-gate]",
+      "triggers": "Gradle build has diverging exclusion lists across jacoco, sonar, and packaging tasks",
+      "source_project": "lucida-account",
+      "version": "1.0.0",
+      "path": "backend/jacoco-sonar-shared-exclusion-list"
     },
     {
       "name": "jdbc-configurable-sql-insert-sender",
@@ -1188,6 +1228,16 @@
       "path": "backend/service-status-provider-actuator"
     },
     {
+      "name": "servicejar-embeddable-library-task",
+      "description": "Gradle task that builds a library JAR alongside bootJar for embedding inside a host Spring Boot app",
+      "category": "backend",
+      "tags": "[gradle, spring-boot, packaging, saas, on-prem, embedding]",
+      "triggers": "Same Spring Boot service must run both standalone and embedded inside a host app",
+      "source_project": "lucida-account",
+      "version": "1.0.0",
+      "path": "backend/servicejar-embeddable-library-task"
+    },
+    {
       "name": "shared-package-only-cross-module",
       "description": "Enforce a one-way dependency graph in a multi-module repo — sibling modules may only import from a single `shared/` package, never from each other. Prevents webpack alias collisions, keeps module boundaries enforceable, and makes build/deploy units independent.",
       "category": "arch",
@@ -1479,6 +1529,16 @@
       "path": "backend/testcontainers-mongo-kafka-abstract-base"
     },
     {
+      "name": "testcontainers-reuse-disabled",
+      "description": "Force TESTCONTAINERS_REUSE_ENABLE=false on the Gradle test task so CI never inherits stale containers",
+      "category": "backend",
+      "tags": "[testcontainers, gradle, flaky-tests, ci]",
+      "triggers": "CI or shared dev box has Testcontainers runs leaking state between suites",
+      "source_project": "lucida-account",
+      "version": "1.0.0",
+      "path": "backend/testcontainers-reuse-disabled"
+    },
+    {
       "name": "thread-pool-config-tenant-aware",
       "description": "Property-driven ThreadPoolTaskExecutor + Scheduler config that extends TenantAsyncConfigurerSupport so @Async tasks inherit tenant context",
       "category": "backend",
@@ -1507,6 +1567,16 @@
       "source_project": "kis-java-bundle",
       "version": "0.1.0-draft",
       "path": "arch/tiered-rebalance-schedule"
+    },
+    {
+      "name": "tsv-driven-permission-bootstrap",
+      "description": "Treat version-controlled TSV as source of truth for Function/Permission/Menu catalog; reconcile DB on startup",
+      "category": "backend",
+      "tags": "[authorization, permissions, bootstrap, tsv, reconciliation]",
+      "triggers": "Permission/menu/function catalog needs to be version-controlled and diff-reviewable instead of DB rows",
+      "source_project": "lucida-account",
+      "version": "1.0.0",
+      "path": "backend/tsv-driven-permission-bootstrap"
     },
     {
       "name": "websocket-stomp-channel-pool-config",
