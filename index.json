@@ -570,6 +570,39 @@
       "scope": "user",
       "category": "workflow",
       "path": "workflow/x-filterable-fields-extraction"
+    },
+    {
+      "name": "spring-mongo-lightweight-migration",
+      "description": "Annotation-driven MongoDB migration runner for Spring Boot — `@MongoMigration` methods on `MigrationScript` beans execute in order at startup, with history in `{prefix}_migrations` collection. No Mongock dependency.",
+      "category": "backend",
+      "tags": "[spring-boot, mongodb, migration, annotation-driven, idempotent]",
+      "triggers": "[\"mongo migration spring boot\", \"mongock 없이 마이그레이션\", \"annotation-based mongo migration\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-widget",
+      "path": "backend/spring-mongo-lightweight-migration"
+    },
+    {
+      "name": "springdoc-yaml-externalization",
+      "description": "Move long `@Operation description` and `@RequestBody examples` text out of Spring controllers into per-controller YAML files under `resources/api-docs/`, injected at runtime via a single `OperationCustomizer` bean. Swagger UI output unchanged.",
+      "category": "backend",
+      "tags": "[spring-boot, springdoc, openapi, swagger, yaml, refactor]",
+      "triggers": "[\"swagger externalize annotations\", \"move swagger description to yaml\", \"OperationCustomizer\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-widget",
+      "path": "backend/springdoc-yaml-externalization"
+    },
+    {
+      "name": "jwt-extraction-via-base-controller",
+      "description": "Consolidate repeated `JwtTokenService.getXxxFromBearerToken(headerAuthorization)` calls across Spring controllers by moving the service and helper methods onto a shared `BaseController`. Subclass controllers call `getOrganizationId(h)` / `getLoginId(h)` / `getRoleIds(h)` directly.",
+      "category": "backend",
+      "tags": "[spring-boot, jwt, controller, refactor, base-class]",
+      "triggers": "[\"jwt extraction controller duplication\", \"base controller jwt\", \"getXxxFromBearerToken 중복 제거\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-widget",
+      "path": "backend/jwt-extraction-via-base-controller"
     }
   ]
 }
