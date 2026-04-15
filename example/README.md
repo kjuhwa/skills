@@ -17,6 +17,7 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [skill-graph](skill-graph/)         | Skill Graph — browser-based force-directed graph of skills ↔ knowledge relationships | node, html, svg, js | 2026-04-16 |
 | [skill-stats](skill-stats/)         | Skill Stats — aggregate KPIs, category donut, ranked tag/project bars | node, html, svg, js | 2026-04-16 |
 | [skill-tryout](skill-tryout/)       | Skill Tryout — offline TF-IDF trigger matcher REPL for debugging skill discoverability | node, html, js | 2026-04-16 |
+| [skill-diff](skill-diff/)           | Skill Diff — per-slug added/modified/removed viewer with description/tag/trigger deltas between two hub refs | node, html, js | 2026-04-16 |
 
 ## Adding an example
 

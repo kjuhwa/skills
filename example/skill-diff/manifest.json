@@ -1,0 +1,12 @@
+{
+  "slug": "skill-diff",
+  "title": "Skill Diff",
+  "summary": "Zero-dep diff viewer for two refs of a skills-hub working copy — added/removed/modified slugs with description/tag/trigger deltas.",
+  "stack": ["node", "html", "js"],
+  "tags": ["diff", "git", "audit", "release-notes", "skills-hub"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "serve.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}
