@@ -29,6 +29,8 @@ bootstrap/
     skills_finalize.md
     skills_cleanup.md
     skills_remove.md
+    skills_bootstrap_update.md      # pull command files (latest or tagged version)
+    skills_bootstrap_publish.md     # publish command edits + bootstrap/v<ver> tag
   skills/
     skills-hub/SKILL.md       # umbrella OMC skill
   install.sh                  # bash installer
@@ -75,16 +77,18 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 
 | Command | Purpose | Writes? |
 |---|---|---|
-| `/init_skills <keyword>` | Search remote by keyword/category → interactive install | local install |
-| `/skills_search <keyword>` | Preview remote matches, no install | no |
-| `/skills_list` | Show installed skills with source & scope | no |
-| `/skills_sync` | Refresh remote cache + update installed skills | local |
+| `/init_skills <keyword \| name@version>` | Search remote → interactive install; supports version pinning | local install |
+| `/skills_search <keyword>` | Preview remote matches + available tagged versions, no install | no |
+| `/skills_list` | Show installed skills with source, version, pin state | no |
+| `/skills_sync [--skill=.. --version=..]` | Refresh cache; bulk update, targeted rollback, or `--unpin` | local |
 | `/skills_extract` | **Full project scan** → skill drafts in `.skills-draft/` | local drafts |
 | `/skills_extract_session` | **Current session only** → drafts from recent changes | local drafts |
-| `/skills_publish` | Review drafts → push to a remote branch (optional PR) | remote branch |
+| `/skills_publish` | Review drafts → push to remote branch + `skills/<name>/v<ver>` tag | remote branch + tag |
 | `/skills_finalize` | End-of-project: extract → review → publish → cleanup | remote branch |
 | `/skills_cleanup` | Remote maintenance: dedupe, re-index, stale review | remote branch (dry-run default) |
 | `/skills_remove <name>` | Uninstall a local skill | local |
+| `/skills_bootstrap_update [--version=x.y.z]` | Install/rollback the slash-command files themselves | local commands |
+| `/skills_bootstrap_publish [--bump=...]` | Publish command edits + `bootstrap/v<ver>` tag | remote branch + tag |
 
 ### Typical Workflow
 
@@ -106,6 +110,56 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 # Project wrap-up (one-shot)
 /skills_finalize --scope=full --auto-pr
 ```
+
+---
+
+## Versioning (git tags)
+
+Both skill content and the bootstrap command files use git tags for immutable versioning and rollback.
+
+### Tag schemes
+
+- **Per-skill**: `skills/<name>/v<semver>` — e.g. `skills/kafka-header-metadata/v1.2.0`
+- **Bootstrap (command files)**: `bootstrap/v<semver>` — e.g. `bootstrap/v1.0.0`
+
+Tags are annotated and created automatically by `/skills_publish` and `/skills_bootstrap_publish`.
+
+### Installing a specific skill version
+
+```
+/init_skills my-skill@1.1.0
+# or
+/init_skills my-skill --version=1.1.0
+```
+
+Versioned installs are marked `pinned: true` in `~/.claude/skills-hub/registry.json` and are skipped by bulk `/skills_sync` (unless `--force`).
+
+### Rolling back an installed skill
+
+```
+/skills_sync --skill=my-skill --version=1.0.0   # rollback to v1.0.0, pins
+/skills_sync --skill=my-skill --unpin           # resume tracking latest
+```
+
+### Updating the slash commands themselves
+
+```
+/skills_bootstrap_update                     # latest (main HEAD)
+/skills_bootstrap_update --version=1.2.0     # specific tagged release
+/skills_bootstrap_update --dry-run           # preview diff only
+```
+
+Current bootstrap version is recorded in `~/.claude/skills-hub/bootstrap.json`. Rolling back to an older tag is supported — you will be asked to confirm a downgrade.
+
+### Publishing a new command release
+
+After editing local command files under `~/.claude/commands/`:
+
+```
+/skills_bootstrap_publish --bump=patch --pr
+```
+
+This creates a branch, commits the changes under `bootstrap/commands/`, adds tag `bootstrap/v<next>`, pushes both, and (optionally) opens a PR. Existing tags are never overwritten.
 
 ---
 
