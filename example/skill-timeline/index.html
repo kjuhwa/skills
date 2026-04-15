@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Skill Timeline</title>
+<style>
+:root {
+  --bg: #0b0d10; --bg-2: #11151a; --bg-3: #161b22;
+  --fg: #c9d1d9; --fg-dim: #7d8590; --border: #21262d;
+  --accent: #7ee787; --accent-2: #79c0ff; --amber: #ffa657;
+  --mag: #d2a8ff; --red: #ff7b72;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px; line-height: 1.5; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 28px 60px; }
+header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+header h1 { font-family: system-ui, sans-serif; font-size: 22px; margin: 0; color: var(--accent); font-weight: 600; }
+header h1::before { content: "▶ "; color: var(--fg-dim); }
+header .sub { color: var(--fg-dim); font-size: 12px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 24px; }
+.kpi { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+.kpi .label { color: var(--fg-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+.kpi .value { font-size: 22px; font-weight: 600; color: var(--fg); }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; }
+.card h2 { font-size: 13px; margin: 0 0 12px; color: var(--accent-2); font-family: system-ui, sans-serif; font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; }
+.card h2 .count { color: var(--fg-dim); font-weight: 400; font-size: 11px; }
+.card.full { grid-column: 1 / -1; }
+#heatmap { width: 100%; height: auto; display: block; }
+#heatmap rect { stroke: var(--bg); stroke-width: 1.5; }
+.legend { display: flex; align-items: center; gap: 6px; justify-content: flex-end; font-size: 10px; color: var(--fg-dim); margin-top: 6px; }
+.legend .sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+.bar-row { display: grid; grid-template-columns: 140px 1fr 44px; align-items: center; gap: 10px; margin: 4px 0; font-size: 11px; }
+.bar-row .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-row .type { color: var(--fg-dim); font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; }
+.bar-row .bar-bg { background: var(--bg-3); border-radius: 3px; height: 14px; position: relative; }
+.bar-row .bar-fill { background: var(--accent); height: 100%; border-radius: 3px; }
+.bar-row .bar-fill.skill { background: var(--accent); }
+.bar-row .bar-fill.knowledge { background: var(--mag); }
+.bar-row .bar-fill.example { background: var(--amber); }
+.bar-row .bar-fill.bootstrap { background: var(--accent-2); }
+.bar-row .bar-fill.other { background: var(--fg-dim); }
+.bar-row .v { color: var(--fg-dim); text-align: right; font-size: 10px; }
+.log { font-size: 11px; max-height: 380px; overflow-y: auto; }
+.log .row { display: grid; grid-template-columns: 80px 90px 1fr 42px; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--border); }
+.log .row .sha { color: var(--amber); }
+.log .row .day { color: var(--fg-dim); }
+.log .row .msg { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.log .row .files { color: var(--fg-dim); text-align: right; font-size: 10px; }
+footer { color: var(--fg-dim); text-align: right; font-size: 10px; margin-top: 24px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>skill-timeline</h1>
+    <span class="sub" id="sub">loading…</span>
+  </header>
+  <div class="kpis" id="kpis"></div>
+  <section class="card full" style="margin-bottom:16px">
+    <h2>commit heatmap <span class="count" id="hm-range"></span></h2>
+    <svg id="heatmap" viewBox="0 0 800 140" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="legend">less
+      <span class="sw" style="background:var(--bg-3)"></span>
+      <span class="sw" style="background:#0e4429"></span>
+      <span class="sw" style="background:#006d32"></span>
+      <span class="sw" style="background:#26a641"></span>
+      <span class="sw" style="background:#39d353"></span>
+    more</div>
+  </section>
+  <div class="grid">
+    <section class="card">
+      <h2>top churned <span class="count" id="churn-count"></span></h2>
+      <div id="churn"></div>
+    </section>
+    <section class="card">
+      <h2>by type</h2>
+      <div id="types"></div>
+    </section>
+    <section class="card">
+      <h2>authors <span class="count" id="auth-count"></span></h2>
+      <div id="authors"></div>
+    </section>
+    <section class="card">
+      <h2>recent commits <span class="count" id="recent-count"></span></h2>
+      <div class="log" id="recent"></div>
+    </section>
+  </div>
+  <footer>generated <span id="gen"></span> · rebuild: <b>node build-timeline.mjs</b></footer>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+fetch('timeline.json').then(r => r.json()).then(render).catch(e => {
+  $('#sub').textContent = 'error: ' + e.message;
+});
+
+function render(d) {
+  $('#sub').textContent = `${d.root} · since "${d.since}"`;
+  $('#gen').textContent = d.generatedAt;
+  renderKpis(d.totals);
+  renderHeatmap(d.daily);
+  renderChurn(d.topChurn);
+  renderTypes(d.typeBuckets);
+  renderAuthors(d.authors);
+  renderRecent(d.recent);
+  $('#churn-count').textContent = `${d.topChurn.length} slugs`;
+  $('#auth-count').textContent = `${d.authors.length} authors`;
+  $('#recent-count').textContent = `${d.recent.length}`;
+}
+function renderKpis(t) {
+  const cells = [
+    ['commits', t.commits],
+    ['files changed', t.filesChanged],
+    ['active days', t.uniqueDays],
+    ['authors', t.uniqueAuthors],
+    ['peak day', t.busiestDay ? `${t.busiestDay.v} on ${t.busiestDay.d}` : '—'],
+  ];
+  $('#kpis').innerHTML = cells.map(([l, v]) =>
+    `<div class="kpi"><div class="label">${l}</div><div class="value">${v}</div></div>`
+  ).join('');
+}
+function renderHeatmap(daily) {
+  if (!daily.length) return;
+  const byDay = new Map(daily.map(e => [e.d, e.v]));
+  const start = new Date(daily[0].d + 'T00:00:00Z');
+  const end = new Date(daily[daily.length - 1].d + 'T00:00:00Z');
+  // snap to sunday before
+  start.setUTCDate(start.getUTCDate() - start.getUTCDay());
+  const cells = [];
+  const cell = 13, gap = 2, cellw = cell + gap;
+  let col = 0;
+  const monthLabels = [];
+  let lastMonth = -1;
+  for (let d = new Date(start); d <= end; d.setUTCDate(d.getUTCDate() + 1)) {
+    const iso = d.toISOString().slice(0, 10);
+    const row = d.getUTCDay();
+    const v = byDay.get(iso) || 0;
+    cells.push({ x: col * cellw, y: row * cellw, v, iso });
+    if (d.getUTCMonth() !== lastMonth && row === 0) {
+      lastMonth = d.getUTCMonth();
+      monthLabels.push({ x: col * cellw, label: d.toLocaleString('en', { month: 'short' }) });
+    }
+    if (row === 6) col++;
+  }
+  const max = Math.max(...cells.map(c => c.v));
+  const scale = (v) => {
+    if (!v) return 'var(--bg-3)';
+    const q = v / max;
+    if (q < 0.25) return '#0e4429';
+    if (q < 0.5) return '#006d32';
+    if (q < 0.75) return '#26a641';
+    return '#39d353';
+  };
+  const w = (col + 2) * cellw + 30;
+  const h = 7 * cellw + 20;
+  const svg = $('#heatmap');
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  const rects = cells.map(c =>
+    `<rect x="${c.x + 30}" y="${c.y + 14}" width="${cell}" height="${cell}" fill="${scale(c.v)}" rx="2"><title>${c.iso} — ${c.v} commits</title></rect>`
+  ).join('');
+  const months = monthLabels.map(m =>
+    `<text x="${m.x + 30}" y="10" font-size="9" fill="#7d8590" font-family="ui-monospace,monospace">${m.label}</text>`
+  ).join('');
+  const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', ''].map((l, i) =>
+    l ? `<text x="0" y="${i * cellw + 14 + 10}" font-size="9" fill="#7d8590" font-family="ui-monospace,monospace">${l}</text>` : ''
+  ).join('');
+  svg.innerHTML = months + dayLabels + rects;
+  $('#hm-range').textContent = `${daily[0].d} → ${daily[daily.length - 1].d}`;
+}
+function renderChurn(items) {
+  const max = Math.max(1, ...items.map(i => i.count));
+  $('#churn').innerHTML = items.slice(0, 20).map(i => `
+    <div class="bar-row" title="${i.type} / ${i.slug}: ${i.count} changes">
+      <div class="name">${i.slug}<div class="type">${i.type}</div></div>
+      <div class="bar-bg"><div class="bar-fill ${i.type}" style="width:${(i.count / max) * 100}%"></div></div>
+      <div class="v">${i.count}</div>
+    </div>`).join('');
+}
+function renderTypes(items) {
+  const max = Math.max(1, ...items.map(i => i.v));
+  $('#types').innerHTML = items.map(i => `
+    <div class="bar-row">
+      <div class="name">${i.k}</div>
+      <div class="bar-bg"><div class="bar-fill ${i.k}" style="width:${(i.v / max) * 100}%"></div></div>
+      <div class="v">${i.v}</div>
+    </div>`).join('');
+}
+function renderAuthors(items) {
+  const max = Math.max(1, ...items.map(i => i.v));
+  $('#authors').innerHTML = items.slice(0, 12).map(i => `
+    <div class="bar-row">
+      <div class="name">${i.k}</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${(i.v / max) * 100}%"></div></div>
+      <div class="v">${i.v}</div>
+    </div>`).join('');
+}
+function renderRecent(items) {
+  $('#recent').innerHTML = items.map(c => `
+    <div class="row">
+      <div class="sha">${c.sha}</div>
+      <div class="day">${c.day}</div>
+      <div class="msg" title="${c.subject.replace(/"/g, '&quot;')}">${c.subject}</div>
+      <div class="files">${c.files}f</div>
+    </div>`).join('');
+}
+</script>
+</body>
+</html>

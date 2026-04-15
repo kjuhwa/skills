@@ -1,0 +1,483 @@
+{
+  "generatedAt": "2026-04-15T16:50:45.488Z",
+  "root": "C:\\Users\\kjuhwa\\.claude\\skills-hub\\remote",
+  "since": "1 year ago",
+  "totals": {
+    "commits": 387,
+    "filesChanged": 776,
+    "uniqueDays": 3,
+    "uniqueAuthors": 2,
+    "busiestDay": {
+      "d": "2026-04-15",
+      "v": 368
+    }
+  },
+  "statusCounts": {
+    "A": 665,
+    "M": 89,
+    "D": 2,
+    "R": 20,
+    "C": 0,
+    "T": 0
+  },
+  "typeBuckets": [
+    {
+      "k": "skill",
+      "v": 418
+    },
+    {
+      "k": "knowledge",
+      "v": 224
+    },
+    {
+      "k": "other",
+      "v": 60
+    },
+    {
+      "k": "bootstrap",
+      "v": 43
+    },
+    {
+      "k": "example",
+      "v": 31
+    }
+  ],
+  "authors": [
+    {
+      "k": "kjuhwa",
+      "v": 311
+    },
+    {
+      "k": "Your Name",
+      "v": 76
+    }
+  ],
+  "daily": [
+    {
+      "d": "2026-04-14",
+      "v": 3
+    },
+    {
+      "d": "2026-04-15",
+      "v": 368
+    },
+    {
+      "d": "2026-04-16",
+      "v": 16
+    }
+  ],
+  "topChurn": [
+    {
+      "type": "other",
+      "slug": "index.json",
+      "count": 40
+    },
+    {
+      "type": "bootstrap",
+      "slug": "commands",
+      "count": 38
+    },
+    {
+      "type": "other",
+      "slug": "README.md",
+      "count": 11
+    },
+    {
+      "type": "example",
+      "slug": "skill-doctor",
+      "count": 8
+    },
+    {
+      "type": "example",
+      "slug": "skill-graph",
+      "count": 7
+    },
+    {
+      "type": "example",
+      "slug": "skill-stats",
+      "count": 7
+    },
+    {
+      "type": "example",
+      "slug": "skills-explorer",
+      "count": 7
+    },
+    {
+      "type": "skill",
+      "slug": "tdd",
+      "count": 6
+    },
+    {
+      "type": "skill",
+      "slug": "gradle-jacoco-exclusion-strategy",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "gradle-shared-exclusions-jacoco-sonar",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "querydsl-q-class-exclusion-pattern",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "spring-bootrun-local-dev-env-block",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "paired-flag-multi-instance-registration",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "mcp-capability-negotiated-initialize",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "identifier-truncate-with-hash-suffix",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "mcp-runtime-prompt-refresh",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "openapi-to-mcp-tag-grouping",
+      "count": 4
+    },
+    {
+      "type": "skill",
+      "slug": "github-triage",
+      "count": 3
+    },
+    {
+      "type": "skill",
+      "slug": "claude-code-skill-scaffold",
+      "count": 3
+    },
+    {
+      "type": "skill",
+      "slug": "claude-plugin-catalog-publish",
+      "count": 3
+    },
+    {
+      "type": "skill",
+      "slug": "dual-jre-docker-oz-report",
+      "count": 3
+    },
+    {
+      "type": "skill",
+      "slug": "font-cache-alpine-locale-docker",
+      "count": 3
+    },
+    {
+      "type": "skill",
+      "slug": "jenkins-dual-registry-docker-push",
+      "count": 3
+    },
+    {
+      "type": "skill",
+      "slug": "skill-md-validator",
+      "count": 3
+    },
+    {
+      "type": "bootstrap",
+      "slug": "skills",
+      "count": 3
+    },
+    {
+      "type": "skill",
+      "slug": "avro-gradle-kafka-schema-pipeline",
+      "count": 3
+    },
+    {
+      "type": "knowledge",
+      "slug": "annotation-driven-authz-via-function-id.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "polymorphic-metadata-via-enum-switch.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "tenant-context-per-request-interceptor.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "wait-for-services-eureka-startup-init.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "god-controller-split-by-resource.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "prefer-static-import-over-constant-inheritance.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "mongo-timeseries-forced-hint-kills-pushdown.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "mongo-timeseries-match-split-for-pushdown.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "mongo-timeseries-view-pushdown-broken-8_2_3.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "sonar-token-hardcoded-build-gradle.md",
+      "count": 2
+    },
+    {
+      "type": "knowledge",
+      "slug": "user-sql-source-requires-select-only-and-readonly.md",
+      "count": 2
+    },
+    {
+      "type": "example",
+      "slug": "README.md",
+      "count": 2
+    },
+    {
+      "type": "skill",
+      "slug": "git-guardrails-claude-code",
+      "count": 2
+    },
+    {
+      "type": "skill",
+      "slug": "improve-codebase-architecture",
+      "count": 2
+    }
+  ],
+  "recent": [
+    {
+      "sha": "fe18a9a5f2",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #66 from kjuhwa/example/skill-doctor-ui",
+      "files": 0
+    },
+    {
+      "sha": "97e5119737",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "example(skill-doctor): add web UI (serve.mjs + index.html)",
+      "files": 3
+    },
+    {
+      "sha": "bf57ca7137",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #65 from kjuhwa/fix/knowledge-frontmatter-defects",
+      "files": 0
+    },
+    {
+      "sha": "3f81afc68b",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "fix(knowledge): repair 11 frontmatter defects surfaced by skill-doctor",
+      "files": 11
+    },
+    {
+      "sha": "182de2e011",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #64 from kjuhwa/bugfix/yaml-parser-skills-explorer",
+      "files": 0
+    },
+    {
+      "sha": "c5e4757d1e",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "fix(diagnostics-trio): apply same YAML parser upgrade to doctor/graph/stats",
+      "files": 3
+    },
+    {
+      "sha": "8e2fcbd90c",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "fix(skills-explorer): YAML parser missed block lists and block scalars",
+      "files": 1
+    },
+    {
+      "sha": "a00a887d23",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #63 from kjuhwa/example/diagnostics-trio",
+      "files": 0
+    },
+    {
+      "sha": "412e3da932",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "example: add skill-doctor, skill-graph, skill-stats",
+      "files": 17
+    },
+    {
+      "sha": "0503f555a8",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #61 from kjuhwa/example/skills-explorer",
+      "files": 0
+    },
+    {
+      "sha": "dad49f5251",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #62 from kjuhwa/bootstrap/release-v1.6.0",
+      "files": 0
+    },
+    {
+      "sha": "297e1ccdf9",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Bootstrap v1.6.0: add /example_list, /example_add, /make_something",
+      "files": 3
+    },
+    {
+      "sha": "645343f7f8",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "example(skills-explorer): add offline search dashboard for skills-hub",
+      "files": 7
+    },
+    {
+      "sha": "09b22f500c",
+      "day": "2026-04-16",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #60 from kjuhwa/bootstrap/release-v1.5.0",
+      "files": 0
+    },
+    {
+      "sha": "4f784601e2",
+      "day": "2026-04-16",
+      "author": "Your Name",
+      "subject": "docs: document /init_skills_all in README",
+      "files": 1
+    },
+    {
+      "sha": "9f4668fc87",
+      "day": "2026-04-16",
+      "author": "Your Name",
+      "subject": "Bootstrap v1.5.0: add /init_skills_all for bulk install of all skills and knowledge",
+      "files": 1
+    },
+    {
+      "sha": "a4eb92e12a",
+      "day": "2026-04-15",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #53 from kjuhwa/docs/readme-and-license-20260415",
+      "files": 0
+    },
+    {
+      "sha": "c04953b3dc",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "docs: add hero, badges, and MIT LICENSE",
+      "files": 2
+    },
+    {
+      "sha": "feaaa61530",
+      "day": "2026-04-15",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #52 from kjuhwa/skills/reindex-20260415",
+      "files": 0
+    },
+    {
+      "sha": "987906dc0c",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "chore(index): reindex after mattpocock import (PR #51)",
+      "files": 1
+    },
+    {
+      "sha": "274891eecc",
+      "day": "2026-04-15",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #51 from kjuhwa/release/mattpocock-skills-import-20260415",
+      "files": 0
+    },
+    {
+      "sha": "2164f0eb36",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "feat(skills): import 19 skills from mattpocock/skills",
+      "files": 28
+    },
+    {
+      "sha": "a3e0192685",
+      "day": "2026-04-15",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #50 from kjuhwa/skills/cleanup-20260415",
+      "files": 0
+    },
+    {
+      "sha": "d85afc18da",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "feat(skills_import_git): redesign to stage drafts identically to /skills_extract_project",
+      "files": 1
+    },
+    {
+      "sha": "164eeae936",
+      "day": "2026-04-15",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #49 from kjuhwa/skills/cleanup-20260415",
+      "files": 0
+    },
+    {
+      "sha": "a1f3993675",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "chore(index): regenerate index.json from filesystem",
+      "files": 1
+    },
+    {
+      "sha": "61ebd5646a",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "refactor(skills): reassign 13 skills to canonical categories",
+      "files": 20
+    },
+    {
+      "sha": "b232888f54",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "chore(skills): add missing frontmatter fields to 7 malformed SKILL.md",
+      "files": 7
+    },
+    {
+      "sha": "0cb609859a",
+      "day": "2026-04-15",
+      "author": "kjuhwa",
+      "subject": "Merge pull request #48 from kjuhwa/chore/flatten-refactor-commands",
+      "files": 0
+    },
+    {
+      "sha": "33ff4362a1",
+      "day": "2026-04-15",
+      "author": "Your Name",
+      "subject": "chore(bootstrap): flatten merge/split/refactor commands",
+      "files": 4
+    }
+  ]
+}

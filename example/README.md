@@ -16,6 +16,7 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [skill-doctor](skill-doctor/)       | Skill Doctor — zero-dep linter for SKILL.md and knowledge/*.md, CI-ready exit codes | node, cli | 2026-04-16 |
 | [skill-graph](skill-graph/)         | Skill Graph — browser-based force-directed graph of skills ↔ knowledge relationships | node, html, svg, js | 2026-04-16 |
 | [skill-stats](skill-stats/)         | Skill Stats — aggregate KPIs, category donut, ranked tag/project bars | node, html, svg, js | 2026-04-16 |
+| [skill-timeline](skill-timeline/)   | Skill Timeline — git-history commit heatmap + top-churned slugs for a hub working copy | node, html, svg, js | 2026-04-16 |
 
 ## Adding an example
 

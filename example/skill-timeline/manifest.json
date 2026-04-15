@@ -1,0 +1,12 @@
+{
+  "slug": "skill-timeline",
+  "title": "Skill Timeline",
+  "summary": "Zero-dep git-history dashboard for a skills-hub working copy — commit heatmap, top-churned skills, author/type breakdowns.",
+  "stack": ["node", "html", "svg", "js"],
+  "tags": ["timeline", "heatmap", "git-history", "churn", "skills-hub"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "serve.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}
