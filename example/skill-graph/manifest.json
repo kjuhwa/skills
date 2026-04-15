@@ -1,0 +1,12 @@
+{
+  "slug": "skill-graph",
+  "title": "Skill Graph",
+  "summary": "Zero-dep browser-based force-directed graph of skills + knowledge nodes, edges from shared tags and source projects, interactive drag/zoom/filter.",
+  "stack": ["node", "html", "svg", "js"],
+  "tags": ["graph", "visualization", "svg", "force-directed", "skills-hub"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "serve.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}

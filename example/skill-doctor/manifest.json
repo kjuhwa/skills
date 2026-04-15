@@ -1,0 +1,12 @@
+{
+  "slug": "skill-doctor",
+  "title": "Skill Doctor",
+  "summary": "Zero-dep Node CLI that lints every SKILL.md and knowledge/*.md in a skills-hub working copy — schema, duplicates, dead references, exit codes for CI.",
+  "stack": ["node", "cli"],
+  "tags": ["lint", "validator", "ci", "quality", "skills-hub"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "doctor.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}

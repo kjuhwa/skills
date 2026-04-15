@@ -13,6 +13,9 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | slug | title | stack | created |
 |---|---|---|---|
 | [skills-explorer](skills-explorer/) | Skills Explorer — offline search dashboard for a local skills-hub checkout | node, html, js | 2026-04-16 |
+| [skill-doctor](skill-doctor/)       | Skill Doctor — zero-dep linter for SKILL.md and knowledge/*.md, CI-ready exit codes | node, cli | 2026-04-16 |
+| [skill-graph](skill-graph/)         | Skill Graph — browser-based force-directed graph of skills ↔ knowledge relationships | node, html, svg, js | 2026-04-16 |
+| [skill-stats](skill-stats/)         | Skill Stats — aggregate KPIs, category donut, ranked tag/project bars | node, html, svg, js | 2026-04-16 |
 
 ## Adding an example
 

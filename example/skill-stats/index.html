@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Skill Stats</title>
+<style>
+:root {
+  --bg: #0b0d10; --bg-2: #11151a; --bg-3: #161b22;
+  --fg: #c9d1d9; --fg-dim: #7d8590; --border: #21262d;
+  --accent: #7ee787; --accent-2: #79c0ff; --amber: #ffa657;
+  --mag: #d2a8ff; --red: #ff7b72;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px; line-height: 1.5; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 28px 60px; }
+header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+header h1 { font-family: system-ui, sans-serif; font-size: 22px; margin: 0; color: var(--accent); font-weight: 600; }
+header h1::before { content: "▶ "; color: var(--fg-dim); }
+header .sub { color: var(--fg-dim); font-size: 12px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 28px; }
+.kpi { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; }
+.kpi .label { color: var(--fg-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
+.kpi .value { font-size: 24px; font-weight: 600; color: var(--fg); }
+.kpi .value .suffix { font-size: 11px; color: var(--fg-dim); margin-left: 4px; font-weight: 400; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; }
+.card h2 { font-size: 13px; margin: 0 0 12px; color: var(--accent-2); font-family: system-ui, sans-serif; font-weight: 600;
+  display: flex; justify-content: space-between; align-items: baseline; }
+.card h2 .count { color: var(--fg-dim); font-weight: 400; font-size: 11px; }
+.card.full { grid-column: 1 / -1; }
+.bar-row { display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 10px; margin: 4px 0; font-size: 11px; }
+.bar-row .name { color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-row .bar-bg { background: var(--bg-3); border-radius: 3px; height: 16px; position: relative; }
+.bar-row .bar-fill { background: var(--accent); height: 100%; border-radius: 3px; transition: width .25s; }
+.bar-row.src .bar-fill { background: var(--amber); }
+.bar-row.tag .bar-fill { background: var(--accent-2); }
+.bar-row.know .bar-fill { background: var(--mag); }
+.bar-row .v { color: var(--fg-dim); text-align: right; font-size: 10px; }
+.bar-row .bar-label { position: absolute; left: 6px; top: 2px; font-size: 10px; color: #0b0d10; font-weight: 600; }
+footer { color: var(--fg-dim); text-align: right; font-size: 10px; margin-top: 24px; }
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>skill-stats</h1>
+    <span class="sub" id="sub">loading…</span>
+  </header>
+  <div class="kpis" id="kpis"></div>
+  <div class="grid">
+    <section class="card full">
+      <h2>skills by category <span class="count" id="cat-count"></span></h2>
+      <svg id="donut" viewBox="-130 -130 260 260" style="max-width:320px;display:block;margin:0 auto 8px"></svg>
+      <div id="donut-legend" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center"></div>
+    </section>
+    <section class="card">
+      <h2>top tags <span class="count" id="tag-count"></span></h2>
+      <div id="tags"></div>
+    </section>
+    <section class="card">
+      <h2>top source projects <span class="count" id="src-count"></span></h2>
+      <div id="sources"></div>
+    </section>
+    <section class="card">
+      <h2>knowledge by category <span class="count" id="know-count"></span></h2>
+      <div id="knowledge"></div>
+    </section>
+    <section class="card">
+      <h2>top triggers <span class="count" id="trig-count"></span></h2>
+      <div id="triggers"></div>
+    </section>
+  </div>
+  <footer>generated <span id="gen"></span> · rebuild: <b>node build-stats.mjs</b></footer>
+</div>
+
+<script>
+const COLORS = ['#7ee787','#79c0ff','#ffa657','#d2a8ff','#ff7b72','#f0db4f','#a5d6a7','#ff8ccb','#56d4dd','#e6b800','#8b949e','#6edff6'];
+
+function esc(s) { return String(s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+function renderKpis(t) {
+  const kpis = [
+    ['skills', t.skills],
+    ['knowledge', t.knowledge],
+    ['unique tags', t.uniqueTags],
+    ['source projects', t.uniqueSourceProjects],
+    ['source refs', t.uniqueSourceRefs],
+    ['with content.md', t.skillsWithContentMd, '/' + t.skills],
+    ['with triggers', t.skillsWithTriggers, '/' + t.skills],
+    ['avg desc len', t.avgDescriptionLen, 'chars'],
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(([label, v, suffix]) =>
+    `<div class="kpi">
+      <div class="label">${label}</div>
+      <div class="value">${v}${suffix ? `<span class="suffix">${esc(suffix)}</span>` : ''}</div>
+    </div>`).join('');
+}
+
+function renderBars(containerId, rows, cls, labelMaxWidthClip = 38) {
+  if (!rows.length) { document.getElementById(containerId).innerHTML = '<div style="color:var(--fg-dim);font-size:11px">no data</div>'; return; }
+  const max = rows[0].v;
+  document.getElementById(containerId).innerHTML = rows.map(r => {
+    const pct = Math.max(2, (r.v / max) * 100);
+    const label = r.k.length > labelMaxWidthClip ? r.k.slice(0, labelMaxWidthClip - 1) + '…' : r.k;
+    return `<div class="bar-row ${cls}">
+      <div title="${esc(r.k)}">
+        <div class="name">${esc(label)}</div>
+        <div class="bar-bg" style="margin-top:2px"><div class="bar-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="v">${r.v}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderDonut(rows) {
+  const svg = document.getElementById('donut');
+  const total = rows.reduce((s, r) => s + r.v, 0);
+  const R = 100, r = 62;
+  let angle = -Math.PI / 2;
+  const paths = [], legends = [];
+  rows.forEach((row, i) => {
+    const frac = row.v / total;
+    const a2 = angle + frac * Math.PI * 2;
+    const large = frac > 0.5 ? 1 : 0;
+    const x1 = R * Math.cos(angle), y1 = R * Math.sin(angle);
+    const x2 = R * Math.cos(a2),    y2 = R * Math.sin(a2);
+    const x3 = r * Math.cos(a2),    y3 = r * Math.sin(a2);
+    const x4 = r * Math.cos(angle), y4 = r * Math.sin(angle);
+    const color = COLORS[i % COLORS.length];
+    paths.push(`<path d="M ${x1} ${y1} A ${R} ${R} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${r} ${r} 0 ${large} 0 ${x4} ${y4} Z" fill="${color}" opacity="0.9"><title>${esc(row.k)}: ${row.v} (${(frac*100).toFixed(1)}%)</title></path>`);
+    legends.push(`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px">
+      <span style="width:10px;height:10px;border-radius:2px;background:${color}"></span>${esc(row.k)} <span style="color:var(--fg-dim)">${row.v}</span></span>`);
+    angle = a2;
+  });
+  svg.innerHTML = paths.join('') +
+    `<text x="0" y="-2" text-anchor="middle" fill="var(--fg)" font-size="20" font-weight="600" font-family="system-ui,sans-serif">${total}</text>
+     <text x="0" y="16" text-anchor="middle" fill="var(--fg-dim)" font-size="10">skills</text>`;
+  document.getElementById('donut-legend').innerHTML = legends.join('');
+}
+
+fetch('stats.json').then(r => r.json()).then(s => {
+  document.getElementById('sub').textContent = `generated from ${s.totals.skills + s.totals.knowledge} files · ${s.totals.uniqueTags} tags · ${s.totals.uniqueSourceProjects} projects`;
+  document.getElementById('gen').textContent = new Date(s.generatedAt).toLocaleString();
+  renderKpis(s.totals);
+  renderDonut(s.categoriesSkills);
+  document.getElementById('cat-count').textContent = s.categoriesSkills.length + ' categories';
+  renderBars('tags',      s.topTags.slice(0, 20),           'tag');
+  renderBars('sources',   s.topSourceProjects.slice(0, 15), 'src');
+  renderBars('knowledge', s.categoriesKnowledge,            'know');
+  renderBars('triggers',  s.topTriggers,                    '', 60);
+  document.getElementById('tag-count').textContent  = `${s.topTags.length} / ${s.totals.uniqueTags}`;
+  document.getElementById('src-count').textContent  = s.topSourceProjects.length;
+  document.getElementById('know-count').textContent = s.categoriesKnowledge.length + ' categories';
+  document.getElementById('trig-count').textContent = s.topTriggers.length;
+}).catch(err => {
+  document.body.innerHTML = `<pre style="color:var(--red);padding:20px">failed: ${err.message}<br>run <b>node build-stats.mjs</b> first</pre>`;
+});
+</script>
+</body>
+</html>

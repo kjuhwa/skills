@@ -1,0 +1,12 @@
+{
+  "slug": "skill-stats",
+  "title": "Skill Stats",
+  "summary": "Zero-dep HTML dashboard aggregating KPIs, category donut, and ranked bar charts (tags, projects, triggers) for a skills-hub working copy.",
+  "stack": ["node", "html", "svg", "js"],
+  "tags": ["dashboard", "analytics", "stats", "kpi", "skills-hub"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "serve.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}
