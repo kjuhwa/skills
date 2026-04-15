@@ -1144,6 +1144,227 @@
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "frontend/zustand-preset-manager"
+    },
+    {
+      "name": "mongo-aggregation-filter-optimization",
+      "description": "Replace $unwind+$match on array sub-documents with inline $filter so array elements are pruned before any downstream stage - avoids N-times document explosion.",
+      "category": "backend",
+      "tags": "[mongodb, aggregation, performance, $filter, $unwind, topn]",
+      "triggers": "[\"$unwind $match\", \"aggregation pipeline slow\", \"topn query\", \"array filter\", \"mongo pipeline memory\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/mongo-aggregation-filter-optimization",
+      "linked_knowledge": [
+        "topn-unwind-match-to-filter"
+      ]
+    },
+    {
+      "name": "collection-routing-by-period",
+      "description": "Single resolver maps (Period.Mode, from, to) to a time-series collection (raw view / 1-min / hour-with-monthly-suffix / day). Callers never hardcode collection names.",
+      "category": "backend",
+      "tags": "[mongodb, time-series, routing, period, view]",
+      "triggers": "[\"raw view\", \"hour collection\", \"time-series routing\", \"period mode\", \"collection suffix\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/collection-routing-by-period"
+    },
+    {
+      "name": "querydsl-q-class-exclusion-pattern",
+      "description": "One exclusionPatterns list drives Jacoco report + verification + Sonar exclusions; catches generated Querydsl Q-classes via an A..Z range generating **/Q<letter>* globs.",
+      "category": "build",
+      "tags": "[gradle, jacoco, sonar, querydsl, coverage, exclusion]",
+      "triggers": "[\"jacoco exclusion\", \"sonar exclusion\", \"Q class\", \"querydsl generated\", \"coverage inflation\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "build/querydsl-q-class-exclusion-pattern",
+      "linked_knowledge": [
+        "jacoco-sonar-exclusion-policy"
+      ]
+    },
+    {
+      "name": "kafka-consumer-semaphore-chunking",
+      "description": "Bound in-flight async work from a Kafka consumer with Semaphore(poolSize + queueCapacity - 2) plus fixed-size chunks; release in whenComplete on both success and failure.",
+      "category": "backend",
+      "tags": "[kafka, backpressure, semaphore, async, executor, chunk]",
+      "triggers": "[\"kafka backpressure\", \"consumer OOM\", \"executor queue overflow\", \"semaphore acquireUninterruptibly\", \"rebalance storm\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/kafka-consumer-semaphore-chunking",
+      "linked_knowledge": [
+        "kafka-1h-topic-and-nonmetric-pool"
+      ]
+    },
+    {
+      "name": "period-mode-enum-config",
+      "description": "One enum Mode holds all (intervalMs, isFullData, dateFormat, retention, chartFormat) tuples for every time-series granularity - single source of truth across repository/service/chart layers.",
+      "category": "backend",
+      "tags": "[enum, time-series, domain, period, config]",
+      "triggers": "[\"Period.Mode\", \"MIN_15\", \"MONTH_2\", \"interval retention enum\", \"chart format\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/period-mode-enum-config",
+      "linked_knowledge": [
+        "period-interval-naming-convention"
+      ]
+    },
+    {
+      "name": "mongo-timestamp-densification",
+      "description": "Fill sparse time-series gaps with $dateTrunc + $densify in Mongo, then a residual Java gap-fill loop for LIVE windows. Partition by series to keep multi-line charts aligned.",
+      "category": "backend",
+      "tags": "[mongodb, $densify, $dateTrunc, time-series, chart, gap-fill]",
+      "triggers": "[\"densify\", \"sparse chart\", \"missing buckets\", \"$dateTrunc binSize\", \"partitionByFields\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/mongo-timestamp-densification"
+    },
+    {
+      "name": "measurement-grouping-combiner",
+      "description": "Group rows by (resourceId, metricId, bucketTs) into Map<K, List<T>>, then a per-granularity pure combineByKey merges each list into one composite record. One combiner per granularity.",
+      "category": "backend",
+      "tags": "[java, stream, grouping, rollup, combiner]",
+      "triggers": "[\"combineByKey\", \"groupingBy\", \"metric rollup\", \"per-granularity merge\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/measurement-grouping-combiner"
+    },
+    {
+      "name": "non-metric-saveraw-null-rule",
+      "description": "Treat saveRaw as tri-state Boolean - null for non-METRIC types (Availability/Trait), true/false only for METRIC. Re-apply on every policy mutation path.",
+      "category": "backend",
+      "tags": "[domain, tri-state, Boolean, measurement-type, policy]",
+      "triggers": "[\"saveRaw null\", \"non-METRIC\", \"policy update\", \"MeasurementType\", \"tri-state boolean\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/non-metric-saveraw-null-rule",
+      "linked_knowledge": [
+        "policy-edit-saveraw-loss"
+      ]
+    },
+    {
+      "name": "availability-ttl-punctuate-processor",
+      "description": "Kafka Streams processor schedules a wall-clock punctuate for TTL eviction of the state store, and emits downstream only on value change. Wall-clock (not stream-time) so idle inputs still trigger cleanup.",
+      "category": "backend",
+      "tags": "[kafka-streams, punctuate, wall-clock, TTL, state-store, change-detection]",
+      "triggers": "[\"PunctuationType.WALL_CLOCK_TIME\", \"state store TTL\", \"latest materialized view\", \"change-only forward\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/availability-ttl-punctuate-processor",
+      "linked_knowledge": [
+        "latest-availability-deletion-risk"
+      ]
+    },
+    {
+      "name": "multi-resource-or-batch-query",
+      "description": "Collapse N per-resource Mongo queries into one pipeline using Criteria.orOperator (or $in) over resourceId, projecting a synthetic key field for service-side de-multiplexing. Chunk at ~200 for index-friendly $or.",
+      "category": "backend",
+      "tags": "[mongodb, batch, $or, $in, multi-resource, projection]",
+      "triggers": "[\"multi-resource chart\", \"Criteria.orOperator\", \"batch aggregation\", \"resourceId $in\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/multi-resource-or-batch-query"
+    }
+  ],
+  "knowledge": [
+    {
+      "slug": "topn-unwind-match-to-filter",
+      "category": "pitfall",
+      "summary": "TopN Mongo pipeline using $unwind+$match explodes documents; push predicate into $filter first",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "pitfall/topn-unwind-match-to-filter",
+      "linked_skills": [
+        "mongo-aggregation-filter-optimization"
+      ]
+    },
+    {
+      "slug": "alarm-raw-over-1min-aggregate",
+      "category": "decision",
+      "summary": "Alarm judgement reads raw metrics, not 1-minute aggregates - accuracy over storage cost",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "decision/alarm-raw-over-1min-aggregate",
+      "linked_skills": [
+        "kafka-consumer-semaphore-chunking"
+      ]
+    },
+    {
+      "slug": "policy-edit-saveraw-loss",
+      "category": "pitfall",
+      "summary": "Editing common collection policy can silently drop individual saveRaw/interval settings if not re-applied",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "pitfall/policy-edit-saveraw-loss",
+      "linked_skills": [
+        "non-metric-saveraw-null-rule"
+      ]
+    },
+    {
+      "slug": "latest-availability-deletion-risk",
+      "category": "pitfall",
+      "summary": "Latest-availability collection can lose data when upstream source is stale but not actually missing",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "pitfall/latest-availability-deletion-risk",
+      "linked_skills": [
+        "availability-ttl-punctuate-processor"
+      ]
+    },
+    {
+      "slug": "live-mode-aggregation-exceptions",
+      "category": "arch",
+      "summary": "LIVE mode reads raw by default, but equalizer/multi-resource/TopN charts still aggregate raw at query time",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "arch/live-mode-aggregation-exceptions"
+    },
+    {
+      "slug": "period-interval-naming-convention",
+      "category": "domain",
+      "summary": "Period.Mode names encode unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not monthly",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "domain/period-interval-naming-convention",
+      "linked_skills": [
+        "period-mode-enum-config"
+      ]
+    },
+    {
+      "slug": "jacoco-sonar-exclusion-policy",
+      "category": "decision",
+      "summary": "Single exclusion list drives Jacoco + Sonar + test excludes; generated/boilerplate code never counts toward coverage",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "decision/jacoco-sonar-exclusion-policy",
+      "linked_skills": [
+        "querydsl-q-class-exclusion-pattern"
+      ]
+    },
+    {
+      "slug": "kafka-1h-topic-and-nonmetric-pool",
+      "category": "arch",
+      "summary": "Raw alarm path uses a 1-hour-retention Kafka topic and a dedicated non-metric thread pool - isolates alarm latency from batch ingest",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "arch/kafka-1h-topic-and-nonmetric-pool",
+      "linked_skills": [
+        "kafka-consumer-semaphore-chunking"
+      ]
+    },
+    {
+      "slug": "confid-vs-resourceid-routing",
+      "category": "api",
+      "summary": "Queries support both configIds (policy scope) and resourceId (agent scope); filter routes to different Mongo match fields",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "api/confid-vs-resourceid-routing"
+    },
+    {
+      "slug": "live-chart-timestamp-normalization",
+      "category": "api",
+      "summary": "LIVE charts accept normalizeTimestamp + normalizeIntervalMs to align per-agent millisecond offsets into a single x-axis",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "api/live-chart-timestamp-normalization"
     }
   ]
 }
