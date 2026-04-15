@@ -1,6 +1,7 @@
 ---
 name: mongo-timeseries-match-split-for-pushdown
 category: pitfall
+summary: "On MongoDB time-series collections, combining timestamp range + metadata filters in a single `$match` disables bucket-level push-down — split into two sequential `$match` stages (timestamp first, metadata second) so the optimizer can synthesize `control.*.timestamp` bounds."
 scope: global
 source:
   kind: project

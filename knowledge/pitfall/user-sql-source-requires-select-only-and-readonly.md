@@ -1,6 +1,7 @@
 ---
 name: user-sql-source-requires-select-only-and-readonly
 category: pitfall
+summary: "When a feature lets end-users paste raw SQL for display, no single guard is enough — layer four defenses: SELECT-only keyword allow-list, token-aware destructive-keyword blocklist, JDBC `setReadOnly(true)`, and `setQueryTimeout` + `setMaxRows` caps."
 scope: global
 source:
   kind: project

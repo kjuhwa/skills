@@ -1,5 +1,6 @@
 ---
-name: Per-request tenant context via HandlerInterceptor
+name: tenant-context-per-request-interceptor
+title: Per-request tenant context via HandlerInterceptor
 description: Extract tenant id from JWT/header in preHandle, store in ThreadLocal, clear in afterCompletion to isolate multi-tenant data access
 type: knowledge
 category: arch

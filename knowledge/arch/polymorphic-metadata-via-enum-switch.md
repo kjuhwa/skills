@@ -1,5 +1,6 @@
 ---
-name: Polymorphic metadata persisted as BSON via enum-switch deserialization
+name: polymorphic-metadata-via-enum-switch
+title: Polymorphic metadata persisted as BSON via enum-switch deserialization
 description: Store heterogeneous domain payloads under one field as raw Document, then deserialize with Gson chosen by an enum discriminator
 type: knowledge
 category: arch

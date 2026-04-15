@@ -1,6 +1,7 @@
 ---
 name: prefer-static-import-over-constant-inheritance
 category: decision
+summary: "Access shared constants via `import static SomeConstants.*` instead of `extends SomeConstants` — inheritance for constants pollutes the single-inheritance slot, leaks protected visibility, and makes subclasses nonsensically \"is-a\" a constants bag."
 scope: global
 source:
   kind: project

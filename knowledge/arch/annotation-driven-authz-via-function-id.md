@@ -1,5 +1,6 @@
 ---
-name: Annotation-driven coarse-grained authorization via @FunctionId
+name: annotation-driven-authz-via-function-id
+title: Annotation-driven coarse-grained authorization via @FunctionId
 description: Controllers declare required capability with a method-level enum annotation; an interceptor enforces it against JWT-derived roles
 type: knowledge
 category: arch

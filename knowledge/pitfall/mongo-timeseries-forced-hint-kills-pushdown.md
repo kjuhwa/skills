@@ -1,6 +1,7 @@
 ---
 name: mongo-timeseries-forced-hint-kills-pushdown
 category: pitfall
+summary: "Forcing `hint(indexName)` on a MongoDB time-series aggregation bypasses the optimizer's bucket-index rewrite — the plan scans every bucket with `control.min/max.timestamp = [MinKey, MaxKey]` instead of honoring the timestamp predicate."
 scope: global
 source:
   kind: project

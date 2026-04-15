@@ -1,5 +1,6 @@
 ---
-name: build-gradle-secret-and-insecure-protocol
+name: sonar-token-hardcoded-build-gradle
+title: build-gradle-secret-and-insecure-protocol
 description: Hardcoded SonarQube login token in build.gradle plus `allowInsecureProtocol = true` on an internal Nexus are two common DevSecOps anti-patterns to fix together
 category: pitfall
 confidence: high
