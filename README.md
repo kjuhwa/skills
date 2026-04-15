@@ -35,6 +35,8 @@ bootstrap/
     skills_extract_project.md       # full-project scan → drafts BOTH skills and knowledge
     knowledge_list.md               # list locally installed knowledge entries
     knowledge_search.md             # search knowledge and optionally inject matches into context
+    knowledge_publish.md            # review knowledge drafts → push to remote branch (no version tags)
+    publish_all.md                  # one-shot publish of both skills and knowledge on a single branch / PR
   skills/
     skills-hub/SKILL.md       # umbrella OMC skill
   install.sh                  # bash installer
@@ -97,6 +99,8 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/skills_extract_project [--scope=... --max=... --only=...]` | **Full project scan** → drafts BOTH skills *and* knowledge (project-wide counterpart of `/skills_extract_knowledge`) | local drafts |
 | `/knowledge_list [--category/--tag/--linked-to/--orphans]` | List locally installed knowledge entries | no |
 | `/knowledge_search <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
+| `/knowledge_publish [--all/--draft=.../--pr]` | Review knowledge drafts → push to a feature branch, update `registry.json` knowledge section. No version tags. | remote branch |
+| `/publish_all [--all/--pr/--only ...]` | One-shot publish of BOTH `.skills-draft/` and `.knowledge-draft/` on a single branch + PR, knowledge-first commit order for cross-link resolution | remote branch + skill tags |
 
 ### Typical Workflow
 
@@ -270,7 +274,7 @@ Body sections: `## Fact` / `## Context / Why` / `## Evidence` / `## Applies when
 /knowledge_search "kafka routing" --inject          # prime context before work
 ```
 
-Knowledge remains **local** for now — remote publish (`/knowledge_publish`) is a v2 feature. Registry schema is `v2` (`knowledge: {}` key + `linked_knowledge` on each skill).
+Knowledge publishing is now supported. Use `/knowledge_publish` to push drafts under `.knowledge-draft/` to a feature branch (no version tags — knowledge is content-addressed, history is the trail). For releases that contain both skills and knowledge from the same extraction round, use `/publish_all` to ship them on a single branch + PR; knowledge commits land first so skills can reference the knowledge slug in the same branch. Registry schema is `v2` (`knowledge: {}` key + `linked_knowledge` on each skill).
 
 ---
 
