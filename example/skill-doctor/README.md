@@ -18,11 +18,15 @@
 ```
 skill-doctor/
 ├── README.md       (this file)
-├── doctor.mjs      (single-file CLI, ~170 LOC, zero deps)
+├── doctor.mjs      (single-file CLI, ~180 LOC, zero deps)
+├── serve.mjs       (static + /api/run endpoint, ~40 LOC)
+├── index.html      (single-file SPA UI, ~180 LOC)
 └── report.json     (generated when --json is used)
 ```
 
 ## Usage
+
+### CLI (primary)
 
 ```bash
 # Lint the current project
@@ -35,6 +39,21 @@ node doctor.mjs --root=/path/to/getskills
 node doctor.mjs --json > report.json
 echo "exit=$?"
 ```
+
+### Web UI
+
+```bash
+DOCTOR_ROOT=/path/to/getskills PORT=4177 node serve.mjs
+# → ▶ skill-doctor UI → http://localhost:4177/
+```
+
+Features:
+- **status pills** — errors / warnings / info / scanned count
+- **rule chips** — filter findings by severity OR by rule (click to toggle)
+- **grouped by file** — all findings per file in one card
+- **run button** — rescans on demand; spinner while in flight
+- **clean state** — big green check when there are zero findings
+- Zero frontend deps; the server is 40 LOC of Node stdlib.
 
 ### Sample output
 
