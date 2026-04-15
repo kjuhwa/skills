@@ -31,6 +31,32 @@
       "path": "workflow/async-subagent-resume-on-missing-artifact"
     },
     {
+      "name": "audit-change-data-capture-pattern",
+      "description": "Compute before/after diffs for audit logs by comparing two BSON/JSON documents field-by-field — always iterate the BEFORE doc and read from AFTER to avoid prev/after swap bugs",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Recording audit trail entries where UPDATE events need field-level before/after snapshots",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/audit-change-data-capture-pattern",
+      "linked_knowledge": [
+        "audit-changed-prev-after-field-swap-bug"
+      ]
+    },
+    {
+      "name": "availability-ttl-punctuate-processor",
+      "description": "Kafka Streams processor schedules a wall-clock punctuate for TTL eviction of the state store, and emits downstream only on value change. Wall-clock (not stream-time) so idle inputs still trigger cleanup.",
+      "category": "backend",
+      "tags": "[kafka-streams, punctuate, wall-clock, TTL, state-store, change-detection]",
+      "triggers": "[\"PunctuationType.WALL_CLOCK_TIME\", \"state store TTL\", \"latest materialized view\", \"change-only forward\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/availability-ttl-punctuate-processor",
+      "linked_knowledge": [
+        "latest-availability-deletion-risk"
+      ]
+    },
+    {
       "name": "avro-event-with-change-flags",
       "description": "Design Kafka Avro event schemas that carry an actionType enum plus boolean change flags per mutable section so consumers branch cheaply without diffing payloads.",
       "category": "backend",
@@ -79,6 +105,16 @@
       "source_project": "manual",
       "version": "1.0.0",
       "path": "debug/build-error-triage"
+    },
+    {
+      "name": "byte-aware-sms-truncation-with-ellipsis",
+      "description": "Truncate SMS message body to a byte budget (not char count) per charset, appending '...' without exceeding the budget",
+      "category": "backend",
+      "tags": "",
+      "triggers": "[\"writing to an SMS column / gateway with a hard byte limit where multibyte chars (Korean, emoji) overflow a naive char truncation\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "backend/byte-aware-sms-truncation-with-ellipsis"
     },
     {
       "name": "cache-variance-ttl-jitter",
@@ -139,6 +175,16 @@
       "source_project": "nkia-skills",
       "version": "1.0.0",
       "path": "tooling/claude-plugin-catalog-publish"
+    },
+    {
+      "name": "collection-routing-by-period",
+      "description": "Single resolver maps (Period.Mode, from, to) to a time-series collection (raw view / 1-min / hour-with-monthly-suffix / day). Callers never hardcode collection names.",
+      "category": "backend",
+      "tags": "[mongodb, time-series, routing, period, view]",
+      "triggers": "[\"raw view\", \"hour collection\", \"time-series routing\", \"period mode\", \"collection suffix\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/collection-routing-by-period"
     },
     {
       "name": "custom-actuator-command-whitelist",
@@ -222,6 +268,26 @@
       "path": "backend/enable-async-tenant-aware"
     },
     {
+      "name": "encrypted-pii-decrypt-before-send",
+      "description": "Store user email/phone encrypted at rest; decrypt only inside the sender, never in cache/DTO/log boundaries",
+      "category": "backend",
+      "tags": "",
+      "triggers": "[\"any notification service whose user directory stores PII encrypted (GDPR/K-privacy) and which must deliver to plaintext recipient addresses\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "backend/encrypted-pii-decrypt-before-send"
+    },
+    {
+      "name": "eureka-service-discovery-wait-annotation",
+      "description": "Declarative @WaitForServices annotation on @EventListener methods — blocks initialization until named Eureka services are healthy, with optional leader-only execution",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Service startup must wait for other microservices (metadata, auth, config) to be registered AND healthy in Eureka before running initialization logic",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/eureka-service-discovery-wait-annotation"
+    },
+    {
       "name": "event-driven-kafka-scheduling",
       "description": "Replace Spring @Scheduled with a Kafka-delivered JobExecuteNotice so a central scheduler service fans out tick events — with a skip-if-previous-still-running guard to prevent pile-up.",
       "category": "backend",
@@ -230,6 +296,16 @@
       "source_project": "lucida-health",
       "version": "1.0.0",
       "path": "backend/event-driven-kafka-scheduling"
+    },
+    {
+      "name": "excel-download-null-date-range-handling",
+      "description": "Defensive pattern for grid/list excel-export endpoints — null-check every filter value and normalize field names before querying",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Building an excel-export endpoint that reuses a grid/list filter DTO where date ranges or text filters may be absent",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/excel-download-null-date-range-handling"
     },
     {
       "name": "excel-export-enum-replacer",
@@ -251,6 +327,16 @@
       "source_project": "lucida-realtime",
       "version": "1.0.0",
       "path": "backend/feed-envelope-frame"
+    },
+    {
+      "name": "freemarker-two-phase-expression-subst",
+      "description": "Render templates by first replacing raw ${var} placeholders via string-replace, then running FreeMarker for expression-object binding, avoiding double-evaluation and escape conflicts",
+      "category": "backend",
+      "tags": "",
+      "triggers": "[\"using FreeMarker (or similar) for user-authored templates that mix literal variable placeholders with model-bound expressions\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "backend/freemarker-two-phase-expression-subst"
     },
     {
       "name": "frozen-detection-consecutive-count",
@@ -281,6 +367,36 @@
       "source_project": "skills-hub",
       "version": "1.0.0",
       "path": "arch/git-tag-registry-versioning"
+    },
+    {
+      "name": "gradle-bootjar-conditional-archive-bundle",
+      "description": "Gradle Spring Boot build that conditionally bundles the fat JAR plus externalized resources into a dated zip/tar for on-prem delivery, gated by a flag",
+      "category": "arch",
+      "tags": "",
+      "triggers": "[\"a Spring Boot service that ships to a cloud registry AND to on-prem customers who need a tarball with jar + config + libs\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "arch/gradle-bootjar-conditional-archive-bundle"
+    },
+    {
+      "name": "gradle-bootrun-local-dev-env",
+      "description": "Gradle bootRun task recipe that wires local MongoDB/Kafka/Redis/MQTT/Eureka/Quartz via environment variables — no docker-compose needed",
+      "category": "devops",
+      "tags": "",
+      "triggers": "Running a Spring Boot microservice locally against existing infra containers without building a separate profile YAML",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "devops/gradle-bootrun-local-dev-env"
+    },
+    {
+      "name": "gradle-jacoco-exclusion-strategy",
+      "description": "Curated Jacoco/Sonar exclusion patterns for Spring Boot projects — skips config/DAO/entity/generated layers and Querydsl Q-classes",
+      "category": "build",
+      "tags": "",
+      "triggers": "Setting up Jacoco coverage rules on a Spring Boot + Gradle project where generated code and infrastructure layers bloat coverage metrics",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "build/gradle-jacoco-exclusion-strategy"
     },
     {
       "name": "gradle-shared-exclusions-jacoco-sonar",
@@ -364,6 +480,16 @@
       "path": "backend/jacoco-exclude-boilerplate-layers"
     },
     {
+      "name": "jdbc-configurable-sql-insert-sender",
+      "description": "Ship a notification/integration channel that writes to a user-configured external DB via user-supplied INSERT SQL with ${var} placeholders",
+      "category": "backend",
+      "tags": "",
+      "triggers": "[\"integrating with a third-party SMS gateway / ticketing system whose API is \"insert into our table\"\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "backend/jdbc-configurable-sql-insert-sender"
+    },
+    {
       "name": "json-seeded-jpa-loader",
       "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
       "category": "backend",
@@ -415,6 +541,16 @@
       "path": "backend/kafka-avro-producer-gzip-30mb"
     },
     {
+      "name": "kafka-avro-topic-auto-create-config",
+      "description": "Spring Boot Kafka config bean that auto-creates topics on startup via ApplicationRunner, with Avro serde, manual-ack listener, and bounded concurrency",
+      "category": "arch",
+      "tags": "",
+      "triggers": "[\"greenfield Spring Boot service that consumes Avro events from Kafka and must not fail hard when the topic is missing in a fresh environment\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "arch/kafka-avro-topic-auto-create-config"
+    },
+    {
       "name": "kafka-batch-consumer-partition-tuning",
       "description": "Size Kafka partition count + max-poll-records per topic volume so heavy-processing batch consumers avoid max.poll.interval.ms breaches and maintain throughput via per-partition concurrency.",
       "category": "backend",
@@ -429,6 +565,16 @@
       ]
     },
     {
+      "name": "kafka-consumer-config-3-factories",
+      "description": "Spring Kafka consumer setup with three ListenerContainerFactory variants (standard / batch / UUID-group) and autoStartup=false to allow topic bootstrap before listeners attach",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Building a Spring Kafka consumer that must wait for an ApplicationRunner to create topics before listeners start, or needs both single-record and batch listeners in the same app",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/kafka-consumer-config-3-factories"
+    },
+    {
       "name": "kafka-consumer-errorhandling-wrapper",
       "description": "Wrap Kafka key/value deserializers in Spring Kafkas ErrorHandlingDeserializer so a poison record becomes a logged failure/DLT publish instead of a stuck partition.",
       "category": "backend",
@@ -437,6 +583,19 @@
       "source_project": "lucida-performance",
       "version": "1.0.0",
       "path": "backend/kafka-consumer-errorhandling-wrapper"
+    },
+    {
+      "name": "kafka-consumer-semaphore-chunking",
+      "description": "Bound in-flight async work from a Kafka consumer with Semaphore(poolSize + queueCapacity - 2) plus fixed-size chunks; release in whenComplete on both success and failure.",
+      "category": "backend",
+      "tags": "[kafka, backpressure, semaphore, async, executor, chunk]",
+      "triggers": "[\"kafka backpressure\", \"consumer OOM\", \"executor queue overflow\", \"semaphore acquireUninterruptibly\", \"rebalance storm\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/kafka-consumer-semaphore-chunking",
+      "linked_knowledge": [
+        "kafka-1h-topic-and-nonmetric-pool"
+      ]
     },
     {
       "name": "kafka-consumer-tenant-fan-out",
@@ -468,6 +627,16 @@
       "tags": "[kafka, avro, multi-tenant, headers, spring]",
       "category": "backend",
       "path": "backend/kafka-message-header-metadata"
+    },
+    {
+      "name": "kafka-producer-config-avro-schema-registry",
+      "description": "Kafka producer config template for Avro + Confluent Schema Registry with LZ4 compression, 30MB max request size, and acks=1",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Setting up a Spring Kafka producer that publishes Avro-serialized events against a Confluent Schema Registry",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/kafka-producer-config-avro-schema-registry"
     },
     {
       "name": "layered-risk-gates",
@@ -508,6 +677,16 @@
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
       "path": "ai/mcp-runtime-prompt-refresh"
+    },
+    {
+      "name": "measurement-grouping-combiner",
+      "description": "Group rows by (resourceId, metricId, bucketTs) into Map<K, List<T>>, then a per-granularity pure combineByKey merges each list into one composite record. One combiner per granularity.",
+      "category": "backend",
+      "tags": "[java, stream, grouping, rollup, combiner]",
+      "triggers": "[\"combineByKey\", \"groupingBy\", \"metric rollup\", \"per-granularity merge\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/measurement-grouping-combiner"
     },
     {
       "name": "menu-key-config-registry",
@@ -581,6 +760,19 @@
       "path": "arch/module-federation-expose-wrapper"
     },
     {
+      "name": "mongo-aggregation-filter-optimization",
+      "description": "Replace $unwind+$match on array sub-documents with inline $filter so array elements are pruned before any downstream stage - avoids N-times document explosion.",
+      "category": "backend",
+      "tags": "[mongodb, aggregation, performance, $filter, $unwind, topn]",
+      "triggers": "[\"$unwind $match\", \"aggregation pipeline slow\", \"topn query\", \"array filter\", \"mongo pipeline memory\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/mongo-aggregation-filter-optimization",
+      "linked_knowledge": [
+        "topn-unwind-match-to-filter"
+      ]
+    },
+    {
       "name": "mongo-criteria-maker-elemmatch-and-or",
       "description": "Compose dynamic Spring Data MongoDB Criteria with mixed AND/OR groups and elemMatch on tag-array fields using a stack-based builder.",
       "category": "backend",
@@ -589,6 +781,16 @@
       "source_project": "lucida-performance",
       "version": "1.0.0",
       "path": "backend/mongo-criteria-maker-elemmatch-and-or"
+    },
+    {
+      "name": "mongo-timestamp-densification",
+      "description": "Fill sparse time-series gaps with $dateTrunc + $densify in Mongo, then a residual Java gap-fill loop for LIVE windows. Partition by series to keep multi-line charts aligned.",
+      "category": "backend",
+      "tags": "[mongodb, $densify, $dateTrunc, time-series, chart, gap-fill]",
+      "triggers": "[\"densify\", \"sparse chart\", \"missing buckets\", \"$dateTrunc binSize\", \"partitionByFields\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/mongo-timestamp-densification"
     },
     {
       "name": "mongo-ttl-with-aggregation-delta",
@@ -627,6 +829,16 @@
       ]
     },
     {
+      "name": "multi-resource-or-batch-query",
+      "description": "Collapse N per-resource Mongo queries into one pipeline using Criteria.orOperator (or $in) over resourceId, projecting a synthetic key field for service-side de-multiplexing. Chunk at ~200 for index-friendly $or.",
+      "category": "backend",
+      "tags": "[mongodb, batch, $or, $in, multi-resource, projection]",
+      "triggers": "[\"multi-resource chart\", \"Criteria.orOperator\", \"batch aggregation\", \"resourceId $in\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/multi-resource-or-batch-query"
+    },
+    {
       "name": "multi-tenant-scheduler-iteration",
       "description": "Skeleton for @Scheduled Spring jobs iterating every tenant in a database-per-tenant MongoDB setup — enumerate DBs, filter system ones, set TenantContextHolder per tenant inside try/finally, isolate per-tenant failures, emit a single summary log line.",
       "category": "backend",
@@ -646,6 +858,19 @@
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/netty-tcp-reconnect-backoff"
+    },
+    {
+      "name": "non-metric-saveraw-null-rule",
+      "description": "Treat saveRaw as tri-state Boolean - null for non-METRIC types (Availability/Trait), true/false only for METRIC. Re-apply on every policy mutation path.",
+      "category": "backend",
+      "tags": "[domain, tri-state, Boolean, measurement-type, policy]",
+      "triggers": "[\"saveRaw null\", \"non-METRIC\", \"policy update\", \"MeasurementType\", \"tri-state boolean\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/non-metric-saveraw-null-rule",
+      "linked_knowledge": [
+        "policy-edit-saveraw-loss"
+      ]
     },
     {
       "name": "oauth-token-env-persistence",
@@ -706,6 +931,19 @@
       "path": "workflow/parallel-bulk-annotation"
     },
     {
+      "name": "period-mode-enum-config",
+      "description": "One enum Mode holds all (intervalMs, isFullData, dateFormat, retention, chartFormat) tuples for every time-series granularity - single source of truth across repository/service/chart layers.",
+      "category": "backend",
+      "tags": "[enum, time-series, domain, period, config]",
+      "triggers": "[\"Period.Mode\", \"MIN_15\", \"MONTH_2\", \"interval retention enum\", \"chart format\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "backend/period-mode-enum-config",
+      "linked_knowledge": [
+        "period-interval-naming-convention"
+      ]
+    },
+    {
       "name": "playwright-exception-advice",
       "description": "Map PlaywrightException to a structured JSON error in Spring @ControllerAdvice, detecting common cases (cert errors, timeouts) and attaching actionable suggestions",
       "category": "backend",
@@ -746,6 +984,16 @@
       "path": "backend/playwright-java-spring-lifecycle"
     },
     {
+      "name": "pluggable-sender-factory-pattern",
+      "description": "Register multiple notification/transport backends (SMS, EMAIL, SMTP, JDBC, REST, SLACK, SOCKET) behind a single FactoryBean that dispatches by enum type",
+      "category": "arch",
+      "tags": "",
+      "triggers": "[\"adding a new notification channel / transport sender to a service that already has 2+ channels\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "arch/pluggable-sender-factory-pattern"
+    },
+    {
       "name": "plugin-resource-provider-architecture",
       "description": "Stable ResourceProvider SPI loaded via Spring component scan; each new device/resource type is a separate Gradle-module JAR packaged into the WAR — zero core edits.",
       "category": "arch",
@@ -774,6 +1022,19 @@
       "source_project": "url-screenshot-java",
       "version": "0.1.0-draft",
       "path": "backend/polymorphic-command-entities"
+    },
+    {
+      "name": "querydsl-q-class-exclusion-pattern",
+      "description": "One exclusionPatterns list drives Jacoco report + verification + Sonar exclusions; catches generated Querydsl Q-classes via an A..Z range generating **/Q<letter>* globs.",
+      "category": "build",
+      "tags": "[gradle, jacoco, sonar, querydsl, coverage, exclusion]",
+      "triggers": "[\"jacoco exclusion\", \"sonar exclusion\", \"Q class\", \"querydsl generated\", \"coverage inflation\"]",
+      "source_project": "lucida-measurement",
+      "version": "1.0.0",
+      "path": "build/querydsl-q-class-exclusion-pattern",
+      "linked_knowledge": [
+        "jacoco-sonar-exclusion-policy"
+      ]
     },
     {
       "name": "react-native-android-emulator-localhost",
@@ -825,6 +1086,16 @@
       "tags": "[spring, plugin, registry, interface, component]",
       "category": "arch",
       "path": "arch/resource-provider-registry"
+    },
+    {
+      "name": "service-status-provider-actuator",
+      "description": "Spring Boot 3.5 ServiceStatusProvider that reports RUNNING vs READY based on MongoDB ping + Kafka listener container liveness",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Exposing a richer readiness signal than HealthIndicator for a service whose \"ready\" state depends on both DB reachability and Kafka consumers being attached",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/service-status-provider-actuator"
     },
     {
       "name": "shared-package-only-cross-module",
@@ -1078,6 +1349,16 @@
       "path": "arch/tenant-context-holder-propagation"
     },
     {
+      "name": "tenant-db-initialization-on-startup",
+      "description": "On leader startup, fetch tenant/org list from metadata service and provision per-tenant MongoDB databases — idempotent, leader-only",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Multi-tenant service that creates one MongoDB database (or schema) per organization and must ensure all tenants are bootstrapped before serving traffic",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/tenant-db-initialization-on-startup"
+    },
+    {
       "name": "tenant-isolated-mongo-collection",
       "description": "Route each tenant to its own MongoDB collection via a custom annotation resolved at repository layer, so application code stays tenant-agnostic while isolation is enforced at the collection boundary.",
       "category": "backend",
@@ -1096,6 +1377,26 @@
       "source_project": "lucida-health",
       "version": "1.0.0",
       "path": "backend/tenant-per-database-mongo-routing"
+    },
+    {
+      "name": "testcontainers-mongo-kafka-abstract-base",
+      "description": "Abstract test base classes that spin up MongoDB + Kafka via Testcontainers with static start() and reuse=true, exposing mapped ports via System.setProperty",
+      "category": "backend",
+      "tags": "",
+      "triggers": "[\"Spring Boot integration tests that need real Kafka + MongoDB (no mocks), running locally and in CI without per-test container churn\"]",
+      "source_project": "lucida-notification",
+      "version": "1.0.0",
+      "path": "backend/testcontainers-mongo-kafka-abstract-base"
+    },
+    {
+      "name": "thread-pool-config-tenant-aware",
+      "description": "Property-driven ThreadPoolTaskExecutor + Scheduler config that extends TenantAsyncConfigurerSupport so @Async tasks inherit tenant context",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Multi-tenant Spring Boot service where @Async tasks must preserve tenant/org context across thread boundaries",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/thread-pool-config-tenant-aware"
     },
     {
       "name": "thread-pool-queue-backpressure",
@@ -1144,241 +1445,9 @@
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "frontend/zustand-preset-manager"
-    },
-    {
-      "name": "mongo-aggregation-filter-optimization",
-      "description": "Replace $unwind+$match on array sub-documents with inline $filter so array elements are pruned before any downstream stage - avoids N-times document explosion.",
-      "category": "backend",
-      "tags": "[mongodb, aggregation, performance, $filter, $unwind, topn]",
-      "triggers": "[\"$unwind $match\", \"aggregation pipeline slow\", \"topn query\", \"array filter\", \"mongo pipeline memory\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/mongo-aggregation-filter-optimization",
-      "linked_knowledge": [
-        "topn-unwind-match-to-filter"
-      ]
-    },
-    {
-      "name": "collection-routing-by-period",
-      "description": "Single resolver maps (Period.Mode, from, to) to a time-series collection (raw view / 1-min / hour-with-monthly-suffix / day). Callers never hardcode collection names.",
-      "category": "backend",
-      "tags": "[mongodb, time-series, routing, period, view]",
-      "triggers": "[\"raw view\", \"hour collection\", \"time-series routing\", \"period mode\", \"collection suffix\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/collection-routing-by-period"
-    },
-    {
-      "name": "querydsl-q-class-exclusion-pattern",
-      "description": "One exclusionPatterns list drives Jacoco report + verification + Sonar exclusions; catches generated Querydsl Q-classes via an A..Z range generating **/Q<letter>* globs.",
-      "category": "build",
-      "tags": "[gradle, jacoco, sonar, querydsl, coverage, exclusion]",
-      "triggers": "[\"jacoco exclusion\", \"sonar exclusion\", \"Q class\", \"querydsl generated\", \"coverage inflation\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "build/querydsl-q-class-exclusion-pattern",
-      "linked_knowledge": [
-        "jacoco-sonar-exclusion-policy"
-      ]
-    },
-    {
-      "name": "kafka-consumer-semaphore-chunking",
-      "description": "Bound in-flight async work from a Kafka consumer with Semaphore(poolSize + queueCapacity - 2) plus fixed-size chunks; release in whenComplete on both success and failure.",
-      "category": "backend",
-      "tags": "[kafka, backpressure, semaphore, async, executor, chunk]",
-      "triggers": "[\"kafka backpressure\", \"consumer OOM\", \"executor queue overflow\", \"semaphore acquireUninterruptibly\", \"rebalance storm\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/kafka-consumer-semaphore-chunking",
-      "linked_knowledge": [
-        "kafka-1h-topic-and-nonmetric-pool"
-      ]
-    },
-    {
-      "name": "period-mode-enum-config",
-      "description": "One enum Mode holds all (intervalMs, isFullData, dateFormat, retention, chartFormat) tuples for every time-series granularity - single source of truth across repository/service/chart layers.",
-      "category": "backend",
-      "tags": "[enum, time-series, domain, period, config]",
-      "triggers": "[\"Period.Mode\", \"MIN_15\", \"MONTH_2\", \"interval retention enum\", \"chart format\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/period-mode-enum-config",
-      "linked_knowledge": [
-        "period-interval-naming-convention"
-      ]
-    },
-    {
-      "name": "mongo-timestamp-densification",
-      "description": "Fill sparse time-series gaps with $dateTrunc + $densify in Mongo, then a residual Java gap-fill loop for LIVE windows. Partition by series to keep multi-line charts aligned.",
-      "category": "backend",
-      "tags": "[mongodb, $densify, $dateTrunc, time-series, chart, gap-fill]",
-      "triggers": "[\"densify\", \"sparse chart\", \"missing buckets\", \"$dateTrunc binSize\", \"partitionByFields\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/mongo-timestamp-densification"
-    },
-    {
-      "name": "measurement-grouping-combiner",
-      "description": "Group rows by (resourceId, metricId, bucketTs) into Map<K, List<T>>, then a per-granularity pure combineByKey merges each list into one composite record. One combiner per granularity.",
-      "category": "backend",
-      "tags": "[java, stream, grouping, rollup, combiner]",
-      "triggers": "[\"combineByKey\", \"groupingBy\", \"metric rollup\", \"per-granularity merge\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/measurement-grouping-combiner"
-    },
-    {
-      "name": "non-metric-saveraw-null-rule",
-      "description": "Treat saveRaw as tri-state Boolean - null for non-METRIC types (Availability/Trait), true/false only for METRIC. Re-apply on every policy mutation path.",
-      "category": "backend",
-      "tags": "[domain, tri-state, Boolean, measurement-type, policy]",
-      "triggers": "[\"saveRaw null\", \"non-METRIC\", \"policy update\", \"MeasurementType\", \"tri-state boolean\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/non-metric-saveraw-null-rule",
-      "linked_knowledge": [
-        "policy-edit-saveraw-loss"
-      ]
-    },
-    {
-      "name": "availability-ttl-punctuate-processor",
-      "description": "Kafka Streams processor schedules a wall-clock punctuate for TTL eviction of the state store, and emits downstream only on value change. Wall-clock (not stream-time) so idle inputs still trigger cleanup.",
-      "category": "backend",
-      "tags": "[kafka-streams, punctuate, wall-clock, TTL, state-store, change-detection]",
-      "triggers": "[\"PunctuationType.WALL_CLOCK_TIME\", \"state store TTL\", \"latest materialized view\", \"change-only forward\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/availability-ttl-punctuate-processor",
-      "linked_knowledge": [
-        "latest-availability-deletion-risk"
-      ]
-    },
-    {
-      "name": "multi-resource-or-batch-query",
-      "description": "Collapse N per-resource Mongo queries into one pipeline using Criteria.orOperator (or $in) over resourceId, projecting a synthetic key field for service-side de-multiplexing. Chunk at ~200 for index-friendly $or.",
-      "category": "backend",
-      "tags": "[mongodb, batch, $or, $in, multi-resource, projection]",
-      "triggers": "[\"multi-resource chart\", \"Criteria.orOperator\", \"batch aggregation\", \"resourceId $in\"]",
-      "source_project": "lucida-measurement",
-      "version": "1.0.0",
-      "path": "backend/multi-resource-or-batch-query"
-    },
-    {
-      "name": "gradle-jacoco-exclusion-strategy",
-      "description": "Curated Jacoco/Sonar exclusion patterns for Spring Boot projects — skips config/DAO/entity/generated layers and Querydsl Q-classes",
-      "category": "build",
-      "tags": "",
-      "triggers": "Setting up Jacoco coverage rules on a Spring Boot + Gradle project where generated code and infrastructure layers bloat coverage metrics",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "build/gradle-jacoco-exclusion-strategy"
-    },
-    {
-      "name": "gradle-bootrun-local-dev-env",
-      "description": "Gradle bootRun task recipe that wires local MongoDB/Kafka/Redis/MQTT/Eureka/Quartz via environment variables — no docker-compose needed",
-      "category": "devops",
-      "tags": "",
-      "triggers": "Running a Spring Boot microservice locally against existing infra containers without building a separate profile YAML",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "devops/gradle-bootrun-local-dev-env"
-    },
-    {
-      "name": "kafka-consumer-config-3-factories",
-      "description": "Spring Kafka consumer setup with three ListenerContainerFactory variants (standard / batch / UUID-group) and autoStartup=false to allow topic bootstrap before listeners attach",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Building a Spring Kafka consumer that must wait for an ApplicationRunner to create topics before listeners start, or needs both single-record and batch listeners in the same app",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/kafka-consumer-config-3-factories"
-    },
-    {
-      "name": "kafka-producer-config-avro-schema-registry",
-      "description": "Kafka producer config template for Avro + Confluent Schema Registry with LZ4 compression, 30MB max request size, and acks=1",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Setting up a Spring Kafka producer that publishes Avro-serialized events against a Confluent Schema Registry",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/kafka-producer-config-avro-schema-registry"
-    },
-    {
-      "name": "service-status-provider-actuator",
-      "description": "Spring Boot 3.5 ServiceStatusProvider that reports RUNNING vs READY based on MongoDB ping + Kafka listener container liveness",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Exposing a richer readiness signal than HealthIndicator for a service whose \"ready\" state depends on both DB reachability and Kafka consumers being attached",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/service-status-provider-actuator"
-    },
-    {
-      "name": "thread-pool-config-tenant-aware",
-      "description": "Property-driven ThreadPoolTaskExecutor + Scheduler config that extends TenantAsyncConfigurerSupport so @Async tasks inherit tenant context",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Multi-tenant Spring Boot service where @Async tasks must preserve tenant/org context across thread boundaries",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/thread-pool-config-tenant-aware"
-    },
-    {
-      "name": "audit-change-data-capture-pattern",
-      "description": "Compute before/after diffs for audit logs by comparing two BSON/JSON documents field-by-field — always iterate the BEFORE doc and read from AFTER to avoid prev/after swap bugs",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Recording audit trail entries where UPDATE events need field-level before/after snapshots",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/audit-change-data-capture-pattern",
-      "linked_knowledge": [
-        "audit-changed-prev-after-field-swap-bug"
-      ]
-    },
-    {
-      "name": "excel-download-null-date-range-handling",
-      "description": "Defensive pattern for grid/list excel-export endpoints — null-check every filter value and normalize field names before querying",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Building an excel-export endpoint that reuses a grid/list filter DTO where date ranges or text filters may be absent",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/excel-download-null-date-range-handling"
-    },
-    {
-      "name": "eureka-service-discovery-wait-annotation",
-      "description": "Declarative @WaitForServices annotation on @EventListener methods — blocks initialization until named Eureka services are healthy, with optional leader-only execution",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Service startup must wait for other microservices (metadata, auth, config) to be registered AND healthy in Eureka before running initialization logic",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/eureka-service-discovery-wait-annotation"
-    },
-    {
-      "name": "tenant-db-initialization-on-startup",
-      "description": "On leader startup, fetch tenant/org list from metadata service and provision per-tenant MongoDB databases — idempotent, leader-only",
-      "category": "backend",
-      "tags": "",
-      "triggers": "Multi-tenant service that creates one MongoDB database (or schema) per organization and must ensure all tenants are bootstrapped before serving traffic",
-      "source_project": "lucida-audit",
-      "version": "1.0.0",
-      "path": "backend/tenant-db-initialization-on-startup"
     }
   ],
   "knowledge": [
-    {
-      "slug": "topn-unwind-match-to-filter",
-      "category": "pitfall",
-      "summary": "TopN Mongo pipeline using $unwind+$match explodes documents; push predicate into $filter first",
-      "confidence": "high",
-      "source_project": "lucida-measurement",
-      "path": "pitfall/topn-unwind-match-to-filter",
-      "linked_skills": [
-        "mongo-aggregation-filter-optimization"
-      ]
-    },
     {
       "slug": "alarm-raw-over-1min-aggregate",
       "category": "decision",
@@ -1388,6 +1457,176 @@
       "path": "decision/alarm-raw-over-1min-aggregate",
       "linked_skills": [
         "kafka-consumer-semaphore-chunking"
+      ]
+    },
+    {
+      "slug": "audit-changed-prev-after-field-swap-bug",
+      "category": "pitfall",
+      "summary": "Audit diff logic had before/after swapped — iterating the wrong doc and putting the wrong value into changedPrev corrupted the audit trail silently",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/audit-changed-prev-after-field-swap-bug",
+      "linked_skills": [
+        "audit-change-data-capture-pattern"
+      ]
+    },
+    {
+      "slug": "cache-even-when-enable-false",
+      "category": "decision",
+      "summary": "Notification configs with `enable=false` are still loaded into the cache manager rather than skipped, so toggling enable on/off doesn't require a cache reload",
+      "confidence": "high",
+      "source_project": "lucida-notification",
+      "path": "decision/cache-even-when-enable-false"
+    },
+    {
+      "slug": "commons-logging-exclusion-strategy",
+      "category": "arch",
+      "summary": "Globally exclude commons-logging, log4j, and slf4j-log4j12 in Gradle so SLF4J+Logback is the only logging backend on the classpath",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "arch/commons-logging-exclusion-strategy"
+    },
+    {
+      "slug": "confid-vs-resourceid-routing",
+      "category": "api",
+      "summary": "Queries support both configIds (policy scope) and resourceId (agent scope); filter routes to different Mongo match fields",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "api/confid-vs-resourceid-routing"
+    },
+    {
+      "slug": "gradle-avro-plugin-config",
+      "category": "arch",
+      "summary": "davidmc24 avro-gradle-plugin config — createSetters=false + fieldVisibility=PRIVATE enforces immutable generated event schemas",
+      "confidence": "medium",
+      "source_project": "lucida-audit",
+      "path": "arch/gradle-avro-plugin-config"
+    },
+    {
+      "slug": "history-view-yearly-partition-pitfall",
+      "category": "pitfall",
+      "summary": "A history/reporting view or materialized collection created with a year-bounded clause silently stops returning rows when the calendar year rolls over",
+      "confidence": "high",
+      "source_project": "lucida-notification",
+      "path": "pitfall/history-view-yearly-partition-pitfall"
+    },
+    {
+      "slug": "jackson-version-pinning-2.17.1",
+      "category": "pitfall",
+      "summary": "Jackson must be pinned via Gradle resolutionStrategy across all com.fasterxml.jackson.* groups to avoid NoSuchMethodError from transitive version drift",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/jackson-version-pinning-2.17.1"
+    },
+    {
+      "slug": "jacoco-sonar-exclusion-policy",
+      "category": "decision",
+      "summary": "Single exclusion list drives Jacoco + Sonar + test excludes; generated/boilerplate code never counts toward coverage",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "decision/jacoco-sonar-exclusion-policy",
+      "linked_skills": [
+        "querydsl-q-class-exclusion-pattern"
+      ]
+    },
+    {
+      "slug": "jar-task-disabled-bootjar-only",
+      "category": "arch",
+      "summary": "Gradle `jar` task is disabled so only `bootJar` produces an artifact — CI/Docker consumers never receive an ambiguous plain JAR",
+      "confidence": "medium",
+      "source_project": "lucida-audit",
+      "path": "arch/jar-task-disabled-bootjar-only"
+    },
+    {
+      "slug": "java-21-upgrade-rationale",
+      "category": "decision",
+      "summary": "Java 17 → 21 + Spring Boot 3.5.x upgrade rationale and required Gradle/JVM flag adjustments",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "decision/java-21-upgrade-rationale",
+      "linked_skills": [
+        "java-21-upgrade-rationale"
+      ]
+    },
+    {
+      "slug": "jdbc-template-var-xml-escape-bypass",
+      "category": "pitfall",
+      "summary": "When the template engine XML-escapes values but the downstream channel is raw SQL / plain text, the escaped `&amp; &lt; &gt;` leaks into stored data",
+      "confidence": "medium",
+      "source_project": "lucida-notification",
+      "path": "pitfall/jdbc-template-var-xml-escape-bypass"
+    },
+    {
+      "slug": "kafka-1h-topic-and-nonmetric-pool",
+      "category": "arch",
+      "summary": "Raw alarm path uses a 1-hour-retention Kafka topic and a dedicated non-metric thread pool - isolates alarm latency from batch ingest",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "arch/kafka-1h-topic-and-nonmetric-pool",
+      "linked_skills": [
+        "kafka-consumer-semaphore-chunking"
+      ]
+    },
+    {
+      "slug": "kafka-error-handling-deserializer-fallback",
+      "category": "pitfall",
+      "summary": "Wrap Avro/JSON deserializers in ErrorHandlingDeserializer so a single bad record doesn't poison the consumer and crash-loop the container",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/kafka-error-handling-deserializer-fallback"
+    },
+    {
+      "slug": "latest-availability-deletion-risk",
+      "category": "pitfall",
+      "summary": "Latest-availability collection can lose data when upstream source is stale but not actually missing",
+      "confidence": "high",
+      "source_project": "lucida-measurement",
+      "path": "pitfall/latest-availability-deletion-risk",
+      "linked_skills": [
+        "availability-ttl-punctuate-processor"
+      ]
+    },
+    {
+      "slug": "live-chart-timestamp-normalization",
+      "category": "api",
+      "summary": "LIVE charts accept normalizeTimestamp + normalizeIntervalMs to align per-agent millisecond offsets into a single x-axis",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "api/live-chart-timestamp-normalization"
+    },
+    {
+      "slug": "live-mode-aggregation-exceptions",
+      "category": "arch",
+      "summary": "LIVE mode reads raw by default, but equalizer/multi-resource/TopN charts still aggregate raw at query time",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "arch/live-mode-aggregation-exceptions"
+    },
+    {
+      "slug": "mongodb-exclude-system-databases",
+      "category": "domain",
+      "summary": "When enumerating tenant databases in a shared MongoDB cluster, filter out admin/config/local plus third-party DBs (yorkie-meta, migration) to avoid touching shared state",
+      "confidence": "medium",
+      "source_project": "lucida-audit",
+      "path": "domain/mongodb-exclude-system-databases"
+    },
+    {
+      "slug": "one-default-template-per-type-rule",
+      "category": "domain",
+      "summary": "Exactly one default message template may exist per notification type; creating a second default is rejected, but editing the existing default is allowed",
+      "confidence": "high",
+      "source_project": "lucida-notification",
+      "path": "domain/one-default-template-per-type-rule"
+    },
+    {
+      "slug": "period-interval-naming-convention",
+      "category": "domain",
+      "summary": "Period.Mode names encode unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not monthly",
+      "confidence": "medium",
+      "source_project": "lucida-measurement",
+      "path": "domain/period-interval-naming-convention",
+      "linked_skills": [
+        "period-mode-enum-config"
       ]
     },
     {
@@ -1402,142 +1641,23 @@
       ]
     },
     {
-      "slug": "latest-availability-deletion-risk",
-      "category": "pitfall",
-      "summary": "Latest-availability collection can lose data when upstream source is stale but not actually missing",
-      "confidence": "high",
-      "source_project": "lucida-measurement",
-      "path": "pitfall/latest-availability-deletion-risk",
-      "linked_skills": [
-        "availability-ttl-punctuate-processor"
-      ]
-    },
-    {
-      "slug": "live-mode-aggregation-exceptions",
-      "category": "arch",
-      "summary": "LIVE mode reads raw by default, but equalizer/multi-resource/TopN charts still aggregate raw at query time",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "arch/live-mode-aggregation-exceptions"
-    },
-    {
-      "slug": "period-interval-naming-convention",
-      "category": "domain",
-      "summary": "Period.Mode names encode unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not monthly",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "domain/period-interval-naming-convention",
-      "linked_skills": [
-        "period-mode-enum-config"
-      ]
-    },
-    {
-      "slug": "jacoco-sonar-exclusion-policy",
+      "slug": "system-notification-shared-with-2fa-and-password-find",
       "category": "decision",
-      "summary": "Single exclusion list drives Jacoco + Sonar + test excludes; generated/boilerplate code never counts toward coverage",
+      "summary": "The `system_notification` config (SMTP/SMS credentials) is intentionally shared between 2FA and password-find flows rather than duplicated per flow",
       "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "decision/jacoco-sonar-exclusion-policy",
-      "linked_skills": [
-        "querydsl-q-class-exclusion-pattern"
-      ]
+      "source_project": "lucida-notification",
+      "path": "decision/system-notification-shared-with-2fa-and-password-find"
     },
     {
-      "slug": "kafka-1h-topic-and-nonmetric-pool",
-      "category": "arch",
-      "summary": "Raw alarm path uses a 1-hour-retention Kafka topic and a dedicated non-metric thread pool - isolates alarm latency from batch ingest",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "arch/kafka-1h-topic-and-nonmetric-pool",
-      "linked_skills": [
-        "kafka-consumer-semaphore-chunking"
-      ]
-    },
-    {
-      "slug": "confid-vs-resourceid-routing",
-      "category": "api",
-      "summary": "Queries support both configIds (policy scope) and resourceId (agent scope); filter routes to different Mongo match fields",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "api/confid-vs-resourceid-routing"
-    },
-    {
-      "slug": "live-chart-timestamp-normalization",
-      "category": "api",
-      "summary": "LIVE charts accept normalizeTimestamp + normalizeIntervalMs to align per-agent millisecond offsets into a single x-axis",
-      "confidence": "medium",
-      "source_project": "lucida-measurement",
-      "path": "api/live-chart-timestamp-normalization"
-    },
-    {
-      "slug": "java-21-upgrade-rationale",
-      "category": "decision",
-      "summary": "Java 17 → 21 + Spring Boot 3.5.x upgrade rationale and required Gradle/JVM flag adjustments",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "decision/java-21-upgrade-rationale",
-      "linked_skills": [
-        "java-21-upgrade-rationale"
-      ]
-    },
-    {
-      "slug": "jackson-version-pinning-2.17.1",
+      "slug": "topn-unwind-match-to-filter",
       "category": "pitfall",
-      "summary": "Jackson must be pinned via Gradle resolutionStrategy across all com.fasterxml.jackson.* groups to avoid NoSuchMethodError from transitive version drift",
+      "summary": "TopN Mongo pipeline using $unwind+$match explodes documents; push predicate into $filter first",
       "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "pitfall/jackson-version-pinning-2.17.1"
-    },
-    {
-      "slug": "gradle-avro-plugin-config",
-      "category": "arch",
-      "summary": "davidmc24 avro-gradle-plugin config — createSetters=false + fieldVisibility=PRIVATE enforces immutable generated event schemas",
-      "confidence": "medium",
-      "source_project": "lucida-audit",
-      "path": "arch/gradle-avro-plugin-config"
-    },
-    {
-      "slug": "audit-changed-prev-after-field-swap-bug",
-      "category": "pitfall",
-      "summary": "Audit diff logic had before/after swapped — iterating the wrong doc and putting the wrong value into changedPrev corrupted the audit trail silently",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "pitfall/audit-changed-prev-after-field-swap-bug",
+      "source_project": "lucida-measurement",
+      "path": "pitfall/topn-unwind-match-to-filter",
       "linked_skills": [
-        "audit-change-data-capture-pattern"
+        "mongo-aggregation-filter-optimization"
       ]
-    },
-    {
-      "slug": "kafka-error-handling-deserializer-fallback",
-      "category": "pitfall",
-      "summary": "Wrap Avro/JSON deserializers in ErrorHandlingDeserializer so a single bad record doesn't poison the consumer and crash-loop the container",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "pitfall/kafka-error-handling-deserializer-fallback"
-    },
-    {
-      "slug": "mongodb-exclude-system-databases",
-      "category": "domain",
-      "summary": "When enumerating tenant databases in a shared MongoDB cluster, filter out admin/config/local plus third-party DBs (yorkie-meta, migration) to avoid touching shared state",
-      "confidence": "medium",
-      "source_project": "lucida-audit",
-      "path": "domain/mongodb-exclude-system-databases"
-    },
-    {
-      "slug": "jar-task-disabled-bootjar-only",
-      "category": "arch",
-      "summary": "Gradle `jar` task is disabled so only `bootJar` produces an artifact — CI/Docker consumers never receive an ambiguous plain JAR",
-      "confidence": "medium",
-      "source_project": "lucida-audit",
-      "path": "arch/jar-task-disabled-bootjar-only"
-    },
-    {
-      "slug": "commons-logging-exclusion-strategy",
-      "category": "arch",
-      "summary": "Globally exclude commons-logging, log4j, and slf4j-log4j12 in Gradle so SLF4J+Logback is the only logging backend on the classpath",
-      "confidence": "high",
-      "source_project": "lucida-audit",
-      "path": "arch/commons-logging-exclusion-strategy"
     }
   ]
 }
