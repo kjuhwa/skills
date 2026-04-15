@@ -743,6 +743,36 @@
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "frontend/zustand-preset-manager"
+    },
+    {
+      "name": "distributed-lock-mongodb",
+      "description": "MongoDB findAndModify-based distributed lock with TTL expiry, owner tagging, and retry loop for multi-instance Spring Boot services.",
+      "category": "backend",
+      "tags": "[mongodb, distributed-lock, mutex, spring-boot, multi-instance, ttl]",
+      "triggers": "[\"distributed lock\", \"mutex\", \"mongo lock\", \"cross-instance lock\"]",
+      "source_project": "lucida-meta",
+      "version": "1.0.0",
+      "path": "backend/distributed-lock-mongodb"
+    },
+    {
+      "name": "message-loader-gated-on-database-ready",
+      "description": "Gate i18n/seed loading on database readiness + per-tenant distributed lock so the first instance wins initialization in a multi-replica rollout.",
+      "category": "backend",
+      "tags": "[multi-tenant, bootstrap, distributed-lock, readiness, seeding, kafka]",
+      "triggers": "[\"seed race\", \"multi-replica init\", \"tenant bootstrap\", \"first instance wins\"]",
+      "source_project": "lucida-meta",
+      "version": "1.0.0",
+      "path": "backend/message-loader-gated-on-database-ready"
+    },
+    {
+      "name": "spring-testcontainers-multitenant-base",
+      "description": "Base test class that boots Testcontainers (Mongo + Kafka), pre-sets tenant/auth context, and forces JVM halt in AfterAll to avoid leaked containers.",
+      "category": "testing",
+      "tags": "[spring-boot, testcontainers, junit5, multi-tenant, tenant-context, mockitobean]",
+      "triggers": "[\"testcontainers\", \"base test\", \"tenant context test\", \"spring integration test\"]",
+      "source_project": "lucida-meta",
+      "version": "1.0.0",
+      "path": "testing/spring-testcontainers-multitenant-base"
     }
   ]
 }
