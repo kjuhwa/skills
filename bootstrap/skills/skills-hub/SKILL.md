@@ -68,6 +68,9 @@ Registry entry format:
 | `/skills_extract` | **Full project scan** → generate skill drafts in `.skills-draft/` |
 | `/skills_extract_session` | **Current session only** → drafts from recent changes |
 | `/skills_publish` | Review drafts → push to remote as branch + optional PR |
+| `/skills_merge <selectors...>` | Combine 2+ remote skills/knowledge into one new draft (read-only on remote) |
+| `/skills_split <selector>` | Decompose one remote skill/knowledge into N smaller drafts (read-only on remote) |
+| `/skills_refactor` | Scan remote for merge + split candidates and produce both kinds of drafts in one pass |
 | `/skills_finalize` | End-of-project: extract → review → publish → cleanup drafts |
 | `/skills_cleanup` | Remote maintenance: dedupe, re-index, stale removal (dry-run default) |
 | `/skills_remove <name>` | Uninstall local skill |
