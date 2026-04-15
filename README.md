@@ -38,12 +38,9 @@ bootstrap/
     knowledge_search.md             # search knowledge and optionally inject matches into context
     knowledge_publish.md            # review knowledge drafts → push to remote branch (no version tags)
     publish_all.md                  # one-shot publish of both skills and knowledge on a single branch / PR
-    merge/
-      skills_merge.md               # combine 2+ remote entries into one new draft (/merge:skills_merge)
-    split/
-      skills_split.md               # decompose one remote entry into N focused drafts (/split:skills_split)
-    refactor/
-      skills_refactor.md            # scan remote for merge + split candidates in one pass (/refactor:skills_refactor)
+    skills_merge.md                 # combine 2+ remote entries into one new draft (/skills_merge)
+    skills_split.md                 # decompose one remote entry into N focused drafts (/skills_split)
+    skills_refactor.md              # scan remote for merge + split candidates in one pass (/skills_refactor)
   skills/
     skills-hub/SKILL.md       # umbrella OMC skill
   install.sh                  # bash installer
@@ -108,9 +105,9 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/knowledge_search <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
 | `/knowledge_publish [--all/--draft=.../--pr]` | Review knowledge drafts → push to a feature branch, update `registry.json` knowledge section. No version tags. | remote branch |
 | `/publish_all [--all/--pr/--only ...]` | One-shot publish of BOTH `.skills-draft/` and `.knowledge-draft/` on a single branch + PR, knowledge-first commit order for cross-link resolution | remote branch + skill tags |
-| `/merge:skills_merge <selector1> <selector2> [...]` | Combine 2+ remote skills/knowledge into one new draft. Supports cross-kind (skill+knowledge), version pinning (`@v1.2.0`), mandatory `merged_from` provenance | local drafts |
-| `/split:skills_split <selector> [--by=section\|step\|concern\|auto]` | Decompose one remote entry into N focused drafts. Refuses trivially-small inputs; records `split_from`/`replaces`/`siblings` | local drafts |
-| `/refactor:skills_refactor [--scope/--merge-threshold/...]` | Scan remote for merge + split candidates in one pass, delegate to the two commands above. Bias toward merge when an entry qualifies for both | local drafts |
+| `/skills_merge <selector1> <selector2> [...]` | Combine 2+ remote skills/knowledge into one new draft. Supports cross-kind (skill+knowledge), version pinning (`@v1.2.0`), mandatory `merged_from` provenance | local drafts |
+| `/skills_split <selector> [--by=section\|step\|concern\|auto]` | Decompose one remote entry into N focused drafts. Refuses trivially-small inputs; records `split_from`/`replaces`/`siblings` | local drafts |
+| `/skills_refactor [--scope/--merge-threshold/...]` | Scan remote for merge + split candidates in one pass, delegate to the two commands above. Bias toward merge when an entry qualifies for both | local drafts |
 
 ### Typical Workflow
 
@@ -294,7 +291,7 @@ Once the registry has grown, three commands help keep it coherent. All three are
 
 ### Selectors
 
-`/merge:skills_merge` and `/split:skills_split` accept selectors pointing to existing remote entries:
+`/skills_merge` and `/skills_split` accept selectors pointing to existing remote entries:
 
 - `skill:<category>/<name>` — e.g. `skill:backend/retry-with-jitter-backoff`
 - `knowledge:<category>/<slug>` — e.g. `knowledge:pitfall/retry-storms-without-jitter`
@@ -304,7 +301,7 @@ Once the registry has grown, three commands help keep it coherent. All three are
 ### Merge — consolidate overlapping entries
 
 ```
-/merge:skills_merge skill:backend/retry-with-jitter skill:backend/retry-on-5xx \
+/skills_merge skill:backend/retry-with-jitter skill:backend/retry-on-5xx \
     knowledge:pitfall/retry-storms --name=unified-retry-strategy
 ```
 
@@ -313,7 +310,7 @@ Produces one new skill draft with the union of problems, a single unified `Patte
 ### Split — break up multi-purpose entries
 
 ```
-/split:skills_split skill:backend/retry-strategy --by=concern
+/skills_split skill:backend/retry-strategy --by=concern
 ```
 
 Strategies: `section` (split by topical `##` headers), `step` (skills-only — per-step decomposition), `concern` (cluster paragraphs by dominant tag), `auto` (try `concern` → `section` → `step`). Refuses to split entries below ~400 body lines. Each child draft inherits confidence (knowledge) and lists its `siblings` for navigation. Oversize alone doesn't qualify — the detector must find ≥2 clean clusters.
@@ -321,12 +318,12 @@ Strategies: `section` (split by topical `##` headers), `step` (skills-only — p
 ### Refactor — one pass, both operations
 
 ```
-/refactor:skills_refactor --scope=backend --merge-threshold=0.75
+/skills_refactor --scope=backend --merge-threshold=0.75
 ```
 
-Scans the remote, finds merge candidates (tag + content similarity clusters) **and** split candidates (large entries with ≥2 concerns), resolves overlap (merge wins when an entry qualifies for both), presents a single review table, then delegates to `/merge:skills_merge` and `/split:skills_split` for accepted candidates. Results aggregate into `.skills-draft/_REFACTOR_MANIFEST.md`. Ship with `/publish_all --pr` so cross-links land in one branch.
+Scans the remote, finds merge candidates (tag + content similarity clusters) **and** split candidates (large entries with ≥2 concerns), resolves overlap (merge wins when an entry qualifies for both), presents a single review table, then delegates to `/skills_merge` and `/skills_split` for accepted candidates. Results aggregate into `.skills-draft/_REFACTOR_MANIFEST.md`. Ship with `/publish_all --pr` so cross-links land in one branch.
 
-Use `/refactor:skills_refactor` periodically (monthly, or after a burst of publish activity). For targeted single operations, call `/merge:skills_merge` or `/split:skills_split` directly — they're cheaper.
+Use `/skills_refactor` periodically (monthly, or after a burst of publish activity). For targeted single operations, call `/skills_merge` or `/skills_split` directly — they're cheaper.
 
 ---
 
