@@ -18,22 +18,34 @@ function parseFm(md) {
   if (!md.startsWith('---')) return {};
   const end = md.indexOf('\n---', 3);
   if (end === -1) return {};
-  const meta = {}; let cur = null;
+  const meta = {}; let cur = null, blockScalar = null, blockIndent = -1, blockLines = [];
+  const flushBlock = () => { if (blockScalar) { meta[blockScalar] = blockLines.map(l=>l.slice(blockIndent)).join(' ').replace(/\s+/g,' ').trim(); blockScalar=null; blockLines=[]; blockIndent=-1; } };
   for (const line of md.slice(3, end).split(/\r?\n/)) {
+    if (blockScalar) {
+      const lead = line.match(/^(\s*)/)[1].length;
+      if (blockIndent === -1 && line.trim()) { blockIndent = lead; blockLines.push(line); continue; }
+      if (line.trim() && lead >= blockIndent) { blockLines.push(line); continue; }
+      flushBlock();
+    }
     if (!line.trim()) continue;
     if (!/^\s/.test(line)) {
       const m = line.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
       if (!m) continue; cur = m[1];
       const v = m[2];
-      if (v === '') meta[cur] = {};
+      if (v === '|' || v === '>' || v === '|-' || v === '>-') { blockScalar = cur; blockIndent = -1; blockLines = []; }
+      else if (v === '') meta[cur] = {};
       else if (v.startsWith('[') && v.endsWith(']')) {
         meta[cur] = v.slice(1,-1).split(',').map(s=>s.trim().replace(/^['"]|['"]$/g,'')).filter(Boolean);
       } else meta[cur] = v.replace(/^['"]|['"]$/g,'');
     } else if (cur) {
-      const s = line.trim().match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
+      const trimmed = line.trim();
+      const li = trimmed.match(/^-\s+(.*)$/);
+      if (li) { if (!Array.isArray(meta[cur])) meta[cur] = []; meta[cur].push(li[1].replace(/^['"]|['"]$/g,'')); continue; }
+      const s = trimmed.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
       if (s) { if (typeof meta[cur] !== 'object' || Array.isArray(meta[cur])) meta[cur] = {}; meta[cur][s[1]] = s[2].replace(/^['"]|['"]$/g,''); }
     }
   }
+  flushBlock();
   return meta;
 }
 

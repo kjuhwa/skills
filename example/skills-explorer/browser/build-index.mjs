@@ -16,15 +16,29 @@ function parseFrontmatter(md) {
   const fmRaw = md.slice(3, end).trim();
   const body = md.slice(end + 4).replace(/^\r?\n/, '');
   const meta = {};
-  let currentKey = null;
+  let currentKey = null, blockScalar = null, blockIndent = -1, blockLines = [];
+  const flushBlock = () => {
+    if (blockScalar) {
+      meta[blockScalar] = blockLines.map(l => l.slice(blockIndent)).join(' ').replace(/\s+/g, ' ').trim();
+      blockScalar = null; blockLines = []; blockIndent = -1;
+    }
+  };
   for (const line of fmRaw.split(/\r?\n/)) {
+    if (blockScalar) {
+      const lead = line.match(/^(\s*)/)[1].length;
+      if (blockIndent === -1 && line.trim()) { blockIndent = lead; blockLines.push(line); continue; }
+      if (line.trim() && lead >= blockIndent) { blockLines.push(line); continue; }
+      flushBlock();
+    }
     if (!line.trim()) continue;
     if (!/^\s/.test(line)) {
       const m = line.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
       if (!m) continue;
       const [, k, v] = m;
       currentKey = k;
-      if (v === '') meta[k] = {};
+      if (v === '|' || v === '>' || v === '|-' || v === '>-') {
+        blockScalar = k; blockIndent = -1; blockLines = [];
+      } else if (v === '') meta[k] = {};
       else if (v.startsWith('[') && v.endsWith(']')) {
         meta[k] = v.slice(1, -1)
           .split(',')
@@ -34,7 +48,14 @@ function parseFrontmatter(md) {
         meta[k] = v.replace(/^['"]|['"]$/g, '');
       }
     } else if (currentKey) {
-      const sub = line.trim().match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
+      const trimmed = line.trim();
+      const listItem = trimmed.match(/^-\s+(.*)$/);
+      if (listItem) {
+        if (!Array.isArray(meta[currentKey])) meta[currentKey] = [];
+        meta[currentKey].push(listItem[1].replace(/^['"]|['"]$/g, ''));
+        continue;
+      }
+      const sub = trimmed.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
       if (sub) {
         if (typeof meta[currentKey] !== 'object' || Array.isArray(meta[currentKey])) {
           meta[currentKey] = {};
@@ -43,6 +64,7 @@ function parseFrontmatter(md) {
       }
     }
   }
+  flushBlock();
   return { meta, body };
 }
 

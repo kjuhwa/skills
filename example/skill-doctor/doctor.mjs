@@ -28,26 +28,49 @@ function parseFrontmatter(md) {
   const fmRaw = md.slice(3, end).trim();
   const body = md.slice(end + 4).replace(/^\r?\n/, '');
   const meta = {};
-  let cur = null;
+  let cur = null, blockScalar = null, blockIndent = -1, blockLines = [];
+  const flushBlock = () => {
+    if (blockScalar) {
+      meta[blockScalar] = blockLines.map(l => l.slice(blockIndent)).join(' ').replace(/\s+/g, ' ').trim();
+      blockScalar = null; blockLines = []; blockIndent = -1;
+    }
+  };
   for (const line of fmRaw.split(/\r?\n/)) {
+    if (blockScalar) {
+      const lead = line.match(/^(\s*)/)[1].length;
+      if (blockIndent === -1 && line.trim()) { blockIndent = lead; blockLines.push(line); continue; }
+      if (line.trim() && lead >= blockIndent) { blockLines.push(line); continue; }
+      flushBlock();
+    }
     if (!line.trim()) continue;
     if (!/^\s/.test(line)) {
       const m = line.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
       if (!m) continue;
       cur = m[1];
       const v = m[2];
-      if (v === '') meta[cur] = {};
-      else if (v.startsWith('[') && v.endsWith(']')) {
+      if (v === '|' || v === '>' || v === '|-' || v === '>-') {
+        blockScalar = cur; blockIndent = -1; blockLines = [];
+      } else if (v === '') {
+        meta[cur] = {};
+      } else if (v.startsWith('[') && v.endsWith(']')) {
         meta[cur] = v.slice(1, -1).split(',').map(s => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
       } else meta[cur] = v.replace(/^['"]|['"]$/g, '');
     } else if (cur) {
-      const sub = line.trim().match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
+      const trimmed = line.trim();
+      const li = trimmed.match(/^-\s+(.*)$/);
+      if (li) {
+        if (!Array.isArray(meta[cur])) meta[cur] = [];
+        meta[cur].push(li[1].replace(/^['"]|['"]$/g, ''));
+        continue;
+      }
+      const sub = trimmed.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
       if (sub) {
         if (typeof meta[cur] !== 'object' || Array.isArray(meta[cur])) meta[cur] = {};
         meta[cur][sub[1]] = sub[2].replace(/^['"]|['"]$/g, '');
       }
     }
   }
+  flushBlock();
   return { meta, body, fmRaw };
 }
 
