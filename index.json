@@ -25,8 +25,9 @@
       "description": "When an async subagent is reported \"completed\" but its final message hints at unfinished work (e.g., \"Now let me build…\"), verify the expected on-disk artifact before moving on; if missing, use SendMessage to the agent id to finalize rather than re-dispatching a fresh agent.",
       "category": "workflow",
       "tags": "[agents, async, verification, send-message]",
-      "triggers": "",
+      "triggers": "[\"\\\"agent completed but artifact missing\\\"\", \"\\\"subagent incomplete output\\\"\"]",
       "scope": "user",
+      "source_project": "",
       "version": "1.0.0",
       "path": "workflow/async-subagent-resume-on-missing-artifact"
     },
@@ -45,7 +46,7 @@
     },
     {
       "name": "availability-ttl-punctuate-processor",
-      "description": "Kafka Streams processor schedules a wall-clock punctuate for TTL eviction of the state store, and emits downstream only on value change. Wall-clock (not stream-time) so idle inputs still trigger cleanup.",
+      "description": "Kafka Streams processor schedules a wall-clock `punctuate` for TTL eviction of the state store, and emits downstream only on value change. Wall-clock (not stream-time) so idle inputs still trigger cleanup.",
       "category": "backend",
       "tags": "[kafka-streams, punctuate, wall-clock, TTL, state-store, change-detection]",
       "triggers": "[\"PunctuationType.WALL_CLOCK_TIME\", \"state store TTL\", \"latest materialized view\", \"change-only forward\"]",
@@ -58,7 +59,7 @@
     },
     {
       "name": "avro-event-with-change-flags",
-      "description": "Design Kafka Avro event schemas that carry an actionType enum plus boolean change flags per mutable section so consumers branch cheaply without diffing payloads.",
+      "description": "Design Kafka Avro event schemas that carry an actionType enum plus boolean \"changed\" flags per mutable section so consumers can branch cheaply without diffing payloads.",
       "category": "backend",
       "tags": "[kafka, avro, event-sourcing, schema, change-flag]",
       "triggers": "[\"parentChanged\", \"tagFiltersChanged\", \"actionType INSERT UPDATE DELETE\", \"Avro event schema\"]",
@@ -80,8 +81,8 @@
       "name": "axios-refresh-queue-zustand",
       "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
       "category": "frontend",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"axios\", \"jwt\", \"refresh-token\", \"interceptor\", \"zustand\", \"auth\"]",
+      "triggers": "[\"axios 401 refresh\", \"token refresh queue\", \"isRefreshing flag\", \"axios interceptor zustand\", \"refresh thundering herd\", \"retry original request\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "frontend/axios-refresh-queue-zustand"
@@ -98,7 +99,7 @@
     },
     {
       "name": "bootrun-jvmargs-jdwp-opens-java21",
-      "description": "Bake JDWP debug port and --add-opens flags into Gradle bootRun for Java 17/21-compatible local runtime",
+      "description": "Bake JDWP debug port and required --add-opens flags into Gradle bootRun so every dev gets the same Java 17/21-compatible local runtime",
       "category": "backend",
       "tags": "[gradle, spring-boot, java21, debug, jvm-args]",
       "triggers": "Local bootRun needs IDE-attach debug and Java 17/21 reflective access without per-dev run configs",
@@ -111,8 +112,9 @@
       "description": "For bulk Java annotation work (200+ @Operation methods across many controllers, or 500+ @Schema fields across many DTOs), dispatch N parallel executor subagents with disjoint file buckets. Leader runs a single compile at the end; agents never run gradle themselves.",
       "category": "workflow",
       "tags": "[parallel-agents, java, annotation, spring, swagger, gradle]",
-      "triggers": "",
+      "triggers": "[\"\\\"bulk annotation\\\"\", \"\\\"전수 적용\\\"\", \"\\\"controller 전체 주석\\\"\", \"\\\"DTO @Schema 전수\\\"\"]",
       "scope": "user",
+      "source_project": "",
       "version": "1.0.0",
       "path": "workflow/bucket-parallel-java-annotation-dispatch"
     },
@@ -138,7 +140,7 @@
     },
     {
       "name": "cache-variance-ttl-jitter",
-      "description": "Add +/-N% random jitter to cache TTLs so keys written together do not all expire in the same tick, avoiding synchronized recompute storms",
+      "description": "Add ±N% random jitter to cache TTLs so keys written together don't all expire in the same tick, avoiding synchronized recompute storms",
       "category": "backend",
       "tags": "",
       "triggers": "",
@@ -158,7 +160,7 @@
     },
     {
       "name": "challenge-response-auth-redis-ttl",
-      "description": "Replay-resistant two-step login with Redis-TTL-backed random challenge and bounded attempts",
+      "description": "Replay-resistant two-step login — server issues a short-lived random challenge stored in Redis with TTL, client signs/hashes response, bounded attempts per key",
       "category": "backend",
       "tags": "[authentication, redis, challenge-response, security, replay-protection]",
       "triggers": "Login flow needs replay-resistant credential exchange without full TLS client-cert or OAuth2 overhead",
@@ -178,13 +180,23 @@
     },
     {
       "name": "chunked-resource-id-batch-fetch",
-      "description": "Split large ID lists into ~1000-item chunks before querying DB or Elasticsearch to avoid bind-parameter limits (MSSQL 2100, Oracle 1000) and OOM on bulk responses.",
+      "description": "Split large ID lists into ~1000-item chunks before querying DB or Elasticsearch to avoid bind-parameter limits (MSSQL 2100, Oracle 1000) and OOM on bulk responses",
       "category": "backend",
       "tags": "[batch, chunk, jdbc, elasticsearch, terms-query, bind-parameter, oracle, mssql]",
-      "triggers": "[\"WHERE id IN\", \"bind parameter limit\", \"terms query too large\", \"batch fetch ids\"]",
+      "triggers": "[\"`WHERE id IN (?, ?, …)` with thousands of IDs\", \"ES `terms` query near 65536-item ceiling\", \"monitor/report accepts an unbounded target ID list\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/chunked-resource-id-batch-fetch"
+    },
+    {
+      "name": "clang-tidy-integration-workflow",
+      "description": "Automated static analysis pipeline using clang-tidy with project-specific checks and suppression strategies for large multi-file C++ codebases.",
+      "category": "devops",
+      "tags": "[cpp, static-analysis, clang-tidy, ci, linting]",
+      "triggers": "",
+      "source_project": "bitcoin",
+      "version": "1.0.0",
+      "path": "devops/clang-tidy-integration-workflow"
     },
     {
       "name": "claude-cli-from-jvm-via-node-wrapper",
@@ -198,33 +210,43 @@
     },
     {
       "name": "claude-code-skill-scaffold",
-      "description": "Claude Code 스킬 표준 구조(SKILL.md + prompts/ + scripts/ + references/)를 자동 생성하는 스캐폴딩.",
-      "category": "tooling",
+      "description": "[Tooling] Claude Code 스킬 표준 구조(SKILL.md + prompts/ + scripts/ + references/)를 자동 생성하는 스캐폴딩.",
+      "category": "devops",
       "tags": "[claude-code, skill, scaffold, plugin]",
       "triggers": "[\"skill-create\", \"new skill\", \"scaffold skill\", \"SKILL.md boilerplate\"]",
       "source_project": "nkia-skills",
       "version": "1.0.0",
-      "path": "tooling/claude-code-skill-scaffold"
+      "path": "devops/claude-code-skill-scaffold"
     },
     {
       "name": "claude-plugin-catalog-publish",
-      "description": "로컬 스킬을 원격 Git repo에 배포하고 AGENTS.md 카탈로그를 자동 갱신하는 publish 플로우 (shallow-clone + mktemp + cleanup 패턴).",
-      "category": "tooling",
+      "description": "[Tooling] 로컬 스킬을 원격 Git repo에 배포하고 AGENTS.md 카탈로그를 자동 갱신하는 publish 플로우.",
+      "category": "devops",
       "tags": "[claude-code, plugin, publish, git, catalog, agents-md]",
       "triggers": "[\"skill-publish\", \"publish plugin\", \"catalog update\", \"claude plugin deploy\"]",
       "source_project": "nkia-skills",
       "version": "1.0.0",
-      "path": "tooling/claude-plugin-catalog-publish"
+      "path": "devops/claude-plugin-catalog-publish"
     },
     {
       "name": "collection-routing-by-period",
-      "description": "Single resolver maps (Period.Mode, from, to) to a time-series collection (raw view / 1-min / hour-with-monthly-suffix / day). Callers never hardcode collection names.",
+      "description": "Single resolver maps `(Period.Mode, from, to)` → time-series collection (raw view / 1-min / hour-with-monthly-suffix / day). Callers never hardcode collection names.",
       "category": "backend",
       "tags": "[mongodb, time-series, routing, period, view]",
       "triggers": "[\"raw view\", \"hour collection\", \"time-series routing\", \"period mode\", \"collection suffix\"]",
       "source_project": "lucida-measurement",
       "version": "1.0.0",
       "path": "backend/collection-routing-by-period"
+    },
+    {
+      "name": "compact-binary-wire-protocol-with-variable-length-encoding",
+      "description": "Define a custom binary wire format with variable-length integer encodings (e.g. 3-byte / 5-byte) to minimize UDP packet size for high-volume metric or telemetry streams",
+      "category": "backend",
+      "tags": "[protocol, binary, varint, udp, telemetry, perf]",
+      "triggers": "",
+      "source_project": "scouter",
+      "version": "1.0.0",
+      "path": "backend/compact-binary-wire-protocol-with-variable-length-encoding"
     },
     {
       "name": "concurrent-jdbc-pool-datasource-lifecycle",
@@ -238,7 +260,7 @@
     },
     {
       "name": "conditional-feature-flag-rollout",
-      "description": "@ConditionalOnProperty to coexist legacy and new Bean implementations, switch via single property — rollback-friendly",
+      "description": "@ConditionalOnProperty로 구/신 구현을 공존시키고 런타임 속성 하나로 전환하는 점진적 롤아웃 패턴",
       "category": "backend",
       "tags": "",
       "triggers": "Large architecture swap (sync→event) needing gradual rollout + instant rollback",
@@ -257,19 +279,39 @@
       "path": "backend/custom-actuator-command-whitelist"
     },
     {
+      "name": "debug-lockorder-detection-system",
+      "description": "Runtime lock-order deadlock detection via a DEBUG_LOCKORDER compile flag that tracks lock acquisition order and reports circular dependencies.",
+      "category": "debug",
+      "tags": "[cpp, threading, deadlock, debugging, instrumentation]",
+      "triggers": "",
+      "source_project": "bitcoin",
+      "version": "1.0.0",
+      "path": "debug/debug-lockorder-detection-system"
+    },
+    {
       "name": "definition-registry-helper-cache",
       "description": "Static helper class with ConcurrentHashMap caches populated at startup by @PostConstruct providers, enabling zero-allocation hot-path lookups via static getters",
-      "triggers": "",
+      "category": "arch",
+      "tags": "[spring, cache, static, concurrenthashmap, performance]",
+      "triggers": "[\"static helper cache\", \"ConcurrentHashMap static cache\", \"PostConstruct populate static map\", \"definition helper lookup\", \"zero allocation hot path cache\"]",
       "scope": "user",
       "source_project": "lucida-domain-sms",
       "version": "0.1.0-draft",
-      "tags": "[spring, cache, static, concurrenthashmap, performance]",
-      "category": "arch",
       "path": "arch/definition-registry-helper-cache"
     },
     {
+      "name": "deterministic-coverage-verification",
+      "description": "Run LLVM-instrumented tests multiple times and verify identical coverage reports — catches compiler/env non-determinism that can mask real bugs.",
+      "category": "testing",
+      "tags": "[coverage, llvm, testing, determinism, ci]",
+      "triggers": "",
+      "source_project": "bitcoin",
+      "version": "1.0.0",
+      "path": "testing/deterministic-coverage-verification"
+    },
+    {
       "name": "dev-controller-tenant-wrapping-helper",
-      "description": "Extract repeated TenantContext+JWT wrapping in Dev controllers into a @Profile(local) helper with functional interfaces",
+      "description": "Dev/로컬 전용 컨트롤러의 테넌트+JWT 반복 래핑을 함수형 인터페이스 + 헬퍼 컴포넌트로 추출",
       "category": "backend",
       "tags": "",
       "triggers": "*ControllerDev.java files repeat TenantContextHolder.set + JWT + try-finally",
@@ -339,7 +381,7 @@
     },
     {
       "name": "dry-run-confirm-retry-write-flow",
-      "description": "트래커/외부 API 쓰기 작업의 공통 플로우: 미리보기 → 사용자 확인 → 쓰기 → 재시도. PIMS/Jira/Redmine 등 부작용 있는 API에 적용.",
+      "description": "[Backend] 트래커/외부 API 쓰기 작업에 적용하는 공통 플로우: 미리보기 → 사용자 확인 → 쓰기 → 재시도.",
       "category": "backend",
       "tags": "[api, write-flow, dry-run, retry, user-confirmation, tracker]",
       "triggers": "[\"dry-run\", \"pims write\", \"external api write\", \"retry-with-confirmation\", \"tracker submit\"]",
@@ -368,11 +410,21 @@
       "path": "backend/dynamic-gridfs-template-multi-tenant"
     },
     {
+      "name": "eclipse-rcp-rich-client-for-apm-ui",
+      "description": "Build a desktop-class APM / observability client on Eclipse RCP + ZEST/GEF for high-throughput real-time visualization that HTTP + JSON browsers struggle with",
+      "category": "apm",
+      "tags": "[rcp, eclipse, desktop, apm, visualization]",
+      "triggers": "",
+      "source_project": "scouter",
+      "version": "1.0.0",
+      "path": "apm/eclipse-rcp-rich-client-for-apm-ui"
+    },
+    {
       "name": "elasticsearch-xpack-ssl-transport",
-      "description": "Gate PreBuiltXPackTransportClient vs PreBuiltTransportClient on the auth flag (not SSL flag) and configure keystore/truststore as independent X-Pack settings.",
+      "description": "Gate `PreBuiltXPackTransportClient` vs `PreBuiltTransportClient` on auth flag (not SSL flag) and configure keystore/truststore as independent ES X-Pack settings",
       "category": "backend",
       "tags": "[elasticsearch, xpack, ssl, transport-client, keystore, truststore]",
-      "triggers": "[\"xpack.security.enable\", \"PreBuiltXPackTransportClient\", \"elasticsearch ssl\", \"es transport auth\"]",
+      "triggers": "[\"connect Java client to X-Pack-secured Elasticsearch cluster\", \"production ES requires auth and optional transport TLS\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/elasticsearch-xpack-ssl-transport"
@@ -430,12 +482,12 @@
     {
       "name": "excel-export-enum-replacer",
       "description": "Use DataToBeReplace.builder() to map enum/code values to display labels before passing content to ExcelExportManager.objectToExcelAndDownload()",
-      "triggers": "",
+      "category": "backend",
+      "tags": "[spring, excel, export, enum, controller]",
+      "triggers": "[\"excel export enum replace\", \"DataToBeReplace\", \"ExcelExportManager\", \"objectToExcelAndDownload\", \"excel download controller\"]",
       "scope": "user",
       "source_project": "lucida-domain-sms",
       "version": "0.1.0-draft",
-      "tags": "[spring, excel, export, enum, controller]",
-      "category": "backend",
       "path": "backend/excel-export-enum-replacer"
     },
     {
@@ -489,11 +541,21 @@
       "path": "backend/frozen-detection-consecutive-count"
     },
     {
+      "name": "fuzz-corpus-seed-management",
+      "description": "Structured libFuzzer workflow — seed corpora in a separate asset repo, determinism verification, and reproducible crash workflows.",
+      "category": "testing",
+      "tags": "[fuzzing, libfuzzer, llvm, testing, corpus]",
+      "triggers": "",
+      "source_project": "bitcoin",
+      "version": "1.0.0",
+      "path": "testing/fuzz-corpus-seed-management"
+    },
+    {
       "name": "gacha-soft-hard-pity",
       "description": "Server-authoritative gacha with soft pity (rate ramp after N pulls), hard pity (guaranteed top rarity at M pulls), and 50/50 guarantee carryover. Split rate calculation from result resolution so probability is testable.",
       "category": "game-dev",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"gacha\", \"pity\", \"probability\", \"securerandom\", \"loot\", \"rng-fairness\"]",
+      "triggers": "[\"gacha pity system\", \"soft pity hard pity\", \"50/50 pity\", \"banner rate up\", \"rate calculator\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "game-dev/gacha-soft-hard-pity"
@@ -531,40 +593,40 @@
     {
       "name": "gradle-jacoco-exclusion-strategy",
       "description": "Curated Jacoco/Sonar exclusion patterns for Spring Boot projects — skips config/DAO/entity/generated layers and Querydsl Q-classes",
-      "category": "build",
+      "category": "devops",
       "tags": "",
       "triggers": "Setting up Jacoco coverage rules on a Spring Boot + Gradle project where generated code and infrastructure layers bloat coverage metrics",
       "source_project": "lucida-audit",
       "version": "1.0.0",
-      "path": "build/gradle-jacoco-exclusion-strategy"
+      "path": "devops/gradle-jacoco-exclusion-strategy"
     },
     {
       "name": "gradle-shared-exclusions-jacoco-sonar",
-      "description": "Single ext.exclusionPatterns list reused across jacocoTestReport, jacocoTestCoverageVerification, and sonar properties to keep coverage exclusions synchronized.",
-      "category": "build",
+      "description": "Keep Jacoco report, Jacoco coverage verification, and SonarQube exclusions in sync by defining one `exclusionPatterns` list in Gradle ext",
+      "category": "devops",
       "tags": "[gradle, jacoco, sonarqube, coverage, exclusions]",
-      "triggers": "[\"jacoco sonar exclusion drift\", \"shared exclusion patterns gradle\", \"querydsl Q class coverage\"]",
+      "triggers": "[\"jacoco and sonarqube exclusion lists drift apart\", \"adding a new package to coverage exclusions requires editing multiple blocks\", \"querydsl Q-classes / generated code leaking into coverage reports\"]",
       "source_project": "lucida-performance",
       "version": "1.0.0",
-      "path": "build/gradle-shared-exclusions-jacoco-sonar"
+      "path": "devops/gradle-shared-exclusions-jacoco-sonar"
     },
     {
       "name": "grid-filter-to-criteria-converter",
       "description": "Convert a UI grid filter DTO (gridFilters + tagFilters + pageable) to MongoDB Criteria using CriteriaMakeHelper, supporting equals/contains/greaterThan/inRange operators",
-      "triggers": "",
+      "category": "backend",
+      "tags": "[spring, mongodb, filter, criteria, pagination, grid]",
+      "triggers": "[\"grid filter to criteria\", \"FiltersPageableDto\", \"CriteriaMakeHelper\", \"mongodb dynamic filter\", \"UI filter to query\"]",
       "scope": "user",
       "source_project": "lucida-domain-sms",
       "version": "0.1.0-draft",
-      "tags": "[spring, mongodb, filter, criteria, pagination, grid]",
-      "category": "backend",
       "path": "backend/grid-filter-to-criteria-converter"
     },
     {
       "name": "hibernate-multi-dialect-swap",
-      "description": "Ship one WAR that connects to Oracle, PostgreSQL, MSSQL, Tibero, DB2, or MariaDB based on Spring profile — all JDBC drivers bundled, dialect and datasource resolved from externalized config.",
+      "description": "Ship one WAR that connects to Oracle, PostgreSQL, MSSQL, Tibero, DB2, or MariaDB based on Spring profile — all JDBC drivers bundled, dialect and datasource resolved from externalized config",
       "category": "backend",
       "tags": "[hibernate, jdbc, spring, multi-tenant, dialect, oracle, postgres, mssql, tibero, db2, mariadb]",
-      "triggers": "[\"hibernate dialect\", \"multi database\", \"swap rdbms\", \"customer deployment db\", \"spring.profiles.active\"]",
+      "triggers": "[\"one deployable must support multiple RDBMS vendors without rebuild\", \"hibernate dialect chosen at startup, not compile time\", \"customer deployments dictate DB vendor\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/hibernate-multi-dialect-swap"
@@ -584,7 +646,7 @@
       "description": "Deterministically shrink any identifier to a length cap while preserving uniqueness by appending a short hash of the original.",
       "category": "backend",
       "tags": "[identifiers, hashing, naming, collision-avoidance]",
-      "triggers": "",
+      "triggers": "[\"\\\"name too long\\\"\", \"\\\"identifier length limit\\\"\", \"\\\"shorten tool name\\\"\", \"\\\"truncate unique\\\"\"]",
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
       "path": "backend/identifier-truncate-with-hash-suffix"
@@ -593,8 +655,8 @@
       "name": "immutable-action-event-log",
       "description": "Model state transitions as `(state, action) → (newState, List<Event>)` where the event list is an append-only, serializable log. Enables deterministic replay, audit trails, cheat detection, and UI choreography without coupling engine to presentation.",
       "category": "arch",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"event-sourcing\", \"immutable-state\", \"action-log\", \"deterministic\", \"replay\", \"audit\"]",
+      "triggers": "[\"action result log\", \"state transition events\", \"replay log\", \"deterministic engine\", \"audit trail events\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "arch/immutable-action-event-log"
@@ -611,7 +673,7 @@
     },
     {
       "name": "ip-allowlist-cidr-validator",
-      "description": "Validate client IPs against allow-lists accepting mixed notations — plain IPv4, CIDR, octet wildcards, and ranges",
+      "description": "Validate client IPs against user-supplied allow-lists accepting mixed notations — plain IPv4, CIDR, octet wildcards (192.168.*.*), and octet ranges (192.168.10-20.*)",
       "category": "backend",
       "tags": "[security, cidr, ip-allowlist, authentication, commons-net]",
       "triggers": "Per-user or per-tenant IP allow-list supporting CIDR, plain IPs, octet wildcards, and ranges",
@@ -631,13 +693,23 @@
     },
     {
       "name": "jacoco-sonar-shared-exclusion-list",
-      "description": "Define coverage exclusions once in ext.exclusionPatterns and reuse across jacoco, sonar, and packaging tasks",
+      "description": "Define coverage/quality exclusions once in ext.exclusionPatterns and reuse across jacoco, sonar, and packaging tasks to prevent report drift",
       "category": "backend",
       "tags": "[gradle, jacoco, sonarqube, coverage, quality-gate]",
       "triggers": "Gradle build has diverging exclusion lists across jacoco, sonar, and packaging tasks",
       "source_project": "lucida-account",
       "version": "1.0.0",
       "path": "backend/jacoco-sonar-shared-exclusion-list"
+    },
+    {
+      "name": "java-agent-bytecode-instrumentation-with-asm",
+      "description": "Build a JVM agent using ASM's ClassFileTransformer to inject profiling/monitoring hooks into application classes via pluggable visitor chains",
+      "category": "backend",
+      "tags": "[java, jvm, apm, instrumentation, asm, bytecode]",
+      "triggers": "",
+      "source_project": "scouter",
+      "version": "1.0.0",
+      "path": "backend/java-agent-bytecode-instrumentation-with-asm"
     },
     {
       "name": "jdbc-configurable-sql-insert-sender",
@@ -673,8 +745,8 @@
       "name": "json-seeded-jpa-loader",
       "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
       "category": "backend",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"spring-boot\", \"jpa\", \"seeding\", \"flyway\", \"commandlinerunner\", \"jackson\", \"reference-data\"]",
+      "triggers": "[\"seed reference data spring\", \"CommandLineRunner JSON\", \"populate static content\", \"data initializer spring\", \"load catalog JSON\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "backend/json-seeded-jpa-loader"
@@ -684,35 +756,35 @@
       "description": "Consolidate repeated `JwtTokenService.getXxxFromBearerToken(headerAuthorization)` calls across Spring controllers by moving the service and helper methods onto a shared `BaseController`. Subclass controllers call `getOrganizationId(h)` / `getLoginId(h)` / `getRoleIds(h)` directly.",
       "category": "backend",
       "tags": "[spring-boot, jwt, controller, refactor, base-class]",
-      "triggers": "[\"jwt extraction controller duplication\", \"base controller jwt\", \"getXxxFromBearerToken 중복 제거\"]",
+      "triggers": "[\"\\\"jwt extraction controller duplication\\\"\", \"\\\"base controller jwt\\\"\", \"\\\"getXxxFromBearerToken 중복 제거\\\"\"]",
       "scope": "user",
-      "version": "1.0.0",
       "source_project": "lucida-widget",
+      "version": "1.0.0",
       "path": "backend/jwt-extraction-via-base-controller"
     },
     {
       "name": "jwt-refresh-rotation-spring",
       "description": "Spring Boot 3 JWT with short-lived access token + long-lived refresh token, filter-chain integration, and stateless session config. Avoids common mistakes that silently break refresh flows.",
       "category": "security",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"jwt\", \"spring-boot\", \"auth\", \"refresh-token\", \"jjwt\", \"security-filter\"]",
+      "triggers": "[\"jwt spring boot\", \"refresh token rotation\", \"JwtAuthenticationFilter\", \"jjwt 0.12\", \"SessionCreationPolicy.STATELESS\", \"access token refresh token\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "security/jwt-refresh-rotation-spring"
     },
     {
       "name": "k8s-health-via-getnodelist",
-      "description": "Use listNode() with readiness check for Kubernetes cluster health — getVersion() succeeds on degraded clusters that will fail real work.",
+      "description": "Use `listNode()` with readiness check for Kubernetes cluster health — `getVersion()` succeeds on degraded clusters that will fail real work",
       "category": "backend",
       "tags": "[kubernetes, openshift, health-check, liveness, coreV1Api, listNode]",
-      "triggers": "[\"kubernetes health check\", \"cluster liveness\", \"getVersion unreliable\", \"listNode\"]",
+      "triggers": "[\"cluster liveness probe before running a collector pass\", \"guard against API-server flaps\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/k8s-health-via-getnodelist"
     },
     {
       "name": "kafka-avro-producer-gzip-30mb",
-      "description": "Spring Kafka producer config for Avro values with gzip compression and a raised 30MB max.request.size for schema-registry payloads exceeding the 1MB default.",
+      "description": "Spring Kafka producer config for Avro values with gzip compression and a raised 30MB max.request.size for schema-registry payloads",
       "category": "backend",
       "tags": "[kafka, avro, spring-kafka, schema-registry, producer]",
       "triggers": "[\"KafkaAvroSerializer\", \"max.request.size\", \"schema.registry.url\", \"compression.type gzip\", \"RecordTooLargeException\"]",
@@ -756,7 +828,7 @@
     },
     {
       "name": "kafka-consumer-errorhandling-wrapper",
-      "description": "Wrap Kafka key/value deserializers in Spring Kafkas ErrorHandlingDeserializer so a poison record becomes a logged failure/DLT publish instead of a stuck partition.",
+      "description": "Wrap key/value deserializers in Spring Kafka's ErrorHandlingDeserializer so a single poison record doesn't halt the consumer",
       "category": "backend",
       "tags": "[kafka, spring-kafka, avro, poison-pill, resilience]",
       "triggers": "[\"ErrorHandlingDeserializer\", \"poison pill\", \"DeserializationException\", \"DeadLetterPublishingRecoverer\", \"stuck consumer\"]",
@@ -766,7 +838,7 @@
     },
     {
       "name": "kafka-consumer-semaphore-chunking",
-      "description": "Bound in-flight async work from a Kafka consumer with Semaphore(poolSize + queueCapacity - 2) plus fixed-size chunks; release in whenComplete on both success and failure.",
+      "description": "Bound in-flight async work from a Kafka consumer with `Semaphore(poolSize + queueCapacity - 2)` plus fixed-size chunks; release in `whenComplete` on both success and failure.",
       "category": "backend",
       "tags": "[kafka, backpressure, semaphore, async, executor, chunk]",
       "triggers": "[\"kafka backpressure\", \"consumer OOM\", \"executor queue overflow\", \"semaphore acquireUninterruptibly\", \"rebalance storm\"]",
@@ -799,7 +871,7 @@
     },
     {
       "name": "kafka-engine-distributed-job-framework",
-      "description": "Publisher→Kafka→Queue→Worker distributed job framework with Admission Control and Strategy SPI — replaces invokeAll bottleneck",
+      "description": "Kafka 이벤트 기반 분산 작업 실행 프레임워크 스켈레톤 — Publisher→Topic→Consumer→Queue→Worker + Admission Control + Strategy SPI",
       "category": "arch",
       "tags": "",
       "triggers": "invokeAll-based Pod bottleneck, long-blocking device timeouts, need for multi-Pod Consumer Group distribution",
@@ -810,12 +882,12 @@
     {
       "name": "kafka-message-header-metadata",
       "description": "Attach org-id, user-id, and timestamp as RecordHeader[] on a ProducerRecord to enable multi-tenant event routing without polluting the Avro payload",
-      "triggers": "",
+      "category": "backend",
+      "tags": "[kafka, avro, multi-tenant, headers, spring]",
+      "triggers": "[\"kafka record headers\", \"ProducerRecord headers\", \"organization-id header kafka\", \"multi-tenant kafka routing\", \"RecordHeader metadata\"]",
       "scope": "user",
       "source_project": "lucida-domain-sms",
       "version": "0.1.0-draft",
-      "tags": "[kafka, avro, multi-tenant, headers, spring]",
-      "category": "backend",
       "path": "backend/kafka-message-header-metadata"
     },
     {
@@ -863,7 +935,7 @@
       "description": "In MCP `initialize`, advertise optional server capabilities (prompts, resources, sampling) only when the client declared matching support — avoids clients rejecting the handshake or spamming unsupported methods.",
       "category": "backend",
       "tags": "[mcp, json-rpc, capability-negotiation, handshake]",
-      "triggers": "",
+      "triggers": "[\"\\\"mcp initialize\\\"\", \"\\\"capability negotiation\\\"\", \"\\\"server capabilities\\\"\", \"\\\"prompts/resources not showing\\\"\"]",
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
       "path": "backend/mcp-capability-negotiated-initialize"
@@ -873,14 +945,14 @@
       "description": "Expose a built-in MCP tool that hot-swaps the server's prompt set at runtime, persists it to disk, and emits notifications/prompts/list_changed so clients pick it up without reconnecting.",
       "category": "ai",
       "tags": "[mcp, prompts, hot-reload, json-rpc, tool-design]",
-      "triggers": "",
+      "triggers": "[\"\\\"refresh prompts\\\"\", \"\\\"update mcp prompts at runtime\\\"\", \"\\\"prompts list_changed\\\"\", \"\\\"mcp hot reload\\\"\"]",
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
       "path": "ai/mcp-runtime-prompt-refresh"
     },
     {
       "name": "measurement-grouping-combiner",
-      "description": "Group rows by (resourceId, metricId, bucketTs) into Map<K, List<T>>, then a per-granularity pure combineByKey merges each list into one composite record. One combiner per granularity.",
+      "description": "Group rows by `(resourceId, metricId, bucketTs)` into `Map<K, List<T>>`, then a per-granularity pure `combine…ByKey` merges each list into one composite record. One combiner per granularity (raw/1m/5m/hour/day).",
       "category": "backend",
       "tags": "[java, stream, grouping, rollup, combiner]",
       "triggers": "[\"combineByKey\", \"groupingBy\", \"metric rollup\", \"per-granularity merge\"]",
@@ -941,12 +1013,12 @@
     {
       "name": "migration-processor-pipeline",
       "description": "Abstract migration processor template — validate → load → transform → emit Kafka Avro event with org-id header → audit log, multi-tenant safe",
-      "triggers": "",
+      "category": "backend",
+      "tags": "[spring, kafka, avro, migration, multi-tenant, mongodb]",
+      "triggers": "[\"migration processor\", \"data migration pipeline\", \"legacy data import\", \"migration with kafka\"]",
       "scope": "user",
       "source_project": "lucida-domain-sms",
       "version": "0.1.0-draft",
-      "tags": "[spring, kafka, avro, migration, multi-tenant, mongodb]",
-      "category": "backend",
       "path": "backend/migration-processor-pipeline"
     },
     {
@@ -971,7 +1043,7 @@
     },
     {
       "name": "mongo-aggregation-filter-optimization",
-      "description": "Replace $unwind+$match on array sub-documents with inline $filter so array elements are pruned before any downstream stage - avoids N-times document explosion.",
+      "description": "Replace `$unwind`+`$match` on array sub-documents with inline `$filter` so array elements are pruned before any downstream stage — avoids N× document explosion.",
       "category": "backend",
       "tags": "[mongodb, aggregation, performance, $filter, $unwind, topn]",
       "triggers": "[\"$unwind $match\", \"aggregation pipeline slow\", \"topn query\", \"array filter\", \"mongo pipeline memory\"]",
@@ -984,17 +1056,17 @@
     },
     {
       "name": "mongo-criteria-maker-elemmatch-and-or",
-      "description": "Compose dynamic Spring Data MongoDB Criteria with mixed AND/OR groups and elemMatch on tag-array fields using a stack-based builder.",
+      "description": "Compose dynamic MongoDB Criteria with mixed AND/OR groups and elemMatch on tag-array fields using a stack-based builder",
       "category": "backend",
       "tags": "[mongodb, spring-data, criteria, elemmatch, query-builder, and-or]",
-      "triggers": "[\"mongodb and or filter\", \"criteria elemmatch\", \"tag array query\", \"CriteriaMaker\"]",
+      "triggers": "[\"building MongoDB queries with user-defined AND/OR filter rows\", \"matching key/value pairs inside an array field (tags, labels, attributes)\", \"replacing string-concatenated Mongo queries with type-safe Criteria\"]",
       "source_project": "lucida-performance",
       "version": "1.0.0",
       "path": "backend/mongo-criteria-maker-elemmatch-and-or"
     },
     {
       "name": "mongo-timestamp-densification",
-      "description": "Fill sparse time-series gaps with $dateTrunc + $densify in Mongo, then a residual Java gap-fill loop for LIVE windows. Partition by series to keep multi-line charts aligned.",
+      "description": "Fill sparse time-series gaps with `$dateTrunc` + `$densify` in Mongo, then a residual Java gap-fill loop for LIVE windows. Partition by series to keep multi-line charts aligned.",
       "category": "backend",
       "tags": "[mongodb, $densify, $dateTrunc, time-series, chart, gap-fill]",
       "triggers": "[\"densify\", \"sparse chart\", \"missing buckets\", \"$dateTrunc binSize\", \"partitionByFields\"]",
@@ -1037,7 +1109,7 @@
     },
     {
       "name": "mongodb-datetrunc-binsize-zero-guard",
-      "description": "Guard MongoDB $dateTrunc binSize against 0 when your interval may be auto/unset; coerce to 1 at query-builder boundary to avoid runtime error.",
+      "description": "Guard MongoDB $dateTrunc binSize against 0 when your interval may be auto/unset; coerce to 1 to avoid runtime error",
       "category": "backend",
       "tags": "[mongodb, aggregation, dateTrunc, pitfall]",
       "triggers": "[\"binSize must be >= 1\", \"$dateTrunc\", \"interval=0\", \"dateTrunc binSize\"]",
@@ -1070,7 +1142,7 @@
     },
     {
       "name": "multi-resource-or-batch-query",
-      "description": "Collapse N per-resource Mongo queries into one pipeline using Criteria.orOperator (or $in) over resourceId, projecting a synthetic key field for service-side de-multiplexing. Chunk at ~200 for index-friendly $or.",
+      "description": "Collapse N per-resource Mongo queries into one pipeline using `Criteria.orOperator` (or `$in`) over resourceId, projecting a synthetic `key` field for service-side de-multiplexing. Chunk at ~200 for index-friendly `$or`.",
       "category": "backend",
       "tags": "[mongodb, batch, $or, $in, multi-resource, projection]",
       "triggers": "[\"multi-resource chart\", \"Criteria.orOperator\", \"batch aggregation\", \"resourceId $in\"]",
@@ -1090,28 +1162,28 @@
     },
     {
       "name": "multi-tenant-scheduler-iteration",
-      "description": "Skeleton for @Scheduled Spring jobs iterating every tenant in a database-per-tenant MongoDB setup — enumerate DBs, filter system ones, set TenantContextHolder per tenant inside try/finally, isolate per-tenant failures, emit a single summary log line.",
+      "description": "|",
       "category": "backend",
       "tags": "[spring-boot, mongodb, multi-tenant, scheduled-job, tenant-context]",
       "triggers": "[\"scheduled job multi tenant mongodb\", \"TenantContextHolder 스케줄러\", \"iterate every tenant database\"]",
       "scope": "user",
-      "version": "1.0.0",
       "source_project": "lucida-snote",
+      "version": "0.1.0-draft",
       "path": "backend/multi-tenant-scheduler-iteration"
     },
     {
       "name": "netty-tcp-reconnect-backoff",
-      "description": "On Netty channelInactive/EOF/read-timeout, reconnect with exponential backoff (100ms to 30s cap), reset on success, keep SO_KEEPALIVE + TCP_NODELAY.",
+      "description": "On Netty `channelInactive`/EOF/read-timeout, reconnect with exponential backoff (100ms → 30s cap), reset on success, keep SO_KEEPALIVE + TCP_NODELAY",
       "category": "backend",
       "tags": "[netty, tcp, reconnect, backoff, keepalive, eof]",
-      "triggers": "[\"netty reconnect\", \"tcp socket drop\", \"channelInactive\", \"exponential backoff\"]",
+      "triggers": "[\"long-lived TCP client to a device or broker that drops silently\", \"need to survive peer restarts without crashing the collector\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/netty-tcp-reconnect-backoff"
     },
     {
       "name": "non-metric-saveraw-null-rule",
-      "description": "Treat saveRaw as tri-state Boolean - null for non-METRIC types (Availability/Trait), true/false only for METRIC. Re-apply on every policy mutation path.",
+      "description": "Treat `saveRaw` as tri-state `Boolean` — `null` for non-METRIC types (Availability/Trait), `true`/`false` only for METRIC. Re-apply the rule on every policy mutation path.",
       "category": "backend",
       "tags": "[domain, tri-state, Boolean, measurement-type, policy]",
       "triggers": "[\"saveRaw null\", \"non-METRIC\", \"policy update\", \"MeasurementType\", \"tri-state boolean\"]",
@@ -1137,7 +1209,7 @@
       "description": "Convert OpenAPI specs into MCP tools by grouping operations under their OpenAPI tag, exposing one tool per tag with an operation selector and per-operation arguments.",
       "category": "ai",
       "tags": "[mcp, openapi, tool-design, schema, json-schema]",
-      "triggers": "",
+      "triggers": "[\"\\\"openapi to mcp\\\"\", \"\\\"swagger to mcp\\\"\", \"\\\"generate mcp tools\\\"\", \"\\\"tag based tool grouping\\\"\"]",
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
       "path": "ai/openapi-to-mcp-tag-grouping"
@@ -1154,7 +1226,7 @@
     },
     {
       "name": "optional-outbound-adapter-no-op-port",
-      "description": "Register a No-Op implementation of an optional outbound port with @ConditionalOnMissingBean so services boot when the real adapter is absent.",
+      "description": "Register a No-Op implementation of an optional outbound port with @ConditionalOnMissingBean so services boot when the real adapter (Kafka audit, tracing, notifications) is absent.",
       "category": "arch",
       "tags": "",
       "triggers": "Hexagonal outbound port whose backing infrastructure is optional; service fails to boot without audit/tracing adapter",
@@ -1177,7 +1249,7 @@
       "description": "CLI pattern for registering N instances of a composite config (e.g. spec+baseUrl pairs) using repeated paired flags and a pending-state parser.",
       "category": "cli",
       "tags": "[argparse, cli-design, multi-instance, config]",
-      "triggers": "",
+      "triggers": "[\"\\\"multiple config pairs\\\"\", \"\\\"repeated flag\\\"\", \"\\\"paired cli args\\\"\", \"\\\"multi-spec cli\\\"\"]",
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
       "path": "cli/paired-flag-multi-instance-registration"
@@ -1185,14 +1257,17 @@
     {
       "name": "parallel-bulk-annotation",
       "description": "수십~수백 개 Java 파일에 어노테이션(@Schema, @Operation, @ApiResponse 등)을 대량 추가할 때 병렬 에이전트로 분산 실행하는 패턴",
-      "triggers": "",
-      "scope": "user",
       "category": "workflow",
+      "tags": "",
+      "triggers": "[\"대량 어노테이션 추가\", \"@Schema 전수 부여\", \"operationId 전수 부여\", \"200개 메서드 어노테이션\", \"bulk annotation\"]",
+      "scope": "user",
+      "source_project": "",
+      "version": "1.0.0",
       "path": "workflow/parallel-bulk-annotation"
     },
     {
       "name": "parallel-tasks-generic-extraction",
-      "description": "Extract duplicated invokeAll-over-resources blocks into executeParallelTasks<T> + TaskFactory<T> generic",
+      "description": "invokeAll + Callable 반복 패턴을 제네릭 executeParallelTasks + TaskFactory로 추출",
       "category": "backend",
       "tags": "",
       "triggers": "Same invokeAll + Future result-splitting block appears 2+ times in one service",
@@ -1202,7 +1277,7 @@
     },
     {
       "name": "period-mode-enum-config",
-      "description": "One enum Mode holds all (intervalMs, isFullData, dateFormat, retention, chartFormat) tuples for every time-series granularity - single source of truth across repository/service/chart layers.",
+      "description": "One enum `Mode` holds all (intervalMs, isFullData, dateFormat, retention, chartFormat) tuples for every time-series granularity — single source of truth across repository/service/chart layers.",
       "category": "backend",
       "tags": "[enum, time-series, domain, period, config]",
       "triggers": "[\"Period.Mode\", \"MIN_15\", \"MONTH_2\", \"interval retention enum\", \"chart format\"]",
@@ -1265,10 +1340,10 @@
     },
     {
       "name": "plugin-resource-provider-architecture",
-      "description": "Stable ResourceProvider SPI loaded via Spring component scan; each new device/resource type is a separate Gradle-module JAR packaged into the WAR — zero core edits.",
+      "description": "Stable `ResourceProvider` SPI loaded via Spring component scan; each new device/resource type is a separate Gradle-module JAR packaged into the WAR — zero core edits",
       "category": "arch",
       "tags": "[plugin, spi, spring, component-scan, gradle, war, extensibility]",
-      "triggers": "[\"plugin architecture\", \"ResourceProvider\", \"pluggable monitoring\", \"SPI discovery\"]",
+      "triggers": "[\"extensible monitoring/management platform\", \"vendor support must be pluggable per deployment\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "arch/plugin-resource-provider-architecture"
@@ -1295,13 +1370,13 @@
     },
     {
       "name": "querydsl-q-class-exclusion-pattern",
-      "description": "One exclusionPatterns list drives Jacoco report + verification + Sonar exclusions; catches generated Querydsl Q-classes via an A..Z range generating **/Q<letter>* globs.",
-      "category": "build",
+      "description": "One `exclusionPatterns` list drives Jacoco report + verification + Sonar exclusions; catches generated Querydsl Q-classes via `('A'..'Z').collect { \"**/**/Q${it}*\" }`.",
+      "category": "devops",
       "tags": "[gradle, jacoco, sonar, querydsl, coverage, exclusion]",
       "triggers": "[\"jacoco exclusion\", \"sonar exclusion\", \"Q class\", \"querydsl generated\", \"coverage inflation\"]",
       "source_project": "lucida-measurement",
       "version": "1.0.0",
-      "path": "build/querydsl-q-class-exclusion-pattern",
+      "path": "devops/querydsl-q-class-exclusion-pattern",
       "linked_knowledge": [
         "jacoco-sonar-exclusion-policy"
       ]
@@ -1338,17 +1413,17 @@
     },
     {
       "name": "realtime-vs-polling-fallback",
-      "description": "Let each resource type declare supportsRealtime; scheduler runs push-mode at the realtime interval and falls back to a safe polling interval (e.g., 60s) otherwise.",
+      "description": "Let each resource type declare `supportsRealtime`; scheduler runs push-mode at the realtime interval and falls back to a safe polling interval (e.g., 60s) otherwise",
       "category": "backend",
       "tags": "[scheduler, realtime, polling, collector, fallback]",
-      "triggers": "[\"realtime fallback\", \"polling interval\", \"supportsRealtime\", \"collection scheduler\"]",
+      "triggers": "[\"mixed collection pipeline (some resources push, some pull)\", \"avoid hammering APIs that do not support realtime\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/realtime-vs-polling-fallback"
     },
     {
       "name": "redis-lock-recheck-flag-pattern",
-      "description": "Distributed Redis lock with a 'recheck' flag so concurrent events arriving while the lock is held force the holder to run a second pass, instead of being silently dropped.",
+      "description": "Distributed Redis lock with a \"recheck\" flag so concurrent events arriving while the lock is held force the holder to run a second pass, instead of being silently dropped.",
       "category": "backend",
       "tags": "[redis, distributed-lock, recheck, concurrency, lua]",
       "triggers": "[\"distributed lock\", \"recheck flag\", \"concurrent event lost\", \"SET NX EX\", \"lua release\"]",
@@ -1359,12 +1434,12 @@
     {
       "name": "resource-provider-registry",
       "description": "Spring DI plugin registry where @Component implementations of a typed interface are auto-discovered and looked up at runtime by a string type key",
-      "triggers": "",
+      "category": "arch",
+      "tags": "[spring, plugin, registry, interface, component]",
+      "triggers": "[\"plugin registry\", \"provider lookup by type\", \"auto-discovered handlers\", \"resource provider pattern\"]",
       "scope": "user",
       "source_project": "lucida-domain-sms",
       "version": "0.1.0-draft",
-      "tags": "[spring, plugin, registry, interface, component]",
-      "category": "arch",
       "path": "arch/resource-provider-registry"
     },
     {
@@ -1379,13 +1454,23 @@
     },
     {
       "name": "second-aggregation-snapshot-merge",
-      "description": "Per-second metric aggregation using in-memory counters + Flux.interval snapshot-and-reset + bounded parallel publish.",
+      "description": "Per-second metric aggregation using in-memory counters + Flux.interval snapshot-and-reset + bounded parallel publish, to decouple request latency from downstream health.",
       "category": "backend",
       "tags": "",
       "triggers": "1-second-resolution metrics (TPS, error counts) without hitting Kafka/DB per event",
       "source_project": "lucida-domain-apm",
       "version": "1.0.0",
       "path": "backend/second-aggregation-snapshot-merge"
+    },
+    {
+      "name": "server-plugin-scripting-and-builtin-extensibility",
+      "description": "Dual plugin system for a monitoring server — hot-reload script plugins (alert rules, filters) plus compiled JAR plugins for stateful, performance-critical data handlers",
+      "category": "backend",
+      "tags": "[plugin, extensibility, scripting, hot-reload, monitoring]",
+      "triggers": "",
+      "source_project": "scouter",
+      "version": "1.0.0",
+      "path": "backend/server-plugin-scripting-and-builtin-extensibility"
     },
     {
       "name": "service-discovery-replica-leader-tracking",
@@ -1419,7 +1504,7 @@
     },
     {
       "name": "servicejar-embeddable-library-task",
-      "description": "Gradle task that builds a library JAR alongside bootJar for embedding inside a host Spring Boot app",
+      "description": "Gradle task that builds a library JAR alongside bootJar for embedding inside a host Spring Boot app — excludes Application class, web/OpenAPI configs, and bundled resources",
       "category": "backend",
       "tags": "[gradle, spring-boot, packaging, saas, on-prem, embedding]",
       "triggers": "Same Spring Boot service must run both standalone and embedded inside a host app",
@@ -1459,23 +1544,23 @@
     },
     {
       "name": "site-per-customer-override-modules",
-      "description": "One Gradle module per customer overrides core beans, auth, notification channels, and assets — keeps core customer-agnostic and scales to dozens of deployments.",
+      "description": "One Gradle module per customer (`<product>-site-<customer>`) overrides core beans, auth, notification channels, and assets — keeps core customer-agnostic and scales to dozens of deployments",
       "category": "arch",
       "tags": "[b2b, customization, gradle-module, spring, bean-override, multi-tenant]",
-      "triggers": "[\"per customer module\", \"site override\", \"b2b deployment\", \"bean override primary\"]",
+      "triggers": "[\"B2B product delivered to many customers with bespoke requirements\", \"feature-flag soup is polluting core\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "arch/site-per-customer-override-modules"
     },
     {
       "name": "skill-md-validator",
-      "description": "SKILL.md frontmatter + 필수 섹션을 CRITICAL/WARNING 등급으로 검증하는 publish 전 품질 게이트.",
-      "category": "tooling",
+      "description": "[Tooling] SKILL.md frontmatter + 필수 섹션을 CRITICAL/WARNING 등급으로 검증하는 품질 게이트.",
+      "category": "devops",
       "tags": "[claude-code, skill, validation, quality-gate]",
       "triggers": "[\"skill-validate\", \"validate skill\", \"SKILL.md check\", \"publish gate\"]",
       "source_project": "nkia-skills",
       "version": "1.0.0",
-      "path": "tooling/skill-md-validator"
+      "path": "devops/skill-md-validator"
     },
     {
       "name": "skill-repo-bootstrap-architecture",
@@ -1490,12 +1575,12 @@
     {
       "name": "slack-webhook-notify",
       "description": "Slack Incoming Webhook으로 메시지를 전송한다. 빌드/테스트/배포 결과, 작업 완료 알림 등을 Slack 채널에 보낼 때 사용.",
-      "category": "tooling",
+      "category": "devops",
       "tags": "",
-      "triggers": "[\"slack\", \"슬랙\", \"slack notify\", \"webhook 알림\", \"빌드 알림\"]",
+      "triggers": "[\"slack\", \"슬랙\", \"slack notify\", \"webhook 알림\", \"빌드 알림\", \"작업 완료 알림\"]",
       "source_project": "lucida-domain-sms",
       "version": "1.0.0",
-      "path": "tooling/slack-webhook-notify"
+      "path": "devops/slack-webhook-notify"
     },
     {
       "name": "slash-command-authoring",
@@ -1519,7 +1604,7 @@
     },
     {
       "name": "spring-applicationrunner-system-seed",
-      "description": "Use ApplicationRunner to seed required system/root records on startup, guarded by an exists-check and a systemFlag that blocks delete/move in service layer.",
+      "description": "Use ApplicationRunner to seed required system/root records on startup, guarded by an exists-check and marked with a systemFlag so they can't be deleted or moved by users.",
       "category": "backend",
       "tags": "[spring-boot, ApplicationRunner, bootstrap, seed, system-record]",
       "triggers": "[\"ApplicationRunner seed\", \"root default group auto create\", \"system record cannot delete\", \"startup initializer\"]",
@@ -1529,17 +1614,17 @@
     },
     {
       "name": "spring-bootrun-local-dev-env-block",
-      "description": "Gradle bootRun environment block wiring local Redis/Mongo/Kafka/Eureka/MQTT so gradlew bootRun runs with zero IDE configuration and no committed application-local.yaml.",
-      "category": "build",
+      "description": "Gradle `bootRun` env block that wires local Redis/Mongo/Kafka/Eureka/MQTT for zero-config `./gradlew bootRun` developer experience",
+      "category": "devops",
       "tags": "[spring-boot, gradle, bootrun, local-dev, eureka, testcontainers]",
-      "triggers": "[\"gradle bootrun local\", \"disable eureka locally\", \"spring local dev env\"]",
+      "triggers": "[\"new engineer asks \\\"how do I run this locally?\\\"\", \"application-local.yaml is gitignored and no-one knows the defaults\", \"Spring Cloud service refuses to start locally because Eureka client is enabled\"]",
       "source_project": "lucida-performance",
       "version": "1.0.0",
-      "path": "build/spring-bootrun-local-dev-env-block"
+      "path": "devops/spring-bootrun-local-dev-env-block"
     },
     {
       "name": "spring-data-mongo-repository-custom-split",
-      "description": "Standard 3-file split for MongoRepository — base interface, Custom interface for handwritten queries, Impl class backed by MongoTemplate — so complex queries live beside CRUD without breaking derived-query inference.",
+      "description": "Standard 3-file split for MongoRepository — the base interface, a *Custom interface for handwritten queries, and a *Impl class that uses MongoTemplate — so complex queries live beside the CRUD without breaking derived-query inference.",
       "category": "backend",
       "tags": "[spring-data-mongo, repository, custom-impl, MongoTemplate]",
       "triggers": "[\"RepositoryCustom Impl split\", \"MongoTemplate complex query\", \"derived query plus aggregation\"]",
@@ -1551,8 +1636,8 @@
       "name": "spring-dual-profile-flyway",
       "description": "Spring Boot dual-profile setup — H2 file-mode for dev (zero install, console enabled), PostgreSQL for prod — with Flyway managing DDL and JPA set to validate-only. The profile split that keeps local dev fast without drifting from prod schema.",
       "category": "backend",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"spring-boot\", \"flyway\", \"h2\", \"postgresql\", \"profiles\", \"migrations\", \"jpa\"]",
+      "triggers": "[\"spring profiles dev prod\", \"flyway migrations spring\", \"h2 file mode dev\", \"ddl-auto validate\", \"postgresql production profile\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "backend/spring-dual-profile-flyway"
@@ -1562,18 +1647,18 @@
       "description": "Annotation-driven MongoDB migration runner for Spring Boot — `@MongoMigration` methods on `MigrationScript` beans execute in order at startup, with history in `{prefix}_migrations` collection. No Mongock dependency.",
       "category": "backend",
       "tags": "[spring-boot, mongodb, migration, annotation-driven, idempotent]",
-      "triggers": "[\"mongo migration spring boot\", \"mongock 없이 마이그레이션\", \"annotation-based mongo migration\"]",
+      "triggers": "[\"\\\"mongo migration spring boot\\\"\", \"\\\"mongock 없이 마이그레이션\\\"\", \"\\\"annotation-based mongo migration\\\"\"]",
       "scope": "user",
-      "version": "1.0.0",
       "source_project": "lucida-widget",
+      "version": "1.0.0",
       "path": "backend/spring-mongo-lightweight-migration"
     },
     {
       "name": "spring-profile-datasource-activation",
-      "description": "Select DB/Hibernate/logging config at JVM startup via spring.profiles.active so one build ships to dev, test, and prod without branching in code.",
+      "description": "Select DB/Hibernate/logging config at JVM startup via `spring.profiles.active` so one build ships to dev, test, and prod without branching in code",
       "category": "backend",
       "tags": "[spring, profile, datasource, config.properties, jetty, tapestry]",
-      "triggers": "[\"spring.profiles.active\", \"one war multi env\", \"profile datasource\"]",
+      "triggers": "[\"same WAR goes to multiple environments\", \"Spring profile chooses datasource and credentials\"]",
       "source_project": "cygnus",
       "version": "1.0.0",
       "path": "backend/spring-profile-datasource-activation"
@@ -1584,7 +1669,7 @@
       "category": "testing",
       "tags": "[spring-boot, testcontainers, junit5, multi-tenant, tenant-context, mockitobean]",
       "triggers": "[\"testcontainers\", \"base test\", \"tenant context test\", \"spring integration test\"]",
-      "source_project": "lucida-widget",
+      "source_project": "lucida-meta",
       "version": "1.0.0",
       "path": "testing/spring-testcontainers-multitenant-base"
     },
@@ -1592,8 +1677,8 @@
       "name": "spring-typed-config-properties",
       "description": "Type-safe, nested `@ConfigurationProperties` pattern for Spring Boot — centralizes tunable constants (rate limits, formula coefficients, balance numbers) in YAML with a single injected POJO tree. Beats scattered `@Value` strings.",
       "category": "backend",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"spring-boot\", \"configuration-properties\", \"yaml\", \"typed-config\", \"constructor-binding\"]",
+      "triggers": "[\"ConfigurationProperties nested\", \"centralize tunable constants\", \"spring typed config\", \"balance config\", \"constructor binding yaml\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "backend/spring-typed-config-properties"
@@ -1603,10 +1688,10 @@
       "description": "Move long `@Operation description` and `@RequestBody examples` text out of Spring controllers into per-controller YAML files under `resources/api-docs/`, injected at runtime via a single `OperationCustomizer` bean. Swagger UI output unchanged.",
       "category": "backend",
       "tags": "[spring-boot, springdoc, openapi, swagger, yaml, refactor]",
-      "triggers": "[\"swagger externalize annotations\", \"move swagger description to yaml\", \"OperationCustomizer\"]",
+      "triggers": "[\"\\\"swagger externalize annotations\\\"\", \"\\\"move swagger description to yaml\\\"\", \"\\\"OperationCustomizer\\\"\"]",
       "scope": "user",
-      "version": "1.0.0",
       "source_project": "lucida-widget",
+      "version": "1.0.0",
       "path": "backend/springdoc-yaml-externalization"
     },
     {
@@ -1643,8 +1728,8 @@
       "name": "stateless-turn-combat-engine",
       "description": "Turn-based combat as a pure function — `(state, action) → newState + events`. Speed-based turn order, deterministic damage, no hidden mutation. Makes combat unit-testable, replayable, and server-authoritative.",
       "category": "game-dev",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"combat-engine\", \"turn-based\", \"rpg\", \"pure-function\", \"deterministic\", \"server-authoritative\"]",
+      "triggers": "[\"turn based combat\", \"combat engine design\", \"speed based turn order\", \"server authoritative combat\", \"stateless combat\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "game-dev/stateless-turn-combat-engine"
@@ -1653,8 +1738,8 @@
       "name": "status-effect-enum-system",
       "description": "Model status effects (burn, stun, buff, debuff) as enum-tagged records attached to units, with per-turn tick logic split between application, duration decay, and removal. Keeps damage-over-time and crowd control uniform and testable.",
       "category": "game-dev",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"status-effect\", \"buff-debuff\", \"dot\", \"cc\", \"enum\", \"turn-based\"]",
+      "triggers": "[\"status effect system\", \"buff debuff\", \"damage over time\", \"burn stun freeze\", \"crowd control turn based\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "game-dev/status-effect-enum-system"
@@ -1681,7 +1766,7 @@
     },
     {
       "name": "strategy-spi-list-to-map-autoinject",
-      "description": "Spring-injected List<T> → Map<Key,T> in constructor for O(1) enum-keyed Strategy dispatch (no switch)",
+      "description": "Spring이 자동 주입하는 List<T>를 생성자에서 Map<Key,T>로 변환해 Strategy를 enum 키로 O(1) 디스패치하는 패턴",
       "category": "backend",
       "tags": "",
       "triggers": "Many enum-keyed job types / event types with one implementation each — replace switch/if chains",
@@ -1692,9 +1777,12 @@
     {
       "name": "swagger-ai-optimization",
       "description": "Spring Boot + springdoc 프로젝트의 Swagger/OpenAPI 스펙을 AI Agent용으로 최적화 (operationId, @Schema, @ApiResponse, x-filterable-fields 전수 적용)",
-      "triggers": "",
-      "scope": "user",
       "category": "workflow",
+      "tags": "",
+      "triggers": "[\"swagger ai 최적화\", \"openapi ai optimization\", \"MCP 연동 준비\", \"swagger operationId 전수 부여\", \"AI 이해도 테스트\"]",
+      "scope": "user",
+      "source_project": "",
+      "version": "1.0.0",
       "path": "workflow/swagger-ai-optimization"
     },
     {
@@ -1702,25 +1790,26 @@
       "description": "Re-run spec-based optimization workflow on a clean branch without running the Spring Boot app — restore prior baseline artifacts (swagger-before.json + scripts) via `git show <sha>:<path>` from the commit on another branch that already captured them.",
       "category": "workflow",
       "tags": "[swagger, openapi, git, baseline, spring-boot]",
-      "triggers": "",
+      "triggers": "[\"\\\"swagger 전체 재실행\\\"\", \"\\\"rerun swagger optimization\\\"\", \"\\\"baseline 없이 시작\\\"\"]",
       "scope": "user",
+      "source_project": "",
       "version": "1.0.0",
       "path": "workflow/swagger-spec-baseline-from-git"
     },
     {
       "name": "tenant-context-holder-propagation",
       "description": "Set TenantContextHolder.INSTANCE.setTenantId(orgId) on the current thread so MongoDB tenant-isolated templates route queries correctly, always clearing in a finally block",
-      "triggers": "",
+      "category": "arch",
+      "tags": "[spring, multi-tenant, threadlocal, mongodb, isolation]",
+      "triggers": "[\"TenantContextHolder\", \"tenant context propagation\", \"multi-tenant thread local\", \"MONGODB_TEMPLATE_ISOLATION\", \"tenant isolation mongodb\"]",
       "scope": "user",
       "source_project": "lucida-domain-sms",
       "version": "0.1.0-draft",
-      "tags": "[spring, multi-tenant, threadlocal, mongodb, isolation]",
-      "category": "arch",
       "path": "arch/tenant-context-holder-propagation"
     },
     {
       "name": "tenant-context-try-finally-on-worker",
-      "description": "Safely set/clear multi-tenant ThreadLocal on pooled Kafka/Worker threads via try-finally to prevent cross-tenant leaks",
+      "description": "Kafka/Queue Worker에서 멀티테넌트 ThreadLocal 컨텍스트를 try-finally로 안전하게 세팅/정리하는 패턴",
       "category": "backend",
       "tags": "",
       "triggers": "@KafkaListener or ThreadPool worker touching ThreadLocal TenantContext — pool reuse leaks",
@@ -1740,7 +1829,7 @@
     },
     {
       "name": "tenant-isolated-mongo-collection",
-      "description": "Route each tenant to its own MongoDB collection via a custom annotation resolved at repository layer, so application code stays tenant-agnostic while isolation is enforced at the collection boundary.",
+      "description": "Route each tenant to its own MongoDB collection (or collection-name suffix) via a custom annotation resolved at repository/template layer, so application code stays tenant-agnostic.",
       "category": "backend",
       "tags": "[multi-tenant, mongodb, isolation, annotation, organizationId]",
       "triggers": "[\"MongoDBIsolationCollection\", \"tenant collection routing\", \"organizationId per-method\", \"logical isolation mongo\"]",
@@ -1770,7 +1859,7 @@
     },
     {
       "name": "testcontainers-reuse-disabled",
-      "description": "Force TESTCONTAINERS_REUSE_ENABLE=false on the Gradle test task so CI never inherits stale containers",
+      "description": "Set TESTCONTAINERS_REUSE_ENABLE=false on the Gradle test task so CI and shared dev machines never inherit stale container state across suites",
       "category": "backend",
       "tags": "[testcontainers, gradle, flaky-tests, ci]",
       "triggers": "CI or shared dev box has Testcontainers runs leaking state between suites",
@@ -1809,6 +1898,16 @@
       "path": "arch/tiered-rebalance-schedule"
     },
     {
+      "name": "transaction-trace-pack-serialization-with-step-hierarchy",
+      "description": "Encode per-request distributed traces as a hierarchical list of typed steps (method, DB, external call, error) in a compressed binary pack, indexed by request end-time",
+      "category": "apm",
+      "tags": "[tracing, apm, xlog, serialization, perf]",
+      "triggers": "",
+      "source_project": "scouter",
+      "version": "1.0.0",
+      "path": "apm/transaction-trace-pack-serialization-with-step-hierarchy"
+    },
+    {
       "name": "triple-env-file-split-loader",
       "description": "Split operator-facing env into three files (.env / .version / .memory) and load them in a fixed order",
       "category": "devops",
@@ -1830,13 +1929,23 @@
     },
     {
       "name": "tsv-driven-permission-bootstrap",
-      "description": "Treat version-controlled TSV as source of truth for Function/Permission/Menu catalog; reconcile DB on startup",
+      "description": "Treat a version-controlled TSV file as source of truth for the Function/Permission/Menu catalog; the service reconciles the DB against it on startup",
       "category": "backend",
       "tags": "[authorization, permissions, bootstrap, tsv, reconciliation]",
       "triggers": "Permission/menu/function catalog needs to be version-controlled and diff-reviewable instead of DB rows",
       "source_project": "lucida-account",
       "version": "1.0.0",
       "path": "backend/tsv-driven-permission-bootstrap"
+    },
+    {
+      "name": "udp-with-tcp-fallback-metrics-transport",
+      "description": "Transport telemetry via UDP for low-latency fire-and-forget streams, and fall back to TCP for critical request/response and bulk uploads that require delivery guarantees",
+      "category": "backend",
+      "tags": "[network, udp, tcp, apm, telemetry]",
+      "triggers": "",
+      "source_project": "scouter",
+      "version": "1.0.0",
+      "path": "backend/udp-with-tcp-fallback-metrics-transport"
     },
     {
       "name": "version-specific-sql-map-selection",
@@ -1891,9 +2000,12 @@
     {
       "name": "x-filterable-fields-extraction",
       "description": "OpenAPI 스펙에 x-filterable-fields 확장을 자동 생성하는 파이프라인. lucida-ui gridColumnDefs + lucida-meta i18n properties를 조합하여 필드명/한국어 title/operators를 추출",
-      "triggers": "",
-      "scope": "user",
       "category": "workflow",
+      "tags": "",
+      "triggers": "[\"x-filterable-fields\", \"필터 가능 필드 추출\", \"gridFilters 메타데이터\", \"tagFilters 메타데이터\", \"리소스 키 추출\", \"GridFilter 정확도 개선\"]",
+      "scope": "user",
+      "source_project": "",
+      "version": "1.0.0",
       "path": "workflow/x-filterable-fields-extraction"
     },
     {
@@ -1910,8 +2022,8 @@
       "name": "zustand-preset-manager",
       "description": "Zustand + persist middleware pattern for managing N named presets (team comps, saved filters, dashboard layouts) with active-selection, max-count guard, and auto-reselect on delete.",
       "category": "frontend",
-      "tags": "",
-      "triggers": "",
+      "tags": "[\"zustand\", \"localstorage\", \"preset\", \"state-management\", \"persist-middleware\"]",
+      "triggers": "[\"zustand persist\", \"saved presets\", \"team presets\", \"named configurations\", \"localStorage preset\", \"multi-preset selector\"]",
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "frontend/zustand-preset-manager"
@@ -1919,15 +2031,150 @@
   ],
   "knowledge": [
     {
+      "slug": "Annotation-driven coarse-grained authorization via @FunctionId",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/annotation-driven-authz-via-function-id",
+      "linked_skills": []
+    },
+    {
+      "slug": "Gate startup initialization on dependent-service readiness via @WaitForServices",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/wait-for-services-eureka-startup-init",
+      "linked_skills": []
+    },
+    {
+      "slug": "Per-request tenant context via HandlerInterceptor",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/tenant-context-per-request-interceptor",
+      "linked_skills": []
+    },
+    {
+      "slug": "Polymorphic metadata persisted as BSON via enum-switch deserialization",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/polymorphic-metadata-via-enum-switch",
+      "linked_skills": []
+    },
+    {
+      "slug": "account-lockout-configurable-threshold",
+      "category": "domain",
+      "summary": "Failed-login counter locks the account after a configurable threshold (ACCOUNT_LOCKOUT, default 10).",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "domain/account-lockout-configurable-threshold",
+      "linked_skills": []
+    },
+    {
+      "slug": "actuator-endpoints-skip-auth-by-design",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/actuator-endpoints-skip-auth-by-design",
+      "linked_skills": []
+    },
+    {
+      "slug": "actuator-metric-call-aggressive-timeout",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/actuator-metric-call-aggressive-timeout",
+      "linked_skills": []
+    },
+    {
+      "slug": "actuator-path-dual-compatibility",
+      "category": "api",
+      "summary": "Actuator endpoints must respond at both /actuator/** and /actuator/{appName}/** for deployment compatibility.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "api/actuator-path-dual-compatibility",
+      "linked_skills": []
+    },
+    {
+      "slug": "additive-registry-schema-versioning",
+      "category": "arch",
+      "summary": "JSON registry 진화는 version bump + 새 키 empty container + 첫 쓰기 시 자동 마이그레이션으로 하라",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/additive-registry-schema-versioning",
+      "linked_skills": []
+    },
+    {
+      "slug": "admin-role-disabled-secretkey",
+      "category": "decision",
+      "summary": "Default `admins` role is disabled and the shared `SecretKey` was removed from `config.properties` — never re-enable without a per-install key",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/admin-role-disabled-secretkey",
+      "linked_skills": []
+    },
+    {
+      "slug": "ai-guess-mark-and-review-checklist",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/ai-guess-mark-and-review-checklist",
+      "linked_skills": []
+    },
+    {
       "slug": "alarm-raw-over-1min-aggregate",
       "category": "decision",
-      "summary": "Alarm judgement reads raw metrics, not 1-minute aggregates - accuracy over storage cost",
+      "summary": "Alarm judgement reads raw metrics, not 1-minute aggregates — accuracy over storage cost",
       "confidence": "high",
       "source_project": "lucida-measurement",
       "path": "decision/alarm-raw-over-1min-aggregate",
       "linked_skills": [
         "kafka-consumer-semaphore-chunking"
       ]
+    },
+    {
+      "slug": "anonymize-examples-in-skill-docs",
+      "category": "pitfall",
+      "summary": "실사 티켓 번호·실명·프로젝트명이 예시에 들어가면 보안 감사에서 지적됨. 공용 repo 기준 모든 예시는 익명 더미여야 한다.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/anonymize-examples-in-skill-docs",
+      "linked_skills": []
+    },
+    {
+      "slug": "asm-based-classloader-instrumentation-caveats",
+      "category": "pitfall",
+      "summary": "ASM-based JVM agents miss Java 8+ lambda forms, annotation-processor classes, and Spring proxies unless explicitly handled; misses manifest as XLog gaps or skipped trace points",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "pitfall/asm-based-classloader-instrumentation-caveats",
+      "linked_skills": []
+    },
+    {
+      "slug": "assume-semantics-for-compiler-hints",
+      "category": "decision",
+      "summary": "Three-tier assertion strategy (Assert / CHECK_NONFATAL / Assume) separates fatal invariants from recoverable logic bugs and pure compiler hints.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "decision/assume-semantics-for-compiler-hints",
+      "linked_skills": []
+    },
+    {
+      "slug": "assumeutxo-snapshot-chainstate-phases",
+      "category": "arch",
+      "summary": "(Blockchain-specific) Multi-chainstate snapshot validation — active chainstate syncs from a trusted-but-unverified UTXO snapshot while a background chainstate validates the snapshot's base, with a phased state machine for clean cutover.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "arch/assumeutxo-snapshot-chainstate-phases",
+      "linked_skills": []
     },
     {
       "slug": "audit-changed-prev-after-field-swap-bug",
@@ -1941,12 +2188,132 @@
       ]
     },
     {
+      "slug": "auto-lock-must-not-bump-lastEditedTime",
+      "category": "pitfall",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/auto-lock-must-not-bump-lastEditedTime",
+      "linked_skills": []
+    },
+    {
+      "slug": "avro-private-fields-no-setters",
+      "category": "decision",
+      "summary": "Avro-generated classes are configured with `fieldVisibility=PRIVATE` and `createSetters=false` to enforce immutability on event payloads",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/avro-private-fields-no-setters",
+      "linked_skills": []
+    },
+    {
+      "slug": "bilingual-user-facing-strings",
+      "category": "arch",
+      "summary": "A bilingual_str struct carrying both original and translated forms lets GUI show translated text while logs/stderr keep the original — no locale branching in business code.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "arch/bilingual-user-facing-strings",
+      "linked_skills": []
+    },
+    {
+      "slug": "binsize-zero-fallback-to-one",
+      "category": "pitfall",
+      "summary": "Substitute binSize=1 whenever the computed interval is 0 in MongoDB time-bucket aggregation",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/binsize-zero-fallback-to-one",
+      "linked_skills": []
+    },
+    {
+      "slug": "boilerplate-generated-business-logic-manual",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/boilerplate-generated-business-logic-manual",
+      "linked_skills": []
+    },
+    {
+      "slug": "build-gradle-secret-and-insecure-protocol",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/sonar-token-hardcoded-build-gradle",
+      "linked_skills": []
+    },
+    {
       "slug": "cache-even-when-enable-false",
       "category": "decision",
       "summary": "Notification configs with `enable=false` are still loaded into the cache manager rather than skipped, so toggling enable on/off doesn't require a cache reload",
       "confidence": "high",
       "source_project": "lucida-notification",
-      "path": "decision/cache-even-when-enable-false"
+      "path": "decision/cache-even-when-enable-false",
+      "linked_skills": []
+    },
+    {
+      "slug": "catalina-urlencoder-internal-api",
+      "category": "pitfall",
+      "summary": "org.apache.catalina.util.URLEncoder is Tomcat internal — use java.net.URLEncoder or Spring UriUtils",
+      "confidence": "medium",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/catalina-urlencoder-internal-api",
+      "linked_skills": []
+    },
+    {
+      "slug": "caveats-absence-confidence-cap",
+      "category": "decision",
+      "summary": "반증 조건(Counter/Caveats)이 비어 있는 knowledge는 confidence 최대 medium으로 강등한다 — 미확인 = 과신 위험",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/caveats-absence-confidence-cap",
+      "linked_skills": []
+    },
+    {
+      "slug": "circular-dependency-detection-script",
+      "category": "decision",
+      "summary": "A small Python script that parses #include directives across the tree and reports the shortest cycle in the module graph — cheap CI gate against architectural decay.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "decision/circular-dependency-detection-script",
+      "linked_skills": []
+    },
+    {
+      "slug": "classifier-both-verdict-self-reference",
+      "category": "pitfall",
+      "summary": "LLM classifier의 both-verdict에 suggested_links를 허용하면 자기 자신을 가리키는 self-link가 나온다 — 링크는 post-process에서 붙일 것",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/classifier-both-verdict-self-reference",
+      "linked_skills": []
+    },
+    {
+      "slug": "claude-plugin-marketplace-owner-required",
+      "category": "pitfall",
+      "summary": "플러그인 설치 스키마 오류: marketplace.json 최상위에 `owner` 객체 없으면 플러그인 설치가 실패.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/claude-plugin-marketplace-owner-required",
+      "linked_skills": []
+    },
+    {
+      "slug": "claude-plugin-skill-md-is-sufficient",
+      "category": "arch",
+      "summary": "스킬 = SKILL.md 하나. 코드, 빌드, 의존성, 스크립트 없이도 완전히 동작한다.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/claude-plugin-skill-md-is-sufficient",
+      "linked_skills": []
+    },
+    {
+      "slug": "common-alarm-policy-init-gotcha",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/common-alarm-policy-init-gotcha",
+      "linked_skills": [
+        "kafka-debounce-event-coalescing"
+      ]
     },
     {
       "slug": "commons-logging-exclusion-strategy",
@@ -1954,15 +2321,107 @@
       "summary": "Globally exclude commons-logging, log4j, and slf4j-log4j12 in Gradle so SLF4J+Logback is the only logging backend on the classpath",
       "confidence": "high",
       "source_project": "lucida-audit",
-      "path": "arch/commons-logging-exclusion-strategy"
+      "path": "arch/commons-logging-exclusion-strategy",
+      "linked_skills": []
+    },
+    {
+      "slug": "compare-counts-exclude-added-deleted",
+      "category": "pitfall",
+      "summary": "An earlier query filtered change-count by `latest` / `added` / `deleted` flags, which silently dropped newly-added resources from the \"number of changes between two points in time\" metric.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/compare-counts-exclude-added-deleted",
+      "linked_skills": []
+    },
+    {
+      "slug": "composite-alarm-all-deleted-npe",
+      "category": "pitfall",
+      "summary": "Composite/aggregated monitors must validate their child set before reducing — empty aggregation throws NPE",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/composite-alarm-all-deleted-npe",
+      "linked_skills": []
+    },
+    {
+      "slug": "conf-info-may-lack-resource-type",
+      "category": "pitfall",
+      "summary": "The `conf_info` collection is NOT guaranteed to carry `resourceType` for every metric; criteria builders must tolerate missing field",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/conf-info-may-lack-resource-type",
+      "linked_skills": []
+    },
+    {
+      "slug": "confid-only-query-over-resource-tuple",
+      "category": "decision",
+      "summary": "Performance queries key off `confId` (config id) whenever available, falling back to (resourceType, resourceName) only when confId is absent",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/confid-only-query-over-resource-tuple",
+      "linked_skills": []
     },
     {
       "slug": "confid-vs-resourceid-routing",
       "category": "api",
-      "summary": "Queries support both configIds (policy scope) and resourceId (agent scope); filter routes to different Mongo match fields",
+      "summary": "Queries support both `configIds` (tenant/policy scope) and `resourceId` (agent scope); filter routes to different Mongo match fields",
       "confidence": "medium",
       "source_project": "lucida-measurement",
-      "path": "api/confid-vs-resourceid-routing"
+      "path": "api/confid-vs-resourceid-routing",
+      "linked_skills": []
+    },
+    {
+      "slug": "copy-naming-suffix-numbered",
+      "category": "decision",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/copy-naming-suffix-numbered",
+      "linked_skills": []
+    },
+    {
+      "slug": "cors-allow-credentials-star-origin",
+      "category": "decision",
+      "summary": "Service-level allowCredentials+allowedOriginPatterns(*) kept because edge proxy (Traefik/Istio) enforces CORS",
+      "confidence": "medium",
+      "source_project": "lucida-domain-automation",
+      "path": "decision/cors-allow-credentials-star-origin",
+      "linked_skills": []
+    },
+    {
+      "slug": "csp-frame-ancestors-required",
+      "category": "decision",
+      "summary": "Send a Content-Security-Policy header (including `frame-ancestors`) on every response to block clickjacking",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/csp-frame-ancestors-required",
+      "linked_skills": []
+    },
+    {
+      "slug": "data-patch-package-for-migrations",
+      "category": "arch",
+      "summary": "One-off data patches (backfills, embedded→referenced splits, field additions) are grouped under a `patch` package so they're isolated from day-to-day service code and easy to audit/remove after a release.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/data-patch-package-for-migrations",
+      "linked_skills": []
+    },
+    {
+      "slug": "dataavro-json-wrapper-pattern",
+      "category": "decision",
+      "summary": "Single DataAvro{jsonData,jsonDataClass} wrapper avoids per-event Avro schema proliferation (TCM pattern)",
+      "confidence": "medium",
+      "source_project": "lucida-domain-automation",
+      "path": "decision/dataavro-json-wrapper-pattern",
+      "linked_skills": []
+    },
+    {
+      "slug": "do-not-ask-planners-for-api-design",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/do-not-ask-planners-for-api-design",
+      "linked_skills": []
     },
     {
       "slug": "docker-engine-29-requires-traefik-upgrade",
@@ -1970,7 +2429,98 @@
       "summary": "Docker Engine 29.x raises the minimum client API to 1.44, breaking older Traefik versions that pin an older API",
       "confidence": "high",
       "source_project": "lucida-for-docker",
-      "path": "pitfall/docker-engine-29-requires-traefik-upgrade"
+      "path": "pitfall/docker-engine-29-requires-traefik-upgrade",
+      "linked_skills": []
+    },
+    {
+      "slug": "domain-registry-plus-projects-yaml",
+      "category": "arch",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/domain-registry-plus-projects-yaml",
+      "linked_skills": []
+    },
+    {
+      "slug": "dual-redis-lock-vs-access-control",
+      "category": "arch",
+      "summary": "The service connects to two separate Redis instances: Lock Control (default port 6399) and Access Control (default port 6389). They are not interchangeable.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/dual-redis-lock-vs-access-control",
+      "linked_skills": []
+    },
+    {
+      "slug": "encrypted-pii-decode-on-export",
+      "category": "domain",
+      "summary": "PII fields (phone, email) are stored encrypted; only decrypted for explicit export/API response, never for logs.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "domain/encrypted-pii-decode-on-export",
+      "linked_skills": []
+    },
+    {
+      "slug": "enum-notnull-comparison-pitfall",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/enum-notnull-comparison-pitfall",
+      "linked_skills": []
+    },
+    {
+      "slug": "enum-whitelist-blocks-time-based-sqli",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/enum-whitelist-blocks-time-based-sqli",
+      "linked_skills": []
+    },
+    {
+      "slug": "env-override-last-wins-chain",
+      "category": "arch",
+      "summary": "Environment variables resolve across four sources with \"last wins\" precedence.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/env-override-last-wins-chain",
+      "linked_skills": []
+    },
+    {
+      "slug": "es-xpack-transport-vs-rest-ssl",
+      "category": "api",
+      "summary": "Elasticsearch transport SSL and REST SSL are independent X-Pack configs; enabling one does not enable the other",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/es-xpack-transport-vs-rest-ssl",
+      "linked_skills": []
+    },
+    {
+      "slug": "event-driven-init-wait-for-services",
+      "category": "arch",
+      "summary": "Initialization work is deferred until leader status and dependent-service readiness are confirmed via a `@WaitForServices` event listener",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/event-driven-init-wait-for-services",
+      "linked_skills": []
+    },
+    {
+      "slug": "existing-code-patterns-over-standard-rules",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/existing-code-patterns-over-standard-rules",
+      "linked_skills": []
+    },
+    {
+      "slug": "god-controller-split-by-resource",
+      "category": "decision",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/god-controller-split-by-resource",
+      "linked_skills": []
     },
     {
       "slug": "gradle-avro-plugin-config",
@@ -1978,7 +2528,8 @@
       "summary": "davidmc24 avro-gradle-plugin config — createSetters=false + fieldVisibility=PRIVATE enforces immutable generated event schemas",
       "confidence": "medium",
       "source_project": "lucida-audit",
-      "path": "arch/gradle-avro-plugin-config"
+      "path": "arch/gradle-avro-plugin-config",
+      "linked_skills": []
     },
     {
       "slug": "gridfs-template-upload-data-loss-pitfall",
@@ -1986,7 +2537,26 @@
       "summary": "MongoDB GridFS uploads can silently drop file bytes if the bucket/db selection or stream flush is wrong - always verify metadata size equals input size",
       "confidence": "medium",
       "source_project": "lucida-report",
-      "path": "pitfall/gridfs-template-upload-data-loss-pitfall"
+      "path": "pitfall/gridfs-template-upload-data-loss-pitfall",
+      "linked_skills": []
+    },
+    {
+      "slug": "hibernate-date-format-lowercase",
+      "category": "pitfall",
+      "summary": "Use lowercase `yyyy` for calendar year — `YYYY` is ISO week-year and produces wrong values near Jan 1 / Dec 31",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/hibernate-date-format-lowercase",
+      "linked_skills": []
+    },
+    {
+      "slug": "hierarchical-agents-md-catalog",
+      "category": "arch",
+      "summary": "루트 AGENTS.md(프로젝트 개요) + `skills/AGENTS.md`(스킬 카탈로그) 2계층 구조. 하위는 상위를 `<!-- Parent: ../AGENTS.md -->` 주석으로 가리킨다.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/hierarchical-agents-md-catalog",
+      "linked_skills": []
     },
     {
       "slug": "history-view-yearly-partition-pitfall",
@@ -1994,7 +2564,44 @@
       "summary": "A history/reporting view or materialized collection created with a year-bounded clause silently stops returning rows when the calendar year rolls over",
       "confidence": "high",
       "source_project": "lucida-notification",
-      "path": "pitfall/history-view-yearly-partition-pitfall"
+      "path": "pitfall/history-view-yearly-partition-pitfall",
+      "linked_skills": []
+    },
+    {
+      "slug": "hyperloglog-for-unique-user-counting",
+      "category": "decision",
+      "summary": "Scouter uses HyperLogLog (Clearspring stream-lib) to estimate recent and daily unique user counts with ~100 bytes of memory and ~2% error, avoiding O(n) hash sets",
+      "confidence": "medium",
+      "source_project": "scouter",
+      "path": "decision/hyperloglog-for-unique-user-counting",
+      "linked_skills": []
+    },
+    {
+      "slug": "injectmocks-generics-type-erasure",
+      "category": "pitfall",
+      "summary": "@InjectMocks picks wrong mock for same raw-type generic fields due to type erasure — flaky test root cause",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/injectmocks-generics-type-erasure",
+      "linked_skills": []
+    },
+    {
+      "slug": "interface-abstraction-for-modularity",
+      "category": "arch",
+      "summary": "Pure-virtual C++ interfaces in a dedicated src/interfaces/ directory decouple modules without symbol-level coupling, and enable IPC code generation later.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "arch/interface-abstraction-for-modularity",
+      "linked_skills": []
+    },
+    {
+      "slug": "ipv6-colon-detection-edge",
+      "category": "pitfall",
+      "summary": "Detecting IPv6 by colon count breaks on compressed notation — use a regex character class",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/ipv6-colon-detection-edge",
+      "linked_skills": []
     },
     {
       "slug": "jackson-version-pinning-2.17.1",
@@ -2002,7 +2609,17 @@
       "summary": "Jackson must be pinned via Gradle resolutionStrategy across all com.fasterxml.jackson.* groups to avoid NoSuchMethodError from transitive version drift",
       "confidence": "high",
       "source_project": "lucida-audit",
-      "path": "pitfall/jackson-version-pinning-2.17.1"
+      "path": "pitfall/jackson-version-pinning-2.17.1",
+      "linked_skills": []
+    },
+    {
+      "slug": "jacoco-exclude-business-layers",
+      "category": "decision",
+      "summary": "In this project's Jacoco config, nearly every layer (service, repository, dto, entity, kafka, config, constants, helper, exception, schedule, provider) is excluded from coverage measurement — only controllers/business orchestration code is measured.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/jacoco-exclude-business-layers",
+      "linked_skills": []
     },
     {
       "slug": "jacoco-sonar-exclusion-policy",
@@ -2016,12 +2633,22 @@
       ]
     },
     {
+      "slug": "jacoco-sonar-exclusion-rationale",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/jacoco-sonar-exclusion-rationale",
+      "linked_skills": []
+    },
+    {
       "slug": "jar-task-disabled-bootjar-only",
       "category": "arch",
       "summary": "Gradle `jar` task is disabled so only `bootJar` produces an artifact — CI/Docker consumers never receive an ambiguous plain JAR",
       "confidence": "medium",
       "source_project": "lucida-audit",
-      "path": "arch/jar-task-disabled-bootjar-only"
+      "path": "arch/jar-task-disabled-bootjar-only",
+      "linked_skills": []
     },
     {
       "slug": "java-21-upgrade-rationale",
@@ -2040,12 +2667,67 @@
       "summary": "When the template engine XML-escapes values but the downstream channel is raw SQL / plain text, the escaped `&amp; &lt; &gt;` leaks into stored data",
       "confidence": "medium",
       "source_project": "lucida-notification",
-      "path": "pitfall/jdbc-template-var-xml-escape-bypass"
+      "path": "pitfall/jdbc-template-var-xml-escape-bypass",
+      "linked_skills": []
+    },
+    {
+      "slug": "jest-coverage-80-threshold",
+      "category": "decision",
+      "summary": "Global Jest coverage threshold is 80% on branches, functions, lines, and statements",
+      "confidence": "medium",
+      "source_project": "lucida-builder-r3",
+      "path": "decision/jest-coverage-80-threshold",
+      "linked_skills": []
+    },
+    {
+      "slug": "jvm-module-opens-java21-spring-kafka",
+      "category": "arch",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/jvm-module-opens-java21-spring-kafka",
+      "linked_skills": []
+    },
+    {
+      "slug": "jwt-stateless-refresh-24h-default",
+      "category": "decision",
+      "summary": "JWT stateless auth with 1h access / 24h refresh token defaults, both env-tunable.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/jwt-stateless-refresh-24h-default",
+      "linked_skills": []
+    },
+    {
+      "slug": "k-git-tag-registry-versioning",
+      "category": "arch",
+      "summary": "Git tag를 semver registry로 쓰면 별도 version manifest 없이 rollback·pinning을 얻는다",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/k-git-tag-registry-versioning",
+      "linked_skills": []
+    },
+    {
+      "slug": "k-kafka-message-header-metadata",
+      "category": "decision",
+      "summary": "멀티테넌트 Kafka routing 메타는 payload 대신 RecordHeader에 두어 business schema 오염을 막는다",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/k-kafka-message-header-metadata",
+      "linked_skills": []
+    },
+    {
+      "slug": "k8s-clusterrole-aggregation-npe",
+      "category": "pitfall",
+      "summary": "ClusterRole `aggregationRule` and its `clusterRoleSelectors` are both nullable — iterate only after null-check",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/k8s-clusterrole-aggregation-npe",
+      "linked_skills": []
     },
     {
       "slug": "kafka-1h-topic-and-nonmetric-pool",
       "category": "arch",
-      "summary": "Raw alarm path uses a 1-hour-retention Kafka topic and a dedicated non-metric thread pool - isolates alarm latency from batch ingest",
+      "summary": "Raw alarm path uses a 1-hour-retention Kafka topic and a dedicated non-metric thread pool — isolates alarm latency from batch ingest",
       "confidence": "medium",
       "source_project": "lucida-measurement",
       "path": "arch/kafka-1h-topic-and-nonmetric-pool",
@@ -2054,12 +2736,107 @@
       ]
     },
     {
+      "slug": "kafka-avro-change-flag-contract",
+      "category": "api",
+      "summary": "Every Configuration-domain Avro event carries an `actionType` enum (INSERT/UPDATE/DELETE) plus boolean change flags per mutable section (e.g. `parentChanged`, `tagFiltersChanged`, `configurationsChanged`) rather than full before/after payloads.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/kafka-avro-change-flag-contract",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-avro-schedule-event-chain",
+      "category": "arch",
+      "summary": "Collection scheduling decouples Kafka ingress from per-DBMS handlers via four typed BlockingQueues",
+      "confidence": "high",
+      "source_project": "lucida-domain-dpm",
+      "path": "arch/kafka-avro-schedule-event-chain",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-avro-schema-registry-env-topology",
+      "category": "arch",
+      "summary": "Kafka uses Avro + Confluent Schema Registry; partition and replication counts are environment-driven.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/kafka-avro-schema-registry-env-topology",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-batch-size-timeout-tuning",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/kafka-batch-size-timeout-tuning",
+      "linked_skills": [
+        "kafka-batch-consumer-partition-tuning"
+      ]
+    },
+    {
+      "slug": "kafka-consumer-group-id-hostname-not-timezone",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/kafka-consumer-group-id-hostname-not-timezone",
+      "linked_skills": []
+    },
+    {
       "slug": "kafka-error-handling-deserializer-fallback",
       "category": "pitfall",
       "summary": "Wrap Avro/JSON deserializers in ErrorHandlingDeserializer so a single bad record doesn't poison the consumer and crash-loop the container",
       "confidence": "high",
       "source_project": "lucida-audit",
-      "path": "pitfall/kafka-error-handling-deserializer-fallback"
+      "path": "pitfall/kafka-error-handling-deserializer-fallback",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-organization-id-record-header",
+      "category": "api",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/kafka-organization-id-record-header",
+      "linked_skills": []
+    },
+    {
+      "slug": "kafka-partition-topology-design",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/kafka-partition-topology-design",
+      "linked_skills": [
+        "kafka-batch-consumer-partition-tuning"
+      ]
+    },
+    {
+      "slug": "kafka-sticky-partitioner-key-null",
+      "category": "pitfall",
+      "summary": "Kafka Sticky Partitioner batches key=null messages into one partition — explains dev vs prod distribution gap",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/kafka-sticky-partitioner-key-null",
+      "linked_skills": []
+    },
+    {
+      "slug": "konva-center-coord-system",
+      "category": "pitfall",
+      "summary": "Konva node coordinates can be center-based; when converting to top-left boxes subtract half width/height",
+      "confidence": "medium",
+      "source_project": "lucida-builder-r3",
+      "path": "pitfall/konva-center-coord-system",
+      "linked_skills": []
+    },
+    {
+      "slug": "large-range-query-raw-collections",
+      "category": "decision",
+      "summary": "For long time-range queries over day-partitioned data, hit raw daily collections instead of aggregated views to avoid timeouts",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "decision/large-range-query-raw-collections",
+      "linked_skills": []
     },
     {
       "slug": "latest-availability-deletion-risk",
@@ -2073,20 +2850,132 @@
       ]
     },
     {
+      "slug": "legacy-datasource-naming",
+      "category": "pitfall",
+      "summary": "`dataSource` / `dataSourceFilter` in the codebase actually mean data-pipeline-select and data-pipeline-filter — not datasource",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "pitfall/legacy-datasource-naming",
+      "linked_skills": []
+    },
+    {
+      "slug": "license-apply-window-15d",
+      "category": "decision",
+      "summary": "Issued licenses must be applied within 15 days; expired licenses are immutable.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/license-apply-window-15d",
+      "linked_skills": []
+    },
+    {
       "slug": "live-chart-timestamp-normalization",
       "category": "api",
-      "summary": "LIVE charts accept normalizeTimestamp + normalizeIntervalMs to align per-agent millisecond offsets into a single x-axis",
+      "summary": "LIVE charts accept `normalizeTimestamp` + `normalizeIntervalMs` to align per-agent millisecond offsets into a single x-axis",
       "confidence": "medium",
       "source_project": "lucida-measurement",
-      "path": "api/live-chart-timestamp-normalization"
+      "path": "api/live-chart-timestamp-normalization",
+      "linked_skills": []
     },
     {
       "slug": "live-mode-aggregation-exceptions",
       "category": "arch",
-      "summary": "LIVE mode reads raw by default, but equalizer/multi-resource/TopN charts still aggregate raw at query time",
+      "summary": "LIVE mode reads raw data by default, but equalizer / multi-resource / TopN charts still aggregate raw at query time",
       "confidence": "medium",
       "source_project": "lucida-measurement",
-      "path": "arch/live-mode-aggregation-exceptions"
+      "path": "arch/live-mode-aggregation-exceptions",
+      "linked_skills": []
+    },
+    {
+      "slug": "lucida-framework-gate-annotations",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/lucida-framework-gate-annotations",
+      "linked_skills": []
+    },
+    {
+      "slug": "measurement-batch-send-per-config",
+      "category": "decision",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/measurement-batch-send-per-config",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-direct-connection-flag",
+      "category": "pitfall",
+      "summary": "MongoDB datasource connectionString requires directConnection=true in this deployment",
+      "confidence": "medium",
+      "source_project": "lucida-builder-r3",
+      "path": "pitfall/mongo-direct-connection-flag",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-timeseries-forced-hint-kills-pushdown",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongo-timeseries-forced-hint-kills-pushdown",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-timeseries-match-split-for-pushdown",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongo-timeseries-match-split-for-pushdown",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongo-timeseries-view-pushdown-broken-8_2_3",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/mongo-timeseries-view-pushdown-broken-8_2_3",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-aggregated-stats-as-views",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/mongodb-aggregated-stats-as-views",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-changestream-resubscribe",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongodb-changestream-resubscribe",
+      "linked_skills": [
+        "mongodb-changestream-field-filter"
+      ]
+    },
+    {
+      "slug": "mongodb-compound-index-on-views",
+      "category": "pitfall",
+      "summary": "Spring Data @CompoundIndex annotations on a view-backed @Document are silently ignored — index the collection class",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "pitfall/mongodb-compound-index-on-views",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-documentreference-lazy-removal",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/mongodb-documentreference-lazy-removal",
+      "linked_skills": []
     },
     {
       "slug": "mongodb-exclude-system-databases",
@@ -2094,7 +2983,17 @@
       "summary": "When enumerating tenant databases in a shared MongoDB cluster, filter out admin/config/local plus third-party DBs (yorkie-meta, migration) to avoid touching shared state",
       "confidence": "medium",
       "source_project": "lucida-audit",
-      "path": "domain/mongodb-exclude-system-databases"
+      "path": "domain/mongodb-exclude-system-databases",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-field-name-underscore-to-dot",
+      "category": "pitfall",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/mongodb-field-name-underscore-to-dot",
+      "linked_skills": []
     },
     {
       "slug": "mongodb-single-node-directconnection",
@@ -2102,7 +3001,44 @@
       "summary": "MongoDB clients must pass directConnection=true when connecting to a single-node replSet, otherwise they hang on primary discovery",
       "confidence": "high",
       "source_project": "lucida-for-docker",
-      "path": "pitfall/mongodb-single-node-directconnection"
+      "path": "pitfall/mongodb-single-node-directconnection",
+      "linked_skills": []
+    },
+    {
+      "slug": "mongodb-string-id-field-type-mapping",
+      "category": "pitfall",
+      "summary": "Spring Data MongoDB coerces 24-char-hex @Id String values to ObjectId unless @Field(targetType = FieldType.STRING) is set",
+      "confidence": "high",
+      "source_project": "lucida-domain-dpm",
+      "path": "pitfall/mongodb-string-id-field-type-mapping",
+      "linked_skills": []
+    },
+    {
+      "slug": "multi-domain-split-via-domain-mapping",
+      "category": "arch",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/multi-domain-split-via-domain-mapping",
+      "linked_skills": []
+    },
+    {
+      "slug": "multiprocess-architecture-via-ipc",
+      "category": "arch",
+      "summary": "Decompose a monolith into cooperating processes by defining interfaces in a neutral schema language (Cap'n Proto), then codegen client/server proxies that preserve the original C++ interface shape.",
+      "confidence": "high",
+      "source_project": "bitcoin",
+      "path": "arch/multiprocess-architecture-via-ipc",
+      "linked_skills": []
+    },
+    {
+      "slug": "mysql-mariadb-performance-schema-detection",
+      "category": "domain",
+      "summary": "MySQL/MariaDB metric availability depends on per-instance Performance Schema state; detect at runtime, don't assume",
+      "confidence": "medium",
+      "source_project": "lucida-domain-dpm",
+      "path": "domain/mysql-mariadb-performance-schema-detection",
+      "linked_skills": []
     },
     {
       "slug": "nfs-backed-volumes-for-docker-swarm",
@@ -2110,7 +3046,350 @@
       "summary": "Cross-node Docker Swarm persistence via a single NFS share mounted at the same host path on every swarm node",
       "confidence": "high",
       "source_project": "lucida-for-docker",
-      "path": "arch/nfs-backed-volumes-for-docker-swarm"
+      "path": "arch/nfs-backed-volumes-for-docker-swarm",
+      "linked_skills": []
+    },
+    {
+      "slug": "node-npm-pin-matches-jenkins",
+      "category": "decision",
+      "summary": "UI build is pinned to Node 24.6.0 + npm 11.5.1 to match the Jenkins build environment",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "decision/node-npm-pin-matches-jenkins",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-ai-slop-cleaner",
+      "category": "arch",
+      "summary": "OMC implements \\\"ai-slop-cleaner\\\" as: Clean AI-generated code slop with a regression-safe, deletion-first workflow and optional reviewer-only mode",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-ai-slop-cleaner",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-ask",
+      "category": "arch",
+      "summary": "OMC implements \\\"ask\\\" as: Process-first advisor routing for Claude, Codex, or Gemini via `omc ask`, with artifact capture and no raw CLI assembly",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-ask",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-autopilot",
+      "category": "arch",
+      "summary": "OMC implements \\\"autopilot\\\" as: Full autonomous execution from idea to working code",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-autopilot",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-cancel",
+      "category": "arch",
+      "summary": "OMC implements \\\"cancel\\\" as: Cancel any active OMC mode (autopilot, ralph, ultrawork, ultraqa, swarm, ultrapilot, pipeline, team)",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-cancel",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-ccg",
+      "category": "arch",
+      "summary": "OMC implements \\\"ccg\\\" as: Claude-Codex-Gemini tri-model orchestration via /ask codex + /ask gemini, then Claude synthesizes results",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-ccg",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-configure-notifications",
+      "category": "arch",
+      "summary": "OMC implements \\\"configure-notifications\\\" as: Configure notification integrations (Telegram, Discord, Slack) via natural language",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-configure-notifications",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-debug",
+      "category": "arch",
+      "summary": "OMC implements \\\"debug\\\" as: Diagnose the current OMC session or repo state using logs, traces, state, and focused reproduction",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-debug",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-deep-dive",
+      "category": "arch",
+      "summary": "OMC implements \\\"deep-dive\\\" as: 2-stage pipeline: trace (causal investigation) -> deep-interview (requirements crystallization) with 3-point injection",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-deep-dive",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-deep-interview",
+      "category": "arch",
+      "summary": "OMC implements \\\"deep-interview\\\" as: Socratic deep interview with mathematical ambiguity gating before autonomous execution",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-deep-interview",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-deepinit",
+      "category": "arch",
+      "summary": "OMC implements \\\"deepinit\\\" as: Deep codebase initialization with hierarchical AGENTS.md documentation",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-deepinit",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-external-context",
+      "category": "arch",
+      "summary": "OMC implements \\\"external-context\\\" as: Invoke parallel document-specialist agents for external web searches and documentation lookup",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-external-context",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-hud",
+      "category": "arch",
+      "summary": "OMC implements \\\"hud\\\" as: Configure HUD display options (layout, presets, display elements)",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-hud",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-learner",
+      "category": "arch",
+      "summary": "OMC implements \\\"learner\\\" as: Extract a learned skill from the current conversation",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-learner",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-mcp-setup",
+      "category": "arch",
+      "summary": "OMC implements \\\"mcp-setup\\\" as: Configure popular MCP servers for enhanced agent capabilities",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-mcp-setup",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-omc-doctor",
+      "category": "arch",
+      "summary": "OMC implements \\\"omc-doctor\\\" as: Diagnose and fix oh-my-claudecode installation issues",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-omc-doctor",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-omc-reference",
+      "category": "arch",
+      "summary": "OMC implements \\\"omc-reference\\\" as: OMC agent catalog, available tools, team pipeline routing, commit protocol, and skills registry. Auto-loads when delegating to agents, using OMC tools, orchestrating teams, making commits, or invoking skills.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-omc-reference",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-omc-setup",
+      "category": "arch",
+      "summary": "OMC implements \\\"omc-setup\\\" as: Install or refresh oh-my-claudecode for plugin, npm, and local-dev setups from the canonical setup flow",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-omc-setup",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-omc-teams",
+      "category": "arch",
+      "summary": "OMC implements \\\"omc-teams\\\" as: CLI-team runtime for claude, codex, or gemini workers in tmux panes when you need process-based parallel execution",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-omc-teams",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-plan",
+      "category": "arch",
+      "summary": "OMC implements \\\"plan\\\" as: Strategic planning with optional interview workflow",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-plan",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-project-session-manager",
+      "category": "arch",
+      "summary": "OMC implements \\\"project-session-manager\\\" as: Worktree-first dev environment manager for issues, PRs, and features with optional tmux sessions",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-project-session-manager",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-ralph",
+      "category": "arch",
+      "summary": "OMC implements \\\"ralph\\\" as: Self-referential loop until task completion with configurable verification reviewer",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-ralph",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-ralplan",
+      "category": "arch",
+      "summary": "OMC implements \\\"ralplan\\\" as: Consensus planning entrypoint that auto-gates vague ralph/autopilot/team requests before execution",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-ralplan",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-release",
+      "category": "arch",
+      "summary": "OMC implements \\\"release\\\" as: Generic release assistant — analyzes repo release rules, caches them in .omc/RELEASE_RULE.md, then guides the release",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-release",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-remember",
+      "category": "arch",
+      "summary": "OMC implements \\\"remember\\\" as: Review reusable project knowledge and decide what belongs in project memory, notepad, or durable docs",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-remember",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-sciomc",
+      "category": "arch",
+      "summary": "OMC implements \\\"sciomc\\\" as: Orchestrate parallel scientist agents for comprehensive analysis with AUTO mode",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-sciomc",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-self-improve",
+      "category": "arch",
+      "summary": "OMC implements \\\"self-improve\\\" as: Autonomous evolutionary code improvement engine with tournament selection",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-self-improve",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-setup",
+      "category": "arch",
+      "summary": "OMC implements \\\"setup\\\" as: Use first for install/update routing — sends setup, doctor, or MCP requests to the correct OMC setup flow",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-setup",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-skill",
+      "category": "arch",
+      "summary": "OMC implements \\\"skill\\\" as: Manage local skills - list, add, remove, search, edit, setup wizard",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-skill",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-skillify",
+      "category": "arch",
+      "summary": "OMC implements \\\"skillify\\\" as: Turn a repeatable workflow from the current session into a reusable OMC skill draft",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-skillify",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-team",
+      "category": "arch",
+      "summary": "OMC implements \\\"team\\\" as: N coordinated agents on shared task list using Claude Code native teams",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-team",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-trace",
+      "category": "arch",
+      "summary": "OMC implements \\\"trace\\\" as: Evidence-driven tracing lane that orchestrates competing tracer hypotheses in Claude built-in team mode",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-trace",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-ultraqa",
+      "category": "arch",
+      "summary": "OMC implements \\\"ultraqa\\\" as: QA cycling workflow - test, verify, fix, repeat until goal met",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-ultraqa",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-ultrawork",
+      "category": "arch",
+      "summary": "OMC implements \\\"ultrawork\\\" as: Parallel execution engine for high-throughput task completion",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-ultrawork",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-verify",
+      "category": "arch",
+      "summary": "OMC implements \\\"verify\\\" as: Verify that a change really works before you claim completion",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-verify",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-visual-verdict",
+      "category": "arch",
+      "summary": "OMC implements \\\"visual-verdict\\\" as: Structured visual QA verdict for screenshot-to-reference comparisons",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-visual-verdict",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-wiki",
+      "category": "arch",
+      "summary": "OMC implements \\\"wiki\\\" as: LLM Wiki — persistent markdown knowledge base that compounds across sessions (Karpathy model)",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-wiki",
+      "linked_skills": []
+    },
+    {
+      "slug": "oh-my-claudecode-writer-memory",
+      "category": "arch",
+      "summary": "OMC implements \\\"writer-memory\\\" as: Agentic memory system for writers - track characters, relationships, scenes, and themes",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/oh-my-claudecode-writer-memory",
+      "linked_skills": []
     },
     {
       "slug": "one-default-template-per-type-rule",
@@ -2118,7 +3397,26 @@
       "summary": "Exactly one default message template may exist per notification type; creating a second default is rejected, but editing the existing default is allowed",
       "confidence": "high",
       "source_project": "lucida-notification",
-      "path": "domain/one-default-template-per-type-rule"
+      "path": "domain/one-default-template-per-type-rule",
+      "linked_skills": []
+    },
+    {
+      "slug": "openapi-as-single-fe-be-contract",
+      "category": "arch",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "arch/openapi-as-single-fe-be-contract",
+      "linked_skills": []
+    },
+    {
+      "slug": "organization-soft-delete-grace-period",
+      "category": "decision",
+      "summary": "Organization deletion uses a 30-day grace period before permanent removal (DELETE_ORGANIZATION_INTERVAL_DAYS).",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/organization-soft-delete-grace-period",
+      "linked_skills": []
     },
     {
       "slug": "oz-license-file-placement-flip-flop",
@@ -2126,12 +3424,22 @@
       "summary": "Vendor engines (OZ Report, Crystal, Jasper-Pro) often hard-code license file search paths - pin the path in the image and document it, or you will ship it broken repeatedly",
       "confidence": "medium",
       "source_project": "lucida-report",
-      "path": "pitfall/oz-license-file-placement-flip-flop"
+      "path": "pitfall/oz-license-file-placement-flip-flop",
+      "linked_skills": []
+    },
+    {
+      "slug": "page-map-returns-new-instance",
+      "category": "pitfall",
+      "summary": "Spring Data Page is immutable — Page.map() returns a new instance; forgetting to reassign silently loses the mapping",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/page-map-returns-new-instance",
+      "linked_skills": []
     },
     {
       "slug": "period-interval-naming-convention",
       "category": "domain",
-      "summary": "Period.Mode names encode unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not monthly",
+      "summary": "Period.Mode names encode both unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not the unit itself",
       "confidence": "medium",
       "source_project": "lucida-measurement",
       "path": "domain/period-interval-naming-convention",
@@ -2140,9 +3448,45 @@
       ]
     },
     {
+      "slug": "pims-write-requires-dryrun-confirm",
+      "category": "domain",
+      "summary": "PIMS 시간 기록/제출/일괄 갱신 등 모든 쓰기 API는 미리보기 → 사용자 확인 → 재시도 가능한 실행 플로우를 반드시 거친다. `--dry-run`은 API 쓰기 호출 자체가 금지.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "domain/pims-write-requires-dryrun-confirm",
+      "linked_skills": []
+    },
+    {
+      "slug": "planning-doc-in-issue-description",
+      "category": "decision",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "decision/planning-doc-in-issue-description",
+      "linked_skills": []
+    },
+    {
+      "slug": "plugin-architecture-runtime-vs-startup-loading",
+      "category": "arch",
+      "summary": "Scouter server loads hot-reloadable script plugins (.plug files) for alerts/filters and compiled JAR plugins for stateful data handlers (sinks, connection-pool-heavy integrations)",
+      "confidence": "medium",
+      "source_project": "scouter",
+      "path": "arch/plugin-architecture-runtime-vs-startup-loading",
+      "linked_skills": []
+    },
+    {
+      "slug": "plugin-repo-scope-generic-skills-only",
+      "category": "decision",
+      "summary": "nkia-skills 같은 공용 플러그인에는 범용 스킬만. 프로젝트 특화 스킬은 각 프로젝트의 `.claude/skills/`에 둔다.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/plugin-repo-scope-generic-skills-only",
+      "linked_skills": []
+    },
+    {
       "slug": "policy-edit-saveraw-loss",
       "category": "pitfall",
-      "summary": "Editing common collection policy can silently drop individual saveRaw/interval settings if not re-applied",
+      "summary": "Editing a common collection policy can silently drop individual `saveRaw`/interval settings if not re-applied",
       "confidence": "high",
       "source_project": "lucida-measurement",
       "path": "pitfall/policy-edit-saveraw-loss",
@@ -2151,12 +3495,274 @@
       ]
     },
     {
+      "slug": "port-out-no-optional-raise-in-adapter",
+      "category": "arch",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/port-out-no-optional-raise-in-adapter",
+      "linked_skills": []
+    },
+    {
+      "slug": "postgres-version-rolling-support",
+      "category": "decision",
+      "summary": "Roll PostgreSQL major-version support forward incrementally (9.x → 18) rather than pinning one LTS",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/postgres-version-rolling-support",
+      "linked_skills": []
+    },
+    {
+      "slug": "prefer-static-import-over-constant-inheritance",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/prefer-static-import-over-constant-inheritance",
+      "linked_skills": []
+    },
+    {
+      "slug": "published-vs-realtime-view-pages",
+      "category": "arch",
+      "summary": "PublishedViewPage renders a frozen deploy snapshot; RealTimeViewPage renders the live editable dashboard",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "arch/published-vs-realtime-view-pages",
+      "linked_skills": []
+    },
+    {
+      "slug": "push-local-removed-use-doc-update",
+      "category": "decision",
+      "summary": "pushLocalChangesIntoRemote and its action-mapping helpers were removed; mutate Yorkie via doc.update directly",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "decision/push-local-removed-use-doc-update",
+      "linked_skills": []
+    },
+    {
+      "slug": "query-manager-version-conversion-fallback",
+      "category": "decision",
+      "summary": "Unknown target RDBMS versions fall back to a documented default bucket rather than erroring, keeping collection alive",
+      "confidence": "medium",
+      "source_project": "lucida-domain-dpm",
+      "path": "decision/query-manager-version-conversion-fallback",
+      "linked_skills": []
+    },
+    {
+      "slug": "rcp-desktop-client-design-rationale-vs-saas-web",
+      "category": "decision",
+      "summary": "Scouter chose an Eclipse RCP desktop client over a browser UI to enable high-throughput binary streams, local caching, and real-time drill-down without HTTP/JSON overhead",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "decision/rcp-desktop-client-design-rationale-vs-saas-web",
+      "linked_skills": []
+    },
+    {
+      "slug": "redis-change-counter-for-versioning-trigger",
+      "category": "arch",
+      "summary": "|",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/redis-change-counter-for-versioning-trigger",
+      "linked_skills": []
+    },
+    {
+      "slug": "refresh-token-do-not-regenerate",
+      "category": "pitfall",
+      "summary": "A refresh call must issue a new ACCESS token only, never a new refresh token.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/refresh-token-do-not-regenerate",
+      "linked_skills": []
+    },
+    {
       "slug": "resource-mount-unmount-use-jar-defaults",
       "category": "decision",
       "summary": "Don't bind-mount i18n/exception/menu resource files into Spring Boot containers; let the jar ship its own defaults",
       "confidence": "high",
       "source_project": "lucida-for-docker",
-      "path": "decision/resource-mount-unmount-use-jar-defaults"
+      "path": "decision/resource-mount-unmount-use-jar-defaults",
+      "linked_skills": []
+    },
+    {
+      "slug": "root-span-error-propagation",
+      "category": "domain",
+      "summary": "Root span isError must aggregate descendant errors; otherwise scatter and list views disagree on a trace's error state",
+      "confidence": "medium",
+      "source_project": "lucida-domain-apm",
+      "path": "domain/root-span-error-propagation",
+      "linked_skills": []
+    },
+    {
+      "slug": "save-child-only-when-changed",
+      "category": "decision",
+      "summary": "When reconciling parent→child configurations, persistence is conditional on \"new\" or \"resourceName/tags changed\". Unconditional save caused unnecessary write load and spurious change events.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/save-child-only-when-changed",
+      "linked_skills": []
+    },
+    {
+      "slug": "scatter-topic-1min-retention",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/scatter-topic-1min-retention",
+      "linked_skills": []
+    },
+    {
+      "slug": "scouter-three-tier-architecture",
+      "category": "arch",
+      "summary": "Scouter APM enforces strict agent → server → client separation, with an optional standalone HTTP webapp for horizontal scaling of query load",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "arch/scouter-three-tier-architecture",
+      "linked_skills": []
+    },
+    {
+      "slug": "serial-pipeline-failure-compounding",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/serial-pipeline-failure-compounding",
+      "linked_skills": []
+    },
+    {
+      "slug": "shallow-clone-mktemp-cleanup-pattern",
+      "category": "arch",
+      "summary": "publish/install/원격 목록 조회처럼 원격 git repo를 만질 때는 `mktemp -d → git clone --depth 1 → 작업 → rm -rf`. 작업 디렉토리를 오염시키지 않는다.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "arch/shallow-clone-mktemp-cleanup-pattern",
+      "linked_skills": []
+    },
+    {
+      "slug": "sibling-scoped-name-uniqueness",
+      "category": "pitfall",
+      "summary": "A global unique index on group `name` was present and had to be dropped; uniqueness is correct only within the same parent.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/sibling-scoped-name-uniqueness",
+      "linked_skills": []
+    },
+    {
+      "slug": "simpledateformat-not-thread-safe",
+      "category": "pitfall",
+      "summary": "SimpleDateFormat mutates Calendar state and corrupts under concurrency — use java.time.DateTimeFormatter",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/simpledateformat-not-thread-safe",
+      "linked_skills": []
+    },
+    {
+      "slug": "skill-registry-vs-skill-config-split",
+      "category": "decision",
+      "summary": "원격 저장소 정보는 `.claude/skill-registry.yaml`, 스킬별 런타임 옵션(출력 경로 등)은 `.claude/skill-config.yaml`. 파일 단위로 관심사 분리.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/skill-registry-vs-skill-config-split",
+      "linked_skills": []
+    },
+    {
+      "slug": "skip-schedule-if-previous-running",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/skip-schedule-if-previous-running",
+      "linked_skills": []
+    },
+    {
+      "slug": "snmp-ifindex-not-stable",
+      "category": "pitfall",
+      "summary": "SNMP `ifIndex` can change across device reboot/reconfig — never use it as a stable identifier",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/snmp-ifindex-not-stable",
+      "linked_skills": []
+    },
+    {
+      "slug": "span-hash-determinism",
+      "category": "pitfall",
+      "summary": "Span-dedup hash must be stable; changing the hash definition yields duplicates during rollout and breaks historical joins",
+      "confidence": "medium",
+      "source_project": "lucida-domain-apm",
+      "path": "pitfall/span-hash-determinism",
+      "linked_skills": []
+    },
+    {
+      "slug": "span-lifetime-safety-documentation",
+      "category": "pitfall",
+      "summary": "std::span is a non-owning view — common C++20 hazards (dangling temporaries, vector realloc, implicit construction from rvalues) and the safe usage patterns that avoid UB.",
+      "confidence": "medium",
+      "source_project": "bitcoin",
+      "path": "pitfall/span-lifetime-safety-documentation",
+      "linked_skills": []
+    },
+    {
+      "slug": "spec-excluded-from-jest",
+      "category": "pitfall",
+      "summary": ".spec.ts files are excluded from the Jest runner in this project — only .test.ts is discovered",
+      "confidence": "high",
+      "source_project": "lucida-builder-r3",
+      "path": "pitfall/spec-excluded-from-jest",
+      "linked_skills": []
+    },
+    {
+      "slug": "sql-hash-unsigned-integer",
+      "category": "pitfall",
+      "summary": "MySQL/MariaDB SQL digest hashes fit in an unsigned 32-bit range but arrive as signed Java int — negatives are legal and must not be dropped",
+      "confidence": "high",
+      "source_project": "lucida-domain-dpm",
+      "path": "pitfall/sql-hash-unsigned-integer",
+      "linked_skills": []
+    },
+    {
+      "slug": "sql-text-null-check-session-history-consistency",
+      "category": "pitfall",
+      "summary": "Session history rows must omit sqlHash and queryTime when SQL text is missing, else they orphan in downstream joins",
+      "confidence": "high",
+      "source_project": "lucida-domain-dpm",
+      "path": "pitfall/sql-text-null-check-session-history-consistency",
+      "linked_skills": []
+    },
+    {
+      "slug": "sqlserver-sqltextinfo-index-constraint",
+      "category": "pitfall",
+      "summary": "Do not put a unique index on sqlHash for SQL Server text-info collection — duplicates are legitimate",
+      "confidence": "medium",
+      "source_project": "lucida-domain-dpm",
+      "path": "pitfall/sqlserver-sqltextinfo-index-constraint",
+      "linked_skills": []
+    },
+    {
+      "slug": "static-value-injection-race-condition",
+      "category": "pitfall",
+      "summary": "@Value on static fields causes init-order and visibility races — always inject into instance fields",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/static-value-injection-race-condition",
+      "linked_skills": []
+    },
+    {
+      "slug": "stomp-heartbeat-10s-bidirectional",
+      "category": "api",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/stomp-heartbeat-10s-bidirectional",
+      "linked_skills": []
+    },
+    {
+      "slug": "stub-in-service-unblocks-fe-parallelism",
+      "category": "decision",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/stub-in-service-unblocks-fe-parallelism",
+      "linked_skills": []
     },
     {
       "slug": "system-notification-shared-with-2fa-and-password-find",
@@ -2164,7 +3770,71 @@
       "summary": "The `system_notification` config (SMTP/SMS credentials) is intentionally shared between 2FA and password-find flows rather than duplicated per flow",
       "confidence": "medium",
       "source_project": "lucida-notification",
-      "path": "decision/system-notification-shared-with-2fa-and-password-find"
+      "path": "decision/system-notification-shared-with-2fa-and-password-find",
+      "linked_skills": []
+    },
+    {
+      "slug": "tabular-metric-excluded-from-list",
+      "category": "decision",
+      "summary": "TABULAR measurement type is intentionally excluded from searchable metric-definition list endpoints",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/tabular-metric-excluded-from-list",
+      "linked_skills": []
+    },
+    {
+      "slug": "tag-values-separate-collection",
+      "category": "decision",
+      "summary": "TagValueInfo's `values` array was extracted from the parent tag document into a separate `tag_value_detail` collection to bound document size and index cost.",
+      "confidence": "high",
+      "source_project": "",
+      "path": "decision/tag-values-separate-collection",
+      "linked_skills": []
+    },
+    {
+      "slug": "tenant-context-clear-after-completion",
+      "category": "pitfall",
+      "summary": "Multi-tenant thread-locals must be cleared in a HandlerInterceptor `afterCompletion`, regardless of request outcome",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/tenant-context-clear-after-completion",
+      "linked_skills": []
+    },
+    {
+      "slug": "tenant-flag-over-name-detection",
+      "category": "pitfall",
+      "summary": "Identify special/system tenants by a boolean flag on the entity, never by matching on name.",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/tenant-flag-over-name-detection",
+      "linked_skills": []
+    },
+    {
+      "slug": "testcontainers-springboot-cache-conflict",
+      "category": "pitfall",
+      "summary": "@Testcontainers clashes with @SpringBootTest context caching — use static start() + @DynamicPropertySource",
+      "confidence": "high",
+      "source_project": "lucida-domain-automation",
+      "path": "pitfall/testcontainers-springboot-cache-conflict",
+      "linked_skills": []
+    },
+    {
+      "slug": "time-unit-consistency-us-ms-ns",
+      "category": "pitfall",
+      "summary": "Mixed time units (ns/μs/ms) across ingest, storage, filters, and UI are a recurring bug class — pick one canonical internal unit",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "pitfall/time-unit-consistency-us-ms-ns",
+      "linked_skills": []
+    },
+    {
+      "slug": "timeselector-mode-interval-range-mapping",
+      "category": "api",
+      "summary": "Clients send a `mode` enum (RAW..YEAR); the server maps it to a (bin-interval, query-range) pair and picks the right pre-aggregated collection",
+      "confidence": "high",
+      "source_project": "",
+      "path": "api/timeselector-mode-interval-range-mapping",
+      "linked_skills": []
     },
     {
       "slug": "tomcat-request-timeout-1h-for-oz-report",
@@ -2172,12 +3842,22 @@
       "summary": "Report-generation services should raise Tomcat connection/read timeout to ~1 hour because export of large OZ/Jasper reports is genuinely long-running",
       "confidence": "high",
       "source_project": "lucida-report",
-      "path": "decision/tomcat-request-timeout-1h-for-oz-report"
+      "path": "decision/tomcat-request-timeout-1h-for-oz-report",
+      "linked_skills": []
+    },
+    {
+      "slug": "top-bottom-widest-collection-range",
+      "category": "pitfall",
+      "summary": "For Top/Bottom selection queries, pick the collection whose bin granularity covers the widest range, not the finest-grained one",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/top-bottom-widest-collection-range",
+      "linked_skills": []
     },
     {
       "slug": "topn-unwind-match-to-filter",
       "category": "pitfall",
-      "summary": "TopN Mongo pipeline using $unwind+$match explodes documents; push predicate into $filter first",
+      "summary": "TopN Mongo pipeline using `$unwind`+`$match` explodes documents; push predicate into `$filter` first",
       "confidence": "high",
       "source_project": "lucida-measurement",
       "path": "pitfall/topn-unwind-match-to-filter",
@@ -2191,7 +3871,17 @@
       "summary": "In report immediate-generation, the topResource flag decides whether to query by resource-id (fast path) or the full conf-id set (slow path)",
       "confidence": "medium",
       "source_project": "lucida-report",
-      "path": "domain/topresource-immediate-generation-invariant"
+      "path": "domain/topresource-immediate-generation-invariant",
+      "linked_skills": []
+    },
+    {
+      "slug": "trace-context-async-execution-propagation",
+      "category": "pitfall",
+      "summary": "Thread-local trace context is lost across executor.submit / reactor.flatMap boundaries; scouter injects bytecode wrappers around async entry points to capture and restore it",
+      "confidence": "medium",
+      "source_project": "scouter",
+      "path": "pitfall/trace-context-async-execution-propagation",
+      "linked_skills": []
     },
     {
       "slug": "traefik-2.11-requires-explicit-idletimeout",
@@ -2199,7 +3889,17 @@
       "summary": "Traefik 2.11 silently drops idle backend connections without an explicit idleTimeout on the entrypoint/serversTransport",
       "confidence": "high",
       "source_project": "lucida-for-docker",
-      "path": "pitfall/traefik-2.11-requires-explicit-idletimeout"
+      "path": "pitfall/traefik-2.11-requires-explicit-idletimeout",
+      "linked_skills": []
+    },
+    {
+      "slug": "udp-for-throughput-tcp-for-reliability",
+      "category": "decision",
+      "summary": "Scouter streams periodic metrics over UDP (lossy but cheap) and reserves TCP for config fetch, agent registration, and XLog profile uploads that demand delivery guarantees",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "decision/udp-for-throughput-tcp-for-reliability",
+      "linked_skills": []
     },
     {
       "slug": "udp-receiver-needs-large-socket-buffer",
@@ -2207,7 +3907,35 @@
       "summary": "UDP collectors behind Traefik/containers must raise SO_RCVBUF well above the 8KB default or drop packets under burst load",
       "confidence": "high",
       "source_project": "lucida-for-docker",
-      "path": "pitfall/udp-receiver-needs-large-socket-buffer"
+      "path": "pitfall/udp-receiver-needs-large-socket-buffer",
+      "linked_skills": []
+    },
+    {
+      "slug": "unit-enum-silent-filter",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "high",
+      "source_project": "",
+      "path": "pitfall/unit-enum-silent-filter",
+      "linked_skills": []
+    },
+    {
+      "slug": "user-sql-source-requires-select-only-and-readonly",
+      "category": "pitfall",
+      "summary": "",
+      "confidence": "medium",
+      "source_project": "",
+      "path": "pitfall/user-sql-source-requires-select-only-and-readonly",
+      "linked_skills": []
+    },
+    {
+      "slug": "variable-length-integer-encoding-for-metrics-bandwidth",
+      "category": "decision",
+      "summary": "Scouter's DataOutputX uses 3-byte (INT3) and 5-byte (LONG5) integer encodings to shrink UDP metric packs by 20-40% when most values fit within 24 / 40 bits",
+      "confidence": "medium",
+      "source_project": "scouter",
+      "path": "decision/variable-length-integer-encoding-for-metrics-bandwidth",
+      "linked_skills": []
     },
     {
       "slug": "vllm-kv-cache-fp8-with-mtp",
@@ -2215,87 +3943,8 @@
       "summary": "vLLM serving chose fp8_e4m3 KV cache + prefix caching + MTP speculative decoding for Qwen3.5 throughput",
       "confidence": "medium",
       "source_project": "lucida-for-docker",
-      "path": "decision/vllm-kv-cache-fp8-with-mtp"
-    },
-    {
-      "slug": "kafka-sticky-partitioner-key-null",
-      "category": "pitfall",
-      "summary": "Kafka Sticky Partitioner batches key=null messages into one partition — explains dev vs prod distribution gap",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/kafka-sticky-partitioner-key-null"
-    },
-    {
-      "slug": "injectmocks-generics-type-erasure",
-      "category": "pitfall",
-      "summary": "@InjectMocks picks wrong mock for same raw-type generic fields due to type erasure — flaky test root cause",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/injectmocks-generics-type-erasure"
-    },
-    {
-      "slug": "page-map-returns-new-instance",
-      "category": "pitfall",
-      "summary": "Spring Data Page is immutable — Page.map() returns a new instance; forgetting to reassign silently loses the mapping",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/page-map-returns-new-instance"
-    },
-    {
-      "slug": "static-value-injection-race-condition",
-      "category": "pitfall",
-      "summary": "@Value on static fields causes init-order and visibility races — always inject into instance fields",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/static-value-injection-race-condition"
-    },
-    {
-      "slug": "simpledateformat-not-thread-safe",
-      "category": "pitfall",
-      "summary": "SimpleDateFormat mutates Calendar state and corrupts under concurrency — use java.time.DateTimeFormatter",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/simpledateformat-not-thread-safe"
-    },
-    {
-      "slug": "catalina-urlencoder-internal-api",
-      "category": "pitfall",
-      "summary": "org.apache.catalina.util.URLEncoder is Tomcat internal — use java.net.URLEncoder or Spring UriUtils",
-      "confidence": "medium",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/catalina-urlencoder-internal-api"
-    },
-    {
-      "slug": "testcontainers-springboot-cache-conflict",
-      "category": "pitfall",
-      "summary": "@Testcontainers clashes with @SpringBootTest context caching — use static start() + @DynamicPropertySource",
-      "confidence": "high",
-      "source_project": "lucida-domain-automation",
-      "path": "pitfall/testcontainers-springboot-cache-conflict"
-    },
-    {
-      "slug": "dataavro-json-wrapper-pattern",
-      "category": "decision",
-      "summary": "Single DataAvro{jsonData,jsonDataClass} wrapper avoids per-event Avro schema proliferation (TCM pattern)",
-      "confidence": "medium",
-      "source_project": "lucida-domain-automation",
-      "path": "decision/dataavro-json-wrapper-pattern"
-    },
-    {
-      "slug": "cors-allow-credentials-star-origin",
-      "category": "decision",
-      "summary": "Service-level allowCredentials+allowedOriginPatterns(*) kept because edge proxy (Traefik/Istio) enforces CORS",
-      "confidence": "medium",
-      "source_project": "lucida-domain-automation",
-      "path": "decision/cors-allow-credentials-star-origin"
-    },
-    {
-      "slug": "yorkie-team-server-split",
-      "category": "arch",
-      "summary": "Yorkie holds live canvas state; the team server holds metadata (projects, assets, datasources) — never mix",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "arch/yorkie-team-server-split"
+      "path": "decision/vllm-kv-cache-fp8-with-mtp",
+      "linked_skills": []
     },
     {
       "slug": "widget-is-frozen-group-snapshot",
@@ -2303,167 +3952,26 @@
       "summary": "Widgets are snapshots of a group at save time; later edits to the source group do not propagate",
       "confidence": "high",
       "source_project": "lucida-builder-r3",
-      "path": "arch/widget-is-frozen-group-snapshot"
+      "path": "arch/widget-is-frozen-group-snapshot",
+      "linked_skills": []
     },
     {
-      "slug": "published-vs-realtime-view-pages",
+      "slug": "xlog-extended-transaction-trace-with-compression",
+      "category": "api",
+      "summary": "XLog is scouter's per-request transaction trace format — hierarchical typed steps stored as compressed binary, indexed by end-time, with flat metadata for server-side filtering",
+      "confidence": "high",
+      "source_project": "scouter",
+      "path": "api/xlog-extended-transaction-trace-with-compression",
+      "linked_skills": []
+    },
+    {
+      "slug": "yorkie-team-server-split",
       "category": "arch",
-      "summary": "PublishedViewPage renders a frozen deploy snapshot; RealTimeViewPage renders the live editable dashboard",
+      "summary": "Yorkie holds live canvas state; the team server holds metadata (projects, assets, datasources) — never mix",
       "confidence": "high",
       "source_project": "lucida-builder-r3",
-      "path": "arch/published-vs-realtime-view-pages"
-    },
-    {
-      "slug": "push-local-removed-use-doc-update",
-      "category": "decision",
-      "summary": "pushLocalChangesIntoRemote and its action-mapping helpers were removed; mutate Yorkie via doc.update directly",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "decision/push-local-removed-use-doc-update"
-    },
-    {
-      "slug": "jest-coverage-80-threshold",
-      "category": "decision",
-      "summary": "Global Jest coverage threshold is 80% on branches, functions, lines, and statements",
-      "confidence": "medium",
-      "source_project": "lucida-builder-r3",
-      "path": "decision/jest-coverage-80-threshold"
-    },
-    {
-      "slug": "node-npm-pin-matches-jenkins",
-      "category": "decision",
-      "summary": "UI build is pinned to Node 24.6.0 + npm 11.5.1 to match the Jenkins build environment",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "decision/node-npm-pin-matches-jenkins"
-    },
-    {
-      "slug": "spec-excluded-from-jest",
-      "category": "pitfall",
-      "summary": ".spec.ts files are excluded from the Jest runner in this project — only .test.ts is discovered",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "pitfall/spec-excluded-from-jest"
-    },
-    {
-      "slug": "legacy-datasource-naming",
-      "category": "pitfall",
-      "summary": "\"`dataSource` / `dataSourceFilter` in the codebase actually mean data-pipeline-select and data-pipeline-filter — not datasource\"",
-      "confidence": "high",
-      "source_project": "lucida-builder-r3",
-      "path": "pitfall/legacy-datasource-naming"
-    },
-    {
-      "slug": "konva-center-coord-system",
-      "category": "pitfall",
-      "summary": "Konva node coordinates can be center-based; when converting to top-left boxes subtract half width/height",
-      "confidence": "medium",
-      "source_project": "lucida-builder-r3",
-      "path": "pitfall/konva-center-coord-system"
-    },
-    {
-      "slug": "mongo-direct-connection-flag",
-      "category": "pitfall",
-      "summary": "MongoDB datasource connectionString requires directConnection=true in this deployment",
-      "confidence": "medium",
-      "source_project": "lucida-builder-r3",
-      "path": "pitfall/mongo-direct-connection-flag"
-    },
-    {
-      "slug": "sql-hash-unsigned-integer",
-      "category": "pitfall",
-      "summary": "MySQL/MariaDB SQL digest hashes fit in an unsigned 32-bit range but arrive as signed Java int — negatives are legal and must not be dropped",
-      "confidence": "high",
-      "source_project": "lucida-domain-dpm",
-      "path": "pitfall/sql-hash-unsigned-integer"
-    },
-    {
-      "slug": "mongodb-string-id-field-type-mapping",
-      "category": "pitfall",
-      "summary": "Spring Data MongoDB coerces 24-char-hex @Id String values to ObjectId unless @Field(targetType = FieldType.STRING) is set",
-      "confidence": "high",
-      "source_project": "lucida-domain-dpm",
-      "path": "pitfall/mongodb-string-id-field-type-mapping"
-    },
-    {
-      "slug": "sql-text-null-check-session-history-consistency",
-      "category": "pitfall",
-      "summary": "Session history rows must omit sqlHash and queryTime when SQL text is missing, else they orphan in downstream joins",
-      "confidence": "high",
-      "source_project": "lucida-domain-dpm",
-      "path": "pitfall/sql-text-null-check-session-history-consistency"
-    },
-    {
-      "slug": "sqlserver-sqltextinfo-index-constraint",
-      "category": "pitfall",
-      "summary": "Do not put a unique index on sqlHash for SQL Server text-info collection — duplicates are legitimate",
-      "confidence": "medium",
-      "source_project": "lucida-domain-dpm",
-      "path": "pitfall/sqlserver-sqltextinfo-index-constraint"
-    },
-    {
-      "slug": "kafka-avro-schedule-event-chain",
-      "category": "arch",
-      "summary": "Collection scheduling decouples Kafka ingress from per-DBMS handlers via four typed BlockingQueues",
-      "confidence": "high",
-      "source_project": "lucida-domain-dpm",
-      "path": "arch/kafka-avro-schedule-event-chain"
-    },
-    {
-      "slug": "mysql-mariadb-performance-schema-detection",
-      "category": "domain",
-      "summary": "MySQL/MariaDB metric availability depends on per-instance Performance Schema state; detect at runtime, don't assume",
-      "confidence": "medium",
-      "source_project": "lucida-domain-dpm",
-      "path": "domain/mysql-mariadb-performance-schema-detection"
-    },
-    {
-      "slug": "query-manager-version-conversion-fallback",
-      "category": "decision",
-      "summary": "Unknown target RDBMS versions fall back to a documented default bucket rather than erroring, keeping collection alive",
-      "confidence": "medium",
-      "source_project": "lucida-domain-dpm",
-      "path": "decision/query-manager-version-conversion-fallback"
-    },
-    {
-      "slug": "mongodb-compound-index-on-views",
-      "category": "pitfall",
-      "summary": "Spring Data @CompoundIndex annotations on a view-backed @Document are silently ignored — index the collection class",
-      "confidence": "high",
-      "source_project": "lucida-domain-apm",
-      "path": "pitfall/mongodb-compound-index-on-views"
-    },
-    {
-      "slug": "large-range-query-raw-collections",
-      "category": "decision",
-      "summary": "For long time-range queries over day-partitioned data, hit raw daily collections instead of aggregated views to avoid timeouts",
-      "confidence": "high",
-      "source_project": "lucida-domain-apm",
-      "path": "decision/large-range-query-raw-collections"
-    },
-    {
-      "slug": "time-unit-consistency-us-ms-ns",
-      "category": "pitfall",
-      "summary": "Mixed time units (ns/μs/ms) across ingest, storage, filters, and UI are a recurring bug class — pick one canonical internal unit",
-      "confidence": "high",
-      "source_project": "lucida-domain-apm",
-      "path": "pitfall/time-unit-consistency-us-ms-ns"
-    },
-    {
-      "slug": "span-hash-determinism",
-      "category": "pitfall",
-      "summary": "Span-dedup hash must be stable; changing the hash definition yields duplicates during rollout and breaks historical joins",
-      "confidence": "medium",
-      "source_project": "lucida-domain-apm",
-      "path": "pitfall/span-hash-determinism"
-    },
-    {
-      "slug": "root-span-error-propagation",
-      "category": "domain",
-      "summary": "Root span isError must aggregate descendant errors; otherwise scatter and list views disagree on a trace's error state",
-      "confidence": "medium",
-      "source_project": "lucida-domain-apm",
-      "path": "domain/root-span-error-propagation"
+      "path": "arch/yorkie-team-server-split",
+      "linked_skills": []
     }
   ]
 }
