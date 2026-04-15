@@ -246,6 +246,30 @@
       ]
     },
     {
+      "name": "git-tag-registry-versioning",
+      "category": "arch",
+      "path": "skills/arch/git-tag-registry-versioning",
+      "version": "1.0.0",
+      "description": "Add semver rollback and pinning to any git-backed asset registry (skills, prompts, commands, snippets) using namespaced annotated tags per item and per-release bundle.",
+      "tags": [
+        "git",
+        "versioning",
+        "semver",
+        "registry",
+        "rollback",
+        "tags"
+      ],
+      "triggers": [
+        "version pin",
+        "rollback",
+        "git tag",
+        "registry versioning",
+        "skill versioning",
+        "prompt versioning",
+        "\"install specific version\""
+      ]
+    },
+    {
       "name": "immutable-action-event-log",
       "category": "arch",
       "path": "skills/arch/immutable-action-event-log",
