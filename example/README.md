@@ -19,6 +19,7 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [skill-timeline](skill-timeline/)   | Skill Timeline — git-history commit heatmap + top-churned slugs for a hub working copy | node, html, svg, js | 2026-04-16 |
 | [skill-tryout](skill-tryout/)       | Skill Tryout — offline TF-IDF trigger matcher REPL for debugging skill discoverability | node, html, js | 2026-04-16 |
 | [skill-diff](skill-diff/)           | Skill Diff — per-slug added/modified/removed viewer with description/tag/trigger deltas between two hub refs | node, html, js | 2026-04-16 |
+| [tiny-regex-lab](tiny-regex-lab/)   | Tiny Regex Lab — offline regex playground with per-group highlighting, preset library, and share-link | html, js, css | 2026-04-16 |
 
 ## Adding an example
 

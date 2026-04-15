@@ -1,0 +1,12 @@
+{
+  "slug": "tiny-regex-lab",
+  "title": "Tiny Regex Lab",
+  "summary": "Zero-dep browser regex playground with per-group color highlighting, preset library, and shareable URL-hash state.",
+  "stack": ["html", "js", "css"],
+  "tags": ["browser", "regex", "devtool", "offline", "zero-deps"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "browser",
+  "entrypoint": "browser/index.html",
+  "author": "kjuhwa@nkia.co.kr"
+}
