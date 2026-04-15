@@ -1815,6 +1815,56 @@
       "source_project": "lucida-domain-dpm",
       "version": "1.0.0",
       "path": "backend/multi-tenant-kafka-header-organization-context"
+    },
+    {
+      "name": "mongodb-compound-index-esr-rule",
+      "description": "Order MongoDB compound-index fields as Equality → Sort → Range so the query planner keeps a tight IXSCAN and avoids in-memory sorts.",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Designing or reviewing MongoDB compound indexes; slow queries with COLLSCAN or in-memory sort",
+      "source_project": "lucida-domain-apm",
+      "version": "1.0.0",
+      "path": "backend/mongodb-compound-index-esr-rule"
+    },
+    {
+      "name": "divide-by-zero-rate-guard",
+      "description": "Guard rate/percentage calculations against zero denominators to prevent NaN from poisoning downstream metrics and serialization.",
+      "category": "backend",
+      "tags": "",
+      "triggers": "errorRate / successRate / cacheHitRatio / any num/den metric; NaN in dashboards",
+      "source_project": "lucida-domain-apm",
+      "version": "1.0.0",
+      "path": "backend/divide-by-zero-rate-guard"
+    },
+    {
+      "name": "reactive-webclient-ssl-jdk",
+      "description": "Force reactor-netty WebClient to SslProvider.JDK so SSL works in slim containers that lack netty-tcnative native libraries.",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Spring WebFlux WebClient SSL failures in containers; UnsatisfiedLinkError for netty-tcnative",
+      "source_project": "lucida-domain-apm",
+      "version": "1.0.0",
+      "path": "backend/reactive-webclient-ssl-jdk"
+    },
+    {
+      "name": "second-aggregation-snapshot-merge",
+      "description": "Per-second metric aggregation using in-memory counters + Flux.interval snapshot-and-reset + bounded parallel publish.",
+      "category": "backend",
+      "tags": "",
+      "triggers": "1-second-resolution metrics (TPS, error counts) without hitting Kafka/DB per event",
+      "source_project": "lucida-domain-apm",
+      "version": "1.0.0",
+      "path": "backend/second-aggregation-snapshot-merge"
+    },
+    {
+      "name": "optional-outbound-adapter-no-op-port",
+      "description": "Register a No-Op implementation of an optional outbound port with @ConditionalOnMissingBean so services boot when the real adapter is absent.",
+      "category": "arch",
+      "tags": "",
+      "triggers": "Hexagonal outbound port whose backing infrastructure is optional; service fails to boot without audit/tracing adapter",
+      "source_project": "lucida-domain-apm",
+      "version": "1.0.0",
+      "path": "arch/optional-outbound-adapter-no-op-port"
     }
   ],
   "knowledge": [
@@ -2324,6 +2374,46 @@
       "confidence": "medium",
       "source_project": "lucida-domain-dpm",
       "path": "decision/query-manager-version-conversion-fallback"
+    },
+    {
+      "slug": "mongodb-compound-index-on-views",
+      "category": "pitfall",
+      "summary": "Spring Data @CompoundIndex annotations on a view-backed @Document are silently ignored — index the collection class",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "pitfall/mongodb-compound-index-on-views"
+    },
+    {
+      "slug": "large-range-query-raw-collections",
+      "category": "decision",
+      "summary": "For long time-range queries over day-partitioned data, hit raw daily collections instead of aggregated views to avoid timeouts",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "decision/large-range-query-raw-collections"
+    },
+    {
+      "slug": "time-unit-consistency-us-ms-ns",
+      "category": "pitfall",
+      "summary": "Mixed time units (ns/μs/ms) across ingest, storage, filters, and UI are a recurring bug class — pick one canonical internal unit",
+      "confidence": "high",
+      "source_project": "lucida-domain-apm",
+      "path": "pitfall/time-unit-consistency-us-ms-ns"
+    },
+    {
+      "slug": "span-hash-determinism",
+      "category": "pitfall",
+      "summary": "Span-dedup hash must be stable; changing the hash definition yields duplicates during rollout and breaks historical joins",
+      "confidence": "medium",
+      "source_project": "lucida-domain-apm",
+      "path": "pitfall/span-hash-determinism"
+    },
+    {
+      "slug": "root-span-error-propagation",
+      "category": "domain",
+      "summary": "Root span isError must aggregate descendant errors; otherwise scatter and list views disagree on a trace's error state",
+      "confidence": "medium",
+      "source_project": "lucida-domain-apm",
+      "path": "domain/root-span-error-propagation"
     }
   ]
 }
