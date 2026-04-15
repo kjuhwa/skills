@@ -814,6 +814,96 @@
       "source_project": "lucida-performance",
       "version": "1.0.0",
       "path": "build/spring-bootrun-local-dev-env-block"
+    },
+    {
+      "name": "hibernate-multi-dialect-swap",
+      "description": "Ship one WAR that connects to Oracle, PostgreSQL, MSSQL, Tibero, DB2, or MariaDB based on Spring profile — all JDBC drivers bundled, dialect and datasource resolved from externalized config.",
+      "category": "backend",
+      "tags": "[hibernate, jdbc, spring, multi-tenant, dialect, oracle, postgres, mssql, tibero, db2, mariadb]",
+      "triggers": "[\"hibernate dialect\", \"multi database\", \"swap rdbms\", \"customer deployment db\", \"spring.profiles.active\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/hibernate-multi-dialect-swap"
+    },
+    {
+      "name": "spring-profile-datasource-activation",
+      "description": "Select DB/Hibernate/logging config at JVM startup via spring.profiles.active so one build ships to dev, test, and prod without branching in code.",
+      "category": "backend",
+      "tags": "[spring, profile, datasource, config.properties, jetty, tapestry]",
+      "triggers": "[\"spring.profiles.active\", \"one war multi env\", \"profile datasource\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/spring-profile-datasource-activation"
+    },
+    {
+      "name": "elasticsearch-xpack-ssl-transport",
+      "description": "Gate PreBuiltXPackTransportClient vs PreBuiltTransportClient on the auth flag (not SSL flag) and configure keystore/truststore as independent X-Pack settings.",
+      "category": "backend",
+      "tags": "[elasticsearch, xpack, ssl, transport-client, keystore, truststore]",
+      "triggers": "[\"xpack.security.enable\", \"PreBuiltXPackTransportClient\", \"elasticsearch ssl\", \"es transport auth\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/elasticsearch-xpack-ssl-transport"
+    },
+    {
+      "name": "realtime-vs-polling-fallback",
+      "description": "Let each resource type declare supportsRealtime; scheduler runs push-mode at the realtime interval and falls back to a safe polling interval (e.g., 60s) otherwise.",
+      "category": "backend",
+      "tags": "[scheduler, realtime, polling, collector, fallback]",
+      "triggers": "[\"realtime fallback\", \"polling interval\", \"supportsRealtime\", \"collection scheduler\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/realtime-vs-polling-fallback"
+    },
+    {
+      "name": "chunked-resource-id-batch-fetch",
+      "description": "Split large ID lists into ~1000-item chunks before querying DB or Elasticsearch to avoid bind-parameter limits (MSSQL 2100, Oracle 1000) and OOM on bulk responses.",
+      "category": "backend",
+      "tags": "[batch, chunk, jdbc, elasticsearch, terms-query, bind-parameter, oracle, mssql]",
+      "triggers": "[\"WHERE id IN\", \"bind parameter limit\", \"terms query too large\", \"batch fetch ids\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/chunked-resource-id-batch-fetch"
+    },
+    {
+      "name": "k8s-health-via-getnodelist",
+      "description": "Use listNode() with readiness check for Kubernetes cluster health — getVersion() succeeds on degraded clusters that will fail real work.",
+      "category": "backend",
+      "tags": "[kubernetes, openshift, health-check, liveness, coreV1Api, listNode]",
+      "triggers": "[\"kubernetes health check\", \"cluster liveness\", \"getVersion unreliable\", \"listNode\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/k8s-health-via-getnodelist"
+    },
+    {
+      "name": "netty-tcp-reconnect-backoff",
+      "description": "On Netty channelInactive/EOF/read-timeout, reconnect with exponential backoff (100ms to 30s cap), reset on success, keep SO_KEEPALIVE + TCP_NODELAY.",
+      "category": "backend",
+      "tags": "[netty, tcp, reconnect, backoff, keepalive, eof]",
+      "triggers": "[\"netty reconnect\", \"tcp socket drop\", \"channelInactive\", \"exponential backoff\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/netty-tcp-reconnect-backoff"
+    },
+    {
+      "name": "plugin-resource-provider-architecture",
+      "description": "Stable ResourceProvider SPI loaded via Spring component scan; each new device/resource type is a separate Gradle-module JAR packaged into the WAR — zero core edits.",
+      "category": "arch",
+      "tags": "[plugin, spi, spring, component-scan, gradle, war, extensibility]",
+      "triggers": "[\"plugin architecture\", \"ResourceProvider\", \"pluggable monitoring\", \"SPI discovery\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "arch/plugin-resource-provider-architecture"
+    },
+    {
+      "name": "site-per-customer-override-modules",
+      "description": "One Gradle module per customer overrides core beans, auth, notification channels, and assets — keeps core customer-agnostic and scales to dozens of deployments.",
+      "category": "arch",
+      "tags": "[b2b, customization, gradle-module, spring, bean-override, multi-tenant]",
+      "triggers": "[\"per customer module\", \"site override\", \"b2b deployment\", \"bean override primary\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "arch/site-per-customer-override-modules"
     }
   ]
 }
