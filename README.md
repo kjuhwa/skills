@@ -1,4 +1,4 @@
-# skills
+# skills-hub
 
 Personal skill & knowledge hub for Claude Code. Discover, install, extract, and publish reusable skills across projects.
 
