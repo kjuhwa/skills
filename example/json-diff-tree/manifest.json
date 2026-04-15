@@ -1,0 +1,12 @@
+{
+  "slug": "json-diff-tree",
+  "title": "JSON Diff Tree",
+  "summary": "Zero-dep browser tool that structurally diffs two JSON blobs into a collapsible tree with per-path add/remove/change badges and a copy-to-json-patch button.",
+  "stack": ["html", "js", "css"],
+  "tags": ["browser", "json", "diff", "devtool", "offline", "zero-deps"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "browser",
+  "entrypoint": "browser/index.html",
+  "author": "kjuhwa@nkia.co.kr"
+}

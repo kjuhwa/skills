@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JSON Diff Tree</title>
+<style>
+  :root { --bg:#0e1116; --panel:#161b22; --border:#30363d; --fg:#e6edf3;
+    --muted:#8b949e; --accent:#58a6ff;
+    --add:#3fb950; --rem:#f85149; --chg:#d29922; --same:#6e7681; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
+    font: 13px/1.4 ui-monospace, Menlo, Consolas, monospace; }
+  header { padding: 10px 16px; border-bottom: 1px solid var(--border);
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; color: var(--accent); }
+  header .spacer { flex: 1; }
+  button, input { background: var(--panel); color: var(--fg); border: 1px solid var(--border);
+    padding: 5px 10px; border-radius: 4px; font: inherit; outline: none; }
+  button:hover { border-color: var(--accent); cursor: pointer; }
+  input { width: 240px; }
+  main { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 10px;
+    padding: 10px; height: calc(100vh - 54px); }
+  section { background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  section h2 { margin: 0 0 6px; font-size: 12px; color: var(--muted); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.05em; display: flex;
+    justify-content: space-between; align-items: center; }
+  textarea { flex: 1; background: #0b0e13; color: var(--fg); border: 1px solid var(--border);
+    border-radius: 4px; padding: 8px; font: inherit; resize: none; outline: none; min-height: 0; }
+  .err { color: var(--rem); font-size: 11px; min-height: 14px; }
+  #tree { flex: 1; overflow: auto; padding: 4px; }
+  .node { padding-left: 16px; position: relative; white-space: pre; }
+  .node.collapsed > .children { display: none; }
+  .node .toggle { position: absolute; left: 2px; top: 0; width: 12px; cursor: pointer;
+    color: var(--muted); user-select: none; }
+  .node.leaf .toggle { visibility: hidden; }
+  .node.collapsed .toggle::before { content: '▸'; }
+  .node:not(.collapsed) .toggle::before { content: '▾'; }
+  .node.leaf .toggle::before { content: '·'; }
+  .k { color: #79c0ff; }
+  .v-string { color: #a5d6ff; }
+  .v-number { color: #ff9ecb; }
+  .v-bool { color: #d2a8ff; }
+  .v-null { color: var(--muted); }
+  .bracket { color: var(--muted); }
+  .badge { display: inline-block; padding: 0 5px; margin-right: 4px;
+    border-radius: 3px; font-size: 10px; font-weight: 700; min-width: 12px; text-align: center; }
+  .badge.add { background: var(--add); color: #0e1116; }
+  .badge.rem { background: var(--rem); color: #0e1116; }
+  .badge.chg { background: var(--chg); color: #0e1116; }
+  .badge.same { background: #30363d; color: var(--muted); }
+  .node.add > .line > .k, .node.add > .line > .v { color: var(--add); }
+  .node.rem > .line > .k, .node.rem > .line > .v { color: var(--rem); }
+  .node.chg > .line .was { color: var(--rem); text-decoration: line-through; margin: 0 4px; }
+  .node.chg > .line .now { color: var(--add); }
+  .node.same { opacity: 0.55; }
+  .node.same.hidden { display: none; }
+  .stats { font-size: 11px; color: var(--muted); }
+  .pill { padding: 1px 6px; border: 1px solid var(--border); border-radius: 8px; margin-left: 4px; }
+  .pill.add { color: var(--add); border-color: var(--add); }
+  .pill.rem { color: var(--rem); border-color: var(--rem); }
+  .pill.chg { color: var(--chg); border-color: var(--chg); }
+  label { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+  #patch { flex: 1; background: #0b0e13; border: 1px solid var(--border); border-radius: 4px;
+    padding: 8px; overflow: auto; white-space: pre; color: var(--fg); display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>JSON Diff Tree</h1>
+  <input id="ignore" placeholder="ignore keys (comma): updatedAt, meta.rid">
+  <label><input type="checkbox" id="showSame"> show unchanged</label>
+  <span class="spacer"></span>
+  <button id="swapBtn">Swap ↔</button>
+  <button id="sampleBtn">Sample</button>
+  <button id="patchBtn">Copy JSON Patch</button>
+  <button id="togglePatchBtn">Show patch</button>
+</header>
+
+<main>
+  <section>
+    <h2>LEFT <span class="err" id="errL"></span></h2>
+    <textarea id="left" spellcheck="false" placeholder='{"a": 1}'></textarea>
+  </section>
+  <section>
+    <h2>RIGHT <span class="err" id="errR"></span></h2>
+    <textarea id="right" spellcheck="false" placeholder='{"a": 2}'></textarea>
+  </section>
+  <section>
+    <h2>DIFF
+      <span class="stats" id="stats"></span>
+    </h2>
+    <div id="tree"></div>
+    <pre id="patch"></pre>
+  </section>
+</main>
+
+<script>
+const SAMPLE_L = {
+  id: "u-42",
+  name: "Alice",
+  age: 30,
+  roles: ["admin", "editor"],
+  address: { city: "Seoul", zip: "04524", country: "KR" },
+  meta: { createdAt: "2026-01-01", updatedAt: "2026-04-15T09:00:00Z", requestId: "r-001" },
+  active: true,
+  deletedAt: null
+};
+const SAMPLE_R = {
+  id: "u-42",
+  name: "Alice Kim",
+  age: 30,
+  roles: ["admin", "owner"],
+  address: { city: "Seoul", zip: "04524", country: "KR", line1: "1-2-3" },
+  meta: { createdAt: "2026-01-01", updatedAt: "2026-04-16T09:00:00Z", requestId: "r-002" },
+  active: false
+};
+
+const $ = s => document.querySelector(s);
+
+function parseSafe(s, errEl) {
+  if (!s.trim()) { errEl.textContent = ''; return { ok: true, val: undefined, empty: true }; }
+  try { const v = JSON.parse(s); errEl.textContent = ''; return { ok: true, val: v }; }
+  catch (e) { errEl.textContent = e.message; return { ok: false }; }
+}
+
+function typeOf(v) {
+  if (v === null) return 'null';
+  if (Array.isArray(v)) return 'array';
+  return typeof v;
+}
+
+function deepEqual(a, b) {
+  if (a === b) return true;
+  if (typeOf(a) !== typeOf(b)) return false;
+  if (typeOf(a) === 'array') {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) if (!deepEqual(a[i], b[i])) return false;
+    return true;
+  }
+  if (typeOf(a) === 'object') {
+    const ak = Object.keys(a), bk = Object.keys(b);
+    if (ak.length !== bk.length) return false;
+    for (const k of ak) { if (!(k in b)) return false; if (!deepEqual(a[k], b[k])) return false; }
+    return true;
+  }
+  return false;
+}
+
+let ignoreKeys = new Set(), ignorePaths = new Set();
+
+function parseIgnore(raw) {
+  ignoreKeys = new Set(); ignorePaths = new Set();
+  raw.split(',').map(s => s.trim()).filter(Boolean).forEach(tok => {
+    if (tok.includes('.') || tok.includes('/')) ignorePaths.add(tok.replace(/\//g, '.'));
+    else ignoreKeys.add(tok);
+  });
+}
+
+function isIgnored(path, key) {
+  if (ignoreKeys.has(key)) return true;
+  if (ignorePaths.has(path)) return true;
+  return false;
+}
+
+// Produce diff tree: { kind:'add'|'rem'|'chg'|'same'|'container', key, path, left, right, children? }
+function diff(left, right, path = '', key = '$') {
+  if (isIgnored(path || key, key)) return null;
+  const tl = typeOf(left), tr = typeOf(right);
+  if (left === undefined) return { kind: 'add', key, path, left, right };
+  if (right === undefined) return { kind: 'rem', key, path, left, right };
+  if (tl !== tr) return { kind: 'chg', key, path, left, right };
+  if (tl === 'object') {
+    const keys = [...new Set([...Object.keys(left), ...Object.keys(right)])].sort();
+    const children = [];
+    for (const k of keys) {
+      const child = diff(left[k], right[k], path ? `${path}.${k}` : k, k);
+      if (child) children.push(child);
+    }
+    const kinds = children.map(c => c.kind);
+    const allSame = kinds.every(k => k === 'same');
+    return { kind: allSame ? 'same' : 'container', key, path, left, right, children, container: 'object' };
+  }
+  if (tl === 'array') {
+    const len = Math.max(left.length, right.length);
+    const children = [];
+    for (let i = 0; i < len; i++) {
+      const child = diff(left[i], right[i], path ? `${path}.${i}` : String(i), String(i));
+      if (child) children.push(child);
+    }
+    const kinds = children.map(c => c.kind);
+    const allSame = kinds.every(k => k === 'same');
+    return { kind: allSame ? 'same' : 'container', key, path, left, right, children, container: 'array' };
+  }
+  return deepEqual(left, right)
+    ? { kind: 'same', key, path, left, right }
+    : { kind: 'chg', key, path, left, right };
+}
+
+function countKinds(n, acc = { add: 0, rem: 0, chg: 0, same: 0 }) {
+  if (!n) return acc;
+  if (n.kind === 'add' || n.kind === 'rem' || n.kind === 'chg' || n.kind === 'same') {
+    acc[n.kind] = (acc[n.kind] || 0) + 1;
+  }
+  if (n.children) n.children.forEach(c => countKinds(c, acc));
+  return acc;
+}
+
+function renderVal(v) {
+  const t = typeOf(v);
+  if (v === undefined) return '<span class="v-null">undefined</span>';
+  if (t === 'null') return '<span class="v-null">null</span>';
+  if (t === 'string') return `<span class="v-string">"${escapeHtml(v)}"</span>`;
+  if (t === 'number') return `<span class="v-number">${v}</span>`;
+  if (t === 'boolean') return `<span class="v-bool">${v}</span>`;
+  if (t === 'array') return `<span class="bracket">[ ${v.length} items ]</span>`;
+  if (t === 'object') return `<span class="bracket">{ ${Object.keys(v).length} keys }</span>`;
+  return escapeHtml(String(v));
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderNode(n, depth = 0) {
+  if (!n) return '';
+  const cls = ['node', n.kind];
+  if (!n.children || !n.children.length) cls.push('leaf');
+  const badge = { add: '+', rem: '-', chg: '~', same: '=', container: '' }[n.kind] || '';
+  const badgeHtml = badge
+    ? `<span class="badge ${n.kind}">${badge}</span>`
+    : `<span class="badge same" style="visibility:hidden">·</span>`;
+  let lineHtml;
+  if (n.kind === 'chg') {
+    lineHtml = `<span class="line">${badgeHtml}<span class="k">${escapeHtml(n.key)}</span>: <span class="was">${renderVal(n.left)}</span><span class="now">${renderVal(n.right)}</span></span>`;
+  } else if (n.kind === 'add') {
+    lineHtml = `<span class="line">${badgeHtml}<span class="k">${escapeHtml(n.key)}</span>: <span class="v">${renderVal(n.right)}</span></span>`;
+  } else if (n.kind === 'rem') {
+    lineHtml = `<span class="line">${badgeHtml}<span class="k">${escapeHtml(n.key)}</span>: <span class="v">${renderVal(n.left)}</span></span>`;
+  } else {
+    lineHtml = `<span class="line">${badgeHtml}<span class="k">${escapeHtml(n.key)}</span>: ${renderVal(n.left)}</span>`;
+  }
+  const kids = n.children && n.children.length
+    ? `<div class="children">${n.children.map(c => renderNode(c, depth + 1)).join('')}</div>`
+    : '';
+  return `<div class="${cls.join(' ')}"><span class="toggle"></span>${lineHtml}${kids}</div>`;
+}
+
+// JSON Patch RFC 6902 from tree
+function toPatch(n, path = '', ops = []) {
+  if (!n) return ops;
+  if (n.kind === 'add') ops.push({ op: 'add', path: jptr(path, n.key), value: n.right });
+  else if (n.kind === 'rem') ops.push({ op: 'remove', path: jptr(path, n.key) });
+  else if (n.kind === 'chg') ops.push({ op: 'replace', path: jptr(path, n.key), value: n.right });
+  else if (n.children) {
+    const nextPath = n.key === '$' ? path : jptr(path, n.key);
+    n.children.forEach(c => toPatch(c, nextPath, ops));
+  }
+  return ops;
+}
+
+function jptr(parent, key) {
+  const esc = String(key).replace(/~/g, '~0').replace(/\//g, '~1');
+  if (parent === '' && key === '$') return '';
+  return (parent || '') + '/' + esc;
+}
+
+function run() {
+  const leftRaw = $('#left').value;
+  const rightRaw = $('#right').value;
+  const pl = parseSafe(leftRaw, $('#errL'));
+  const pr = parseSafe(rightRaw, $('#errR'));
+  if (!pl.ok || !pr.ok) return;
+  parseIgnore($('#ignore').value);
+  const tree = diff(pl.val, pr.val, '', '$');
+  const root = tree && tree.children
+    ? tree
+    : { kind: 'container', key: '$', children: tree ? [tree] : [] };
+  $('#tree').innerHTML = renderNode(tree);
+  const k = countKinds(tree);
+  $('#stats').innerHTML = `<span class="pill add">+${k.add||0}</span><span class="pill rem">-${k.rem||0}</span><span class="pill chg">~${k.chg||0}</span><span class="pill same">=${k.same||0}</span>`;
+  applyShowSame();
+  window.__lastTree = tree;
+}
+
+function applyShowSame() {
+  const show = $('#showSame').checked;
+  [...document.querySelectorAll('.node.same')].forEach(n => {
+    n.classList.toggle('hidden', !show);
+  });
+}
+
+$('#tree').addEventListener('click', e => {
+  const t = e.target.closest('.toggle');
+  if (!t) return;
+  const node = t.parentElement;
+  if (!node.classList.contains('leaf')) node.classList.toggle('collapsed');
+});
+
+['input', 'change'].forEach(ev => {
+  ['#left', '#right', '#ignore'].forEach(id => $(id).addEventListener(ev, run));
+});
+$('#showSame').addEventListener('change', applyShowSame);
+
+$('#swapBtn').addEventListener('click', () => {
+  const l = $('#left').value; $('#left').value = $('#right').value; $('#right').value = l;
+  run();
+});
+
+$('#sampleBtn').addEventListener('click', () => {
+  $('#left').value = JSON.stringify(SAMPLE_L, null, 2);
+  $('#right').value = JSON.stringify(SAMPLE_R, null, 2);
+  run();
+});
+
+$('#patchBtn').addEventListener('click', async () => {
+  const ops = toPatch(window.__lastTree);
+  const txt = JSON.stringify(ops, null, 2);
+  try { await navigator.clipboard.writeText(txt); $('#patchBtn').textContent = 'Copied!'; setTimeout(() => $('#patchBtn').textContent = 'Copy JSON Patch', 1200); }
+  catch { prompt('Copy:', txt); }
+});
+
+$('#togglePatchBtn').addEventListener('click', () => {
+  const p = $('#patch');
+  if (p.style.display === 'none' || !p.style.display) {
+    p.textContent = JSON.stringify(toPatch(window.__lastTree), null, 2);
+    p.style.display = 'block';
+    $('#tree').style.display = 'none';
+    $('#togglePatchBtn').textContent = 'Show tree';
+  } else {
+    p.style.display = 'none'; $('#tree').style.display = '';
+    $('#togglePatchBtn').textContent = 'Show patch';
+  }
+});
+
+$('#sampleBtn').click();
+</script>
+</body>
+</html>
