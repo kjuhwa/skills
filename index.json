@@ -603,6 +603,16 @@
       "version": "1.0.0",
       "source_project": "lucida-widget",
       "path": "backend/jwt-extraction-via-base-controller"
+    },
+    {
+      "name": "jacoco-exclude-boilerplate-layers",
+      "description": "Configure JaCoCo + SonarQube to exclude generated/boilerplate layers (avro, config, dto, entity, kafka, *Dev) from coverage so coverage % reflects business logic only",
+      "category": "backend",
+      "tags": "[jacoco, sonarqube, coverage, gradle, spring-boot, test, boilerplate]",
+      "triggers": "[\"jacoco\", \"sonarqube coverage\", \"jacocoTestReport\", \"coverage exclusion\", \"sonar.coverage.exclusions\", \"boilerplate coverage\"]",
+      "source_project": "lucida-topology",
+      "version": "1.0.0",
+      "path": "backend/jacoco-exclude-boilerplate-layers"
     }
   ]
 }
