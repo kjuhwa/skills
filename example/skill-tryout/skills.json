@@ -1,0 +1,2763 @@
+{
+  "generatedAt": "2026-04-15T16:52:30.595Z",
+  "root": "F:\\workspace\\getskills",
+  "count": 217,
+  "skills": [
+    {
+      "slug": "adaptive-strategy-hot-swap",
+      "name": "adaptive-strategy-hot-swap",
+      "description": "Periodically re-evaluate candidate strategies/policies against recent data, swap the active one only when a weighted composite score beats the incumbent by a hysteresis threshold — prevents flapping while staying adaptive.",
+      "triggers": [
+        "shouldUpdateStrategy",
+        "reanalyze",
+        "strategy update",
+        "hot swap",
+        "policy rotation",
+        "best strategy",
+        "composite score",
+        "hysteresis threshold"
+      ],
+      "tags": [
+        "strategy",
+        "adaptive",
+        "hot-swap",
+        "hysteresis",
+        "rebalance",
+        "composite-score",
+        "backtest"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "ai-call-with-mock-fallback",
+      "name": "ai-call-with-mock-fallback",
+      "description": "Wrap unreliable LLM/AI calls with a deterministic mock fallback so the UI always receives a valid shape — annotate the response with a `mock: true` or `error:` field so the client can show a badge.",
+      "triggers": [
+        "AI 생성 실패",
+        "mock data",
+        "ANTHROPIC_API_KEY",
+        "fallback response",
+        "mock: true",
+        "degraded mode"
+      ],
+      "tags": [
+        "llm",
+        "resilience",
+        "fallback",
+        "mock",
+        "ux",
+        "error-handling"
+      ],
+      "category": "ai"
+    },
+    {
+      "slug": "async-subagent-resume-on-missing-artifact",
+      "name": "async-subagent-resume-on-missing-artifact",
+      "description": "When an async subagent is reported \"completed\" but its final message hints at unfinished work (e.g., \"Now let me build…\"), verify the expected on-disk artifact before moving on; if missing, use SendMessage to the agent id to finalize rather than re-dispatching a fresh agent.",
+      "triggers": [
+        "agent completed but artifact missing",
+        "subagent incomplete output"
+      ],
+      "tags": [
+        "agents",
+        "async",
+        "verification",
+        "send-message"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "audit-change-data-capture-pattern",
+      "name": "audit-change-data-capture-pattern",
+      "description": "Compute before/after diffs for audit logs by comparing two BSON/JSON documents field-by-field — always iterate the BEFORE doc and read from AFTER to avoid prev/after swap bugs",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "availability-ttl-punctuate-processor",
+      "name": "availability-ttl-punctuate-processor",
+      "description": "Kafka Streams processor schedules a wall-clock `punctuate` for TTL eviction of the state store, and emits downstream only on value change. Wall-clock (not stream-time) so idle inputs still trigger cleanup.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "avro-event-with-change-flags",
+      "name": "avro-event-with-change-flags",
+      "description": "Design Kafka Avro event schemas that carry an actionType enum plus boolean \"changed\" flags per mutable section so consumers can branch cheaply without diffing payloads.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "avro-gradle-kafka-schema-pipeline",
+      "name": "avro-gradle-kafka-schema-pipeline",
+      "description": "Wire the davidmc24 Avro Gradle plugin so .avsc schemas generate Java sources consumed by Kafka producers/consumers with Confluent Schema Registry",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "axios-refresh-queue-zustand",
+      "name": "axios-refresh-queue-zustand",
+      "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
+      "triggers": [
+        "axios 401 refresh",
+        "token refresh queue",
+        "isRefreshing flag",
+        "axios interceptor zustand",
+        "refresh thundering herd",
+        "retry original request"
+      ],
+      "tags": [
+        "axios",
+        "jwt",
+        "refresh-token",
+        "interceptor",
+        "zustand",
+        "auth"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "baseline-historical-comparison-threshold",
+      "name": "baseline-historical-comparison-threshold",
+      "description": "Evaluate a current metric against a historical baseline (prev hour/day/week/month/year, with MIN/AVG/MAX aggregation) as a dynamic threshold; supports RATE or VALUE change modes and dampening.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "bootrun-jvmargs-jdwp-opens-java21",
+      "name": "bootrun-jvmargs-jdwp-opens-java21",
+      "description": "Bake JDWP debug port and required --add-opens flags into Gradle bootRun so every dev gets the same Java 17/21-compatible local runtime",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "bucket-parallel-java-annotation-dispatch",
+      "name": "bucket-parallel-java-annotation-dispatch",
+      "description": "For bulk Java annotation work (200+ @Operation methods across many controllers, or 500+ @Schema fields across many DTOs), dispatch N parallel executor subagents with disjoint file buckets. Leader runs a single compile at the end; agents never run gradle themselves.",
+      "triggers": [
+        "bulk annotation",
+        "전수 적용",
+        "controller 전체 주석",
+        "DTO @Schema 전수"
+      ],
+      "tags": [
+        "parallel-agents",
+        "java",
+        "annotation",
+        "spring",
+        "swagger",
+        "gradle"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "build-error-triage",
+      "name": "build-error-triage",
+      "description": "Systematic triage workflow for build/compilation errors — classify by root cause (missing symbol, signature mismatch, instantiation failure), then isolate the first error before chasing cascades.",
+      "triggers": [
+        "Unresolved compilation",
+        "Cannot instantiate",
+        "method is undefined",
+        "cannot find symbol",
+        "compilation error"
+      ],
+      "tags": [
+        "build",
+        "compilation",
+        "java",
+        "javac",
+        "errors",
+        "triage"
+      ],
+      "category": "debug"
+    },
+    {
+      "slug": "byte-aware-sms-truncation-with-ellipsis",
+      "name": "byte-aware-sms-truncation-with-ellipsis",
+      "description": "Truncate SMS message body to a byte budget (not char count) per charset, appending '...' without exceeding the budget",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "cache-variance-ttl-jitter",
+      "name": "cache-variance-ttl-jitter",
+      "description": "Add ±N% random jitter to cache TTLs so keys written together don't all expire in the same tick, avoiding synchronized recompute storms",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "calendar-cron-vs-spring-cron-migration",
+      "name": "calendar-cron-vs-spring-cron-migration",
+      "description": "Convert between Spring 6-field cron and Quartz/calendar 7-field cron without DST/leap-year regressions",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "challenge-response-auth-redis-ttl",
+      "name": "challenge-response-auth-redis-ttl",
+      "description": "Replay-resistant two-step login — server issues a short-lived random challenge stored in Redis with TTL, client signs/hashes response, bounded attempts per key",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "character-sheet-multi-panel-consistency",
+      "name": "character-sheet-multi-panel-consistency",
+      "description": "Keep a consistent character across multiple diffusion-model image generations by emitting a reusable \"character sheet\" description string from the LLM and prefixing it into every panel's image prompt.",
+      "triggers": [
+        "character sheet",
+        "characterSheet",
+        "consistent character",
+        "multi-panel",
+        "storyboard",
+        "comic",
+        "same character in all panels"
+      ],
+      "tags": [
+        "stable-diffusion",
+        "prompt-engineering",
+        "character-consistency",
+        "comic",
+        "storyboard",
+        "multi-panel"
+      ],
+      "category": "ai"
+    },
+    {
+      "slug": "chunked-resource-id-batch-fetch",
+      "name": "chunked-resource-id-batch-fetch",
+      "description": "Split large ID lists into ~1000-item chunks before querying DB or Elasticsearch to avoid bind-parameter limits (MSSQL 2100, Oracle 1000) and OOM on bulk responses",
+      "triggers": [
+        "`WHERE id IN (?, ?, …)` with thousands of IDs",
+        "ES `terms` query near 65536-item ceiling",
+        "monitor/report accepts an unbounded target ID list"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "clang-tidy-integration-workflow",
+      "name": "clang-tidy-integration-workflow",
+      "description": "Automated static analysis pipeline using clang-tidy with project-specific checks and suppression strategies for large multi-file C++ codebases.",
+      "triggers": [],
+      "tags": [
+        "cpp",
+        "static-analysis",
+        "clang-tidy",
+        "ci",
+        "linting"
+      ],
+      "category": "devops"
+    },
+    {
+      "slug": "claude-cli-from-jvm-via-node-wrapper",
+      "name": "claude-cli-from-jvm-via-node-wrapper",
+      "description": "Shell out to the `claude` CLI from a JVM / Spring Boot app by going through a tiny Node.js wrapper that supplies the required empty stdin — the CLI hangs when invoked with a directly-inherited TTY-less stdin from ProcessBuilder.",
+      "triggers": [
+        "claude -p",
+        "ProcessBuilder",
+        "claude CLI",
+        "node claude-runner",
+        "execFileSync",
+        "subprocess hang",
+        "cli stdin"
+      ],
+      "tags": [
+        "claude-cli",
+        "subprocess",
+        "spring-boot",
+        "processbuilder",
+        "node-wrapper",
+        "stdin",
+        "hang"
+      ],
+      "category": "ai"
+    },
+    {
+      "slug": "claude-code-skill-scaffold",
+      "name": "claude-code-skill-scaffold",
+      "description": "[Tooling] Claude Code 스킬 표준 구조(SKILL.md + prompts/ + scripts/ + references/)를 자동 생성하는 스캐폴딩.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "claude-plugin-catalog-publish",
+      "name": "claude-plugin-catalog-publish",
+      "description": "[Tooling] 로컬 스킬을 원격 Git repo에 배포하고 AGENTS.md 카탈로그를 자동 갱신하는 publish 플로우.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "collection-routing-by-period",
+      "name": "collection-routing-by-period",
+      "description": "Single resolver maps `(Period.Mode, from, to)` → time-series collection (raw view / 1-min / hour-with-monthly-suffix / day). Callers never hardcode collection names.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "compact-binary-wire-protocol-with-variable-length-encoding",
+      "name": "compact-binary-wire-protocol-with-variable-length-encoding",
+      "description": "Define a custom binary wire format with variable-length integer encodings (e.g. 3-byte / 5-byte) to minimize UDP packet size for high-volume metric or telemetry streams",
+      "triggers": [],
+      "tags": [
+        "protocol",
+        "binary",
+        "varint",
+        "udp",
+        "telemetry",
+        "perf"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "concurrent-jdbc-pool-datasource-lifecycle",
+      "name": "concurrent-jdbc-pool-datasource-lifecycle",
+      "description": "Manage a pool of short-lived JDBC targets for monitoring agents with dual maps (active vs all) and periodic revalidation",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "conditional-feature-flag-rollout",
+      "name": "conditional-feature-flag-rollout",
+      "description": "@ConditionalOnProperty로 구/신 구현을 공존시키고 런타임 속성 하나로 전환하는 점진적 롤아웃 패턴",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "custom-actuator-command-whitelist",
+      "name": "custom-actuator-command-whitelist",
+      "description": "Expose safe remote OS command execution on a Spring Boot service via a custom Actuator endpoint, restricted by a command whitelist, an argument sanitizer, and an execution timeout.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "debug-lockorder-detection-system",
+      "name": "debug-lockorder-detection-system",
+      "description": "Runtime lock-order deadlock detection via a DEBUG_LOCKORDER compile flag that tracks lock acquisition order and reports circular dependencies.",
+      "triggers": [],
+      "tags": [
+        "cpp",
+        "threading",
+        "deadlock",
+        "debugging",
+        "instrumentation"
+      ],
+      "category": "debug"
+    },
+    {
+      "slug": "definition-registry-helper-cache",
+      "name": "definition-registry-helper-cache",
+      "description": "Static helper class with ConcurrentHashMap caches populated at startup by @PostConstruct providers, enabling zero-allocation hot-path lookups via static getters",
+      "triggers": [
+        "static helper cache",
+        "ConcurrentHashMap static cache",
+        "PostConstruct populate static map",
+        "definition helper lookup",
+        "zero allocation hot path cache"
+      ],
+      "tags": [
+        "spring",
+        "cache",
+        "static",
+        "concurrenthashmap",
+        "performance"
+      ],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "design-an-interface",
+      "name": "design-an-interface",
+      "description": "Generate multiple radically different interface designs for a module using parallel sub-agents. Use when user wants to design an API, explore interface options, compare module shapes, or mentions \"design it twice\".",
+      "triggers": [],
+      "tags": [
+        "design",
+        "api-design",
+        "sub-agents",
+        "design-it-twice"
+      ],
+      "category": "misc"
+    },
+    {
+      "slug": "deterministic-coverage-verification",
+      "name": "deterministic-coverage-verification",
+      "description": "Run LLVM-instrumented tests multiple times and verify identical coverage reports — catches compiler/env non-determinism that can mask real bugs.",
+      "triggers": [],
+      "tags": [
+        "coverage",
+        "llvm",
+        "testing",
+        "determinism",
+        "ci"
+      ],
+      "category": "testing"
+    },
+    {
+      "slug": "dev-controller-tenant-wrapping-helper",
+      "name": "dev-controller-tenant-wrapping-helper",
+      "description": "Dev/로컬 전용 컨트롤러의 테넌트+JWT 반복 래핑을 함수형 인터페이스 + 헬퍼 컴포넌트로 추출",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "distributed-lock-mongodb",
+      "name": "distributed-lock-mongodb",
+      "description": "MongoDB findAndModify-based distributed lock with TTL expiry, owner tagging, and retry loop for multi-instance Spring Boot services.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "divide-by-zero-rate-guard",
+      "name": "divide-by-zero-rate-guard",
+      "description": "Guard rate/percentage calculations against zero denominators to prevent NaN from poisoning downstream metrics and serialization.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "docker-compose-service-inventory-files",
+      "name": "docker-compose-service-inventory-files",
+      "description": "Manage large Docker Compose service fleets using flat inventory files with '#' as an EX (exclude) marker",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "docker-compose-v1-v2-auto-detect",
+      "name": "docker-compose-v1-v2-auto-detect",
+      "description": "Shell helper that prefers `docker compose` (v2) over `docker-compose` (v1) with graceful fallback",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "domain-category-endpoint-registry",
+      "name": "domain-category-endpoint-registry",
+      "description": "Organize a large vendor-API client (100s of endpoints) under a three-level `{domain}/{category}/{Action}{Entity}` package convention with a shared base class and a single `initializeEndpoints()` registry — scalable, greppable, and uniformly logged.",
+      "triggers": [
+        "BaseApiEndpoint",
+        "initializeEndpoints",
+        "ApiEndpoint",
+        "api registry",
+        "vendor sdk",
+        "many endpoints",
+        "endpoint catalog"
+      ],
+      "tags": [
+        "api-client",
+        "registry",
+        "code-organization",
+        "vendor-sdk",
+        "base-class",
+        "sdk-wrapping"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "dotenv-multi-env-routing",
+      "name": "dotenv-multi-env-routing",
+      "description": "Single ENV variable flips an entire stack (REST base URL, WebSocket base, per-operation transaction IDs) between production and sandbox tiers, loaded via dotenv with OS-env precedence.",
+      "triggers": [
+        "KIS_ENV",
+        "prod",
+        "vts",
+        "sandbox",
+        "dotenv",
+        "Dotenv.configure",
+        "multi-environment",
+        "openapi host"
+      ],
+      "tags": [
+        "dotenv",
+        "config",
+        "environments",
+        "sandbox",
+        "production",
+        "routing"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "dry-run-confirm-retry-write-flow",
+      "name": "dry-run-confirm-retry-write-flow",
+      "description": "[Backend] 트래커/외부 API 쓰기 작업에 적용하는 공통 플로우: 미리보기 → 사용자 확인 → 쓰기 → 재시도.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "dual-jre-docker-oz-report",
+      "name": "dual-jre-docker-oz-report",
+      "description": "Package a Java 21 Spring Boot app that bundles a legacy JRE 8 + sidecar Tomcat (OZ Report engine) in one Alpine container",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "dynamic-gridfs-template-multi-tenant",
+      "name": "dynamic-gridfs-template-multi-tenant",
+      "description": "Resolve MongoDB GridFsTemplate per (tenant-db, bucket) pair with lazy caching, for storing large binary assets per tenant",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "eclipse-rcp-rich-client-for-apm-ui",
+      "name": "eclipse-rcp-rich-client-for-apm-ui",
+      "description": "Build a desktop-class APM / observability client on Eclipse RCP + ZEST/GEF for high-throughput real-time visualization that HTTP + JSON browsers struggle with",
+      "triggers": [],
+      "tags": [
+        "rcp",
+        "eclipse",
+        "desktop",
+        "apm",
+        "visualization"
+      ],
+      "category": "apm"
+    },
+    {
+      "slug": "edit-article",
+      "name": "edit-article",
+      "description": "Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an article draft.",
+      "triggers": [],
+      "tags": [
+        "writing",
+        "editing",
+        "clarity"
+      ],
+      "category": "docs"
+    },
+    {
+      "slug": "elasticsearch-xpack-ssl-transport",
+      "name": "elasticsearch-xpack-ssl-transport",
+      "description": "Gate `PreBuiltXPackTransportClient` vs `PreBuiltTransportClient` on auth flag (not SSL flag) and configure keystore/truststore as independent ES X-Pack settings",
+      "triggers": [
+        "connect Java client to X-Pack-secured Elasticsearch cluster",
+        "production ES requires auth and optional transport TLS"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "enable-async-tenant-aware",
+      "name": "enable-async-tenant-aware",
+      "description": "Place @EnableAsync on a dedicated @Configuration that extends a tenant-aware AsyncConfigurer, so tenant/MDC context propagates across the executor boundary",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "encrypted-pii-decrypt-before-send",
+      "name": "encrypted-pii-decrypt-before-send",
+      "description": "Store user email/phone encrypted at rest; decrypt only inside the sender, never in cache/DTO/log boundaries",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "eureka-service-discovery-wait-annotation",
+      "name": "eureka-service-discovery-wait-annotation",
+      "description": "Declarative @WaitForServices annotation on @EventListener methods — blocks initialization until named Eureka services are healthy, with optional leader-only execution",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "event-driven-kafka-scheduling",
+      "name": "event-driven-kafka-scheduling",
+      "description": "Replace Spring @Scheduled with a Kafka-delivered JobExecuteNotice so a central scheduler service fans out tick events — with a skip-if-previous-still-running guard to prevent pile-up.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "excel-download-null-date-range-handling",
+      "name": "excel-download-null-date-range-handling",
+      "description": "Defensive pattern for grid/list excel-export endpoints — null-check every filter value and normalize field names before querying",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "excel-export-enum-replacer",
+      "name": "excel-export-enum-replacer",
+      "description": "Use DataToBeReplace.builder() to map enum/code values to display labels before passing content to ExcelExportManager.objectToExcelAndDownload()",
+      "triggers": [
+        "excel export enum replace",
+        "DataToBeReplace",
+        "ExcelExportManager",
+        "objectToExcelAndDownload",
+        "excel download controller"
+      ],
+      "tags": [
+        "spring",
+        "excel",
+        "export",
+        "enum",
+        "controller"
+      ],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "feed-envelope-frame",
+      "name": "feed-envelope-frame",
+      "description": "Uniform WebSocket payload wrapper with Type (ACK/SNAPSHOT/DELTA/ERROR), PayloadKind, and correlation requestId, including null-safe factory methods",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "folder-coloc-style-types",
+      "name": "folder-coloc-style-types",
+      "description": "Keep component, style, and types files at the same depth; never split into styles/ or types/ subfolders",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "font-cache-alpine-locale-docker",
+      "name": "font-cache-alpine-locale-docker",
+      "description": "Make CJK/custom fonts usable inside an Alpine container by copying TTF/OTF and rebuilding the fontconfig cache",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "freemarker-two-phase-expression-subst",
+      "name": "freemarker-two-phase-expression-subst",
+      "description": "Render templates by first replacing raw ${var} placeholders via string-replace, then running FreeMarker for expression-object binding, avoiding double-evaluation and escape conflicts",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "frozen-detection-consecutive-count",
+      "name": "frozen-detection-consecutive-count",
+      "description": "Detect a stuck/frozen metric (identical value for N consecutive samples) by CONSECUTIVE-dampening equality check; catches sensor/collector failures that threshold alarms miss.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "fuzz-corpus-seed-management",
+      "name": "fuzz-corpus-seed-management",
+      "description": "Structured libFuzzer workflow — seed corpora in a separate asset repo, determinism verification, and reproducible crash workflows.",
+      "triggers": [],
+      "tags": [
+        "fuzzing",
+        "libfuzzer",
+        "llvm",
+        "testing",
+        "corpus"
+      ],
+      "category": "testing"
+    },
+    {
+      "slug": "gacha-soft-hard-pity",
+      "name": "gacha-soft-hard-pity",
+      "description": "Server-authoritative gacha with soft pity (rate ramp after N pulls), hard pity (guaranteed top rarity at M pulls), and 50/50 guarantee carryover. Split rate calculation from result resolution so probability is testable.",
+      "triggers": [
+        "gacha pity system",
+        "soft pity hard pity",
+        "50/50 pity",
+        "banner rate up",
+        "rate calculator"
+      ],
+      "tags": [
+        "gacha",
+        "pity",
+        "probability",
+        "securerandom",
+        "loot",
+        "rng-fairness"
+      ],
+      "category": "game-dev"
+    },
+    {
+      "slug": "git-guardrails-claude-code",
+      "name": "git-guardrails-claude-code",
+      "description": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code.",
+      "triggers": [],
+      "tags": [
+        "git",
+        "hooks",
+        "claude-code",
+        "guardrails",
+        "safety"
+      ],
+      "category": "cli"
+    },
+    {
+      "slug": "git-tag-registry-versioning",
+      "name": "git-tag-registry-versioning",
+      "description": "Add semver rollback and pinning to any git-backed asset registry (skills, prompts, commands, snippets) using namespaced annotated tags per item and per-release bundle.",
+      "triggers": [
+        "version pin",
+        "rollback",
+        "git tag",
+        "registry versioning",
+        "skill versioning",
+        "prompt versioning",
+        "install specific version"
+      ],
+      "tags": [
+        "git",
+        "versioning",
+        "semver",
+        "registry",
+        "rollback",
+        "tags"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "github-triage",
+      "name": "github-triage",
+      "description": "Triage GitHub issues through a label-based state machine with interactive grilling sessions. Use when user wants to triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow.",
+      "triggers": [],
+      "tags": [
+        "github",
+        "triage",
+        "issues",
+        "labels",
+        "state-machine"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "gradle-bootjar-conditional-archive-bundle",
+      "name": "gradle-bootjar-conditional-archive-bundle",
+      "description": "Gradle Spring Boot build that conditionally bundles the fat JAR plus externalized resources into a dated zip/tar for on-prem delivery, gated by a flag",
+      "triggers": [],
+      "tags": [],
+      "category": "arch"
+    },
+    {
+      "slug": "gradle-bootrun-local-dev-env",
+      "name": "gradle-bootrun-local-dev-env",
+      "description": "Gradle bootRun task recipe that wires local MongoDB/Kafka/Redis/MQTT/Eureka/Quartz via environment variables — no docker-compose needed",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "gradle-jacoco-exclusion-strategy",
+      "name": "gradle-jacoco-exclusion-strategy",
+      "description": "Curated Jacoco/Sonar exclusion patterns for Spring Boot projects — skips config/DAO/entity/generated layers and Querydsl Q-classes",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "gradle-shared-exclusions-jacoco-sonar",
+      "name": "gradle-shared-exclusions-jacoco-sonar",
+      "description": "Keep Jacoco report, Jacoco coverage verification, and SonarQube exclusions in sync by defining one `exclusionPatterns` list in Gradle ext",
+      "triggers": [
+        "jacoco and sonarqube exclusion lists drift apart",
+        "adding a new package to coverage exclusions requires editing multiple blocks",
+        "querydsl Q-classes / generated code leaking into coverage reports"
+      ],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "grid-filter-to-criteria-converter",
+      "name": "grid-filter-to-criteria-converter",
+      "description": "Convert a UI grid filter DTO (gridFilters + tagFilters + pageable) to MongoDB Criteria using CriteriaMakeHelper, supporting equals/contains/greaterThan/inRange operators",
+      "triggers": [
+        "grid filter to criteria",
+        "FiltersPageableDto",
+        "CriteriaMakeHelper",
+        "mongodb dynamic filter",
+        "UI filter to query"
+      ],
+      "tags": [
+        "spring",
+        "mongodb",
+        "filter",
+        "criteria",
+        "pagination",
+        "grid"
+      ],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "grill-me",
+      "name": "grill-me",
+      "description": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions \"grill me\".",
+      "triggers": [],
+      "tags": [
+        "interview",
+        "planning",
+        "clarification",
+        "socratic"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "hibernate-multi-dialect-swap",
+      "name": "hibernate-multi-dialect-swap",
+      "description": "Ship one WAR that connects to Oracle, PostgreSQL, MSSQL, Tibero, DB2, or MariaDB based on Spring profile — all JDBC drivers bundled, dialect and datasource resolved from externalized config",
+      "triggers": [
+        "one deployable must support multiple RDBMS vendors without rebuild",
+        "hibernate dialect chosen at startup, not compile time",
+        "customer deployments dictate DB vendor"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "hierarchical-group-entity-mongo",
+      "name": "hierarchical-group-entity-mongo",
+      "description": "Model a tree-structured group entity in MongoDB with parentId + path + pathIds + level, plus recursive child-path update on move and cycle detection.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "identifier-truncate-with-hash-suffix",
+      "name": "identifier-truncate-with-hash-suffix",
+      "description": "Deterministically shrink any identifier to a length cap while preserving uniqueness by appending a short hash of the original.",
+      "triggers": [
+        "name too long",
+        "identifier length limit",
+        "shorten tool name",
+        "truncate unique"
+      ],
+      "tags": [
+        "identifiers",
+        "hashing",
+        "naming",
+        "collision-avoidance"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "immutable-action-event-log",
+      "name": "immutable-action-event-log",
+      "description": "Model state transitions as `(state, action) → (newState, List<Event>)` where the event list is an append-only, serializable log. Enables deterministic replay, audit trails, cheat detection, and UI choreography without coupling engine to presentation.",
+      "triggers": [
+        "action result log",
+        "state transition events",
+        "replay log",
+        "deterministic engine",
+        "audit trail events"
+      ],
+      "tags": [
+        "event-sourcing",
+        "immutable-state",
+        "action-log",
+        "deterministic",
+        "replay",
+        "audit"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "improve-codebase-architecture",
+      "name": "improve-codebase-architecture",
+      "description": "Explore a codebase to find opportunities for architectural improvement, focusing on making the codebase more testable by deepening shallow modules. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more AI-navigable.",
+      "triggers": [],
+      "tags": [
+        "architecture",
+        "codebase",
+        "exploration"
+      ],
+      "category": "refactor"
+    },
+    {
+      "slug": "init-deadline-guard",
+      "name": "init-deadline-guard",
+      "description": "Watchdog that force-exits a Spring Boot service if startup initialization (external discovery, topic creation, warmup) does not complete within a deadline",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "ip-allowlist-cidr-validator",
+      "name": "ip-allowlist-cidr-validator",
+      "description": "Validate client IPs against user-supplied allow-lists accepting mixed notations — plain IPv4, CIDR, octet wildcards (192.168.*.*), and octet ranges (192.168.10-20.*)",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "jacoco-exclude-boilerplate-layers",
+      "name": "jacoco-exclude-boilerplate-layers",
+      "description": "Configure JaCoCo + SonarQube to exclude generated/boilerplate layers (avro, config, dto, entity, kafka, *Dev) from coverage so coverage % reflects business logic only",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "jacoco-sonar-shared-exclusion-list",
+      "name": "jacoco-sonar-shared-exclusion-list",
+      "description": "Define coverage/quality exclusions once in ext.exclusionPatterns and reuse across jacoco, sonar, and packaging tasks to prevent report drift",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "java-agent-bytecode-instrumentation-with-asm",
+      "name": "java-agent-bytecode-instrumentation-with-asm",
+      "description": "Build a JVM agent using ASM's ClassFileTransformer to inject profiling/monitoring hooks into application classes via pluggable visitor chains",
+      "triggers": [],
+      "tags": [
+        "java",
+        "jvm",
+        "apm",
+        "instrumentation",
+        "asm",
+        "bytecode"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "jdbc-configurable-sql-insert-sender",
+      "name": "jdbc-configurable-sql-insert-sender",
+      "description": "Ship a notification/integration channel that writes to a user-configured external DB via user-supplied INSERT SQL with ${var} placeholders",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "jenkins-dual-registry-docker-push",
+      "name": "jenkins-dual-registry-docker-push",
+      "description": "Jenkins pipeline that builds one image and tags+pushes it to two registries (SaaS + on-prem) with both build-specific and rolling-latest tags",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "jest-test-file-naming-test-only",
+      "name": "jest-test-file-naming-test-only",
+      "description": "Use .test.ts naming (not .spec.ts) and explicitly import jest globals; .spec.ts is excluded from the runner",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "json-seeded-jpa-loader",
+      "name": "json-seeded-jpa-loader",
+      "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
+      "triggers": [
+        "seed reference data spring",
+        "CommandLineRunner JSON",
+        "populate static content",
+        "data initializer spring",
+        "load catalog JSON"
+      ],
+      "tags": [
+        "spring-boot",
+        "jpa",
+        "seeding",
+        "flyway",
+        "commandlinerunner",
+        "jackson",
+        "reference-data"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "jwt-extraction-via-base-controller",
+      "name": "jwt-extraction-via-base-controller",
+      "description": "Consolidate repeated `JwtTokenService.getXxxFromBearerToken(headerAuthorization)` calls across Spring controllers by moving the service and helper methods onto a shared `BaseController`. Subclass controllers call `getOrganizationId(h)` / `getLoginId(h)` / `getRoleIds(h)` directly.",
+      "triggers": [
+        "jwt extraction controller duplication",
+        "base controller jwt",
+        "getXxxFromBearerToken 중복 제거"
+      ],
+      "tags": [
+        "spring-boot",
+        "jwt",
+        "controller",
+        "refactor",
+        "base-class"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "jwt-refresh-rotation-spring",
+      "name": "jwt-refresh-rotation-spring",
+      "description": "Spring Boot 3 JWT with short-lived access token + long-lived refresh token, filter-chain integration, and stateless session config. Avoids common mistakes that silently break refresh flows.",
+      "triggers": [
+        "jwt spring boot",
+        "refresh token rotation",
+        "JwtAuthenticationFilter",
+        "jjwt 0.12",
+        "SessionCreationPolicy.STATELESS",
+        "access token refresh token"
+      ],
+      "tags": [
+        "jwt",
+        "spring-boot",
+        "auth",
+        "refresh-token",
+        "jjwt",
+        "security-filter"
+      ],
+      "category": "security"
+    },
+    {
+      "slug": "k8s-health-via-getnodelist",
+      "name": "k8s-health-via-getnodelist",
+      "description": "Use `listNode()` with readiness check for Kubernetes cluster health — `getVersion()` succeeds on degraded clusters that will fail real work",
+      "triggers": [
+        "cluster liveness probe before running a collector pass",
+        "guard against API-server flaps"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-avro-producer-gzip-30mb",
+      "name": "kafka-avro-producer-gzip-30mb",
+      "description": "Spring Kafka producer config for Avro values with gzip compression and a raised 30MB max.request.size for schema-registry payloads",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-avro-topic-auto-create-config",
+      "name": "kafka-avro-topic-auto-create-config",
+      "description": "Spring Boot Kafka config bean that auto-creates topics on startup via ApplicationRunner, with Avro serde, manual-ack listener, and bounded concurrency",
+      "triggers": [],
+      "tags": [],
+      "category": "arch"
+    },
+    {
+      "slug": "kafka-batch-consumer-partition-tuning",
+      "name": "kafka-batch-consumer-partition-tuning",
+      "description": "Size Kafka partition count + max-poll-records per topic volume so heavy-processing batch consumers avoid max.poll.interval.ms breaches and maintain throughput via per-partition concurrency.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-consumer-config-3-factories",
+      "name": "kafka-consumer-config-3-factories",
+      "description": "Spring Kafka consumer setup with three ListenerContainerFactory variants (standard / batch / UUID-group) and autoStartup=false to allow topic bootstrap before listeners attach",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-consumer-errorhandling-wrapper",
+      "name": "kafka-consumer-errorhandling-wrapper",
+      "description": "Wrap key/value deserializers in Spring Kafka's ErrorHandlingDeserializer so a single poison record doesn't halt the consumer",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-consumer-semaphore-chunking",
+      "name": "kafka-consumer-semaphore-chunking",
+      "description": "Bound in-flight async work from a Kafka consumer with `Semaphore(poolSize + queueCapacity - 2)` plus fixed-size chunks; release in `whenComplete` on both success and failure.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-consumer-tenant-fan-out",
+      "name": "kafka-consumer-tenant-fan-out",
+      "description": "@KafkaListener pattern consuming a topicPattern across tenants, using a record header for tenant identity and routing to per-tenant downstream streams",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-debounce-event-coalescing",
+      "name": "kafka-debounce-event-coalescing",
+      "description": "Coalesce bursts of change events into one Kafka event per tenant per debounce window using Redis state (first/last change time + changed-tenant SET), with a MAX_WAIT fallback so a never-quiet stream still fires.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "kafka-engine-distributed-job-framework",
+      "name": "kafka-engine-distributed-job-framework",
+      "description": "Kafka 이벤트 기반 분산 작업 실행 프레임워크 스켈레톤 — Publisher→Topic→Consumer→Queue→Worker + Admission Control + Strategy SPI",
+      "triggers": [],
+      "tags": [],
+      "category": "arch"
+    },
+    {
+      "slug": "kafka-message-header-metadata",
+      "name": "kafka-message-header-metadata",
+      "description": "Attach org-id, user-id, and timestamp as RecordHeader[] on a ProducerRecord to enable multi-tenant event routing without polluting the Avro payload",
+      "triggers": [
+        "kafka record headers",
+        "ProducerRecord headers",
+        "organization-id header kafka",
+        "multi-tenant kafka routing",
+        "RecordHeader metadata"
+      ],
+      "tags": [
+        "kafka",
+        "avro",
+        "multi-tenant",
+        "headers",
+        "spring"
+      ],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "kafka-producer-async-callback",
+      "name": "kafka-producer-async-callback",
+      "description": "Fire-and-log Kafka send pattern using CompletableFuture.whenComplete() for audit/event topics where the caller should not block",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "kafka-producer-config-avro-schema-registry",
+      "name": "kafka-producer-config-avro-schema-registry",
+      "description": "Kafka producer config template for Avro + Confluent Schema Registry with LZ4 compression, 30MB max request size, and acks=1",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "layered-risk-gates",
+      "name": "layered-risk-gates",
+      "description": "Three-layer safety pattern for autonomous action loops — pre-action admission gate, in-flight monitor (stop/target thresholds), and a consecutive-failure circuit breaker — so a single runaway loop can't clear out the account before a human sees it.",
+      "triggers": [
+        "risk management",
+        "position sizing",
+        "max daily loss",
+        "consecutive losses",
+        "stop loss",
+        "take profit",
+        "kill switch",
+        "circuit breaker"
+      ],
+      "tags": [
+        "risk",
+        "circuit-breaker",
+        "safety",
+        "autonomous",
+        "limits",
+        "guardrails"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "llm-json-extraction",
+      "name": "llm-json-extraction",
+      "description": "Robustly extract a JSON object from free-form LLM text output — strip markdown fences, locate outermost braces, tolerate prelude/postlude prose.",
+      "triggers": [
+        "extract JSON",
+        "parse LLM response",
+        "strip code fence",
+        "ObjectMapper.readValue",
+        "JSON from model",
+        "```json"
+      ],
+      "tags": [
+        "llm",
+        "json",
+        "parsing",
+        "prompt-engineering",
+        "robustness"
+      ],
+      "category": "ai"
+    },
+    {
+      "slug": "mcp-capability-negotiated-initialize",
+      "name": "mcp-capability-negotiated-initialize",
+      "description": "In MCP `initialize`, advertise optional server capabilities (prompts, resources, sampling) only when the client declared matching support — avoids clients rejecting the handshake or spamming unsupported methods.",
+      "triggers": [
+        "mcp initialize",
+        "capability negotiation",
+        "server capabilities",
+        "prompts/resources not showing"
+      ],
+      "tags": [
+        "mcp",
+        "json-rpc",
+        "capability-negotiation",
+        "handshake"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "mcp-runtime-prompt-refresh",
+      "name": "mcp-runtime-prompt-refresh",
+      "description": "Expose a built-in MCP tool that hot-swaps the server's prompt set at runtime, persists it to disk, and emits notifications/prompts/list_changed so clients pick it up without reconnecting.",
+      "triggers": [
+        "refresh prompts",
+        "update mcp prompts at runtime",
+        "prompts list_changed",
+        "mcp hot reload"
+      ],
+      "tags": [
+        "mcp",
+        "prompts",
+        "hot-reload",
+        "json-rpc",
+        "tool-design"
+      ],
+      "category": "ai"
+    },
+    {
+      "slug": "measurement-grouping-combiner",
+      "name": "measurement-grouping-combiner",
+      "description": "Group rows by `(resourceId, metricId, bucketTs)` into `Map<K, List<T>>`, then a per-granularity pure `combine…ByKey` merges each list into one composite record. One combiner per granularity (raw/1m/5m/hour/day).",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "menu-key-config-registry",
+      "name": "menu-key-config-registry",
+      "description": "Centralize sidebar/drawer menu keys as a union type + config object per domain, so menu rendering, drawer view switches, and default-expand state all reference the same source of truth. Eliminates string-key drift across the three places a menu key appears.",
+      "triggers": [
+        "menu key drift",
+        "Drawer case switch",
+        "selectedSubMenu",
+        "DetailMenuList",
+        "sidebar menu config"
+      ],
+      "tags": [
+        "react",
+        "menu",
+        "drawer",
+        "registry",
+        "typescript",
+        "union-type",
+        "configuration"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "mermaid-gitlab-mr-size-rules",
+      "name": "mermaid-gitlab-mr-size-rules",
+      "description": "Keep Mermaid diagrams in GitLab MRs readable — cap nodes, avoid nested subgraphs, quote IDs with special chars, connect all subgraphs",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "message-loader-gated-on-database-ready",
+      "name": "message-loader-gated-on-database-ready",
+      "description": "Gate i18n/seed loading on database readiness + per-tenant distributed lock so the first instance wins initialization in a multi-replica rollout.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "mfa-memoryrouter-isolation",
+      "name": "mfa-memoryrouter-isolation",
+      "description": "Wrap Module Federation-exposed React components in `MemoryRouter` so they own a private router context instead of inheriting the host's — avoids cross-origin router errors in dev and keeps the remote's routes from leaking into the host URL bar.",
+      "triggers": [
+        "MemoryRouter",
+        "Router context",
+        "cross-origin",
+        "useNavigate outside Router",
+        "MFA expose router"
+      ],
+      "tags": [
+        "module-federation",
+        "react-router",
+        "memoryrouter",
+        "micro-frontend",
+        "cross-origin"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "mfa-plain-html-dropdown-escape-hatch",
+      "name": "mfa-plain-html-dropdown-escape-hatch",
+      "description": "When a library Dropdown component infinite-loops or cross-origin-fails inside a Module Federation remote, replace it with a plain HTML `<button>` + absolutely-positioned menu `<ul>`. Cheaper than debugging the library's portal/context assumptions.",
+      "triggers": [
+        "Dropdown infinite loop",
+        "options useMemo",
+        "MFA dropdown",
+        "portal cross-origin",
+        "library dropdown broken in remote"
+      ],
+      "tags": [
+        "module-federation",
+        "dropdown",
+        "antd",
+        "infinite-loop",
+        "cross-origin",
+        "react"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "migrate-to-shoehorn",
+      "name": "migrate-to-shoehorn",
+      "description": "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.",
+      "triggers": [],
+      "tags": [
+        "typescript",
+        "shoehorn",
+        "type-assertions",
+        "migration"
+      ],
+      "category": "refactor"
+    },
+    {
+      "slug": "migration-processor-pipeline",
+      "name": "migration-processor-pipeline",
+      "description": "Abstract migration processor template — validate → load → transform → emit Kafka Avro event with org-id header → audit log, multi-tenant safe",
+      "triggers": [
+        "migration processor",
+        "data migration pipeline",
+        "legacy data import",
+        "migration with kafka"
+      ],
+      "tags": [
+        "spring",
+        "kafka",
+        "avro",
+        "migration",
+        "multi-tenant",
+        "mongodb"
+      ],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "module-federation-expose-react-component",
+      "name": "module-federation-expose-react-component",
+      "description": "Expose a React component from one MF remote to be consumed by other remotes via a stable 6-step pipeline (implementation → expose wrapper → config → MF constant → RemoteApp wrapper → consumer import).",
+      "triggers": [
+        "expose a component across module federation remotes",
+        "share React component between MFA remotes",
+        "MFA expose pipeline",
+        "cross-remote import forbidden"
+      ],
+      "tags": [
+        "module-federation",
+        "micro-frontend",
+        "react",
+        "webpack",
+        "expose",
+        "monorepo"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "module-federation-expose-wrapper",
+      "name": "module-federation-expose-wrapper",
+      "description": "Six-step pattern for exposing a component from one Module Federation remote and consuming it from another via a shared library — implementation → expose wrapper → MF config → MF name constant → RemoteApp wrapper in shared → consumer import. Prevents direct cross-remote imports and webpack alias collisions.",
+      "triggers": [
+        "module federation",
+        "MFA",
+        "cross-remote import",
+        "exposes",
+        "RemoteApp",
+        "webpack alias collision"
+      ],
+      "tags": [
+        "module-federation",
+        "micro-frontend",
+        "webpack",
+        "react",
+        "remote",
+        "expose",
+        "mfa"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "mongo-aggregation-filter-optimization",
+      "name": "mongo-aggregation-filter-optimization",
+      "description": "Replace `$unwind`+`$match` on array sub-documents with inline `$filter` so array elements are pruned before any downstream stage — avoids N× document explosion.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "mongo-criteria-maker-elemmatch-and-or",
+      "name": "mongo-criteria-maker-elemmatch-and-or",
+      "description": "Compose dynamic MongoDB Criteria with mixed AND/OR groups and elemMatch on tag-array fields using a stack-based builder",
+      "triggers": [
+        "building MongoDB queries with user-defined AND/OR filter rows",
+        "matching key/value pairs inside an array field (tags, labels, attributes)",
+        "replacing string-concatenated Mongo queries with type-safe Criteria"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "mongo-timestamp-densification",
+      "name": "mongo-timestamp-densification",
+      "description": "Fill sparse time-series gaps with `$dateTrunc` + `$densify` in Mongo, then a residual Java gap-fill loop for LIVE windows. Partition by series to keep multi-line charts aligned.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "mongo-ttl-with-aggregation-delta",
+      "name": "mongo-ttl-with-aggregation-delta",
+      "description": "Store short-lived counter snapshots in MongoDB with a TTL index for auto-expiry and compute delta-from-previous at read time via an aggregation $subtract pipeline.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "mongodb-changestream-field-filter",
+      "name": "mongodb-changestream-field-filter",
+      "description": "Filter MongoDB change stream UPDATE events by inspecting updateDescription.updatedFields so irrelevant mutations do not trigger downstream work; INSERT/DELETE fall through as always-relevant.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "mongodb-compound-index-esr-rule",
+      "name": "mongodb-compound-index-esr-rule",
+      "description": "Order MongoDB compound-index fields as Equality → Sort → Range so the query planner keeps a tight IXSCAN and avoids in-memory sorts.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "mongodb-datetrunc-binsize-zero-guard",
+      "name": "mongodb-datetrunc-binsize-zero-guard",
+      "description": "Guard MongoDB $dateTrunc binSize against 0 when your interval may be auto/unset; coerce to 1 to avoid runtime error",
+      "triggers": [],
+      "tags": [
+        "mongodb",
+        "aggregation",
+        "dateTrunc",
+        "pitfall"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "mongodb-volume-copy-backup",
+      "name": "mongodb-volume-copy-backup",
+      "description": "Back up and restore MongoDB Docker volumes via rsync volume-copy instead of mongodump/tar.gz",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "multi-dbms-resource-provider-pattern",
+      "name": "multi-dbms-resource-provider-pattern",
+      "description": "Structure a polyglot RDBMS monitoring agent with one ResourceProvider + entity/dto/service per DBMS, sharing a common base",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "multi-resource-or-batch-query",
+      "name": "multi-resource-or-batch-query",
+      "description": "Collapse N per-resource Mongo queries into one pipeline using `Criteria.orOperator` (or `$in`) over resourceId, projecting a synthetic `key` field for service-side de-multiplexing. Chunk at ~200 for index-friendly `$or`.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "multi-tenant-kafka-header-organization-context",
+      "name": "multi-tenant-kafka-header-organization-context",
+      "description": "Propagate tenant/organization id from Kafka headers through async handler threads via a ThreadLocal context holder",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "multi-tenant-scheduler-iteration",
+      "name": "multi-tenant-scheduler-iteration",
+      "description": "Pattern for scheduled jobs that must iterate every tenant DB in a database-per-tenant MongoDB setup: enumerate DBs, filter system ones, set TenantContext per tenant, isolate failures, clear in finally.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "netty-tcp-reconnect-backoff",
+      "name": "netty-tcp-reconnect-backoff",
+      "description": "On Netty `channelInactive`/EOF/read-timeout, reconnect with exponential backoff (100ms → 30s cap), reset on success, keep SO_KEEPALIVE + TCP_NODELAY",
+      "triggers": [
+        "long-lived TCP client to a device or broker that drops silently",
+        "need to survive peer restarts without crashing the collector"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "non-metric-saveraw-null-rule",
+      "name": "non-metric-saveraw-null-rule",
+      "description": "Treat `saveRaw` as tri-state `Boolean` — `null` for non-METRIC types (Availability/Trait), `true`/`false` only for METRIC. Re-apply the rule on every policy mutation path.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "oauth-token-env-persistence",
+      "name": "oauth-token-env-persistence",
+      "description": "Persist OAuth access tokens to a sidecar env file (token + refresh + issue_time), refresh N minutes before expiry with a thread-safe guard, auto-inject into outgoing API calls — survives process restart without re-login.",
+      "triggers": [
+        "access_token",
+        "refresh_token",
+        "token refresh",
+        "access_token.env",
+        "token issue time",
+        "bearer auto inject",
+        "token expiry"
+      ],
+      "tags": [
+        "oauth",
+        "token",
+        "refresh",
+        "dotenv",
+        "persistence",
+        "auth",
+        "thread-safety"
+      ],
+      "category": "security"
+    },
+    {
+      "slug": "obsidian-vault",
+      "name": "obsidian-vault",
+      "description": "Search, create, and manage notes in the Obsidian vault with wikilinks and index notes. Use when user wants to find, create, or organize notes in Obsidian.",
+      "triggers": [],
+      "tags": [
+        "obsidian",
+        "notes",
+        "wikilinks",
+        "vault"
+      ],
+      "category": "docs"
+    },
+    {
+      "slug": "openapi-to-mcp-tag-grouping",
+      "name": "openapi-to-mcp-tag-grouping",
+      "description": "Convert OpenAPI specs into MCP tools by grouping operations under their OpenAPI tag, exposing one tool per tag with an operation selector and per-operation arguments.",
+      "triggers": [
+        "openapi to mcp",
+        "swagger to mcp",
+        "generate mcp tools",
+        "tag based tool grouping"
+      ],
+      "tags": [
+        "mcp",
+        "openapi",
+        "tool-design",
+        "schema",
+        "json-schema"
+      ],
+      "category": "ai"
+    },
+    {
+      "slug": "opentelemetry-java-bootstrap",
+      "name": "opentelemetry-java-bootstrap",
+      "description": "Minimal OpenTelemetry bootstrap for a Java service — OTLP exporter, resource attributes, auto-instrumentation agent, and graceful shutdown. Covers the common setup mistakes that cause spans to silently drop.",
+      "triggers": [
+        "OpenTelemetry",
+        "OTEL",
+        "otel-javaagent",
+        "otlp",
+        "tracing setup",
+        "service.name",
+        "span exporter"
+      ],
+      "tags": [
+        "opentelemetry",
+        "otel",
+        "java",
+        "tracing",
+        "otlp",
+        "observability"
+      ],
+      "category": "apm"
+    },
+    {
+      "slug": "optional-outbound-adapter-no-op-port",
+      "name": "optional-outbound-adapter-no-op-port",
+      "description": "Register a No-Op implementation of an optional outbound port with @ConditionalOnMissingBean so services boot when the real adapter (Kafka audit, tracing, notifications) is absent.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "org-scoped-kafka-topic-bootstrap",
+      "name": "org-scoped-kafka-topic-bootstrap",
+      "description": "On-startup and on-event creation of per-tenant Kafka topics, with retention overrides per topic class and a service-readiness gate",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "paired-flag-multi-instance-registration",
+      "name": "paired-flag-multi-instance-registration",
+      "description": "CLI pattern for registering N instances of a composite config (e.g. spec+baseUrl pairs) using repeated paired flags and a pending-state parser.",
+      "triggers": [
+        "multiple config pairs",
+        "repeated flag",
+        "paired cli args",
+        "multi-spec cli"
+      ],
+      "tags": [
+        "argparse",
+        "cli-design",
+        "multi-instance",
+        "config"
+      ],
+      "category": "cli"
+    },
+    {
+      "slug": "parallel-bulk-annotation",
+      "name": "parallel-bulk-annotation",
+      "description": "수십~수백 개 Java 파일에 어노테이션(@Schema, @Operation, @ApiResponse 등)을 대량 추가할 때 병렬 에이전트로 분산 실행하는 패턴",
+      "triggers": [
+        "대량 어노테이션 추가",
+        "@Schema 전수 부여",
+        "operationId 전수 부여",
+        "200개 메서드 어노테이션",
+        "bulk annotation"
+      ],
+      "tags": [],
+      "category": "workflow"
+    },
+    {
+      "slug": "parallel-tasks-generic-extraction",
+      "name": "parallel-tasks-generic-extraction",
+      "description": "invokeAll + Callable 반복 패턴을 제네릭 executeParallelTasks + TaskFactory로 추출",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "period-mode-enum-config",
+      "name": "period-mode-enum-config",
+      "description": "One enum `Mode` holds all (intervalMs, isFullData, dateFormat, retention, chartFormat) tuples for every time-series granularity — single source of truth across repository/service/chart layers.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "playwright-exception-advice",
+      "name": "playwright-exception-advice",
+      "description": "Map PlaywrightException to a structured JSON error in Spring @ControllerAdvice, detecting common cases (cert errors, timeouts) and attaching actionable suggestions",
+      "triggers": [
+        "ControllerAdvice playwright",
+        "PlaywrightException spring",
+        "ERR_CERT_AUTHORITY_INVALID"
+      ],
+      "tags": [
+        "spring-boot",
+        "exception-handling",
+        "playwright",
+        "controller-advice"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "playwright-inspector-codegen",
+      "name": "playwright-inspector-codegen",
+      "description": "Enable Playwright Inspector / codegen from a running Java app by setting PWDEBUG env vars before Playwright.create() and exposing an mvn codegen invocation for the user",
+      "triggers": [
+        "PWDEBUG",
+        "playwright inspector",
+        "playwright codegen",
+        "record selectors"
+      ],
+      "tags": [
+        "playwright",
+        "inspector",
+        "codegen",
+        "debugging",
+        "java"
+      ],
+      "category": "debug"
+    },
+    {
+      "slug": "playwright-java-dockerfile",
+      "name": "playwright-java-dockerfile",
+      "description": "Multi-stage Dockerfile that builds a Java/Maven app in a JDK image and runs it on the official Playwright Java runtime image, avoiding manual browser installation",
+      "triggers": [
+        "dockerfile playwright java",
+        "mcr.microsoft.com/playwright/java",
+        "playwright container"
+      ],
+      "tags": [
+        "docker",
+        "playwright",
+        "java",
+        "maven",
+        "multi-stage"
+      ],
+      "category": "devops"
+    },
+    {
+      "slug": "playwright-java-spring-lifecycle",
+      "name": "playwright-java-spring-lifecycle",
+      "description": "Share one Playwright+Browser instance across a Spring Boot app and create per-request BrowserContext/Page, cleaning up with try-with-resources and @PreDestroy",
+      "triggers": [
+        "playwright",
+        "BrowserManager",
+        "BrowserContext",
+        "headless browser spring"
+      ],
+      "tags": [
+        "playwright",
+        "spring-boot",
+        "java",
+        "lifecycle",
+        "browser"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "pluggable-sender-factory-pattern",
+      "name": "pluggable-sender-factory-pattern",
+      "description": "Register multiple notification/transport backends (SMS, EMAIL, SMTP, JDBC, REST, SLACK, SOCKET) behind a single FactoryBean that dispatches by enum type",
+      "triggers": [],
+      "tags": [],
+      "category": "arch"
+    },
+    {
+      "slug": "plugin-resource-provider-architecture",
+      "name": "plugin-resource-provider-architecture",
+      "description": "Stable `ResourceProvider` SPI loaded via Spring component scan; each new device/resource type is a separate Gradle-module JAR packaged into the WAR — zero core edits",
+      "triggers": [
+        "extensible monitoring/management platform",
+        "vendor support must be pluggable per deployment"
+      ],
+      "tags": [],
+      "category": "arch"
+    },
+    {
+      "slug": "policy-target-evaluation-with-groups-tags",
+      "name": "policy-target-evaluation-with-groups-tags",
+      "description": "Evaluate whether a resource matches a policy via direct IDs + static/dynamic groups + tag filters, with explicit exclusion rules that take precedence over includes.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "polymorphic-command-entities",
+      "name": "polymorphic-command-entities",
+      "description": "Expose a list of typed commands over JSON using Jackson @JsonTypeInfo + @JsonSubTypes so clients can submit executable scripts to a REST endpoint",
+      "triggers": [
+        "JsonTypeInfo",
+        "JsonSubTypes",
+        "command pattern json",
+        "polymorphic deserialization"
+      ],
+      "tags": [
+        "jackson",
+        "polymorphism",
+        "command-pattern",
+        "rest",
+        "java"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "prd-to-issues",
+      "name": "prd-to-issues",
+      "description": "Break a PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when user wants to convert a PRD to issues, create implementation tickets, or break down a PRD into work items.",
+      "triggers": [],
+      "tags": [
+        "prd",
+        "github",
+        "issues",
+        "tracer-bullet",
+        "planning"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "prd-to-plan",
+      "name": "prd-to-plan",
+      "description": "Turn a PRD into a multi-phase implementation plan using tracer-bullet vertical slices, saved as a local Markdown file in ./plans/. Use when user wants to break down a PRD, create an implementation plan, plan phases from a PRD, or mentions \"tracer bullets\".",
+      "triggers": [],
+      "tags": [
+        "prd",
+        "planning",
+        "phased",
+        "tracer-bullet"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "qa",
+      "name": "qa",
+      "description": "Interactive QA session where user reports bugs or issues conversationally, and the agent files GitHub issues. Explores the codebase in the background for context and domain language. Use when user wants to report bugs, do QA, file issues conversationally, or mentions \"QA session\".",
+      "triggers": [],
+      "tags": [
+        "qa",
+        "interactive",
+        "bug-reports"
+      ],
+      "category": "testing"
+    },
+    {
+      "slug": "querydsl-q-class-exclusion-pattern",
+      "name": "querydsl-q-class-exclusion-pattern",
+      "description": "One `exclusionPatterns` list drives Jacoco report + verification + Sonar exclusions; catches generated Querydsl Q-classes via `('A'..'Z').collect { \"**/**/Q${it}*\" }`.",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "react-native-android-emulator-localhost",
+      "name": "react-native-android-emulator-localhost",
+      "description": "Use Platform.select to pick the right loopback host when a React Native dev build talks to a backend on the host machine — Android emulator needs 10.0.2.2, iOS simulator uses localhost.",
+      "triggers": [
+        "10.0.2.2",
+        "Platform.select",
+        "localhost:8080",
+        "android emulator network",
+        "React Native API base",
+        "fetch failed",
+        "Network request failed"
+      ],
+      "tags": [
+        "react-native",
+        "android",
+        "emulator",
+        "localhost",
+        "10.0.2.2",
+        "networking",
+        "dev-environment"
+      ],
+      "category": "mobile"
+    },
+    {
+      "slug": "reactive-webclient-ssl-jdk",
+      "name": "reactive-webclient-ssl-jdk",
+      "description": "Force reactor-netty WebClient to SslProvider.JDK so SSL works in slim containers that lack netty-tcnative native libraries.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "reactor-subscription-router-backpressure",
+      "name": "reactor-subscription-router-backpressure",
+      "description": "Per-session, per-destination Reactor Flux router with bounded buffer + DROP_LATEST backpressure and automatic cleanup on session disconnect",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "realtime-vs-polling-fallback",
+      "name": "realtime-vs-polling-fallback",
+      "description": "Let each resource type declare `supportsRealtime`; scheduler runs push-mode at the realtime interval and falls back to a safe polling interval (e.g., 60s) otherwise",
+      "triggers": [
+        "mixed collection pipeline (some resources push, some pull)",
+        "avoid hammering APIs that do not support realtime"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "redis-lock-recheck-flag-pattern",
+      "name": "redis-lock-recheck-flag-pattern",
+      "description": "Distributed Redis lock with a \"recheck\" flag so concurrent events arriving while the lock is held force the holder to run a second pass, instead of being silently dropped.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "request-refactor-plan",
+      "name": "request-refactor-plan",
+      "description": "Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps.",
+      "triggers": [],
+      "tags": [
+        "planning",
+        "commits",
+        "interview"
+      ],
+      "category": "refactor"
+    },
+    {
+      "slug": "resource-provider-registry",
+      "name": "resource-provider-registry",
+      "description": "Spring DI plugin registry where @Component implementations of a typed interface are auto-discovered and looked up at runtime by a string type key",
+      "triggers": [
+        "plugin registry",
+        "provider lookup by type",
+        "auto-discovered handlers",
+        "resource provider pattern"
+      ],
+      "tags": [
+        "spring",
+        "plugin",
+        "registry",
+        "interface",
+        "component"
+      ],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "resource-summary-resolve-override-template",
+      "name": "resource-summary-resolve-override-template",
+      "description": "리소스 상세 화면의 \"요약\" 탭에서 `OVERRIDE → TEMPLATE → NONE` 순으로 대시보드를 결정하는 서버-클라이언트 패턴. 오버라이드 엔티티, resolve API, 상태별 UI 드롭다운 규칙까지 포함.",
+      "triggers": [
+        "resource summary",
+        "리소스 요약",
+        "resolve override template",
+        "dashboard override",
+        "resourceSummary",
+        "composition override"
+      ],
+      "tags": [
+        "resource-detail",
+        "dashboard",
+        "override",
+        "template",
+        "resolve",
+        "widget",
+        "summary"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "scaffold-exercises",
+      "name": "scaffold-exercises",
+      "description": "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.",
+      "triggers": [],
+      "tags": [
+        "scaffolding",
+        "exercises",
+        "template"
+      ],
+      "category": "misc"
+    },
+    {
+      "slug": "second-aggregation-snapshot-merge",
+      "name": "second-aggregation-snapshot-merge",
+      "description": "Per-second metric aggregation using in-memory counters + Flux.interval snapshot-and-reset + bounded parallel publish, to decouple request latency from downstream health.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "server-plugin-scripting-and-builtin-extensibility",
+      "name": "server-plugin-scripting-and-builtin-extensibility",
+      "description": "Dual plugin system for a monitoring server — hot-reload script plugins (alert rules, filters) plus compiled JAR plugins for stateful, performance-critical data handlers",
+      "triggers": [],
+      "tags": [
+        "plugin",
+        "extensibility",
+        "scripting",
+        "hot-reload",
+        "monitoring"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "service-discovery-replica-leader-tracking",
+      "name": "service-discovery-replica-leader-tracking",
+      "description": "Track Eureka replica UP/DOWN events and emit ServiceLeaderElected / ServiceReplicaAllDown Spring events for cluster-aware init",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "service-readiness-event-listener-pattern",
+      "name": "service-readiness-event-listener-pattern",
+      "description": "Two-phase startup where each instance initializes locally, but only the leader runs global one-time work (seed data, default report creation)",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "service-status-provider-actuator",
+      "name": "service-status-provider-actuator",
+      "description": "Spring Boot 3.5 ServiceStatusProvider that reports RUNNING vs READY based on MongoDB ping + Kafka listener container liveness",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "servicejar-embeddable-library-task",
+      "name": "servicejar-embeddable-library-task",
+      "description": "Gradle task that builds a library JAR alongside bootJar for embedding inside a host Spring Boot app — excludes Application class, web/OpenAPI configs, and bundled resources",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "session-lock-tree-blocking-chain-modeling",
+      "name": "session-lock-tree-blocking-chain-modeling",
+      "description": "Model RDBMS blocking sessions as a directed graph and persist the resolved lock tree alongside the session snapshot",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "setup-pre-commit",
+      "name": "setup-pre-commit",
+      "description": "Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.",
+      "triggers": [],
+      "tags": [
+        "husky",
+        "lint-staged",
+        "pre-commit",
+        "prettier",
+        "typescript"
+      ],
+      "category": "cli"
+    },
+    {
+      "slug": "shared-apis-endpoint-service-pattern",
+      "name": "shared-apis-endpoint-service-pattern",
+      "description": "Module Federation 모노레포에서 REST 엔드포인트를 추가할 때 `endpoint 상수 → services 메서드 → commonApiService 호출` 3계층 레이어링으로 도메인 일관성을 유지하는 패턴.",
+      "triggers": [
+        "엔드포인트 추가",
+        "widgetEndPoint",
+        "shared/apis",
+        "commonApiService",
+        "API 레이어 추가",
+        "endpoint constant"
+      ],
+      "tags": [
+        "api",
+        "services",
+        "endpoint",
+        "module-federation",
+        "monorepo",
+        "layering"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "shared-package-only-cross-module",
+      "name": "shared-package-only-cross-module",
+      "description": "Enforce a one-way dependency graph in a multi-module repo — sibling modules may only import from a single `shared/` package, never from each other. Prevents webpack alias collisions, keeps module boundaries enforceable, and makes build/deploy units independent.",
+      "triggers": [
+        "cross-module import",
+        "cannot resolve @/",
+        "alias collision",
+        "webpack root",
+        "monorepo boundaries"
+      ],
+      "tags": [
+        "monorepo",
+        "module-boundaries",
+        "webpack",
+        "alias",
+        "micro-frontend",
+        "dependency-direction"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "site-per-customer-override-modules",
+      "name": "site-per-customer-override-modules",
+      "description": "One Gradle module per customer (`<product>-site-<customer>`) overrides core beans, auth, notification channels, and assets — keeps core customer-agnostic and scales to dozens of deployments",
+      "triggers": [
+        "B2B product delivered to many customers with bespoke requirements",
+        "feature-flag soup is polluting core"
+      ],
+      "tags": [],
+      "category": "arch"
+    },
+    {
+      "slug": "skill-md-validator",
+      "name": "skill-md-validator",
+      "description": "[Tooling] SKILL.md frontmatter + 필수 섹션을 CRITICAL/WARNING 등급으로 검증하는 품질 게이트.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "skill-repo-bootstrap-architecture",
+      "name": "skill-repo-bootstrap-architecture",
+      "description": "Lay out a shared skill/knowledge git repo so it is simultaneously a catalog and a self-installer — separate bootstrap (commands + umbrella skill + installers) from skills (category/name/SKILL.md). Covers repo layout, safety gates, registry pinning, and skill deprecation lifecycle.",
+      "triggers": [
+        "skill repo",
+        "skill hub",
+        "bootstrap install",
+        "category-separated",
+        "skills registry",
+        "skill deprecation",
+        "umbrella skill"
+      ],
+      "tags": [
+        "skill-hub",
+        "repo-layout",
+        "bootstrap",
+        "claude-code",
+        "cursor",
+        "git",
+        "architecture",
+        "deprecation"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "slack-webhook-notify",
+      "name": "slack-webhook-notify",
+      "description": "Slack Incoming Webhook으로 메시지를 전송한다. 빌드/테스트/배포 결과, 작업 완료 알림 등을 Slack 채널에 보낼 때 사용.",
+      "triggers": [
+        "slack",
+        "슬랙",
+        "slack notify",
+        "webhook 알림",
+        "빌드 알림",
+        "작업 완료 알림"
+      ],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "slash-command-authoring",
+      "name": "slash-command-authoring",
+      "description": "Author Claude Code slash commands that read cleanly, include safety rules, and compose with OMC skills — frontmatter, argument-hint, step ordering, and dry-run patterns.",
+      "triggers": [
+        "slash command",
+        "/skills_",
+        "/init_",
+        ".claude/commands",
+        "argument-hint",
+        "command frontmatter"
+      ],
+      "tags": [
+        "claude-code",
+        "slash-command",
+        "skill",
+        "authoring",
+        "frontmatter"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "spring-actuator-health-collector",
+      "name": "spring-actuator-health-collector",
+      "description": "Poll remote Spring Boot services via Actuator (/health + /metrics/{name}) using OkHttp with per-target timeouts and a configurable metric whitelist, publishing results to a downstream bus.",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "spring-applicationrunner-system-seed",
+      "name": "spring-applicationrunner-system-seed",
+      "description": "Use ApplicationRunner to seed required system/root records on startup, guarded by an exists-check and marked with a systemFlag so they can't be deleted or moved by users.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "spring-bootrun-local-dev-env-block",
+      "name": "spring-bootrun-local-dev-env-block",
+      "description": "Gradle `bootRun` env block that wires local Redis/Mongo/Kafka/Eureka/MQTT for zero-config `./gradlew bootRun` developer experience",
+      "triggers": [
+        "new engineer asks \"how do I run this locally?",
+        "application-local.yaml is gitignored and no-one knows the defaults",
+        "Spring Cloud service refuses to start locally because Eureka client is enabled"
+      ],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "spring-data-mongo-repository-custom-split",
+      "name": "spring-data-mongo-repository-custom-split",
+      "description": "Standard 3-file split for MongoRepository — the base interface, a *Custom interface for handwritten queries, and a *Impl class that uses MongoTemplate — so complex queries live beside the CRUD without breaking derived-query inference.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "spring-dual-profile-flyway",
+      "name": "spring-dual-profile-flyway",
+      "description": "Spring Boot dual-profile setup — H2 file-mode for dev (zero install, console enabled), PostgreSQL for prod — with Flyway managing DDL and JPA set to validate-only. The profile split that keeps local dev fast without drifting from prod schema.",
+      "triggers": [
+        "spring profiles dev prod",
+        "flyway migrations spring",
+        "h2 file mode dev",
+        "ddl-auto validate",
+        "postgresql production profile"
+      ],
+      "tags": [
+        "spring-boot",
+        "flyway",
+        "h2",
+        "postgresql",
+        "profiles",
+        "migrations",
+        "jpa"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "spring-mongo-lightweight-migration",
+      "name": "spring-mongo-lightweight-migration",
+      "description": "Annotation-driven MongoDB migration runner for Spring Boot — `@MongoMigration` methods on `MigrationScript` beans execute in order at startup, with history in `{prefix}_migrations` collection. No Mongock dependency.",
+      "triggers": [
+        "mongo migration spring boot",
+        "mongock 없이 마이그레이션",
+        "annotation-based mongo migration"
+      ],
+      "tags": [
+        "spring-boot",
+        "mongodb",
+        "migration",
+        "annotation-driven",
+        "idempotent"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "spring-profile-datasource-activation",
+      "name": "spring-profile-datasource-activation",
+      "description": "Select DB/Hibernate/logging config at JVM startup via `spring.profiles.active` so one build ships to dev, test, and prod without branching in code",
+      "triggers": [
+        "same WAR goes to multiple environments",
+        "Spring profile chooses datasource and credentials"
+      ],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "spring-testcontainers-multitenant-base",
+      "name": "spring-testcontainers-multitenant-base",
+      "description": "Base test class that boots Testcontainers (Mongo + Kafka), pre-sets tenant/auth context, and forces JVM halt in AfterAll to avoid leaked containers.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "spring-typed-config-properties",
+      "name": "spring-typed-config-properties",
+      "description": "Type-safe, nested `@ConfigurationProperties` pattern for Spring Boot — centralizes tunable constants (rate limits, formula coefficients, balance numbers) in YAML with a single injected POJO tree. Beats scattered `@Value` strings.",
+      "triggers": [
+        "ConfigurationProperties nested",
+        "centralize tunable constants",
+        "spring typed config",
+        "balance config",
+        "constructor binding yaml"
+      ],
+      "tags": [
+        "spring-boot",
+        "configuration-properties",
+        "yaml",
+        "typed-config",
+        "constructor-binding"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "springdoc-yaml-externalization",
+      "name": "springdoc-yaml-externalization",
+      "description": "Move long `@Operation description` and `@RequestBody examples` text out of Spring controllers into per-controller YAML files under `resources/api-docs/`, injected at runtime via a single `OperationCustomizer` bean. Swagger UI output unchanged.",
+      "triggers": [
+        "swagger externalize annotations",
+        "move swagger description to yaml",
+        "OperationCustomizer"
+      ],
+      "tags": [
+        "spring-boot",
+        "springdoc",
+        "openapi",
+        "swagger",
+        "yaml",
+        "refactor"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "stable-horde-async-poll",
+      "name": "stable-horde-async-poll",
+      "description": "Submit-then-poll integration pattern for Stable Horde image generation — anonymous apikey, model fallback list, negative-prompt separator, bounded poll loop.",
+      "triggers": [
+        "stablehorde.net",
+        "generate/async",
+        "generate/status",
+        "apikey 0000000000",
+        "image generation",
+        "Stable Horde",
+        "horde"
+      ],
+      "tags": [
+        "stable-horde",
+        "image-generation",
+        "stable-diffusion",
+        "async",
+        "polling",
+        "anonymous-api"
+      ],
+      "category": "ai"
+    },
+    {
+      "slug": "stack-parse-tag-filter-to-mongo-criteria",
+      "name": "stack-parse-tag-filter-to-mongo-criteria",
+      "description": "Parse a tokenized boolean filter expression (key=value, AND, OR, parens) into a MongoDB Criteria tree using a shunting-yard/stack algorithm, with elemMatch for array-of-tag subdocs.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "stale-persistent-context-detection",
+      "name": "stale-persistent-context-detection",
+      "description": "Detect and remove stale error snapshots that LLM tools inject via persistent-context files (CLAUDE.md, AGENTS.md, system prompts, memory) before chasing a fix. If the current source already compiles, the injected error is a ghost from a previous session, not a real bug.",
+      "triggers": [
+        "CLAUDE.md",
+        "AGENTS.md",
+        "persistent context",
+        "stale error",
+        "system-reminder",
+        "injected error",
+        "claudeMd context",
+        "system prompt",
+        "agent instructions",
+        "injected context"
+      ],
+      "tags": [
+        "llm",
+        "context",
+        "claude-code",
+        "cursor",
+        "agents-md",
+        "memory",
+        "stale",
+        "debugging",
+        "hygiene"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "stateless-turn-combat-engine",
+      "name": "stateless-turn-combat-engine",
+      "description": "Turn-based combat as a pure function — `(state, action) → newState + events`. Speed-based turn order, deterministic damage, no hidden mutation. Makes combat unit-testable, replayable, and server-authoritative.",
+      "triggers": [
+        "turn based combat",
+        "combat engine design",
+        "speed based turn order",
+        "server authoritative combat",
+        "stateless combat"
+      ],
+      "tags": [
+        "combat-engine",
+        "turn-based",
+        "rpg",
+        "pure-function",
+        "deterministic",
+        "server-authoritative"
+      ],
+      "category": "game-dev"
+    },
+    {
+      "slug": "status-effect-enum-system",
+      "name": "status-effect-enum-system",
+      "description": "Model status effects (burn, stun, buff, debuff) as enum-tagged records attached to units, with per-turn tick logic split between application, duration decay, and removal. Keeps damage-over-time and crowd control uniform and testable.",
+      "triggers": [
+        "status effect system",
+        "buff debuff",
+        "damage over time",
+        "burn stun freeze",
+        "crowd control turn based"
+      ],
+      "tags": [
+        "status-effect",
+        "buff-debuff",
+        "dot",
+        "cc",
+        "enum",
+        "turn-based"
+      ],
+      "category": "game-dev"
+    },
+    {
+      "slug": "stomp-cookie-auth-handshake",
+      "name": "stomp-cookie-auth-handshake",
+      "description": "Authenticate STOMP WebSocket upgrade using an HttpOnly cookie extracted during the handshake, then bind identity to the STOMP session",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "stomp-principal-jwt-channel",
+      "name": "stomp-principal-jwt-channel",
+      "description": "STOMP ChannelInterceptor that validates a JWT on CONNECT and binds a multi-tenant Principal (orgId + userId + sessionId) for downstream routing",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "strategy-spi-list-to-map-autoinject",
+      "name": "strategy-spi-list-to-map-autoinject",
+      "description": "Spring이 자동 주입하는 List<T>를 생성자에서 Map<Key,T>로 변환해 Strategy를 enum 키로 O(1) 디스패치하는 패턴",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "swagger-ai-optimization",
+      "name": "swagger-ai-optimization",
+      "description": "Spring Boot + springdoc 프로젝트의 Swagger/OpenAPI 스펙을 AI Agent용으로 최적화 (operationId, @Schema, @ApiResponse, x-filterable-fields 전수 적용)",
+      "triggers": [
+        "swagger ai 최적화",
+        "openapi ai optimization",
+        "MCP 연동 준비",
+        "swagger operationId 전수 부여",
+        "AI 이해도 테스트"
+      ],
+      "tags": [],
+      "category": "workflow"
+    },
+    {
+      "slug": "swagger-spec-baseline-from-git",
+      "name": "swagger-spec-baseline-from-git",
+      "description": "Re-run spec-based optimization workflow on a clean branch without running the Spring Boot app — restore prior baseline artifacts (swagger-before.json + scripts) via `git show <sha>:<path>` from the commit on another branch that already captured them.",
+      "triggers": [
+        "swagger 전체 재실행",
+        "rerun swagger optimization",
+        "baseline 없이 시작"
+      ],
+      "tags": [
+        "swagger",
+        "openapi",
+        "git",
+        "baseline",
+        "spring-boot"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "tdd",
+      "name": "tdd",
+      "description": "Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions \"red-green-refactor\", wants integration tests, or asks for test-first development.",
+      "triggers": [],
+      "tags": [
+        "tdd",
+        "red-green-refactor"
+      ],
+      "category": "testing"
+    },
+    {
+      "slug": "tenant-context-holder-propagation",
+      "name": "tenant-context-holder-propagation",
+      "description": "Set TenantContextHolder.INSTANCE.setTenantId(orgId) on the current thread so MongoDB tenant-isolated templates route queries correctly, always clearing in a finally block",
+      "triggers": [
+        "TenantContextHolder",
+        "tenant context propagation",
+        "multi-tenant thread local",
+        "MONGODB_TEMPLATE_ISOLATION",
+        "tenant isolation mongodb"
+      ],
+      "tags": [
+        "spring",
+        "multi-tenant",
+        "threadlocal",
+        "mongodb",
+        "isolation"
+      ],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "tenant-context-try-finally-on-worker",
+      "name": "tenant-context-try-finally-on-worker",
+      "description": "Kafka/Queue Worker에서 멀티테넌트 ThreadLocal 컨텍스트를 try-finally로 안전하게 세팅/정리하는 패턴",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "tenant-db-initialization-on-startup",
+      "name": "tenant-db-initialization-on-startup",
+      "description": "On leader startup, fetch tenant/org list from metadata service and provision per-tenant MongoDB databases — idempotent, leader-only",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "tenant-isolated-mongo-collection",
+      "name": "tenant-isolated-mongo-collection",
+      "description": "Route each tenant to its own MongoDB collection (or collection-name suffix) via a custom annotation resolved at repository/template layer, so application code stays tenant-agnostic.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "tenant-per-database-mongo-routing",
+      "name": "tenant-per-database-mongo-routing",
+      "description": "Route Spring Data Mongo operations to per-tenant databases via a ThreadLocal tenant holder and two MongoTemplate beans (isolated vs shared collections).",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "testcontainers-mongo-kafka-abstract-base",
+      "name": "testcontainers-mongo-kafka-abstract-base",
+      "description": "Abstract test base classes that spin up MongoDB + Kafka via Testcontainers with static start() and reuse=true, exposing mapped ports via System.setProperty",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "testcontainers-reuse-disabled",
+      "name": "testcontainers-reuse-disabled",
+      "description": "Set TESTCONTAINERS_REUSE_ENABLE=false on the Gradle test task so CI and shared dev machines never inherit stale container state across suites",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "thread-pool-config-tenant-aware",
+      "name": "thread-pool-config-tenant-aware",
+      "description": "Property-driven ThreadPoolTaskExecutor + Scheduler config that extends TenantAsyncConfigurerSupport so @Async tasks inherit tenant context",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "thread-pool-queue-backpressure",
+      "name": "thread-pool-queue-backpressure",
+      "description": "Bounded in-memory queue between Kafka consumer and async thread pool, with hysteretic pause/resume thresholds driving Spring Kafka container pause()/resume() so bursts do not OOM the JVM.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "tiered-rebalance-schedule",
+      "name": "tiered-rebalance-schedule",
+      "description": "Run three cadences against the same managed set — fast performance review, mid-frequency policy re-analysis, slow portfolio rebalance — each with its own trigger interval and mutation budget, so urgency scales with cost.",
+      "triggers": [
+        "scheduleWithFixedDelay",
+        "periodic review",
+        "rebalance",
+        "reanalysis interval",
+        "tiered schedule",
+        "performance review",
+        "portfolio rebalance"
+      ],
+      "tags": [
+        "scheduler",
+        "rebalance",
+        "tiers",
+        "cadence",
+        "cron",
+        "portfolio",
+        "lifecycle"
+      ],
+      "category": "arch"
+    },
+    {
+      "slug": "transaction-trace-pack-serialization-with-step-hierarchy",
+      "name": "transaction-trace-pack-serialization-with-step-hierarchy",
+      "description": "Encode per-request distributed traces as a hierarchical list of typed steps (method, DB, external call, error) in a compressed binary pack, indexed by request end-time",
+      "triggers": [],
+      "tags": [
+        "tracing",
+        "apm",
+        "xlog",
+        "serialization",
+        "perf"
+      ],
+      "category": "apm"
+    },
+    {
+      "slug": "triage-issue",
+      "name": "triage-issue",
+      "description": "Triage a bug or issue by exploring the codebase to find root cause, then create a GitHub issue with a TDD-based fix plan. Use when user reports a bug, wants to file an issue, mentions \"triage\", or wants to investigate and plan a fix for a problem.",
+      "triggers": [],
+      "tags": [
+        "bug",
+        "triage",
+        "root-cause",
+        "investigation"
+      ],
+      "category": "debug"
+    },
+    {
+      "slug": "triple-env-file-split-loader",
+      "name": "triple-env-file-split-loader",
+      "description": "Split operator-facing env into three files (.env / .version / .memory) and load them in a fixed order",
+      "triggers": [],
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "slug": "ts-type-prefix-convention",
+      "name": "ts-type-prefix-convention",
+      "description": "Prefix interfaces with I and type aliases with T; use type for unions/literals and interface for inheritable shapes",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "tsv-driven-permission-bootstrap",
+      "name": "tsv-driven-permission-bootstrap",
+      "description": "Treat a version-controlled TSV file as source of truth for the Function/Permission/Menu catalog; the service reconciles the DB against it on startup",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "ubiquitous-language",
+      "name": "ubiquitous-language",
+      "description": "Extract a DDD-style ubiquitous language glossary from the current conversation, flagging ambiguities and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md. Use when user wants to define domain terms, build a glossary, harden terminology, create a ubiquitous language, or mentions \"domain model\" or \"DDD\".",
+      "triggers": [],
+      "tags": [
+        "ddd",
+        "glossary",
+        "language",
+        "domain"
+      ],
+      "category": "docs"
+    },
+    {
+      "slug": "udp-with-tcp-fallback-metrics-transport",
+      "name": "udp-with-tcp-fallback-metrics-transport",
+      "description": "Transport telemetry via UDP for low-latency fire-and-forget streams, and fall back to TCP for critical request/response and bulk uploads that require delivery guarantees",
+      "triggers": [],
+      "tags": [
+        "network",
+        "udp",
+        "tcp",
+        "apm",
+        "telemetry"
+      ],
+      "category": "backend"
+    },
+    {
+      "slug": "version-specific-sql-map-selection",
+      "name": "version-specific-sql-map-selection",
+      "description": "Select MyBatis-style SQL maps at runtime by DBMS + version with graceful fallback to a default supported version",
+      "triggers": [],
+      "tags": [],
+      "category": "backend"
+    },
+    {
+      "slug": "vllm-nginx-tls-single-port-routing",
+      "name": "vllm-nginx-tls-single-port-routing",
+      "description": "Serve multiple vLLM OpenAI-API backends behind one Nginx TLS proxy on 443 using path-based routing",
+      "triggers": [],
+      "tags": [],
+      "category": "ai"
+    },
+    {
+      "slug": "websocket-stomp-channel-pool-config",
+      "name": "websocket-stomp-channel-pool-config",
+      "description": "Spring WebSocket STOMP config with separate inbound/outbound task executors and raised transport buffer limits, sized for burst notification fan-out to many role-filtered subscribers.",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "widget-confid-injection-sweep",
+      "name": "widget-confid-injection-sweep",
+      "description": "리소스 상세 대시보드에서 모든 위젯 데이터 요청에 `confId` 를 일관되게 주입하기 위한 위젯 fetch 지점 전수 스윕(sweep) 패턴 — 일부만 주입하면 같은 대시보드 안에서 위젯별 필터 동작이 갈라지는 버그를 방지한다.",
+      "triggers": [
+        "confId 주입",
+        "selectCondition confId",
+        "위젯 필터링",
+        "widget scope injection",
+        "resource-scoped widget"
+      ],
+      "tags": [
+        "widget",
+        "dashboard",
+        "resource-detail",
+        "data-fetch",
+        "scope-injection"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "widget-grid-type-registration-checklist",
+      "name": "widget-grid-type-registration-checklist",
+      "description": "대시보드의 TableGrid/차트 위젯에 새로운 타입을 추가할 때 드리프트 없이 5곳(columns 매핑, fetch hook, 에디터 폼, detectType, 모델 DTO) 모두 반영하게 하는 체크리스트 스킬.",
+      "triggers": [
+        "TableGridType",
+        "위젯 타입 추가",
+        "tableGridType",
+        "widget type registration",
+        "detectType",
+        "columns mapping"
+      ],
+      "tags": [
+        "widget",
+        "dashboard",
+        "registry",
+        "grid",
+        "checklist"
+      ],
+      "category": "frontend"
+    },
+    {
+      "slug": "write-a-prd",
+      "name": "write-a-prd",
+      "description": "Create a PRD through user interview, codebase exploration, and module design, then submit as a GitHub issue. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.",
+      "triggers": [],
+      "tags": [
+        "prd",
+        "requirements",
+        "interview",
+        "planning"
+      ],
+      "category": "workflow"
+    },
+    {
+      "slug": "write-a-skill",
+      "name": "write-a-skill",
+      "description": "Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.",
+      "triggers": [],
+      "tags": [
+        "skills",
+        "meta",
+        "authoring",
+        "progressive-disclosure"
+      ],
+      "category": "misc"
+    },
+    {
+      "slug": "x-filterable-fields-extraction",
+      "name": "x-filterable-fields-extraction",
+      "description": "OpenAPI 스펙에 x-filterable-fields 확장을 자동 생성하는 파이프라인. lucida-ui gridColumnDefs + lucida-meta i18n properties를 조합하여 필드명/한국어 title/operators를 추출",
+      "triggers": [
+        "x-filterable-fields",
+        "필터 가능 필드 추출",
+        "gridFilters 메타데이터",
+        "tagFilters 메타데이터",
+        "리소스 키 추출",
+        "GridFilter 정확도 개선"
+      ],
+      "tags": [],
+      "category": "workflow"
+    },
+    {
+      "slug": "yorkie-crdt-sync-pattern",
+      "name": "yorkie-crdt-sync-pattern",
+      "description": "Apply a single doc.update callback for local mutations and pullRemoteChangesIntoLocal(WithNodeIds) for remote→local sync in Yorkie-backed apps",
+      "triggers": [],
+      "tags": [],
+      "category": "uncategorized"
+    },
+    {
+      "slug": "zustand-preset-manager",
+      "name": "zustand-preset-manager",
+      "description": "Zustand + persist middleware pattern for managing N named presets (team comps, saved filters, dashboard layouts) with active-selection, max-count guard, and auto-reselect on delete.",
+      "triggers": [
+        "zustand persist",
+        "saved presets",
+        "team presets",
+        "named configurations",
+        "localStorage preset",
+        "multi-preset selector"
+      ],
+      "tags": [
+        "zustand",
+        "localstorage",
+        "preset",
+        "state-management",
+        "persist-middleware"
+      ],
+      "category": "frontend"
+    }
+  ]
+}
