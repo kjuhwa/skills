@@ -67,6 +67,16 @@
       "path": "backend/avro-event-change-flags"
     },
     {
+      "name": "avro-gradle-kafka-schema-pipeline",
+      "description": "Wire the davidmc24 Avro Gradle plugin so .avsc schemas generate Java sources consumed by Kafka producers/consumers with Confluent Schema Registry",
+      "category": "backend",
+      "tags": "[avro, gradle, kafka, schema-registry, codegen]",
+      "triggers": "Spring Boot + Gradle service using Avro over Kafka with generated Java classes and a Schema Registry",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "backend/avro-gradle-kafka-schema-pipeline"
+    },
+    {
       "name": "axios-refresh-queue-zustand",
       "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
       "category": "frontend",
@@ -125,6 +135,16 @@
       "source_project": "lucida-realtime",
       "version": "1.0.0",
       "path": "backend/cache-variance-ttl-jitter"
+    },
+    {
+      "name": "calendar-cron-vs-spring-cron-migration",
+      "description": "Convert between Spring 6-field cron and Quartz/calendar 7-field cron without DST/leap-year regressions",
+      "category": "backend",
+      "tags": "[cron, quartz, spring-scheduler, migration]",
+      "triggers": "Scheduler migration from Spring @Scheduled(cron=...) to Quartz-style CronTrigger, or persisting user-authored cron that must survive both engines",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "backend/calendar-cron-vs-spring-cron-migration"
     },
     {
       "name": "character-sheet-multi-panel-consistency",
@@ -248,6 +268,26 @@
       "path": "backend/dry-run-confirm-retry-write-flow"
     },
     {
+      "name": "dual-jre-docker-oz-report",
+      "description": "Package a Java 21 Spring Boot app that bundles a legacy JRE 8 + sidecar Tomcat (OZ Report engine) in one Alpine container",
+      "category": "devops",
+      "tags": "[docker, alpine, jre, legacy, oz-report, tomcat]",
+      "triggers": "User is containerizing an app that must run both a modern Spring Boot JAR and a legacy JRE-bound reporting/servlet engine side-by-side",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "devops/dual-jre-docker-oz-report"
+    },
+    {
+      "name": "dynamic-gridfs-template-multi-tenant",
+      "description": "Resolve MongoDB GridFsTemplate per (tenant-db, bucket) pair with lazy caching, for storing large binary assets per tenant",
+      "category": "backend",
+      "tags": "[mongodb, gridfs, multi-tenant, spring-data]",
+      "triggers": "Multi-tenant Spring service storing uploaded files/templates in MongoDB GridFS where each tenant has its own database or bucket",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "backend/dynamic-gridfs-template-multi-tenant"
+    },
+    {
       "name": "elasticsearch-xpack-ssl-transport",
       "description": "Gate PreBuiltXPackTransportClient vs PreBuiltTransportClient on the auth flag (not SSL flag) and configure keystore/truststore as independent X-Pack settings.",
       "category": "backend",
@@ -327,6 +367,16 @@
       "source_project": "lucida-realtime",
       "version": "1.0.0",
       "path": "backend/feed-envelope-frame"
+    },
+    {
+      "name": "font-cache-alpine-locale-docker",
+      "description": "Make CJK/custom fonts usable inside an Alpine container by copying TTF/OTF and rebuilding the fontconfig cache",
+      "category": "devops",
+      "tags": "[docker, alpine, fonts, fontconfig, cjk, locale]",
+      "triggers": "Report/PDF/image-rendering containers on Alpine produce tofu (squares) or missing glyphs for CJK or custom-branded fonts",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "devops/font-cache-alpine-locale-docker"
     },
     {
       "name": "freemarker-two-phase-expression-subst",
@@ -490,6 +540,16 @@
       "path": "backend/jdbc-configurable-sql-insert-sender"
     },
     {
+      "name": "jenkins-dual-registry-docker-push",
+      "description": "Jenkins pipeline that builds one image and tags+pushes it to two registries (SaaS + on-prem) with both build-specific and rolling-latest tags",
+      "category": "devops",
+      "tags": "[jenkins, docker, registry, ci-cd]",
+      "triggers": "Release pipeline where the same artifact must land in an internal on-prem registry and an external SaaS/cloud registry, each with current and latest tags",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "devops/jenkins-dual-registry-docker-push"
+    },
+    {
       "name": "json-seeded-jpa-loader",
       "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
       "category": "backend",
@@ -627,6 +687,16 @@
       "tags": "[kafka, avro, multi-tenant, headers, spring]",
       "category": "backend",
       "path": "backend/kafka-message-header-metadata"
+    },
+    {
+      "name": "kafka-producer-async-callback",
+      "description": "Fire-and-log Kafka send pattern using CompletableFuture.whenComplete() for audit/event topics where the caller should not block",
+      "category": "backend",
+      "tags": "[kafka, async, callback, producer, completablefuture]",
+      "triggers": "Service needs to emit audit or event messages to Kafka without blocking the user request, but still log delivery failures",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "backend/kafka-producer-async-callback"
     },
     {
       "name": "kafka-producer-config-avro-schema-registry",
@@ -1088,6 +1158,26 @@
       "path": "arch/resource-provider-registry"
     },
     {
+      "name": "service-discovery-replica-leader-tracking",
+      "description": "Track Eureka replica UP/DOWN events and emit ServiceLeaderElected / ServiceReplicaAllDown Spring events for cluster-aware init",
+      "category": "backend",
+      "tags": "[eureka, discovery, leader-election, spring-events]",
+      "triggers": "Microservice needs to react when the cluster gains its first live peer, loses its last peer, or the leader changes - not just on startup",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "backend/service-discovery-replica-leader-tracking"
+    },
+    {
+      "name": "service-readiness-event-listener-pattern",
+      "description": "Two-phase startup where each instance initializes locally, but only the leader runs global one-time work (seed data, default report creation)",
+      "category": "backend",
+      "tags": "[spring, startup, leader-election, seed-data]",
+      "triggers": "Spring Boot microservice running 2+ replicas where some init work must happen once across the cluster (seeds, schema migrations, default rows)",
+      "source_project": "lucida-report",
+      "version": "1.0.0",
+      "path": "backend/service-readiness-event-listener-pattern"
+    },
+    {
       "name": "service-status-provider-actuator",
       "description": "Spring Boot 3.5 ServiceStatusProvider that reports RUNNING vs READY based on MongoDB ping + Kafka listener container liveness",
       "category": "backend",
@@ -1503,6 +1593,14 @@
       "path": "arch/gradle-avro-plugin-config"
     },
     {
+      "slug": "gridfs-template-upload-data-loss-pitfall",
+      "category": "pitfall",
+      "summary": "MongoDB GridFS uploads can silently drop file bytes if the bucket/db selection or stream flush is wrong - always verify metadata size equals input size",
+      "confidence": "medium",
+      "source_project": "lucida-report",
+      "path": "pitfall/gridfs-template-upload-data-loss-pitfall"
+    },
+    {
       "slug": "history-view-yearly-partition-pitfall",
       "category": "pitfall",
       "summary": "A history/reporting view or materialized collection created with a year-bounded clause silently stops returning rows when the calendar year rolls over",
@@ -1619,6 +1717,14 @@
       "path": "domain/one-default-template-per-type-rule"
     },
     {
+      "slug": "oz-license-file-placement-flip-flop",
+      "category": "pitfall",
+      "summary": "Vendor engines (OZ Report, Crystal, Jasper-Pro) often hard-code license file search paths - pin the path in the image and document it, or you will ship it broken repeatedly",
+      "confidence": "medium",
+      "source_project": "lucida-report",
+      "path": "pitfall/oz-license-file-placement-flip-flop"
+    },
+    {
       "slug": "period-interval-naming-convention",
       "category": "domain",
       "summary": "Period.Mode names encode unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not monthly",
@@ -1649,6 +1755,14 @@
       "path": "decision/system-notification-shared-with-2fa-and-password-find"
     },
     {
+      "slug": "tomcat-request-timeout-1h-for-oz-report",
+      "category": "decision",
+      "summary": "Report-generation services should raise Tomcat connection/read timeout to ~1 hour because export of large OZ/Jasper reports is genuinely long-running",
+      "confidence": "high",
+      "source_project": "lucida-report",
+      "path": "decision/tomcat-request-timeout-1h-for-oz-report"
+    },
+    {
       "slug": "topn-unwind-match-to-filter",
       "category": "pitfall",
       "summary": "TopN Mongo pipeline using $unwind+$match explodes documents; push predicate into $filter first",
@@ -1658,6 +1772,14 @@
       "linked_skills": [
         "mongo-aggregation-filter-optimization"
       ]
+    },
+    {
+      "slug": "topresource-immediate-generation-invariant",
+      "category": "domain",
+      "summary": "In report immediate-generation, the topResource flag decides whether to query by resource-id (fast path) or the full conf-id set (slow path)",
+      "confidence": "medium",
+      "source_project": "lucida-report",
+      "path": "domain/topresource-immediate-generation-invariant"
     }
   ]
 }
