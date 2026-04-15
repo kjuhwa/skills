@@ -40,6 +40,7 @@ skills/                       # category-separated skill registry
 bootstrap/
   commands/                   # slash-command markdown files (recursive: subdirs become command namespaces)
     init_skills.md
+    init_skills_all.md              # bulk install of ALL skills and ALL knowledge in one shot
     skills_search.md
     skills_list.md
     skills_sync.md
@@ -108,6 +109,7 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | Command | Purpose | Writes? |
 |---|---|---|
 | `/init_skills <keyword \| name@version>` | Search remote → interactive install; supports version pinning | local install |
+| `/init_skills_all [--global/--skills-only/--knowledge-only/--category=...]` | **Bulk install** every skill and every knowledge entry in one shot (installs from `main` HEAD; collisions are skipped) | local install |
 | `/skills_search <keyword>` | Preview remote matches + available tagged versions, no install | no |
 | `/skills_list` | Show installed skills with source, version, pin state | no |
 | `/skills_sync [--skill=.. --version=..]` | Refresh cache; bulk update, targeted rollback, or `--unpin` | local |
