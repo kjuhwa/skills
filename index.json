@@ -1262,6 +1262,109 @@
       "source_project": "lucida-measurement",
       "version": "1.0.0",
       "path": "backend/multi-resource-or-batch-query"
+    },
+    {
+      "name": "gradle-jacoco-exclusion-strategy",
+      "description": "Curated Jacoco/Sonar exclusion patterns for Spring Boot projects — skips config/DAO/entity/generated layers and Querydsl Q-classes",
+      "category": "build",
+      "tags": "",
+      "triggers": "Setting up Jacoco coverage rules on a Spring Boot + Gradle project where generated code and infrastructure layers bloat coverage metrics",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "build/gradle-jacoco-exclusion-strategy"
+    },
+    {
+      "name": "gradle-bootrun-local-dev-env",
+      "description": "Gradle bootRun task recipe that wires local MongoDB/Kafka/Redis/MQTT/Eureka/Quartz via environment variables — no docker-compose needed",
+      "category": "devops",
+      "tags": "",
+      "triggers": "Running a Spring Boot microservice locally against existing infra containers without building a separate profile YAML",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "devops/gradle-bootrun-local-dev-env"
+    },
+    {
+      "name": "kafka-consumer-config-3-factories",
+      "description": "Spring Kafka consumer setup with three ListenerContainerFactory variants (standard / batch / UUID-group) and autoStartup=false to allow topic bootstrap before listeners attach",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Building a Spring Kafka consumer that must wait for an ApplicationRunner to create topics before listeners start, or needs both single-record and batch listeners in the same app",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/kafka-consumer-config-3-factories"
+    },
+    {
+      "name": "kafka-producer-config-avro-schema-registry",
+      "description": "Kafka producer config template for Avro + Confluent Schema Registry with LZ4 compression, 30MB max request size, and acks=1",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Setting up a Spring Kafka producer that publishes Avro-serialized events against a Confluent Schema Registry",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/kafka-producer-config-avro-schema-registry"
+    },
+    {
+      "name": "service-status-provider-actuator",
+      "description": "Spring Boot 3.5 ServiceStatusProvider that reports RUNNING vs READY based on MongoDB ping + Kafka listener container liveness",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Exposing a richer readiness signal than HealthIndicator for a service whose \"ready\" state depends on both DB reachability and Kafka consumers being attached",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/service-status-provider-actuator"
+    },
+    {
+      "name": "thread-pool-config-tenant-aware",
+      "description": "Property-driven ThreadPoolTaskExecutor + Scheduler config that extends TenantAsyncConfigurerSupport so @Async tasks inherit tenant context",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Multi-tenant Spring Boot service where @Async tasks must preserve tenant/org context across thread boundaries",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/thread-pool-config-tenant-aware"
+    },
+    {
+      "name": "audit-change-data-capture-pattern",
+      "description": "Compute before/after diffs for audit logs by comparing two BSON/JSON documents field-by-field — always iterate the BEFORE doc and read from AFTER to avoid prev/after swap bugs",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Recording audit trail entries where UPDATE events need field-level before/after snapshots",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/audit-change-data-capture-pattern",
+      "linked_knowledge": [
+        "audit-changed-prev-after-field-swap-bug"
+      ]
+    },
+    {
+      "name": "excel-download-null-date-range-handling",
+      "description": "Defensive pattern for grid/list excel-export endpoints — null-check every filter value and normalize field names before querying",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Building an excel-export endpoint that reuses a grid/list filter DTO where date ranges or text filters may be absent",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/excel-download-null-date-range-handling"
+    },
+    {
+      "name": "eureka-service-discovery-wait-annotation",
+      "description": "Declarative @WaitForServices annotation on @EventListener methods — blocks initialization until named Eureka services are healthy, with optional leader-only execution",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Service startup must wait for other microservices (metadata, auth, config) to be registered AND healthy in Eureka before running initialization logic",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/eureka-service-discovery-wait-annotation"
+    },
+    {
+      "name": "tenant-db-initialization-on-startup",
+      "description": "On leader startup, fetch tenant/org list from metadata service and provision per-tenant MongoDB databases — idempotent, leader-only",
+      "category": "backend",
+      "tags": "",
+      "triggers": "Multi-tenant service that creates one MongoDB database (or schema) per organization and must ensure all tenants are bootstrapped before serving traffic",
+      "source_project": "lucida-audit",
+      "version": "1.0.0",
+      "path": "backend/tenant-db-initialization-on-startup"
     }
   ],
   "knowledge": [
@@ -1365,6 +1468,76 @@
       "confidence": "medium",
       "source_project": "lucida-measurement",
       "path": "api/live-chart-timestamp-normalization"
+    },
+    {
+      "slug": "java-21-upgrade-rationale",
+      "category": "decision",
+      "summary": "Java 17 → 21 + Spring Boot 3.5.x upgrade rationale and required Gradle/JVM flag adjustments",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "decision/java-21-upgrade-rationale",
+      "linked_skills": [
+        "java-21-upgrade-rationale"
+      ]
+    },
+    {
+      "slug": "jackson-version-pinning-2.17.1",
+      "category": "pitfall",
+      "summary": "Jackson must be pinned via Gradle resolutionStrategy across all com.fasterxml.jackson.* groups to avoid NoSuchMethodError from transitive version drift",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/jackson-version-pinning-2.17.1"
+    },
+    {
+      "slug": "gradle-avro-plugin-config",
+      "category": "arch",
+      "summary": "davidmc24 avro-gradle-plugin config — createSetters=false + fieldVisibility=PRIVATE enforces immutable generated event schemas",
+      "confidence": "medium",
+      "source_project": "lucida-audit",
+      "path": "arch/gradle-avro-plugin-config"
+    },
+    {
+      "slug": "audit-changed-prev-after-field-swap-bug",
+      "category": "pitfall",
+      "summary": "Audit diff logic had before/after swapped — iterating the wrong doc and putting the wrong value into changedPrev corrupted the audit trail silently",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/audit-changed-prev-after-field-swap-bug",
+      "linked_skills": [
+        "audit-change-data-capture-pattern"
+      ]
+    },
+    {
+      "slug": "kafka-error-handling-deserializer-fallback",
+      "category": "pitfall",
+      "summary": "Wrap Avro/JSON deserializers in ErrorHandlingDeserializer so a single bad record doesn't poison the consumer and crash-loop the container",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "pitfall/kafka-error-handling-deserializer-fallback"
+    },
+    {
+      "slug": "mongodb-exclude-system-databases",
+      "category": "domain",
+      "summary": "When enumerating tenant databases in a shared MongoDB cluster, filter out admin/config/local plus third-party DBs (yorkie-meta, migration) to avoid touching shared state",
+      "confidence": "medium",
+      "source_project": "lucida-audit",
+      "path": "domain/mongodb-exclude-system-databases"
+    },
+    {
+      "slug": "jar-task-disabled-bootjar-only",
+      "category": "arch",
+      "summary": "Gradle `jar` task is disabled so only `bootJar` produces an artifact — CI/Docker consumers never receive an ambiguous plain JAR",
+      "confidence": "medium",
+      "source_project": "lucida-audit",
+      "path": "arch/jar-task-disabled-bootjar-only"
+    },
+    {
+      "slug": "commons-logging-exclusion-strategy",
+      "category": "arch",
+      "summary": "Globally exclude commons-logging, log4j, and slf4j-log4j12 in Gradle so SLF4J+Logback is the only logging backend on the classpath",
+      "confidence": "high",
+      "source_project": "lucida-audit",
+      "path": "arch/commons-logging-exclusion-strategy"
     }
   ]
 }
