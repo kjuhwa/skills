@@ -51,6 +51,10 @@ bootstrap/
     skills_cleanup.md
     skills_remove.md
     skills_import_git.md            # import skills/knowledge from an arbitrary git repo (authored or extracted)
+    skills_research.md              # research skills/knowledge from the web by keyword, or pull current trends when no keyword is given
+    example_list.md                 # list projects already published under example/ in the remote (duplication check)
+    example_add.md                  # publish a local creation to example/<slug>/ with a generated README, branch, and PR
+    make_something.md               # creative build command — inventories skills/knowledge, checks example/ prior art, builds and offers to publish
     skills_bootstrap_update.md      # pull command files (latest or tagged version; recursive)
     skills_bootstrap_publish.md     # publish command edits + bootstrap/v<ver> tag (recursive)
     skills_extract_knowledge.md     # extract skills + non-executable knowledge (session/diff/commits)
@@ -130,6 +134,10 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/skills_merge <selector1> <selector2> [...]` | Combine 2+ remote skills/knowledge into one new draft. Supports cross-kind (skill+knowledge), version pinning (`@v1.2.0`), mandatory `merged_from` provenance | local drafts |
 | `/skills_split <selector> [--by=section\|step\|concern\|auto]` | Decompose one remote entry into N focused drafts. Refuses trivially-small inputs; records `split_from`/`replaces`/`siblings` | local drafts |
 | `/skills_refactor [--scope/--merge-threshold/...]` | Scan remote for merge + split candidates in one pass, delegate to the two commands above. Bias toward merge when an entry qualifies for both | local drafts |
+| `/skills_research [<keyword>] [--trend-source=... --depth=... --only=... --dry-run]` | Research skills/knowledge from the web by keyword, or pull current engineering trends when no keyword is given. Stages drafts with web-source attribution under `.skills-draft/` and `.knowledge-draft/` | local drafts |
+| `/example_list [--refresh/--verbose]` | List projects already published under `example/` in the remote; use as a duplication check before `/make_something` | no |
+| `/example_add <slug> [--from/--title/--why/--stack/--no-pr]` | Publish a local creation to `example/<slug>/` with a generated README, feature branch, commit, and PR | remote branch + PR |
+| `/make_something [hint...]` | Creative build command — inventories installed skills/knowledge, checks `example/` prior art to avoid duplication, proposes 2–3 candidates, builds, verifies, and offers to publish via `/example_add` | local build + optional remote |
 
 ### Typical Workflow
 
