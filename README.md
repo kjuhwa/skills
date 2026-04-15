@@ -18,7 +18,7 @@ skills/                       # category-separated skill registry
       content.md              # main prompt / knowledge body (required)
       examples/               # optional
 bootstrap/
-  commands/                   # slash-command markdown files
+  commands/                   # slash-command markdown files (recursive: subdirs become command namespaces)
     init_skills.md
     skills_search.md
     skills_list.md
@@ -29,14 +29,21 @@ bootstrap/
     skills_finalize.md
     skills_cleanup.md
     skills_remove.md
-    skills_bootstrap_update.md      # pull command files (latest or tagged version)
-    skills_bootstrap_publish.md     # publish command edits + bootstrap/v<ver> tag
+    skills_import_git.md            # import skills/knowledge from an arbitrary git repo (authored or extracted)
+    skills_bootstrap_update.md      # pull command files (latest or tagged version; recursive)
+    skills_bootstrap_publish.md     # publish command edits + bootstrap/v<ver> tag (recursive)
     skills_extract_knowledge.md     # extract skills + non-executable knowledge (session/diff/commits)
     skills_extract_project.md       # full-project scan → drafts BOTH skills and knowledge
     knowledge_list.md               # list locally installed knowledge entries
     knowledge_search.md             # search knowledge and optionally inject matches into context
     knowledge_publish.md            # review knowledge drafts → push to remote branch (no version tags)
     publish_all.md                  # one-shot publish of both skills and knowledge on a single branch / PR
+    merge/
+      skills_merge.md               # combine 2+ remote entries into one new draft (/merge:skills_merge)
+    split/
+      skills_split.md               # decompose one remote entry into N focused drafts (/split:skills_split)
+    refactor/
+      skills_refactor.md            # scan remote for merge + split candidates in one pass (/refactor:skills_refactor)
   skills/
     skills-hub/SKILL.md       # umbrella OMC skill
   install.sh                  # bash installer
@@ -101,6 +108,9 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/knowledge_search <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
 | `/knowledge_publish [--all/--draft=.../--pr]` | Review knowledge drafts → push to a feature branch, update `registry.json` knowledge section. No version tags. | remote branch |
 | `/publish_all [--all/--pr/--only ...]` | One-shot publish of BOTH `.skills-draft/` and `.knowledge-draft/` on a single branch + PR, knowledge-first commit order for cross-link resolution | remote branch + skill tags |
+| `/merge:skills_merge <selector1> <selector2> [...]` | Combine 2+ remote skills/knowledge into one new draft. Supports cross-kind (skill+knowledge), version pinning (`@v1.2.0`), mandatory `merged_from` provenance | local drafts |
+| `/split:skills_split <selector> [--by=section\|step\|concern\|auto]` | Decompose one remote entry into N focused drafts. Refuses trivially-small inputs; records `split_from`/`replaces`/`siblings` | local drafts |
+| `/refactor:skills_refactor [--scope/--merge-threshold/...]` | Scan remote for merge + split candidates in one pass, delegate to the two commands above. Bias toward merge when an entry qualifies for both | local drafts |
 
 ### Typical Workflow
 
@@ -275,6 +285,48 @@ Body sections: `## Fact` / `## Context / Why` / `## Evidence` / `## Applies when
 ```
 
 Knowledge publishing is now supported. Use `/knowledge_publish` to push drafts under `.knowledge-draft/` to a feature branch (no version tags — knowledge is content-addressed, history is the trail). For releases that contain both skills and knowledge from the same extraction round, use `/publish_all` to ship them on a single branch + PR; knowledge commits land first so skills can reference the knowledge slug in the same branch. Registry schema is `v2` (`knowledge: {}` key + `linked_knowledge` on each skill).
+
+---
+
+## Remote Maintenance: merge / split / refactor
+
+Once the registry has grown, three commands help keep it coherent. All three are **read-only on the remote cache** — they produce drafts under `.skills-draft/` / `.knowledge-draft/` that ship via the normal publish flow (`/skills_publish`, `/knowledge_publish`, or `/publish_all`).
+
+### Selectors
+
+`/merge:skills_merge` and `/split:skills_split` accept selectors pointing to existing remote entries:
+
+- `skill:<category>/<name>` — e.g. `skill:backend/retry-with-jitter-backoff`
+- `knowledge:<category>/<slug>` — e.g. `knowledge:pitfall/retry-storms-without-jitter`
+- `<category>/<name>` — kind auto-detected; ambiguous → error, require prefix
+- `@v<semver>` suffix on any of the above pins to a tag (skills only): `skill:backend/retry@v1.2.0`
+
+### Merge — consolidate overlapping entries
+
+```
+/merge:skills_merge skill:backend/retry-with-jitter skill:backend/retry-on-5xx \
+    knowledge:pitfall/retry-storms --name=unified-retry-strategy
+```
+
+Produces one new skill draft with the union of problems, a single unified `Pattern`, preserved `Alternative examples`, and mandatory `merged_from` / `## Provenance` attribution. Knowledge sources are summarized into a `## Background` section and cross-linked via `linked_knowledge`, not duplicated as files. Default behavior marks sources with `supersedes: [...]` so `/skills_cleanup` can later propose deprecation; `--keep-sources` omits the hint.
+
+### Split — break up multi-purpose entries
+
+```
+/split:skills_split skill:backend/retry-strategy --by=concern
+```
+
+Strategies: `section` (split by topical `##` headers), `step` (skills-only — per-step decomposition), `concern` (cluster paragraphs by dominant tag), `auto` (try `concern` → `section` → `step`). Refuses to split entries below ~400 body lines. Each child draft inherits confidence (knowledge) and lists its `siblings` for navigation. Oversize alone doesn't qualify — the detector must find ≥2 clean clusters.
+
+### Refactor — one pass, both operations
+
+```
+/refactor:skills_refactor --scope=backend --merge-threshold=0.75
+```
+
+Scans the remote, finds merge candidates (tag + content similarity clusters) **and** split candidates (large entries with ≥2 concerns), resolves overlap (merge wins when an entry qualifies for both), presents a single review table, then delegates to `/merge:skills_merge` and `/split:skills_split` for accepted candidates. Results aggregate into `.skills-draft/_REFACTOR_MANIFEST.md`. Ship with `/publish_all --pr` so cross-links land in one branch.
+
+Use `/refactor:skills_refactor` periodically (monthly, or after a burst of publish activity). For targeted single operations, call `/merge:skills_merge` or `/split:skills_split` directly — they're cheaper.
 
 ---
 
