@@ -1,0 +1,12 @@
+{
+  "slug": "skill-reactor",
+  "title": "Skill Reactor",
+  "summary": "Rule-based reaction engine over the skills-hub pool. Define reaction rules ('category:X + tag:Y \u2192 new skill') and watch them fire deterministically on matching pairs, producing new skills that themselves can fuel further reactions.",
+  "stack": ["node", "html", "js", "css"],
+  "tags": ["browser", "generator", "rule-engine", "chemistry", "skills-hub", "zero-deps"],
+  "created_at": "2026-04-16",
+  "source_project": "getskills",
+  "runtime": "node >=18",
+  "entrypoint": "browser/serve.mjs",
+  "author": "kjuhwa@nkia.co.kr"
+}

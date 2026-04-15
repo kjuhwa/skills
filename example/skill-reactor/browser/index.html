@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skill Reactor</title>
+<style>
+  :root { --bg:#0b1020; --panel:#131a31; --ink:#e6edff; --mute:#7b86a8; --accent:#7dd3fc; --ok:#34d399; --warn:#fbbf24; --danger:#f87171; }
+  * { box-sizing: border-box; }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:13px/1.5 ui-monospace, Menlo, Consolas, monospace; }
+  header { display:flex; gap:10px; align-items:center; padding:10px 14px; background:#0f1530; border-bottom:1px solid #1f2a4d; flex-wrap:wrap; }
+  header h1 { margin:0; font-size:15px; }
+  header .stat { color:var(--mute); } header .stat b { color:var(--ink); }
+  button { background:#1e2a52; color:var(--ink); border:1px solid #2b3a6e; border-radius:6px; padding:5px 11px; cursor:pointer; font:inherit; }
+  button:hover { background:#25346b; }
+  button.primary { background:#0369a1; border-color:#0ea5e9; }
+  button.ok { background:#166534; border-color:#22c55e; }
+  button.warn { background:#7f1d1d; border-color:#ef4444; }
+  button:disabled { opacity:0.4; cursor:not-allowed; }
+  input[type=text], select { background:#0b1328; color:var(--ink); border:1px solid #2b3a6e; border-radius:6px; padding:5px 8px; font:inherit; }
+  main { display:grid; grid-template-columns: 440px 1fr 340px; gap:10px; padding:10px; height:calc(100vh - 56px); }
+  section { background:var(--panel); border:1px solid #1d2749; border-radius:8px; padding:10px; overflow:auto; min-height:0; }
+  section h2 { margin:0 0 8px; font-size:12px; color:var(--mute); text-transform:uppercase; letter-spacing:1px; }
+  .rule { background:#0b1328; border:1px solid #2a3766; border-radius:8px; padding:8px; margin-bottom:8px; }
+  .rule .head { display:flex; gap:6px; align-items:center; }
+  .rule .head input[type=text] { flex:1; }
+  .rule .body { display:grid; grid-template-columns: 110px 1fr; gap:6px; margin-top:6px; align-items:center; }
+  .rule .body .lbl { color:var(--mute); font-size:11px; }
+  .rule .meta { display:flex; justify-content:space-between; margin-top:6px; color:var(--mute); font-size:11px; }
+  .log .row { padding:3px 0; border-bottom:1px dashed #1d2749; font-size:12px; word-break:break-word; }
+  .log .arrow { color:var(--mute); }
+  .log .child { color:var(--ok); }
+  .log .rule-label { color:var(--warn); }
+  .chip { display:inline-block; padding:1px 7px; margin:1px 3px 1px 0; border-radius:10px; background:#1e2a52; border:1px solid #2a3766; color:var(--ink); font-size:11px; }
+  pre { white-space:pre-wrap; word-break:break-word; margin:0; font-size:12px; color:#cbd5e1; }
+  .hint { color:var(--mute); font-size:11px; }
+  .stats-line { padding:3px 6px; border-bottom:1px dashed #1d2749; font-size:12px; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<header>
+  <h1>\u269B\uFE0F Skill Reactor</h1>
+  <button id="step">\u23ef Step</button>
+  <button id="run" class="primary">\u25b6 Run</button>
+  <button id="addRule">+ rule</button>
+  <button id="reset" class="warn">\u21bb Reset pool</button>
+  <button id="export">\u2b07 Export</button>
+  <span class="stat">tick <b id="tick">0</b></span>
+  <span class="stat">pool <b id="poolSize">0</b></span>
+  <span class="stat">bred <b id="bred">0</b></span>
+  <span class="stat">status <b id="status">idle</b></span>
+</header>
+<main>
+  <section>
+    <h2>Reaction rules</h2>
+    <div id="rules"></div>
+    <div class="hint">Patterns: <code>category=X</code>, <code>tag=Y</code>, <code>regex:...</code> (case-insensitive). Rules persist to localStorage.</div>
+  </section>
+  <section>
+    <h2>Reaction log</h2>
+    <div id="log" class="log"></div>
+  </section>
+  <section>
+    <h2>Per-rule stats</h2>
+    <div id="stats"></div>
+    <h2 style="margin-top:14px">Selected child</h2>
+    <div id="selMeta" class="hint">click a log row</div>
+    <pre id="selBody"></pre>
+  </section>
+</main>
+
+<script type="module">
+import { synth, mulberry32, hashStr } from './synth.mjs';
+
+const $ = s => document.querySelector(s);
+const RULES_KEY = 'skill-reactor.rules.v1';
+
+const DEFAULT_RULES = [
+  { label: 'multi-tenant kafka', a: 'category=kafka', b: 'tag=tenant' },
+  { label: 'mongo time-series', a: 'tag=mongo', b: 'tag=time-series' },
+  { label: 'cache ttl', a: 'regex:cache', b: 'regex:ttl' },
+  { label: 'integration test', a: 'category=testing', b: 'category=backend' },
+];
+
+let pool = [], byId = new Map(), bred = 0, tick = 0;
+let running = false, timer = null;
+let rules = loadRules();
+let cooldowns = new Map(); // "a|b|ruleIdx" -> tickExpire
+let stats = new Map();
+let rnd = mulberry32(hashStr('reactor-' + Date.now()));
+
+function loadRules() {
+  try { const v = JSON.parse(localStorage.getItem(RULES_KEY)); if (Array.isArray(v) && v.length) return v; } catch {}
+  return DEFAULT_RULES.slice();
+}
+function saveRules() { localStorage.setItem(RULES_KEY, JSON.stringify(rules)); }
+
+async function load() {
+  const r = await fetch('/corpus.json');
+  const j = await r.json();
+  pool = [
+    ...j.skills.map(s => ({ ...s, gen: 0 })),
+    ...(j.knowledge || []).map(k => ({ ...k, gen: 0, tags: k.tags || [] })),
+  ];
+  for (const e of pool) byId.set(e.id, e);
+  $('#poolSize').textContent = pool.length;
+  $('#status').textContent = 'ready';
+  renderRules();
+}
+
+function parsePattern(p) {
+  p = String(p || '').trim();
+  if (p.startsWith('category=')) return { kind: 'cat', val: p.slice(9).toLowerCase() };
+  if (p.startsWith('tag=')) return { kind: 'tag', val: p.slice(4).toLowerCase() };
+  if (p.startsWith('regex:')) { try { return { kind: 'rx', val: new RegExp(p.slice(6), 'i') }; } catch { return { kind: 'none' }; } }
+  return { kind: 'sub', val: p.toLowerCase() };
+}
+function matches(e, pat) {
+  if (!pat || pat.kind === 'none') return false;
+  if (pat.kind === 'cat') return String(e.category || '').toLowerCase() === pat.val;
+  if (pat.kind === 'tag') return (e.tags || []).some(t => String(t).toLowerCase() === pat.val);
+  if (pat.kind === 'rx') return pat.val.test(e.id) || pat.val.test(e.name || '') || pat.val.test(e.description || '') || (e.tags || []).some(t => pat.val.test(t));
+  if (pat.kind === 'sub') {
+    const hay = `${e.id} ${e.name || ''} ${e.category || ''} ${(e.tags || []).join(' ')}`.toLowerCase();
+    return hay.includes(pat.val);
+  }
+  return false;
+}
+
+function stepOnce() {
+  tick++; $('#tick').textContent = tick;
+  let produced = 0;
+  for (let ri = 0; ri < rules.length; ri++) {
+    const rule = rules[ri];
+    const pa = parsePattern(rule.a), pb = parsePattern(rule.b);
+    const as = pool.filter(e => matches(e, pa));
+    const bs = pool.filter(e => matches(e, pb));
+    if (!as.length || !bs.length) continue;
+    const a = as[Math.floor(rnd() * as.length)];
+    let b = bs[Math.floor(rnd() * bs.length)];
+    let tries = 0;
+    while (b.id === a.id && tries++ < 5) b = bs[Math.floor(rnd() * bs.length)];
+    if (b.id === a.id) continue;
+    const key = `${a.id}|${b.id}|${ri}`;
+    if ((cooldowns.get(key) || 0) > tick) continue;
+    cooldowns.set(key, tick + 3);
+    const gen = Math.max(a.gen || 0, b.gen || 0) + 1;
+    const child = synth(a, b, gen, rnd, { mutationRate: 0.1 });
+    child.id = `${slugify(rule.label)}-${bred + 1}-${child.id}`.slice(0, 80);
+    child.name = `${rule.label}: ${child.name}`;
+    if (byId.has(child.id)) child.id += '-x';
+    byId.set(child.id, child);
+    pool.push(child);
+    bred++; produced++;
+    stats.set(ri, (stats.get(ri) || 0) + 1);
+    logRow(ri, rule.label, a, b, child);
+  }
+  $('#poolSize').textContent = pool.length;
+  $('#bred').textContent = bred;
+  renderStats();
+  return produced;
+}
+
+function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+
+function logRow(ri, label, a, b, child) {
+  const el = document.createElement('div');
+  el.className = 'row';
+  el.innerHTML = `<span class="hint">#${tick}</span> <span class="rule-label">[${label}]</span> ${a.id} <span class="arrow">\u00d7</span> ${b.id} <span class="arrow">\u2192</span> <span class="child">${child.id}</span>`;
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', () => selectChild(child.id));
+  $('#log').prepend(el);
+  while ($('#log').children.length > 200) $('#log').removeChild($('#log').lastChild);
+}
+
+function selectChild(id) {
+  const e = byId.get(id); if (!e) return;
+  const tags = (e.tags || []).map(t => `<span class="chip">${t}</span>`).join('');
+  $('#selMeta').innerHTML = `<b>${e.name || e.id}</b><br/><span class="hint">${e.id} \u00b7 gen ${e.gen || 0} \u00b7 ${e.category || '?'}</span><div style="margin-top:4px">${tags}</div>`;
+  $('#selBody').textContent = e.body || e.description || '';
+}
+
+function renderRules() {
+  const c = $('#rules');
+  c.innerHTML = '';
+  rules.forEach((r, i) => {
+    const div = document.createElement('div');
+    div.className = 'rule';
+    div.innerHTML = `
+      <div class="head">
+        <input type="text" data-field="label" value="${escape(r.label)}" placeholder="label" />
+        <button data-act="del">\u2715</button>
+      </div>
+      <div class="body">
+        <span class="lbl">reactant A</span><input type="text" data-field="a" value="${escape(r.a)}" />
+        <span class="lbl">reactant B</span><input type="text" data-field="b" value="${escape(r.b)}" />
+      </div>
+      <div class="meta">
+        <span>rule #${i + 1}</span>
+        <span>fired <b data-stat>${stats.get(i) || 0}</b></span>
+      </div>
+    `;
+    div.querySelectorAll('input').forEach(inp => inp.addEventListener('input', () => {
+      rules[i][inp.dataset.field] = inp.value;
+      saveRules();
+    }));
+    div.querySelector('button[data-act=del]').addEventListener('click', () => {
+      rules.splice(i, 1); saveRules(); stats = new Map(); renderRules(); renderStats();
+    });
+    c.appendChild(div);
+  });
+}
+function renderStats() {
+  $('#stats').innerHTML = rules.map((r, i) => `<div class="stats-line"><span>${escape(r.label)}</span><b>${stats.get(i) || 0}</b></div>`).join('');
+  document.querySelectorAll('.rule [data-stat]').forEach((el, i) => el.textContent = stats.get(i) || 0);
+}
+function escape(s) { return String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+$('#step').addEventListener('click', () => { stepOnce(); });
+$('#run').addEventListener('click', () => {
+  running = !running;
+  $('#run').textContent = running ? '\u23f8 Stop' : '\u25b6 Run';
+  $('#status').textContent = running ? 'reacting\u2026' : 'idle';
+  if (running) loop(); else clearTimeout(timer);
+});
+$('#addRule').addEventListener('click', () => { rules.push({ label: 'new rule', a: 'tag=', b: 'tag=' }); saveRules(); renderRules(); });
+$('#reset').addEventListener('click', async () => {
+  running = false; clearTimeout(timer);
+  $('#run').textContent = '\u25b6 Run'; $('#status').textContent = 'idle';
+  pool = []; byId.clear(); bred = 0; tick = 0; stats = new Map(); cooldowns = new Map();
+  $('#log').innerHTML = ''; $('#tick').textContent = 0; $('#bred').textContent = 0;
+  await load();
+});
+$('#export').addEventListener('click', () => {
+  const children = pool.filter(e => e.parents);
+  const blob = new Blob([JSON.stringify({ rules, stats: [...stats], children, generatedAt: new Date().toISOString() }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `reactor-run-${Date.now()}.json`; a.click();
+});
+
+function loop() { if (!running) return; stepOnce(); timer = setTimeout(loop, 250); }
+
+load();
+</script>
+</body>
+</html>
