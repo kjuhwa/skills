@@ -1,6 +1,16 @@
 {
   "skills": [
     {
+      "name": "adaptive-strategy-hot-swap",
+      "description": "Periodically re-evaluate candidate strategies/policies against recent data, swap the active one only when a weighted composite score beats the incumbent by a hysteresis threshold — prevents flapping while staying adaptive.",
+      "category": "arch",
+      "tags": "[strategy, adaptive, hot-swap, hysteresis, rebalance, composite-score, backtest]",
+      "triggers": "[\"shouldUpdateStrategy\", \"reanalyze\", \"strategy update\", \"hot swap\", \"policy rotation\", \"best strategy\", \"composite score\", \"hysteresis threshold\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "arch/adaptive-strategy-hot-swap"
+    },
+    {
       "name": "ai-call-with-mock-fallback",
       "description": "Wrap unreliable LLM/AI calls with a deterministic mock fallback so the UI always receives a valid shape — annotate the response with a `mock: true` or `error:` field so the client can show a badge.",
       "category": "ai",
@@ -9,6 +19,46 @@
       "source_project": "webtoon_ai_project_with_wrapper",
       "version": "0.1.0-draft",
       "path": "ai/ai-call-with-mock-fallback"
+    },
+    {
+      "name": "async-subagent-resume-on-missing-artifact",
+      "description": "When an async subagent is reported \"completed\" but its final message hints at unfinished work (e.g., \"Now let me build…\"), verify the expected on-disk artifact before moving on; if missing, use SendMessage to the agent id to finalize rather than re-dispatching a fresh agent.",
+      "category": "workflow",
+      "tags": "[agents, async, verification, send-message]",
+      "triggers": "",
+      "scope": "user",
+      "version": "1.0.0",
+      "path": "workflow/async-subagent-resume-on-missing-artifact"
+    },
+    {
+      "name": "axios-refresh-queue-zustand",
+      "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
+      "category": "frontend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "frontend/axios-refresh-queue-zustand"
+    },
+    {
+      "name": "bucket-parallel-java-annotation-dispatch",
+      "description": "For bulk Java annotation work (200+ @Operation methods across many controllers, or 500+ @Schema fields across many DTOs), dispatch N parallel executor subagents with disjoint file buckets. Leader runs a single compile at the end; agents never run gradle themselves.",
+      "category": "workflow",
+      "tags": "[parallel-agents, java, annotation, spring, swagger, gradle]",
+      "triggers": "",
+      "scope": "user",
+      "version": "1.0.0",
+      "path": "workflow/bucket-parallel-java-annotation-dispatch"
+    },
+    {
+      "name": "build-error-triage",
+      "description": "Systematic triage workflow for build/compilation errors — classify by root cause (missing symbol, signature mismatch, instantiation failure), then isolate the first error before chasing cascades.",
+      "category": "debug",
+      "tags": "[build, compilation, java, javac, errors, triage]",
+      "triggers": "[Unresolved compilation, Cannot instantiate, method is undefined, cannot find symbol, compilation error]",
+      "source_project": "manual",
+      "version": "1.0.0",
+      "path": "debug/build-error-triage"
     },
     {
       "name": "character-sheet-multi-panel-consistency",
@@ -31,64 +81,24 @@
       "path": "ai/claude-cli-from-jvm-via-node-wrapper"
     },
     {
-      "name": "llm-json-extraction",
-      "description": "Robustly extract a JSON object from free-form LLM text output — strip markdown fences, locate outermost braces, tolerate prelude/postlude prose.",
-      "category": "ai",
-      "tags": "[llm, json, parsing, prompt-engineering, robustness]",
-      "triggers": "[\"extract JSON\", \"parse LLM response\", \"strip code fence\", \"ObjectMapper.readValue\", \"JSON from model\", \"```json\"]",
-      "source_project": "webtoon_ai_project_with_wrapper",
-      "version": "0.1.0-draft",
-      "path": "ai/llm-json-extraction"
-    },
-    {
-      "name": "mcp-runtime-prompt-refresh",
-      "description": "Expose a built-in MCP tool that hot-swaps the server's prompt set at runtime, persists it to disk, and emits notifications/prompts/list_changed so clients pick it up without reconnecting.",
-      "category": "ai",
-      "tags": "[mcp, prompts, hot-reload, json-rpc, tool-design]",
-      "triggers": "",
-      "source_project": "yamltomcp",
-      "version": "0.1.0-draft",
-      "path": "ai/mcp-runtime-prompt-refresh"
-    },
-    {
-      "name": "openapi-to-mcp-tag-grouping",
-      "description": "Convert OpenAPI specs into MCP tools by grouping operations under their OpenAPI tag, exposing one tool per tag with an operation selector and per-operation arguments.",
-      "category": "ai",
-      "tags": "[mcp, openapi, tool-design, schema, json-schema]",
-      "triggers": "",
-      "source_project": "yamltomcp",
-      "version": "0.1.0-draft",
-      "path": "ai/openapi-to-mcp-tag-grouping"
-    },
-    {
-      "name": "stable-horde-async-poll",
-      "description": "Submit-then-poll integration pattern for Stable Horde image generation — anonymous apikey, model fallback list, negative-prompt separator, bounded poll loop.",
-      "category": "ai",
-      "tags": "[stable-horde, image-generation, stable-diffusion, async, polling, anonymous-api]",
-      "triggers": "[\"stablehorde.net\", \"generate/async\", \"generate/status\", \"apikey 0000000000\", \"image generation\", \"Stable Horde\", \"horde\"]",
-      "source_project": "webtoon_ai_project_with_wrapper",
-      "version": "0.1.0-draft",
-      "path": "ai/stable-horde-async-poll"
-    },
-    {
-      "name": "opentelemetry-java-bootstrap",
-      "description": "Minimal OpenTelemetry bootstrap for a Java service — OTLP exporter, resource attributes, auto-instrumentation agent, and graceful shutdown. Covers the common setup mistakes that cause spans to silently drop.",
-      "category": "apm",
-      "tags": "[opentelemetry, otel, java, tracing, otlp, observability]",
-      "triggers": "[OpenTelemetry, OTEL, otel-javaagent, otlp, tracing setup, service.name, span exporter]",
-      "source_project": "manual",
+      "name": "claude-code-skill-scaffold",
+      "description": "Claude Code 스킬 표준 구조(SKILL.md + prompts/ + scripts/ + references/)를 자동 생성하는 스캐폴딩.",
+      "category": "tooling",
+      "tags": "[claude-code, skill, scaffold, plugin]",
+      "triggers": "[\"skill-create\", \"new skill\", \"scaffold skill\", \"SKILL.md boilerplate\"]",
+      "source_project": "nkia-skills",
       "version": "1.0.0",
-      "path": "apm/opentelemetry-java-bootstrap"
+      "path": "tooling/claude-code-skill-scaffold"
     },
     {
-      "name": "adaptive-strategy-hot-swap",
-      "description": "Periodically re-evaluate candidate strategies/policies against recent data, swap the active one only when a weighted composite score beats the incumbent by a hysteresis threshold — prevents flapping while staying adaptive.",
-      "category": "arch",
-      "tags": "[strategy, adaptive, hot-swap, hysteresis, rebalance, composite-score, backtest]",
-      "triggers": "[\"shouldUpdateStrategy\", \"reanalyze\", \"strategy update\", \"hot swap\", \"policy rotation\", \"best strategy\", \"composite score\", \"hysteresis threshold\"]",
-      "source_project": "kis-java-bundle",
-      "version": "0.1.0-draft",
-      "path": "arch/adaptive-strategy-hot-swap"
+      "name": "claude-plugin-catalog-publish",
+      "description": "로컬 스킬을 원격 Git repo에 배포하고 AGENTS.md 카탈로그를 자동 갱신하는 publish 플로우 (shallow-clone + mktemp + cleanup 패턴).",
+      "category": "tooling",
+      "tags": "[claude-code, plugin, publish, git, catalog, agents-md]",
+      "triggers": "[\"skill-publish\", \"publish plugin\", \"catalog update\", \"claude plugin deploy\"]",
+      "source_project": "nkia-skills",
+      "version": "1.0.0",
+      "path": "tooling/claude-plugin-catalog-publish"
     },
     {
       "name": "definition-registry-helper-cache",
@@ -112,88 +122,6 @@
       "path": "arch/domain-category-endpoint-registry"
     },
     {
-      "name": "git-tag-registry-versioning",
-      "description": "Add semver rollback and pinning to any git-backed asset registry (skills, prompts, commands, snippets) using namespaced annotated tags per item and per-release bundle.",
-      "category": "arch",
-      "tags": "[git, versioning, semver, registry, rollback, tags]",
-      "triggers": "[version pin, rollback, git tag, registry versioning, skill versioning, prompt versioning, \"install specific version\"]",
-      "source_project": "skills-hub",
-      "version": "1.0.0",
-      "path": "arch/git-tag-registry-versioning"
-    },
-    {
-      "name": "immutable-action-event-log",
-      "description": "Model state transitions as `(state, action) → (newState, List<Event>)` where the event list is an append-only, serializable log. Enables deterministic replay, audit trails, cheat detection, and UI choreography without coupling engine to presentation.",
-      "category": "arch",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "arch/immutable-action-event-log"
-    },
-    {
-      "name": "layered-risk-gates",
-      "description": "Three-layer safety pattern for autonomous action loops — pre-action admission gate, in-flight monitor (stop/target thresholds), and a consecutive-failure circuit breaker — so a single runaway loop can't clear out the account before a human sees it.",
-      "category": "arch",
-      "tags": "[risk, circuit-breaker, safety, autonomous, limits, guardrails]",
-      "triggers": "[\"risk management\", \"position sizing\", \"max daily loss\", \"consecutive losses\", \"stop loss\", \"take profit\", \"kill switch\", \"circuit breaker\"]",
-      "source_project": "kis-java-bundle",
-      "version": "0.1.0-draft",
-      "path": "arch/layered-risk-gates"
-    },
-    {
-      "name": "module-federation-expose-wrapper",
-      "description": "Six-step pattern for exposing a component from one Module Federation remote and consuming it from another via a shared library — implementation → expose wrapper → MF config → MF name constant → RemoteApp wrapper in shared → consumer import. Prevents direct cross-remote imports and webpack alias collisions.",
-      "category": "arch",
-      "tags": "[module-federation, micro-frontend, webpack, react, remote, expose, mfa]",
-      "triggers": "[\"module federation\", \"MFA\", \"cross-remote import\", \"exposes\", \"RemoteApp\", \"webpack alias collision\"]",
-      "source_project": "lucida-ui",
-      "version": "0.1.0-draft",
-      "path": "arch/module-federation-expose-wrapper"
-    },
-    {
-      "name": "resource-provider-registry",
-      "description": "Spring DI plugin registry where @Component implementations of a typed interface are auto-discovered and looked up at runtime by a string type key",
-      "triggers": "",
-      "scope": "user",
-      "source_project": "lucida-domain-sms",
-      "version": "0.1.0-draft",
-      "tags": "[spring, plugin, registry, interface, component]",
-      "category": "arch",
-      "path": "arch/resource-provider-registry"
-    },
-    {
-      "name": "shared-package-only-cross-module",
-      "description": "Enforce a one-way dependency graph in a multi-module repo — sibling modules may only import from a single `shared/` package, never from each other. Prevents webpack alias collisions, keeps module boundaries enforceable, and makes build/deploy units independent.",
-      "category": "arch",
-      "tags": "[monorepo, module-boundaries, webpack, alias, micro-frontend, dependency-direction]",
-      "triggers": "[\"cross-module import\", \"cannot resolve @/\", \"alias collision\", \"webpack root\", \"monorepo boundaries\"]",
-      "source_project": "lucida-ui",
-      "version": "0.1.0-draft",
-      "path": "arch/shared-package-only-cross-module"
-    },
-    {
-      "name": "tenant-context-holder-propagation",
-      "description": "Set TenantContextHolder.INSTANCE.setTenantId(orgId) on the current thread so MongoDB tenant-isolated templates route queries correctly, always clearing in a finally block",
-      "triggers": "",
-      "scope": "user",
-      "source_project": "lucida-domain-sms",
-      "version": "0.1.0-draft",
-      "tags": "[spring, multi-tenant, threadlocal, mongodb, isolation]",
-      "category": "arch",
-      "path": "arch/tenant-context-holder-propagation"
-    },
-    {
-      "name": "tiered-rebalance-schedule",
-      "description": "Run three cadences against the same managed set — fast performance review, mid-frequency policy re-analysis, slow portfolio rebalance — each with its own trigger interval and mutation budget, so urgency scales with cost.",
-      "category": "arch",
-      "tags": "[scheduler, rebalance, tiers, cadence, cron, portfolio, lifecycle]",
-      "triggers": "[\"scheduleWithFixedDelay\", \"periodic review\", \"rebalance\", \"reanalysis interval\", \"tiered schedule\", \"performance review\", \"portfolio rebalance\"]",
-      "source_project": "kis-java-bundle",
-      "version": "0.1.0-draft",
-      "path": "arch/tiered-rebalance-schedule"
-    },
-    {
       "name": "dotenv-multi-env-routing",
       "description": "Single ENV variable flips an entire stack (REST base URL, WebSocket base, per-operation transaction IDs) between production and sandbox tiers, loaded via dotenv with OS-env precedence.",
       "category": "backend",
@@ -202,6 +130,16 @@
       "source_project": "kis-java-bundle",
       "version": "0.1.0-draft",
       "path": "backend/dotenv-multi-env-routing"
+    },
+    {
+      "name": "dry-run-confirm-retry-write-flow",
+      "description": "트래커/외부 API 쓰기 작업의 공통 플로우: 미리보기 → 사용자 확인 → 쓰기 → 재시도. PIMS/Jira/Redmine 등 부작용 있는 API에 적용.",
+      "category": "backend",
+      "tags": "[api, write-flow, dry-run, retry, user-confirmation, tracker]",
+      "triggers": "[\"dry-run\", \"pims write\", \"external api write\", \"retry-with-confirmation\", \"tracker submit\"]",
+      "source_project": "nkia-skills",
+      "version": "1.0.0",
+      "path": "backend/dry-run-confirm-retry-write-flow"
     },
     {
       "name": "excel-export-enum-replacer",
@@ -213,6 +151,26 @@
       "tags": "[spring, excel, export, enum, controller]",
       "category": "backend",
       "path": "backend/excel-export-enum-replacer"
+    },
+    {
+      "name": "gacha-soft-hard-pity",
+      "description": "Server-authoritative gacha with soft pity (rate ramp after N pulls), hard pity (guaranteed top rarity at M pulls), and 50/50 guarantee carryover. Split rate calculation from result resolution so probability is testable.",
+      "category": "game-dev",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "game-dev/gacha-soft-hard-pity"
+    },
+    {
+      "name": "git-tag-registry-versioning",
+      "description": "Add semver rollback and pinning to any git-backed asset registry (skills, prompts, commands, snippets) using namespaced annotated tags per item and per-release bundle.",
+      "category": "arch",
+      "tags": "[git, versioning, semver, registry, rollback, tags]",
+      "triggers": "[version pin, rollback, git tag, registry versioning, skill versioning, prompt versioning, \"install specific version\"]",
+      "source_project": "skills-hub",
+      "version": "1.0.0",
+      "path": "arch/git-tag-registry-versioning"
     },
     {
       "name": "grid-filter-to-criteria-converter",
@@ -236,6 +194,26 @@
       "path": "backend/identifier-truncate-with-hash-suffix"
     },
     {
+      "name": "immutable-action-event-log",
+      "description": "Model state transitions as `(state, action) → (newState, List<Event>)` where the event list is an append-only, serializable log. Enables deterministic replay, audit trails, cheat detection, and UI choreography without coupling engine to presentation.",
+      "category": "arch",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "arch/immutable-action-event-log"
+    },
+    {
+      "name": "jacoco-exclude-boilerplate-layers",
+      "description": "Configure JaCoCo + SonarQube to exclude generated/boilerplate layers (avro, config, dto, entity, kafka, *Dev) from coverage so coverage % reflects business logic only",
+      "category": "backend",
+      "tags": "[jacoco, sonarqube, coverage, gradle, spring-boot, test, boilerplate]",
+      "triggers": "[\"jacoco\", \"sonarqube coverage\", \"jacocoTestReport\", \"coverage exclusion\", \"sonar.coverage.exclusions\", \"boilerplate coverage\"]",
+      "source_project": "lucida-topology",
+      "version": "1.0.0",
+      "path": "backend/jacoco-exclude-boilerplate-layers"
+    },
+    {
       "name": "json-seeded-jpa-loader",
       "description": "Idempotent reference-data seeding for Spring Boot — Flyway owns DDL, CommandLineRunner reads `resources/data/*.json`, maps to JPA entities, and saves only if the table is empty. Keeps static content in editable JSON without bloating migrations.",
       "category": "backend",
@@ -244,6 +222,27 @@
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "backend/json-seeded-jpa-loader"
+    },
+    {
+      "name": "jwt-extraction-via-base-controller",
+      "description": "Consolidate repeated `JwtTokenService.getXxxFromBearerToken(headerAuthorization)` calls across Spring controllers by moving the service and helper methods onto a shared `BaseController`. Subclass controllers call `getOrganizationId(h)` / `getLoginId(h)` / `getRoleIds(h)` directly.",
+      "category": "backend",
+      "tags": "[spring-boot, jwt, controller, refactor, base-class]",
+      "triggers": "[\"jwt extraction controller duplication\", \"base controller jwt\", \"getXxxFromBearerToken 중복 제거\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-widget",
+      "path": "backend/jwt-extraction-via-base-controller"
+    },
+    {
+      "name": "jwt-refresh-rotation-spring",
+      "description": "Spring Boot 3 JWT with short-lived access token + long-lived refresh token, filter-chain integration, and stateless session config. Avoids common mistakes that silently break refresh flows.",
+      "category": "security",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "security/jwt-refresh-rotation-spring"
     },
     {
       "name": "kafka-message-header-metadata",
@@ -257,6 +256,26 @@
       "path": "backend/kafka-message-header-metadata"
     },
     {
+      "name": "layered-risk-gates",
+      "description": "Three-layer safety pattern for autonomous action loops — pre-action admission gate, in-flight monitor (stop/target thresholds), and a consecutive-failure circuit breaker — so a single runaway loop can't clear out the account before a human sees it.",
+      "category": "arch",
+      "tags": "[risk, circuit-breaker, safety, autonomous, limits, guardrails]",
+      "triggers": "[\"risk management\", \"position sizing\", \"max daily loss\", \"consecutive losses\", \"stop loss\", \"take profit\", \"kill switch\", \"circuit breaker\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "arch/layered-risk-gates"
+    },
+    {
+      "name": "llm-json-extraction",
+      "description": "Robustly extract a JSON object from free-form LLM text output — strip markdown fences, locate outermost braces, tolerate prelude/postlude prose.",
+      "category": "ai",
+      "tags": "[llm, json, parsing, prompt-engineering, robustness]",
+      "triggers": "[\"extract JSON\", \"parse LLM response\", \"strip code fence\", \"ObjectMapper.readValue\", \"JSON from model\", \"```json\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "ai/llm-json-extraction"
+    },
+    {
       "name": "mcp-capability-negotiated-initialize",
       "description": "In MCP `initialize`, advertise optional server capabilities (prompts, resources, sampling) only when the client declared matching support — avoids clients rejecting the handshake or spamming unsupported methods.",
       "category": "backend",
@@ -267,115 +286,14 @@
       "path": "backend/mcp-capability-negotiated-initialize"
     },
     {
-      "name": "migration-processor-pipeline",
-      "description": "Abstract migration processor template — validate → load → transform → emit Kafka Avro event with org-id header → audit log, multi-tenant safe",
-      "triggers": "",
-      "scope": "user",
-      "source_project": "lucida-domain-sms",
-      "version": "0.1.0-draft",
-      "tags": "[spring, kafka, avro, migration, multi-tenant, mongodb]",
-      "category": "backend",
-      "path": "backend/migration-processor-pipeline"
-    },
-    {
-      "name": "playwright-exception-advice",
-      "description": "Map PlaywrightException to a structured JSON error in Spring @ControllerAdvice, detecting common cases (cert errors, timeouts) and attaching actionable suggestions",
-      "category": "backend",
-      "tags": "[spring-boot, exception-handling, playwright, controller-advice]",
-      "triggers": "[\"ControllerAdvice playwright\", \"PlaywrightException spring\", \"ERR_CERT_AUTHORITY_INVALID\"]",
-      "source_project": "url-screenshot-java",
-      "version": "0.1.0-draft",
-      "path": "backend/playwright-exception-advice"
-    },
-    {
-      "name": "playwright-java-spring-lifecycle",
-      "description": "Share one Playwright+Browser instance across a Spring Boot app and create per-request BrowserContext/Page, cleaning up with try-with-resources and @PreDestroy",
-      "category": "backend",
-      "tags": "[playwright, spring-boot, java, lifecycle, browser]",
-      "triggers": "[\"playwright\", \"BrowserManager\", \"BrowserContext\", \"headless browser spring\"]",
-      "source_project": "url-screenshot-java",
-      "version": "0.1.0-draft",
-      "path": "backend/playwright-java-spring-lifecycle"
-    },
-    {
-      "name": "polymorphic-command-entities",
-      "description": "Expose a list of typed commands over JSON using Jackson @JsonTypeInfo + @JsonSubTypes so clients can submit executable scripts to a REST endpoint",
-      "category": "backend",
-      "tags": "[jackson, polymorphism, command-pattern, rest, java]",
-      "triggers": "[\"JsonTypeInfo\", \"JsonSubTypes\", \"command pattern json\", \"polymorphic deserialization\"]",
-      "source_project": "url-screenshot-java",
-      "version": "0.1.0-draft",
-      "path": "backend/polymorphic-command-entities"
-    },
-    {
-      "name": "spring-dual-profile-flyway",
-      "description": "Spring Boot dual-profile setup — H2 file-mode for dev (zero install, console enabled), PostgreSQL for prod — with Flyway managing DDL and JPA set to validate-only. The profile split that keeps local dev fast without drifting from prod schema.",
-      "category": "backend",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "backend/spring-dual-profile-flyway"
-    },
-    {
-      "name": "spring-typed-config-properties",
-      "description": "Type-safe, nested `@ConfigurationProperties` pattern for Spring Boot — centralizes tunable constants (rate limits, formula coefficients, balance numbers) in YAML with a single injected POJO tree. Beats scattered `@Value` strings.",
-      "category": "backend",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "backend/spring-typed-config-properties"
-    },
-    {
-      "name": "paired-flag-multi-instance-registration",
-      "description": "CLI pattern for registering N instances of a composite config (e.g. spec+baseUrl pairs) using repeated paired flags and a pending-state parser.",
-      "category": "cli",
-      "tags": "[argparse, cli-design, multi-instance, config]",
+      "name": "mcp-runtime-prompt-refresh",
+      "description": "Expose a built-in MCP tool that hot-swaps the server's prompt set at runtime, persists it to disk, and emits notifications/prompts/list_changed so clients pick it up without reconnecting.",
+      "category": "ai",
+      "tags": "[mcp, prompts, hot-reload, json-rpc, tool-design]",
       "triggers": "",
       "source_project": "yamltomcp",
       "version": "0.1.0-draft",
-      "path": "cli/paired-flag-multi-instance-registration"
-    },
-    {
-      "name": "build-error-triage",
-      "description": "Systematic triage workflow for build/compilation errors — classify by root cause (missing symbol, signature mismatch, instantiation failure), then isolate the first error before chasing cascades.",
-      "category": "debug",
-      "tags": "[build, compilation, java, javac, errors, triage]",
-      "triggers": "[Unresolved compilation, Cannot instantiate, method is undefined, cannot find symbol, compilation error]",
-      "source_project": "manual",
-      "version": "1.0.0",
-      "path": "debug/build-error-triage"
-    },
-    {
-      "name": "playwright-inspector-codegen",
-      "description": "Enable Playwright Inspector / codegen from a running Java app by setting PWDEBUG env vars before Playwright.create() and exposing an mvn codegen invocation for the user",
-      "category": "debug",
-      "tags": "[playwright, inspector, codegen, debugging, java]",
-      "triggers": "[\"PWDEBUG\", \"playwright inspector\", \"playwright codegen\", \"record selectors\"]",
-      "source_project": "url-screenshot-java",
-      "version": "0.1.0-draft",
-      "path": "debug/playwright-inspector-codegen"
-    },
-    {
-      "name": "playwright-java-dockerfile",
-      "description": "Multi-stage Dockerfile that builds a Java/Maven app in a JDK image and runs it on the official Playwright Java runtime image, avoiding manual browser installation",
-      "category": "devops",
-      "tags": "[docker, playwright, java, maven, multi-stage]",
-      "triggers": "[\"dockerfile playwright java\", \"mcr.microsoft.com/playwright/java\", \"playwright container\"]",
-      "source_project": "url-screenshot-java",
-      "version": "0.1.0-draft",
-      "path": "devops/playwright-java-dockerfile"
-    },
-    {
-      "name": "axios-refresh-queue-zustand",
-      "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
-      "category": "frontend",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "frontend/axios-refresh-queue-zustand"
+      "path": "ai/mcp-runtime-prompt-refresh"
     },
     {
       "name": "menu-key-config-registry",
@@ -408,6 +326,17 @@
       "path": "frontend/mfa-plain-html-dropdown-escape-hatch"
     },
     {
+      "name": "migration-processor-pipeline",
+      "description": "Abstract migration processor template — validate → load → transform → emit Kafka Avro event with org-id header → audit log, multi-tenant safe",
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, kafka, avro, migration, multi-tenant, mongodb]",
+      "category": "backend",
+      "path": "backend/migration-processor-pipeline"
+    },
+    {
       "name": "module-federation-expose-react-component",
       "description": "Expose a React component from one MF remote to be consumed by other remotes via a stable 6-step pipeline (implementation → expose wrapper → config → MF constant → RemoteApp wrapper → consumer import).",
       "category": "frontend",
@@ -418,64 +347,14 @@
       "path": "frontend/module-federation-expose-react-component"
     },
     {
-      "name": "zustand-preset-manager",
-      "description": "Zustand + persist middleware pattern for managing N named presets (team comps, saved filters, dashboard layouts) with active-selection, max-count guard, and auto-reselect on delete.",
-      "category": "frontend",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
+      "name": "module-federation-expose-wrapper",
+      "description": "Six-step pattern for exposing a component from one Module Federation remote and consuming it from another via a shared library — implementation → expose wrapper → MF config → MF name constant → RemoteApp wrapper in shared → consumer import. Prevents direct cross-remote imports and webpack alias collisions.",
+      "category": "arch",
+      "tags": "[module-federation, micro-frontend, webpack, react, remote, expose, mfa]",
+      "triggers": "[\"module federation\", \"MFA\", \"cross-remote import\", \"exposes\", \"RemoteApp\", \"webpack alias collision\"]",
+      "source_project": "lucida-ui",
       "version": "0.1.0-draft",
-      "path": "frontend/zustand-preset-manager"
-    },
-    {
-      "name": "gacha-soft-hard-pity",
-      "description": "Server-authoritative gacha with soft pity (rate ramp after N pulls), hard pity (guaranteed top rarity at M pulls), and 50/50 guarantee carryover. Split rate calculation from result resolution so probability is testable.",
-      "category": "game-dev",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "game-dev/gacha-soft-hard-pity"
-    },
-    {
-      "name": "stateless-turn-combat-engine",
-      "description": "Turn-based combat as a pure function — `(state, action) → newState + events`. Speed-based turn order, deterministic damage, no hidden mutation. Makes combat unit-testable, replayable, and server-authoritative.",
-      "category": "game-dev",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "game-dev/stateless-turn-combat-engine"
-    },
-    {
-      "name": "status-effect-enum-system",
-      "description": "Model status effects (burn, stun, buff, debuff) as enum-tagged records attached to units, with per-turn tick logic split between application, duration decay, and removal. Keeps damage-over-time and crowd control uniform and testable.",
-      "category": "game-dev",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "game-dev/status-effect-enum-system"
-    },
-    {
-      "name": "react-native-android-emulator-localhost",
-      "description": "Use Platform.select to pick the right loopback host when a React Native dev build talks to a backend on the host machine — Android emulator needs 10.0.2.2, iOS simulator uses localhost.",
-      "category": "mobile",
-      "tags": "[react-native, android, emulator, localhost, 10.0.2.2, networking, dev-environment]",
-      "triggers": "[\"10.0.2.2\", \"Platform.select\", \"localhost:8080\", \"android emulator network\", \"React Native API base\", \"fetch failed\", \"Network request failed\"]",
-      "source_project": "webtoon_ai_project_with_wrapper",
-      "version": "0.1.0-draft",
-      "path": "mobile/react-native-android-emulator-localhost"
-    },
-    {
-      "name": "jwt-refresh-rotation-spring",
-      "description": "Spring Boot 3 JWT with short-lived access token + long-lived refresh token, filter-chain integration, and stateless session config. Avoids common mistakes that silently break refresh flows.",
-      "category": "security",
-      "tags": "",
-      "triggers": "",
-      "source_project": "veda-chronicles",
-      "version": "0.1.0-draft",
-      "path": "security/jwt-refresh-rotation-spring"
+      "path": "arch/module-federation-expose-wrapper"
     },
     {
       "name": "oauth-token-env-persistence",
@@ -488,24 +367,34 @@
       "path": "security/oauth-token-env-persistence"
     },
     {
-      "name": "async-subagent-resume-on-missing-artifact",
-      "description": "When an async subagent is reported \"completed\" but its final message hints at unfinished work (e.g., \"Now let me build…\"), verify the expected on-disk artifact before moving on; if missing, use SendMessage to the agent id to finalize rather than re-dispatching a fresh agent.",
-      "category": "workflow",
-      "tags": "[agents, async, verification, send-message]",
+      "name": "openapi-to-mcp-tag-grouping",
+      "description": "Convert OpenAPI specs into MCP tools by grouping operations under their OpenAPI tag, exposing one tool per tag with an operation selector and per-operation arguments.",
+      "category": "ai",
+      "tags": "[mcp, openapi, tool-design, schema, json-schema]",
       "triggers": "",
-      "scope": "user",
-      "version": "1.0.0",
-      "path": "workflow/async-subagent-resume-on-missing-artifact"
+      "source_project": "yamltomcp",
+      "version": "0.1.0-draft",
+      "path": "ai/openapi-to-mcp-tag-grouping"
     },
     {
-      "name": "bucket-parallel-java-annotation-dispatch",
-      "description": "For bulk Java annotation work (200+ @Operation methods across many controllers, or 500+ @Schema fields across many DTOs), dispatch N parallel executor subagents with disjoint file buckets. Leader runs a single compile at the end; agents never run gradle themselves.",
-      "category": "workflow",
-      "tags": "[parallel-agents, java, annotation, spring, swagger, gradle]",
-      "triggers": "",
-      "scope": "user",
+      "name": "opentelemetry-java-bootstrap",
+      "description": "Minimal OpenTelemetry bootstrap for a Java service — OTLP exporter, resource attributes, auto-instrumentation agent, and graceful shutdown. Covers the common setup mistakes that cause spans to silently drop.",
+      "category": "apm",
+      "tags": "[opentelemetry, otel, java, tracing, otlp, observability]",
+      "triggers": "[OpenTelemetry, OTEL, otel-javaagent, otlp, tracing setup, service.name, span exporter]",
+      "source_project": "manual",
       "version": "1.0.0",
-      "path": "workflow/bucket-parallel-java-annotation-dispatch"
+      "path": "apm/opentelemetry-java-bootstrap"
+    },
+    {
+      "name": "paired-flag-multi-instance-registration",
+      "description": "CLI pattern for registering N instances of a composite config (e.g. spec+baseUrl pairs) using repeated paired flags and a pending-state parser.",
+      "category": "cli",
+      "tags": "[argparse, cli-design, multi-instance, config]",
+      "triggers": "",
+      "source_project": "yamltomcp",
+      "version": "0.1.0-draft",
+      "path": "cli/paired-flag-multi-instance-registration"
     },
     {
       "name": "parallel-bulk-annotation",
@@ -514,6 +403,97 @@
       "scope": "user",
       "category": "workflow",
       "path": "workflow/parallel-bulk-annotation"
+    },
+    {
+      "name": "playwright-exception-advice",
+      "description": "Map PlaywrightException to a structured JSON error in Spring @ControllerAdvice, detecting common cases (cert errors, timeouts) and attaching actionable suggestions",
+      "category": "backend",
+      "tags": "[spring-boot, exception-handling, playwright, controller-advice]",
+      "triggers": "[\"ControllerAdvice playwright\", \"PlaywrightException spring\", \"ERR_CERT_AUTHORITY_INVALID\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "backend/playwright-exception-advice"
+    },
+    {
+      "name": "playwright-inspector-codegen",
+      "description": "Enable Playwright Inspector / codegen from a running Java app by setting PWDEBUG env vars before Playwright.create() and exposing an mvn codegen invocation for the user",
+      "category": "debug",
+      "tags": "[playwright, inspector, codegen, debugging, java]",
+      "triggers": "[\"PWDEBUG\", \"playwright inspector\", \"playwright codegen\", \"record selectors\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "debug/playwright-inspector-codegen"
+    },
+    {
+      "name": "playwright-java-dockerfile",
+      "description": "Multi-stage Dockerfile that builds a Java/Maven app in a JDK image and runs it on the official Playwright Java runtime image, avoiding manual browser installation",
+      "category": "devops",
+      "tags": "[docker, playwright, java, maven, multi-stage]",
+      "triggers": "[\"dockerfile playwright java\", \"mcr.microsoft.com/playwright/java\", \"playwright container\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "devops/playwright-java-dockerfile"
+    },
+    {
+      "name": "playwright-java-spring-lifecycle",
+      "description": "Share one Playwright+Browser instance across a Spring Boot app and create per-request BrowserContext/Page, cleaning up with try-with-resources and @PreDestroy",
+      "category": "backend",
+      "tags": "[playwright, spring-boot, java, lifecycle, browser]",
+      "triggers": "[\"playwright\", \"BrowserManager\", \"BrowserContext\", \"headless browser spring\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "backend/playwright-java-spring-lifecycle"
+    },
+    {
+      "name": "polymorphic-command-entities",
+      "description": "Expose a list of typed commands over JSON using Jackson @JsonTypeInfo + @JsonSubTypes so clients can submit executable scripts to a REST endpoint",
+      "category": "backend",
+      "tags": "[jackson, polymorphism, command-pattern, rest, java]",
+      "triggers": "[\"JsonTypeInfo\", \"JsonSubTypes\", \"command pattern json\", \"polymorphic deserialization\"]",
+      "source_project": "url-screenshot-java",
+      "version": "0.1.0-draft",
+      "path": "backend/polymorphic-command-entities"
+    },
+    {
+      "name": "react-native-android-emulator-localhost",
+      "description": "Use Platform.select to pick the right loopback host when a React Native dev build talks to a backend on the host machine — Android emulator needs 10.0.2.2, iOS simulator uses localhost.",
+      "category": "mobile",
+      "tags": "[react-native, android, emulator, localhost, 10.0.2.2, networking, dev-environment]",
+      "triggers": "[\"10.0.2.2\", \"Platform.select\", \"localhost:8080\", \"android emulator network\", \"React Native API base\", \"fetch failed\", \"Network request failed\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "mobile/react-native-android-emulator-localhost"
+    },
+    {
+      "name": "resource-provider-registry",
+      "description": "Spring DI plugin registry where @Component implementations of a typed interface are auto-discovered and looked up at runtime by a string type key",
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, plugin, registry, interface, component]",
+      "category": "arch",
+      "path": "arch/resource-provider-registry"
+    },
+    {
+      "name": "shared-package-only-cross-module",
+      "description": "Enforce a one-way dependency graph in a multi-module repo — sibling modules may only import from a single `shared/` package, never from each other. Prevents webpack alias collisions, keeps module boundaries enforceable, and makes build/deploy units independent.",
+      "category": "arch",
+      "tags": "[monorepo, module-boundaries, webpack, alias, micro-frontend, dependency-direction]",
+      "triggers": "[\"cross-module import\", \"cannot resolve @/\", \"alias collision\", \"webpack root\", \"monorepo boundaries\"]",
+      "source_project": "lucida-ui",
+      "version": "0.1.0-draft",
+      "path": "arch/shared-package-only-cross-module"
+    },
+    {
+      "name": "skill-md-validator",
+      "description": "SKILL.md frontmatter + 필수 섹션을 CRITICAL/WARNING 등급으로 검증하는 publish 전 품질 게이트.",
+      "category": "tooling",
+      "tags": "[claude-code, skill, validation, quality-gate]",
+      "triggers": "[\"skill-validate\", \"validate skill\", \"SKILL.md check\", \"publish gate\"]",
+      "source_project": "nkia-skills",
+      "version": "1.0.0",
+      "path": "tooling/skill-md-validator"
     },
     {
       "name": "skill-repo-bootstrap-architecture",
@@ -536,6 +516,58 @@
       "path": "workflow/slash-command-authoring"
     },
     {
+      "name": "spring-dual-profile-flyway",
+      "description": "Spring Boot dual-profile setup — H2 file-mode for dev (zero install, console enabled), PostgreSQL for prod — with Flyway managing DDL and JPA set to validate-only. The profile split that keeps local dev fast without drifting from prod schema.",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "backend/spring-dual-profile-flyway"
+    },
+    {
+      "name": "spring-mongo-lightweight-migration",
+      "description": "Annotation-driven MongoDB migration runner for Spring Boot — `@MongoMigration` methods on `MigrationScript` beans execute in order at startup, with history in `{prefix}_migrations` collection. No Mongock dependency.",
+      "category": "backend",
+      "tags": "[spring-boot, mongodb, migration, annotation-driven, idempotent]",
+      "triggers": "[\"mongo migration spring boot\", \"mongock 없이 마이그레이션\", \"annotation-based mongo migration\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-widget",
+      "path": "backend/spring-mongo-lightweight-migration"
+    },
+    {
+      "name": "spring-typed-config-properties",
+      "description": "Type-safe, nested `@ConfigurationProperties` pattern for Spring Boot — centralizes tunable constants (rate limits, formula coefficients, balance numbers) in YAML with a single injected POJO tree. Beats scattered `@Value` strings.",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "backend/spring-typed-config-properties"
+    },
+    {
+      "name": "springdoc-yaml-externalization",
+      "description": "Move long `@Operation description` and `@RequestBody examples` text out of Spring controllers into per-controller YAML files under `resources/api-docs/`, injected at runtime via a single `OperationCustomizer` bean. Swagger UI output unchanged.",
+      "category": "backend",
+      "tags": "[spring-boot, springdoc, openapi, swagger, yaml, refactor]",
+      "triggers": "[\"swagger externalize annotations\", \"move swagger description to yaml\", \"OperationCustomizer\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-widget",
+      "path": "backend/springdoc-yaml-externalization"
+    },
+    {
+      "name": "stable-horde-async-poll",
+      "description": "Submit-then-poll integration pattern for Stable Horde image generation — anonymous apikey, model fallback list, negative-prompt separator, bounded poll loop.",
+      "category": "ai",
+      "tags": "[stable-horde, image-generation, stable-diffusion, async, polling, anonymous-api]",
+      "triggers": "[\"stablehorde.net\", \"generate/async\", \"generate/status\", \"apikey 0000000000\", \"image generation\", \"Stable Horde\", \"horde\"]",
+      "source_project": "webtoon_ai_project_with_wrapper",
+      "version": "0.1.0-draft",
+      "path": "ai/stable-horde-async-poll"
+    },
+    {
       "name": "stale-persistent-context-detection",
       "description": "Detect and remove stale error snapshots that LLM tools inject via persistent-context files (CLAUDE.md, AGENTS.md, system prompts, memory) before chasing a fix. If the current source already compiles, the injected error is a ghost from a previous session, not a real bug.",
       "category": "workflow",
@@ -544,6 +576,26 @@
       "source_project": "skills-hub-setup-session",
       "version": "1.0.0",
       "path": "workflow/stale-persistent-context-detection"
+    },
+    {
+      "name": "stateless-turn-combat-engine",
+      "description": "Turn-based combat as a pure function — `(state, action) → newState + events`. Speed-based turn order, deterministic damage, no hidden mutation. Makes combat unit-testable, replayable, and server-authoritative.",
+      "category": "game-dev",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "game-dev/stateless-turn-combat-engine"
+    },
+    {
+      "name": "status-effect-enum-system",
+      "description": "Model status effects (burn, stun, buff, debuff) as enum-tagged records attached to units, with per-turn tick logic split between application, duration decay, and removal. Keeps damage-over-time and crowd control uniform and testable.",
+      "category": "game-dev",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "game-dev/status-effect-enum-system"
     },
     {
       "name": "swagger-ai-optimization",
@@ -564,6 +616,27 @@
       "path": "workflow/swagger-spec-baseline-from-git"
     },
     {
+      "name": "tenant-context-holder-propagation",
+      "description": "Set TenantContextHolder.INSTANCE.setTenantId(orgId) on the current thread so MongoDB tenant-isolated templates route queries correctly, always clearing in a finally block",
+      "triggers": "",
+      "scope": "user",
+      "source_project": "lucida-domain-sms",
+      "version": "0.1.0-draft",
+      "tags": "[spring, multi-tenant, threadlocal, mongodb, isolation]",
+      "category": "arch",
+      "path": "arch/tenant-context-holder-propagation"
+    },
+    {
+      "name": "tiered-rebalance-schedule",
+      "description": "Run three cadences against the same managed set — fast performance review, mid-frequency policy re-analysis, slow portfolio rebalance — each with its own trigger interval and mutation budget, so urgency scales with cost.",
+      "category": "arch",
+      "tags": "[scheduler, rebalance, tiers, cadence, cron, portfolio, lifecycle]",
+      "triggers": "[\"scheduleWithFixedDelay\", \"periodic review\", \"rebalance\", \"reanalysis interval\", \"tiered schedule\", \"performance review\", \"portfolio rebalance\"]",
+      "source_project": "kis-java-bundle",
+      "version": "0.1.0-draft",
+      "path": "arch/tiered-rebalance-schedule"
+    },
+    {
       "name": "x-filterable-fields-extraction",
       "description": "OpenAPI 스펙에 x-filterable-fields 확장을 자동 생성하는 파이프라인. lucida-ui gridColumnDefs + lucida-meta i18n properties를 조합하여 필드명/한국어 title/operators를 추출",
       "triggers": "",
@@ -572,47 +645,14 @@
       "path": "workflow/x-filterable-fields-extraction"
     },
     {
-      "name": "spring-mongo-lightweight-migration",
-      "description": "Annotation-driven MongoDB migration runner for Spring Boot — `@MongoMigration` methods on `MigrationScript` beans execute in order at startup, with history in `{prefix}_migrations` collection. No Mongock dependency.",
-      "category": "backend",
-      "tags": "[spring-boot, mongodb, migration, annotation-driven, idempotent]",
-      "triggers": "[\"mongo migration spring boot\", \"mongock 없이 마이그레이션\", \"annotation-based mongo migration\"]",
-      "scope": "user",
-      "version": "1.0.0",
-      "source_project": "lucida-widget",
-      "path": "backend/spring-mongo-lightweight-migration"
-    },
-    {
-      "name": "springdoc-yaml-externalization",
-      "description": "Move long `@Operation description` and `@RequestBody examples` text out of Spring controllers into per-controller YAML files under `resources/api-docs/`, injected at runtime via a single `OperationCustomizer` bean. Swagger UI output unchanged.",
-      "category": "backend",
-      "tags": "[spring-boot, springdoc, openapi, swagger, yaml, refactor]",
-      "triggers": "[\"swagger externalize annotations\", \"move swagger description to yaml\", \"OperationCustomizer\"]",
-      "scope": "user",
-      "version": "1.0.0",
-      "source_project": "lucida-widget",
-      "path": "backend/springdoc-yaml-externalization"
-    },
-    {
-      "name": "jwt-extraction-via-base-controller",
-      "description": "Consolidate repeated `JwtTokenService.getXxxFromBearerToken(headerAuthorization)` calls across Spring controllers by moving the service and helper methods onto a shared `BaseController`. Subclass controllers call `getOrganizationId(h)` / `getLoginId(h)` / `getRoleIds(h)` directly.",
-      "category": "backend",
-      "tags": "[spring-boot, jwt, controller, refactor, base-class]",
-      "triggers": "[\"jwt extraction controller duplication\", \"base controller jwt\", \"getXxxFromBearerToken 중복 제거\"]",
-      "scope": "user",
-      "version": "1.0.0",
-      "source_project": "lucida-widget",
-      "path": "backend/jwt-extraction-via-base-controller"
-    },
-    {
-      "name": "jacoco-exclude-boilerplate-layers",
-      "description": "Configure JaCoCo + SonarQube to exclude generated/boilerplate layers (avro, config, dto, entity, kafka, *Dev) from coverage so coverage % reflects business logic only",
-      "category": "backend",
-      "tags": "[jacoco, sonarqube, coverage, gradle, spring-boot, test, boilerplate]",
-      "triggers": "[\"jacoco\", \"sonarqube coverage\", \"jacocoTestReport\", \"coverage exclusion\", \"sonar.coverage.exclusions\", \"boilerplate coverage\"]",
-      "source_project": "lucida-topology",
-      "version": "1.0.0",
-      "path": "backend/jacoco-exclude-boilerplate-layers"
+      "name": "zustand-preset-manager",
+      "description": "Zustand + persist middleware pattern for managing N named presets (team comps, saved filters, dashboard layouts) with active-selection, max-count guard, and auto-reselect on delete.",
+      "category": "frontend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "veda-chronicles",
+      "version": "0.1.0-draft",
+      "path": "frontend/zustand-preset-manager"
     }
   ]
 }
