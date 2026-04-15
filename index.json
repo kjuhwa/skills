@@ -31,6 +31,16 @@
       "path": "workflow/async-subagent-resume-on-missing-artifact"
     },
     {
+      "name": "avro-event-with-change-flags",
+      "description": "Design Kafka Avro event schemas that carry an actionType enum plus boolean change flags per mutable section so consumers branch cheaply without diffing payloads.",
+      "category": "backend",
+      "tags": "[kafka, avro, event-sourcing, schema, change-flag]",
+      "triggers": "[\"parentChanged\", \"tagFiltersChanged\", \"actionType INSERT UPDATE DELETE\", \"Avro event schema\"]",
+      "source_project": "lucida-cm",
+      "version": "1.0.0",
+      "path": "backend/avro-event-change-flags"
+    },
+    {
       "name": "axios-refresh-queue-zustand",
       "description": "Axios response interceptor that intercepts 401, queues concurrent failed requests, refreshes the token once, and replays queued requests with the new token. Prevents thundering-herd refresh calls.",
       "category": "frontend",
@@ -81,6 +91,16 @@
       "path": "ai/character-sheet-multi-panel-consistency"
     },
     {
+      "name": "chunked-resource-id-batch-fetch",
+      "description": "Split large ID lists into ~1000-item chunks before querying DB or Elasticsearch to avoid bind-parameter limits (MSSQL 2100, Oracle 1000) and OOM on bulk responses.",
+      "category": "backend",
+      "tags": "[batch, chunk, jdbc, elasticsearch, terms-query, bind-parameter, oracle, mssql]",
+      "triggers": "[\"WHERE id IN\", \"bind parameter limit\", \"terms query too large\", \"batch fetch ids\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/chunked-resource-id-batch-fetch"
+    },
+    {
       "name": "claude-cli-from-jvm-via-node-wrapper",
       "description": "Shell out to the `claude` CLI from a JVM / Spring Boot app by going through a tiny Node.js wrapper that supplies the required empty stdin — the CLI hangs when invoked with a directly-inherited TTY-less stdin from ProcessBuilder.",
       "category": "ai",
@@ -122,6 +142,16 @@
       "path": "arch/definition-registry-helper-cache"
     },
     {
+      "name": "distributed-lock-mongodb",
+      "description": "MongoDB findAndModify-based distributed lock with TTL expiry, owner tagging, and retry loop for multi-instance Spring Boot services.",
+      "category": "backend",
+      "tags": "[mongodb, distributed-lock, mutex, spring-boot, multi-instance, ttl]",
+      "triggers": "[\"distributed lock\", \"mutex\", \"mongo lock\", \"cross-instance lock\"]",
+      "source_project": "lucida-meta",
+      "version": "1.0.0",
+      "path": "backend/distributed-lock-mongodb"
+    },
+    {
       "name": "domain-category-endpoint-registry",
       "description": "Organize a large vendor-API client (100s of endpoints) under a three-level `{domain}/{category}/{Action}{Entity}` package convention with a shared base class and a single `initializeEndpoints()` registry — scalable, greppable, and uniformly logged.",
       "category": "arch",
@@ -150,6 +180,16 @@
       "source_project": "nkia-skills",
       "version": "1.0.0",
       "path": "backend/dry-run-confirm-retry-write-flow"
+    },
+    {
+      "name": "elasticsearch-xpack-ssl-transport",
+      "description": "Gate PreBuiltXPackTransportClient vs PreBuiltTransportClient on the auth flag (not SSL flag) and configure keystore/truststore as independent X-Pack settings.",
+      "category": "backend",
+      "tags": "[elasticsearch, xpack, ssl, transport-client, keystore, truststore]",
+      "triggers": "[\"xpack.security.enable\", \"PreBuiltXPackTransportClient\", \"elasticsearch ssl\", \"es transport auth\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/elasticsearch-xpack-ssl-transport"
     },
     {
       "name": "enable-async-tenant-aware",
@@ -203,6 +243,16 @@
       "path": "arch/git-tag-registry-versioning"
     },
     {
+      "name": "gradle-shared-exclusions-jacoco-sonar",
+      "description": "Single ext.exclusionPatterns list reused across jacocoTestReport, jacocoTestCoverageVerification, and sonar properties to keep coverage exclusions synchronized.",
+      "category": "build",
+      "tags": "[gradle, jacoco, sonarqube, coverage, exclusions]",
+      "triggers": "[\"jacoco sonar exclusion drift\", \"shared exclusion patterns gradle\", \"querydsl Q class coverage\"]",
+      "source_project": "lucida-performance",
+      "version": "1.0.0",
+      "path": "build/gradle-shared-exclusions-jacoco-sonar"
+    },
+    {
       "name": "grid-filter-to-criteria-converter",
       "description": "Convert a UI grid filter DTO (gridFilters + tagFilters + pageable) to MongoDB Criteria using CriteriaMakeHelper, supporting equals/contains/greaterThan/inRange operators",
       "triggers": "",
@@ -212,6 +262,26 @@
       "tags": "[spring, mongodb, filter, criteria, pagination, grid]",
       "category": "backend",
       "path": "backend/grid-filter-to-criteria-converter"
+    },
+    {
+      "name": "hibernate-multi-dialect-swap",
+      "description": "Ship one WAR that connects to Oracle, PostgreSQL, MSSQL, Tibero, DB2, or MariaDB based on Spring profile — all JDBC drivers bundled, dialect and datasource resolved from externalized config.",
+      "category": "backend",
+      "tags": "[hibernate, jdbc, spring, multi-tenant, dialect, oracle, postgres, mssql, tibero, db2, mariadb]",
+      "triggers": "[\"hibernate dialect\", \"multi database\", \"swap rdbms\", \"customer deployment db\", \"spring.profiles.active\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/hibernate-multi-dialect-swap"
+    },
+    {
+      "name": "hierarchical-group-entity-mongo",
+      "description": "Model a tree-structured group entity in MongoDB with parentId + path + pathIds + level, plus recursive child-path update on move and cycle detection.",
+      "category": "backend",
+      "tags": "[mongodb, tree, hierarchy, breadcrumb, cycle-detection, move-reorder]",
+      "triggers": "[\"pathIds level parentId\", \"group tree move\", \"recursive child path update\", \"cycle detection hierarchy\"]",
+      "source_project": "lucida-cm",
+      "version": "1.0.0",
+      "path": "backend/hierarchical-group-entity"
     },
     {
       "name": "identifier-truncate-with-hash-suffix",
@@ -285,6 +355,16 @@
       "path": "security/jwt-refresh-rotation-spring"
     },
     {
+      "name": "k8s-health-via-getnodelist",
+      "description": "Use listNode() with readiness check for Kubernetes cluster health — getVersion() succeeds on degraded clusters that will fail real work.",
+      "category": "backend",
+      "tags": "[kubernetes, openshift, health-check, liveness, coreV1Api, listNode]",
+      "triggers": "[\"kubernetes health check\", \"cluster liveness\", \"getVersion unreliable\", \"listNode\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/k8s-health-via-getnodelist"
+    },
+    {
       "name": "kafka-consumer-tenant-fan-out",
       "description": "@KafkaListener pattern consuming a topicPattern across tenants, using a record header for tenant identity and routing to per-tenant downstream streams",
       "category": "backend",
@@ -356,6 +436,16 @@
       "path": "frontend/menu-key-config-registry"
     },
     {
+      "name": "message-loader-gated-on-database-ready",
+      "description": "Gate i18n/seed loading on database readiness + per-tenant distributed lock so the first instance wins initialization in a multi-replica rollout.",
+      "category": "backend",
+      "tags": "[multi-tenant, bootstrap, distributed-lock, readiness, seeding, kafka]",
+      "triggers": "[\"seed race\", \"multi-replica init\", \"tenant bootstrap\", \"first instance wins\"]",
+      "source_project": "lucida-meta",
+      "version": "1.0.0",
+      "path": "backend/message-loader-gated-on-database-ready"
+    },
+    {
       "name": "mfa-memoryrouter-isolation",
       "description": "Wrap Module Federation-exposed React components in `MemoryRouter` so they own a private router context instead of inheriting the host's — avoids cross-origin router errors in dev and keeps the remote's routes from leaking into the host URL bar.",
       "category": "frontend",
@@ -405,6 +495,37 @@
       "source_project": "lucida-ui",
       "version": "0.1.0-draft",
       "path": "arch/module-federation-expose-wrapper"
+    },
+    {
+      "name": "mongo-criteria-maker-elemmatch-and-or",
+      "description": "Compose dynamic Spring Data MongoDB Criteria with mixed AND/OR groups and elemMatch on tag-array fields using a stack-based builder.",
+      "category": "backend",
+      "tags": "[mongodb, spring-data, criteria, elemmatch, query-builder, and-or]",
+      "triggers": "[\"mongodb and or filter\", \"criteria elemmatch\", \"tag array query\", \"CriteriaMaker\"]",
+      "source_project": "lucida-performance",
+      "version": "1.0.0",
+      "path": "backend/mongo-criteria-maker-elemmatch-and-or"
+    },
+    {
+      "name": "multi-tenant-scheduler-iteration",
+      "description": "Skeleton for @Scheduled Spring jobs iterating every tenant in a database-per-tenant MongoDB setup — enumerate DBs, filter system ones, set TenantContextHolder per tenant inside try/finally, isolate per-tenant failures, emit a single summary log line.",
+      "category": "backend",
+      "tags": "[spring-boot, mongodb, multi-tenant, scheduled-job, tenant-context]",
+      "triggers": "[\"scheduled job multi tenant mongodb\", \"TenantContextHolder 스케줄러\", \"iterate every tenant database\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-snote",
+      "path": "backend/multi-tenant-scheduler-iteration"
+    },
+    {
+      "name": "netty-tcp-reconnect-backoff",
+      "description": "On Netty channelInactive/EOF/read-timeout, reconnect with exponential backoff (100ms to 30s cap), reset on success, keep SO_KEEPALIVE + TCP_NODELAY.",
+      "category": "backend",
+      "tags": "[netty, tcp, reconnect, backoff, keepalive, eof]",
+      "triggers": "[\"netty reconnect\", \"tcp socket drop\", \"channelInactive\", \"exponential backoff\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/netty-tcp-reconnect-backoff"
     },
     {
       "name": "oauth-token-env-persistence",
@@ -505,6 +626,16 @@
       "path": "backend/playwright-java-spring-lifecycle"
     },
     {
+      "name": "plugin-resource-provider-architecture",
+      "description": "Stable ResourceProvider SPI loaded via Spring component scan; each new device/resource type is a separate Gradle-module JAR packaged into the WAR — zero core edits.",
+      "category": "arch",
+      "tags": "[plugin, spi, spring, component-scan, gradle, war, extensibility]",
+      "triggers": "[\"plugin architecture\", \"ResourceProvider\", \"pluggable monitoring\", \"SPI discovery\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "arch/plugin-resource-provider-architecture"
+    },
+    {
       "name": "polymorphic-command-entities",
       "description": "Expose a list of typed commands over JSON using Jackson @JsonTypeInfo + @JsonSubTypes so clients can submit executable scripts to a REST endpoint",
       "category": "backend",
@@ -535,6 +666,16 @@
       "path": "backend/reactor-subscription-router-backpressure"
     },
     {
+      "name": "realtime-vs-polling-fallback",
+      "description": "Let each resource type declare supportsRealtime; scheduler runs push-mode at the realtime interval and falls back to a safe polling interval (e.g., 60s) otherwise.",
+      "category": "backend",
+      "tags": "[scheduler, realtime, polling, collector, fallback]",
+      "triggers": "[\"realtime fallback\", \"polling interval\", \"supportsRealtime\", \"collection scheduler\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/realtime-vs-polling-fallback"
+    },
+    {
       "name": "resource-provider-registry",
       "description": "Spring DI plugin registry where @Component implementations of a typed interface are auto-discovered and looked up at runtime by a string type key",
       "triggers": "",
@@ -554,6 +695,16 @@
       "source_project": "lucida-ui",
       "version": "0.1.0-draft",
       "path": "arch/shared-package-only-cross-module"
+    },
+    {
+      "name": "site-per-customer-override-modules",
+      "description": "One Gradle module per customer overrides core beans, auth, notification channels, and assets — keeps core customer-agnostic and scales to dozens of deployments.",
+      "category": "arch",
+      "tags": "[b2b, customization, gradle-module, spring, bean-override, multi-tenant]",
+      "triggers": "[\"per customer module\", \"site override\", \"b2b deployment\", \"bean override primary\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "arch/site-per-customer-override-modules"
     },
     {
       "name": "skill-md-validator",
@@ -586,6 +737,36 @@
       "path": "workflow/slash-command-authoring"
     },
     {
+      "name": "spring-applicationrunner-system-seed",
+      "description": "Use ApplicationRunner to seed required system/root records on startup, guarded by an exists-check and a systemFlag that blocks delete/move in service layer.",
+      "category": "backend",
+      "tags": "[spring-boot, ApplicationRunner, bootstrap, seed, system-record]",
+      "triggers": "[\"ApplicationRunner seed\", \"root default group auto create\", \"system record cannot delete\", \"startup initializer\"]",
+      "source_project": "lucida-cm",
+      "version": "1.0.0",
+      "path": "backend/system-data-initializer-runner"
+    },
+    {
+      "name": "spring-bootrun-local-dev-env-block",
+      "description": "Gradle bootRun environment block wiring local Redis/Mongo/Kafka/Eureka/MQTT so gradlew bootRun runs with zero IDE configuration and no committed application-local.yaml.",
+      "category": "build",
+      "tags": "[spring-boot, gradle, bootrun, local-dev, eureka, testcontainers]",
+      "triggers": "[\"gradle bootrun local\", \"disable eureka locally\", \"spring local dev env\"]",
+      "source_project": "lucida-performance",
+      "version": "1.0.0",
+      "path": "build/spring-bootrun-local-dev-env-block"
+    },
+    {
+      "name": "spring-data-mongo-repository-custom-split",
+      "description": "Standard 3-file split for MongoRepository — base interface, Custom interface for handwritten queries, Impl class backed by MongoTemplate — so complex queries live beside CRUD without breaking derived-query inference.",
+      "category": "backend",
+      "tags": "[spring-data-mongo, repository, custom-impl, MongoTemplate]",
+      "triggers": "[\"RepositoryCustom Impl split\", \"MongoTemplate complex query\", \"derived query plus aggregation\"]",
+      "source_project": "lucida-cm",
+      "version": "1.0.0",
+      "path": "backend/mongo-repository-custom-impl-split"
+    },
+    {
       "name": "spring-dual-profile-flyway",
       "description": "Spring Boot dual-profile setup — H2 file-mode for dev (zero install, console enabled), PostgreSQL for prod — with Flyway managing DDL and JPA set to validate-only. The profile split that keeps local dev fast without drifting from prod schema.",
       "category": "backend",
@@ -605,6 +786,26 @@
       "version": "1.0.0",
       "source_project": "lucida-widget",
       "path": "backend/spring-mongo-lightweight-migration"
+    },
+    {
+      "name": "spring-profile-datasource-activation",
+      "description": "Select DB/Hibernate/logging config at JVM startup via spring.profiles.active so one build ships to dev, test, and prod without branching in code.",
+      "category": "backend",
+      "tags": "[spring, profile, datasource, config.properties, jetty, tapestry]",
+      "triggers": "[\"spring.profiles.active\", \"one war multi env\", \"profile datasource\"]",
+      "source_project": "cygnus",
+      "version": "1.0.0",
+      "path": "backend/spring-profile-datasource-activation"
+    },
+    {
+      "name": "spring-testcontainers-multitenant-base",
+      "description": "Base test class that boots Testcontainers (Mongo + Kafka), pre-sets tenant/auth context, and forces JVM halt in AfterAll to avoid leaked containers.",
+      "category": "testing",
+      "tags": "[spring-boot, testcontainers, junit5, multi-tenant, tenant-context, mockitobean]",
+      "triggers": "[\"testcontainers\", \"base test\", \"tenant context test\", \"spring integration test\"]",
+      "source_project": "lucida-widget",
+      "version": "1.0.0",
+      "path": "testing/spring-testcontainers-multitenant-base"
     },
     {
       "name": "spring-typed-config-properties",
@@ -636,6 +837,16 @@
       "source_project": "webtoon_ai_project_with_wrapper",
       "version": "0.1.0-draft",
       "path": "ai/stable-horde-async-poll"
+    },
+    {
+      "name": "stack-parse-tag-filter-to-mongo-criteria",
+      "description": "Parse a tokenized boolean filter expression (key=value, AND, OR, parens) into a MongoDB Criteria tree using a shunting-yard/stack algorithm, with elemMatch for array-of-tag subdocs.",
+      "category": "backend",
+      "tags": "[mongodb, criteria, shunting-yard, parser, elemMatch, smart-group]",
+      "triggers": "[\"tag filter expression\", \"smart group criteria\", \"AND OR parens token\", \"elemMatch tag key value\"]",
+      "source_project": "lucida-cm",
+      "version": "1.0.0",
+      "path": "backend/stack-tag-filter-to-mongo-criteria"
     },
     {
       "name": "stale-persistent-context-detection",
@@ -717,6 +928,16 @@
       "path": "arch/tenant-context-holder-propagation"
     },
     {
+      "name": "tenant-isolated-mongo-collection",
+      "description": "Route each tenant to its own MongoDB collection via a custom annotation resolved at repository layer, so application code stays tenant-agnostic while isolation is enforced at the collection boundary.",
+      "category": "backend",
+      "tags": "[multi-tenant, mongodb, isolation, annotation, organizationId]",
+      "triggers": "[\"MongoDBIsolationCollection\", \"tenant collection routing\", \"organizationId per-method\", \"logical isolation mongo\"]",
+      "source_project": "lucida-cm",
+      "version": "1.0.0",
+      "path": "backend/tenant-isolated-mongo-collection"
+    },
+    {
       "name": "tiered-rebalance-schedule",
       "description": "Run three cadences against the same managed set — fast performance review, mid-frequency policy re-analysis, slow portfolio rebalance — each with its own trigger interval and mutation budget, so urgency scales with cost.",
       "category": "arch",
@@ -743,167 +964,6 @@
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "frontend/zustand-preset-manager"
-    },
-    {
-      "name": "distributed-lock-mongodb",
-      "description": "MongoDB findAndModify-based distributed lock with TTL expiry, owner tagging, and retry loop for multi-instance Spring Boot services.",
-      "category": "backend",
-      "tags": "[mongodb, distributed-lock, mutex, spring-boot, multi-instance, ttl]",
-      "triggers": "[\"distributed lock\", \"mutex\", \"mongo lock\", \"cross-instance lock\"]",
-      "source_project": "lucida-meta",
-      "version": "1.0.0",
-      "path": "backend/distributed-lock-mongodb"
-    },
-    {
-      "name": "message-loader-gated-on-database-ready",
-      "description": "Gate i18n/seed loading on database readiness + per-tenant distributed lock so the first instance wins initialization in a multi-replica rollout.",
-      "category": "backend",
-      "tags": "[multi-tenant, bootstrap, distributed-lock, readiness, seeding, kafka]",
-      "triggers": "[\"seed race\", \"multi-replica init\", \"tenant bootstrap\", \"first instance wins\"]",
-      "source_project": "lucida-meta",
-      "version": "1.0.0",
-      "path": "backend/message-loader-gated-on-database-ready"
-    },
-    {
-      "name": "spring-testcontainers-multitenant-base",
-      "description": "Base test class that boots Testcontainers (Mongo + Kafka), pre-sets tenant/auth context, and forces JVM halt in AfterAll to avoid leaked containers.",
-      "category": "testing",
-      "tags": "[spring-boot, testcontainers, junit5, multi-tenant, tenant-context, mockitobean]",
-      "triggers": "[\"testcontainers\", \"base test\", \"tenant context test\", \"spring integration test\"]",
-      "source_project": "lucida-widget",
-      "version": "1.0.0",
-      "path": "testing/spring-testcontainers-multitenant-base"
-    },
-    {
-      "name": "multi-tenant-scheduler-iteration",
-      "description": "Skeleton for @Scheduled Spring jobs iterating every tenant in a database-per-tenant MongoDB setup — enumerate DBs, filter system ones, set TenantContextHolder per tenant inside try/finally, isolate per-tenant failures, emit a single summary log line.",
-      "category": "backend",
-      "tags": "[spring-boot, mongodb, multi-tenant, scheduled-job, tenant-context]",
-      "triggers": "[\"scheduled job multi tenant mongodb\", \"TenantContextHolder 스케줄러\", \"iterate every tenant database\"]",
-      "scope": "user",
-      "version": "1.0.0",
-      "source_project": "lucida-snote",
-      "path": "backend/multi-tenant-scheduler-iteration"
-    },
-    {
-      "name": "mongo-criteria-maker-elemmatch-and-or",
-      "description": "Compose dynamic Spring Data MongoDB Criteria with mixed AND/OR groups and elemMatch on tag-array fields using a stack-based builder.",
-      "category": "backend",
-      "tags": "[mongodb, spring-data, criteria, elemmatch, query-builder, and-or]",
-      "triggers": "[\"mongodb and or filter\", \"criteria elemmatch\", \"tag array query\", \"CriteriaMaker\"]",
-      "source_project": "lucida-performance",
-      "version": "1.0.0",
-      "path": "backend/mongo-criteria-maker-elemmatch-and-or"
-    },
-    {
-      "name": "gradle-shared-exclusions-jacoco-sonar",
-      "description": "Single ext.exclusionPatterns list reused across jacocoTestReport, jacocoTestCoverageVerification, and sonar properties to keep coverage exclusions synchronized.",
-      "category": "build",
-      "tags": "[gradle, jacoco, sonarqube, coverage, exclusions]",
-      "triggers": "[\"jacoco sonar exclusion drift\", \"shared exclusion patterns gradle\", \"querydsl Q class coverage\"]",
-      "source_project": "lucida-performance",
-      "version": "1.0.0",
-      "path": "build/gradle-shared-exclusions-jacoco-sonar"
-    },
-    {
-      "name": "spring-bootrun-local-dev-env-block",
-      "description": "Gradle bootRun environment block wiring local Redis/Mongo/Kafka/Eureka/MQTT so gradlew bootRun runs with zero IDE configuration and no committed application-local.yaml.",
-      "category": "build",
-      "tags": "[spring-boot, gradle, bootrun, local-dev, eureka, testcontainers]",
-      "triggers": "[\"gradle bootrun local\", \"disable eureka locally\", \"spring local dev env\"]",
-      "source_project": "lucida-performance",
-      "version": "1.0.0",
-      "path": "build/spring-bootrun-local-dev-env-block"
-    },
-    {
-      "name": "hibernate-multi-dialect-swap",
-      "description": "Ship one WAR that connects to Oracle, PostgreSQL, MSSQL, Tibero, DB2, or MariaDB based on Spring profile — all JDBC drivers bundled, dialect and datasource resolved from externalized config.",
-      "category": "backend",
-      "tags": "[hibernate, jdbc, spring, multi-tenant, dialect, oracle, postgres, mssql, tibero, db2, mariadb]",
-      "triggers": "[\"hibernate dialect\", \"multi database\", \"swap rdbms\", \"customer deployment db\", \"spring.profiles.active\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "backend/hibernate-multi-dialect-swap"
-    },
-    {
-      "name": "spring-profile-datasource-activation",
-      "description": "Select DB/Hibernate/logging config at JVM startup via spring.profiles.active so one build ships to dev, test, and prod without branching in code.",
-      "category": "backend",
-      "tags": "[spring, profile, datasource, config.properties, jetty, tapestry]",
-      "triggers": "[\"spring.profiles.active\", \"one war multi env\", \"profile datasource\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "backend/spring-profile-datasource-activation"
-    },
-    {
-      "name": "elasticsearch-xpack-ssl-transport",
-      "description": "Gate PreBuiltXPackTransportClient vs PreBuiltTransportClient on the auth flag (not SSL flag) and configure keystore/truststore as independent X-Pack settings.",
-      "category": "backend",
-      "tags": "[elasticsearch, xpack, ssl, transport-client, keystore, truststore]",
-      "triggers": "[\"xpack.security.enable\", \"PreBuiltXPackTransportClient\", \"elasticsearch ssl\", \"es transport auth\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "backend/elasticsearch-xpack-ssl-transport"
-    },
-    {
-      "name": "realtime-vs-polling-fallback",
-      "description": "Let each resource type declare supportsRealtime; scheduler runs push-mode at the realtime interval and falls back to a safe polling interval (e.g., 60s) otherwise.",
-      "category": "backend",
-      "tags": "[scheduler, realtime, polling, collector, fallback]",
-      "triggers": "[\"realtime fallback\", \"polling interval\", \"supportsRealtime\", \"collection scheduler\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "backend/realtime-vs-polling-fallback"
-    },
-    {
-      "name": "chunked-resource-id-batch-fetch",
-      "description": "Split large ID lists into ~1000-item chunks before querying DB or Elasticsearch to avoid bind-parameter limits (MSSQL 2100, Oracle 1000) and OOM on bulk responses.",
-      "category": "backend",
-      "tags": "[batch, chunk, jdbc, elasticsearch, terms-query, bind-parameter, oracle, mssql]",
-      "triggers": "[\"WHERE id IN\", \"bind parameter limit\", \"terms query too large\", \"batch fetch ids\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "backend/chunked-resource-id-batch-fetch"
-    },
-    {
-      "name": "k8s-health-via-getnodelist",
-      "description": "Use listNode() with readiness check for Kubernetes cluster health — getVersion() succeeds on degraded clusters that will fail real work.",
-      "category": "backend",
-      "tags": "[kubernetes, openshift, health-check, liveness, coreV1Api, listNode]",
-      "triggers": "[\"kubernetes health check\", \"cluster liveness\", \"getVersion unreliable\", \"listNode\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "backend/k8s-health-via-getnodelist"
-    },
-    {
-      "name": "netty-tcp-reconnect-backoff",
-      "description": "On Netty channelInactive/EOF/read-timeout, reconnect with exponential backoff (100ms to 30s cap), reset on success, keep SO_KEEPALIVE + TCP_NODELAY.",
-      "category": "backend",
-      "tags": "[netty, tcp, reconnect, backoff, keepalive, eof]",
-      "triggers": "[\"netty reconnect\", \"tcp socket drop\", \"channelInactive\", \"exponential backoff\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "backend/netty-tcp-reconnect-backoff"
-    },
-    {
-      "name": "plugin-resource-provider-architecture",
-      "description": "Stable ResourceProvider SPI loaded via Spring component scan; each new device/resource type is a separate Gradle-module JAR packaged into the WAR — zero core edits.",
-      "category": "arch",
-      "tags": "[plugin, spi, spring, component-scan, gradle, war, extensibility]",
-      "triggers": "[\"plugin architecture\", \"ResourceProvider\", \"pluggable monitoring\", \"SPI discovery\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "arch/plugin-resource-provider-architecture"
-    },
-    {
-      "name": "site-per-customer-override-modules",
-      "description": "One Gradle module per customer overrides core beans, auth, notification channels, and assets — keeps core customer-agnostic and scales to dozens of deployments.",
-      "category": "arch",
-      "tags": "[b2b, customization, gradle-module, spring, bean-override, multi-tenant]",
-      "triggers": "[\"per customer module\", \"site override\", \"b2b deployment\", \"bean override primary\"]",
-      "source_project": "cygnus",
-      "version": "1.0.0",
-      "path": "arch/site-per-customer-override-modules"
     }
   ]
 }
