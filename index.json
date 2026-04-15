@@ -603,6 +603,17 @@
       "version": "1.0.0",
       "source_project": "lucida-widget",
       "path": "backend/jwt-extraction-via-base-controller"
+    },
+    {
+      "name": "multi-tenant-scheduler-iteration",
+      "description": "Skeleton for @Scheduled Spring jobs iterating every tenant in a database-per-tenant MongoDB setup — enumerate DBs, filter system ones, set TenantContextHolder per tenant inside try/finally, isolate per-tenant failures, emit a single summary log line.",
+      "category": "backend",
+      "tags": "[spring-boot, mongodb, multi-tenant, scheduled-job, tenant-context]",
+      "triggers": "[\"scheduled job multi tenant mongodb\", \"TenantContextHolder 스케줄러\", \"iterate every tenant database\"]",
+      "scope": "user",
+      "version": "1.0.0",
+      "source_project": "lucida-snote",
+      "path": "backend/multi-tenant-scheduler-iteration"
     }
   ]
 }
