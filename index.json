@@ -1975,7 +1975,7 @@
       "triggers": "[\"swagger ai 최적화\", \"openapi ai optimization\", \"MCP 연동 준비\", \"swagger operationId 전수 부여\", \"AI 이해도 테스트\"]",
       "scope": "user",
       "source_project": "",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "path": "workflow/swagger-ai-optimization"
     },
     {

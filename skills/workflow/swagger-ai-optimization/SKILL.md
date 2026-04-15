@@ -9,7 +9,7 @@ triggers:
   - AI 이해도 테스트
 scope: user
 category: workflow
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Swagger AI 최적화 워크플로우
@@ -37,6 +37,7 @@ Part A: 단일 프로젝트 최적화 (Phase 1~8)
   3. 구조 정리 — @Hidden, @SecurityScheme, operationId 전수
   4. 내용 보강 — description, @Parameter on @PathVariable, @ApiResponses
   5. DTO @Schema 전수 — description + example + format
+  5-B. ApiResponseData<Object> 제네릭 응답 타입 실체화 (아래 별도 섹션 참조)
   6. After spec 추출 + 26개 AI 이해도 테스트
   7. Marp PPT 보고서
   8. CI/Prune/Prompt Caching/MCP (필수)
@@ -47,6 +48,80 @@ Part B: x-filterable-fields 확장 (Phase 9~13)
  11. x-filterable-fields 생성 및 @Extension 적용
  12. 응답 DTO title + enum 불일치 정정
  13. 검증 + GridFilter 정확도 재테스트
+```
+
+## Phase 5-B: ApiResponseData<Object> 제네릭 응답 타입 실체화
+
+`public ApiResponseData<Object> xxx(...)` 시그니처는 Swagger 스펙에서 `data` 필드가 `Object`(빈 스키마)로 노출되어 AI Agent가 응답 구조를 추론할 수 없다. `ApiResponseData.createSuccess(X)` 의 `X` 실제 타입을 스펙에 노출해야 한다.
+
+### 선택지 비교
+
+| 방식 | 시그니처 | 장점 | 단점 |
+|------|----------|------|------|
+| **A. 시그니처 직접 변경** | `ApiResponseData<Object>` → `ApiResponseData<ActualType>` | 타입 안전성↑, springdoc가 자동 제네릭 스키마 생성, 보일러플레이트 0 | 컨트롤러/호출자 모두 영향, 연쇄 수정 필요 |
+| **B. 마커 서브클래스 + @ApiResponse** | 그대로 유지 | 런타임 동작 무변경 | 타입별 마커 클래스 수십 개 생성, `@ApiResponse(content=@Content(schema=@Schema(implementation=XXX.class)))` 전수 추가 |
+| **C. @Schema(implementation=T.class)만** | 그대로 유지 | 최소 변경 | `ApiResponseData` 래퍼 스키마 손실(T만 표시), 래퍼 구조 AI가 모름 |
+
+권장: **A → 연쇄 영향 허용되는 프로젝트**, **B → 런타임 시그니처 변경 금지 프로젝트**.
+
+### 공통 전제 조건 체크
+
+1. `ApiResponseData.createSuccess(...)` / `createFail(...)` 이 제네릭 메서드인지 확인 (`<T> ApiResponseData<T> createSuccess(T data)` 형태여야 양쪽 모두 가능).
+2. 컨트롤러 서로 호출하는 관계 파악 (방식 A 적용 시 연쇄 수정 대상). 예: `TestController` 같은 래퍼 컨트롤러가 다른 컨트롤러를 직접 호출.
+
+### 방식 A 실행 절차
+
+1. `grep -rn "public ApiResponseData<Object>" src/main/java/.../controller/` 로 전수 조사 → 파일별 건수 집계.
+2. **반드시 파일 단위로 순차 처리**. 병렬 에이전트가 서로 다른 파일을 같은 시점에 편집하고 각자 빌드를 돌리면, 나중에 완료된 에이전트가 앞선 에이전트의 변경을 race condition으로 덮어쓰는 사례가 실측됨. 에이전트 1개 또는 파일별 엄격 락 사용.
+3. 각 메서드 본문에서 `createSuccess(X)` 의 X 타입 추론 규칙:
+   - `boolean/Boolean` → `Boolean`
+   - `int/Integer/long/Long` → `Integer` / `Long`
+   - `String` → `String`
+   - `List<Foo>` / `Page<Foo>` / `Set<Foo>` → 동일
+   - `Map<String, Object>` → 그대로 (실질적 실체화 불가)
+   - DTO → 해당 DTO
+   - **분기별로 서로 다른 구체 타입 반환** → `Object` 유지 + `@Schema(oneOf=...)` 고려
+4. 메서드 시그니처만 Edit (본문/어노테이션/import 외 금지). 필요한 import 추가.
+5. 파일 1개 완료 시마다 `./gradlew compileJava` 빌드 검증. 실패 시 해당 파일만 조정. 성공 후 다음 파일.
+6. 호출자 컨트롤러(래퍼)는 마지막에 처리 — 호출 대상 시그니처가 확정된 뒤 맞춰 수정.
+
+### 방식 B 실행 절차
+
+1. `src/main/java/.../dto/swagger/` 에 마커 서브클래스 생성:
+   ```java
+   public class ApiResponseDataBoolean extends ApiResponseData<Boolean> {}
+   public class ApiResponseDataPageAgentInfoDto extends ApiResponseData<Page<AgentInfoDto>> {}
+   ```
+2. 각 메서드에 `@ApiResponse` 추가:
+   ```java
+   @ApiResponse(responseCode = "200",
+       content = @Content(schema = @Schema(implementation = ApiResponseDataBoolean.class)))
+   public ApiResponseData<Object> registerX(...) { ... }
+   ```
+3. 마커 클래스 수 폭증 주의 — 유니크 타입 집계 후 일괄 생성.
+4. 빌드 검증 동일.
+
+### 실측 주의사항 (Lucida 도메인 실전)
+
+- **병렬 에이전트 race condition**: 15개 컨트롤러 병렬 위임 시 일부 파일 변경이 소실됨. 반드시 순차 처리.
+- **Spring `PageImpl` 직렬화 경고**: `Page<T>` 반환 시 Jackson 경고가 뜨는 구조라면 이번 작업과 무관(기존부터 존재). 본 작업이 경고 유발 원인 아님을 확인.
+- **`ApiResponseData.createFail`만 있는 try-catch 분기**: 제네릭 inference로 빈 분기에서도 `ApiResponseData<ConcreteType>` 컴파일 통과.
+- **Swagger UI 캐시**: 변경 후 `springdoc` spec 재생성 경로(`/v3/api-docs`)로 확인. UI 페이지는 브라우저 캐시 제거 필요.
+
+### 검증 명령어
+
+```bash
+# Object 잔여 확인
+grep -rn "public ApiResponseData<Object>" src/main/java/**/controller/ | wc -l
+
+# 빌드
+./gradlew compileJava
+
+# After spec에서 data 스키마 확인
+python -c "import json; s=json.load(open('docs/swagger-after.json')); \
+  [print(p,m,r['content']['application/json']['schema']) \
+   for p,ms in s['paths'].items() for m,op in ms.items() \
+   for c,r in op.get('responses',{}).items() if c=='200']" | grep -c '"\$ref"'
 ```
 
 ## 핵심 실행 전략: 병렬 에이전트 분산
