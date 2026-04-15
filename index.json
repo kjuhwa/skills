@@ -61,6 +61,16 @@
       "path": "debug/build-error-triage"
     },
     {
+      "name": "cache-variance-ttl-jitter",
+      "description": "Add +/-N% random jitter to cache TTLs so keys written together do not all expire in the same tick, avoiding synchronized recompute storms",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/cache-variance-ttl-jitter"
+    },
+    {
       "name": "character-sheet-multi-panel-consistency",
       "description": "Keep a consistent character across multiple diffusion-model image generations by emitting a reusable \"character sheet\" description string from the LLM and prefixing it into every panel's image prompt.",
       "category": "ai",
@@ -142,6 +152,16 @@
       "path": "backend/dry-run-confirm-retry-write-flow"
     },
     {
+      "name": "enable-async-tenant-aware",
+      "description": "Place @EnableAsync on a dedicated @Configuration that extends a tenant-aware AsyncConfigurer, so tenant/MDC context propagates across the executor boundary",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/enable-async-tenant-aware"
+    },
+    {
       "name": "excel-export-enum-replacer",
       "description": "Use DataToBeReplace.builder() to map enum/code values to display labels before passing content to ExcelExportManager.objectToExcelAndDownload()",
       "triggers": "",
@@ -151,6 +171,16 @@
       "tags": "[spring, excel, export, enum, controller]",
       "category": "backend",
       "path": "backend/excel-export-enum-replacer"
+    },
+    {
+      "name": "feed-envelope-frame",
+      "description": "Uniform WebSocket payload wrapper with Type (ACK/SNAPSHOT/DELTA/ERROR), PayloadKind, and correlation requestId, including null-safe factory methods",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/feed-envelope-frame"
     },
     {
       "name": "gacha-soft-hard-pity",
@@ -204,6 +234,16 @@
       "path": "arch/immutable-action-event-log"
     },
     {
+      "name": "init-deadline-guard",
+      "description": "Watchdog that force-exits a Spring Boot service if startup initialization (external discovery, topic creation, warmup) does not complete within a deadline",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/init-deadline-guard"
+    },
+    {
       "name": "jacoco-exclude-boilerplate-layers",
       "description": "Configure JaCoCo + SonarQube to exclude generated/boilerplate layers (avro, config, dto, entity, kafka, *Dev) from coverage so coverage % reflects business logic only",
       "category": "backend",
@@ -243,6 +283,16 @@
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "security/jwt-refresh-rotation-spring"
+    },
+    {
+      "name": "kafka-consumer-tenant-fan-out",
+      "description": "@KafkaListener pattern consuming a topicPattern across tenants, using a record header for tenant identity and routing to per-tenant downstream streams",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/kafka-consumer-tenant-fan-out"
     },
     {
       "name": "kafka-message-header-metadata",
@@ -387,6 +437,16 @@
       "path": "apm/opentelemetry-java-bootstrap"
     },
     {
+      "name": "org-scoped-kafka-topic-bootstrap",
+      "description": "On-startup and on-event creation of per-tenant Kafka topics, with retention overrides per topic class and a service-readiness gate",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/org-scoped-kafka-topic-bootstrap"
+    },
+    {
       "name": "paired-flag-multi-instance-registration",
       "description": "CLI pattern for registering N instances of a composite config (e.g. spec+baseUrl pairs) using repeated paired flags and a pending-state parser.",
       "category": "cli",
@@ -463,6 +523,16 @@
       "source_project": "webtoon_ai_project_with_wrapper",
       "version": "0.1.0-draft",
       "path": "mobile/react-native-android-emulator-localhost"
+    },
+    {
+      "name": "reactor-subscription-router-backpressure",
+      "description": "Per-session, per-destination Reactor Flux router with bounded buffer + DROP_LATEST backpressure and automatic cleanup on session disconnect",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/reactor-subscription-router-backpressure"
     },
     {
       "name": "resource-provider-registry",
@@ -596,6 +666,26 @@
       "source_project": "veda-chronicles",
       "version": "0.1.0-draft",
       "path": "game-dev/status-effect-enum-system"
+    },
+    {
+      "name": "stomp-cookie-auth-handshake",
+      "description": "Authenticate STOMP WebSocket upgrade using an HttpOnly cookie extracted during the handshake, then bind identity to the STOMP session",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/stomp-cookie-auth-handshake"
+    },
+    {
+      "name": "stomp-principal-jwt-channel",
+      "description": "STOMP ChannelInterceptor that validates a JWT on CONNECT and binds a multi-tenant Principal (orgId + userId + sessionId) for downstream routing",
+      "category": "backend",
+      "tags": "",
+      "triggers": "",
+      "source_project": "lucida-realtime",
+      "version": "1.0.0",
+      "path": "backend/stomp-principal-jwt-channel"
     },
     {
       "name": "swagger-ai-optimization",
