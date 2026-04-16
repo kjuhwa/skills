@@ -218,6 +218,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [lb-traffic-flow](lb-traffic-flow/) | Lb Traffic Flow — auto-generated load-balancer tool | html, css, vanilla-js | 2026-04-16 |
 
+| [queue-monitor-dashboard](queue-monitor-dashboard/) | Queue Monitor Dashboard — auto-generated message-queue tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

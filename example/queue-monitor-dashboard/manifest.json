@@ -1,0 +1,12 @@
+{
+  "slug": "queue-monitor-dashboard",
+  "title": "Queue Monitor Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T14:45:00.812Z",
+  "source_project": "101-queue-monitor-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}
