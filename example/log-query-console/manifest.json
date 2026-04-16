@@ -1,0 +1,12 @@
+{
+  "slug": "log-query-console",
+  "title": "Log Query Console",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:30:45.176Z",
+  "source_project": "102-log-query-console",
+  "author": "kjuhwa@nkia.co.kr"
+}
