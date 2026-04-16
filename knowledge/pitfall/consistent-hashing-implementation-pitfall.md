@@ -1,6 +1,6 @@
 ---
 name: consistent-hashing-implementation-pitfall
-description: Virtual node count, hash function bias, and wrap-around bugs silently destroy consistent-hashing load balance
+description: Common correctness and distribution pitfalls when implementing consistent hashing rings and virtual nodes
 category: pitfall
 tags:
   - consistent
@@ -9,8 +9,8 @@ tags:
 
 # consistent-hashing-implementation-pitfall
 
-The single most common bug is too few virtual nodes. With 1 vnode per physical node and 10 nodes, load variance routinely exceeds 3x — one node gets 45% of keys, another gets 3%. The fix is 100–200 vnodes per physical node (Cassandra uses 256, Dynamo uses ~128). Below 50 vnodes the ring is visibly lumpy in any honest visualizer; above 500 the sorted ring becomes slow to mutate on node churn. Default to 150 and expose the slider so users can see variance collapse as vnodes grow — this is both a real production tuning knob and the clearest teaching moment.
+The most frequent bug is **weak hash function choice** for vnode labels. Developers often hash `nodeId + ":" + i` with a simple `string.hashCode()` or `sum of charCodes`, which clusters vnodes for adjacent `i` values into nearby ring positions, producing severe load skew. Always use a proper avalanche-property hash (MurmurHash3, xxHash, SHA-1 truncated to 32 bits) and hash the full composite string — not the node id plus an offset — so that vnode[i] and vnode[i+1] are statistically independent positions on the ring.
 
-The second pitfall is hash function choice. `hashCode()` in JVM, `string.GetHashCode()` in .NET, and naive `sum(charCodes) % 2^32` all cluster badly — adjacent vnode ids like `node-a:0`, `node-a:1`, `node-a:2` end up at nearby angles, so one physical node owns a huge contiguous arc instead of scattered slivers. Use murmur3, xxhash, or FNV-1a (not cryptographic SHA — it's slow and the uniformity win is negligible here). Always hash the full `nodeId + ":" + vnodeIndex` string, never just concatenate numeric offsets to a base hash.
+The second pitfall is **ring wraparound handling in lookup**. When searching for the first vnode with `hash >= keyHash`, if none exists (key hash falls past the last vnode), the lookup must wrap to index 0 — not return null or the last vnode. A binary search upper_bound followed by `idx % vnodes.length` is the canonical fix. Forgetting this causes a "dead arc" at the top of the ring where keys get misassigned or dropped entirely; it only manifests when keys hash into the narrow band above the maximum vnode hash, so test coverage often misses it until production.
 
-The third pitfall is the clockwise-wrap edge case. When a key's hash is greater than every vnode hash on the ring, lookup must wrap to the smallest vnode (index 0 of the sorted array), not return null or the last vnode. Off-by-one here causes ~1/N of keys to be misrouted, and because it only affects the highest-hashed keys the bug hides in averages — load distribution looks fine, but specific keys silently move to the wrong node on every lookup. Always unit-test with a key whose hash is deliberately above `max(vnodeHashes)` and assert it lands on the first vnode after wrap.
+The third pitfall is **too few virtual nodes**. With 1–10 vnodes per physical node, standard deviation of load can exceed 30% of the mean even for uniform keys — consistent hashing alone does not guarantee balance. The empirical rule is 100–200 vnodes per physical node to get variance under ~5%. Also beware that vnode count cannot be changed for an existing node without rehashing its entire key set, so pick a sufficiently high value upfront rather than scaling it later. Finally, removing a node must delete *all* its vnodes atomically before any key lookups re-run; a half-updated ring will route keys to a ghost node and fail silently until the next read.
