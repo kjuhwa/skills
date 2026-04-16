@@ -1,0 +1,12 @@
+{
+  "slug": "circuit-breaker-race",
+  "title": "Circuit Breaker Race",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:44:45.173Z",
+  "source_project": "102-circuit-breaker-race",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Circuit Race</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>⚡ Circuit Race — Break the Loop</h1>
+    <div class="score">Score: <b id="score">0</b> · Best: <b id="best">0</b></div>
+  </header>
+  <canvas id="game" width="720" height="420"></canvas>
+  <div class="hud">
+    <div>Health: <b id="hp">100</b></div>
+    <div>Breakers Tripped: <b id="trips">0</b></div>
+    <div>Speed: <b id="speed">1.0x</b></div>
+  </div>
+  <p class="hint">Move mouse to steer the electron. Hit <span class="ok">green caps</span> for energy. Avoid <span class="err">red faults</span>. Click <span class="warn">yellow breakers</span> to reset damage!</p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
