@@ -1,6 +1,6 @@
 ---
 name: graphql-visualization-pattern
-description: Canvas-based rendering pattern for GraphQL schema graphs, query ASTs, and subscription event streams
+description: Visualizing GraphQL operations (queries, schemas, subscriptions) through interactive node-graph and live-feed UIs
 category: design
 triggers:
   - graphql visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # graphql-visualization-pattern
 
-GraphQL data structures are inherently graph-shaped (schemas with type relationships, queries as nested selection trees, subscriptions as temporal event streams), so visualization apps benefit from a three-layer rendering pattern: (1) a parser layer that converts GraphQL SDL/query strings into a normalized node-edge model using `graphql-js` `parse()` and `buildSchema()`, (2) a layout layer that applies force-directed positioning for schema graphs or hierarchical tree layout for query ASTs, and (3) an SVG or Canvas draw layer with pan/zoom via viewBox manipulation. For the schema visualizer, each `ObjectTypeDefinition` becomes a node card listing fields; edges connect when a field's type references another object type (including through `NonNullType` and `ListType` wrappers that must be unwrapped recursively).
+GraphQL's strength is its introspectable, typed, hierarchical nature — so visualizations should exploit that structure rather than treat operations as opaque text. For a query builder, render the schema as a collapsible tree where each field exposes its type, arguments, and nullability, and let the user toggle selection nodes that compile into a valid selection set in a live preview pane. For a schema grapher, draw types as nodes and field-references as directed edges (object→object, interface→implementer, union→member), with arrow style encoding list/non-null modifiers and edge color encoding relationship kind. For a subscription feed, render each pushed payload as a timestamped card keyed by subscription root field, with a running delta indicator showing which fields changed since the previous event.
 
-For the query playground, render the selection set as a collapsible tree where each `Field` node shows its arguments, directives (`@include`, `@skip`), and nested selections — this makes fragment spreads and inline fragments visually distinct by using dashed borders or color coding. For the subscription monitor, use a time-axis scrolling lane per active subscription where each incoming `data` payload becomes a pill positioned by arrival timestamp, with payload size encoded as pill width and error events rendered in a separate error lane below.
+The unifying pattern is **schema-derived layout**: never hand-author the visualization structure — derive it from an introspection result (`__schema`) or a parsed SDL AST. This lets the same component render any GraphQL endpoint and auto-adapts when the schema evolves. Use a left-rail type/field picker, a center canvas for the graph or builder, and a right-rail detail panel showing the selected node's description, directives, and deprecation reason. Force-directed layout works for schema graphs <200 types; above that, switch to a cluster-by-module or collapsible-by-namespace view to avoid hairballs.
 
-The shared primitive across all three is a `GraphQLNode` component that accepts `{ kind, name, meta, children }` and delegates rendering based on `kind` (`OBJECT_TYPE`, `FIELD`, `EVENT`, `FRAGMENT`). This lets the three apps share ~60% of rendering code while specializing the parser and layout layers per domain.
+Keep rendering concerns orthogonal to GraphQL semantics: the visualization layer should consume a normalized `{nodes, edges, metadata}` shape produced by a separate schema-parser module. That separation lets you swap the renderer (SVG, Canvas, react-flow, d3) without touching introspection code, and lets you unit-test schema parsing against fixture SDL files independently of DOM.
