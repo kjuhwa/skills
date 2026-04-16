@@ -1,0 +1,12 @@
+{
+  "slug": "retry-strategy-visualizer",
+  "title": "Retry Strategy Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:53:44.457Z",
+  "source_project": "84-retry-strategy-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}
