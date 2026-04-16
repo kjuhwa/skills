@@ -1,0 +1,12 @@
+{
+  "slug": "etl-dashboard",
+  "title": "Etl Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:25:41.429Z",
+  "source_project": "65-etl-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

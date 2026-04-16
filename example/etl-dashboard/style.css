@@ -1,0 +1,16 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;padding:20px}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:16px;text-align:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:860px;margin:0 auto}
+.card{background:#1a1d27;border-radius:10px;padding:16px;border:1px solid #ffffff10}
+.card h2{font-size:.85rem;color:#6ee7b7;margin-bottom:10px}
+#chart-card{grid-column:1/3}
+canvas{width:100%;height:180px}
+#job-list{list-style:none;font-size:.8rem;max-height:200px;overflow-y:auto}
+#job-list li{padding:6px 0;border-bottom:1px solid #ffffff08;display:flex;justify-content:space-between}
+.tag{padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:600}
+.tag.ok{background:#6ee7b722;color:#6ee7b7}
+.tag.fail{background:#f8717122;color:#f87171}
+.tag.run{background:#f59e0b22;color:#f59e0b}
+.kpi{text-align:center}
+.big{font-size:2.2rem;font-weight:700;color:#6ee7b7;margin:8px 0 2px}

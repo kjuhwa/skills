@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETL Job Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>📊 ETL Job Dashboard</h1>
+<div class="grid">
+  <div class="card" id="chart-card"><canvas id="chart"></canvas></div>
+  <div class="card" id="jobs"><h2>Recent Jobs</h2><ul id="job-list"></ul></div>
+  <div class="card kpi"><h2>Throughput</h2><div class="big" id="tput">0</div><small>rows/sec</small></div>
+  <div class="card kpi"><h2>Success Rate</h2><div class="big" id="rate">0%</div><small>last 24h</small></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
