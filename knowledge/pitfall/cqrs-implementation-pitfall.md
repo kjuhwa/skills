@@ -1,6 +1,6 @@
 ---
 name: cqrs-implementation-pitfall
-description: Common CQRS mistakes: sync projections, shared models, non-idempotent handlers, missing version checks
+description: Treating CQRS as "just split read/write DBs" and ignoring projector idempotency, ordering, and rebuild cost.
 category: pitfall
 tags:
   - cqrs
@@ -9,8 +9,8 @@ tags:
 
 # cqrs-implementation-pitfall
 
-The most frequent CQRS pitfall in demo and production code alike is **synchronous projection** — updating the read model inside the command handler's transaction. This silently reintroduces all the coupling CQRS was meant to eliminate: the write path now blocks on read-model schema changes, failures in the projector bring down writes, and the illusion of separation hides that there is really only one model. The fix is a real queue or event log between command handler and projector, even in a toy app; otherwise you are building CRUD with extra classes.
+The most common CQRS failure is adopting separate read and write stores without engineering the projection layer as a first-class system. Teams assume events will "just be applied" and discover too late that projectors must be idempotent (events can be redelivered), ordering-aware (out-of-order events corrupt derived state), and resumable from a durable checkpoint. A projector that stores no offset cannot recover from a crash without a full replay, and a full replay against a multi-year event log can take hours — during which the read model is stale or unavailable.
 
-A second trap is **shared domain objects** between command and query sides. If the same `User` class is used for both writes and reads, every read-optimization (denormalized fields, precomputed aggregates) pollutes the write model's invariants, and every write-side invariant (required fields, value objects) bloats read DTOs. Keep the two type hierarchies separate from day one — `UserAggregate` on the write side, `UserView`/`UserSummary` on the read side — even when they start identical.
+A second pitfall is leaking write-side concerns into queries, or vice versa: running aggregate validation against the read model (which is eventually consistent, so the check is unsound), or letting queries trigger writes to "refresh" a projection. Either pattern collapses the separation CQRS exists to provide. The fix is strict: commands mutate only the write model, queries read only from projections, and staleness is either tolerated or addressed with a read-your-writes token returned by the command API.
 
-Third, **non-idempotent projection handlers** break under event replay and at-least-once redelivery. For event-sourced-counter, a handler that does `counter += 1` on an `Incremented` event will double-count if the event is replayed during projector restart. Always include an event version/offset in the read model and skip events whose version is ≤ the last-applied version. Related: forgetting **optimistic concurrency checks** (expected aggregate version) on the command side lets two concurrent commands both succeed against a stale aggregate and emit conflicting events that the projector cannot reconcile.
+The third trap is snapshot neglect in event-sourced variants. Without periodic snapshots, aggregate hydration cost grows linearly with history, and rebuild time for new projections becomes prohibitive. Snapshots must be versioned alongside event schemas, because an event payload migration invalidates every snapshot taken under the old shape — teams that forget this ship a "fast" rebuild that silently reconstructs state from a schema that no longer matches the code.
