@@ -35,6 +35,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [object-storage-galaxy](object-storage-galaxy/) | Object Storage Galaxy — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
 
+| [auto-hub-loop](auto-hub-loop/) | Hub Auto-Loop Dashboard — automated pipeline with web dashboard for generating, publishing, and learning | node, html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
