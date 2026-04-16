@@ -1,0 +1,8 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: system-ui, sans-serif; padding: 20px; }
+h1 { font-size: 15px; color: #6ee7b7; margin-bottom: 16px; text-align: center; }
+svg { display: block; margin: 0 auto; }
+.metrics { display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 13px; }
+.metrics .m { background: #1a1d27; padding: 10px 18px; border-radius: 8px; border: 1px solid #2a2d37; text-align: center; }
+.metrics .m .val { font-size: 22px; color: #6ee7b7; font-weight: bold; }
+.metrics .m .lbl { color: #565f89; font-size: 11px; margin-top: 2px; }
