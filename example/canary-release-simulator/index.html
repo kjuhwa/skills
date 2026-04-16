@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canary Flock Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🐤 Canary Flock Simulator</h1>
+<p class="sub">Each dot is a server. <span class="green">Green</span> = stable, <span class="yellow">Yellow</span> = canary. Click to infect neighbours.</p>
+<div id="controls">
+  <button id="stepBtn">Step (+5%)</button>
+  <button id="autoBtn">Auto-Roll</button>
+  <button id="resetBtn">Reset</button>
+  <span id="info">0 / 100 canary</span>
+</div>
+<canvas id="c" width="760" height="420"></canvas>
+<script src="app.js"></script>
+</body>
+</html>
