@@ -1,0 +1,12 @@
+{
+  "slug": "circuit-breaker-flow",
+  "title": "Circuit Breaker Flow",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:50:23.647Z",
+  "source_project": "101-circuit-breaker-flow",
+  "author": "kjuhwa@nkia.co.kr"
+}
