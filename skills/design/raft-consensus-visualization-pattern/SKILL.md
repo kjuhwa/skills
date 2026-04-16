@@ -1,6 +1,6 @@
 ---
 name: raft-consensus-visualization-pattern
-description: Multi-panel visualization pattern for rendering Raft cluster state with node roles, term numbers, and log entries
+description: Multi-panel layout for visualizing Raft consensus state across leader election, log replication, and term progression
 category: design
 triggers:
   - raft consensus visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # raft-consensus-visualization-pattern
 
-Raft consensus visualizations should use a cluster-topology layout where each node is rendered as a circular badge showing its current role (Follower/Candidate/Leader) via color coding — typically gray for followers, yellow for candidates, and green for leaders. Arrange nodes in a radial or grid pattern so that RPC arrows (RequestVote, AppendEntries) can be drawn between them without crossing. Each node badge must surface three critical state fields simultaneously: currentTerm, votedFor, and commitIndex, because these are the fields operators inspect when diagnosing split votes or stale leaders.
+Raft consensus visualizations should be organized around three synchronized panels that reflect the protocol's core mechanics: a cluster topology view showing nodes colored by role (Leader=gold, Follower=blue, Candidate=orange), a log/term timeline showing per-node state history, and an event stream showing RPC messages (RequestVote, AppendEntries) flowing between nodes. Each node should display its current term, votedFor, commitIndex, and lastApplied as a compact state card, with role transitions animated via color morphing rather than abrupt swaps so viewers can trace the causal chain.
 
-Pair the topology view with a synchronized log-replication panel that renders each node's log as a horizontal strip of indexed entries, color-coded by term. Committed entries should be visually distinct (solid fill) from uncommitted entries (striped or outlined), and the leader's matchIndex/nextIndex pointers should be drawn as markers above each follower's log strip. Use an election-timeout countdown ring around each follower node to make timer expiry visible — this is the single most important signal for understanding why elections trigger.
+Message flow must be rendered as directional arrows with explicit RPC type labels and acknowledgment status — failed/timed-out RPCs shown as dashed red lines, successful quorum acknowledgments as solid green. For leader election specifically, highlight the split-vote and majority-win scenarios with a vote-tally ring around each candidate. For log replication, use a horizontal log strip per node with matched indices aligned vertically, so divergence between leader and followers is visually obvious (mismatched entries highlighted, truncation points marked).
 
-For the quiz variant, overlay interactive hotspots on node badges and log entries so learners can click to inspect state at each simulation step. Always include a term-history timeline at the bottom that advances monotonically — regressing term numbers are the clearest signal of a visualization bug and should be impossible by construction.
+Term timelines should be the anchor axis — a horizontal band at the top showing term boundaries, election timeouts, and leader tenure per term. All three panels share this timeline via a playhead cursor, so scrubbing shows simultaneous state across topology, logs, and events. Speed controls (0.25x–4x) and step-forward buttons let viewers pause at critical moments like election timeout expiry, vote granting, or commit index advancement.
