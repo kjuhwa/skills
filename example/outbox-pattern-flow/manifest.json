@@ -1,0 +1,12 @@
+{
+  "slug": "outbox-pattern-flow",
+  "title": "Outbox Pattern Flow",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:00:29.327Z",
+  "source_project": "100-outbox-pattern-flow",
+  "author": "kjuhwa@nkia.co.kr"
+}
