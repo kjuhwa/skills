@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Chat Swarm</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Chat Swarm <span class="sub">— visualizing live WS broadcasts</span></h1>
+    <div id="userCount">0 users</div>
+  </header>
+  <div class="stage">
+    <svg id="canvas" viewBox="0 0 800 500"></svg>
+  </div>
+  <div class="chat">
+    <div id="feed"></div>
+    <form id="form">
+      <input id="input" placeholder="Type a message and press Enter..." autocomplete="off">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
