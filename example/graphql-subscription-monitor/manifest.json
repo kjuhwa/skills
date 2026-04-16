@@ -1,0 +1,12 @@
+{
+  "slug": "graphql-subscription-monitor",
+  "title": "Graphql Subscription Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:20:08.778Z",
+  "source_project": "102-graphql-subscription-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
