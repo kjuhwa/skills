@@ -1,0 +1,12 @@
+{
+  "slug": "schema-compatibility-matrix",
+  "title": "Schema Compatibility Matrix",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:21:20.711Z",
+  "source_project": "102-schema-compatibility-matrix",
+  "author": "kjuhwa@nkia.co.kr"
+}

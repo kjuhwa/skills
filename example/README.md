@@ -192,6 +192,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [canary-release-dashboard](canary-release-dashboard/) | Canary Release Dashboard — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
 
+| [schema-compatibility-matrix](schema-compatibility-matrix/) | Schema Compatibility Matrix — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
