@@ -1,6 +1,6 @@
 ---
 name: health-check-data-simulation
-description: Generating realistic health-check sample streams with failure modes, flapping, and recovery curves for dev/demo
+description: Generate realistic health-check sample streams with correlated failures, flapping, and recovery curves for demos and tests
 category: workflow
 triggers:
   - health check data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # health-check-data-simulation
 
-Production health-check data is rare in dev environments, so simulate it with a deterministic generator seeded per-subsystem. Each subsystem gets a state machine with four modes: `healthy` (values jitter around a mean well below threshold), `degrading` (linear or exponential drift toward threshold), `failing` (values pinned above threshold with noise), and `recovering` (decay back toward healthy with occasional bounces). Transitions are probabilistic per tick with configurable dwell times, which produces the realistic "amber for a while, then red, then slowly back to green" shapes that make visualizations believable.
+Real health-check data has structure that random booleans don't capture: failures cluster (a downed load balancer takes 5 dependent services with it), flapping is bursty (a service near a memory limit oscillates up/down every few probes before dying for good), and recovery is rarely instant (latency stays elevated for minutes after a restart). Simulate by modeling each probe as a small state machine with states `healthy → degrading → down → recovering → healthy` and per-state dwell-time distributions, then couple probes via a dependency graph so an upstream `down` biases downstream transitions toward `degrading`.
 
-Build the simulator as a tick function emitting one sample per subsystem per interval (default 5s), with a scenario file that declares initial states and scheduled events: `{ at: '+30s', subsystem: 'database', mode: 'failing' }`, `{ at: '+2m', subsystem: 'database', mode: 'recovering' }`. This lets demos reliably reproduce the same incident story across radar/vitals/timeline apps. Include a "flapping" mode that oscillates pass/fail at configurable frequency — essential for testing that timeline views don't alias and that alerting logic debounces correctly.
+Seed each scenario deterministically (scenario name → PRNG seed) so a demo labelled "cascading-db-failure" produces the same sequence every run — reviewers and tests need reproducibility. Inject three canonical scenarios every health-check demo should ship with: **steady-state green** (baseline, no failures), **single-probe flap** (isolates UI behavior on oscillation), and **cascading outage** (exercises the aggregate banner and dependency visualization). Latency values should be drawn from a log-normal distribution, not uniform — real p99 tails are what stress the layout.
 
-Persist a rolling buffer (e.g. last 24h at 5s resolution ≈ 17k samples per subsystem) in memory or IndexedDB so timeline zoom-out works without regenerating history. Expose a `speed` knob (1x/10x/60x) so a 2-hour scenario can be demoed in 2 minutes. Keep the generator framework-agnostic — ship it as a plain function so radar/vitals/timeline can each import it and render their own lens over identical data.
+Tick the simulator at a rate decoupled from wall-clock (e.g. 10 simulated probes per real second for demos, 1:1 for tests) and emit each sample through the same ingestion path the real probes use. If the sim bypasses the ingestion pipeline, the UI is effectively untested.

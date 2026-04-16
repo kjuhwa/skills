@@ -1,6 +1,6 @@
 ---
 name: health-check-visualization-pattern
-description: Multi-perspective health-check dashboards combining radar spread, vital gauges, and temporal timeline views
+description: Dashboard layout pattern for rendering heterogeneous health-check signals into a single at-a-glance status surface
 category: design
 triggers:
   - health check visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # health-check-visualization-pattern
 
-Health-check visualization works best when three complementary lenses are offered together rather than forcing one chart to carry every signal. A radar view maps subsystems (CPU, memory, disk, network, dependencies, queue depth) to axes so an operator instantly sees which dimensions are degrading relative to healthy baselines — the polygon's shape is the diagnostic, not any single value. A vitals view reduces each subsystem to a large, color-banded gauge or stat tile (green/amber/red thresholds) optimized for at-a-glance triage on wall displays. A timeline view stacks per-check status bars against wall-clock time so flapping, correlated outages, and recovery windows become obvious.
+Health-check UIs (service-pulse-monitor, vital-signs-checkup, network-health-radar) converge on a three-zone layout: a top aggregate banner showing overall system verdict (healthy / degraded / down) driven by the worst-state child, a middle grid of per-probe cards (HTTP endpoint, TCP port, DNS, TLS expiry, disk, memory), and a bottom timeline strip showing the last N probe results as a sparkline of colored ticks. Each card exposes four fixed fields regardless of probe type: name, last-checked timestamp, latency, and status pill — this uniformity is what lets a radar-style grid, a medical-chart-style checkup view, and a pulse/heartbeat view all share the same underlying component.
 
-The reusable pattern is to share one normalized health-sample schema across all three views: `{ checkId, subsystem, status: 'pass'|'warn'|'fail', value, threshold, timestamp, latencyMs }`. Each visualization is a pure render over the same stream, which keeps color semantics, thresholds, and subsystem naming consistent as operators switch lenses. Radar renders the latest sample per subsystem; vitals renders latest + trend arrow from the previous sample; timeline renders a rolling window (default 15 min, zoomable to 24h).
+Color semantics must be decoupled from the probe type. Use a single status enum (`up`, `degraded`, `down`, `unknown`) with a central color map, and let each probe translate its raw output (HTTP 2xx, ping RTT threshold, cert days-remaining) into that enum at the edge. This keeps the visualization layer probe-agnostic and makes adding a new probe (e.g. Kafka broker reachability) a matter of writing a translator, not touching the renderer. Reserve `unknown` (gray) for "probe hasn't run yet" — conflating it with `down` (red) causes false-alarm fatigue on cold start.
 
-Layout convention: radar top-left for shape-recognition, vitals top-right as the "is-it-on-fire" strip, timeline as a full-width bottom band because time needs horizontal real estate. Always expose a hover/click interaction that cross-highlights the same subsystem across all three panels — this is what makes the multi-view worth more than any single chart.
+For the timeline strip, render fixed-width ticks rather than time-proportional bars: a missed probe is visually identical in width to a successful one, which makes gaps in collection obvious and prevents a single slow probe from visually dominating the history. Always anchor the rightmost tick as "now" and scroll left as new samples arrive.
