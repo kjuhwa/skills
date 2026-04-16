@@ -432,6 +432,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [bloom-filter-username-check](bloom-filter-username-check/) | Bloom Filter Username Check — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
 
+| [cdc-replay-theater](cdc-replay-theater/) | Cdc Replay Theater — auto-generated cdc tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

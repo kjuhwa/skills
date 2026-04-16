@@ -1,0 +1,12 @@
+{
+  "slug": "cdc-replay-theater",
+  "title": "Cdc Replay Theater",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:16:48.122Z",
+  "source_project": "101-cdc-replay-theater",
+  "author": "kjuhwa@nkia.co.kr"
+}

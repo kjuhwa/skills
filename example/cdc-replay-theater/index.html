@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CDC Replay Theater</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <h1>CDC Replay</h1>
+    <p class="sub">Time-travel through change events</p>
+    <div class="controls">
+      <button id="rewind">⏮</button>
+      <button id="playPause">▶</button>
+      <button id="forward">⏭</button>
+      <label>Speed <select id="speed"><option>0.5</option><option selected>1</option><option>2</option><option>4</option></select></label>
+    </div>
+    <div class="pos">
+      <span id="cur">0</span> / <span id="tot">0</span>
+    </div>
+    <input type="range" id="scrub" min="0" max="0" value="0">
+  </aside>
+  <main>
+    <section class="table-view">
+      <h2>Table: customers</h2>
+      <table>
+        <thead><tr><th>id</th><th>name</th><th>email</th><th>balance</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+    <section class="event-view">
+      <h2>Current Event</h2>
+      <pre id="detail">— idle —</pre>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

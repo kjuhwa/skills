@@ -1,0 +1,23 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e2e8f0; font-family: system-ui, sans-serif; min-height: 100vh; }
+.shell { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+aside { background: #1a1d27; padding: 24px; border-right: 1px solid #262a36; }
+aside h1 { color: #6ee7b7; font-size: 22px; margin-bottom: 4px; }
+.sub { color: #64748b; font-size: 12px; margin-bottom: 24px; }
+.controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.controls button { background: #0f1117; color: #6ee7b7; border: 1px solid #262a36; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+.controls button:hover { background: #6ee7b7; color: #0f1117; }
+.controls label { font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 6px; }
+.controls select { background: #0f1117; color: #e2e8f0; border: 1px solid #262a36; padding: 4px; border-radius: 4px; }
+.pos { font-family: 'Consolas', monospace; color: #6ee7b7; font-size: 14px; margin-bottom: 8px; }
+#scrub { width: 100%; accent-color: #6ee7b7; }
+main { padding: 24px; display: grid; grid-template-rows: 1fr auto; gap: 18px; }
+section { background: #1a1d27; border: 1px solid #262a36; border-radius: 8px; padding: 20px; }
+section h2 { color: #94a3b8; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+table { width: 100%; border-collapse: collapse; font-family: 'Consolas', monospace; font-size: 13px; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #262a36; }
+th { color: #a5b4fc; font-weight: 500; }
+tr.hl-ins { background: rgba(110, 231, 183, 0.1); }
+tr.hl-upd { background: rgba(251, 191, 36, 0.1); }
+tr.hl-del { background: rgba(248, 113, 113, 0.15); text-decoration: line-through; color: #94a3b8; }
+#detail { font-family: 'Consolas', monospace; font-size: 12px; color: #e2e8f0; white-space: pre-wrap; background: #0f1117; padding: 14px; border-radius: 6px; min-height: 120px; border: 1px solid #262a36; }
