@@ -1,0 +1,12 @@
+{
+  "slug": "api-version-traffic",
+  "title": "Api Version Traffic",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:30:41.397Z",
+  "source_project": "102-api-version-traffic",
+  "author": "kjuhwa@nkia.co.kr"
+}

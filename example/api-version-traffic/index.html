@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Version Traffic Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="dashboard">
+  <header>
+    <h1>Version Traffic Monitor</h1>
+    <div class="live"><span class="dot"></span> LIVE</div>
+  </header>
+  <div class="grid">
+    <div class="card chart-card">
+      <h2>Requests per second by version</h2>
+      <canvas id="chart" width="800" height="300"></canvas>
+    </div>
+    <div class="card">
+      <h2>Version Share</h2>
+      <div id="shares"></div>
+    </div>
+    <div class="card">
+      <h2>Sunset Alerts</h2>
+      <ul id="alerts"></ul>
+    </div>
+    <div class="card">
+      <h2>Top Clients on Deprecated APIs</h2>
+      <table id="clients"><thead><tr><th>Client</th><th>Version</th><th>RPS</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
