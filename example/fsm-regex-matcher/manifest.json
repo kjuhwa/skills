@@ -1,0 +1,12 @@
+{
+  "slug": "fsm-regex-matcher",
+  "title": "Fsm Regex Matcher",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:22:39.027Z",
+  "source_project": "102-fsm-regex-matcher",
+  "author": "kjuhwa@nkia.co.kr"
+}

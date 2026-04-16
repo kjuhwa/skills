@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSM Regex Matcher</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>FSM Regex Step-Through</h1>
+<p class="sub">Visualize how a finite-state machine matches a pattern against input</p>
+<div class="main">
+  <div class="input-area">
+    <label>Pattern<select id="pattern">
+      <option value="ab+c">ab+c</option>
+      <option value="a(b|c)d">a(b|c)d</option>
+      <option value="ab?c">ab?c</option>
+    </select></label>
+    <label>Input<input id="input" value="abbc" spellcheck="false"></label>
+    <button id="step">Step →</button>
+    <button id="reset">Reset</button>
+    <div id="result"></div>
+  </div>
+  <canvas id="cv" width="600" height="260"></canvas>
+  <div class="tape" id="tape"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
