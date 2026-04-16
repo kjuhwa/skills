@@ -354,6 +354,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [jwt-token-inspector](jwt-token-inspector/) | Jwt Token Inspector — auto-generated oauth tool | html, css, vanilla-js | 2026-04-16 |
 
+| [api-gateway-latency-dashboard](api-gateway-latency-dashboard/) | Api Gateway Latency Dashboard — auto-generated api-gateway-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

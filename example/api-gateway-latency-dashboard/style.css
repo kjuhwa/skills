@@ -1,0 +1,30 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#e5e7eb;font-family:ui-sans-serif,system-ui,sans-serif;min-height:100vh}
+.dash{max-width:1100px;margin:0 auto;padding:22px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+h1{color:#6ee7b7;font-size:20px;letter-spacing:0.5px}
+.legend{display:flex;gap:14px;font-size:12px;color:#9ca3af}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.kpi{background:#1a1d27;border:1px solid #252836;border-radius:10px;padding:14px}
+.kpi .label{font-size:11px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px}
+.kpi .val{font-size:26px;color:#6ee7b7;margin-top:4px;font-family:ui-monospace,monospace}
+.kpi .delta{font-size:11px;margin-top:4px}
+.kpi .delta.up{color:#f87171}
+.kpi .delta.down{color:#6ee7b7}
+.panel{background:#1a1d27;border:1px solid #252836;border-radius:10px;padding:16px;margin-bottom:14px}
+.panel h2{font-size:12px;color:#6ee7b7;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+canvas{width:100%;height:220px;display:block}
+.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.grid .panel{margin-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:12px;font-family:ui-monospace,monospace}
+th{text-align:left;color:#9ca3af;font-weight:500;padding:6px 8px;border-bottom:1px solid #252836;font-size:11px;text-transform:uppercase}
+td{padding:7px 8px;border-bottom:1px solid #1f222e}
+td.bad{color:#f87171}
+#breakers{list-style:none}
+#breakers li{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#0f1117;border-radius:6px;margin-bottom:6px;font-size:12px;font-family:ui-monospace,monospace;border-left:3px solid #6ee7b7}
+#breakers li.open{border-color:#f87171}
+#breakers li.half{border-color:#fbbf24}
+.badge{padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;background:#6ee7b7;color:#0f1117}
+.badge.open{background:#f87171}
+.badge.half{background:#fbbf24}
