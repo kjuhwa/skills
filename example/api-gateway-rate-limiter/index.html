@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Gateway Rate Limiter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>API Gateway :: Token-Bucket Rate Limiter</h1>
+  <p class="sub">Watch the gateway throttle clients whose bucket is empty.</p>
+  <div class="clients" id="clients"></div>
+  <div class="panel">
+    <label>Bucket Capacity: <input type="range" id="cap" min="3" max="20" value="8"><span id="capV">8</span></label>
+    <label>Refill / sec: <input type="range" id="refill" min="1" max="10" value="3"><span id="refV">3</span></label>
+    <button id="resetBtn">Reset</button>
+  </div>
+  <div class="stats">
+    <div><span id="acc">0</span><br><small>accepted</small></div>
+    <div><span id="rej">0</span><br><small>rejected 429</small></div>
+    <div><span id="rps">0</span><br><small>req/sec</small></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

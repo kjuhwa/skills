@@ -444,6 +444,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [canary-release-conductor](canary-release-conductor/) | Canary Release Conductor — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
 
+| [api-gateway-rate-limiter](api-gateway-rate-limiter/) | Api Gateway Rate Limiter — auto-generated api-gateway-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

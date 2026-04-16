@@ -1,0 +1,12 @@
+{
+  "slug": "api-gateway-rate-limiter",
+  "title": "Api Gateway Rate Limiter",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:37:40.658Z",
+  "source_project": "101-api-gateway-rate-limiter",
+  "author": "kjuhwa@nkia.co.kr"
+}
