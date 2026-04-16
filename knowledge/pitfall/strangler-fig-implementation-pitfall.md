@@ -1,6 +1,6 @@
 ---
 name: strangler-fig-implementation-pitfall
-description: Dual-write state drift and route-decision caching that silently breaks the migration
+description: Common failure modes when implementing strangler-fig migrations that visualizations must surface
 category: pitfall
 tags:
   - strangler
@@ -9,8 +9,8 @@ tags:
 
 # strangler-fig-implementation-pitfall
 
-The most common strangler-fig pitfall is treating dual-write as fire-and-forget: writes go to both legacy and modern, but reconciliation isn't monitored. Within days the two stores drift (different timestamps, missing rows from transient failures, different null-handling), and when you finally cut reads over to modern, users see stale or missing data. Always pair dual-write with a continuous diff job that samples reads from both sides and alerts on divergence — and block the read cutover until divergence is below a threshold for N consecutive days, not just "once."
+The most dangerous pitfall is treating "100% traffic on new service" as "migration complete" and deleting legacy code immediately. There is almost always a hidden consumer — a batch job, an internal admin tool, a cron, or a downstream service with cached endpoint URLs — that bypasses the facade. Retiring legacy too early causes silent data loss or 3am incidents. Enforce a mandatory soak period (typically 2–4 weeks at 100%) with legacy kept warm and logging any incoming calls, and surface "legacy still receiving N requests/day" as a blocking metric in any strangler-fig dashboard.
 
-A second pitfall is caching the route decision in the facade. For performance, teams cache "endpoint X → modern" in-memory or in Redis, but then a rollback event doesn't propagate — some pods keep routing to the broken modern service. Route decisions must either be read fresh per-request from a fast config store (feature-flag service, etcd) or be invalidated via pub/sub on every migration event. Never TTL-cache them for more than a few seconds.
+A second pitfall is the facade becoming permanent. Teams add the proxy, migrate 60-80% of capabilities, and then the remaining tail sits forever because the hard ones were deferred. The facade itself accrues logic (auth translation, request shaping, header munging) and becomes a third system to maintain. Visualizations should track "age of oldest unmigrated capability" and "lines of code in facade" as leading indicators of stalled migrations — if facade complexity grows faster than legacy shrinks, the pattern has degenerated into permanent API gateway.
 
-Third: migration order chosen by engineering convenience rather than blast radius. Teams migrate the easiest endpoints first to build momentum, which is fine, but they skip load-testing the facade under the *final* traffic mix. The facade becomes the bottleneck precisely when the last high-traffic endpoint cuts over, and rollback at that point is painful because the legacy side has atrophied. Load-test the facade at projected end-state traffic before starting, not after.
+A third pitfall is data-layer coupling: teams strangle the application tier but both services share the legacy database, making true independence impossible. A strangler-fig migration is not complete until the data store is also migrated, which is typically 3–10× harder than the code migration. Surface per-capability "data migration status" separately from "traffic migration status" — they are independent axes and collapsing them hides the real work remaining.
