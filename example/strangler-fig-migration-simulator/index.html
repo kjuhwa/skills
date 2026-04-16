@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Strangler Fig Migration Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Strangler Fig Migration Simulator</h1>
+  <p class="sub">Gradually replace the legacy monolith, route-by-route.</p>
+</header>
+<main>
+  <section class="panel">
+    <div class="controls">
+      <button id="stepBtn">Strangle Next Route</button>
+      <button id="autoBtn">Auto-Run</button>
+      <button id="resetBtn">Reset</button>
+      <label><input type="range" id="speed" min="200" max="2000" value="800"> Speed</label>
+    </div>
+    <div class="stats">
+      <div><span id="legacyCount">10</span><small>Legacy</small></div>
+      <div><span id="newCount">0</span><small>New</small></div>
+      <div><span id="progress">0%</span><small>Migrated</small></div>
+      <div><span id="rps">0</span><small>req/s (new)</small></div>
+    </div>
+  </section>
+  <section class="grid">
+    <div class="col">
+      <h2>Legacy Monolith</h2>
+      <ul id="legacyList"></ul>
+    </div>
+    <div class="col">
+      <h2>Strangler Proxy</h2>
+      <canvas id="flow" width="320" height="420"></canvas>
+    </div>
+    <div class="col">
+      <h2>New Services</h2>
+      <ul id="newList"></ul>
+    </div>
+  </section>
+  <section class="log">
+    <h2>Migration Log</h2>
+    <ul id="log"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
