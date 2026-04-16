@@ -482,6 +482,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [strangler-fig-vine-grower](strangler-fig-vine-grower/) | Strangler Fig Vine Grower — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
 
+| [strangler-fig-route-router](strangler-fig-route-router/) | Strangler Fig Route Router — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

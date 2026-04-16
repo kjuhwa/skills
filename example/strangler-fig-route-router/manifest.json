@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-route-router",
+  "title": "Strangler Fig Route Router",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T22:19:50.557Z",
+  "source_project": "102-strangler-fig-route-router",
+  "author": "kjuhwa@nkia.co.kr"
+}

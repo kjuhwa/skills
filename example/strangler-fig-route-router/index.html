@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Strangler Fig Route Router</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Strangler Fig Route Router</h1>
+  <p>Configure traffic split per endpoint. Watch live request flow.</p>
+</header>
+<div class="layout">
+  <section class="routes">
+    <h2>Routes</h2>
+    <div id="routeList"></div>
+    <button id="addRoute">+ Add Route</button>
+  </section>
+  <section class="viz">
+    <h2>Live Traffic</h2>
+    <canvas id="traffic" width="520" height="360"></canvas>
+    <div class="totals">
+      <div>Total <span id="total">0</span></div>
+      <div class="legacy">Legacy <span id="totalLegacy">0</span></div>
+      <div class="new">New <span id="totalNew">0</span></div>
+      <div>Errors <span id="errors">0</span></div>
+    </div>
+  </section>
+  <section class="chart">
+    <h2>Throughput (last 30s)</h2>
+    <canvas id="chart" width="520" height="180"></canvas>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
