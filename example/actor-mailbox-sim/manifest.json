@@ -1,0 +1,12 @@
+{
+  "slug": "actor-mailbox-sim",
+  "title": "Actor Mailbox Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:54:34.071Z",
+  "source_project": "100-actor-mailbox-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Actor Mailbox Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Actor Mailbox Simulator</h1>
+    <p>Watch messages flow between isolated actors with their own mailboxes.</p>
+  </header>
+  <main>
+    <div class="controls">
+      <button id="send">Send Message</button>
+      <button id="burst">Burst (10)</button>
+      <button id="pause">Pause</button>
+      <button id="reset">Reset</button>
+      <label>Speed <input type="range" id="speed" min="1" max="10" value="5"></label>
+    </div>
+    <canvas id="stage" width="900" height="520"></canvas>
+    <aside id="log"></aside>
+  </main>
+<script src="app.js"></script>
+</body>
+</html>
