@@ -1,0 +1,36 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#e5e7eb;font-family:-apple-system,Segoe UI,sans-serif;min-height:100vh}
+.sim{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+.sidebar{background:#1a1d27;border-right:1px solid #2a2f3d;padding:24px 20px;display:flex;flex-direction:column;gap:16px}
+.sidebar h1{font-size:20px;color:#6ee7b7;line-height:1.2}
+.sidebar h1 span{color:#e5e7eb;font-size:14px;font-weight:400}
+.desc{color:#9ca3af;font-size:12px;line-height:1.5}
+.knobs label{display:block;font-size:12px;color:#9ca3af;margin-bottom:12px}
+.knobs label span{float:right;color:#6ee7b7;font-family:monospace}
+.knobs input{width:100%;margin-top:6px;accent-color:#6ee7b7}
+.thresholds{background:#0f1117;border:1px solid #2a2f3d;border-radius:8px;padding:12px;font-size:12px;color:#9ca3af}
+.thresholds h3{color:#fbbf24;font-size:12px;margin-bottom:8px}
+.thresholds div{margin:4px 0}
+.thresholds b{color:#e5e7eb;font-family:monospace}
+#reset{margin-top:auto;background:#2a2f3d;color:#e5e7eb;border:none;padding:10px;border-radius:6px;cursor:pointer}
+#reset:hover{background:#374151}
+main{padding:24px;display:flex;flex-direction:column;gap:20px}
+.pods{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pod-group{background:#1a1d27;border:1px solid #2a2f3d;border-radius:10px;padding:16px}
+.pod-group h3{font-size:13px;color:#9ca3af;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.pod-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.pod{aspect-ratio:1;border-radius:4px;background:#374151;position:relative;transition:.3s}
+.pod.healthy{background:#60a5fa}
+.pod.canary-healthy{background:#6ee7b7;box-shadow:0 0 6px rgba(110,231,183,.5)}
+.pod.warn{background:#fbbf24;animation:pulse 1s infinite}
+.pod.bad{background:#ef4444;animation:pulse .5s infinite}
+@keyframes pulse{50%{opacity:.5}}
+.charts{background:#1a1d27;border:1px solid #2a2f3d;border-radius:10px;padding:16px}
+canvas{width:100%;height:240px}
+.status{background:#1a1d27;border:1px solid #2a2f3d;border-radius:10px;padding:16px;display:flex;align-items:center;gap:16px}
+.status-badge{padding:8px 16px;border-radius:6px;font-weight:700;font-size:13px;letter-spacing:.5px}
+.status-badge.ok{background:rgba(110,231,183,.2);color:#6ee7b7}
+.status-badge.warn{background:rgba(251,191,36,.2);color:#fbbf24}
+.status-badge.bad{background:rgba(239,68,68,.2);color:#fca5a5}
+.status-msg{color:#d1d5db;font-size:13px}
+@media(max-width:900px){.sim{grid-template-columns:1fr}.pods{grid-template-columns:1fr}}

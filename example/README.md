@@ -478,6 +478,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [schema-registry-graph](schema-registry-graph/) | Schema Registry Graph — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
 
+| [canary-health-simulator](canary-health-simulator/) | Canary Health Simulator — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

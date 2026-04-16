@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Canary Health Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sim">
+  <aside class="sidebar">
+    <h1>Canary<br><span>Health Simulator</span></h1>
+    <p class="desc">Inject faults into the canary build and watch the auto-rollback guardrails decide its fate.</p>
+    <div class="knobs">
+      <label>Error Injection <span id="errVal">0%</span>
+        <input type="range" id="errInj" min="0" max="30" value="0" step="0.5">
+      </label>
+      <label>Latency Injection <span id="latVal">0ms</span>
+        <input type="range" id="latInj" min="0" max="500" value="0">
+      </label>
+      <label>CPU Pressure <span id="cpuVal">20%</span>
+        <input type="range" id="cpuInj" min="10" max="100" value="20">
+      </label>
+    </div>
+    <div class="thresholds">
+      <h3>Guardrails</h3>
+      <div>Error budget: <b>&lt; 2%</b></div>
+      <div>p95 latency: <b>&lt; 300ms</b></div>
+      <div>CPU: <b>&lt; 85%</b></div>
+    </div>
+    <button id="reset">Reset Canary</button>
+  </aside>
+  <main>
+    <div class="pods">
+      <div class="pod-group">
+        <h3>Stable fleet</h3>
+        <div class="pod-grid" id="stablePods"></div>
+      </div>
+      <div class="pod-group">
+        <h3>Canary fleet</h3>
+        <div class="pod-grid" id="canaryPods"></div>
+      </div>
+    </div>
+    <div class="charts">
+      <canvas id="chart" width="720" height="240"></canvas>
+    </div>
+    <div class="status" id="status">
+      <div class="status-badge ok" id="badge">HEALTHY</div>
+      <div class="status-msg" id="msg">Canary meets all guardrails · promoting in 4m 30s</div>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

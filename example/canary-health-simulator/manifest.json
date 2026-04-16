@@ -1,0 +1,12 @@
+{
+  "slug": "canary-health-simulator",
+  "title": "Canary Health Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T22:16:04.183Z",
+  "source_project": "102-canary-health-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
