@@ -1,0 +1,12 @@
+{
+  "slug": "crdt-counter-cluster",
+  "title": "Crdt Counter Cluster",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:34:27.302Z",
+  "source_project": "100-crdt-counter-cluster",
+  "author": "kjuhwa@nkia.co.kr"
+}
