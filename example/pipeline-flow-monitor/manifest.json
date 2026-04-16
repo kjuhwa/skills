@@ -1,0 +1,12 @@
+{
+  "slug": "pipeline-flow-monitor",
+  "title": "Pipeline Flow Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:10:53.749Z",
+  "source_project": "96-pipeline-flow-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
