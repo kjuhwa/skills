@@ -1,6 +1,6 @@
 ---
 name: chaos-engineering-data-simulation
-description: Generate deterministic synthetic telemetry for chaos experiments including fault propagation, SLO burn, and recovery curves
+description: Generating realistic fault-injection scenarios, blast radii, and recovery curves without a real cluster
 category: workflow
 triggers:
   - chaos engineering data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # chaos-engineering-data-simulation
 
-Chaos engineering demos need synthetic data that feels real without requiring actual production traffic. Use a **three-phase generator** seeded with a fixed RNG for reproducibility: (1) **steady-state baseline** — generate 5–10 minutes of normal p50/p95/p99 latencies and error rates per service using a lognormal distribution (μ=log(baseline_ms), σ=0.3), with error rate sampled from Beta(α=2, β=200) to get realistic ~1% noise. (2) **fault injection phase** — when the experiment starts at t=T₀, apply a fault-specific transform: latency faults multiply p99 by a factor drawn from a ramp function (linear rise over 10s, plateau, linear fall), error-rate faults shift the Beta distribution toward Beta(α=20, β=80) for a 20% error rate. (3) **propagation phase** — downstream services inherit a dampened version of upstream degradation, decaying by `0.6^hop_distance`, so a 500ms latency spike at the database shows as ~300ms at the API and ~180ms at the edge.
+Simulated chaos data must respect three invariants: (1) causality — downstream services can only degrade after their upstream dependency degrades, so generate faults as a BFS/DFS walk over a seeded dependency graph with per-edge propagation probability and latency; (2) partial failure — real chaos is rarely binary, so emit metrics as `{healthy_pct, degraded_pct, failed_pct}` triples that sum to 1, driven by a decay function from the injection epicenter; (3) recovery asymmetry — MTTR is almost always longer than time-to-degrade, so use separate curves (e.g., exponential decay for failure spread, logistic curve for recovery) rather than mirroring them.
 
-Crucially, simulate **SLO burn rate** as a derived signal, not a primary one: `burn_rate = (observed_error_rate / slo_error_budget) * (window_seconds / rolling_window_seconds)`. This makes burn-rate alerts emerge naturally from the fault injection rather than being hand-authored — the 14.4x fast-burn threshold will trip organically if your injected error rate is high enough, which is exactly what you want to demonstrate. Pre-compute and cache the full time series as JSON once at app startup rather than streaming — chaos dashboards are evaluated by scrubbing a timeline, not tailing live logs.
+For gameday scenario runners, seed the RNG per scenario ID so the same "latency injection on payment-svc" replays identically — reproducibility is the whole point of a tabletop exercise. For entropy-dice style apps, expose the weight vector of fault types (network partition, CPU hog, pod kill, clock skew, disk fill) as tunable config, and log every roll with its seed + weights so a surprising outcome can be re-derived. Blast radius should be computed, not hardcoded: given an injection node, walk the graph up to N hops with a probability that decays by hop distance and by per-edge resilience score.
 
-Always include a **recovery tail** after fault termination: errors don't drop instantly to zero. Model recovery as exponential decay with τ=30s for stateless services and τ=180s for services with connection pools or circuit breakers that need to close. Omitting this tail is the single most common tell that chaos data is fake.
+Cap simulated chaos at realistic bounds — no experiment in a mature system takes down 100% of services, and simulating that produces UI that looks like a toy. Clip at ~60–70% failure as the upper realistic bound and let "total meltdown" be an explicit rare scenario, not the default tail.
