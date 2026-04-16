@@ -1,0 +1,18 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;display:flex;justify-content:center;padding:24px}
+#app{max-width:800px;width:100%;text-align:center}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:4px}
+.sub{color:#555;font-size:.8rem;margin-bottom:16px}
+.board{display:flex;justify-content:center;gap:0;margin-bottom:18px}
+.col{width:260px}
+.col h2{font-size:.85rem;color:#6ee7b7;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.mid{width:120px;display:flex;align-items:center;justify-content:center}
+.mod{background:#1a1d27;border:1px solid #2a2d37;border-radius:8px;padding:10px 14px;margin:6px 0;cursor:pointer;transition:.2s;font-size:.82rem;text-align:left}
+.mod:hover{border-color:#6ee7b7;background:#1e222e}
+.mod.done{opacity:.35;cursor:default;text-decoration:line-through}
+.mod.svc{border-color:#6ee7b744;cursor:default;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.stats{display:flex;align-items:center;gap:14px;justify-content:center;font-size:.85rem;flex-wrap:wrap}
+.stats b{color:#6ee7b7}
+.bar{width:200px;height:8px;background:#1a1d27;border-radius:4px;overflow:hidden}
+#barFill{height:100%;width:0;background:#6ee7b7;border-radius:4px;transition:width .4s}

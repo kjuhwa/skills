@@ -1,0 +1,20 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;display:flex;justify-content:center;padding:16px}
+#app{width:100%;max-width:960px}
+h1{font-size:1.5rem;color:#6ee7b7;margin-bottom:4px}
+h2{font-size:.9rem;color:#94a3b8;margin-bottom:8px}
+.subtitle{font-size:.85rem;color:#64748b;margin-bottom:14px}
+.panels{display:grid;grid-template-columns:240px 1fr;gap:14px}
+.panel{background:#1a1d27;border-radius:10px;padding:14px}
+.exp-card{background:#0f1117;border:1px solid #334155;border-radius:8px;padding:10px;margin-bottom:8px;cursor:pointer;transition:border-color .2s}
+.exp-card:hover{border-color:#6ee7b7}
+.exp-card.active{border-color:#ef4444;background:#1c1015}
+.exp-card h3{font-size:.8rem;color:#6ee7b7;margin-bottom:2px}
+.exp-card p{font-size:.7rem;color:#64748b}
+.metric-row{margin-bottom:10px}
+.metric-row label{font-size:.75rem;color:#94a3b8;display:flex;justify-content:space-between}
+.metric-row canvas{width:100%;background:#0f1117;border-radius:6px;margin-top:4px;display:block}
+.val{font-size:.75rem;color:#6ee7b7;float:right;font-weight:bold}
+#log{margin-top:12px;max-height:130px;overflow-y:auto}
+#logEntries{font-size:.7rem;color:#64748b;line-height:1.6}
+.log-warn{color:#fbbf24}.log-err{color:#ef4444}.log-ok{color:#6ee7b7}

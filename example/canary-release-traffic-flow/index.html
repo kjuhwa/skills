@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canary Release — Traffic Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+  <h1>Canary Traffic Flow</h1>
+  <div class="controls">
+    <label>Canary %: <input type="range" id="pct" min="0" max="100" value="10"><span id="pctVal">10%</span></label>
+    <button id="toggleBtn">Pause</button>
+  </div>
+</div>
+<canvas id="cv"></canvas>
+<div class="legend">
+  <span class="dot stable"></span> Stable v2.3
+  <span class="dot canary"></span> Canary v2.4
+  <span class="dot err"></span> Error
+</div>
+<script src="app.js"></script>
+</body>
+</html>

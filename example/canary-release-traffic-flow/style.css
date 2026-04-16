@@ -1,0 +1,11 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:system-ui,sans-serif;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#1a1d27;border-bottom:1px solid #2a2d37}
+h1{font-size:16px;color:#6ee7b7;font-weight:600}
+.controls{display:flex;align-items:center;gap:16px;font-size:13px}
+input[type=range]{width:120px;accent-color:#6ee7b7}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:5px 14px;border-radius:4px;cursor:pointer;font-weight:600;font-size:12px}
+canvas{flex:1;width:100%}
+.legend{display:flex;align-items:center;gap:10px;padding:8px 20px;background:#1a1d27;font-size:12px;border-top:1px solid #2a2d37}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:2px}
+.dot.stable{background:#60a5fa}.dot.canary{background:#6ee7b7}.dot.err{background:#f87171}

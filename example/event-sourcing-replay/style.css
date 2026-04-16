@@ -1,0 +1,23 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;padding:20px}
+#app{max-width:800px;margin:0 auto}
+h1{color:#6ee7b7;font-size:1.5rem}
+.sub{color:#64748b;font-size:.82rem;margin:2px 0 12px}
+h2{color:#6ee7b7;font-size:.9rem;border-bottom:1px solid #2a2d37;padding-bottom:4px;margin-bottom:8px}
+.slider-row{display:flex;align-items:center;gap:12px;background:#1a1d27;padding:10px 16px;border-radius:10px;margin-bottom:12px}
+input[type=range]{flex:1;accent-color:#6ee7b7}
+#pos{color:#6ee7b7;font-weight:700;font-size:.85rem;min-width:50px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.col{background:#1a1d27;border-radius:10px;padding:14px;min-height:180px}
+#evtList{max-height:160px;overflow-y:auto;font-size:.78rem}
+.ev{padding:3px 6px;margin:2px 0;border-radius:4px;background:#252833}
+.ev.active{background:#6ee7b722;border-left:3px solid #6ee7b7}
+.ev.future{opacity:.3}
+.ev .t{color:#64748b;font-size:.7rem}
+pre{font-size:.78rem;color:#94a3b8;white-space:pre-wrap;line-height:1.5}
+pre b{color:#6ee7b7}
+.actions{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+button{padding:7px 14px;border:none;border-radius:6px;cursor:pointer;font-weight:700;font-size:.8rem;background:#6ee7b7;color:#0f1117}
+button.s{background:#60a5fa}button.t{background:#fbbf24;color:#0f1117}button.d{background:#f87171}
+button:hover{opacity:.8}
+canvas{display:block;width:100%;height:100px;background:#1a1d27;border-radius:10px}

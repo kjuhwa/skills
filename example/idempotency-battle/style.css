@@ -1,0 +1,29 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', system-ui, sans-serif; }
+.app { max-width: 960px; margin: 0 auto; padding: 24px; }
+h1 { color: #6ee7b7; font-size: 1.4rem; text-align: center; margin-bottom: 4px; }
+.subtitle { color: #6b7280; font-size: 0.85rem; text-align: center; margin-bottom: 18px; }
+h2 { font-size: 1rem; margin-bottom: 8px; }
+.controls { display: flex; gap: 14px; align-items: center; justify-content: center;
+  margin-bottom: 20px; flex-wrap: wrap; }
+button { background: #1a1d27; color: #6ee7b7; border: 1px solid #6ee7b733; padding: 8px 18px;
+  border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+button:hover { background: #6ee7b722; }
+label { font-size: 0.82rem; color: #6b7280; display: flex; align-items: center; gap: 6px; }
+input[type=range] { accent-color: #6ee7b7; width: 80px; }
+.arena { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.side { background: #1a1d27; border-radius: 10px; padding: 14px; }
+.side.bad h2 { color: #f87171; } .side.good h2 { color: #6ee7b7; }
+.balance { font-size: 1.3rem; font-weight: bold; margin-bottom: 10px; font-family: monospace; }
+.side.bad .balance { color: #f87171; } .side.good .balance { color: #6ee7b7; }
+.timeline { height: 220px; overflow-y: auto; font-size: 0.78rem; font-family: monospace; }
+.timeline::-webkit-scrollbar { width: 4px; }
+.timeline::-webkit-scrollbar-thumb { background: #6ee7b744; border-radius: 2px; }
+.evt { padding: 5px 8px; margin-bottom: 3px; border-radius: 4px; animation: fadeIn 0.25s; }
+.evt.charge { background: #f8717118; border-left: 3px solid #f87171; }
+.evt.dedup { background: #6ee7b718; border-left: 3px solid #6ee7b7; }
+.evt.fail { background: #fbbf2418; border-left: 3px solid #fbbf24; }
+.evt.ok { background: #6ee7b710; border-left: 3px solid #6ee7b7; }
+#summary { text-align: center; font-size: 1rem; padding: 14px; background: #1a1d27;
+  border-radius: 8px; font-family: monospace; min-height: 44px; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }

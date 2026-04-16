@@ -1,0 +1,20 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',sans-serif;padding:20px}
+.dash{max-width:1000px;margin:0 auto}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+h1{font-size:1.3rem;color:#6ee7b7}
+.status{color:#6ee7b7;font-size:.85rem;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.card{background:#1a1d27;border-radius:10px;padding:14px;text-align:center}
+.label{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:#8b949e}
+.val{font-size:1.8rem;font-weight:700;color:#6ee7b7;margin:4px 0}
+.unit{font-size:.7rem;color:#484f58}
+.panels{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;margin-bottom:12px}
+.panel{background:#1a1d27;border-radius:10px;padding:14px}
+.panel h2{font-size:.75rem;color:#6ee7b7;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+canvas{width:100%;height:180px;display:block}
+.log-panel{background:#1a1d27;border-radius:10px;padding:14px;max-height:150px;overflow-y:auto}
+.log-panel h2{font-size:.75rem;color:#6ee7b7;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+#log{font-family:'Courier New',monospace;font-size:.72rem;color:#8b949e;line-height:1.6}
+#log .warn{color:#fbbf24}#log .ok{color:#6ee7b7}#log .err{color:#f87171}

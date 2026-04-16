@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idempotency Battle — Retry Chaos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>⚔️ Idempotency Battle — Retry Chaos Simulator</h1>
+  <p class="subtitle">Same payment, network failures, retries — compare the outcomes</p>
+  <div class="controls">
+    <button id="btnRun">▶ Run Scenario</button>
+    <button id="btnReset">Reset</button>
+    <label>Retries: <input type="range" id="retries" min="1" max="8" value="3"><span id="retryVal">3</span></label>
+    <label>Fail rate: <input type="range" id="failRate" min="10" max="90" value="50"><span id="failVal">50%</span></label>
+  </div>
+  <div class="arena">
+    <div class="side bad">
+      <h2>🚫 Without Idempotency</h2>
+      <div class="balance">Charged: $<span id="badTotal">0.00</span></div>
+      <div id="badLog" class="timeline"></div>
+    </div>
+    <div class="side good">
+      <h2>✅ With Idempotency</h2>
+      <div class="balance">Charged: $<span id="goodTotal">0.00</span></div>
+      <div id="goodLog" class="timeline"></div>
+    </div>
+  </div>
+  <div id="summary"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

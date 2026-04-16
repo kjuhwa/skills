@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaos GameDay Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>🎮 Chaos GameDay Simulator</h1>
+  <p class="subtitle">Run experiments and observe system metrics in real-time</p>
+  <div class="panels">
+    <div class="panel experiments">
+      <h2>Experiments</h2>
+      <div id="expList"></div>
+    </div>
+    <div class="panel metrics">
+      <h2>Live Metrics</h2>
+      <div class="metric-row"><label>Latency (ms)</label><canvas id="cLatency" height="80"></canvas><span id="vLat" class="val">42</span></div>
+      <div class="metric-row"><label>Error Rate (%)</label><canvas id="cErrors" height="80"></canvas><span id="vErr" class="val">0.2</span></div>
+      <div class="metric-row"><label>Throughput (rps)</label><canvas id="cThroughput" height="80"></canvas><span id="vThr" class="val">1200</span></div>
+      <div id="log"><h2>Event Log</h2><div id="logEntries"></div></div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

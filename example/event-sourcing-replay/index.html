@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Replay Debugger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>🔬 Event Replay Debugger</h1>
+  <p class="sub">Drag the slider to time-travel through an order aggregate</p>
+  <div class="slider-row">
+    <input type="range" id="slider" min="0" max="0" value="0">
+    <span id="pos">0 / 0</span>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <h2>Events (up to cursor)</h2>
+      <div id="evtList"></div>
+    </div>
+    <div class="col">
+      <h2>Aggregate Snapshot</h2>
+      <pre id="snapshot"></pre>
+    </div>
+  </div>
+  <div class="actions">
+    <button onclick="addEvt('AddItem')">+ Add Item</button>
+    <button onclick="addEvt('RemoveItem')" class="s">− Remove</button>
+    <button onclick="addEvt('Checkout')" class="t">Checkout</button>
+    <button onclick="addEvt('Cancel')" class="d">Cancel</button>
+  </div>
+  <canvas id="viz"></canvas>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

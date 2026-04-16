@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSDB Ingestion Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="dash">
+  <header><h1>📡 Ingestion Monitor</h1><span id="status" class="status">● LIVE</span></header>
+  <div class="cards">
+    <div class="card"><div class="label">Write Rate</div><div id="writeRate" class="val">0</div><div class="unit">pts/sec</div></div>
+    <div class="card"><div class="label">Cardinality</div><div id="cardinality" class="val">0</div><div class="unit">series</div></div>
+    <div class="card"><div class="label">Storage</div><div id="storage" class="val">0</div><div class="unit">MB</div></div>
+    <div class="card"><div class="label">Uptime</div><div id="uptime" class="val">0s</div><div class="unit"></div></div>
+  </div>
+  <div class="panels">
+    <div class="panel"><h2>Throughput</h2><canvas id="throughput"></canvas></div>
+    <div class="panel"><h2>Series by Source</h2><canvas id="sources"></canvas></div>
+  </div>
+  <div class="log-panel"><h2>Ingestion Log</h2><div id="log"></div></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

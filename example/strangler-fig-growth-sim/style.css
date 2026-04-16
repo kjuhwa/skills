@@ -1,0 +1,12 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;display:flex;justify-content:center;padding:20px}
+#app{text-align:center;max-width:740px}
+h1{color:#6ee7b7;margin-bottom:12px;font-size:1.4rem}
+.controls{display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+button{background:#1a1d27;color:#6ee7b7;border:1px solid #6ee7b7;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:.85rem}
+button:hover{background:#6ee7b722}
+label{font-size:.85rem;display:flex;align-items:center;gap:6px}
+input[type=range]{accent-color:#6ee7b7;width:80px}
+#year{color:#6ee7b7;font-weight:bold;font-size:.9rem;min-width:80px}
+canvas{background:#1a1d27;border-radius:10px;display:block;margin:0 auto}
+.info{margin-top:10px;font-size:.8rem;color:#555}

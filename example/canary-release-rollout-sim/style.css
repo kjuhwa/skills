@@ -1,0 +1,17 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:system-ui,sans-serif;padding:20px;max-width:700px;margin:0 auto}
+h1{font-size:16px;color:#6ee7b7;margin-bottom:16px;text-align:center}
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.card{background:#1a1d27;border-radius:8px;padding:12px;text-align:center}
+.label{font-size:11px;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.big{font-size:22px;font-weight:700}
+.accent{color:#6ee7b7}
+.status-ok{color:#6ee7b7}.status-warn{color:#fbbf24}.status-bad{color:#f87171}
+.bar-track{height:6px;background:#2a2d37;border-radius:3px;margin-top:6px}
+.bar-fill{height:100%;width:0;background:#6ee7b7;border-radius:3px;transition:width .3s}
+.actions{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+button{background:#1a1d27;color:#6ee7b7;border:1px solid #6ee7b744;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+button:hover{background:#6ee7b722}
+button.danger{color:#f87171;border-color:#f8717144}
+button.danger:hover{background:#f8717122}
+svg{width:100%;background:#1a1d27;border-radius:8px}

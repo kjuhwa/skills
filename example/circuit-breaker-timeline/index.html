@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuit Breaker Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Circuit Breaker Timeline</h1>
+<div class="controls">
+  <button id="btnPlay">⏸ Pause</button>
+  <button id="btnSpeed">1×</button>
+  <span class="info" id="info">Elapsed: 0s</span>
+</div>
+<canvas id="canvas"></canvas>
+<div class="legend"><span class="dot closed"></span>Closed <span class="dot open"></span>Open <span class="dot half"></span>Half-Open</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSDB Retention Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>🗄️ Retention Policy Visualizer</h1>
+  <p class="sub">Watch data age, downsample, and expire in real-time</p>
+  <div class="controls">
+    <label>Speed <input id="speed" type="range" min="1" max="10" value="3"></label>
+    <label>Raw TTL <select id="rawTTL"><option value="6">6h</option><option value="12" selected>12h</option><option value="24">24h</option></select></label>
+    <label>Downsample TTL <select id="dsTTL"><option value="24">24h</option><option value="48" selected>48h</option><option value="72">72h</option></select></label>
+    <button id="reset">Reset</button>
+  </div>
+  <div class="grid">
+    <div class="tier"><div class="tier-head raw">RAW <span id="rawCount">0</span></div><div id="rawBar" class="bar"></div></div>
+    <div class="tier"><div class="tier-head ds">5m AVG <span id="dsCount">0</span></div><div id="dsBar" class="bar"></div></div>
+    <div class="tier"><div class="tier-head agg">1h AGG <span id="aggCount">0</span></div><div id="aggBar" class="bar"></div></div>
+  </div>
+  <svg id="timeline" width="100%" height="100"></svg>
+  <div class="legend"><span class="dot raw"></span>Raw <span class="dot ds"></span>Downsampled <span class="dot agg"></span>Aggregated <span class="dot expired"></span>Expired</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

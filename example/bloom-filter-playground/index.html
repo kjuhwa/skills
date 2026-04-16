@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Filter Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>False Positive <span>Playground</span></h1>
+  <p class="sub">Watch the false positive rate climb as the filter fills up</p>
+  <div class="panel">
+    <div class="row">
+      <label>Bit Array Size <strong id="sizeVal">128</strong></label>
+      <input type="range" id="sizeRange" min="32" max="512" step="32" value="128">
+    </div>
+    <div class="row">
+      <label>Hash Functions <strong id="hashVal">3</strong></label>
+      <input type="range" id="hashRange" min="1" max="7" value="3">
+    </div>
+    <button id="runBtn">▶ Run Simulation</button>
+  </div>
+  <canvas id="chart"></canvas>
+  <div class="legend">
+    <span class="dot actual"></span> Measured FP Rate
+    <span class="dot theory"></span> Theoretical FP Rate
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

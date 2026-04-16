@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canary Rollout Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Canary Rollout Simulator</h1>
+<div class="dash">
+  <div class="card">
+    <div class="label">Rollout</div>
+    <div id="rolloutPct" class="big">0%</div>
+    <div class="bar-track"><div id="rolloutBar" class="bar-fill"></div></div>
+  </div>
+  <div class="card">
+    <div class="label">Canary Error Rate</div>
+    <div id="errRate" class="big accent">0.0%</div>
+  </div>
+  <div class="card">
+    <div class="label">Canary p95 Latency</div>
+    <div id="latency" class="big">0 ms</div>
+  </div>
+  <div class="card">
+    <div class="label">Status</div>
+    <div id="status" class="big status-ok">HEALTHY</div>
+  </div>
+</div>
+<div class="actions">
+  <button onclick="doStep('advance')">Advance 10%</button>
+  <button onclick="doStep('rollback')" class="danger">Rollback</button>
+  <button onclick="doStep('inject')">Inject Fault</button>
+  <button onclick="doStep('reset')">Reset</button>
+</div>
+<svg id="chart" viewBox="0 0 600 160"></svg>
+<script src="app.js"></script>
+</body>
+</html>
