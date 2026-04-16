@@ -1,0 +1,12 @@
+{
+  "slug": "circuit-breaker-panel",
+  "title": "Circuit Breaker Panel",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:44:36.089Z",
+  "source_project": "101-circuit-breaker-panel",
+  "author": "kjuhwa@nkia.co.kr"
+}

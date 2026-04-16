@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Electrical Panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="room">
+  <div class="lights">
+    <div class="light" data-zone="kitchen"><span>Kitchen</span></div>
+    <div class="light" data-zone="bedroom"><span>Bedroom</span></div>
+    <div class="light" data-zone="living"><span>Living</span></div>
+    <div class="light" data-zone="bath"><span>Bath</span></div>
+    <div class="light" data-zone="office"><span>Office</span></div>
+    <div class="light" data-zone="garage"><span>Garage</span></div>
+  </div>
+  <div class="panel">
+    <div class="panel-header">
+      <h1>MAIN PANEL</h1>
+      <div class="meter"><span id="amps">0.0</span> A / <span id="cap">60</span> A</div>
+    </div>
+    <div class="bar" id="bar"><div id="barFill"></div></div>
+    <div class="breakers" id="breakers"></div>
+    <div class="foot">
+      <button id="surge">Trigger Surge</button>
+      <button id="resetAll">Reset All</button>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
