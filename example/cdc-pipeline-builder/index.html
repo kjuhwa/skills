@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDC Pipeline Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="toolbar">
+  <h1>CDC Pipeline Builder</h1>
+  <div class="btns">
+    <button onclick="addNode('source')">+ Source</button>
+    <button onclick="addNode('transform')">+ Transform</button>
+    <button onclick="addNode('sink')">+ Sink</button>
+    <button onclick="toggleFlow()">▶ Flow</button>
+  </div>
+</div>
+<svg id="svg"></svg>
+<script src="app.js"></script>
+</body>
+</html>

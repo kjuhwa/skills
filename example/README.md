@@ -52,6 +52,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [circuit-breaker-dashboard](circuit-breaker-dashboard/) | Circuit Breaker Dashboard — auto-generated circuit-breaker tool | html, css, vanilla-js | 2026-04-16 |
 
+| [cdc-pipeline-builder](cdc-pipeline-builder/) | Cdc Pipeline Builder — auto-generated cdc tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
