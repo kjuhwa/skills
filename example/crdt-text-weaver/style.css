@@ -1,0 +1,80 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e9ef;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  padding: 24px;
+}
+h1 { color: #6ee7b7; font-size: 1.5rem; }
+h1 span { color: #8b93a7; font-weight: 400; font-size: 0.9rem; }
+.hint { color: #8b93a7; font-size: 0.85rem; margin: 6px 0 16px; }
+.workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.editor {
+  background: #1a1d27;
+  border-radius: 10px;
+  padding: 14px;
+  border: 1px solid #262a36;
+}
+.editor header {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.a { background: #6ee7b7; }
+.dot.b { background: #f5a97f; }
+textarea {
+  width: 100%;
+  min-height: 120px;
+  background: #0f1117;
+  color: #e6e9ef;
+  border: 1px solid #2d3142;
+  border-radius: 6px;
+  padding: 10px;
+  font-family: "Courier New", monospace;
+  resize: vertical;
+}
+textarea:focus { outline: none; border-color: #6ee7b7; }
+.ops {
+  margin-top: 8px;
+  font-family: monospace;
+  font-size: 0.72rem;
+  color: #8b93a7;
+  max-height: 80px;
+  overflow-y: auto;
+}
+.ops div { padding: 1px 0; }
+.merge { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; }
+#merge {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  align-self: center;
+}
+#merge:hover { background: #4fd1a5; }
+.result {
+  background: #1a1d27;
+  border: 1px solid #262a36;
+  border-radius: 10px;
+  padding: 14px;
+}
+.result header { color: #6ee7b7; font-weight: 600; margin-bottom: 8px; }
+#merged {
+  font-family: "Courier New", monospace;
+  color: #e6e9ef;
+  white-space: pre-wrap;
+  min-height: 60px;
+}
+.ins-a { background: rgba(110, 231, 183, 0.25); }
+.ins-b { background: rgba(245, 168, 127, 0.25); }
