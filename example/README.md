@@ -174,6 +174,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [rate-limiter-playground](rate-limiter-playground/) | Rate Limiter Playground — auto-generated rate-limiter tool | html, css, vanilla-js | 2026-04-16 |
 
+| [websocket-frames](websocket-frames/) | Websocket Frames — auto-generated websocket tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

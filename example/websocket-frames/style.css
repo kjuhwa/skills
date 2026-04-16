@@ -1,0 +1,11 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;display:flex;justify-content:center;padding:20px}
+.wrap{width:100%;max-width:760px}
+h1{color:#6ee7b7;font-size:1.3rem;text-align:center;margin-bottom:14px}
+.toolbar{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+button{background:#1a1d27;color:#94a3b8;border:1px solid #2a2d37;border-radius:6px;padding:6px 16px;cursor:pointer;font-size:.8rem;transition:.2s}
+button:hover,button.active{background:#6ee7b7;color:#0f1117;border-color:#6ee7b7}
+svg{width:100%;background:#1a1d27;border-radius:10px;display:block;margin-bottom:14px}
+.detail{background:#1a1d27;border-radius:10px;padding:14px;font-family:'Cascadia Code',monospace;font-size:.78rem;min-height:80px;white-space:pre-wrap;line-height:1.5}
+.frame-arrow{cursor:pointer}
+.frame-arrow:hover line{stroke:#6ee7b7!important}

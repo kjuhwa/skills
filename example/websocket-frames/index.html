@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebSocket Frame Inspector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>WebSocket Frame Inspector</h1>
+  <div class="toolbar">
+    <button id="btnText" class="active">Text</button>
+    <button id="btnBin">Binary</button>
+    <button id="btnPing">Ping</button>
+    <button id="btnClose">Close</button>
+  </div>
+  <svg id="diagram" viewBox="0 0 700 320"></svg>
+  <div id="detail" class="detail">Click a frame above to inspect</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "websocket-frames",
+  "title": "Websocket Frames",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:46:42.644Z",
+  "source_project": "45-websocket-frames",
+  "author": "kjuhwa@nkia.co.kr"
+}
