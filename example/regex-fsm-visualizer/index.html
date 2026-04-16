@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Regex FSM Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Regex FSM Visualizer</h1>
+    <p>Step through a deterministic finite automaton matching character by character</p>
+  </header>
+  <div class="controls-top">
+    <label>Pattern:</label>
+    <select id="patternSelect">
+      <option value="ab*c">ab*c (a, zero+ b's, c)</option>
+      <option value="(hi|bye)">(hi|bye)</option>
+      <option value="a+b">a+b (one+ a's, then b)</option>
+    </select>
+    <label>Input:</label>
+    <input type="text" id="inputStr" value="abbbc">
+    <button id="runBtn">▶ Run</button>
+    <button id="stepBtn">Step</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+  <div class="workspace">
+    <svg id="graph" viewBox="0 0 700 360"></svg>
+    <div class="side">
+      <div class="tape">
+        <h3>Input Tape</h3>
+        <div class="cells" id="tape"></div>
+      </div>
+      <div class="result" id="result">Ready</div>
+      <div class="history">
+        <h3>Trace</h3>
+        <ul id="trace"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
