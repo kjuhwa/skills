@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GraphQL Resolver Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Resolver Flow Visualizer</h1>
+<div class="controls">
+  <button onclick="runQuery(0)">Query: users</button>
+  <button onclick="runQuery(1)">Query: posts + author</button>
+  <button onclick="runQuery(2)">Mutation: createPost</button>
+</div>
+<svg id="flow" viewBox="0 0 800 340"></svg>
+<div id="log"></div>
+<script src="app.js"></script>
+</body>
+</html>
