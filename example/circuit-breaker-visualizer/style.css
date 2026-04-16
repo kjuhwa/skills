@@ -1,0 +1,16 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:system-ui,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.container{text-align:center;width:400px}
+h1{font-size:1.3rem;color:#6ee7b7;margin-bottom:1.2rem}
+.breaker-ring{margin:0 auto 1.5rem}
+svg{width:220px;height:220px}
+.ring-bg{fill:none;stroke:#1a1d27;stroke-width:12}
+.ring-fg{fill:none;stroke:#6ee7b7;stroke-width:12;stroke-linecap:round;stroke-dasharray:502;stroke-dashoffset:502;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .4s,stroke .3s}
+.state-label{fill:#6ee7b7;font-size:1.4rem;font-weight:700;text-anchor:middle}
+.sub-label{fill:#94a3b8;font-size:.7rem;text-anchor:middle}
+.controls{display:flex;gap:.6rem;justify-content:center;margin-bottom:1rem}
+button{padding:.5rem 1rem;border:1px solid #6ee7b7;background:transparent;color:#6ee7b7;border-radius:6px;cursor:pointer;font-size:.85rem;transition:background .2s}
+button:hover{background:#6ee7b722}
+.log{background:#1a1d27;border-radius:8px;padding:.8rem;height:140px;overflow-y:auto;font-size:.75rem;text-align:left}
+.log span{display:block;padding:2px 0;border-bottom:1px solid #ffffff08}
+.log .fail{color:#f87171}.log .ok{color:#6ee7b7}.log .warn{color:#fbbf24}

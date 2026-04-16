@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuit Breaker State Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Circuit Breaker Visualizer</h1>
+  <div class="breaker-ring" id="ring">
+    <svg viewBox="0 0 200 200" id="svg-ring">
+      <circle cx="100" cy="100" r="80" class="ring-bg"/>
+      <circle cx="100" cy="100" r="80" class="ring-fg" id="arc"/>
+      <text x="100" y="92" class="state-label" id="stateLabel">CLOSED</text>
+      <text x="100" y="115" class="sub-label" id="subLabel">0 / 5 failures</text>
+    </svg>
+  </div>
+  <div class="controls">
+    <button id="btnSuccess">Send Success</button>
+    <button id="btnFailure">Send Failure</button>
+    <button id="btnReset">Reset</button>
+  </div>
+  <div class="log" id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
