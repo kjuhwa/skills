@@ -1,0 +1,12 @@
+{
+  "slug": "hexagonal-dependency-inverter",
+  "title": "Hexagonal Dependency Inverter",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:23:23.323Z",
+  "source_project": "101-hexagonal-dependency-inverter",
+  "author": "kjuhwa@nkia.co.kr"
+}
