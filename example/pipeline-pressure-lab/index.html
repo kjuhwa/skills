@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pipeline Pressure Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Pipeline Pressure Lab</h1>
+  <p>Watch a producer outpace a consumer. Tune the valves to relieve backpressure.</p>
+</header>
+<main>
+  <section class="stage">
+    <canvas id="stage" width="900" height="280"></canvas>
+  </section>
+  <section class="controls">
+    <label>Producer Rate <span id="prodVal">80</span>/s
+      <input type="range" id="prod" min="10" max="200" value="80">
+    </label>
+    <label>Consumer Rate <span id="consVal">60</span>/s
+      <input type="range" id="cons" min="10" max="200" value="60">
+    </label>
+    <label>Buffer Size <span id="bufVal">40</span>
+      <input type="range" id="buf" min="10" max="120" value="40">
+    </label>
+    <label>Strategy
+      <select id="strategy">
+        <option value="drop">Drop Newest</option>
+        <option value="dropOld">Drop Oldest</option>
+        <option value="block">Block Producer</option>
+      </select>
+    </label>
+  </section>
+  <section class="stats">
+    <div><b id="inFlight">0</b><span>In Flight</span></div>
+    <div><b id="dropped">0</b><span>Dropped</span></div>
+    <div><b id="delivered">0</b><span>Delivered</span></div>
+    <div><b id="pressure">0%</b><span>Pressure</span></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
