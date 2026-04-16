@@ -1,6 +1,6 @@
 ---
 name: backpressure-implementation-pitfall
-description: Common mistakes when modeling backpressure — missing hysteresis, unbounded buffers, and conflating flow-control with rate-limiting.
+description: Conflating rate limiting with backpressure hides the upstream feedback loop that defines it
 category: pitfall
 tags:
   - backpressure
@@ -9,8 +9,8 @@ tags:
 
 # backpressure-implementation-pitfall
 
-The most common pitfall is **no hysteresis on the pause/resume threshold**: if pause and resume both trigger at 80%, the system flaps — pause, drain one item, resume, fill one item, pause — producing a visually jittery simulation and, in real systems, thrashing that destroys throughput. Always separate the thresholds (pause high, resume low) and make the gap configurable. Related: forgetting that the resume signal has propagation latency in real systems; adding an artificial delay of 1–2 ticks before the producer actually resumes teaches viewers why buffers need headroom above the pause line.
+The most common mistake in backpressure demos is implementing what is actually **rate limiting** or **load shedding** and calling it backpressure. If the consumer simply drops items it cannot handle, or the producer sleeps on a fixed interval, there is no feedback channel — and backpressure *is* the feedback channel. The diagnostic: remove the producer-facing PAUSE/credit/window signal from your sim. If behavior is unchanged, you built a throttle, not backpressure. Always make the reverse signal a first-class, visible entity in both the model and the UI.
 
-The second pitfall is **unbounded internal state masquerading as a bounded buffer**. If the queue is implemented as a plain array that grows, and the "capacity" is only enforced visually, the simulation will not actually exhibit backpressure — it will exhibit infinite memory growth with a misleading UI. Enforce capacity at the data layer: reject/drop/block on enqueue, not on render. The conveyor-belt-jam app hit this bug early — items kept accumulating off-screen while the visible belt looked fine, and consumer drain times grew unboundedly because the array length was real even if the sprites weren't drawn.
+A second trap is **hysteresis collapse**: using a single threshold (e.g., pause at 80% full, resume at 80% full) causes rapid PAUSE/RESUME oscillation that looks like a bug. Always use distinct low and high watermarks (commonly 25% / 75%) so the producer gets breathing room after resume. Related: when multiple producers share a buffer, broadcasting PAUSE to all of them causes thundering-herd resume — stagger RESUME signals or use per-producer credit instead.
 
-The third pitfall is **conflating backpressure with rate limiting**. Rate limiting caps the producer unconditionally; backpressure caps the producer *based on downstream state*. A simulation that throttles the producer to a fixed rate regardless of buffer fill is not demonstrating backpressure — it is demonstrating a token bucket. The distinguishing test: if the consumer speeds up, does the producer automatically speed up too (up to its natural rate)? If not, the feedback loop is broken and you've built a rate limiter with a queue. Make the producer's effective rate a function of the pause signal, not a fixed config, and verify by dragging consumer rate up mid-run.
+Third, the **unbounded queue illusion**: allowing the buffer to grow without limit "to avoid drops" just moves the failure from the buffer to memory and makes latency unbounded. Every backpressure sim must expose the reality that *some* resource is always bounded; the design choice is which one fails visibly. Show memory growth, latency growth, or drop count explicitly — hiding any of the three misleads viewers about the real tradeoff.
