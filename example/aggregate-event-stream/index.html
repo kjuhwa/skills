@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aggregate Event Stream</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <section class="commands">
+    <h2>Commands</h2>
+    <button data-cmd="PlaceOrder">Place Order</button>
+    <button data-cmd="AddItem">Add Item</button>
+    <button data-cmd="Pay">Pay</button>
+    <button data-cmd="Ship">Ship</button>
+    <button data-cmd="Cancel">Cancel</button>
+    <h3>Aggregate State</h3>
+    <pre id="state">{}</pre>
+  </section>
+  <section class="stream">
+    <h2>Event Stream <span id="count">0</span></h2>
+    <ul id="events"></ul>
+  </section>
+  <section class="projection">
+    <h2>Read Projection</h2>
+    <table id="proj"><thead><tr><th>Order</th><th>Status</th><th>Total</th><th>Items</th></tr></thead><tbody></tbody></table>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
