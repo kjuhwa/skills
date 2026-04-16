@@ -1,0 +1,12 @@
+{
+  "slug": "hex-arch-visualizer",
+  "title": "Hex Arch Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:26:30.967Z",
+  "source_project": "100-hex-arch-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}
