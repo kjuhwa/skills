@@ -1,6 +1,6 @@
 ---
 name: read-replica-visualization-pattern
-description: Canvas/SVG visualization of primary-to-replica WAL flow, per-replica lag gauges, and load-balanced request distribution bars.
+description: Canvas-based topology visualization for primary-replica clusters with lag indicators and routing flows
 category: design
 triggers:
   - read replica visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # read-replica-visualization-pattern
 
-The topology view uses an HTML5 Canvas with a fixed hierarchy: primary node at top-center, replicas in a middle row, and reader applications at the bottom. Animated packets travel along linear-interpolated paths (`t += 0.03` per frame) with color-coded semantics — green (#6ee7b7) for WAL replication streams flowing downward from primary to replicas, blue (#60a5fa) for read queries flowing upward from apps to a randomly selected replica. Each node is drawn as a stroked arc with a translucent fill and live stat labels (write QPS on primary, lag-ms on replicas). A stats bar at the bottom aggregates total writes, average replica lag, and replica count.
+Read-replica systems need a visualization that makes three things legible at a glance: the primary node, the set of replicas, and the replication lag between them. The recommended pattern places the primary at the center (or left) with replicas radiating outward, connected by directed edges whose thickness or color encodes current lag (green <100ms, amber 100-1000ms, red >1s). Each replica node should display its role (sync/async), lag in milliseconds, and current query load as a small inline badge, so operators can correlate routing decisions with replica health without hovering.
 
-For lag monitoring, a 2x2 card grid shows per-replica current lag with threshold-driven styling: default teal, amber (#f59e0b) above 25 ms, red (#ef4444) above 40 ms — applied to both the value text and card border. Below the cards, an SVG time-series chart renders 60-second rolling polylines per replica (one color per AZ name), with horizontal grid lines at 20 ms intervals and a 0–60 ms Y-axis. The chart rebuilds its full innerHTML each tick rather than appending, keeping DOM weight constant.
+Query routing should be animated as discrete particles traveling along edges: writes always flow to the primary (solid line, distinct color like blue), reads flow to the selected replica (dashed or lighter line, green). When a read hits a stale replica, flash the particle red at the destination to make consistency violations visible. For the lag-monitor variant, add a stacked time-series panel below the topology showing lag-per-replica over the last 60 seconds, with threshold lines for the app's consistency SLO. For the router-playground variant, overlay the current routing strategy (round-robin, least-lag, weighted, primary-fallback) as a label on the primary, and let users swap strategies to see the particle distribution shift in real time.
 
-The load-balancer view pairs a horizontal bar chart (fill width = `reqs/max * 100%` with CSS transitions) with a live transaction log (auto-scrolling monospace list showing timestamp, target replica, and active strategy). A button row toggles between Round Robin, Least Connections, and Weighted strategies. This three-panel layout — control strip, proportional bars, and scrolling log — is the reusable skeleton for any replica-aware request routing dashboard.
+Keep the rendering stack lightweight: SVG for the topology (easy to label, animate via CSS/requestAnimationFrame), Canvas only if replica count exceeds ~50 nodes. Expose a speed-control slider (0.25x–4x) because replication phenomena at real-world timescales are either too slow to observe or too fast to trace — users need to scrub through scenarios. Always pause on hover over a node to freeze the lag readout; otherwise ticking numbers are unreadable.

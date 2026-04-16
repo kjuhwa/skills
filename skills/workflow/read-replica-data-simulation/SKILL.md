@@ -1,6 +1,6 @@
 ---
 name: read-replica-data-simulation
-description: Simulates WAL replication lag with brownian drift, regional base offsets with sine-wave seasonality, and weighted/round-robin/least-conn request routing.
+description: Synthetic replication-log generator with configurable lag distributions and consistency violation injection
 category: workflow
 triggers:
   - read replica data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # read-replica-data-simulation
 
-Replication lag is modeled as a bounded random walk: `lag = max(0, lag + (random() - 0.55) * 20)`. The 0.55 bias nudges lag downward over time, preventing runaway drift while still producing realistic spikes. This per-replica brownian model is emitted every 40 animation frames alongside WAL packets that visually travel from primary to each replica. Reader apps pick a random replica per tick, incrementing that replica's QPS counter — a simplification that approximates uncoordinated client routing.
+To demo or test read-replica behavior without a real database cluster, generate a synthetic write-ahead log (WAL) as a monotonically increasing sequence of LSN-tagged events (`{lsn, key, value, txTime}`) on the primary at a configurable write rate (e.g., 50–500 writes/sec). Each replica maintains its own `appliedLsn` cursor that advances toward the primary's `currentLsn` with a per-replica lag sampled from a distribution — not a constant. Use a lognormal or gamma distribution (mean 20ms, p99 500ms) to mimic real replication jitter; constant-lag simulations hide the tail-latency bugs that matter in production.
 
-The lag monitor adds geographic realism by assigning each replica a base latency that increases with distance (5 ms, 13 ms, 21 ms, 29 ms — 8 ms increments per region). Each tick layers three components: the regional base, a uniform random jitter `(random() - 0.4) * 30` (biased slightly high to simulate real-world asymmetric lag), and a sine-wave term `sin(now/2000 + i) * 10` that introduces per-replica phase-shifted seasonality mimicking periodic replication batch cycles. History is kept in a 60-point rolling buffer (one point per second), pruned with `shift()`.
+Build three injectable scenarios on top of the base generator: (1) **lag spike** — freeze a replica's `appliedLsn` for N seconds to simulate a slow apply thread or network blip; (2) **replica failover** — stop advancing the primary, promote a replica (its `appliedLsn` becomes the new `currentLsn`), and force others to rebase, exposing lost-write windows; (3) **read-your-writes violation** — route a write to the primary, then immediately route the follow-up read to a lagging replica and verify the stale response is surfaced. These three cover 90% of the failure modes operators care about.
 
-Request routing simulation drives traffic every 300–500 ms with three selectable strategies. Round Robin cycles a shared index mod replica count. Least Connections tracks an active `conns` counter per replica, incremented on send and decremented after a random 800–2000 ms hold time via `setTimeout`, then selects the replica with the minimum value. Weighted selection builds a cumulative distribution from integer weights (e.g., 3:2:1:2) and walks it with a random draw — this naturally skews traffic proportionally without sorting. All three share the same `pick() → index` interface, making strategy hot-swap a single assignment.
+Expose the simulation as a pure function of `(seed, config, t)` so the same scenario replays identically — crucial for the consistency-simulator variant where users step forward frame-by-frame to study a specific anomaly. Keep the event log bounded (ring buffer of ~10k events) so long-running sessions don't leak memory, and emit a structured event stream (`replica.lag.changed`, `read.stale`, `write.committed`) that the visualization layer subscribes to rather than polling replica state.
