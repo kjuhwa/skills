@@ -396,6 +396,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [connection-pool-config-lab](connection-pool-config-lab/) | Connection Pool Config Lab — auto-generated connection-pool tool | html, css, vanilla-js | 2026-04-16 |
 
+| [aggregate-event-stream](aggregate-event-stream/) | Aggregate Event Stream — auto-generated domain-driven tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
