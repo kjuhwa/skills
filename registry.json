@@ -3620,6 +3620,27 @@
       "linked_skills": [
         "recoil-domain-atom-store"
       ]
+    },
+    "lucida-ui-design-token-reference": {
+      "category": "arch",
+      "scope": "project",
+      "path": "knowledge/arch/lucida-ui-design-token-reference.md",
+      "source": {
+        "kind": "session",
+        "ref": "session-2026-04-16"
+      },
+      "confidence": "high",
+      "linked_skills": [
+        "nds-html-mockup-from-tokens",
+        "plan-to-screen-spec-conversion"
+      ],
+      "tags": [
+        "lucida-ui",
+        "nds",
+        "design-token",
+        "sirius"
+      ],
+      "extracted_at": "2026-04-16"
     }
   }
 }
