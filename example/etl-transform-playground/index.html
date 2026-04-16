@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ETL Transform Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>ETL Transform Playground</h1>
+  <p>Chain transforms. Watch rows flow.</p>
+</header>
+<main>
+  <aside class="palette">
+    <h2>Transforms</h2>
+    <div class="chip" draggable="true" data-type="uppercase">UPPERCASE name</div>
+    <div class="chip" draggable="true" data-type="trim">TRIM whitespace</div>
+    <div class="chip" draggable="true" data-type="filterAdult">FILTER age ≥ 18</div>
+    <div class="chip" draggable="true" data-type="addYear">ADD year column</div>
+    <div class="chip" draggable="true" data-type="maskEmail">MASK email</div>
+    <div class="chip" draggable="true" data-type="dropNull">DROP nulls</div>
+    <div class="chip" draggable="true" data-type="sortAge">SORT by age</div>
+  </aside>
+  <section class="chain">
+    <h2>Pipeline</h2>
+    <ol id="chain" class="dropzone"></ol>
+    <button id="clearChain">Clear</button>
+  </section>
+  <section class="data">
+    <div class="pane">
+      <h3>Source</h3>
+      <pre id="source"></pre>
+    </div>
+    <div class="pane">
+      <h3>Output <span id="count"></span></h3>
+      <pre id="output"></pre>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "etl-transform-playground",
+  "title": "Etl Transform Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:12:44.682Z",
+  "source_project": "101-etl-transform-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}
