@@ -256,6 +256,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [bff-pattern-builder](bff-pattern-builder/) | Bff Pattern Builder — auto-generated bff-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [object-storage-flow](object-storage-flow/) | Object Storage Flow — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
