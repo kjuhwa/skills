@@ -210,6 +210,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [command-query-separator](command-query-separator/) | Command Query Separator — auto-generated command-query tool | html, css, vanilla-js | 2026-04-16 |
 
+| [object-storage-treemap](object-storage-treemap/) | Object Storage Treemap — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
