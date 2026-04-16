@@ -1,0 +1,12 @@
+{
+  "slug": "retry-strategy-playground",
+  "title": "Retry Strategy Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T14:18:39.339Z",
+  "source_project": "102-retry-strategy-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}

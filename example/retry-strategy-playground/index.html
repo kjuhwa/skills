@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retry Budget Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="dash">
+  <h1>Retry Budget Dashboard</h1>
+  <div class="grid">
+    <div class="card" id="budgetCard"><div class="card-title">Retry Budget</div><svg id="ring" width="160" height="160"></svg><div id="budgetText"></div></div>
+    <div class="card" id="logCard"><div class="card-title">Live Request Log</div><div id="log"></div></div>
+    <div class="card wide" id="histCard"><div class="card-title">Attempts Distribution</div><canvas id="hist" width="700" height="160"></canvas></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
