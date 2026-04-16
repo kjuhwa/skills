@@ -1,6 +1,6 @@
 ---
 name: etl-data-simulation
-description: Generate realistic dirty source data with injected quality defects for ETL demonstration
+description: Deterministic mock ETL data generation with realistic row counts, schemas, and job run histories
 category: workflow
 triggers:
   - etl data simulation
@@ -11,6 +11,8 @@ version: 1.0.0
 
 # etl-data-simulation
 
-ETL demos fail when source data is too clean—the transform and quality stages have nothing to do. Build a configurable data generator that emits records with tunable defect rates: null injection (5-10% missing fields), type coercion traps (numeric strings, dates in mixed formats like "2026-04-17", "04/17/2026", "17-Apr-26"), duplicate keys (2-3%), referential orphans (foreign keys with no parent), encoding artifacts (smart quotes, trailing whitespace, zero-width spaces), and range violations (negative ages, future birthdates). Expose each defect knob as a slider so presenters can dial in scenarios on demand.
+ETL demo apps need three layers of synthetic data: schema definitions (tables with typed columns), row samples (10-50 rows per table showing realistic values, not lorem ipsum), and run history (timestamped job executions with durations, statuses, row counts). Use a seeded PRNG (mulberry32 with a fixed seed like 0x5E7ED) so every page reload shows identical data — this is critical for screenshots, demos, and debugging. Generate schemas for canonical domains users recognize instantly: `orders`, `customers`, `products`, `events`, `sessions`. Include a mix of PK/FK relationships, nullable columns, and at least one JSON/array column per schema to exercise edge cases.
 
-Structure the generator as a pipeline of mutators applied to a clean base record: `baseRecord → nullInjector → dupeInjector → encodingCorrupter → rangeViolator`. Emit records on a setInterval at a configurable rate (10-1000 rec/sec) and buffer them in a ring buffer of the last ~1000 records so the visualization can scroll backward. Tag each record with a `_defects: string[]` meta field so the downstream quality stage can score ground-truth detection rates—this lets the radar show both claimed quality scores and actual defect catch rates, which is the most compelling demo moment.
+For job run history, generate 30-90 days of runs with realistic patterns: daily batch at 02:00 UTC, occasional failures (5-10% rate), duration that scales with simulated row count, and late-arriving data spikes on Mondays. For etl-rule-builder specifically, every rule must have a "before/after" row-pair preview — generate 5 representative input rows and compute the output rows in real-time as the user edits the rule, showing NULL handling, type coercion, and cast failures explicitly.
+
+Lineage apps need cross-table dependency graphs: 15-30 tables with an average of 2-3 upstream dependencies, creating a realistic DAG depth of 4-6 levels. Avoid cycles deterministically by generating tables in topological order and only adding edges from later-index to earlier-index tables. Store the whole simulated dataset in a single `/src/mock/etlFixtures.ts` file so it's trivially replaceable with a real API adapter later.

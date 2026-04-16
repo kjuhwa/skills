@@ -1,6 +1,6 @@
 ---
 name: etl-visualization-pattern
-description: Animated stage-based pipeline visualization for ETL flows with extract/transform/load phases
+description: Canvas-based visual representations for ETL flow, rules, and lineage with node-edge topology
 category: design
 triggers:
   - etl visualization pattern
@@ -11,6 +11,8 @@ version: 1.0.0
 
 # etl-visualization-pattern
 
-ETL visualization apps share a three-stage horizontal flow metaphor: source (extract) → transformation (transform) → sink (load). Render each stage as a distinct node/column with animated data packets (dots, rows, or records) flowing left-to-right along connector edges. Use color coding to represent data health—green for clean records, yellow for warnings, red for quality failures or rejected rows. Stage nodes should expose throughput counters (rows/sec), backlog depth, and current transformation rules, all updating in real-time via requestAnimationFrame ticks.
+ETL visualization apps share a common topology: source nodes (extract), transformation nodes (transform), and sink nodes (load) connected by directional edges representing data flow. For etl-pipeline-flow, render stages left-to-right on an SVG or Canvas with draggable node components (120x60px rectangles) color-coded by stage type (blue=extract, orange=transform, green=load). Edges use bezier curves with animated dash patterns (stroke-dashoffset animation) to indicate active data movement. For etl-rule-builder, compose rules as stackable conditional cards (IF/THEN/ELSE blocks) with drop zones between them, using dnd-kit for reordering and live preview of resulting transformation on a sample row.
 
-For the transform stage specifically, visualize the rule pipeline as stacked sub-nodes (filter → map → aggregate → validate), letting users toggle each rule on/off to see immediate impact on the downstream load count. The data quality radar pattern adds a polar chart overlay showing completeness, validity, uniqueness, consistency, timeliness, and accuracy dimensions—this is the canonical DQ hexagon. Always include a "tail" panel showing the last 20 records that passed through, with inline diff highlighting to show what each transformation rule changed. Pause/step/reset controls are essential because users need to inspect individual record transitions, not just watch the stream fly by.
+For etl-lineage-map, render upstream/downstream dependency graphs with column-level granularity: expand a table node to reveal its columns, and highlight the specific column lineage path on hover. Use a force-directed layout (d3-force) for initial positioning, then snap to hierarchical lanes once the user selects a focal table. Critical detail: always show data freshness badges (last-run timestamp, record count delta) on each node since stakeholders use lineage views to debug stale data, not just understand structure.
+
+Shared toolkit across all three: zoom/pan controls (wheel + space-drag), minimap in bottom-right corner, node-selection state lifted to a zustand store for cross-panel sync (clicking a transform node highlights the corresponding rule card AND its lineage edge). Keep edge hit-boxes generous (6-8px stroke-width invisible overlay) since thin data-flow lines are hard to click precisely.
