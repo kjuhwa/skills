@@ -1,0 +1,12 @@
+{
+  "slug": "load-balancer-health-dashboard",
+  "title": "Load Balancer Health Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:14:49.521Z",
+  "source_project": "100-load-balancer-health-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}
