@@ -1,0 +1,12 @@
+{
+  "slug": "bounded-context-mapper",
+  "title": "Bounded Context Mapper",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:58:56.828Z",
+  "source_project": "100-bounded-context-mapper",
+  "author": "kjuhwa@nkia.co.kr"
+}

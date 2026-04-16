@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bounded Context Mapper</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Bounded Context Mapper</h1>
+  <p>Drag contexts. Click two contexts to draw a relationship.</p>
+  <div class="toolbar">
+    <button data-rel="U/D">Upstream/Downstream</button>
+    <button data-rel="ACL">Anti-Corruption Layer</button>
+    <button data-rel="SK">Shared Kernel</button>
+    <button data-rel="CF">Conformist</button>
+    <button id="clear">Clear Links</button>
+  </div>
+</header>
+<main>
+  <svg id="canvas"></svg>
+  <aside id="legend">
+    <h3>Selected: <span id="sel">none</span></h3>
+    <ul id="rels"></ul>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
