@@ -1,0 +1,12 @@
+{
+  "slug": "circuit-breaker-grid",
+  "title": "Circuit Breaker Grid",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:56:19.918Z",
+  "source_project": "101-circuit-breaker-grid",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,58 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117; color: #e5e7eb;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  padding: 24px; min-height: 100vh;
+}
+.wrap { max-width: 1100px; margin: 0 auto; }
+h1 { color: #6ee7b7; font-size: 24px; margin-bottom: 4px; }
+.sub { color: #9ca3af; margin-bottom: 20px; font-size: 14px; }
+.toolbar {
+  background: #1a1d27; padding: 14px; border-radius: 10px;
+  display: flex; gap: 12px; align-items: center; margin-bottom: 20px;
+  border: 1px solid #272b38;
+}
+.toolbar button {
+  background: #272b38; color: #e5e7eb; border: none;
+  padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600;
+}
+.toolbar button:hover { background: #6ee7b7; color: #0f1117; }
+.tps { margin-left: auto; color: #9ca3af; font-size: 14px; }
+.tps b { color: #6ee7b7; }
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px; margin-bottom: 24px;
+}
+.card {
+  background: #1a1d27; border: 1px solid #272b38;
+  border-radius: 10px; padding: 14px; cursor: pointer;
+  transition: transform 0.15s, border-color 0.3s;
+  position: relative; overflow: hidden;
+}
+.card:hover { transform: translateY(-2px); }
+.card.closed { border-color: #6ee7b7; }
+.card.open { border-color: #ef4444; }
+.card.half { border-color: #facc15; }
+.card h3 { font-size: 14px; margin-bottom: 10px; }
+.card .status {
+  display: inline-block; padding: 3px 8px; border-radius: 4px;
+  font-size: 11px; font-weight: 700; margin-bottom: 10px;
+}
+.closed .status { background: rgba(110,231,183,0.15); color: #6ee7b7; }
+.open .status { background: rgba(239,68,68,0.15); color: #ef4444; }
+.half .status { background: rgba(250,204,21,0.15); color: #facc15; }
+.card .row { display: flex; justify-content: space-between; font-size: 12px; color: #9ca3af; margin: 3px 0; }
+.card .row b { color: #e5e7eb; }
+.bar { height: 4px; background: #0f1117; border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.bar > div { height: 100%; background: #6ee7b7; transition: width 0.3s, background 0.3s; }
+.card.chaos::after {
+  content: 'CHAOS'; position: absolute; top: 8px; right: 8px;
+  background: #ef4444; color: #fff; font-size: 9px;
+  padding: 2px 6px; border-radius: 3px; font-weight: 700;
+}
+.chart-wrap {
+  background: #1a1d27; padding: 16px; border-radius: 10px;
+  border: 1px solid #272b38;
+}
+.chart-wrap h3 { color: #6ee7b7; font-size: 14px; margin-bottom: 10px; }
+canvas { width: 100%; display: block; }
