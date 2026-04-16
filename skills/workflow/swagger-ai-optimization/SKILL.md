@@ -8,8 +8,6 @@ triggers:
   - swagger operationId 전수 부여
   - AI 이해도 테스트
 scope: user
-category: workflow
-version: 1.1.0
 ---
 
 # Swagger AI 최적화 워크플로우
@@ -60,9 +58,11 @@ Part B: x-filterable-fields 확장 (Phase 9~13)
 |------|----------|------|------|
 | **A. 시그니처 직접 변경** | `ApiResponseData<Object>` → `ApiResponseData<ActualType>` | 타입 안전성↑, springdoc가 자동 제네릭 스키마 생성, 보일러플레이트 0 | 컨트롤러/호출자 모두 영향, 연쇄 수정 필요 |
 | **B. 마커 서브클래스 + @ApiResponse** | 그대로 유지 | 런타임 동작 무변경 | 타입별 마커 클래스 수십 개 생성, `@ApiResponse(content=@Content(schema=@Schema(implementation=XXX.class)))` 전수 추가 |
-| **C. @Schema(implementation=T.class)만** | 그대로 유지 | 최소 변경 | `ApiResponseData` 래퍼 스키마 손실(T만 표시), 래퍼 구조 AI가 모름 |
+| **C. @ApiResponse + @Schema(implementation) 어노테이션만** | 그대로 유지 | 코드 무변경, 어노테이션만 추가 | 래퍼 구조 표현 제한적, 마커 클래스 불필요 |
 
-권장: **A → 연쇄 영향 허용되는 프로젝트**, **B → 런타임 시그니처 변경 금지 프로젝트**.
+권장: **C → 기본 (어노테이션만, 코드 무변경)**, **B → 정밀 스키마 필요 시**, **A → 코드 소유권이 있고 연쇄 영향 허용되는 프로젝트에만**.
+
+> **실전 교훈 (Lucida 도메인)**: 방식 A를 적용했다가 "이 코드는 내가 관리하는 소스가 아니라 시그니처 변경 불가"라는 피드백으로 전량 롤백한 사례 있음. **반드시 사전에 코드 소유권/변경 범위를 사용자에게 확인**할 것. Swagger 최적화는 어노테이션(@Operation, @Schema, @ApiResponse 등)만 변경하는 것이 원칙이며, 메서드 시그니처/본문은 명시적 승인 없이 변경 금지.
 
 ### 공통 전제 조건 체크
 
@@ -85,7 +85,26 @@ Part B: x-filterable-fields 확장 (Phase 9~13)
 5. 파일 1개 완료 시마다 `./gradlew compileJava` 빌드 검증. 실패 시 해당 파일만 조정. 성공 후 다음 파일.
 6. 호출자 컨트롤러(래퍼)는 마지막에 처리 — 호출 대상 시그니처가 확정된 뒤 맞춰 수정.
 
-### 방식 B 실행 절차
+### 방식 C 실행 절차 (권장 기본값 — 코드 무변경)
+
+시그니처를 `ApiResponseData<Object>` 그대로 두고, `@Operation`의 description에 응답 data 필드의 실제 타입과 주요 필드를 명시하는 방식.
+
+1. `grep -rn "public ApiResponseData<Object>" src/main/java/.../controller/` 로 전수 조사.
+2. 각 메서드 본문에서 `createSuccess(X)`의 X 실제 타입 추론 (방식 A와 동일 규칙).
+3. `@Operation`의 `description`에 응답 구조 설명 추가:
+   ```java
+   @Operation(
+     summary = "에이전트 목록 조회",
+     operationId = "getAgentListByGridFilter",
+     description = "... 응답 data: Page<AgentInfoDto> (agentId, hostName, ip, osType, agentVersion, startTime 등)"
+   )
+   public ApiResponseData<Object> getAgentListByGridFilter(...) { ... }
+   ```
+4. DTO에 `@Schema(description, example)` 가 이미 적용되어 있으므로, description에 DTO명만 명시하면 AI가 DTO 스키마를 참조하여 응답 구조를 추론 가능.
+5. **절대 변경 금지**: 메서드 시그니처, 본문 로직, import (어노테이션 import 외).
+6. 빌드 검증.
+
+### 방식 B 실행 절차 (마커 서브클래스 — 정밀 스키마 필요 시)
 
 1. `src/main/java/.../dto/swagger/` 에 마커 서브클래스 생성:
    ```java
@@ -103,9 +122,10 @@ Part B: x-filterable-fields 확장 (Phase 9~13)
 
 ### 실측 주의사항 (Lucida 도메인 실전)
 
-- **병렬 에이전트 race condition**: 15개 컨트롤러 병렬 위임 시 일부 파일 변경이 소실됨. 반드시 순차 처리.
-- **Spring `PageImpl` 직렬화 경고**: `Page<T>` 반환 시 Jackson 경고가 뜨는 구조라면 이번 작업과 무관(기존부터 존재). 본 작업이 경고 유발 원인 아님을 확인.
-- **`ApiResponseData.createFail`만 있는 try-catch 분기**: 제네릭 inference로 빈 분기에서도 `ApiResponseData<ConcreteType>` 컴파일 통과.
+- **코드 소유권 사전 확인 필수**: 방식 A(시그니처 변경)를 152건 적용 후 "관리 소스가 아니라 시그니처 변경 불가" 피드백으로 전량 롤백. Phase 5-B 시작 전 반드시 "시그니처 변경 허용 여부"를 사용자에게 확인. 허용 안되면 방식 C(어노테이션만) 적용.
+- **롤백 시 private 메서드·래퍼 컨트롤러 주의**: 방식 A 롤백 시 public 시그니처만 되돌리면, private 헬퍼 메서드의 반환 타입이 불일치하여 컴파일 에러 발생. 이중 캐스트 `(ApiResponseData<Object>)(ApiResponseData<?>)` 같은 부산물이 삽입됨. private 메서드 시그니처도 함께 원복해야 함.
+- **병렬 에이전트 race condition**: 15개 컨트롤러 병렬 위임 시 일부 파일 변경이 소실됨. Phase 5-B는 반드시 순차 처리.
+- **Spring `PageImpl` 직렬화 경고**: `Page<T>` 반환 시 Jackson 경고가 뜨는 구조라면 이번 작업과 무관(기존부터 존재).
 - **Swagger UI 캐시**: 변경 후 `springdoc` spec 재생성 경로(`/v3/api-docs`)로 확인. UI 페이지는 브라우저 캐시 제거 필요.
 
 ### 검증 명령어
