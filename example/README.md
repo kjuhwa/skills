@@ -184,6 +184,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [message-queue-flow](message-queue-flow/) | Message Queue Flow — auto-generated message-queue tool | html, css, vanilla-js | 2026-04-16 |
 
+| [tsdb-retention-planner](tsdb-retention-planner/) | Tsdb Retention Planner — auto-generated time-series-db tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

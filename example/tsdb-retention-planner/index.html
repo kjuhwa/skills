@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSDB Retention Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header><h1>📦 TSDB Retention Planner</h1><p class="sub">Visualize storage cost vs. data granularity over time</p></header>
+  <div class="controls">
+    <label>Ingest Rate <input type="range" id="ingest" min="1" max="100" value="30"><span id="ingestVal">30k pts/s</span></label>
+    <label>Raw Retention <input type="range" id="rawDays" min="1" max="90" value="14"><span id="rawVal">14d</span></label>
+    <label>Downsample Retention <input type="range" id="dsDays" min="30" max="730" value="180"><span id="dsVal">180d</span></label>
+  </div>
+  <div class="grid">
+    <div class="card"><canvas id="barChart"></canvas></div>
+    <div class="card" id="summary"></div>
+  </div>
+  <div class="tiers" id="tiers"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
