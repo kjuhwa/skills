@@ -368,6 +368,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [pub-sub-newsroom](pub-sub-newsroom/) | Pub Sub Newsroom — auto-generated pub-sub tool | html, css, vanilla-js | 2026-04-16 |
 
+| [feature-flag-rollout-simulator](feature-flag-rollout-simulator/) | Feature Flag Rollout Simulator — auto-generated feature-flags tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

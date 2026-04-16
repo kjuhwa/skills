@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rollout Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Rollout Simulator</h1>
+  <p class="sub">Watch a feature flag propagate across a user population</p>
+</header>
+<main>
+  <div class="controls">
+    <label>Rollout <span id="pctLabel">25</span>%
+      <input type="range" id="pct" min="0" max="100" value="25">
+    </label>
+    <label>Strategy
+      <select id="strategy">
+        <option value="random">Random %</option>
+        <option value="hash">User-ID Hash</option>
+        <option value="geo">Geography (NA first)</option>
+        <option value="canary">Canary (top 5%)</option>
+      </select>
+    </label>
+    <button id="reshuffle">Reshuffle Users</button>
+  </div>
+  <canvas id="grid" width="600" height="400"></canvas>
+  <div class="stats">
+    <div class="stat"><span id="onCount">0</span><small>enabled</small></div>
+    <div class="stat"><span id="offCount">0</span><small>disabled</small></div>
+    <div class="stat"><span id="flipCount">0</span><small>flip events</small></div>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
