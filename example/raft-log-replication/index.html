@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raft Log Replication</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Raft Log Replication</h1>
+<div class="controls">
+<button id="btnAppend">Append Entry</button>
+<button id="btnCommit">Commit</button>
+<button id="btnDrop">Drop Random Node</button>
+<button id="btnRestore">Restore All</button>
+</div>
+<div id="cluster"></div>
+<div id="info">Committed index: <span id="commitIdx">0</span></div>
+<script src="app.js"></script>
+</body>
+</html>

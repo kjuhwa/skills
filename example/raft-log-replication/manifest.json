@@ -1,0 +1,12 @@
+{
+  "slug": "raft-log-replication",
+  "title": "Raft Log Replication",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:09:01.794Z",
+  "source_project": "101-raft-log-replication",
+  "author": "kjuhwa@nkia.co.kr"
+}

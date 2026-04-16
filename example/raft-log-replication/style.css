@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', monospace; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+h1 { color: #6ee7b7; margin-bottom: 12px; font-size: 1.4rem; }
+.controls { display: flex; gap: 10px; margin-bottom: 16px; }
+button { background: #1a1d27; color: #6ee7b7; border: 1px solid #6ee7b7; padding: 6px 16px; border-radius: 6px; cursor: pointer; font-size: .85rem; }
+button:hover { background: #6ee7b722; }
+#cluster { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.node { background: #1a1d27; border-radius: 10px; padding: 14px; min-width: 140px; border: 2px solid #333; transition: border-color .3s; }
+.node.leader { border-color: #6ee7b7; }
+.node.down { opacity: .35; border-color: #ef4444; }
+.node-title { font-weight: bold; font-size: .9rem; margin-bottom: 8px; text-align: center; }
+.log-bar { display: flex; gap: 3px; min-height: 28px; flex-wrap: wrap; }
+.log-entry { width: 24px; height: 24px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: bold; transition: all .3s; }
+.log-entry.uncommitted { background: #f59e0b33; border: 1px solid #f59e0b; color: #f59e0b; }
+.log-entry.committed { background: #6ee7b733; border: 1px solid #6ee7b7; color: #6ee7b7; }
+#info { margin-top: 16px; color: #6ee7b7; font-size: .85rem; }
