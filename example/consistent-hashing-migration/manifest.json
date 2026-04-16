@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-hashing-migration",
+  "title": "Consistent Hashing Migration",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T15:16:45.983Z",
+  "source_project": "102-consistent-hashing-migration",
+  "author": "kjuhwa@nkia.co.kr"
+}

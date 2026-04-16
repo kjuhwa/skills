@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Migration Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Key Migration Visualizer</h1>
+  <p class="sub">Watch keys migrate when a node joins or leaves the ring</p>
+  <div class="controls">
+    <button id="addBtn">Add Node</button>
+    <button id="rmBtn">Remove Node</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+  <svg id="viz" viewBox="0 0 600 400"></svg>
+  <div id="info" class="info"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
