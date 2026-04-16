@@ -1,0 +1,16 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e4e4e7; font-family: system-ui, sans-serif; min-height: 100vh; }
+header { padding: 1.5rem; border-bottom: 1px solid #2a2d37; text-align: center; }
+header h1 { color: #6ee7b7; margin-bottom: 0.3rem; }
+header p { color: #9ca3af; font-size: 0.9rem; }
+main { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 1rem; padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+section { background: #1a1d27; border-radius: 12px; padding: 1rem; border: 1px solid #2a2d37; }
+section h2 { color: #6ee7b7; font-size: 1rem; margin-bottom: 0.8rem; letter-spacing: 0.05em; }
+.pub, .sub { background: #242834; padding: 0.6rem 0.8rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+.tag { display: inline-block; background: #6ee7b7; color: #0f1117; padding: 0.15rem 0.5rem; border-radius: 6px; font-size: 0.7rem; font-weight: 600; }
+.sub .inbox { color: #9ca3af; font-size: 0.75rem; max-width: 120px; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+button { width: 100%; background: #6ee7b7; color: #0f1117; border: none; padding: 0.7rem; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 0.8rem; }
+button:hover { background: #5dd3a3; }
+canvas { width: 100%; background: #0f1117; border-radius: 8px; }
+.pulse { animation: pulse 0.5s; }
+@keyframes pulse { 0% { background: #6ee7b7; color: #0f1117; } 100% { background: #242834; color: #e4e4e7; } }

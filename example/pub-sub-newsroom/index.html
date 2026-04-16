@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pub-Sub Newsroom</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>📰 Pub-Sub Newsroom</h1>
+  <p>Publishers broadcast headlines. Subscribers filter by topic.</p>
+</header>
+<main>
+  <section class="publishers">
+    <h2>Publishers</h2>
+    <div id="pubList"></div>
+    <button id="publishBtn">Publish Random Headline</button>
+  </section>
+  <section class="broker">
+    <h2>Broker</h2>
+    <canvas id="busCanvas" width="400" height="300"></canvas>
+  </section>
+  <section class="subscribers">
+    <h2>Subscribers</h2>
+    <div id="subList"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

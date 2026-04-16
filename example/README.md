@@ -366,6 +366,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [object-storage-explorer](object-storage-explorer/) | Object Storage Explorer — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
 
+| [pub-sub-newsroom](pub-sub-newsroom/) | Pub Sub Newsroom — auto-generated pub-sub tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
