@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dead Letter Puzzle</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Dead Letter Puzzle</h1>
+<p class="sub">Route messages to the correct queue. Wrong routes go to the Dead Letter Queue!</p>
+<div class="game">
+  <div id="message" class="msg-card"></div>
+  <div class="targets" id="targets"></div>
+</div>
+<div class="scoreboard">
+  <span>Score: <b id="score">0</b></span>
+  <span>DLQ: <b id="dlq">0</b></span>
+  <span>Streak: <b id="streak">0</b></span>
+</div>
+<div id="dlqList"></div>
+<script src="app.js"></script>
+</body>
+</html>

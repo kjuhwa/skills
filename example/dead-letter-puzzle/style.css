@@ -1,0 +1,18 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; min-height: 100vh; }
+h1 { color: #6ee7b7; margin-bottom: 4px; font-size: 1.4rem; }
+.sub { font-size: .8rem; color: #666; margin-bottom: 20px; }
+.game { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.msg-card { background: #1a1d27; border: 2px solid #6ee7b7; border-radius: 10px; padding: 18px 28px; text-align: center; min-width: 240px; transition: transform .2s, opacity .2s; }
+.msg-card.correct { border-color: #6ee7b7; transform: scale(1.05); }
+.msg-card.wrong { border-color: #f87171; animation: shake .3s; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.msg-card .type { font-size: .7rem; color: #6ee7b7; text-transform: uppercase; letter-spacing: 1px; }
+.msg-card .body { font-size: 1rem; margin-top: 6px; }
+.targets { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.targets button { background: #1a1d27; border: 1.5px solid #2a2e3a; color: #c9d1d9; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: .85rem; transition: border-color .2s, background .2s; }
+.targets button:hover { border-color: #6ee7b7; background: #222635; }
+.scoreboard { margin-top: 24px; display: flex; gap: 24px; font-size: .9rem; }
+.scoreboard b { color: #6ee7b7; }
+#dlqList { margin-top: 16px; width: 100%; max-width: 500px; }
+#dlqList .dlq-item { background: #1a1d27; border-left: 3px solid #f87171; padding: 6px 12px; margin-bottom: 4px; border-radius: 4px; font-size: .75rem; font-family: monospace; }
