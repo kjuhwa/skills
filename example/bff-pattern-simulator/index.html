@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BFF Latency Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>BFF <span class="accent">Latency Simulator</span></h1>
+<div class="controls">
+  <button onclick="sendRequest('web')">📱 Web Request</button>
+  <button onclick="sendRequest('mobile')">📲 Mobile Request</button>
+  <button onclick="clearLog()">Clear</button>
+</div>
+<div class="panel">
+  <div class="col"><h3>Request Log</h3><div id="log"></div></div>
+  <div class="col"><h3>Aggregated Response</h3><div id="response"></div></div>
+  <div class="col"><h3>Avg Latency (ms)</h3><canvas id="chart" width="220" height="200"></canvas></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

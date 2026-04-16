@@ -1,0 +1,12 @@
+{
+  "slug": "bff-pattern-simulator",
+  "title": "Bff Pattern Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:39:12.262Z",
+  "source_project": "101-bff-pattern-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
