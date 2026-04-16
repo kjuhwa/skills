@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rollout Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Rollout Simulator</h1>
+    <p>Watch a feature flag roll out to a user population in real time.</p>
+  </header>
+  <div class="controls">
+    <label>Flag: <strong id="flagName">new-checkout</strong></label>
+    <label>Rollout <span id="pctLabel">0</span>%
+      <input id="pct" type="range" min="0" max="100" value="0">
+    </label>
+    <label>Strategy
+      <select id="strategy">
+        <option value="random">Random</option>
+        <option value="hash">Hash (sticky)</option>
+        <option value="region">Region-based</option>
+      </select>
+    </label>
+    <button id="shuffle">Shuffle Users</button>
+  </div>
+  <canvas id="grid" width="640" height="420"></canvas>
+  <div class="stats">
+    <div><span class="dot on"></span> Enabled: <strong id="onCount">0</strong></div>
+    <div><span class="dot off"></span> Disabled: <strong id="offCount">0</strong></div>
+    <div>Variance: <strong id="variance">0.00</strong></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

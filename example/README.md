@@ -318,6 +318,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [retry-strategy-explorer](retry-strategy-explorer/) | Retry Strategy Explorer — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
 
+| [feature-flags-rollout-simulator](feature-flags-rollout-simulator/) | Feature Flags Rollout Simulator — auto-generated feature-flags tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
