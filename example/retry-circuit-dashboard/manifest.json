@@ -1,0 +1,12 @@
+{
+  "slug": "retry-circuit-dashboard",
+  "title": "Retry Circuit Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:54:01.318Z",
+  "source_project": "86-retry-circuit-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}
