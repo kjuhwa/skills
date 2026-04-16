@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Reactive Stream Window</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Reactive Stream <span class="accent">::</span> Request(n)</h1>
+  <p class="sub">Publisher → bounded buffer → Subscriber. Click "Request 5" to pull items.</p>
+  <div class="stream">
+    <div class="node publisher">
+      <div class="title">Publisher</div>
+      <div class="rate">
+        <label>emit every <input type="number" id="rate" value="300" min="50" max="2000" step="50">ms</label>
+      </div>
+      <div class="emitted" id="emitted">Emitted: 0</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node buffer">
+      <div class="title">Buffer (max 10)</div>
+      <div class="slots" id="slots"></div>
+      <div class="fill-label" id="bufFill">0 / 10</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node subscriber">
+      <div class="title">Subscriber</div>
+      <button id="request">Request 5</button>
+      <div class="demand">Demand: <span id="demand">0</span></div>
+      <div class="consumed" id="consumed">Consumed: 0</div>
+    </div>
+  </div>
+  <div class="log-wrap">
+    <h2>Event Log</h2>
+    <div class="log" id="log"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
