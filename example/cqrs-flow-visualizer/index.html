@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CQRS Flow Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CQRS Flow Visualizer</h1>
+  <p>Watch commands mutate the write model and sync to the read model.</p>
+</header>
+<main>
+  <div class="controls">
+    <button data-cmd="CreateOrder">CreateOrder</button>
+    <button data-cmd="PayOrder">PayOrder</button>
+    <button data-cmd="ShipOrder">ShipOrder</button>
+    <button data-cmd="CancelOrder">CancelOrder</button>
+    <button id="query-btn">RunQuery</button>
+    <button id="reset-btn" class="danger">Reset</button>
+  </div>
+  <canvas id="stage" width="900" height="360"></canvas>
+  <section class="panes">
+    <div class="pane">
+      <h2>Write Model</h2>
+      <pre id="write-model"></pre>
+    </div>
+    <div class="pane">
+      <h2>Event Log</h2>
+      <ol id="event-log"></ol>
+    </div>
+    <div class="pane">
+      <h2>Read Model (Projection)</h2>
+      <pre id="read-model"></pre>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

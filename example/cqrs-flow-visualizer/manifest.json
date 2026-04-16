@@ -1,0 +1,12 @@
+{
+  "slug": "cqrs-flow-visualizer",
+  "title": "Cqrs Flow Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:23:26.676Z",
+  "source_project": "100-cqrs-flow-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}
