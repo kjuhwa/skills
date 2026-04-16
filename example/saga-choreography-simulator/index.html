@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saga Choreography Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Saga Choreography</h1>
+  <p class="sub">Services react to events on a shared bus — no central coordinator.</p>
+  <div class="panel">
+    <div class="bus-label">EVENT BUS</div>
+    <svg id="scene" viewBox="0 0 800 500"></svg>
+  </div>
+  <div class="actions">
+    <button id="emit">Emit OrderCreated</button>
+    <button id="chaos">Chaos Mode</button>
+    <button id="clear">Clear Bus</button>
+  </div>
+  <div class="eventlog">
+    <h3>Event Stream</h3>
+    <ul id="events"></ul>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
