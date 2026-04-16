@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Log Aggregation Heatmap</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Service × Hour Heatmap</h1>
+  <div class="legend">
+    <span>Low</span>
+    <div id="gradient"></div>
+    <span>High</span>
+  </div>
+</header>
+<main>
+  <svg id="chart" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet"></svg>
+  <div id="detail">
+    <h2>Hover a cell</h2>
+    <dl id="meta"></dl>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
