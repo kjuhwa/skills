@@ -1,0 +1,13 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+h1 { color: #6ee7b7; font-size: 1.2rem; margin-bottom: 16px; }
+#grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 760px; margin-bottom: 20px; }
+.card { background: #1a1d27; border-radius: 10px; padding: 14px; text-align: center; border: 1px solid #2a2d37; transition: border-color 0.3s; }
+.card.warn { border-color: #f59e0b; }
+.card.crit { border-color: #ef4444; }
+.card h3 { font-size: 0.8rem; color: #8b949e; margin-bottom: 6px; }
+.card .val { font-size: 1.8rem; font-weight: 700; color: #6ee7b7; }
+.card .val.warn { color: #f59e0b; }
+.card .val.crit { color: #ef4444; }
+.card .sub { font-size: 0.7rem; color: #484f58; margin-top: 4px; }
+svg { background: #1a1d27; border-radius: 10px; }

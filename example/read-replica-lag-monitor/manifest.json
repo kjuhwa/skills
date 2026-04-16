@@ -1,0 +1,12 @@
+{
+  "slug": "read-replica-lag-monitor",
+  "title": "Read Replica Lag Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:17:58.636Z",
+  "source_project": "101-read-replica-lag-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
