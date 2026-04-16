@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Load Distribution Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Load Distribution Simulator</h1>
+  <p class="sub">Compare naive modulo vs consistent hashing when nodes change</p>
+  <div class="controls">
+    <label>Nodes: <input type="range" id="nodeCount" min="2" max="12" value="5"></label>
+    <label>Keys: <input type="range" id="keyCount" min="20" max="200" value="80"></label>
+    <button id="simulate">Simulate</button>
+    <button id="removeOne">Remove 1 Node</button>
+  </div>
+  <div class="panels">
+    <div class="panel"><h3>Modulo Hashing</h3><div id="modBars"></div><div id="modStat" class="stat"></div></div>
+    <div class="panel"><h3>Consistent Hashing</h3><div id="conBars"></div><div id="conStat" class="stat"></div></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

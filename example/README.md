@@ -234,6 +234,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [bloom-filter-false-positive](bloom-filter-false-positive/) | Bloom Filter False Positive — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
 
+| [consistent-hashing-load](consistent-hashing-load/) | Consistent Hashing Load — auto-generated consistent-hashing tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

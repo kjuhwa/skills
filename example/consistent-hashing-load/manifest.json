@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-hashing-load",
+  "title": "Consistent Hashing Load",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T15:16:36.535Z",
+  "source_project": "101-consistent-hashing-load",
+  "author": "kjuhwa@nkia.co.kr"
+}

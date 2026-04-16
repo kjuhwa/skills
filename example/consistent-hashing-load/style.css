@@ -1,0 +1,19 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+.container { max-width: 700px; margin: 0 auto; }
+h1 { color: #6ee7b7; font-size: 1.3rem; }
+.sub { color: #666; font-size: .8rem; margin-bottom: 14px; }
+h3 { color: #6ee7b7; font-size: .95rem; margin-bottom: 8px; }
+.controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+label { font-size: .8rem; display: flex; align-items: center; gap: 6px; }
+input[type=range] { accent-color: #6ee7b7; }
+button { background: #1a1d27; color: #6ee7b7; border: 1px solid #6ee7b7; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: .8rem; }
+button:hover { background: #6ee7b722; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel { background: #1a1d27; padding: 14px; border-radius: 10px; }
+.bar-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; font-size: .75rem; }
+.bar-label { width: 50px; text-align: right; }
+.bar { height: 16px; border-radius: 3px; transition: width .3s; }
+.bar-val { width: 30px; }
+.stat { margin-top: 10px; font-size: .75rem; color: #888; }
+.stat b { color: #f472b6; }
