@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaky Bucket Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Leaky Bucket Playground</h1>
+  <div class="top">
+    <div class="cfg">
+      <label>Leak Rate <input type="range" id="leak" min="1" max="20" value="5"><b id="leakV">5</b>/s</label>
+      <label>Queue Size <input type="range" id="qsize" min="5" max="40" value="20"><b id="qsizeV">20</b></label>
+      <label>Auto Traffic <input type="range" id="traffic" min="0" max="25" value="8"><b id="trafficV">8</b>/s</label>
+    </div>
+    <button id="dropBtn">Drop Request</button>
+  </div>
+  <canvas id="c" width="800" height="340"></canvas>
+  <div class="stats">
+    <div>Queued: <b id="queued">0</b></div>
+    <div>Processed: <b id="processed">0</b></div>
+    <div>Dropped: <b id="dropped">0</b></div>
+    <div>Avg Latency: <b id="latency">0</b>ms</div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

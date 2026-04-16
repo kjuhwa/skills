@@ -46,6 +46,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [ws-packet-visualizer](ws-packet-visualizer/) | Ws Packet Visualizer — auto-generated websocket tool | html, css, vanilla-js | 2026-04-16 |
 
+| [leaky-bucket-playground](leaky-bucket-playground/) | Leaky Bucket Playground — auto-generated rate-limiter tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
