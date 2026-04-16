@@ -1,0 +1,12 @@
+{
+  "slug": "schema-compat-checker",
+  "title": "Schema Compat Checker",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T22:12:08.673Z",
+  "source_project": "101-schema-compat-checker",
+  "author": "kjuhwa@nkia.co.kr"
+}

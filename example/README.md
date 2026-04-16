@@ -464,6 +464,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [cqrs-command-stream](cqrs-command-stream/) | Cqrs Command Stream — auto-generated cqrs tool | html, css, vanilla-js | 2026-04-16 |
 
+| [schema-compat-checker](schema-compat-checker/) | Schema Compat Checker — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

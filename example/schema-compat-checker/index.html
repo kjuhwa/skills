@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Schema Compatibility Checker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Schema Compatibility Checker</h1></header>
+<main>
+  <div class="editor-col">
+    <label>Current Schema (v1)</label>
+    <textarea id="oldSchema" spellcheck="false"></textarea>
+  </div>
+  <div class="editor-col">
+    <label>Proposed Schema (v2)</label>
+    <textarea id="newSchema" spellcheck="false"></textarea>
+  </div>
+  <aside class="report">
+    <div class="mode-select">
+      <label><input type="radio" name="mode" value="BACKWARD" checked> Backward</label>
+      <label><input type="radio" name="mode" value="FORWARD"> Forward</label>
+      <label><input type="radio" name="mode" value="FULL"> Full</label>
+    </div>
+    <button id="checkBtn">Check Compatibility</button>
+    <div id="verdict" class="verdict"></div>
+    <ul id="issueList"></ul>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
