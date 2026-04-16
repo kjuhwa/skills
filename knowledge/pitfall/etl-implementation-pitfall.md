@@ -1,6 +1,6 @@
 ---
 name: etl-implementation-pitfall
-description: Common ETL demo mistakes: unbounded buffers, missing backpressure propagation, and wall-clock-coupled timers
+description: Common failure modes when building ETL visualizer/playground apps in the browser
 category: pitfall
 tags:
   - etl
@@ -9,8 +9,6 @@ tags:
 
 # etl-implementation-pitfall
 
-The most common mistake in ETL demo apps is unbounded in-memory buffers between stages. A generator running at 1000 rec/sec feeding a slower transform stage will OOM the browser tab within minutes if the intermediate queue is a plain array with unlimited push. Always cap inter-stage queues (e.g. 10k records) and implement an explicit drop-oldest, drop-newest, or block-producer policy — and surface the choice in the UI, because each has visibly different downstream effects that are worth demonstrating.
+The biggest pitfall is animating per-record: at 500 rec/sec with individual DOM nodes per packet, the browser hits 16ms frame budget within ~5 seconds of playback and the visualization stutters. Batch records into visual "waves" (10-50 per animated dot) and use Canvas or SVG transforms with `will-change: transform` rather than per-element React re-renders. A related trap is running the data generator on the main thread—move it to a Web Worker so transform-heavy demos don't starve the render loop when users crank the defect-rate sliders.
 
-Second pitfall: failing to propagate backpressure. If the transform stage stalls, the extract stage must slow down or the queue cap triggers drops — simply letting the generator keep emitting at full rate while the queue silently drops records produces misleading throughput-monitor charts (input rate looks healthy, output rate collapses, and users can't tell why). Wire a `canAccept()` check from each downstream stage back to its producer, and visualize the paused-producer state distinctly from the normal running state.
-
-Third pitfall: coupling timers to `Date.now()` / wall clock. When the user pauses the pipeline, drags a time scrubber, or opens devtools (which can throttle intervals in inactive tabs), wall-clock-driven ETL logic produces impossible numbers — million-record spikes when a throttled tab resumes, negative latencies after scrubbing backward. Drive the simulation from a virtual clock that advances explicitly per tick, and compute all rates/latencies against that virtual clock. This also makes tests deterministic and lets throughput-monitor's historical replay actually work.
+The second class of failure is quality-score math that lies. Completeness is easy (non-null ratio) but validity, consistency, and uniqueness require windowed computation, and naive implementations recompute over the entire history each tick—O(n²) in record count. Use incremental aggregators (HyperLogLog for uniqueness estimates, rolling counters for validity rule hits) keyed on a sliding time window. Finally, don't conflate transformation rules with quality rules in the UI: transform rules *change* data (map/filter), quality rules *judge* data (score/flag). Mixing them confuses users into thinking a failing quality check will auto-repair the record, which it won't unless there's an explicit cleansing step wired between them.
