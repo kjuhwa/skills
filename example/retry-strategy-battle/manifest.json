@@ -1,0 +1,12 @@
+{
+  "slug": "retry-strategy-battle",
+  "title": "Retry Strategy Battle",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:20:35.194Z",
+  "source_project": "101-retry-strategy-battle",
+  "author": "kjuhwa@nkia.co.kr"
+}

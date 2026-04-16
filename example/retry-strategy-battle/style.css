@@ -1,0 +1,20 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif;display:flex;justify-content:center}
+.app{max-width:860px;width:100%;padding:24px}
+h1{color:#6ee7b7;text-align:center;font-size:1.5rem}
+.sub{text-align:center;color:#8b949e;font-size:.8rem;margin:6px 0 18px}
+.arena{display:flex;flex-direction:column;gap:14px}
+.lane{background:#1a1d27;border-radius:10px;padding:14px}
+.lane-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.lane-header h2{font-size:.95rem;color:#6ee7b7}
+.lane-header span{font-size:.75rem;color:#8b949e}
+.pips{display:flex;gap:6px;flex-wrap:wrap}
+.pip{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;background:#21262d;color:#484f58;transition:all .3s}
+.pip.ok{background:#065f46;color:#6ee7b7}
+.pip.fail{background:#7f1d1d;color:#f87171}
+.pip.wait{background:#1e293b;color:#60a5fa;animation:pulse .8s infinite alternate}
+@keyframes pulse{from{opacity:.5}to{opacity:1}}
+.footer{display:flex;align-items:center;gap:16px;margin-top:18px}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:10px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
+button:hover{opacity:.85}
+#verdict{font-size:.9rem;color:#6ee7b7;font-weight:600}
