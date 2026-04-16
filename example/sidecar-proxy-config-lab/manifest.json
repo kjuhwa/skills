@@ -1,0 +1,12 @@
+{
+  "slug": "sidecar-proxy-config-lab",
+  "title": "Sidecar Proxy Config Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:31:09.853Z",
+  "source_project": "101-sidecar-proxy-config-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

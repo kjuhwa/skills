@@ -1,0 +1,41 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117; color: #e5e7eb;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+header { padding: 22px 28px; border-bottom: 1px solid #1a1d27; }
+header h1 { color: #6ee7b7; font-size: 22px; }
+header p { color: #9ca3af; margin-top: 4px; font-size: 13px; }
+main { display: grid; grid-template-columns: 360px 1fr; gap: 14px; padding: 14px; }
+section { background: #1a1d27; border-radius: 12px; padding: 16px; }
+section h2 { color: #6ee7b7; font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+#chain { list-style: none; margin-bottom: 12px; min-height: 50px; }
+#chain li {
+  background: #0f1117; border: 1px solid #232632;
+  padding: 10px 12px; border-radius: 8px; margin-bottom: 6px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: monospace; font-size: 12px;
+}
+#chain li .tag {
+  background: #6ee7b71a; color: #6ee7b7;
+  padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 8px;
+}
+#chain li button { background: transparent; border: none; color: #f87171; cursor: pointer; font-size: 16px; }
+.add { display: flex; gap: 8px; margin-bottom: 20px; }
+.add select, .add button, #fire {
+  background: #0f1117; color: #e5e7eb; border: 1px solid #232632;
+  padding: 8px 12px; border-radius: 8px; font-size: 13px; cursor: pointer;
+}
+.add button, #fire { color: #6ee7b7; border-color: #6ee7b744; }
+.add button:hover, #fire:hover { background: #6ee7b71a; }
+pre {
+  background: #0f1117; padding: 12px; border-radius: 8px;
+  font-size: 11px; color: #9ca3af; font-family: monospace;
+  white-space: pre-wrap; max-height: 140px; overflow: auto;
+}
+#stage {
+  background: #0f1117; border-radius: 8px; display: block;
+  width: 100%; height: auto; margin-bottom: 12px;
+}
+.legend { display: flex; gap: 16px; margin-top: 10px; font-size: 12px; color: #9ca3af; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }

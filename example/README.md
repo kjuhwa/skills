@@ -408,6 +408,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [mesh-traffic-visualizer](mesh-traffic-visualizer/) | Mesh Traffic Visualizer — auto-generated service-mesh tool | html, css, vanilla-js | 2026-04-16 |
 
+| [sidecar-proxy-config-lab](sidecar-proxy-config-lab/) | Sidecar Proxy Config Lab — auto-generated sidecar-proxy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

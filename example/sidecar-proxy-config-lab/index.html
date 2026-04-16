@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sidecar Proxy Config Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Sidecar Proxy Config Lab</h1>
+  <p>Compose routing rules and watch simulated requests hit your filters.</p>
+</header>
+<main>
+  <section class="builder">
+    <h2>Filter Chain</h2>
+    <ul id="chain"></ul>
+    <div class="add">
+      <select id="ftype">
+        <option value="retry">Retry</option>
+        <option value="timeout">Timeout</option>
+        <option value="ratelimit">Rate Limit</option>
+        <option value="mtls">mTLS</option>
+        <option value="header">Header Mutate</option>
+      </select>
+      <button id="addBtn">+ Add Filter</button>
+    </div>
+    <h2>Outcome</h2>
+    <pre id="preview"></pre>
+  </section>
+  <section class="stage">
+    <h2>Request Simulator</h2>
+    <canvas id="stage" width="540" height="360"></canvas>
+    <button id="fire">Fire Request</button>
+    <div class="legend">
+      <span><i style="background:#6ee7b7"></i> pass</span>
+      <span><i style="background:#fbbf24"></i> mutate</span>
+      <span><i style="background:#f87171"></i> reject</span>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
