@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Migration Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Key Migration Simulator</h1>
+  <p class="sub">See how few keys migrate when nodes join or leave</p>
+  <div class="panels">
+    <div class="panel" id="before"></div>
+    <div class="arrow">→</div>
+    <div class="panel" id="after"></div>
+  </div>
+  <div class="controls">
+    <button id="addBtn">Add Node</button>
+    <button id="rmBtn">Remove Node</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+  <div id="stats" class="stats"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
