@@ -1,0 +1,5 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Courier New', monospace; overflow: hidden; }
+h1 { position: fixed; top: 12px; left: 20px; color: #6ee7b7; font-size: 16px; z-index: 2; }
+canvas { display: block; }
+#tooltip { position: fixed; display: none; background: #1a1d27; border: 1px solid #6ee7b7; padding: 8px 12px; border-radius: 6px; font-size: 11px; pointer-events: none; z-index: 10; }
