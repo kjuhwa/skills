@@ -1,6 +1,6 @@
 ---
 name: api-versioning-implementation-pitfall
-description: Common traps when building api-versioning demos — field-rename vs field-add confusion, risk-score weighting, and sunset semantics
+description: Common traps when building API version visualizations: off-by-one lifecycle states, diff semantic loss, and traffic share math
 category: pitfall
 tags:
   - api
@@ -9,8 +9,8 @@ tags:
 
 # api-versioning-implementation-pitfall
 
-The biggest trap in a diff simulator is treating a **rename as add+remove**. When v1 has `user_id` and v2 has `userId`, the naive `Object.keys` set-diff emits two notes: "Removed: user_id" and "Added: userId", which inflates the risk score and hides the actual semantic (a breaking rename). Either match by lowercase/camelCase-normalized key, or maintain an explicit rename map in the schema registry. Also beware of **nested object diffs** — `JSON.stringify` equality flags an entire nested object as "Changed" even if a single leaf differs, so you lose granularity on objects like `{total:4200,currency:"USD"}`.
+The most frequent pitfall is conflating **deprecation** with **sunset**. Deprecation is an announcement (version still works, clients should migrate); sunset is the actual shutdown. Treating them as a single date produces misleading timelines where consumers think they have no grace period. Always model them as two distinct dates and render the interval between them as a distinct "deprecated-but-live" band, typically with a diagonal hatch pattern. Similarly, "beta" and "stable" should not be a boolean — alpha/beta/rc/stable is a four-state enum, and the timeline must handle overlap (v2 can be in beta while v1 is still stable).
 
-Risk-score weighting is easy to get backward. Removed fields (`*2`) must outweigh modified (`*1`) because removal is always breaking while modification is often compatible (e.g. widening an enum, adding precision). Added fields should contribute **zero** to the score — new optional fields are backward-compatible for consumers. If you count adds, upgrading to v3 always looks risky even when it's purely additive, which defeats the tool.
+A second trap is losing semantic information during diff rendering. If you diff two OpenAPI specs as raw JSON strings, reordering of object keys shows up as spurious changes and a renamed field appears as delete+add instead of a rename. Parse the spec into a normalized AST (sort keys, resolve `$refs`) before diffing, and run a rename-detection pass that matches removed+added pairs with identical types and similar names. Without this, users drown in noise and miss the actual breaking changes.
 
-For the traffic monitor, don't let `sunset` versions silently succeed. Real sunset APIs return 410 Gone — if your simulator serves 200 OK for a sunset version, viewers won't see why migration matters. Conversely, do *not* return 410 for `deprecated` — deprecated still works, it just warns. Mixing these two states is the most common conceptual error and collapses the four-state lifecycle (beta/stable/deprecated/sunset) into a meaningless two-state on/off.
+Third, traffic share percentages must sum to 100% per time bucket — naive per-version smoothing or interpolation breaks this invariant and produces stacked areas with visible gaps or overlaps. Always normalize after smoothing, and when a version first appears or finally disappears, avoid abrupt vertical cliffs by backfilling zero-value points one bucket before/after its active window so the stacked area renders a clean ramp rather than a step.
