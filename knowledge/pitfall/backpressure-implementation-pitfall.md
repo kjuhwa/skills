@@ -1,6 +1,6 @@
 ---
 name: backpressure-implementation-pitfall
-description: Common mistakes that make backpressure demos misleading or physically incorrect
+description: Common mistakes when modeling backpressure — missing hysteresis, unbounded buffers, and conflating flow-control with rate-limiting.
 category: pitfall
 tags:
   - backpressure
@@ -9,8 +9,8 @@ tags:
 
 # backpressure-implementation-pitfall
 
-The most frequent pitfall is **coupling the producer directly to `setInterval` at a fixed rate** without a feedback channel—this produces a buffering animation, not backpressure. True backpressure requires the consumer (or buffer) to signal upstream, and the producer must observably react (pause, slow, or drop). If the producer's rate slider still works identically when the buffer is full, the simulation is lying. Always verify that `producer.emitted` per second actually decreases under the "block" strategy when the consumer is slower.
+The most common pitfall is **no hysteresis on the pause/resume threshold**: if pause and resume both trigger at 80%, the system flaps — pause, drain one item, resume, fill one item, pause — producing a visually jittery simulation and, in real systems, thrashing that destroys throughput. Always separate the thresholds (pause high, resume low) and make the gap configurable. Related: forgetting that the resume signal has propagation latency in real systems; adding an artificial delay of 1–2 ticks before the producer actually resumes teaches viewers why buffers need headroom above the pause line.
 
-A second trap is **conflating buffer capacity with watermarks**. Many implementations trigger the "red" pressure state at 100% fill, but real systems apply backpressure at a high watermark (~80%) and release at a low watermark (~40%) to create hysteresis. Without hysteresis, the visualization thrashes between states every tick when rates are near-equal, which looks like a bug and misrepresents how reactive streams actually behave (Reactor, RxJS, Akka Streams all use watermark-based request signaling).
+The second pitfall is **unbounded internal state masquerading as a bounded buffer**. If the queue is implemented as a plain array that grows, and the "capacity" is only enforced visually, the simulation will not actually exhibit backpressure — it will exhibit infinite memory growth with a misleading UI. Enforce capacity at the data layer: reject/drop/block on enqueue, not on render. The conveyor-belt-jam app hit this bug early — items kept accumulating off-screen while the visible belt looked fine, and consumer drain times grew unboundedly because the array length was real even if the sprites weren't drawn.
 
-Third, **rate units drift silently**. If the producer slider says "100/s" but internally accumulates as `rate * frameDelta` without tracking leftover fractions, you'll lose or gain items over long runs, and the in/out totals won't reconcile. Always assert `produced == enqueued + blocked_rejections` and `enqueued == dequeued + dropped + currentDepth` at every tick in dev mode—these invariants catch 90% of simulation bugs. Also beware using `Math.random()` for Poisson arrivals without a seeded PRNG: users can't reproduce a pressure spike they just saw, which destroys the demo's teaching value.
+The third pitfall is **conflating backpressure with rate limiting**. Rate limiting caps the producer unconditionally; backpressure caps the producer *based on downstream state*. A simulation that throttles the producer to a fixed rate regardless of buffer fill is not demonstrating backpressure — it is demonstrating a token bucket. The distinguishing test: if the consumer speeds up, does the producer automatically speed up too (up to its natural rate)? If not, the feedback loop is broken and you've built a rate limiter with a queue. Make the producer's effective rate a function of the pause signal, not a fixed config, and verify by dragging consumer rate up mid-run.
