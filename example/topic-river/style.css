@@ -1,0 +1,90 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e6eb;
+  font-family: -apple-system, system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 24px;
+}
+.wrap { max-width: 1200px; margin: 0 auto; }
+h1 { color: #6ee7b7; font-size: 26px; }
+.sub { color: #8a8f9b; font-size: 13px; margin-top: 4px; }
+.controls {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+input {
+  background: #1a1d27;
+  border: 1px solid #2a2f3d;
+  color: #e4e6eb;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  flex: 1;
+  min-width: 180px;
+}
+input:focus { outline: none; border-color: #6ee7b7; }
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+}
+button:hover { filter: brightness(1.1); }
+.layout {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 16px;
+}
+#river {
+  background: #1a1d27;
+  border-radius: 12px;
+  width: 100%;
+  height: 500px;
+}
+#subs {
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 12px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.sub-card {
+  background: #0f1117;
+  border: 1px solid #2a2f3d;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.sub-card h3 {
+  font-size: 12px;
+  color: #6ee7b7;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+.sub-card .pattern { color: #fbbf24; font-family: ui-monospace, monospace; }
+.sub-card .count { color: #8a8f9b; }
+.sub-card .recent {
+  max-height: 60px;
+  overflow-y: auto;
+  color: #a8adb8;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  margin-top: 6px;
+}
+.sub-card button {
+  background: transparent;
+  color: #f87171;
+  padding: 0;
+  font-size: 11px;
+  font-weight: normal;
+}

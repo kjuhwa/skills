@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Topic River</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Topic River</h1>
+  <p class="sub">Messages flow down topic streams. Drop filters to see who receives what.</p>
+  <div class="controls">
+    <input id="topicInput" placeholder="topic (e.g. sports.*)"/>
+    <input id="msgInput" placeholder="message payload"/>
+    <button id="sendBtn">Publish</button>
+    <button id="addSub">+ Subscriber</button>
+  </div>
+  <div class="layout">
+    <svg id="river" viewBox="0 0 900 500" preserveAspectRatio="none"></svg>
+    <div id="subs"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

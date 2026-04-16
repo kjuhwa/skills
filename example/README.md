@@ -308,6 +308,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [chaos-blast-radius-simulator](chaos-blast-radius-simulator/) | Chaos Blast Radius Simulator — auto-generated chaos-engineering tool | html, css, vanilla-js | 2026-04-16 |
 
+| [topic-river](topic-river/) | Topic River — auto-generated pub-sub tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

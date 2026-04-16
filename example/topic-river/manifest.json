@@ -1,0 +1,12 @@
+{
+  "slug": "topic-river",
+  "title": "Topic River",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:34:26.281Z",
+  "source_project": "101-topic-river",
+  "author": "kjuhwa@nkia.co.kr"
+}
