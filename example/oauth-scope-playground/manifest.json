@@ -1,0 +1,12 @@
+{
+  "slug": "oauth-scope-playground",
+  "title": "Oauth Scope Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:12:06.448Z",
+  "source_project": "102-oauth-scope-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}
