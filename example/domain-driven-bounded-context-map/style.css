@@ -1,0 +1,6 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; height: 100vh; overflow: hidden; }
+h1 { margin-top: 16px; color: #6ee7b7; font-size: 1.4rem; }
+.subtitle { font-size: 0.75rem; color: #555; margin: 4px 0 8px; }
+canvas { background: #1a1d27; border-radius: 12px; cursor: grab; }
+.tooltip { position: fixed; background: #242830; border: 1px solid #6ee7b7; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; pointer-events: none; display: none; max-width: 220px; color: #c9d1d9; z-index: 10; }
