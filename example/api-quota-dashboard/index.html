@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Quota Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>API Quota Dashboard</h1>
+    <div class="live"><span class="dot"></span>Live · <span id="clock"></span></div>
+  </header>
+  <div class="grid" id="grid"></div>
+  <section class="timeline">
+    <h2>Traffic (last 60s)</h2>
+    <canvas id="spark" width="900" height="120"></canvas>
+  </section>
+  <section class="feed">
+    <h2>Recent Requests</h2>
+    <ul id="feed"></ul>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

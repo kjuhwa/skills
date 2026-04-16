@@ -1,0 +1,31 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e5e7eb; font-family: -apple-system, Segoe UI, sans-serif; padding: 24px; }
+.app { max-width: 960px; margin: 0 auto; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+h1 { color: #6ee7b7; font-size: 22px; }
+.live { font-size: 12px; color: #9ca3af; font-family: monospace; display: flex; align-items: center; gap: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #6ee7b7; animation: pulse 1.4s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.card { background: #1a1d27; padding: 14px; border-radius: 10px; border-left: 3px solid #6ee7b7; }
+.card.warn { border-left-color: #fbbf24; }
+.card.crit { border-left-color: #f87171; }
+.card h3 { font-size: 13px; color: #e5e7eb; margin-bottom: 2px; }
+.card .key { font-family: monospace; font-size: 11px; color: #9ca3af; margin-bottom: 10px; }
+.bar { height: 8px; background: #0f1117; border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+.fill { height: 100%; background: #6ee7b7; transition: width 0.3s, background 0.3s; }
+.card.warn .fill { background: #fbbf24; }
+.card.crit .fill { background: #f87171; }
+.stats-row { display: flex; justify-content: space-between; font-size: 11px; color: #9ca3af; font-family: monospace; }
+.stats-row b { color: #e5e7eb; }
+section { background: #1a1d27; padding: 16px; border-radius: 10px; margin-bottom: 16px; }
+section h2 { color: #6ee7b7; font-size: 14px; margin-bottom: 12px; }
+canvas { width: 100%; height: auto; display: block; }
+.feed ul { list-style: none; max-height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px; }
+.feed li { padding: 4px 0; border-bottom: 1px solid #0f1117; display: flex; gap: 10px; }
+.feed .code { padding: 1px 6px; border-radius: 3px; font-weight: 700; min-width: 40px; text-align: center; }
+.feed .code.c200 { background: #065f46; color: #6ee7b7; }
+.feed .code.c429 { background: #7f1d1d; color: #fca5a5; }
+.feed .t { color: #9ca3af; }
+.feed .p { flex: 1; color: #e5e7eb; }
+.feed .k { color: #9ca3af; }

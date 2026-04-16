@@ -442,6 +442,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [span-latency-heatmap](span-latency-heatmap/) | Span Latency Heatmap — auto-generated distributed-tracing tool | html, css, vanilla-js | 2026-04-16 |
 
+| [api-quota-dashboard](api-quota-dashboard/) | Api Quota Dashboard — auto-generated rate-limiter tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

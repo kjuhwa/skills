@@ -1,0 +1,12 @@
+{
+  "slug": "api-quota-dashboard",
+  "title": "Api Quota Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:24:05.481Z",
+  "source_project": "102-api-quota-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}
