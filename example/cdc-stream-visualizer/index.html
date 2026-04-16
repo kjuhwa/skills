@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDC Stream Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+  <h1>CDC Event Stream</h1>
+  <div class="controls">
+    <button id="toggleBtn" onclick="toggleStream()">⏸ Pause</button>
+    <span id="counter">0 events</span>
+  </div>
+</div>
+<canvas id="canvas"></canvas>
+<div id="tooltip" class="tooltip"></div>
+<script src="app.js"></script>
+</body>
+</html>

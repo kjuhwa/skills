@@ -1,0 +1,10 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif; overflow: hidden; }
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: #1a1d27cc; backdrop-filter: blur(8px); border-bottom: 1px solid #2a2d37; }
+h1 { font-size: 16px; color: #6ee7b7; }
+.controls { display: flex; align-items: center; gap: 16px; }
+button { background: #6ee7b722; color: #6ee7b7; border: 1px solid #6ee7b744; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+button:hover { background: #6ee7b733; }
+#counter { font-size: 13px; color: #94a3b8; }
+canvas { display: block; }
+.tooltip { position: fixed; background: #1a1d27; border: 1px solid #6ee7b744; padding: 8px 12px; border-radius: 6px; font-size: 12px; pointer-events: none; display: none; color: #cbd5e1; white-space: pre; }
