@@ -1,6 +1,6 @@
 ---
 name: api-versioning-visualization-pattern
-description: Dark-themed, status-color-coded UI pattern for rendering API version lifecycle states across timeline, matrix, and drift views.
+description: Visual language for API version lifecycle — horizontal timeline with lifecycle colors, side-by-side JSON diff panels, and traffic share charts
 category: design
 triggers:
   - api versioning visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # api-versioning-visualization-pattern
 
-All three API versioning apps share a unified visual language built around a three-tier status color system: green (#6ee7b7) for active/compatible versions, amber (#f59e0b) for deprecated/partial-compatibility states, and red (#ef4444) for sunset/breaking changes. This palette is applied consistently whether rendering a vertical timeline with dot markers and left-border accents (timeline app), a traffic-distribution line chart with version-keyed legend (drift monitor), or a heatmap grid with cell-level hover tooltips (compatibility matrix). The dark background (#0f1117) with card surfaces (#1a1d27) and subtle borders (#2a2d3a) ensures the status colors carry maximum signal-to-noise ratio.
+API versioning UIs share a consistent visual language across three viewpoints: a **horizontal lifecycle timeline** (SVG line + circle nodes spaced proportionally, alternating label positions above/below so crowded releases remain legible, with an enlarged current-version node), a **two-column JSON diff view** (left=from-version, right=to-version, with per-line highlight classes `line-add` / `line-rem` / `line-mod` derived by walking keys of both payloads), and a **traffic share dashboard** (stacked line/area canvas plus per-version stat cards anchored by a `border-top-color` matching the version).
 
-The interaction patterns are purpose-matched to each view type. The timeline uses a slide-in detail panel triggered by node click, allowing deep inspection of a single version's changelog without losing context. The drift monitor pairs a canvas-drawn multi-line chart (traffic % per version over weekly intervals) with a side stats panel and a consumer table showing per-client migration progress. The compatibility matrix uses a dense grid of colored cells (endpoint x version) with hover-activated tooltips that surface specific breaking-change descriptions. Each view addresses a different stakeholder question — "what changed when?" (timeline), "who is still behind?" (drift), and "which endpoint breaks across which version jump?" (matrix).
+The lifecycle status palette must be shared across all three views so a user can mentally link a color to a version across tools: `stable=#6ee7b7 (green)`, `current=#60a5fa (blue)` and noticeably larger radius, `deprecated=#fbbf24 (amber)`, `sunset=#f87171 (red)`, `beta=#60a5fa`. Status drives affordance too — sunset rows in a traffic log should show 410 responses at a nontrivial rate, current should pop visually. Render versions in release order (v1.0→v3.1), never alphabetical, and always include a release date label in muted color under each node.
 
-The reusable pattern is: define a version-status enum (active/deprecated/sunset or compat/partial/breaking), map it to a fixed color triplet, then apply that mapping uniformly across badges, borders, chart lines, pills, and grid cells. Pair the overview visualization (timeline/chart/matrix) with a detail-on-demand interaction (panel/tooltip/table). This ensures any API versioning dashboard remains scannable at a glance while supporting drill-down for migration planning.
+For the diff panel specifically, compute a **risk score** (`removed*2 + modified*1`) and display a colored NONE/LOW/MEDIUM/HIGH badge — this is the single most useful summary widget because the raw diff doesn't convey breaking-change severity. Provide a swap button and endpoint selector so the same two panels serve every endpoint comparison; never split into per-endpoint screens.
