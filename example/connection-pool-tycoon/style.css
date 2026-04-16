@@ -1,0 +1,28 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e5e7eb; font-family: -apple-system, Segoe UI, sans-serif; min-height: 100vh; }
+.game { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+h1 { color: #6ee7b7; font-size: 20px; }
+.wallet { display: flex; gap: 20px; font-size: 14px; }
+.wallet span { color: #6ee7b7; font-weight: 600; }
+.board { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 16px; margin-bottom: 20px; }
+.lane { background: #1a1d27; border-radius: 10px; padding: 14px; min-height: 300px; }
+.lane h3 { font-size: 13px; color: #9ca3af; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.slots { display: flex; flex-direction: column; gap: 8px; }
+.req { background: #0f1117; border-left: 3px solid #6ee7b7; padding: 8px 10px; border-radius: 4px; font-size: 12px; animation: slide 0.3s ease; }
+.req.urgent { border-left-color: #f87171; }
+.req .bar { height: 4px; background: #374151; border-radius: 2px; margin-top: 6px; overflow: hidden; }
+.req .bar > div { height: 100%; background: #6ee7b7; transition: width 0.2s; }
+.conn { background: #0f1117; padding: 10px; border-radius: 6px; cursor: pointer; transition: transform 0.1s; border: 1px solid #374151; }
+.conn:hover { transform: translateY(-1px); border-color: #6ee7b7; }
+.conn.busy { border-color: #6ee7b7; }
+.conn.hung { border-color: #f87171; animation: pulse 1s infinite; }
+.conn .name { font-size: 11px; color: #9ca3af; }
+.conn .status { font-size: 13px; font-weight: 600; margin-top: 4px; }
+.shop { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 10px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px; }
+button:hover { background: #34d399; }
+button:disabled { background: #374151; color: #6b7280; cursor: not-allowed; }
+.tip { font-size: 11px; color: #6b7280; }
+@keyframes slide { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+@keyframes pulse { 50% { box-shadow: 0 0 12px #f87171; } }

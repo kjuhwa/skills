@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Connection Pool Tycoon</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="game">
+  <header>
+    <h1>Connection Pool Tycoon</h1>
+    <div class="wallet">
+      <div>Credits: <span id="cash">100</span></div>
+      <div>Served: <span id="served">0</span></div>
+      <div>Lost: <span id="lost">0</span></div>
+    </div>
+  </header>
+  <div class="board">
+    <div id="queue" class="lane"><h3>Incoming</h3><div class="slots" id="qSlots"></div></div>
+    <div id="pool" class="lane"><h3>Pool</h3><div class="slots" id="pSlots"></div></div>
+    <div id="done" class="lane"><h3>Completed</h3><div class="slots" id="dSlots"></div></div>
+  </div>
+  <div class="shop">
+    <button id="buySlot">Buy Connection (50¢)</button>
+    <button id="upgrade">Upgrade Speed (75¢)</button>
+    <button id="marketing">Boost Traffic (30¢)</button>
+    <span class="tip">Click idle connections to force-close hung ones.</span>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
