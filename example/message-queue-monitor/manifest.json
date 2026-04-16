@@ -1,0 +1,12 @@
+{
+  "slug": "message-queue-monitor",
+  "title": "Message Queue Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:57:55.499Z",
+  "source_project": "101-message-queue-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
