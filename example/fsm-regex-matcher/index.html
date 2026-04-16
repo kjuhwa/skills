@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSM Pattern Matcher</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>FSM Pattern Matcher</h1>
+  <p class="subtitle">A finite-state machine that matches the pattern <code>ab*c</code> — one 'a', zero or more 'b's, then 'c'.</p>
+  <div class="input-row">
+    <input id="inp" type="text" placeholder="Type a string (e.g. abbc)" maxlength="20" value="abbc"/>
+    <button id="btnRun">Run</button>
+  </div>
+  <div class="result" id="result"></div>
+  <svg id="svg" viewBox="0 0 600 180"></svg>
+  <div class="history" id="history"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

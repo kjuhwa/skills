@@ -1,0 +1,17 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif;display:flex;justify-content:center;padding:24px}
+#app{max-width:640px;width:100%;text-align:center}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:4px}
+.subtitle{font-size:.82rem;color:#666;margin-bottom:16px}
+code{background:#1a1d27;padding:2px 6px;border-radius:4px;color:#6ee7b7}
+.input-row{display:flex;gap:8px;justify-content:center;margin-bottom:12px}
+input{background:#1a1d27;border:1px solid #333;color:#c9d1d9;padding:8px 14px;border-radius:6px;font-size:1rem;width:200px;text-align:center;font-family:monospace}
+input:focus{outline:none;border-color:#6ee7b7}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:8px 20px;border-radius:6px;font-weight:600;cursor:pointer}
+button:hover{opacity:.85}
+.result{font-size:1rem;margin-bottom:14px;min-height:24px}
+.result.accept{color:#6ee7b7}.result.reject{color:#ef4444}
+svg{display:block;width:100%;background:#1a1d27;border-radius:10px;margin-bottom:12px}
+.history{font-size:.78rem;color:#555;text-align:left;max-height:100px;overflow-y:auto}
+.history div{padding:2px 0;border-bottom:1px solid #1a1d27}
+.history span.ok{color:#6ee7b7}.history span.no{color:#ef4444}
