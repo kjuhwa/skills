@@ -1,0 +1,12 @@
+{
+  "slug": "raft-consensus-quiz",
+  "title": "Raft Consensus Quiz",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:06:36.694Z",
+  "source_project": "102-raft-consensus-quiz",
+  "author": "kjuhwa@nkia.co.kr"
+}

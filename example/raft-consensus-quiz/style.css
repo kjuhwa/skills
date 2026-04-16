@@ -1,0 +1,72 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e9ef;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.app {
+  background: #1a1d27;
+  border: 1px solid #252a38;
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 560px;
+  width: 100%;
+}
+header { margin-bottom: 20px; }
+h1 { color: #6ee7b7; font-weight: 500; margin-bottom: 12px; }
+.progress {
+  height: 6px; background: #252a38;
+  border-radius: 3px; overflow: hidden; margin-bottom: 8px;
+}
+#bar {
+  height: 100%; background: #6ee7b7;
+  width: 0%; transition: width 0.4s;
+}
+.score { font-size: 13px; color: #9aa3b8; }
+.score b { color: #e6e9ef; }
+.card {
+  background: #0f1117;
+  border: 1px solid #252a38;
+  border-radius: 8px;
+  padding: 22px;
+  margin-bottom: 16px;
+  min-height: 100px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.card .q-tag {
+  display: inline-block;
+  background: #252a38; color: #6ee7b7;
+  font-size: 10px; padding: 3px 8px;
+  border-radius: 3px; letter-spacing: 1px;
+  margin-bottom: 10px; text-transform: uppercase;
+}
+.actions { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  background: #252a38; color: #e6e9ef;
+  border: 1px solid #333848; padding: 12px 16px;
+  border-radius: 6px; cursor: pointer;
+  text-align: left; font-size: 14px;
+  transition: all 0.15s; font-family: inherit;
+}
+.opt:hover:not(:disabled) { border-color: #6ee7b7; background: #2a2f3f; }
+.opt.right { background: rgba(110,231,183,0.15); border-color: #6ee7b7; color: #6ee7b7; }
+.opt.wrong { background: rgba(239,68,68,0.15); border-color: #ef4444; color: #ef4444; }
+.opt:disabled { cursor: not-allowed; }
+.explain {
+  margin-top: 14px; padding: 14px;
+  background: #0f1117; border-left: 3px solid #6ee7b7;
+  border-radius: 4px; font-size: 13px; color: #9aa3b8;
+  line-height: 1.5; display: none;
+}
+.explain.show { display: block; }
+.next {
+  margin-top: 12px; background: #6ee7b7;
+  color: #0f1117; font-weight: 600;
+  padding: 10px 20px; border: none;
+  border-radius: 6px; cursor: pointer;
+}
+.next:hover { background: #5dd4a4; }
