@@ -240,6 +240,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [connection-pool-tuner](connection-pool-tuner/) | Connection Pool Tuner — auto-generated connection-pool tool | html, css, vanilla-js | 2026-04-16 |
 
+| [bff-pattern-builder](bff-pattern-builder/) | Bff Pattern Builder — auto-generated bff-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

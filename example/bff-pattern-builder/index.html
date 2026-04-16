@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BFF Architecture Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🏗️ BFF Architecture Builder</h1>
+<p class="subtitle">Drag clients and services to design your BFF topology</p>
+<div class="toolbar">
+<button onclick="addNode('client')">+ Client</button>
+<button onclick="addNode('bff')">+ BFF</button>
+<button onclick="addNode('service')">+ Service</button>
+<button onclick="toggleLink()">🔗 Link Mode</button>
+<button onclick="clearAll()">🗑️ Clear</button>
+</div>
+<svg id="svg"></svg>
+<div id="hint">Click two nodes to link them (link mode on)</div>
+<script src="app.js"></script>
+</body>
+</html>
