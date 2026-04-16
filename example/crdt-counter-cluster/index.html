@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CRDT Counter Cluster</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>G-Counter Cluster</h1>
+  <p class="sub">Grow-only counter CRDT across 4 replicas. Increment locally, then sync to watch convergence.</p>
+</header>
+<main>
+  <div id="cluster"></div>
+  <section class="controls">
+    <button id="sync">Sync All</button>
+    <button id="partition">Toggle Partition</button>
+    <button id="reset">Reset</button>
+    <span id="status">Network: <b>open</b></span>
+  </section>
+  <section class="log">
+    <h3>Merge Log</h3>
+    <ul id="log"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

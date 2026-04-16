@@ -342,6 +342,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [outbox-pattern-simulator](outbox-pattern-simulator/) | Outbox Pattern Simulator — auto-generated outbox-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [crdt-counter-cluster](crdt-counter-cluster/) | Crdt Counter Cluster — auto-generated crdt tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
