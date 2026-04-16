@@ -1,0 +1,12 @@
+{
+  "slug": "event-sourcing-bank",
+  "title": "Event Sourcing Bank",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:37:55.600Z",
+  "source_project": "39-event-sourcing-bank",
+  "author": "kjuhwa@nkia.co.kr"
+}

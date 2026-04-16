@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event-Sourced Bank</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>🏦 Event-Sourced Bank Ledger</h1>
+  <div class="balance-card">
+    <span>Current Balance</span>
+    <div id="balance">$0.00</div>
+    <div id="acctInfo"></div>
+  </div>
+  <div class="controls">
+    <input id="amt" type="number" placeholder="Amount" min="1" value="100">
+    <button onclick="doTx('deposit')">Deposit</button>
+    <button onclick="doTx('withdraw')" class="sec">Withdraw</button>
+    <button onclick="doTx('interest')" class="tert">+Interest</button>
+    <button onclick="timeTravel()" class="ghost">⟵ Undo Last</button>
+  </div>
+  <svg id="chart" viewBox="0 0 800 160"></svg>
+  <div id="ledger"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
