@@ -1,0 +1,12 @@
+{
+  "slug": "connection-pool-config-lab",
+  "title": "Connection Pool Config Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:55:30.748Z",
+  "source_project": "102-connection-pool-config-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Connection Pool Config Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="lab">
+  <aside>
+    <h1>Pool Config Lab</h1>
+    <p class="sub">Tune settings. Simulate 60s of traffic. Compare runs.</p>
+    <div class="field"><label>minIdle <output id="oMin">2</output></label><input type="range" id="minIdle" min="0" max="20" value="2"></div>
+    <div class="field"><label>maxPoolSize <output id="oMax">10</output></label><input type="range" id="maxPoolSize" min="1" max="50" value="10"></div>
+    <div class="field"><label>connectionTimeout (ms) <output id="oTimeout">3000</output></label><input type="range" id="connectionTimeout" min="100" max="10000" step="100" value="3000"></div>
+    <div class="field"><label>idleTimeout (ms) <output id="oIdle">30000</output></label><input type="range" id="idleTimeout" min="1000" max="120000" step="1000" value="30000"></div>
+    <div class="field"><label>Traffic Profile</label>
+      <select id="profile">
+        <option value="steady">Steady (50 rps)</option>
+        <option value="spiky">Spiky burst</option>
+        <option value="ramp">Gradual ramp</option>
+        <option value="chaos">Chaos</option>
+      </select>
+    </div>
+    <button id="run">Run Simulation</button>
+    <button id="clear" class="ghost">Clear Runs</button>
+  </aside>
+  <main>
+    <div class="panel">
+      <h2>Latency Over Time</h2>
+      <svg id="chart" viewBox="0 0 600 280" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="panel">
+      <h2>Run History</h2>
+      <div id="runs" class="runs"><div class="empty">No runs yet. Click Run Simulation.</div></div>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
