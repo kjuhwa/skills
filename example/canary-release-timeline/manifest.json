@@ -1,0 +1,12 @@
+{
+  "slug": "canary-release-timeline",
+  "title": "Canary Release Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:26:28.729Z",
+  "source_project": "34-canary-release-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}
