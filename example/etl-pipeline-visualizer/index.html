@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ETL Pipeline Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>ETL Pipeline Visualizer</h1>
+  <div class="controls">
+    <button id="playBtn">▶ Run Pipeline</button>
+    <button id="resetBtn">⟲ Reset</button>
+    <label>Speed <input type="range" id="speed" min="1" max="10" value="5"></label>
+  </div>
+</header>
+<main>
+  <canvas id="canvas" width="960" height="480"></canvas>
+  <aside id="stats">
+    <h2>Stats</h2>
+    <div class="stat"><span>Extracted</span><b id="sExt">0</b></div>
+    <div class="stat"><span>Transformed</span><b id="sTrf">0</b></div>
+    <div class="stat"><span>Loaded</span><b id="sLoad">0</b></div>
+    <div class="stat"><span>Dropped</span><b id="sDrop">0</b></div>
+    <h2>Log</h2>
+    <ul id="log"></ul>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
