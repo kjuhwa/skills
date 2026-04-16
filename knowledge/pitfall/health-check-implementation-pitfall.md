@@ -1,6 +1,6 @@
 ---
 name: health-check-implementation-pitfall
-description: Common traps when building health-check dashboards: stale samples, threshold drift, and misleading aggregate status
+description: Common failure modes when building health-check systems: self-check blind spots, probe-induced load, and stale-cache green lies
 category: pitfall
 tags:
   - health
@@ -9,8 +9,8 @@ tags:
 
 # health-check-implementation-pitfall
 
-The most damaging pitfall is treating "no recent sample" as healthy. If a check agent crashes, dashboards that only render the latest received sample will keep showing green indefinitely. Always attach a `staleAfterMs` per subsystem and render missing samples as an explicit "unknown" state (typically grey, not green). Timeline views should draw gaps rather than interpolating across missing windows — interpolation hides the exact outage that operators need to see.
+The most dangerous failure in a health-check system is the health-check itself lying green. This happens three predictable ways. First, **self-check blind spot**: the `/health` endpoint returns 200 because the HTTP server is up, but doesn't actually touch the database, cache, or downstream dependencies it claims to cover — so a service with a dead DB reports healthy until a real request arrives. Fix by making `/health` execute a real (cheap, read-only) query against each declared dependency, and returning a per-dependency breakdown, not a single boolean.
 
-Threshold drift is the second trap: thresholds hardcoded in the UI diverge from thresholds used by the probing agent, so the dashboard says "warn" while the alerting pipeline says "fail" (or vice versa). Ship thresholds *with* each sample (`threshold`, `warnThreshold` fields) rather than configuring them on the frontend. This also makes the radar view honest — axes can be normalized to `value/threshold` so the healthy polygon is always the unit circle regardless of subsystem units (ms, %, count).
+Second, **probe-induced load / probe amplification**: aggressive intervals (every 1s from every monitor instance) can themselves take down the service being checked, especially when the check is expensive (full DB query, TLS handshake, DNS resolution with no cache). Mitigate with jittered intervals, probe-side caching of recent results with a short TTL, and a circuit-breaker on the probe so a struggling target gets probed *less* frequently, not more. Never let N monitor replicas each probe independently without coordination.
 
-Third, avoid rolling every subsystem into a single green/amber/red "overall" badge using naive worst-of logic. A single noisy check (flapping SSL cert expiry warning) will pin the whole system to amber and train operators to ignore it. Instead, weight by subsystem criticality and require N consecutive failing samples before escalating aggregate status — and always make the aggregate drillable back to the specific failing check in one click across all three views.
+Third, **stale-cache green lies**: a probe that caches "last known good" and serves it when the check itself fails will report healthy forever after the dependency dies. Cache results only for a bounded TTL shorter than the alerting window, and treat "probe itself errored" as `unknown` (gray) — never as the previous value. In the visualization, distinguish "last check succeeded N seconds ago" from "last check was N seconds ago"; a frozen timestamp on a green card is the tell that the probe itself has stopped running.
