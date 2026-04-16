@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Consistent Hash Ring</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <h1>Hash Ring</h1>
+    <p class="muted">A consistent-hashing load balancer. Add or remove nodes and watch the keys rebalance.</p>
+    <div class="panel">
+      <h3>Nodes</h3>
+      <div id="nodeList"></div>
+      <button id="addNode">+ Add Node</button>
+    </div>
+    <div class="panel">
+      <h3>Virtual nodes per server</h3>
+      <input type="range" id="vnodes" min="1" max="40" value="12">
+      <span id="vnodesLabel">12</span>
+    </div>
+    <div class="panel">
+      <h3>Probe a key</h3>
+      <input type="text" id="keyInput" placeholder="user:42" value="user:42">
+      <div id="probeResult" class="probe"></div>
+    </div>
+  </aside>
+  <main>
+    <svg id="ring" viewBox="0 0 600 600"></svg>
+    <div id="distribution"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

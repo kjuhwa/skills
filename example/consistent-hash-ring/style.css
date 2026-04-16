@@ -1,0 +1,85 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e8ef;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+}
+.layout { display: grid; grid-template-columns: 320px 1fr; min-height: 100vh; }
+aside {
+  background: #1a1d27;
+  padding: 24px;
+  border-right: 1px solid #2a2f3d;
+  overflow-y: auto;
+}
+aside h1 { color: #6ee7b7; font-size: 22px; margin-bottom: 6px; }
+.muted { color: #8a90a3; font-size: 13px; margin-bottom: 20px; }
+.panel { margin-bottom: 20px; }
+.panel h3 { font-size: 12px; text-transform: uppercase; color: #8a90a3; margin-bottom: 10px; letter-spacing: 0.5px; }
+.node-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f1117;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  border-left: 3px solid;
+}
+.node-row .name { font-weight: 600; font-size: 13px; }
+.node-row .meta { font-size: 11px; color: #8a90a3; }
+.node-row button {
+  background: transparent;
+  border: 1px solid #2a2f3d;
+  color: #e6e8ef;
+  width: 22px; height: 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.node-row button:hover { border-color: #ef4444; color: #ef4444; }
+#addNode {
+  width: 100%;
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+}
+input[type="text"], input[type="range"] {
+  width: 100%;
+  background: #0f1117;
+  border: 1px solid #2a2f3d;
+  color: #e6e8ef;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  accent-color: #6ee7b7;
+}
+input[type="range"] { padding: 0; }
+.probe {
+  margin-top: 10px;
+  padding: 10px;
+  background: #0f1117;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: monospace;
+  min-height: 40px;
+}
+main { padding: 24px; display: flex; flex-direction: column; gap: 20px; align-items: center; }
+#ring { width: 100%; max-width: 560px; height: auto; }
+#distribution {
+  width: 100%;
+  max-width: 560px;
+  background: #1a1d27;
+  padding: 14px;
+  border-radius: 8px;
+}
+.bar { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+.bar .label { width: 60px; }
+.bar .track { flex: 1; height: 14px; background: #0f1117; border-radius: 4px; overflow: hidden; }
+.bar .fill { height: 100%; transition: width 0.3s; }
+.bar .pct { width: 40px; text-align: right; color: #8a90a3; }
