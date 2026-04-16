@@ -1,0 +1,12 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;height:100vh;padding:16px}
+h1{font-size:1.4rem;margin-bottom:12px;color:#6ee7b7}
+.toolbar{display:flex;gap:8px;margin-bottom:12px}
+.toolbar button{background:#1a1d27;color:#6ee7b7;border:1px solid #6ee7b744;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.85rem}
+.toolbar button:hover{background:#6ee7b722}
+#canvas{width:90vw;height:75vh;background:#1a1d27;border-radius:10px;border:1px solid #ffffff10}
+.node rect{rx:8;cursor:grab}
+.node text{fill:#c9d1d9;font-size:12px;pointer-events:none}
+.link{stroke:#6ee7b766;stroke-width:2;fill:none;marker-end:url(#arrow)}
+.pulse{stroke:#6ee7b7;stroke-width:3;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-20}}

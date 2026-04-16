@@ -1,0 +1,12 @@
+{
+  "slug": "etl-pipeline-viz",
+  "title": "Etl Pipeline Viz",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:25:24.568Z",
+  "source_project": "63-etl-pipeline-viz",
+  "author": "kjuhwa@nkia.co.kr"
+}
