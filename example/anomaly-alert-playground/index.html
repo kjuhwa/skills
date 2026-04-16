@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anomaly Alert Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>🚨 Anomaly Alert Playground</h1></header>
+<main>
+  <aside>
+    <h3>Alert Rule</h3>
+    <label>Threshold: <output id="tv">75</output></label>
+    <input id="threshold" type="range" min="0" max="100" value="75">
+    <label>Direction</label>
+    <select id="direction">
+      <option value="above">above</option>
+      <option value="below">below</option>
+    </select>
+    <label>Duration (s): <output id="dv">5</output></label>
+    <input id="duration" type="range" min="1" max="30" value="5">
+    <label>Noise: <output id="nv">10</output></label>
+    <input id="noise" type="range" min="0" max="40" value="10">
+    <button id="spike">Inject Spike</button>
+    <h3>Firing State</h3>
+    <div id="state" class="state calm">OK</div>
+    <h3>Alert Log</h3>
+    <ul id="log"></ul>
+  </aside>
+  <section>
+    <canvas id="chart"></canvas>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

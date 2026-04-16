@@ -1,0 +1,12 @@
+{
+  "slug": "anomaly-alert-playground",
+  "title": "Anomaly Alert Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:42:28.524Z",
+  "source_project": "102-anomaly-alert-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}
