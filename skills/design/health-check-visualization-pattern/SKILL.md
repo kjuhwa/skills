@@ -1,6 +1,6 @@
 ---
 name: health-check-visualization-pattern
-description: Three-state service health dashboard with consistent color semantics and interactive drill-down
+description: Multi-perspective health-check dashboards combining radar spread, vital gauges, and temporal timeline views
 category: design
 triggers:
   - health check visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # health-check-visualization-pattern
 
-Health check visualizations converge on a three-state model (up / degraded / down) mapped to a strict color triad: green (#6ee7b7) for healthy, amber (#fbbf24) for degraded, and red (#f87171) for down. This palette is applied consistently across card dots (Pulse), orbital nodes (Orbit), and heatmap cells (Matrix). The dark background (#0f1117) with card surfaces (#1a1d27) ensures the status colors pop without competing chrome. Each app renders multiple services simultaneously so operators can spot the one outlier among many healthy nodes — the visual weight of red or amber against a sea of green is the primary signal.
+Health-check visualization works best when three complementary lenses are offered together rather than forcing one chart to carry every signal. A radar view maps subsystems (CPU, memory, disk, network, dependencies, queue depth) to axes so an operator instantly sees which dimensions are degrading relative to healthy baselines — the polygon's shape is the diagnostic, not any single value. A vitals view reduces each subsystem to a large, color-banded gauge or stat tile (green/amber/red thresholds) optimized for at-a-glance triage on wall displays. A timeline view stacks per-check status bars against wall-clock time so flapping, correlated outages, and recovery windows become obvious.
 
-The three apps demonstrate three complementary layout strategies for the same data: a card grid with sparkline timeline for latency-focused monitoring, a radial orbit for topology-aware views that encode core vs. edge service rings, and a service-by-time heatmap matrix for historical pattern recognition. All three share an interaction pattern where hover or click on a service reveals contextual detail (latency value, health percentage, or hourly status) in a tooltip or info panel rather than overloading the primary view. Node sizing in Orbit scales with health percentage (10-20px radius), making sick services physically smaller and visually recessive — a deliberate design inversion where "less healthy" means "less visible" to avoid alarm fatigue while still surfacing zero-health nodes via opacity dimming.
+The reusable pattern is to share one normalized health-sample schema across all three views: `{ checkId, subsystem, status: 'pass'|'warn'|'fail', value, threshold, timestamp, latencyMs }`. Each visualization is a pure render over the same stream, which keeps color semantics, thresholds, and subsystem naming consistent as operators switch lenses. Radar renders the latest sample per subsystem; vitals renders latest + trend arrow from the previous sample; timeline renders a rolling window (default 15 min, zoomable to 24h).
 
-To reuse this pattern: define your service list as an array of `{ name, status, metric }` objects, choose one of the three layout strategies based on whether your priority is latency trends (grid+timeline), topology awareness (orbit rings), or historical coverage (heatmap), and wire up the three-color mapping as a single `colors` lookup table. Keep the drill-down interaction lightweight — inline tooltip or sidebar panel — so the primary multi-service view stays uncluttered.
+Layout convention: radar top-left for shape-recognition, vitals top-right as the "is-it-on-fire" strip, timeline as a full-width bottom band because time needs horizontal real estate. Always expose a hover/click interaction that cross-highlights the same subsystem across all three panels — this is what makes the multi-view worth more than any single chart.
