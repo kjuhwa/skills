@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLQ Heatmap Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>DLQ Failure Heatmap</h1>
+<p class="sub">Rows = topics · Columns = hours · Cell heat = failure count</p>
+<div class="legend"><span class="lo"></span> 0 <span class="mid"></span> 5 <span class="hi"></span> 10+</div>
+<svg id="heatmap"></svg>
+<div id="tooltip" class="hidden"></div>
+<script src="app.js"></script>
+</body>
+</html>

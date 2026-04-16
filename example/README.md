@@ -180,6 +180,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [saga-pattern-timeline](saga-pattern-timeline/) | Saga Pattern Timeline — auto-generated saga-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [dlq-heatmap-monitor](dlq-heatmap-monitor/) | Dlq Heatmap Monitor — auto-generated dead-letter-queue tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

@@ -1,0 +1,12 @@
+{
+  "slug": "dlq-heatmap-monitor",
+  "title": "Dlq Heatmap Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:54:12.143Z",
+  "source_project": "102-dlq-heatmap-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
