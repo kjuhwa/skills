@@ -230,6 +230,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [idempotency-replay-lab](idempotency-replay-lab/) | Idempotency Replay Lab — auto-generated idempotency tool | html, css, vanilla-js | 2026-04-16 |
 
+| [api-versioning-drift-monitor](api-versioning-drift-monitor/) | Api Versioning Drift Monitor — auto-generated api-versioning tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

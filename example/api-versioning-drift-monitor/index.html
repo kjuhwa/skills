@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Drift Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>API Version Drift Monitor</h1>
+<p class="subtitle">Live consumer version distribution & migration drift</p>
+<div class="grid">
+  <div class="card"><canvas id="chart" width="520" height="260"></canvas></div>
+  <div class="card" id="stats"></div>
+</div>
+<div class="card wide" id="consumers"></div>
+<script src="app.js"></script>
+</body>
+</html>
