@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pub/Sub Flow Canvas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Pub/Sub Message Flow</h1>
+  <div class="controls">
+    <button id="btnPublish">Publish Message</button>
+    <select id="topicSelect">
+      <option value="orders">orders</option>
+      <option value="payments">payments</option>
+      <option value="alerts">alerts</option>
+    </select>
+  </div>
+  <canvas id="canvas"></canvas>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
