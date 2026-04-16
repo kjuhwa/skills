@@ -1,0 +1,12 @@
+{
+  "slug": "vibe-coding-canvas",
+  "title": "Vibe Coding Canvas",
+  "summary": "Natural language to UI component generator — describe components in Korean/English, get instant live preview with generated HTML/CSS code. 10 component types, style/color modifiers, nesting support.",
+  "stack": ["html", "js", "css"],
+  "tags": ["browser", "vibe-coding", "nlp", "ui-generator", "korean", "live-preview", "zero-deps", "2025-trend"],
+  "created_at": "2026-04-16",
+  "source_project": "make_something",
+  "runtime": "browser",
+  "entrypoint": "browser/index.html",
+  "author": "kjuhwa@nkia.co.kr"
+}

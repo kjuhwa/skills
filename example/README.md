@@ -25,6 +25,9 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [skill-multiplier](skill-multiplier/) | Skill Multiplier — self-running generational loop that breeds skills × knowledge into new children that themselves become parents, infinite propagation | node, html, js, css | 2026-04-16 |
 | [skill-breeder](skill-breeder/) | Skill Breeder — manual breeding station with autocomplete parent pickers, preview, accept/discard, and parent-chain lineage viewer | node, html, js, css | 2026-04-16 |
 | [skill-reactor](skill-reactor/) | Skill Reactor — rule-based reaction engine over the hub pool (`category=X + tag=Y → new skill`), cooldowns, per-rule stats, localStorage-persisted rules | node, html, js, css | 2026-04-16 |
+| [agent-orchestration-dashboard](agent-orchestration-dashboard/) | AI Agent Orchestration Dashboard — D3.js force graph visualizing multi-agent workflows with particle animations, live stats, 3 cycling scenarios | html, js, css, d3 | 2026-04-16 |
+| [mcp-protocol-playground](mcp-protocol-playground/) | MCP Protocol Playground — VS Code-inspired IDE for designing, validating, and simulating MCP tool schemas with 10 templates | html, js, css | 2026-04-16 |
+| [vibe-coding-canvas](vibe-coding-canvas/) | Vibe Coding Canvas — natural language to UI component generator, Korean/English input, live preview with generated HTML/CSS | html, js, css | 2026-04-16 |
 
 ## Adding an example
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Orchestration Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ══ TOP BAR ══════════════════════════════ -->
+  <header id="topbar">
+    <div class="topbar-brand">
+      <div class="brand-icon">🤖</div>
+      <div class="brand-name">Agent Orchestrator</div>
+    </div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-controls">
+      <button class="btn btn-primary" id="btn-start">▶ 시작</button>
+      <button class="btn" id="btn-pause">⏸ 일시정지</button>
+      <button class="btn btn-danger" id="btn-reset">↺ 초기화</button>
+      <div class="topbar-divider"></div>
+      <div class="speed-control">
+        <span class="speed-label">시뮬레이션 속도</span>
+        <input type="range" class="speed-slider" id="speed-slider"
+               min="0.3" max="3.0" step="0.1" value="1.0">
+        <span class="speed-value" id="speed-value">1.0x</span>
+      </div>
+    </div>
+    <div class="topbar-status">
+      <div class="status-badge">
+        <div class="status-dot" id="status-dot"></div>
+        <span id="status-text">대기 중</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ SIDEBAR ══════════════════════════════ -->
+  <aside id="sidebar">
+    <div class="panel-header">
+      <span class="panel-title">에이전트 목록</span>
+      <span class="panel-badge" id="active-count">6 agents</span>
+    </div>
+    <div class="agent-list" id="agent-list">
+      <!-- populated by JS -->
+    </div>
+    <div class="agent-detail" id="agent-detail" style="display:none">
+      <!-- populated by JS on selection -->
+    </div>
+  </aside>
+
+  <!-- ══ CENTER GRAPH ═════════════════════════ -->
+  <main id="center">
+    <div id="graph-container">
+      <svg id="graph-svg"></svg>
+      <div class="scenario-banner" id="scenario-name">AI Agent Orchestration</div>
+      <div class="graph-tooltip" id="graph-tooltip"></div>
+    </div>
+  </main>
+
+  <!-- ══ LOG PANEL ════════════════════════════ -->
+  <aside id="logpanel">
+    <div class="panel-header">
+      <span class="panel-title">메시지 로그</span>
+    </div>
+    <div class="log-filter-row">
+      <button class="filter-btn active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="task">Task</button>
+      <button class="filter-btn" data-filter="result">Result</button>
+      <button class="filter-btn" data-filter="feedback">Feedback</button>
+      <button class="filter-btn" data-filter="design">Design</button>
+      <button class="filter-btn" data-filter="content">Content</button>
+    </div>
+    <div id="message-log">
+      <!-- populated by JS -->
+    </div>
+  </aside>
+
+  <!-- ══ STAT BAR ═════════════════════════════ -->
+  <footer id="statbar">
+    <div class="stat-item">
+      <div class="stat-icon">📨</div>
+      <div class="stat-data">
+        <div class="stat-value" id="stat-messages">0</div>
+        <div class="stat-label">총 메시지</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">⚡</div>
+      <div class="stat-data">
+        <div class="stat-value" id="stat-latency">0ms</div>
+        <div class="stat-label">평균 지연</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🟢</div>
+      <div class="stat-data">
+        <div class="stat-value" id="stat-active">0</div>
+        <div class="stat-label">활성 에이전트</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">✅</div>
+      <div class="stat-data">
+        <div class="stat-value" id="stat-tasks">0</div>
+        <div class="stat-label">완료 작업</div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /#app -->
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
