@@ -1,0 +1,12 @@
+{
+  "slug": "outbox-pattern-race",
+  "title": "Outbox Pattern Race",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:31:06.526Z",
+  "source_project": "102-outbox-pattern-race",
+  "author": "kjuhwa@nkia.co.kr"
+}
