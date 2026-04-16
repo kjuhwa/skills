@@ -142,6 +142,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [domain-driven-context-map](domain-driven-context-map/) | Domain Driven Context Map — auto-generated domain-driven tool | html, css, vanilla-js | 2026-04-16 |
 
+| [bloom-filter-comparison](bloom-filter-comparison/) | Bloom Filter Comparison — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

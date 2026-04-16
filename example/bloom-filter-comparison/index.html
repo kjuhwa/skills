@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom vs HashSet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Bloom Filter <span>vs</span> HashSet</h1>
+  <p class="sub">Compare memory usage and accuracy as items grow</p>
+  <div class="grid">
+    <div class="card">
+      <h2>Bloom Filter</h2>
+      <canvas id="bloomCanvas"></canvas>
+      <div class="info"><span id="bloomMem">0</span> bytes · <span id="bloomAcc">100</span>% accurate</div>
+    </div>
+    <div class="card">
+      <h2>HashSet</h2>
+      <canvas id="hashCanvas"></canvas>
+      <div class="info"><span id="hashMem">0</span> bytes · <span id="hashAcc">100</span>% accurate</div>
+    </div>
+  </div>
+  <div class="controls">
+    <button id="add10">+ 10 Items</button>
+    <button id="add100">+ 100 Items</button>
+    <button id="test">Test 50 Lookups</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+  <div id="log" class="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
