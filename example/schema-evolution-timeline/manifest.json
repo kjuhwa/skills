@@ -1,0 +1,12 @@
+{
+  "slug": "schema-evolution-timeline",
+  "title": "Schema Evolution Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:37:40.353Z",
+  "source_project": "101-schema-evolution-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}

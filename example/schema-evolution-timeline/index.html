@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schema Evolution Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header><h1>Schema Evolution Timeline</h1></header>
+  <div class="controls">
+    <select id="subject"></select>
+    <div class="legend"><span class="dot add"></span>Added <span class="dot mod"></span>Modified <span class="dot del"></span>Removed</div>
+  </div>
+  <canvas id="canvas"></canvas>
+  <div id="tooltip" class="tooltip"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
