@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Version Drift Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Version Drift Monitor</h1>
+<p class="subtitle">Real-time client version adoption &amp; drift detection</p>
+<div class="grid">
+  <div class="card" id="chart-card"><canvas id="canvas"></canvas></div>
+  <div class="card" id="stats"></div>
+  <div class="card full" id="log-card">
+    <h3>Live Request Log</h3>
+    <div id="log"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
