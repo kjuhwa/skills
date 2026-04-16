@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Network Health Radar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Network Health Radar</h1>
+    <div class="controls">
+      <button id="scanBtn">Run Full Scan</button>
+      <label>Threshold <input type="range" id="threshold" min="50" max="300" value="150"> <b id="tVal">150</b>ms</label>
+    </div>
+  </div>
+  <div class="board">
+    <canvas id="radar" width="500" height="500"></canvas>
+    <div class="details">
+      <h2 id="selName">Select a node</h2>
+      <div id="selInfo">Click any node on the radar to inspect.</div>
+      <h3>All Nodes</h3>
+      <div id="nodeList"></div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
