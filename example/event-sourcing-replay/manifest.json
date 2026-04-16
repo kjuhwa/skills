@@ -1,0 +1,12 @@
+{
+  "slug": "event-sourcing-replay",
+  "title": "Event Sourcing Replay",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:38:07.850Z",
+  "source_project": "40-event-sourcing-replay",
+  "author": "kjuhwa@nkia.co.kr"
+}
