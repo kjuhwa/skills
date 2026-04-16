@@ -1803,20 +1803,23 @@
       "category": "design",
       "scope": "user",
       "installed_at": "2026-04-16",
-      "version": "1.0.0",
-      "source_commit": "release/combined-20260416",
+      "version": "1.1.0",
+      "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
       "pinned": false,
-      "linked_knowledge": []
+      "linked_knowledge": [
+        "dual-design-token-pipeline-arch"
+      ]
     },
     "mfa-portal-css-isolation": {
       "category": "design",
       "scope": "user",
       "installed_at": "2026-04-16",
-      "version": "1.0.0",
-      "source_commit": "release/combined-20260416",
+      "version": "1.1.0",
+      "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
       "pinned": false,
       "linked_knowledge": [
-        "tailwind-mfa-css-isolation-pitfalls"
+        "tailwind-mfa-css-isolation-pitfalls",
+        "multi-layer-css-architecture"
       ]
     },
     "antd-wrapper-component-pattern": {
@@ -1874,6 +1877,26 @@
       "installed_at": "2026-04-16",
       "version": "1.0.0",
       "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "figma-token-scss-style-dictionary-v3": {
+      "category": "frontend",
+      "version": "1.0.0",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
+      "pinned": false,
+      "linked_knowledge": [
+        "dual-design-token-pipeline-arch"
+      ]
+    },
+    "figma-code-connect-react": {
+      "category": "frontend",
+      "version": "1.0.0",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
       "pinned": false,
       "linked_knowledge": []
     }
@@ -3475,6 +3498,29 @@
       "source": "lucida-ui@4b922a9043",
       "linked_skills": [
         "widget-card-composition"
+      ]
+    },
+    "dual-design-token-pipeline-arch": {
+      "category": "arch",
+      "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
+      "added_at": "2026-04-16",
+      "linked_skills": [
+        "figma-token-to-tailwind-theme",
+        "figma-token-scss-style-dictionary-v3"
+      ]
+    },
+    "less-antd-theme-only": {
+      "category": "decision",
+      "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
+      "added_at": "2026-04-16",
+      "linked_skills": []
+    },
+    "multi-layer-css-architecture": {
+      "category": "arch",
+      "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
+      "added_at": "2026-04-16",
+      "linked_skills": [
+        "mfa-portal-css-isolation"
       ]
     }
   }
