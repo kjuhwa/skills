@@ -416,6 +416,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [hexagonal-dependency-inverter](hexagonal-dependency-inverter/) | Hexagonal Dependency Inverter — auto-generated hexagonal-architecture tool | html, css, vanilla-js | 2026-04-16 |
 
+| [hexagonal-request-tracer](hexagonal-request-tracer/) | Hexagonal Request Tracer — auto-generated hexagonal-architecture tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

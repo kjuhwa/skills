@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hexagonal Request Tracer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <h2>Scenarios</h2>
+    <ul id="scenarios"></ul>
+    <div class="stats">
+      <div>Traces Run<strong id="runs">0</strong></div>
+      <div>Avg Latency<strong id="avg">–</strong></div>
+    </div>
+  </aside>
+  <main>
+    <header>
+      <h1>Hexagonal Request Tracer</h1>
+      <p id="scenarioDesc">Pick a scenario to inspect how requests flow through the hexagon.</p>
+    </header>
+    <canvas id="timeline" width="900" height="360"></canvas>
+    <div class="legend">
+      <span class="chip primary">Primary Adapter</span>
+      <span class="chip app">Application</span>
+      <span class="chip domain">Domain</span>
+      <span class="chip secondary">Secondary Adapter</span>
+    </div>
+    <div id="details"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
