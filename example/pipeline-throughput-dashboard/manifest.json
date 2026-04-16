@@ -1,0 +1,12 @@
+{
+  "slug": "pipeline-throughput-dashboard",
+  "title": "Pipeline Throughput Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:33:33.444Z",
+  "source_project": "101-pipeline-throughput-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

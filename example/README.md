@@ -162,6 +162,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [cdc-table-diff](cdc-table-diff/) | Cdc Table Diff — auto-generated cdc tool | html, css, vanilla-js | 2026-04-16 |
 
+| [pipeline-throughput-dashboard](pipeline-throughput-dashboard/) | Pipeline Throughput Dashboard — auto-generated data-pipeline tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

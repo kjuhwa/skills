@@ -1,0 +1,12 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px;gap:16px}
+h1{color:#6ee7b7;font-size:1.3rem}
+.row{display:flex;gap:16px;align-items:flex-start}
+canvas{background:#1a1d27;border-radius:10px}
+.sidebar{background:#1a1d27;border-radius:10px;padding:14px;width:220px;min-height:260px}
+.sidebar h3{color:#6ee7b7;font-size:.85rem;margin-bottom:10px}
+.metric{margin-bottom:10px}
+.metric label{font-size:.7rem;color:#8b949e;display:block}
+.metric .bar{height:8px;border-radius:4px;background:#262a36;margin-top:4px;overflow:hidden}
+.metric .bar .fill{height:100%;border-radius:4px;background:#6ee7b7;transition:width .4s}
+.metric .val{font-size:.85rem;font-weight:600;color:#6ee7b7}
