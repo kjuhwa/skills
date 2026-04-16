@@ -1,0 +1,71 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e7ef;
+  font-family: -apple-system, Segoe UI, sans-serif;
+  min-height: 100vh;
+}
+header {
+  padding: 24px 32px;
+  border-bottom: 1px solid #222635;
+}
+h1 { color: #6ee7b7; font-size: 22px; letter-spacing: 0.5px; }
+.sub { color: #7a8199; font-size: 13px; margin-top: 4px; }
+main {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  padding: 20px 32px;
+}
+#map {
+  background: #1a1d27;
+  border-radius: 12px;
+  width: 100%;
+  height: 540px;
+}
+#map .ctx {
+  cursor: pointer;
+  transition: all .25s;
+}
+#map .ctx rect {
+  fill: #232838;
+  stroke: #3b4258;
+  stroke-width: 1.5;
+  transition: all .25s;
+}
+#map .ctx:hover rect { fill: #2d3346; stroke: #6ee7b7; }
+#map .ctx.active rect { fill: #1c3d32; stroke: #6ee7b7; stroke-width: 2; }
+#map .ctx text { fill: #e4e7ef; font-size: 13px; font-weight: 600; }
+#map .ctx .type { fill: #7a8199; font-size: 10px; }
+#map .link { stroke: #3b4258; stroke-width: 1.5; fill: none; }
+#map .link-label {
+  fill: #7a8199;
+  font-size: 10px;
+  font-style: italic;
+}
+aside {
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 20px;
+  height: 540px;
+  overflow-y: auto;
+}
+aside h2 { color: #6ee7b7; font-size: 18px; margin-bottom: 4px; }
+aside h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #7a8199;
+  margin: 18px 0 8px;
+  letter-spacing: 1px;
+}
+.meta { color: #a0a7bd; font-size: 12px; margin-bottom: 8px; }
+aside ul { list-style: none; }
+aside li {
+  padding: 8px 10px;
+  background: #232838;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  border-left: 3px solid #6ee7b7;
+}
+aside li small { display: block; color: #7a8199; font-size: 11px; margin-top: 2px; }

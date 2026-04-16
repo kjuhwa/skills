@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Domain-Driven Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Bounded Context Explorer</h1>
+  <p class="sub">Click any context to inspect its aggregates & events</p>
+</header>
+<main>
+  <svg id="map" viewBox="0 0 800 500"></svg>
+  <aside id="panel">
+    <h2 id="ctxName">Select a context</h2>
+    <div id="ctxMeta" class="meta"></div>
+    <h3>Aggregates</h3>
+    <ul id="aggList"></ul>
+    <h3>Domain Events</h3>
+    <ul id="evtList"></ul>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
