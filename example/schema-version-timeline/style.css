@@ -1,0 +1,11 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif;height:100vh;overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh}
+header{padding:14px 20px;background:#1a1d27;border-bottom:1px solid #2a2d37}
+h1{font-size:18px;color:#6ee7b7}
+.controls{padding:12px 20px;background:#13151e;border-bottom:1px solid #2a2d37}
+select{background:#1a1d27;color:#c9d1d9;border:1px solid #2a2d37;padding:8px 12px;border-radius:6px;font-size:13px;outline:none;cursor:pointer}
+select:focus{border-color:#6ee7b7}
+canvas{flex:1;display:block}
+.tooltip{position:fixed;background:#1a1d27;border:1px solid #6ee7b7;padding:10px 14px;border-radius:8px;font-size:12px;pointer-events:none;display:none;max-width:280px;line-height:1.5;z-index:10}
+.tooltip strong{color:#6ee7b7}
