@@ -420,6 +420,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [raft-term-timeline](raft-term-timeline/) | Raft Term Timeline — auto-generated raft-consensus tool | html, css, vanilla-js | 2026-04-16 |
 
+| [tsdb-ingest-simulator](tsdb-ingest-simulator/) | Tsdb Ingest Simulator — auto-generated time-series-db tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

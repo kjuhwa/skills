@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TSDB Ingest Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>⚡ Ingest Pipeline</h1>
+    <div class="status" id="status">● IDLE</div>
+  </header>
+  <section class="pipeline">
+    <div class="stage" id="producers">
+      <h3>Producers</h3>
+      <div class="nodes" id="prod-nodes"></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage" id="buffer">
+      <h3>WAL Buffer</h3>
+      <div class="buffer-bar"><div id="buffer-fill"></div></div>
+      <span id="buffer-txt">0 / 10000</span>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage" id="shards">
+      <h3>Shards</h3>
+      <div class="shard-grid" id="shard-grid"></div>
+    </div>
+  </section>
+  <section class="controls">
+    <button id="start">Start Ingest</button>
+    <button id="stop">Stop</button>
+    <label>Rate: <input type="range" id="rate" min="1" max="500" value="100"><span id="rateval">100</span>/s</label>
+    <label>Producers: <input type="range" id="producers-n" min="1" max="8" value="4"><span id="prodval">4</span></label>
+  </section>
+  <section class="metrics">
+    <div class="card"><span>Ingested</span><b id="m-ingested">0</b></div>
+    <div class="card"><span>Dropped</span><b id="m-dropped">0</b></div>
+    <div class="card"><span>Throughput</span><b id="m-tput">0/s</b></div>
+    <div class="card"><span>Compactions</span><b id="m-compact">0</b></div>
+  </section>
+  <section class="log"><h3>Event Log</h3><div id="log"></div></section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

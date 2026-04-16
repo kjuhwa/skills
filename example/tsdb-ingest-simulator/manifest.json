@@ -1,0 +1,12 @@
+{
+  "slug": "tsdb-ingest-simulator",
+  "title": "Tsdb Ingest Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:52:40.847Z",
+  "source_project": "101-tsdb-ingest-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
