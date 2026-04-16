@@ -1,0 +1,8 @@
+{
+  "slug": "gacha-simulator",
+  "title": "Gacha Simulator Arena",
+  "stack": ["html", "css", "vanilla-js"],
+  "created_at": "2026-04-16T17:00:00Z",
+  "source_project": "14-gacha-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
