@@ -1,6 +1,6 @@
 ---
 name: domain-driven-data-simulation
-description: Generate synthetic bounded-context + aggregate + event datasets to drive DDD visualization demos
+description: Generating realistic bounded-context fixtures, aggregate event histories, and glossary drift for DDD demos
 category: workflow
 triggers:
   - domain driven data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # domain-driven-data-simulation
 
-Simulation data for DDD apps must feel like a real business domain, not random names. Use a **seeded domain template library** — pick from 6–8 archetypes (e-commerce, banking, logistics, healthcare, SaaS billing, ride-sharing, publishing, insurance) each defined as a JSON template with 3–7 bounded contexts, 2–5 aggregates per context, and 4–10 domain events per aggregate. Name events in past tense (`OrderPlaced`, `PaymentAuthorized`, `ShipmentDispatched`) and commands in imperative (`PlaceOrder`, `AuthorizePayment`) — mixing tenses is the #1 tell that data is fake.
+Seed each demo with a cohesive fictional business (e.g. a logistics SaaS) so the three apps share aggregate names, context boundaries, and vocabulary — this lets users mentally cross-reference. Generate 4–7 bounded contexts (Shipping, Billing, Customer, Routing, Tracking, Compliance, Pricing) with explicit upstream/downstream relationships drawn from the context-mapping patterns. For aggregate-event-stream, generate per-aggregate histories of 30–120 events using a weighted transition model: given state X, pick next command from a realistic distribution (Invoice: Draft 60%→Issued 30%→Paid 8%→Voided 2%), then emit the corresponding event plus occasional policy-triggered side-event chains in neighboring contexts.
 
-Generate **causal event chains** rather than independent events: an `OrderPlaced` should always trigger a downstream `PaymentRequested` within 50–500ms simulated latency, which triggers either `PaymentAuthorized` (85%) or `PaymentDeclined` (15%). Encode these probabilities in a transition table per aggregate so event-storm and aggregate-flow views show realistic branching. Seed with a deterministic RNG (seedrandom) keyed on the template name so the same archetype always produces the same demo — critical for screenshots, documentation, and reproducible bug reports.
+For the glossary, deliberately inject ubiquitous-language drift: the word "Customer" should have 3 definitions (sales-context Lead, shipping-context Consignee, billing-context Payer), "Shipment" should overlap with "Parcel" and "Consignment" with asymmetric preferences per context. Generate ~40–80 terms with 15–25% intentional cross-context collision rate — too low and the glossary feels pointless, too high and it looks contrived. Timestamp every event and term-definition with a deterministic seed so replay and diff views are stable across reloads.
 
-Include **cross-context integration patterns** in the generator: ~30% of events should be consumed by a policy in a different context (triggering an Anti-Corruption Layer translation), and mark 1–2 contexts as Conformist/Customer-Supplier so the context-map relation types are visually populated. Without deliberate cross-context traffic, the explorer view looks like disconnected islands and the demo loses its DDD message.
+Persist fixtures as static JSON keyed by context slug; hydrate lazily on first viewport entry to keep initial load under 200ms. Expose a "regenerate with seed" control so reviewers can reproduce exact states when filing issues.
