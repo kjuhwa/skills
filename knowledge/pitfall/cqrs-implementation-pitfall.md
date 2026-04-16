@@ -1,6 +1,6 @@
 ---
 name: cqrs-implementation-pitfall
-description: Forgetting eventual consistency in the UI creates read-your-write bugs that invalidate the whole demo
+description: Common CQRS mistakes: sync projections, shared models, non-idempotent handlers, missing version checks
 category: pitfall
 tags:
   - cqrs
@@ -9,8 +9,8 @@ tags:
 
 # cqrs-implementation-pitfall
 
-The most common CQRS mistake — in both real systems and demos — is issuing a command and then immediately querying the read model expecting to see the result. The projection hasn't applied yet, so the query returns stale data, and users conclude "CQRS is broken." In a visualizer this manifests as the command animation finishing before the projection updates, while a query fired in between returns the old value. If your demo hides this by making projections synchronous, you've removed the single most important teaching moment; if you expose it without explaining it, users think it's a bug.
+The most frequent CQRS pitfall in demo and production code alike is **synchronous projection** — updating the read model inside the command handler's transaction. This silently reintroduces all the coupling CQRS was meant to eliminate: the write path now blocks on read-model schema changes, failures in the projector bring down writes, and the illusion of separation hides that there is really only one model. The fix is a real queue or event log between command handler and projector, even in a toy app; otherwise you are building CRUD with extra classes.
 
-Handle this explicitly. Either (a) block queries on a projection-version token returned by the command (read-your-writes consistency), (b) show a "pending projection" badge on affected read models until the relevant event sequence number has been applied, or (c) render both "write-model truth" and "read-model view" side-by-side with a visible delta counter. Option (b) is usually best for demos because it teaches the mitigation pattern used in production (version tokens, causal consistency headers) without hiding the underlying lag.
+A second trap is **shared domain objects** between command and query sides. If the same `User` class is used for both writes and reads, every read-optimization (denormalized fields, precomputed aggregates) pollutes the write model's invariants, and every write-side invariant (required fields, value objects) bloats read DTOs. Keep the two type hierarchies separate from day one — `UserAggregate` on the write side, `UserView`/`UserSummary` on the read side — even when they start identical.
 
-A related pitfall: using the same data model for commands and queries "just to simplify the demo." This silently collapses CQRS back into CRUD and every downstream lesson — projection rebuilding, multiple read shapes, independent scaling — stops making sense. Keep the write model normalized/aggregate-shaped and force at least one read model to be visibly denormalized (e.g., pre-joined, pre-counted, pre-sorted) so the "why bother with two sides" question answers itself the moment a user looks at the schemas.
+Third, **non-idempotent projection handlers** break under event replay and at-least-once redelivery. For event-sourced-counter, a handler that does `counter += 1` on an `Incremented` event will double-count if the event is replayed during projector restart. Always include an event version/offset in the read model and skip events whose version is ≤ the last-applied version. Related: forgetting **optimistic concurrency checks** (expected aggregate version) on the command side lets two concurrent commands both succeed against a stale aggregate and emit conflicting events that the projector cannot reconcile.
