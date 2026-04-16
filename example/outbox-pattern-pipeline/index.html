@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Outbox Pipeline Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Outbox Pipeline</h1>
+  <div class="controls">
+    <button id="addOrder">+ Create Order</button>
+    <button id="togglePoll">Pause Relay</button>
+    <button id="failBroker">Toggle Broker Fault</button>
+  </div>
+</header>
+<main>
+  <section class="lane">
+    <h2>1. Service (DB Tx)</h2>
+    <ul id="serviceLog"></ul>
+  </section>
+  <section class="lane">
+    <h2>2. Outbox Table</h2>
+    <table id="outboxTable">
+      <thead><tr><th>id</th><th>event</th><th>status</th><th>tries</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+  <section class="lane">
+    <h2>3. Message Broker</h2>
+    <canvas id="brokerCanvas" width="360" height="260"></canvas>
+    <div id="brokerStatus" class="ok">broker: online</div>
+  </section>
+  <section class="lane">
+    <h2>4. Consumer</h2>
+    <ul id="consumerLog"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

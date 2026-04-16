@@ -1,0 +1,12 @@
+{
+  "slug": "outbox-pattern-pipeline",
+  "title": "Outbox Pattern Pipeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:44:28.773Z",
+  "source_project": "100-outbox-pattern-pipeline",
+  "author": "kjuhwa@nkia.co.kr"
+}
