@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BFF Pattern Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>BFF Architecture <span>Builder</span></h1>
+<div class="layout">
+  <aside id="palette">
+    <h3>Components</h3>
+    <div class="item" draggable="true" data-type="client">📱 Client</div>
+    <div class="item" draggable="true" data-type="bff">⚡ BFF Layer</div>
+    <div class="item" draggable="true" data-type="service">🔧 Microservice</div>
+    <div class="item" draggable="true" data-type="db">🗄️ Database</div>
+    <h3>Actions</h3>
+    <button onclick="clearAll()">Clear All</button>
+    <button onclick="loadPreset()">Load Preset</button>
+    <div id="info">Drag components onto the canvas. Click two nodes to connect them.</div>
+  </aside>
+  <svg id="canvas"></svg>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

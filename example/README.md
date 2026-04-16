@@ -254,6 +254,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [trace-waterfall-viewer](trace-waterfall-viewer/) | Trace Waterfall Viewer — auto-generated distributed-tracing tool | html, css, vanilla-js | 2026-04-16 |
 
+| [bff-pattern-builder](bff-pattern-builder/) | Bff Pattern Builder — auto-generated bff-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
