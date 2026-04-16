@@ -1,0 +1,12 @@
+{
+  "slug": "algorithm-race-lab",
+  "title": "Algorithm Race Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:09:26.701Z",
+  "source_project": "101-algorithm-race-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

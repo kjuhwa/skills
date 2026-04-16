@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Algorithm Race Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <h1>Race Lab</h1>
+    <p class="sub">Compare LB strategies head-to-head</p>
+    <div class="algos" id="algos"></div>
+    <div class="setup">
+      <label>Total requests <input id="reqs" type="number" value="500" min="50" max="5000"></label>
+      <label>Servers <input id="srvs" type="number" value="5" min="2" max="10"></label>
+      <label>Variance
+        <select id="variance">
+          <option value="low">Uniform</option>
+          <option value="mid" selected>Mixed</option>
+          <option value="high">Skewed</option>
+        </select>
+      </label>
+      <button id="run">Run Race</button>
+    </div>
+    <div class="winner" id="winner"></div>
+  </aside>
+  <main>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
