@@ -66,6 +66,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [event-sourcing-timeline](event-sourcing-timeline/) | Event Sourcing Timeline — auto-generated event-sourcing tool | html, css, vanilla-js | 2026-04-16 |
 
+| [log-stream-monitor](log-stream-monitor/) | Log Stream Monitor — auto-generated log-aggregation tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

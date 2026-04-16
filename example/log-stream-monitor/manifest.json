@@ -1,0 +1,12 @@
+{
+  "slug": "log-stream-monitor",
+  "title": "Log Stream Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:37:15.773Z",
+  "source_project": "72-log-stream-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
