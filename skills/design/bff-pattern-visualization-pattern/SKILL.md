@@ -1,6 +1,6 @@
 ---
 name: bff-pattern-visualization-pattern
-description: Animated canvas-based flow visualization showing client-to-BFF-to-microservice request routing with particle effects.
+description: Visualize BFF fan-out by rendering per-client gateways as distinct swim lanes that aggregate multiple backend service calls into a single client response
 category: design
 triggers:
   - bff pattern visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # bff-pattern-visualization-pattern
 
-The BFF flow visualization uses a three-column node layout (clients → BFF layers → backend services) rendered on an HTML5 Canvas. Each column represents a tier in the BFF architecture: client devices (mobile, web, IoT) on the left, per-client BFF proxies in the middle, and shared microservices on the right. Nodes are drawn as rounded rectangles with tier-specific color coding (green for clients, amber for BFFs, indigo for services). Static connection lines between tiers use low-alpha strokes to convey the routing topology without visual clutter, while a `bffRoutes` map defines which services each BFF fans out to.
+Render the BFF topology as a three-column layout: clients (Web, Mobile, IoT) on the left, dedicated BFF nodes in the middle column, and shared backend microservices (User, Product, Cart, Inventory) on the right. Each BFF node owns its own swim lane so the viewer can visually separate which aggregations belong to which client shape. Draw inbound client→BFF edges as thick solid lines (one request), and BFF→backend edges as thinner dashed lines fanned out in parallel to emphasize that a single client call explodes into N backend calls.
 
-Request flow is animated via a particle system driven by `requestAnimationFrame`. Each particle interpolates linearly between a source and target node, with a glow effect (`shadowBlur`) matching the tier color. When a client-to-BFF particle completes, it cascades into multiple BFF-to-service particles with staggered `setTimeout` delays, visually demonstrating the BFF aggregation pattern — one inbound request fans out to N downstream calls. An auto-fire interval sends random client requests every 3 seconds to keep the visualization alive without user interaction.
+Animate the request lifecycle in three phases so the fan-out/fan-in story is legible: (1) client request arrives at its BFF — highlight the inbound edge and pulse the BFF node, (2) BFF dispatches parallel calls to backends — animate dashed edges simultaneously with staggered arrival times reflecting each backend's latency, (3) BFF composes the trimmed/shaped response — collapse the dashed edges back into the BFF node, then fire a single outbound edge back to the client carrying a payload badge showing reduced size (e.g., "42 KB → 6 KB"). Color-code each BFF by client type (blue=Web, green=Mobile, orange=IoT) and reuse that hue on the outbound response edge so viewers track ownership at a glance.
 
-The color palette (`#0f1117` background, `#1a1d27` card surfaces, `#6ee7b7` accent green, `#f59e0b` amber, `#818cf8` indigo) and dark-theme styling are shared across all three BFF apps and form a cohesive design system. Typography uses Segoe UI at small sizes (0.7–0.85rem) for a compact monitoring aesthetic. This same node-and-edge rendering approach extends to the Builder app's SVG variant, where nodes become draggable and connectable, proving the layout model works across both Canvas 2D and SVG renderers.
+Always surface three metric overlays on the canvas: per-BFF aggregation count (how many backends this request touched), tail latency (max of parallel backend calls, since BFF waits for the slowest), and payload shaping ratio (backend bytes in vs. client bytes out). These three numbers are the defining value props of the BFF pattern — without them the diagram looks like a generic gateway. Place them as floating labels attached to each BFF node, not in a side panel, so they move with the animation.
