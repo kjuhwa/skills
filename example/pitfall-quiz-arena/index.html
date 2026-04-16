@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitfall Quiz Arena</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f1a;--card:#1a1a2e;--glass:rgba(255,255,255,0.05);--accent:#ff6b6b;--accent2:#ffd93d;--correct:#4ecdc4;--text:#e0e0e0;--muted:#888;--radius:16px}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.container{max-width:800px;width:100%;padding:20px}
+h1{text-align:center;font-size:2rem;margin:20px 0;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stats-bar{display:flex;justify-content:center;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+.stat{text-align:center}.stat-val{font-size:1.5rem;font-weight:700}.stat-label{font-size:.75rem;color:var(--muted)}
+.progress-wrap{width:100%;height:6px;background:var(--glass);border-radius:3px;margin-bottom:20px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+.timer-bar{width:100%;height:4px;background:var(--glass);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.timer-fill{height:100%;background:var(--accent);transition:width .1s linear}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px;margin-bottom:20px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.badge-pitfall{background:rgba(255,107,107,0.2);color:var(--accent)}
+.badge-arch{background:rgba(78,205,196,0.2);color:var(--correct)}
+.question-num{font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.question-text{font-size:1.1rem;font-weight:600;line-height:1.5;margin-bottom:20px}
+.options{display:flex;flex-direction:column;gap:10px}
+.option{padding:14px 18px;background:var(--glass);border:1px solid rgba(255,255,255,0.1);border-radius:12px;cursor:pointer;transition:all .2s;font-size:.95rem;line-height:1.4}
+.option:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.08)}
+.option.correct{border-color:var(--correct);background:rgba(78,205,196,0.15);color:var(--correct)}
+.option.wrong{border-color:var(--accent);background:rgba(255,107,107,0.15);color:var(--accent)}
+.option.disabled{pointer-events:none;opacity:.6}
+.explanation{margin-top:20px;padding:20px;background:rgba(255,107,107,0.05);border:1px solid rgba(255,107,107,0.2);border-radius:12px;display:none;animation:fadeIn .3s}
+.explanation h3{color:var(--accent2);margin-bottom:8px;font-size:.95rem}
+.explanation p{font-size:.85rem;line-height:1.6;color:var(--muted);margin-bottom:8px}
+.explanation p strong{color:var(--text)}
+.next-btn{display:none;margin-top:16px;padding:12px 32px;background:linear-gradient(135deg,var(--accent),#ee5a6f);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:transform .15s}
+.next-btn:hover{transform:scale(1.03)}
+.result-card{text-align:center}.result-card h2{font-size:1.8rem;margin-bottom:16px}
+.result-score{font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.result-details{display:flex;justify-content:center;gap:32px;margin:24px 0;flex-wrap:wrap}
+.result-detail{text-align:center}.result-detail span{display:block;font-size:1.4rem;font-weight:700}.result-detail small{color:var(--muted)}
+.play-btn{padding:14px 40px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#111;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:transform .15s}
+.play-btn:hover{transform:scale(1.05)}
+.streak{position:fixed;top:20px;right:20px;background:var(--card);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:8px 16px;font-size:.85rem;opacity:0;transition:opacity .3s}
+.streak.show{opacity:1}
+.streak-val{color:var(--accent2);font-weight:700}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.container{padding:12px}h1{font-size:1.4rem}.card{padding:18px}}
+.start-screen{text-align:center;padding:40px 20px}
+.start-screen p{color:var(--muted);margin:12px 0 28px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+<div class="streak" id="streak">Streak: <span class="streak-val" id="streak-val">0</span></div>
+<script>
+const QUESTIONS=[
+{cat:"pitfall",title:"Actuator Timeout Trap",scenario:"Your monitoring collector polls /actuator/health AND /actuator/heapdump using the same HTTP client with a 500ms timeout. Suddenly, health checks start timing out and availability gaps appear in your dashboard.",question:"What's the pitfall?",options:["The health endpoint is returning too much data","Fast and slow actuator endpoints share the same timeout \u2014 a slow heapdump stalls the entire collector","The 500ms timeout is too aggressive for any endpoint","The collector should use async HTTP instead of sync"],correct:1,explanation:{fact:"Health/metric endpoints should answer in <50ms. Threaddump/heapdump can take seconds to minutes.",why:"A single slow target was stalling the collector thread pool and starving other targets. Symptom: ticks skipped, availability metrics gapped.",apply:"Keep TWO HTTP client configurations: fast-path (\u22641s connect, \u22642s read) for /health and /metrics; slow-path (5\u201310s connect, 60s+ read) for /threaddump and /heapdump."}},
+{cat:"pitfall",title:"Silent AI Guesses",scenario:"An LLM generates an OpenAPI spec from a planning document. The doc doesn't mention endpoint URLs, required fields, or error codes. The generated spec looks complete and passes validation.",question:"What goes wrong?",options:["The LLM will refuse to generate incomplete specs","Silent AI guesses become frozen wrong contracts that are expensive to undo","The OpenAPI validator catches all inferred fields","Planning docs always contain enough detail for API specs"],correct:1,explanation:{fact:"Screen-focused planning docs lack endpoint URLs, required-field markers, error codes, pagination, permissions. AI guesses these silently.",why:"In a prior POC, silent guesses became frozen contracts that were expensive to undo after code generation consumed them.",apply:"Annotate every AI-inferred field with an inline marker (e.g. '# \u26a0\ufe0f AI guess:') and emit a companion review checklist."}},
+{cat:"pitfall",title:"Skill Doc Data Leak",scenario:"A developer writes a SKILL.md example using real ticket numbers (#PROJ-4521), a colleague's name, and actual milestone versions from the internal project tracker.",question:"What's the pitfall?",options:["The ticket numbers won't resolve for external readers","Real data in shared repos triggers security audit flags \u2014 all examples must use anonymized dummies","SKILL.md files don't support ticket references","The milestone versions will become outdated"],correct:1,explanation:{fact:"Internal shared plugin repos may be externally accessible. All SKILL.md examples must be anonymized.",why:"Security audit flagged real ticket numbers, real names, and real project names in examples.",apply:"Use dummy data: ticket #100001, names like \ud64d\uae38\ub3d9/\uae40\ucca0\uc218, features \uae30\ub2a5A/\uae30\ub2a5B, neutral versions like v10.3.0."}},
+{cat:"pitfall",title:"Lambda Instrumentation Gap",scenario:"Your APM JVM agent instruments all Spring controller methods successfully. But async operations using CompletableFuture and reactive flatMap lambdas produce zero trace data.",question:"What's the pitfall?",options:["Lambdas don't support bytecode instrumentation at all","ASM-based agents miss Java 8+ lambda forms because they're synthesized at runtime by LambdaMetafactory","The reactive framework strips instrumentation headers","CompletableFuture is incompatible with APM tracing"],correct:1,explanation:{fact:"Java 8+ lambdas compile to synthetic classes materialized at runtime by LambdaMetafactory \u2014 these bypass naive ClassFileTransformer.",why:"Class names don't match patterns an agent would register. Similar issues with Spring CGLIB proxies ($$EnhancerBySpringCGLIB).",apply:"Test against a Spring Boot app early \u2014 it exercises CGLIB proxies, ByteBuddy classes, reactive lambdas. Expose hooks as individually-toggleable flags."}},
+{cat:"pitfall",title:"Audit Trail Inversion",scenario:"Your audit log shows that a user changed a config value from 'production' to 'staging'. But the actual change was from 'staging' to 'production'. Every UPDATE event has the before/after values swapped.",question:"What's the root cause?",options:["The audit log timestamp is wrong, showing events in reverse order","The diff logic iterates the AFTER document and writes AFTER values into the changedPrev map","The database returns documents in reverse chronological order","The UI component swaps the column headers"],correct:1,explanation:{fact:"An earlier getChangedInfo() iterated the AFTER document and wrote AFTER values into changedPrev. Change direction was inverted for every UPDATE.",why:"Parameters named baseDoc/targetDoc were ambiguous \u2014 no name told the reader which was 'before'. No unit test asserted prev != after.",apply:"Name parameters beforeDoc/afterDoc. Write the canonical test first: diff({x:1},{x:2}) => {prev:{x:1},after:{x:2}}. Assert BOTH sides."}},
+{cat:"pitfall",title:"Phantom Recent Edits",scenario:"Your auto-lock job processes 200 inactive pages nightly. Next morning, the 'Recently Edited' dashboard shows all 200 pages as 'just edited'. Users complain their actual recent work is buried.",question:"What's the pitfall?",options:["The auto-lock job runs too frequently","The locking code path updates lastEditedTime, making all locked pages appear freshly edited","The dashboard query doesn't filter by edit type","Users don't understand what 'recently edited' means"],correct:1,explanation:{fact:"When a scheduled job locks N pages, do NOT let the locking code path update lastEditedTime/modifiedAt.",why:"The auto-lock service shared the generic 'page updated' code path which always bumped lastEditedTime. All locked pages looked freshly edited.",apply:"Automated state transitions should write only state columns they own (locked, archived). Use their own targeted query, not the generic entity save path."}},
+{cat:"pitfall",title:"Zero Division Aggregation",scenario:"Your MongoDB time-series dashboard works fine for normal date ranges. But when a user picks a very small range with intervalMode=auto, the chart returns empty and the server logs show a MongoDB evaluation error.",question:"What causes this?",options:["MongoDB can't handle small date ranges","The computed binSize is 0, causing division by zero in $bucketAuto","The intervalMode=auto flag is not supported","Small ranges exceed the maximum number of buckets"],correct:1,explanation:{fact:"$bucketAuto divides timestamps by binSize. A zero binSize triggers a MongoDB evaluation error (division by zero).",why:"Interval can land at 0 when the caller passes unusual mode combinations or during automated smoke runs.",apply:"Any aggregation with a computed interval must guard: interval <= 0 ? 1 : interval. Centralize in a resolveBinSize() helper."}},
+{cat:"arch",title:"Schema Evolution Strategy",scenario:"Your plugin registry has 50 registered plugins. A new feature requires changing the registry schema. You plan to add a migration that renames a field and removes an obsolete one.",question:"What's the architectural concern?",options:["Migrations are unnecessary for plugin registries","Schema changes must be additive-only \u2014 renames and removals break existing plugins","You should version each plugin individually instead","Plugin registries shouldn't have schemas"],correct:1,explanation:{fact:"Plugin registry schema changes must be additive-only. Breaking changes require a new version namespace.",why:"Existing plugins depend on the current schema shape. Renames and removals break them silently at runtime.",apply:"Add new fields alongside old ones. Deprecate but don't remove. Use version namespaces for breaking changes."}},
+{cat:"arch",title:"Agent Memory Design",scenario:"Your AI agent stores conversation memories as free-text blobs. When recalling information, it searches memories using semantic similarity. Retrieval is unreliable \u2014 sometimes it finds the right memory, sometimes not.",question:"What's the better approach?",options:["Use a larger embedding model for better semantic search","Bind memory at write-time with structured keys, not at recall-time with free search","Store memories in a relational database instead of vector store","Limit the number of memories to reduce search space"],correct:1,explanation:{fact:"Agent memory should bind at write-time (structured), not recall-time (free search).",why:"Structured binding enables deterministic retrieval. Free-text search is probabilistic and degrades with corpus size.",apply:"At write time, tag memories with structured keys (topic, entity, date). At read time, query by keys for deterministic lookup."}},
+{cat:"arch",title:"URL-Based Authorization",scenario:"Your authorization system checks permissions based on URL patterns (/api/users/*, /api/admin/*). After a REST API refactoring that restructures URL paths, several endpoints lose their security checks.",question:"What's the architectural flaw?",options:["URL patterns are the standard way to handle authorization","Authorization should be driven by function IDs on annotations, not URL patterns","The refactoring should have updated all URL patterns first","A reverse proxy should handle authorization instead"],correct:1,explanation:{fact:"Authorization checks should be driven by function IDs on annotations, not URL patterns.",why:"URL patterns break on refactors. Function IDs are stable identifiers tied to business operations.",apply:"Annotate endpoints with @RequiresPermission('USER_MANAGE') instead of URL-matching rules. IDs survive URL restructuring."}},
+{cat:"arch",title:"Generated Code Boundary",scenario:"Your code generator produces both CRUD boilerplate AND business validation logic from a DSL. A business rule change requires modifying the DSL, regenerating, and hoping the new output is correct.",question:"What's the design mistake?",options:["Code generation is inherently unreliable","Generated code should handle only boilerplate; business logic must stay hand-written","The DSL should be more expressive to handle edge cases","Generated code should be manually edited after generation"],correct:1,explanation:{fact:"Generated code handles boilerplate; business logic stays hand-written. Never generate business logic.",why:"Business rules change independently of structural patterns. Regeneration overwrites hand-tuned logic.",apply:"Draw a clear boundary: generate DTOs, mappers, CRUD. Keep validation, pricing, workflow rules in hand-written code that generation never touches."}},
+{cat:"arch",title:"Logging Framework Clash",scenario:"After adding a new dependency, half your application's log statements silently disappear. No errors, no warnings \u2014 the logs just stop appearing in your configured appenders.",question:"What happened?",options:["The new dependency has a log level override","Multiple logging frameworks on classpath cause silent log loss \u2014 commons-logging wasn't excluded","The appender configuration has a package filter","Log rotation deleted the recent logs"],correct:1,explanation:{fact:"Exclude commons-logging transitively and bridge to SLF4J. Multiple logging frameworks cause silent log loss.",why:"When both commons-logging and SLF4J are present, some classes bind to one, some to the other. Logs sent to the wrong framework vanish.",apply:"Add a global exclusion for commons-logging in your build. Add jcl-over-slf4j bridge. Verify with dependency tree after every new dependency."}},
+{cat:"arch",title:"Redis Lock Misuse",scenario:"Your system uses Redis distributed locks to prevent unauthorized users from executing admin operations. An attacker discovers that expired locks grant access to anyone.",question:"What's the design flaw?",options:["Redis locks should have longer TTLs","Redis distributed locks are for coordination, not access control \u2014 don't conflate them","The lock implementation has a bug in TTL handling","Redis should be replaced with a proper mutex"],correct:1,explanation:{fact:"Redis distributed locks are for coordination ('only one runs'), not access control ('authorized to run').",why:"Lock expiry is a coordination mechanism. When a lock expires, it means 'no one is coordinating', not 'anyone is authorized'.",apply:"Use locks for mutual exclusion (only one worker processes a job). Use a separate authZ layer (RBAC, JWT claims) for permission checks. Never derive permissions from lock state."}}
+];
+
+let state={current:0,score:0,streak:0,maxStreak:0,correct:0,total:QUESTIONS.length,startTime:0,answers:[],timer:null,timeLeft:15,order:[]};
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function init(){state={current:0,score:0,streak:0,maxStreak:0,correct:0,total:QUESTIONS.length,startTime:Date.now(),answers:[],timer:null,timeLeft:15,order:shuffle([...Array(QUESTIONS.length).keys()])};showStart()}
+
+function showStart(){
+document.getElementById('app').innerHTML=`
+<h1>Pitfall Quiz Arena</h1>
+<div class="card start-screen">
+<h2>Software Engineering Pitfalls</h2>
+<p>${QUESTIONS.length} questions from real-world pitfalls and architecture knowledge.<br>15 seconds per question. Speed bonus for fast answers. Streak multiplier for consecutive correct answers.</p>
+<button class="play-btn" onclick="startQuiz()">Start Quiz</button>
+</div>`;
+}
+
+function startQuiz(){state.startTime=Date.now();showQuestion()}
+
+function showQuestion(){
+clearInterval(state.timer);state.timeLeft=15;
+const idx=state.order[state.current];const q=QUESTIONS[idx];
+const pct=((state.current)/state.total*100).toFixed(0);
+document.getElementById('app').innerHTML=`
+<h1>Pitfall Quiz Arena</h1>
+<div class="stats-bar">
+<div class="stat"><div class="stat-val">${state.score}</div><div class="stat-label">Score</div></div>
+<div class="stat"><div class="stat-val">${state.correct}/${state.current}</div><div class="stat-label">Correct</div></div>
+<div class="stat"><div class="stat-val">${state.streak}</div><div class="stat-label">Streak</div></div>
+</div>
+<div class="progress-wrap"><div class="progress-fill" style="width:${pct}%"></div></div>
+<div class="timer-bar"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+<div class="card">
+<span class="badge ${q.cat==='pitfall'?'badge-pitfall':'badge-arch'}">${q.cat}</span>
+<div class="question-num">Question ${state.current+1} of ${state.total}</div>
+<div class="question-text">${q.title}</div>
+<p style="color:var(--muted);font-size:.9rem;line-height:1.5;margin-bottom:16px">${q.scenario}</p>
+<p style="font-weight:600;margin-bottom:12px">${q.question}</p>
+<div class="options" id="options">
+${q.options.map((o,i)=>`<div class="option" onclick="answer(${i})" data-idx="${i}">${o}</div>`).join('')}
+</div>
+<div class="explanation" id="explanation">
+<h3>${q.title} \u2014 Explanation</h3>
+<p><strong>Fact:</strong> ${q.explanation.fact}</p>
+<p><strong>Why:</strong> ${q.explanation.why}</p>
+<p><strong>How to apply:</strong> ${q.explanation.apply}</p>
+</div>
+<button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question \u2192</button>
+</div>`;
+state.timer=setInterval(()=>{state.timeLeft-=0.1;const pct=Math.max(0,(state.timeLeft/15)*100);document.getElementById('timer-fill').style.width=pct+'%';if(state.timeLeft<=0){clearInterval(state.timer);timeUp()}},100);
+}
+
+function timeUp(){
+const idx=state.order[state.current];const q=QUESTIONS[idx];
+document.querySelectorAll('.option').forEach((el,i)=>{el.classList.add('disabled');if(i===q.correct)el.classList.add('correct')});
+state.streak=0;updateStreak();
+document.getElementById('explanation').style.display='block';
+document.getElementById('next-btn').style.display='inline-block';
+state.answers.push({idx,correct:false,time:15});
+}
+
+function answer(i){
+clearInterval(state.timer);
+const idx=state.order[state.current];const q=QUESTIONS[idx];
+const timeTaken=15-state.timeLeft;
+const opts=document.querySelectorAll('.option');
+opts.forEach((el,j)=>{el.classList.add('disabled');if(j===q.correct)el.classList.add('correct');if(j===i&&j!==q.correct)el.classList.add('wrong')});
+
+if(i===q.correct){
+state.correct++;state.streak++;if(state.streak>state.maxStreak)state.maxStreak=state.streak;
+const speedBonus=Math.max(0,Math.round((state.timeLeft/15)*50));
+const streakMult=Math.min(state.streak,5);
+const pts=100*streakMult+speedBonus;
+state.score+=pts;
+state.answers.push({idx,correct:true,time:timeTaken});
+}else{
+state.streak=0;
+document.getElementById('explanation').style.display='block';
+state.answers.push({idx,correct:false,time:timeTaken});
+}
+updateStreak();
+document.getElementById('next-btn').style.display='inline-block';
+if(state.current===state.total-1)document.getElementById('next-btn').textContent='See Results \u2192';
+}
+
+function updateStreak(){
+const el=document.getElementById('streak');const val=document.getElementById('streak-val');
+val.textContent=state.streak;el.classList.toggle('show',state.streak>=2);
+}
+
+function nextQuestion(){
+state.current++;
+if(state.current>=state.total){showResults();return}
+showQuestion();
+}
+
+function showResults(){
+clearInterval(state.timer);
+const totalTime=((Date.now()-state.startTime)/1000).toFixed(1);
+const accuracy=state.total>0?Math.round((state.correct/state.total)*100):0;
+const avgTime=state.answers.length>0?(state.answers.reduce((a,b)=>a+b.time,0)/state.answers.length).toFixed(1):0;
+document.getElementById('streak').classList.remove('show');
+document.getElementById('app').innerHTML=`
+<h1>Pitfall Quiz Arena</h1>
+<div class="card result-card">
+<h2>Quiz Complete!</h2>
+<div class="result-score">${state.score}</div>
+<p style="color:var(--muted);margin-top:4px">points</p>
+<div class="result-details">
+<div class="result-detail"><span>${state.correct}/${state.total}</span><small>Correct</small></div>
+<div class="result-detail"><span>${accuracy}%</span><small>Accuracy</small></div>
+<div class="result-detail"><span>${avgTime}s</span><small>Avg Time</small></div>
+<div class="result-detail"><span>${state.maxStreak}</span><small>Best Streak</small></div>
+<div class="result-detail"><span>${totalTime}s</span><small>Total Time</small></div>
+</div>
+<div style="margin:20px 0;text-align:left">
+<h3 style="margin-bottom:12px;text-align:center;color:var(--accent2)">Review</h3>
+${state.answers.map((a,i)=>{const q=QUESTIONS[a.idx];return`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)"><span style="color:${a.correct?'var(--correct)':'var(--accent)'};font-size:1.1rem">${a.correct?'\u2713':'\u2717'}</span><span style="flex:1;font-size:.85rem">${q.title}</span><span class="badge ${q.cat==='pitfall'?'badge-pitfall':'badge-arch'}" style="margin:0">${q.cat}</span><span style="font-size:.75rem;color:var(--muted)">${a.time.toFixed(1)}s</span></div>`}).join('')}
+</div>
+<button class="play-btn" onclick="init()">Play Again</button>
+</div>`;
+}
+
+init();
+</script>
+</body>
+</html>

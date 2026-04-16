@@ -1,0 +1,12 @@
+{
+  "slug": "pitfall-quiz-arena",
+  "title": "Pitfall Quiz Arena",
+  "summary": "Timed multiple-choice quiz built from pitfall and architecture knowledge entries. Speed bonus, streak multiplier, full review with explanations.",
+  "stack": ["html", "css", "js"],
+  "tags": ["quiz", "gamification", "pitfall", "knowledge", "learning"],
+  "created_at": "2026-04-16",
+  "source_project": "hub-make",
+  "runtime": "browser",
+  "entrypoint": "index.html",
+  "author": "kjuhwa@nkia.co.kr"
+}

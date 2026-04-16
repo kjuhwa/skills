@@ -1,0 +1,12 @@
+{
+  "slug": "adr-navigator",
+  "title": "Architecture Decision Navigator",
+  "summary": "Filterable card wall of architecture decisions and knowledge entries with search, sort, expand-to-detail, confidence badges, and linked skill chips.",
+  "stack": ["html", "css", "js"],
+  "tags": ["adr", "architecture", "decisions", "knowledge", "browser"],
+  "created_at": "2026-04-16",
+  "source_project": "hub-make",
+  "runtime": "browser",
+  "entrypoint": "index.html",
+  "author": "kjuhwa@nkia.co.kr"
+}

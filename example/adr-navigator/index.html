@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture Decision Navigator</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--card:#161b22;--glass:rgba(255,255,255,0.04);--decision:#f0883e;--arch:#58a6ff;--high:#3fb950;--medium:#d29922;--low:#f85149;--text:#c9d1d9;--muted:#8b949e;--radius:12px;--border:rgba(255,255,255,0.08)}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{padding:24px;text-align:center;border-bottom:1px solid var(--border)}
+h1{font-size:1.8rem;background:linear-gradient(135deg,var(--decision),var(--arch));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.subtitle{color:var(--muted);font-size:.9rem}
+.stats-ribbon{display:flex;justify-content:center;gap:32px;padding:16px;background:var(--card);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.ribbon-stat{text-align:center}.ribbon-val{font-size:1.3rem;font-weight:700}.ribbon-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.controls{padding:16px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--border);background:rgba(22,27,34,0.8);backdrop-filter:blur(8px);position:sticky;top:0;z-index:10}
+.search{flex:1;min-width:200px;padding:10px 14px;background:var(--glass);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.9rem;outline:none}
+.search:focus{border-color:var(--arch)}
+.search::placeholder{color:var(--muted)}
+.filter-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.8rem;transition:all .2s}
+.filter-btn.active{color:#fff}
+.filter-btn.active[data-cat="decision"]{background:rgba(240,136,62,0.2);border-color:var(--decision);color:var(--decision)}
+.filter-btn.active[data-cat="arch"]{background:rgba(88,166,255,0.2);border-color:var(--arch);color:var(--arch)}
+.filter-btn.active[data-cat="all"]{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.3);color:var(--text)}
+select{padding:6px 10px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.8rem;outline:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;padding:24px}
+.adr-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.adr-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.adr-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.adr-card[data-cat="decision"]::before{background:var(--decision)}
+.adr-card[data-cat="arch"]::before{background:var(--arch)}
+.card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.cat-badge{padding:2px 8px;border-radius:12px;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.cat-badge.decision{background:rgba(240,136,62,0.15);color:var(--decision)}
+.cat-badge.arch{background:rgba(88,166,255,0.15);color:var(--arch)}
+.conf-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.conf-dot.high{background:var(--high)}.conf-dot.medium{background:var(--medium)}.conf-dot.low{background:var(--low)}
+.conf-label{font-size:.7rem;color:var(--muted)}
+.card-title{font-size:.95rem;font-weight:600;margin-bottom:8px;line-height:1.4}
+.card-summary{font-size:.82rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-detail{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);animation:fadeIn .3s}
+.detail-section{margin-bottom:12px}.detail-section h4{font-size:.8rem;color:var(--arch);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.detail-section p{font-size:.85rem;line-height:1.6;color:var(--text)}
+.skill-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.skill-chip{padding:2px 8px;background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.2);border-radius:6px;font-size:.7rem;color:var(--arch)}
+.expanded .card-summary{display:block;-webkit-line-clamp:unset}
+.no-results{text-align:center;padding:60px;color:var(--muted)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr;padding:12px}.controls{padding:12px}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>Architecture Decision Navigator</h1>
+<p class="subtitle">Browse architecture decisions and knowledge \u2014 the reasoning behind the patterns</p>
+</div>
+<div class="stats-ribbon" id="stats"></div>
+<div class="controls">
+<input type="text" class="search" id="search" placeholder="Search decisions and architecture knowledge...">
+<button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">All</button>
+<button class="filter-btn" data-cat="decision" onclick="setFilter('decision',this)">Decision</button>
+<button class="filter-btn" data-cat="arch" onclick="setFilter('arch',this)">Arch</button>
+<select id="sort" onchange="render()">
+<option value="alpha">A \u2192 Z</option>
+<option value="confidence">Confidence</option>
+<option value="category">Category</option>
+</select>
+</div>
+<div class="grid" id="grid"></div>
+
+<script>
+const ENTRIES=[
+{name:"actuator-endpoints-skip-auth-by-design",cat:"decision",confidence:"high",summary:"Monitoring collector stores auth config but intentionally does NOT apply it to /actuator/health calls. Auth reserved for non-actuator endpoints.",fact:"The HealthTarget.authConfig (BASIC/BEARER) is persisted but the HTTP client does not apply it to /actuator/health or /actuator/metrics/** calls.",why:"Actuator endpoints are expected to be publicly reachable from the monitoring plane; adding auth-per-target multiplies ops complexity for no security benefit inside the trusted network.",apply:"When you see stored credentials that 'look unused' in an Actuator collector, do NOT wire them into the call path. Apply auth only for non-actuator custom endpoints.",caveats:"Only holds when monitoring plane and targets share a trusted network. On multi-tenant SaaS over public internet, revisit.",skills:["spring-actuator-health-collector"]},
+{name:"admin-role-disabled-secretkey",cat:"decision",confidence:"medium",summary:"Default admins role ships disabled, shared SecretKey removed from config.properties. Closes 'default admin credential' vulnerability.",fact:"The built-in admins role ships disabled, and the shared SecretKey value was removed from config.properties.",why:"A shared key in a public config file meant every deployment trusted the same secret. Combined with an always-present admin role, it was an authorization-bypass.",apply:"Do not restore a default SecretKey to config.properties. If admin role needed, generate a per-install key out-of-band via environment.",caveats:"",skills:["challenge-response-auth-redis-ttl"]},
+{name:"alarm-raw-over-1min-aggregate",cat:"decision",confidence:"high",summary:"Alarm evaluation reads raw metrics, not 1-minute aggregates. Aggregation hid sub-minute spikes that should have paged.",fact:"Alarm evaluation was migrated off 1-minute aggregated metrics onto raw metrics.",why:"Aggregation at the minute boundary was hiding sub-minute spikes that should have paged, and delayed alarms by up to the aggregation lag.",apply:"Use raw metrics for alarm evaluation. Control throughput with semaphore + chunking backpressure plus a dedicated thread pool.",caveats:"Higher throughput cost on the alarm consumer path.",skills:["kafka-consumer-semaphore-chunking","baseline-historical-comparison-threshold"]},
+{name:"avro-private-fields-no-setters",cat:"decision",confidence:"high",summary:"Avro codegen configured with fieldVisibility=PRIVATE and createSetters=false to enforce immutability on event payloads.",fact:"Avro code generation uses private fields and no setters to enforce immutability.",why:"Event payloads should be immutable once created. Setters allow accidental mutation of in-flight events.",apply:"Configure avro { createSetters = false; fieldVisibility = 'PRIVATE' } in Gradle. Use Builder pattern for construction.",caveats:"Builders add verbosity. Some serialization frameworks expect setters.",skills:["avro-gradle-kafka-schema-pipeline","avro-event-with-change-flags"]},
+{name:"cache-even-when-enable-false",cat:"decision",confidence:"high",summary:"Notification configs with enable=false still loaded into cache. Toggling enable doesn't require cache reload.",fact:"The cache loader does NOT filter by enable. Both enabled and disabled records enter the cache. The enable flag is evaluated after cache lookup.",why:"Before the change, enabling a previously-disabled config required a manual cache reload. Including disabled records makes the cache authoritative.",apply:"Short-circuit on enable=false at the read site, not the cache load site. Toggling enable only needs flag flip + single evict.",caveats:"Slightly higher memory use for disabled configs in cache.",skills:["cache-variance-ttl-jitter"]},
+{name:"confid-only-query-over-resource-tuple",cat:"decision",confidence:"medium",summary:"Performance queries key off confId whenever available, falling back to (resourceType, resourceName) only when confId absent.",fact:"MeasurementMetricRepositoryImpl checks confIds first and routes through findConfInfoListWithConfIds.",why:"The tuple (resourceType, resourceName) is ambiguous in practice \u2014 some metrics exist without a resourceType value, and the tuple lookup misses them.",apply:"Prefer confId-based queries. Only fall back to resourceType + resourceName when confId is unavailable.",caveats:"Requires confId to be populated consistently across all metric sources.",skills:["measurement-grouping-combiner"]},
+{name:"additive-registry-schema-versioning",cat:"arch",confidence:"high",summary:"Plugin registry schema changes must be additive-only. Breaking changes require a new version namespace.",fact:"Schema evolution for plugin registries follows append-only semantics. New fields are added; old fields are never removed or renamed.",why:"Existing plugins depend on the current schema shape. Non-additive changes break them silently at runtime.",apply:"Add new fields alongside old ones. Deprecate but don't remove. Use version namespaces (v1/, v2/) for breaking changes.",caveats:"Schema bloat over time. Periodic major-version bumps needed to clean up.",skills:["plugin-resource-provider-architecture","resource-provider-registry"]},
+{name:"agent-memory-binding-vs-recall",cat:"arch",confidence:"high",summary:"Agent memory should bind at write-time (structured), not recall-time (free search). Structured binding enables deterministic retrieval.",fact:"Memory systems that tag at write-time with structured keys outperform free-text semantic search for recall reliability.",why:"Free-text search is probabilistic and degrades with corpus size. Structured keys enable deterministic, indexed lookups.",apply:"At write time, tag memories with structured keys (topic, entity, date, type). At read time, query by keys. Reserve semantic search for fallback only.",caveats:"Requires upfront schema design for memory keys. May miss cross-domain connections that semantic search would find.",skills:["ai-subagent-scope-narrowing"]},
+{name:"annotation-driven-authz-via-function-id",cat:"arch",confidence:"high",summary:"Authorization checks driven by function IDs on annotations, not URL patterns. URL patterns break on refactors.",fact:"Each API endpoint is annotated with a stable function ID. Authorization middleware checks the function ID, not the URL path.",why:"URL patterns are fragile \u2014 REST restructuring silently drops security checks. Function IDs are stable business identifiers.",apply:"Use @RequiresPermission('USER_MANAGE') instead of URL-matching rules. Wire authZ interceptor to read annotation metadata.",caveats:"Requires discipline to annotate every new endpoint. Missing annotation = open endpoint unless defaults are deny-all.",skills:["jwt-extraction-via-base-controller","jwt-refresh-rotation-spring"]},
+{name:"boilerplate-generated-business-logic-manual",cat:"arch",confidence:"high",summary:"Generated code handles only boilerplate (DTOs, mappers, CRUD). Business logic stays hand-written. Never generate business logic.",fact:"Code generation is strictly limited to structural/mechanical code. Business rules, validation, and workflow logic are always hand-authored.",why:"Business rules change independently of structural patterns. Regeneration overwrites hand-tuned logic. Debugging generated business code is harder than debugging boilerplate.",apply:"Draw a clear boundary: generate DTOs, mappers, repository interfaces, CRUD endpoints. Keep validation, pricing, workflow rules in hand-written code that generation never touches.",caveats:"The boundary can be hard to enforce when generators become more capable. Document the boundary explicitly.",skills:["migration-processor-pipeline"]},
+{name:"commons-logging-exclusion-strategy",cat:"arch",confidence:"high",summary:"Exclude commons-logging transitively and bridge to SLF4J. Multiple logging frameworks on classpath cause silent log loss.",fact:"All transitive commons-logging dependencies are excluded globally. jcl-over-slf4j bridges any remaining commons-logging calls to SLF4J.",why:"When both commons-logging and SLF4J are present, some classes bind to one, some to the other. Logs sent to the wrong framework vanish silently.",apply:"Add a global exclusion for commons-logging in your build tool. Add jcl-over-slf4j bridge. Verify with dependency tree after every new dependency addition.",caveats:"Some legacy libraries genuinely require commons-logging internals (not just the API). Test thoroughly after exclusion.",skills:["spring-typed-config-properties"]},
+{name:"dual-redis-lock-vs-access-control",cat:"arch",confidence:"high",summary:"Redis distributed locks are for coordination (only one runs), not access control (authorized to run). Don't conflate them.",fact:"Distributed locks provide mutual exclusion among cooperating processes. They do not provide authentication or authorization.",why:"Lock expiry means 'no one is coordinating', not 'anyone is authorized'. Conflating the two creates security holes when locks expire.",apply:"Use locks for mutual exclusion (one worker per job). Use a separate authZ layer (RBAC, JWT claims) for permission checks. Never derive permissions from lock state.",caveats:"In some systems, acquiring a lock IS the authorization mechanism by convention. Make this explicit if intentional.",skills:["distributed-lock-mongodb","redis-lock-recheck-flag-pattern"]},
+{name:"env-override-last-wins-chain",cat:"arch",confidence:"high",summary:"Environment variable override chains must follow last-wins semantics with documented precedence order.",fact:"Configuration resolution follows a strict precedence chain: defaults < config file < env var < CLI flag. Last source wins.",why:"Undocumented precedence leads to 'it works on my machine' debugging when env vars silently override config files or vice versa.",apply:"Document the precedence chain explicitly. In code, apply overrides in order so the last one wins. Log the effective config source at startup.",caveats:"Some frameworks have their own precedence rules (Spring Boot property sources). Align with the framework rather than fighting it.",skills:["dotenv-multi-env-routing","spring-profile-datasource-activation"]},
+{name:"data-patch-package-for-migrations",cat:"arch",confidence:"high",summary:"Use data-patch packages for database migrations rather than inline SQL in application code.",fact:"Database schema and data migrations are managed through dedicated migration packages, separate from application logic.",why:"Inline migration code in application startup couples deployment to migration success. Separate packages allow independent testing, rollback, and scheduling.",apply:"Create a dedicated migration module/package. Run migrations as a pre-deploy step, not at app startup. Include rollback scripts.",caveats:"Adds deployment complexity. Requires coordination between migration and application versions.",skills:["spring-mongo-lightweight-migration"]},
+{name:"domain-registry-plus-projects-yaml",cat:"arch",confidence:"medium",summary:"Central domain registry + projects.yaml for service discovery and ownership mapping.",fact:"A central YAML file maps services to domains, teams, and ownership metadata. Service discovery reads this registry.",why:"Without a central registry, service ownership becomes tribal knowledge. Incident response slows when no one knows who owns what.",apply:"Maintain a projects.yaml or service-catalog.yaml in a shared repo. Include: service name, owning team, domain, SLA tier, runbook link.",caveats:"YAML files drift from reality. Needs CI enforcement or automated sync from deployment manifests.",skills:["eureka-service-discovery-wait-annotation","service-discovery-replica-leader-tracking"]},
+{name:"interface-abstraction-for-modularity",cat:"arch",confidence:"high",summary:"Depend on interfaces, not implementations. Swap implementations via DI without changing consumers.",fact:"All cross-module dependencies go through interfaces. Implementations are registered in a DI container and resolved at runtime.",why:"Direct implementation dependencies create tight coupling. Interface boundaries enable testing, swapping, and parallel development.",apply:"Define interfaces in a shared/api module. Implementations live in their own modules. Wire via Spring @Component or explicit @Bean registration.",caveats:"Over-abstraction adds indirection cost. Apply at module boundaries, not within modules.",skills:["resource-provider-registry","plugin-resource-provider-architecture","optional-outbound-adapter-no-op-port"]}
+];
+
+let filter='all',expanded=null;
+const confOrder={high:0,medium:1,low:2};
+
+function getFiltered(){
+const q=document.getElementById('search').value.toLowerCase();
+const sort=document.getElementById('sort').value;
+let items=ENTRIES.filter(e=>{
+if(filter!=='all'&&e.cat!==filter)return false;
+if(q){const hay=(e.name+' '+e.summary+' '+e.fact+' '+e.why+' '+e.apply).toLowerCase();return hay.includes(q)}
+return true;
+});
+if(sort==='alpha')items.sort((a,b)=>a.name.localeCompare(b.name));
+else if(sort==='confidence')items.sort((a,b)=>(confOrder[a.confidence]||9)-(confOrder[b.confidence]||9));
+else if(sort==='category')items.sort((a,b)=>a.cat.localeCompare(b.cat)||a.name.localeCompare(b.name));
+return items;
+}
+
+function renderStats(){
+const dc=ENTRIES.filter(e=>e.cat==='decision').length;
+const ac=ENTRIES.filter(e=>e.cat==='arch').length;
+const hi=ENTRIES.filter(e=>e.confidence==='high').length;
+const md=ENTRIES.filter(e=>e.confidence==='medium').length;
+document.getElementById('stats').innerHTML=`
+<div class="ribbon-stat"><div class="ribbon-val">${ENTRIES.length}</div><div class="ribbon-label">Total</div></div>
+<div class="ribbon-stat"><div class="ribbon-val" style="color:var(--decision)">${dc}</div><div class="ribbon-label">Decisions</div></div>
+<div class="ribbon-stat"><div class="ribbon-val" style="color:var(--arch)">${ac}</div><div class="ribbon-label">Architecture</div></div>
+<div class="ribbon-stat"><div class="ribbon-val" style="color:var(--high)">${hi}</div><div class="ribbon-label">High Conf.</div></div>
+<div class="ribbon-stat"><div class="ribbon-val" style="color:var(--medium)">${md}</div><div class="ribbon-label">Medium Conf.</div></div>`;
+}
+
+function render(){
+const items=getFiltered();const grid=document.getElementById('grid');
+if(!items.length){grid.innerHTML='<div class="no-results">No entries match your search.</div>';return}
+grid.innerHTML=items.map(e=>`
+<div class="adr-card ${expanded===e.name?'expanded':''}" data-cat="${e.cat}" onclick="toggle('${e.name}')">
+<div class="card-header">
+<span class="cat-badge ${e.cat}">${e.cat}</span>
+<span class="conf-dot ${e.confidence}"></span>
+<span class="conf-label">${e.confidence}</span>
+</div>
+<div class="card-title">${e.name.replace(/-/g,' ')}</div>
+<div class="card-summary">${e.summary}</div>
+${expanded===e.name?`<div class="card-detail" style="display:block">
+<div class="detail-section"><h4>Fact</h4><p>${e.fact}</p></div>
+<div class="detail-section"><h4>Why</h4><p>${e.why}</p></div>
+<div class="detail-section"><h4>How to Apply</h4><p>${e.apply}</p></div>
+${e.caveats?`<div class="detail-section"><h4>Counter / Caveats</h4><p>${e.caveats}</p></div>`:''}
+${e.skills.length?`<div class="detail-section"><h4>Linked Skills</h4><div class="skill-chips">${e.skills.map(s=>`<span class="skill-chip">${s}</span>`).join('')}</div></div>`:''}
+</div>`:''}
+</div>`).join('');
+}
+
+function toggle(name){expanded=expanded===name?null:name;render()}
+function setFilter(cat,btn){filter=cat;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render()}
+
+let debounce;document.getElementById('search').addEventListener('input',()=>{clearTimeout(debounce);debounce=setTimeout(render,200)});
+renderStats();render();
+</script>
+</body>
+</html>

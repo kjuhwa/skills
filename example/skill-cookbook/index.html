@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Cookbook</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#1a1410;--card:#2a2218;--parchment:#3a3020;--accent:#e8a84c;--accent2:#c77b3f;--text:#e8dcc8;--muted:#9a8b72;--blue:#6ba3d6;--green:#7bc47f;--red:#d68a7b;--purple:#b088d4;--teal:#6bb8a8;--radius:12px;--border:rgba(232,168,76,0.15)}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{padding:32px 24px 24px;text-align:center;border-bottom:1px solid var(--border)}
+h1{font-size:2rem;color:var(--accent);margin-bottom:6px}
+.subtitle{color:var(--muted);font-size:.9rem}
+.search-wrap{max-width:700px;margin:24px auto;padding:0 24px}
+.search{width:100%;padding:14px 20px;background:var(--card);border:2px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:1rem;outline:none;transition:border-color .2s}
+.search:focus{border-color:var(--accent)}
+.search::placeholder{color:var(--muted)}
+.legend{display:flex;justify-content:center;gap:16px;padding:8px 24px 16px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:4px;font-size:.75rem;color:var(--muted)}
+.legend-dot{width:10px;height:10px;border-radius:3px}
+.content{max-width:900px;margin:0 auto;padding:0 24px 40px}
+.section-title{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.recipe-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;position:relative;overflow:hidden;transition:transform .2s}
+.recipe-card:hover{transform:translateY(-1px)}
+.recipe-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.recipe-name{font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+.recipe-desc{font-size:.85rem;color:var(--muted);line-height:1.5;margin-bottom:12px}
+.skill-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{padding:4px 10px;border-radius:8px;font-size:.75rem;font-weight:500;border:1px solid}
+.chip-backend{background:rgba(107,163,214,0.1);border-color:rgba(107,163,214,0.3);color:var(--blue)}
+.chip-frontend{background:rgba(123,196,127,0.1);border-color:rgba(123,196,127,0.3);color:var(--green)}
+.chip-arch{background:rgba(176,136,212,0.1);border-color:rgba(176,136,212,0.3);color:var(--purple)}
+.chip-ai{background:rgba(214,138,123,0.1);border-color:rgba(214,138,123,0.3);color:var(--red)}
+.chip-devops{background:rgba(107,184,168,0.1);border-color:rgba(107,184,168,0.3);color:var(--teal)}
+.chip-other{background:rgba(154,139,114,0.1);border-color:rgba(154,139,114,0.3);color:var(--muted)}
+.integration{padding:12px 16px;background:var(--parchment);border-radius:8px;font-size:.82rem;line-height:1.6;color:var(--text)}
+.integration strong{color:var(--accent)}
+.relevance{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:.75rem;color:var(--muted)}
+.rel-bar{flex:1;max-width:120px;height:4px;background:rgba(232,168,76,0.1);border-radius:2px;overflow:hidden}
+.rel-fill{height:100%;background:var(--accent);border-radius:2px}
+.no-results{text-align:center;padding:60px;color:var(--muted);font-size:.95rem}
+.empty-hint{text-align:center;padding:12px;color:var(--muted);font-size:.8rem;font-style:italic}
+@media(max-width:600px){.content{padding:0 12px 24px}.search-wrap{padding:0 12px}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>Skill Cookbook</h1>
+<p class="subtitle">Describe your problem \u2014 get a recipe of skills that solve it together</p>
+</div>
+<div class="search-wrap">
+<input type="text" class="search" id="search" placeholder="e.g. 'JWT token refresh without race conditions' or 'propagate tenant context through Kafka'">
+</div>
+<div class="legend">
+<div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>backend</div>
+<div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>frontend</div>
+<div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>arch</div>
+<div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>ai</div>
+<div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>devops</div>
+</div>
+<div class="content" id="content"></div>
+
+<script>
+const SKILLS=[
+{n:"audit-change-data-capture-pattern",c:"backend",d:"Compute before/after diffs for audit logs by comparing two BSON/JSON documents field-by-field"},
+{n:"availability-ttl-punctuate-processor",c:"backend",d:"Kafka Streams processor schedules wall-clock punctuate for TTL eviction of state store, emits downstream only on value change"},
+{n:"avro-gradle-kafka-schema-pipeline",c:"backend",d:"Wire davidmc24 Avro Gradle plugin so .avsc schemas generate Java sources consumed by Kafka producers/consumers with Schema Registry"},
+{n:"baseline-historical-comparison-threshold",c:"backend",d:"Evaluate current metric against historical baseline as dynamic threshold with rate or value change modes and dampening"},
+{n:"cache-variance-ttl-jitter",c:"backend",d:"Add random jitter to cache TTLs so entries don't expire simultaneously causing thundering herd"},
+{n:"challenge-response-auth-redis-ttl",c:"backend",d:"Replay-resistant two-step login with server-generated challenge stored in Redis with short TTL"},
+{n:"distributed-lock-mongodb",c:"backend",d:"MongoDB findAndModify-based distributed lock for coordination across multiple service instances"},
+{n:"event-driven-kafka-scheduling",c:"backend",d:"Replace Spring @Scheduled with Kafka event-driven triggers for distributed job execution"},
+{n:"jwt-refresh-rotation-spring",c:"backend",d:"Spring Boot 3 JWT with short-lived access tokens and rotating refresh tokens"},
+{n:"kafka-batch-consumer-partition-tuning",c:"backend",d:"Size Kafka partition count and max-poll-records for optimal batch consumer throughput"},
+{n:"kafka-consumer-semaphore-chunking",c:"backend",d:"Bound in-flight async work from a Kafka consumer using semaphore and chunked processing"},
+{n:"kafka-debounce-event-coalescing",c:"backend",d:"Coalesce bursts of change events into single processing units using time-windowed deduplication"},
+{n:"kafka-consumer-tenant-fan-out",c:"backend",d:"Fan out Kafka messages to tenant-specific processors based on message headers"},
+{n:"kafka-message-header-metadata",c:"backend",d:"Attach org-id, user-id, and timestamp metadata to Kafka message headers for cross-service context propagation"},
+{n:"kafka-producer-async-callback",c:"backend",d:"Fire-and-log Kafka send pattern using async callbacks for non-blocking production"},
+{n:"mongo-aggregation-filter-optimization",c:"backend",d:"Replace unwind+match on array subfields with $filter for better MongoDB aggregation performance"},
+{n:"mongo-criteria-maker-elemmatch-and-or",c:"backend",d:"Compose dynamic MongoDB Criteria with elemMatch and boolean OR/AND logic"},
+{n:"multi-tenant-kafka-header-organization-context",c:"backend",d:"Propagate tenant/organization id from HTTP request through Kafka headers to downstream consumers"},
+{n:"multi-tenant-scheduler-iteration",c:"backend",d:"Pattern for scheduled jobs that must iterate over all tenants and process each independently"},
+{n:"netty-tcp-reconnect-backoff",c:"backend",d:"Netty channelInactive/EOF/read-timeout reconnection with exponential backoff"},
+{n:"redis-lock-recheck-flag-pattern",c:"backend",d:"Distributed Redis lock with recheck flag to handle lock-release race conditions"},
+{n:"spring-typed-config-properties",c:"backend",d:"Type-safe nested ConfigurationProperties with validation for Spring Boot applications"},
+{n:"tenant-per-database-mongo-routing",c:"backend",d:"Route Spring Data Mongo operations to tenant-specific databases dynamically"},
+{n:"thread-pool-queue-backpressure",c:"backend",d:"Bounded in-memory queue between Kafka consumer and worker threads with backpressure signaling"},
+{n:"spring-mongo-lightweight-migration",c:"backend",d:"Annotation-driven MongoDB migration runner for schema evolution without heavy frameworks"},
+{n:"tenant-context-holder-propagation",c:"backend",d:"Set TenantContextHolder in request interceptor and propagate to async threads"},
+{n:"stomp-cookie-auth-handshake",c:"backend",d:"Authenticate STOMP WebSocket upgrade using session cookie validation at handshake"},
+{n:"spring-actuator-health-collector",c:"backend",d:"Poll remote Spring Boot services via Actuator health endpoints for centralized monitoring"},
+{n:"pluggable-sender-factory-pattern",c:"backend",d:"Register multiple notification transport senders via factory pattern for extensible delivery"},
+{n:"encrypted-pii-decrypt-before-send",c:"backend",d:"Store user email/phone encrypted at rest, decrypt only at send-time for notification delivery"},
+{n:"axios-refresh-queue-zustand",c:"frontend",d:"Axios response interceptor that queues concurrent failed 401 requests, refreshes token once, replays all"},
+{n:"folder-coloc-style-types",c:"frontend",d:"Keep component, style, and types files colocated in the same folder for maintainability"},
+{n:"module-federation-expose-react-component",c:"frontend",d:"Expose a React component from one Module Federation remote for consumption by host apps"},
+{n:"mfa-memoryrouter-isolation",c:"frontend",d:"Wrap Module Federation-exposed React components in MemoryRouter to prevent routing conflicts"},
+{n:"mfa-plain-html-dropdown-escape-hatch",c:"frontend",d:"When library Dropdown components cause infinite loops in MF, use plain HTML select as escape hatch"},
+{n:"adaptive-strategy-hot-swap",c:"arch",d:"Periodically re-evaluate candidate strategies against recent data, swap active one when weighted score beats incumbent by hysteresis threshold"},
+{n:"layered-risk-gates",c:"arch",d:"Three-layer safety pattern for autonomous AI agents: input validation, action review, output verification"},
+{n:"plugin-resource-provider-architecture",c:"arch",d:"Stable ResourceProvider SPI loaded via ServiceLoader or Spring DI for extensible plugin systems"},
+{n:"resource-provider-registry",c:"arch",d:"Spring DI plugin registry where Component-annotated providers auto-register by resource type"},
+{n:"ai-call-with-mock-fallback",c:"ai",d:"Wrap unreliable LLM/AI calls with deterministic mock fallback so UI always receives valid shape"},
+{n:"ai-subagent-scope-narrowing",c:"ai",d:"Orchestrator-first pattern for multi-agent AI coding - humans curate context per task, subagents execute in isolated worktrees"},
+{n:"docker-compose-v1-v2-auto-detect",c:"devops",d:"Shell helper that prefers docker compose v2 command, falls back to docker-compose v1"},
+{n:"gradle-bootrun-local-dev-env",c:"devops",d:"Gradle bootRun task recipe that wires local dev environment variables and profiles"},
+{n:"jenkins-dual-registry-docker-push",c:"devops",d:"Jenkins pipeline that builds one Docker image and pushes to two container registries"},
+{n:"spring-profile-datasource-activation",c:"backend",d:"Select DB/Hibernate/logging config at startup based on Spring active profile"},
+{n:"spring-dual-profile-flyway",c:"backend",d:"Spring Boot dual-profile setup with H2 for dev and production DB with Flyway migrations"},
+{n:"testcontainers-mongo-kafka-abstract-base",c:"backend",d:"Abstract test base classes that spin up MongoDB and Kafka via Testcontainers for integration testing"},
+{n:"opentelemetry-java-bootstrap",c:"backend",d:"Minimal OpenTelemetry bootstrap for a Spring Boot application with trace context propagation"},
+{n:"kafka-avro-topic-auto-create-config",c:"backend",d:"Spring Boot Kafka config bean that auto-creates topics with Avro schema registration on startup"},
+{n:"kafka-consumer-config-3-factories",c:"backend",d:"Spring Kafka consumer setup with three listener container factories for different deserialization needs"},
+{n:"immutable-action-event-log",c:"arch",d:"Model state transitions as (state, action) pairs in an append-only event log for auditability"},
+{n:"policy-target-evaluation-with-groups-tags",c:"backend",d:"Evaluate whether a resource matches a policy target using group membership and tag intersection"},
+{n:"polymorphic-command-entities",c:"backend",d:"Expose a list of typed commands over JPA with discriminator-based polymorphic entity hierarchy"},
+{n:"identifier-truncate-with-hash-suffix",c:"backend",d:"Deterministically shrink any identifier to a max length by truncating and appending a hash suffix"},
+{n:"byte-aware-sms-truncation-with-ellipsis",c:"backend",d:"Truncate SMS message body to a byte budget while preserving character boundaries and adding ellipsis"},
+{n:"divide-by-zero-rate-guard",c:"backend",d:"Guard rate/percentage calculations against division by zero with explicit fallback value"}
+];
+
+const PREBUILT=[
+{name:"Multi-tenant Kafka Pipeline",skills:["kafka-consumer-tenant-fan-out","multi-tenant-kafka-header-organization-context","tenant-per-database-mongo-routing"],desc:"Propagate tenant context from HTTP requests through Kafka message headers, fan out to tenant-specific consumers, and route each to its own MongoDB database. End-to-end tenant isolation without shared-nothing infrastructure.",score:95},
+{name:"Secure JWT Flow",skills:["jwt-refresh-rotation-spring","axios-refresh-queue-zustand","challenge-response-auth-redis-ttl"],desc:"Short-lived access tokens with rotating refresh tokens on the backend. Axios interceptor queues concurrent 401s and replays after a single refresh. Redis-backed challenge-response prevents replay attacks at login.",score:92},
+{name:"Event-Driven Monitoring",skills:["event-driven-kafka-scheduling","baseline-historical-comparison-threshold","availability-ttl-punctuate-processor"],desc:"Replace cron-based scheduled checks with Kafka event triggers. Compare current metrics against historical baselines for dynamic alerting. TTL-based state eviction ensures stale availability data auto-expires.",score:88},
+{name:"Plugin Architecture",skills:["plugin-resource-provider-architecture","resource-provider-registry","adaptive-strategy-hot-swap"],desc:"Define a stable SPI for resource providers. Auto-register implementations via Spring DI. Periodically evaluate which strategy/plugin performs best and hot-swap the active one with hysteresis to prevent flapping.",score:85},
+{name:"Kafka Backpressure Pipeline",skills:["kafka-consumer-semaphore-chunking","thread-pool-queue-backpressure","kafka-batch-consumer-partition-tuning"],desc:"Bound concurrent async processing with semaphores, add a bounded queue between consumer and workers, and tune partition count + poll records for optimal throughput without overwhelming downstream systems.",score:87},
+{name:"AI Agent Safety",skills:["layered-risk-gates","ai-call-with-mock-fallback","ai-subagent-scope-narrowing"],desc:"Three-layer safety gates for autonomous agents. Mock fallbacks ensure UI stability when LLM calls fail. Narrow subagent scope to minimize hallucination blast radius in multi-agent systems.",score:83}
+];
+
+function tokenize(s){return s.toLowerCase().replace(/[^a-z0-9\-\s]/g,'').split(/[\s\-]+/).filter(t=>t.length>2)}
+function tfidf(query){
+const qt=tokenize(query);if(!qt.length)return[];
+const df={};SKILLS.forEach(s=>{const st=new Set(tokenize(s.n+' '+s.d+' '+s.c));st.forEach(t=>{df[t]=(df[t]||0)+1})});
+const N=SKILLS.length;
+return SKILLS.map(s=>{
+const nt=tokenize(s.n),dt=tokenize(s.d),ct=tokenize(s.c);
+let score=0;
+qt.forEach(q=>{
+const idf=Math.log(N/(1+(df[q]||0)));
+const nMatch=nt.filter(t=>t.includes(q)||q.includes(t)).length;
+const dMatch=dt.filter(t=>t.includes(q)||q.includes(t)).length;
+const cMatch=ct.filter(t=>t.includes(q)||q.includes(t)).length;
+score+=(nMatch*1.5+dMatch*2+cMatch*0.5)*idf;
+});
+return{...s,score};
+}).filter(s=>s.score>0).sort((a,b)=>b.score-a.score);
+}
+
+function chipClass(c){
+const m={backend:'chip-backend',frontend:'chip-frontend',arch:'chip-arch',ai:'chip-ai',devops:'chip-devops'};
+return m[c]||'chip-other';
+}
+
+function makeRecipes(ranked){
+if(ranked.length<2)return ranked.length?[{name:ranked[0].n.replace(/-/g,' '),skills:[ranked[0]],desc:ranked[0].d,score:ranked[0].score}]:[];
+const recipes=[];
+const used=new Set();
+// Recipe 1: top 3
+const r1=ranked.slice(0,3);
+const cats1=[...new Set(r1.map(s=>s.c))];
+recipes.push({name:cats1.map(c=>c.charAt(0).toUpperCase()+c.slice(1)).join(' + ')+' Solution',skills:r1,desc:`Primary recipe combining the highest-relevance skills: ${r1.map(s=>s.n.replace(/-/g,' ')).join(', ')}.`,score:Math.round(r1.reduce((a,b)=>a+b.score,0)/r1.length*10)});
+r1.forEach(s=>used.add(s.n));
+
+// Recipe 2: alternative category mix
+const alt=ranked.filter(s=>!used.has(s.n)).slice(0,3);
+if(alt.length>=2){
+const cats2=[...new Set(alt.map(s=>s.c))];
+recipes.push({name:'Alternative: '+cats2.map(c=>c.charAt(0).toUpperCase()+c.slice(1)).join(' + '),skills:alt,desc:`Different angle: ${alt.map(s=>s.n.replace(/-/g,' ')).join(', ')}.`,score:Math.round(alt.reduce((a,b)=>a+b.score,0)/alt.length*10)});
+alt.forEach(s=>used.add(s.n));
+}
+
+// Recipe 3: extended with monitoring/safety
+const ext=ranked.filter(s=>!used.has(s.n)&&(s.c==='arch'||s.d.includes('monitor')||s.d.includes('safe')||s.d.includes('test'))).slice(0,2);
+const core=ranked.filter(s=>!used.has(s.n)).slice(0,1);
+const r3=[...core,...ext].slice(0,3);
+if(r3.length>=2){
+recipes.push({name:'Extended + Safety',skills:r3,desc:`Extended solution with monitoring and safety: ${r3.map(s=>s.n.replace(/-/g,' ')).join(', ')}.`,score:Math.round(r3.reduce((a,b)=>a+b.score,0)/r3.length*10)});
+}
+return recipes;
+}
+
+function renderCard(r,maxScore){
+const pct=maxScore>0?Math.min(100,Math.round(r.score/maxScore*100)):50;
+const skills=r.skills||[];
+return`<div class="recipe-card">
+<div class="recipe-name">${r.name}</div>
+<div class="skill-chips">${(skills.length?skills:[]).map(s=>{const sk=typeof s==='string'?SKILLS.find(x=>x.n===s)||{n:s,c:'backend'}:s;return`<span class="chip ${chipClass(sk.c)}">${sk.n}</span>`}).join('')}</div>
+<div class="integration">${r.desc}</div>
+<div class="relevance"><span>Relevance</span><div class="rel-bar"><div class="rel-fill" style="width:${pct}%"></div></div><span>${pct}%</span></div>
+</div>`;
+}
+
+function render(){
+const q=document.getElementById('search').value.trim();
+const el=document.getElementById('content');
+if(!q){
+el.innerHTML=`<div class="section-title">Popular Recipes</div>${PREBUILT.map(r=>renderCard({...r,skills:r.skills.map(sn=>SKILLS.find(s=>s.n===sn)||{n:sn,c:'backend'})},95)).join('')}<div class="empty-hint">Type a problem description above to get personalized skill recipes</div>`;
+return;
+}
+const ranked=tfidf(q);
+if(!ranked.length){el.innerHTML='<div class="no-results">No matching skills found. Try different keywords.</div>';return}
+const recipes=makeRecipes(ranked);
+const maxScore=recipes.length?Math.max(...recipes.map(r=>r.score)):1;
+el.innerHTML=`<div class="section-title">Recipes for: "${q}"</div>${recipes.map(r=>renderCard(r,maxScore)).join('')}<div class="section-title">All Matching Skills (${ranked.length})</div>${ranked.slice(0,10).map(s=>`<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border)"><span class="chip ${chipClass(s.c)}">${s.c}</span><span style="flex:1;font-size:.85rem">${s.n.replace(/-/g,' ')}</span><span style="font-size:.75rem;color:var(--muted)">${s.score.toFixed(1)}</span></div>`).join('')}`;
+}
+
+let debounce;document.getElementById('search').addEventListener('input',()=>{clearTimeout(debounce);debounce=setTimeout(render,250)});
+render();
+</script>
+</body>
+</html>
