@@ -1,0 +1,45 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e7ef;
+  font-family: -apple-system, Segoe UI, sans-serif;
+  min-height: 100vh;
+}
+header {
+  background: #1a1d27;
+  padding: 14px 20px;
+  border-bottom: 1px solid #252935;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h1 { color: #6ee7b7; font-size: 18px; }
+#details { color: #9ba3b4; font-size: 13px; }
+svg { display: block; width: 100%; height: calc(100vh - 60px - 180px); background: #0f1117; }
+#panel {
+  background: #1a1d27;
+  border-top: 1px solid #252935;
+  padding: 16px 20px;
+  height: 180px;
+  overflow: auto;
+}
+#panel h3 { color: #6ee7b7; margin-bottom: 10px; font-size: 16px; }
+#nodeInfo { font-size: 13px; color: #b9c0d0; line-height: 1.7; }
+#nodeInfo strong { color: #f5d76e; }
+.node { cursor: pointer; }
+.node rect {
+  fill: #1a1d27;
+  stroke: #353a4a;
+  stroke-width: 1.5;
+  rx: 6;
+  transition: all 0.2s;
+}
+.node text { fill: #e4e7ef; font-size: 12px; font-family: monospace; }
+.node.type-source rect { stroke: #8bc6ec; }
+.node.type-transform rect { stroke: #f5d76e; }
+.node.type-sink rect { stroke: #c293ff; }
+.node.highlight rect { stroke: #6ee7b7; stroke-width: 3; fill: #253326; }
+.node.upstream rect { stroke: #8bc6ec; stroke-width: 2.5; }
+.node.downstream rect { stroke: #c293ff; stroke-width: 2.5; }
+.edge { stroke: #353a4a; stroke-width: 1.5; fill: none; transition: all 0.2s; }
+.edge.active { stroke: #6ee7b7; stroke-width: 2.5; }

@@ -1,0 +1,12 @@
+{
+  "slug": "etl-lineage-map",
+  "title": "Etl Lineage Map",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:51:25.816Z",
+  "source_project": "102-etl-lineage-map",
+  "author": "kjuhwa@nkia.co.kr"
+}
