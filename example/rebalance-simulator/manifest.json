@@ -1,0 +1,12 @@
+{
+  "slug": "rebalance-simulator",
+  "title": "Rebalance Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:27:02.419Z",
+  "source_project": "101-rebalance-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
