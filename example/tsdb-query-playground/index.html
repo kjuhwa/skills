@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSDB Query Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header><h1>⚡ TSDB Query Playground</h1><span class="badge">InfluxQL-like</span></header>
+  <div class="main">
+    <div class="editor-panel">
+      <label>Query</label>
+      <textarea id="query" spellcheck="false">SELECT mean(cpu) FROM metrics WHERE host='server-1' GROUP BY time(1h)</textarea>
+      <div class="actions">
+        <button id="run">▶ Execute</button>
+        <select id="presets">
+          <option value="">— presets —</option>
+          <option value="SELECT max(mem) FROM metrics WHERE region='us-east' GROUP BY time(30m)">Max Memory</option>
+          <option value="SELECT sum(requests) FROM metrics GROUP BY time(15m)">Request Sum</option>
+          <option value="SELECT percentile(latency,95) FROM metrics WHERE service='api' GROUP BY time(1h)">P95 Latency</option>
+        </select>
+      </div>
+      <div id="stats" class="stats"></div>
+    </div>
+    <div class="chart-panel">
+      <canvas id="chart"></canvas>
+      <div id="tooltip" class="tooltip"></div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
