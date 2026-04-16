@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shard Flow Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Shard Flow Visualizer</h1>
+  <p class="sub">Watch queries route to shards in real-time</p>
+  <div class="controls">
+    <button id="btnSend">Send Query</button>
+    <button id="btnBurst">Burst (10)</button>
+    <select id="strategy">
+      <option value="hash">Hash-based</option>
+      <option value="range">Range-based</option>
+      <option value="round">Round-robin</option>
+    </select>
+  </div>
+  <canvas id="canvas"></canvas>
+  <div id="stats"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
