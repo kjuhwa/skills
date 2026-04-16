@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue-Green Traffic Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Traffic Flow Visualizer</h1>
+<div class="split-label"><span class="bl">Blue v3</span><input type="range" id="splitRange" min="0" max="100" value="100"><span class="gr">Green v4</span></div>
+<p id="splitText">100% → Blue</p>
+<canvas id="canvas" width="800" height="400"></canvas>
+<div class="metrics">
+<div class="card"><div class="val" id="bReq">0</div><div class="lbl">Blue req/s</div></div>
+<div class="card"><div class="val" id="gReq">0</div><div class="lbl">Green req/s</div></div>
+<div class="card"><div class="val" id="bLat">0</div><div class="lbl">Blue p99 ms</div></div>
+<div class="card"><div class="val" id="gLat">0</div><div class="lbl">Green p99 ms</div></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

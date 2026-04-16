@@ -1,0 +1,12 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:monospace;display:flex;flex-direction:column;align-items:center;padding:20px}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:12px}
+.split-label{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.bl{color:#60a5fa}.gr{color:#34d399}
+input[type=range]{width:200px;accent-color:#6ee7b7}
+#splitText{color:#888;font-size:.8rem;margin-bottom:14px}
+canvas{background:#1a1d27;border-radius:10px;margin-bottom:16px}
+.metrics{display:flex;gap:14px}
+.card{background:#1a1d27;border-radius:8px;padding:14px 22px;text-align:center}
+.val{font-size:1.3rem;color:#6ee7b7;font-weight:bold}
+.lbl{font-size:.7rem;color:#888;margin-top:4px}

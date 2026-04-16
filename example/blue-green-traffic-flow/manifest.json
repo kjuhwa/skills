@@ -1,0 +1,12 @@
+{
+  "slug": "blue-green-traffic-flow",
+  "title": "Blue Green Traffic Flow",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:02:51.927Z",
+  "source_project": "91-blue-green-traffic-flow",
+  "author": "kjuhwa@nkia.co.kr"
+}
