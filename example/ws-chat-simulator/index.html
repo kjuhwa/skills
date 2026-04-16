@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebSocket Chat Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <h2>Channels</h2>
+    <div class="ch active" data-ch="general"># general</div>
+    <div class="ch" data-ch="random"># random</div>
+    <div class="ch" data-ch="dev"># dev</div>
+    <div class="status" id="status">● Connected</div>
+  </div>
+  <div class="main">
+    <div class="header" id="header"># general</div>
+    <div class="messages" id="messages"></div>
+    <form class="input" id="form">
+      <input type="text" id="msg" placeholder="Type a message..." autocomplete="off">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

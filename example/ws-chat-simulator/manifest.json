@@ -1,0 +1,12 @@
+{
+  "slug": "ws-chat-simulator",
+  "title": "Ws Chat Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:49:39.196Z",
+  "source_project": "41-ws-chat-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
