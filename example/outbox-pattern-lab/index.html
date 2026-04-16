@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Outbox Resilience Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grid">
+  <aside>
+    <h1>Outbox Lab</h1>
+    <p class="tag">simulate reliability</p>
+    <label>Order rate: <span id="rateV">3</span>/s
+      <input type="range" id="rate" min="1" max="20" value="3">
+    </label>
+    <label>Broker failure: <span id="failV">10</span>%
+      <input type="range" id="fail" min="0" max="100" value="10">
+    </label>
+    <label>Relay batch: <span id="batchV">5</span>
+      <input type="range" id="batch" min="1" max="20" value="5">
+    </label>
+    <label>
+      <input type="checkbox" id="useOutbox" checked>
+      Use outbox pattern
+    </label>
+    <div class="stats">
+      <div><b id="sCommit">0</b><span>committed</span></div>
+      <div><b id="sDelivered">0</b><span>delivered</span></div>
+      <div><b id="sLost">0</b><span>lost</span></div>
+      <div><b id="sRatio">100%</b><span>reliability</span></div>
+    </div>
+    <button id="reset">Reset</button>
+  </aside>
+  <main>
+    <canvas id="chart" width="700" height="420"></canvas>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "outbox-pattern-lab",
+  "title": "Outbox Pattern Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:44:46.332Z",
+  "source_project": "102-outbox-pattern-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}
