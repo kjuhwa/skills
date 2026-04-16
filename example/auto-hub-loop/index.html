@@ -27,7 +27,12 @@ header .controls{margin-left:auto;display:flex;gap:8px;align-items:center}
 .status-error{background:#7f1d1d40;color:var(--danger)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
 
-main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:1px;background:var(--border);overflow:hidden}
+/* Heartbeat dot */
+.heartbeat{width:8px;height:8px;border-radius:50%;background:var(--accent);display:none;flex-shrink:0}
+.heartbeat.active{display:block;animation:heartbeat 1.2s ease-in-out infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1);opacity:.6}30%{transform:scale(1.4);opacity:1}60%{transform:scale(1);opacity:.6}70%{transform:scale(1.2);opacity:.9}}
+
+main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 48px 1fr 1fr;gap:1px;background:var(--border);overflow:hidden}
 
 .panel{background:var(--surface);padding:12px 16px;overflow-y:auto;display:flex;flex-direction:column}
 .panel-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:13px;font-weight:700;color:var(--accent);flex-shrink:0}
@@ -36,13 +41,22 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1
 /* Pipeline */
 .pipeline{grid-column:1/3;display:flex;align-items:center;gap:0;padding:12px 20px;background:var(--surface)}
 .phase{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:600;color:var(--dim);background:var(--surface2);position:relative;transition:all .3s}
-.phase.active{color:var(--bg);background:var(--accent);animation:phaseGlow 1.5s infinite}
+.phase.active{color:var(--bg);background:var(--accent);animation:phaseGlow 1.5s infinite;overflow:hidden}
+.phase.active::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shimmer 2s ease-in-out infinite}
+@keyframes shimmer{0%{left:-100%}100%{left:200%}}
+.phase .phase-elapsed{font-size:9px;opacity:.7;margin-left:2px;font-variant-numeric:tabular-nums}
 .phase.done{color:var(--accent);background:#065f4630}
 .phase.error{color:var(--danger);background:#7f1d1d30}
 @keyframes phaseGlow{0%,100%{box-shadow:0 0 0 0 #6ee7b740}50%{box-shadow:0 0 12px 2px #6ee7b740}}
-.phase-arrow{color:var(--border);font-size:16px;margin:0 4px}
+.phase-arrow{color:var(--border);font-size:16px;margin:0 4px;transition:color .3s}
+.phase-arrow.flowing{color:var(--accent);animation:arrowFlow 1.5s ease-in-out infinite}
+@keyframes arrowFlow{0%,100%{opacity:.4;transform:translateX(0)}50%{opacity:1;transform:translateX(3px)}}
 .cycle-badge{margin-left:auto;font-size:20px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
 .cycle-label{font-size:11px;color:var(--dim);margin-right:4px}
+
+/* Activity canvas */
+.activity-strip{grid-column:1/3;height:48px;background:var(--surface);position:relative;overflow:hidden}
+.activity-strip canvas{width:100%;height:100%}
 
 /* Apps list */
 .app-row{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;font-size:12px;border-bottom:1px solid var(--border)}
@@ -64,8 +78,16 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1
 .skill-cat{font-size:10px;color:var(--dim)}
 
 /* Log */
-.log-panel{grid-column:1/3;font-family:'Cascadia Code','Fira Code',monospace}
-.log-line{font-size:11px;padding:1px 0;line-height:1.5;white-space:pre-wrap;word-break:break-all}
+.log-panel{font-family:'Cascadia Code','Fira Code',monospace;position:relative}
+
+/* Visualization panel */
+.viz-panel{background:var(--surface);position:relative;overflow:hidden}
+.viz-panel canvas{width:100%;height:100%}
+.log-cursor{display:none;font-size:11px;padding:1px 0;line-height:1.5;color:var(--accent);animation:blink 1s step-end infinite}
+.log-cursor.active{display:block}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.log-line{font-size:11px;padding:1px 0;line-height:1.5;white-space:pre-wrap;word-break:break-all;animation:fadeIn .3s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .log-line.info{color:var(--dim)}
 .log-line.success{color:var(--accent)}
 .log-line.warn{color:var(--warn)}
@@ -86,6 +108,7 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#6ee7b7" stroke-width="2"/><path d="M8 12l2 2 4-4" stroke="#6ee7b7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span>Hub Auto-Loop</span>
   </div>
+  <div class="heartbeat" id="heartbeat"></div>
   <span class="status-pill status-idle" id="statusPill">IDLE</span>
   <div class="controls">
     <button class="btn btn-go" id="btnStart" onclick="start()">Start Loop</button>
@@ -115,6 +138,11 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1
     <span class="cycle-badge" id="cycleNum">0</span>
   </div>
 
+  <!-- Activity visualization -->
+  <div class="activity-strip">
+    <canvas id="activityCanvas"></canvas>
+  </div>
+
   <!-- Apps built -->
   <div class="panel" id="appsPanel">
     <div class="panel-header">Apps Built <span class="count" id="appCount">0</span></div>
@@ -133,6 +161,12 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1
       <button class="btn" style="margin-left:auto;padding:2px 8px;font-size:10px;background:var(--surface2);color:var(--dim);border:1px solid var(--border)" onclick="copyLog()" id="btnCopyLog">Copy Log</button>
     </div>
     <div id="logContainer" style="flex:1;overflow-y:auto"></div>
+    <div class="log-cursor" id="logCursor">_</div>
+  </div>
+
+  <!-- Live visualization -->
+  <div class="viz-panel">
+    <canvas id="vizCanvas"></canvas>
   </div>
 </main>
 
@@ -149,6 +183,8 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1
 const API = '';
 let evtSource = null;
 let startTime = null;
+let phaseStartTime = null;
+let isRunning = false;
 
 function start() {
   fetch(API + '/api/start', { method: 'POST' });
@@ -193,9 +229,17 @@ function setStatus(status) {
   const pill = document.getElementById('statusPill');
   pill.textContent = status.toUpperCase();
   pill.className = 'status-pill status-' + status;
+  isRunning = status === 'running';
+  document.getElementById('heartbeat').className = 'heartbeat' + (isRunning ? ' active' : '');
+  document.getElementById('logCursor').className = 'log-cursor' + (isRunning ? ' active' : '');
+  // Toggle flowing arrows
+  document.querySelectorAll('.phase-arrow').forEach(el => {
+    el.className = 'phase-arrow' + (isRunning ? ' flowing' : '');
+  });
   if (status === 'idle') {
     document.getElementById('btnStart').disabled = false;
     document.getElementById('btnStop').disabled = true;
+    phaseStartTime = null;
   }
 }
 
@@ -205,10 +249,19 @@ function setCycle(n) {
 
 function setPhase(phase, status) {
   document.querySelectorAll('.phase').forEach(el => {
+    // Remove any existing elapsed timer
+    const oldTimer = el.querySelector('.phase-elapsed');
+    if (oldTimer) oldTimer.remove();
     if (el.dataset.phase === phase) {
       el.className = 'phase ' + (status || 'active');
-    } else if (status === 'active' || status === 'done') {
-      // Mark earlier phases as done if this one is active
+      if (status === 'active' || !status) {
+        phaseStartTime = Date.now();
+        const timer = document.createElement('span');
+        timer.className = 'phase-elapsed';
+        timer.id = 'phaseTimer';
+        timer.textContent = '0s';
+        el.appendChild(timer);
+      }
     }
   });
 }
@@ -251,6 +304,9 @@ function addLog(level, msg) {
   const ts = new Date().toLocaleTimeString('en-GB', {hour12:false});
   line.textContent = `[${ts}] ${msg}`;
   container.appendChild(line);
+  // Move cursor after last log line
+  const cursor = document.getElementById('logCursor');
+  if (cursor) container.parentNode.insertBefore(cursor, container.nextSibling);
   container.scrollTop = container.scrollHeight;
   const count = container.children.length;
   document.getElementById('logCount').textContent = count;
@@ -289,7 +345,7 @@ function copyLog() {
   });
 }
 
-// Uptime ticker
+// Uptime + phase elapsed ticker
 setInterval(() => {
   if (!startTime) return;
   const s = Math.floor((Date.now() - startTime) / 1000);
@@ -297,7 +353,355 @@ setInterval(() => {
   const m = String(Math.floor((s%3600)/60)).padStart(2,'0');
   const sec = String(s%60).padStart(2,'0');
   document.getElementById('statUptime').textContent = `${h}:${m}:${sec}`;
+  // Phase elapsed timer
+  const timer = document.getElementById('phaseTimer');
+  if (timer && phaseStartTime) {
+    const ps = Math.floor((Date.now() - phaseStartTime) / 1000);
+    if (ps < 60) timer.textContent = ps + 's';
+    else timer.textContent = Math.floor(ps/60) + 'm' + String(ps%60).padStart(2,'0') + 's';
+  }
 }, 1000);
+
+// === Activity canvas animation ===
+const canvas = document.getElementById('activityCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let waveOffset = 0;
+
+function resizeCanvas() {
+  canvas.width = canvas.parentElement.offsetWidth * devicePixelRatio;
+  canvas.height = canvas.parentElement.offsetHeight * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor() { this.reset(true); }
+  reset(init) {
+    this.x = init ? Math.random() * (canvas.width / devicePixelRatio) : -8;
+    this.y = (canvas.height / devicePixelRatio) / 2;
+    this.speed = 0.6 + Math.random() * 1.4;
+    this.size = 1.5 + Math.random() * 2.5;
+    this.opacity = 0.3 + Math.random() * 0.7;
+    this.hue = Math.random() > 0.7 ? 230 : 160; // accent green or accent2 purple
+    this.amp = 4 + Math.random() * 12;
+    this.freq = 0.01 + Math.random() * 0.02;
+    this.phase = Math.random() * Math.PI * 2;
+  }
+}
+
+function initParticles() {
+  particles = [];
+  for (let i = 0; i < 60; i++) particles.push(new Particle());
+}
+initParticles();
+
+function drawActivity() {
+  const w = canvas.width / devicePixelRatio;
+  const h = canvas.height / devicePixelRatio;
+  ctx.clearRect(0, 0, w, h);
+
+  if (!isRunning) {
+    // Idle: dim center line with slow pulse
+    const idleAlpha = 0.05 + 0.03 * Math.sin(Date.now() * 0.001);
+    ctx.strokeStyle = `rgba(110,231,183,${idleAlpha})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, h / 2);
+    ctx.lineTo(w, h / 2);
+    ctx.stroke();
+    requestAnimationFrame(drawActivity);
+    return;
+  }
+
+  waveOffset += 0.5;
+
+  // Background wave trail
+  ctx.strokeStyle = 'rgba(110,231,183,0.06)';
+  ctx.lineWidth = 1;
+  for (let j = 0; j < 3; j++) {
+    ctx.beginPath();
+    for (let x = 0; x < w; x += 2) {
+      const y = h / 2 + Math.sin((x + waveOffset * (1 + j * 0.3)) * 0.02 + j) * (6 + j * 4);
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+
+  // Particles
+  for (const p of particles) {
+    p.x += p.speed;
+    const yOff = Math.sin((p.x * p.freq) + p.phase + waveOffset * 0.02) * p.amp;
+    const drawY = p.y + yOff;
+
+    // Glow
+    const grad = ctx.createRadialGradient(p.x, drawY, 0, p.x, drawY, p.size * 3);
+    const hsl = p.hue === 160 ? '160,70%,70%' : '230,80%,72%';
+    grad.addColorStop(0, `hsla(${hsl},${p.opacity * 0.5})`);
+    grad.addColorStop(1, `hsla(${hsl},0)`);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(p.x, drawY, p.size * 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Core dot
+    ctx.fillStyle = `hsla(${hsl},${p.opacity})`;
+    ctx.beginPath();
+    ctx.arc(p.x, drawY, p.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (p.x > w + 10) p.reset(false);
+  }
+
+  requestAnimationFrame(drawActivity);
+}
+requestAnimationFrame(drawActivity);
+
+// === Network visualization canvas ===
+const vizCanvas = document.getElementById('vizCanvas');
+const vCtx = vizCanvas.getContext('2d');
+let vizW = 0, vizH = 0;
+const VIZ_PHASES = ['generate','build','publish','merge','extract','publish-sk','install','loop'];
+let vizActiveIdx = -1;
+let vizPulse = 0;
+let vizNodes = [], vizEdges = [], vizPackets = [], vizSparks = [];
+
+function resizeViz() {
+  vizW = vizCanvas.parentElement.offsetWidth;
+  vizH = vizCanvas.parentElement.offsetHeight;
+  vizCanvas.width = vizW * devicePixelRatio;
+  vizCanvas.height = vizH * devicePixelRatio;
+  vCtx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  buildGraph();
+}
+
+function buildGraph() {
+  vizNodes = []; vizEdges = [];
+  const cx = vizW / 2, cy = vizH / 2;
+  const R = Math.min(vizW, vizH) * 0.35;
+  // Core
+  vizNodes.push({ x: cx, y: cy, bx: cx, by: cy, r: 18, type: 'core', label: 'HUB', idx: -1 });
+  // Phase ring
+  for (let i = 0; i < VIZ_PHASES.length; i++) {
+    const a = (i / VIZ_PHASES.length) * Math.PI * 2 - Math.PI / 2;
+    const nx = cx + Math.cos(a) * R, ny = cy + Math.sin(a) * R;
+    vizNodes.push({ x: nx, y: ny, bx: nx, by: ny, r: 11, type: 'phase', label: VIZ_PHASES[i], idx: i });
+    vizEdges.push({ a: 0, b: i + 1 });
+    if (i > 0) vizEdges.push({ a: i, b: i + 1 });
+  }
+  vizEdges.push({ a: VIZ_PHASES.length, b: 1 });
+  // Outer satellites — more, bigger, faster
+  for (let i = 0; i < 30; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const d = R * (0.3 + Math.random() * 0.65);
+    const nx = cx + Math.cos(a) * d, ny = cy + Math.sin(a) * d;
+    const sp = 0.4 + Math.random() * 1.2;
+    vizNodes.push({ x: nx, y: ny, bx: nx, by: ny, r: 2.5 + Math.random() * 3.5, type: 'sat',
+      vx: (Math.random() - 0.5) * sp, vy: (Math.random() - 0.5) * sp, idx: -1 });
+    vizEdges.push({ a: vizNodes.length - 1, b: 1 + Math.floor(Math.random() * VIZ_PHASES.length) });
+    // Some satellites connect to each other
+    if (i > 0 && Math.random() < 0.4) {
+      vizEdges.push({ a: vizNodes.length - 1, b: vizNodes.length - 1 - Math.ceil(Math.random() * Math.min(i, 5)) });
+    }
+  }
+}
+
+// Hook into events
+const _origSetPhase = setPhase;
+setPhase = function(phase, status) {
+  _origSetPhase(phase, status);
+  vizActiveIdx = VIZ_PHASES.indexOf(phase);
+  vizPulse = 1.5;
+  // Burst sparks
+  const node = vizNodes[vizActiveIdx + 1];
+  if (node) for (let i = 0; i < 20; i++) {
+    const a = Math.random() * Math.PI * 2, sp = 2 + Math.random() * 5;
+    vizSparks.push({ x: node.x, y: node.y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life: 1, color: 'accent' });
+  }
+};
+const _origAddLog = addLog;
+addLog = function(level, msg) {
+  _origAddLog(level, msg);
+  vizPulse = Math.max(vizPulse, 0.8);
+  // Spawn data packets from core to active phase
+  if (vizActiveIdx >= 0) {
+    for (let i = 0; i < 3; i++) {
+      vizPackets.push({ from: 0, to: vizActiveIdx + 1, t: -i * 0.15, speed: 0.008 + Math.random() * 0.012,
+        size: 2 + Math.random() * 3, hue: level === 'error' ? 0 : level === 'warn' ? 45 : level === 'success' ? 160 : 230 });
+    }
+  }
+};
+
+resizeViz();
+window.addEventListener('resize', resizeViz);
+
+function drawViz() {
+  vCtx.clearRect(0, 0, vizW, vizH);
+  const t = Date.now() * 0.001;
+  vizPulse *= 0.96;
+
+  // === Move satellites ===
+  for (const n of vizNodes) {
+    if (n.type === 'sat') {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 8 || n.x > vizW - 8) n.vx *= -1;
+      if (n.y < 8 || n.y > vizH - 8) n.vy *= -1;
+      if (Math.random() < 0.02) { n.vx += (Math.random()-.5)*.3; n.vy += (Math.random()-.5)*.3; }
+      const maxV = 1.5; n.vx = Math.max(-maxV, Math.min(maxV, n.vx)); n.vy = Math.max(-maxV, Math.min(maxV, n.vy));
+    }
+    if (n.type === 'phase') {
+      n.x = n.bx + Math.sin(t * 1.2 + n.idx * 1.5) * 5;
+      n.y = n.by + Math.cos(t * 0.9 + n.idx * 2.0) * 5;
+    }
+    if (n.type === 'core') {
+      n.r = 18 + Math.sin(t * 2) * 3 + vizPulse * 8;
+    }
+  }
+
+  // === Draw edges ===
+  for (const e of vizEdges) {
+    const na = vizNodes[e.a], nb = vizNodes[e.b];
+    const isHot = isRunning && (na.idx === vizActiveIdx || nb.idx === vizActiveIdx);
+    const alpha = isHot ? 0.35 + Math.sin(t * 4) * 0.1 : 0.06;
+    vCtx.strokeStyle = isHot ? `rgba(110,231,183,${alpha})` : `rgba(110,231,183,${alpha})`;
+    vCtx.lineWidth = isHot ? 2 : 0.5;
+    vCtx.beginPath(); vCtx.moveTo(na.x, na.y); vCtx.lineTo(nb.x, nb.y); vCtx.stroke();
+
+    // Traveling dots on ALL edges when running
+    if (isRunning) {
+      const count = isHot ? 3 : 1;
+      for (let d = 0; d < count; d++) {
+        const prog = ((t * (isHot ? 0.6 : 0.2)) + e.a * 0.17 + d * 0.33) % 1;
+        const px = na.x + (nb.x - na.x) * prog;
+        const py = na.y + (nb.y - na.y) * prog;
+        const dotR = isHot ? 2.5 : 1.2;
+        const dotA = isHot ? 0.8 : 0.2;
+        vCtx.fillStyle = `rgba(110,231,183,${dotA})`;
+        vCtx.beginPath(); vCtx.arc(px, py, dotR, 0, Math.PI*2); vCtx.fill();
+      }
+    }
+  }
+
+  // === Data packets ===
+  vizPackets = vizPackets.filter(p => {
+    p.t += p.speed;
+    if (p.t < 0) return true;
+    if (p.t > 1) return false;
+    const na = vizNodes[p.from], nb = vizNodes[p.to];
+    const px = na.x + (nb.x - na.x) * p.t;
+    const py = na.y + (nb.y - na.y) * p.t;
+    // Glow
+    const g = vCtx.createRadialGradient(px, py, 0, px, py, p.size * 5);
+    g.addColorStop(0, `hsla(${p.hue},80%,65%,0.5)`);
+    g.addColorStop(1, `hsla(${p.hue},80%,65%,0)`);
+    vCtx.fillStyle = g; vCtx.beginPath(); vCtx.arc(px, py, p.size * 5, 0, Math.PI*2); vCtx.fill();
+    // Core
+    vCtx.fillStyle = `hsla(${p.hue},80%,70%,0.9)`;
+    vCtx.beginPath(); vCtx.arc(px, py, p.size, 0, Math.PI*2); vCtx.fill();
+    // Trail
+    const trail = Math.max(0, p.t - p.speed * 5);
+    const tx = na.x + (nb.x - na.x) * trail;
+    const ty = na.y + (nb.y - na.y) * trail;
+    vCtx.strokeStyle = `hsla(${p.hue},80%,65%,0.3)`;
+    vCtx.lineWidth = p.size * 0.8;
+    vCtx.beginPath(); vCtx.moveTo(tx, ty); vCtx.lineTo(px, py); vCtx.stroke();
+    return true;
+  });
+
+  // === Sparks ===
+  vizSparks = vizSparks.filter(s => {
+    s.x += s.vx; s.y += s.vy; s.vx *= 0.96; s.vy *= 0.96; s.life -= 0.025;
+    if (s.life <= 0) return false;
+    vCtx.fillStyle = s.color === 'accent' ? `rgba(110,231,183,${s.life})` : `rgba(129,140,248,${s.life})`;
+    vCtx.beginPath(); vCtx.arc(s.x, s.y, 2 * s.life, 0, Math.PI*2); vCtx.fill();
+    return true;
+  });
+
+  // === Draw nodes ===
+  for (let i = 0; i < vizNodes.length; i++) {
+    const n = vizNodes[i];
+    const isActive = n.idx === vizActiveIdx && isRunning;
+
+    // Big glow
+    if (n.type !== 'sat') {
+      const gr = n.r * (isActive ? 5 : n.type === 'core' ? 4 : 2.5);
+      const grd = vCtx.createRadialGradient(n.x, n.y, 0, n.x, n.y, gr);
+      if (n.type === 'core') {
+        grd.addColorStop(0, `rgba(110,231,183,${0.2 + vizPulse * 0.3})`);
+      } else if (isActive) {
+        grd.addColorStop(0, 'rgba(110,231,183,0.35)');
+      } else {
+        grd.addColorStop(0, 'rgba(129,140,248,0.1)');
+      }
+      grd.addColorStop(1, 'rgba(0,0,0,0)');
+      vCtx.fillStyle = grd; vCtx.beginPath(); vCtx.arc(n.x, n.y, gr, 0, Math.PI*2); vCtx.fill();
+    }
+
+    // Node body
+    if (n.type === 'core') {
+      vCtx.fillStyle = `rgba(110,231,183,${0.7 + vizPulse * 0.3})`;
+    } else if (n.type === 'phase') {
+      vCtx.fillStyle = isActive ? 'rgba(110,231,183,0.95)' : 'rgba(129,140,248,0.35)';
+    } else {
+      vCtx.fillStyle = `rgba(136,146,168,${0.15 + Math.sin(t*1.5 + i*0.7) * 0.1})`;
+    }
+    vCtx.beginPath(); vCtx.arc(n.x, n.y, n.r, 0, Math.PI*2); vCtx.fill();
+
+    // Active pulsing rings
+    if (isActive && n.type === 'phase') {
+      for (let r = 0; r < 3; r++) {
+        const rr = n.r + 6 + r * 8 + Math.sin(t * 3 + r) * 3;
+        vCtx.strokeStyle = `rgba(110,231,183,${0.4 - r * 0.12})`;
+        vCtx.lineWidth = 2 - r * 0.5;
+        vCtx.beginPath(); vCtx.arc(n.x, n.y, rr, 0, Math.PI*2); vCtx.stroke();
+      }
+    }
+
+    // Labels — bigger
+    if (n.type === 'core') {
+      vCtx.fillStyle = 'rgba(15,17,23,0.9)';
+      vCtx.font = 'bold 11px "Segoe UI", sans-serif';
+      vCtx.textAlign = 'center'; vCtx.textBaseline = 'middle';
+      vCtx.fillText('HUB', n.x, n.y);
+    } else if (n.type === 'phase') {
+      vCtx.fillStyle = isActive ? 'rgba(110,231,183,0.95)' : 'rgba(136,146,168,0.6)';
+      vCtx.font = `${isActive ? 'bold ' : ''}10px "Segoe UI", sans-serif`;
+      vCtx.textAlign = 'center';
+      vCtx.fillText(n.label, n.x, n.y + n.r + 14);
+    }
+  }
+
+  // === Orbiting particles around core ===
+  if (isRunning) {
+    const core = vizNodes[0];
+    for (let ring = 0; ring < 3; ring++) {
+      const orbitR = 30 + ring * 14 + Math.sin(t * 0.7 + ring) * 4;
+      const speed = (1.5 - ring * 0.3);
+      const count = 4 + ring * 2;
+      for (let i = 0; i < count; i++) {
+        const a = t * speed + (i * Math.PI * 2 / count) + ring * 0.5;
+        const ox = core.x + Math.cos(a) * orbitR;
+        const oy = core.y + Math.sin(a) * orbitR;
+        const pr = 2.5 - ring * 0.5;
+        vCtx.fillStyle = `rgba(110,231,183,${0.6 - ring * 0.15})`;
+        vCtx.beginPath(); vCtx.arc(ox, oy, pr, 0, Math.PI*2); vCtx.fill();
+      }
+    }
+  }
+
+  // === Background ambient particles (always active) ===
+  for (let i = 0; i < 15; i++) {
+    const px = (Math.sin(t * 0.3 + i * 47.3) * 0.5 + 0.5) * vizW;
+    const py = (Math.cos(t * 0.25 + i * 31.7) * 0.5 + 0.5) * vizH;
+    const pa = 0.04 + Math.sin(t + i * 2.3) * 0.03;
+    vCtx.fillStyle = `rgba(110,231,183,${pa})`;
+    vCtx.beginPath(); vCtx.arc(px, py, 1.5, 0, Math.PI*2); vCtx.fill();
+  }
+
+  requestAnimationFrame(drawViz);
+}
+requestAnimationFrame(drawViz);
 
 // Auto-connect on load
 fetch(API + '/api/state').then(r => r.json()).then(handleEvent).catch(() => {});
