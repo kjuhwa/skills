@@ -1,6 +1,6 @@
 ---
 name: materialized-view-implementation-pitfall
-description: Silent divergence between view and base when change-log capture is incomplete or refresh overlaps writes
+description: Common traps when modeling refresh semantics, staleness bounds, and concurrent query reads
 category: pitfall
 tags:
   - materialized
@@ -9,8 +9,8 @@ tags:
 
 # materialized-view-implementation-pitfall
 
-The most dangerous failure mode for materialized views is **silent divergence**: the view returns a number, the number looks plausible, but it no longer matches what a fresh recompute from the base would produce. This usually traces to incremental refresh strategies losing change-log entries — a dropped CDC event, a missed trigger fire during a transaction rollback, or a refresh that reads the change-log up to timestamp T while a write with timestamp T-ε is still in-flight. Because incremental refreshes apply deltas rather than recomputing, the error is sticky: it persists until a full refresh is forced, and by then nobody remembers when the drift started.
+The most common modeling mistake is treating REFRESH as instantaneous. Real materialized views (PostgreSQL `REFRESH MATERIALIZED VIEW`, Oracle fast/complete refresh, Snowflake dynamic tables) take measurable time, and without `CONCURRENTLY` the view is exclusively locked for the duration — queries either block or read the pre-refresh snapshot depending on engine. Simulations that flip the view atomically at the refresh *start* instead of its *end* misrepresent staleness: a query arriving at t=refreshStart+100ms on a 2s refresh should still see the old snapshot, not the new one. Similarly, forgetting that non-CONCURRENT refreshes invalidate the old data entirely (brief unavailability window) vs CONCURRENT which keeps the old version readable is a frequent bug.
 
-A second pitfall is **refresh overlap**: if a refresh takes longer than the refresh interval (common under write bursts or when the base table grows), a second refresh kicks off while the first is running. Depending on locking, you either get duplicate work (wasted), a serialized backlog (staleness balloons), or — worst — two refreshes racing to write the view with interleaved partial results. Always measure `refresh_duration / refresh_interval` as a health metric and alert when it exceeds ~0.5, long before it hits 1.0.
+Incremental refresh has its own trap: not every view definition is incrementally maintainable. Aggregations with non-invertible functions (MIN/MAX over deletes, MEDIAN, DISTINCT COUNT without sketches) require full recompute even when the engine advertises "incremental". Demos that show smooth row-by-row delta application for arbitrary SQL mislead users — mark which view shapes actually support incremental maintenance (SUM, COUNT, simple joins on PK) vs those that silently fall back to full refresh.
 
-Third, the **read-during-refresh consistency question** is almost always answered wrong by accident rather than by design. If queries can hit the view mid-refresh, they may see a half-applied state (some rows updated to T+1, others still at T). PostgreSQL's `REFRESH MATERIALIZED VIEW CONCURRENTLY` solves this with a shadow table and atomic swap; naive implementations that `TRUNCATE + INSERT` do not. Decide explicitly whether your view offers snapshot-consistent reads or best-effort reads, document it, and test under concurrent load — don't let the answer be whatever the implementation happens to do today.
+Finally, staleness accounting is easy to get wrong under concurrent writes. The correct definition is `max(writeLsn of base rows not yet reflected)` — not wall-clock age since last refresh. A view refreshed 10ms ago can already be stale if a write landed 1ms ago. Expose both metrics (wall-clock age and LSN-lag) so viewers understand that refresh cadence bounds one but not the other, and that read-your-own-writes is impossible without synchronous refresh or query-time fallback to base tables.
