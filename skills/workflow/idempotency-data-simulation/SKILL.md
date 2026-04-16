@@ -1,6 +1,6 @@
 ---
 name: idempotency-data-simulation
-description: Client-side request replay engine with a key-indexed server store that demonstrates duplicate detection, cached-response return, and cumulative side-effect tracking without a real backend.
+description: Generating realistic request streams with controllable duplicate ratios, key collisions, and retry patterns
 category: workflow
 triggers:
   - idempotency data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # idempotency-data-simulation
 
-The simulation models a complete idempotency lifecycle in-memory. A `serverStore` object acts as the idempotency key registry — each key maps to `{amount, timestamp}`. When a request arrives with a key that already exists in the store, the server path short-circuits: it returns the cached response and logs a duplicate detection event without mutating any balance or counter. When the key is absent (or no key is provided), the request is treated as new — the amount is deducted, the store is populated, and a success entry is logged. A "Replay All" function iterates stored keys and re-submits each one 3 times with staggered `setTimeout` delays, proving that all replays hit the duplicate path.
+Idempotency demos need deterministic-yet-realistic request streams. Generate a base stream of unique logical operations, then apply three independent transformations: (1) a **duplication multiplier** that clones each request N times with the same idempotency key (models client retries), (2) a **jitter injector** that adds 0–500ms delays between clones (models real network retry backoff), and (3) a **corruption rate** that flips a small fraction of duplicates to have the same key but mutated payload (models the collision-detection path). Keep these as three separate sliders rather than one "chaos" knob so each failure mode can be isolated.
 
-A toggle checkbox (`Include Idempotency Key`) lets the user disable key attachment, instantly converting the same request flow into a dangerous non-idempotent one where every replay deducts the balance again. This A/B toggle is the most important teaching mechanism — the same requests, the same replay, but the running `totalDeducted` counter diverges dramatically. The state machine app extends this further by tracking transitions with a `processed` Set keyed on `currentState:eventName`, ensuring that firing the same event twice from the same state is an idempotent no-op that triggers a visual pulse rather than a re-transition.
+Seed the RNG from a visible value so reruns are reproducible — users comparing "before cache" and "after cache" need identical input streams. Emit events with `{timestamp, clientId, idempotencyKey, payloadHash, attemptNumber}` so downstream panels can group by key and count attempts. For retry-storm simulation specifically, layer an exponential-backoff generator on top: given a failure event, schedule retries at `base * 2^n + jitter` with a configurable cap, and let the user toggle jitter on/off to visualize the thundering-herd vs. smoothed pattern.
 
-The reusable pattern is a three-layer simulation: (1) a key-value store for deduplication (`Map<idempotencyKey, cachedResponse>`), (2) a branching processor that checks the store before executing side-effects, and (3) a replay/retry driver that re-submits identical payloads to prove the guard works. Add a toggle to disable the guard for contrast. This structure works for payments, state machines, event processors, or any domain where "exactly-once semantics" needs demonstration.
+Pre-bake at least three canonical scenarios users can one-click load: "healthy retries" (10% duplicate rate, no collisions), "flaky network" (50% duplicate rate, heavy jitter), and "buggy client" (30% collision rate — same key, different payloads). These scenarios teach the contract faster than any explanatory text.
