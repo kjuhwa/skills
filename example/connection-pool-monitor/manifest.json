@@ -1,0 +1,12 @@
+{
+  "slug": "connection-pool-monitor",
+  "title": "Connection Pool Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:18:19.947Z",
+  "source_project": "100-connection-pool-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}

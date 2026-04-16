@@ -86,6 +86,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [load-balancer-simulator](load-balancer-simulator/) | Load Balancer Simulator — auto-generated load-balancer tool | html, css, vanilla-js | 2026-04-16 |
 
+| [connection-pool-monitor](connection-pool-monitor/) | Connection Pool Monitor — auto-generated connection-pool tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
