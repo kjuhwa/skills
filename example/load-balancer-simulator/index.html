@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Load Balancer Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Load Balancer Simulator</h1>
+<div class="controls">
+<button id="sendReq">Send Request</button>
+<button id="burst">Burst (10)</button>
+<select id="algo">
+<option value="round-robin">Round Robin</option>
+<option value="least-conn">Least Connections</option>
+<option value="random">Random</option>
+</select>
+</div>
+<canvas id="canvas" width="900" height="500"></canvas>
+<script src="app.js"></script>
+</body>
+</html>

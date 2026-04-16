@@ -1,0 +1,12 @@
+{
+  "slug": "load-balancer-simulator",
+  "title": "Load Balancer Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:14:40.488Z",
+  "source_project": "99-load-balancer-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
