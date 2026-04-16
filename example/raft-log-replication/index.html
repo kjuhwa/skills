@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raft Log Replication</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Raft Log Replication</h1>
+  <div id="controls">
+    <input id="cmd-input" type="text" placeholder="Enter command (e.g. SET x=5)" />
+    <button onclick="submitCommand()">Submit</button>
+    <button onclick="autoSubmit()">Auto</button>
+  </div>
+  <div id="cluster"></div>
+  <div id="commit-line">Commit Index: <span id="ci">0</span></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
