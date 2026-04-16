@@ -1955,6 +1955,265 @@
       "source_commit": "4b922a9043",
       "pinned": false,
       "linked_knowledge": []
+    },
+    "autoplan": {
+      "category": "workflow",
+      "description": "Auto-review pipeline - runs CEO, design, eng, DX reviews sequentially",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/autoplan"
+    },
+    "benchmark": {
+      "category": "testing",
+      "description": "Performance regression detection using headless browser",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/testing/benchmark"
+    },
+    "browse": {
+      "category": "testing",
+      "description": "Fast headless browser for QA testing and site dogfooding",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/testing/browse"
+    },
+    "canary": {
+      "category": "workflow",
+      "description": "Post-deploy canary monitoring for console errors and perf regressions",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/canary"
+    },
+    "careful": {
+      "category": "security",
+      "description": "Safety guardrails for destructive commands",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/security/careful"
+    },
+    "checkpoint": {
+      "category": "workflow",
+      "description": "Save and resume working state checkpoints across sessions",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/checkpoint"
+    },
+    "codex": {
+      "category": "ai",
+      "description": "OpenAI Codex CLI wrapper - review, challenge, and collab modes",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/ai/codex"
+    },
+    "cso": {
+      "category": "security",
+      "description": "Chief Security Officer - infrastructure-first security audit",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/security/cso"
+    },
+    "design-consultation": {
+      "category": "design",
+      "description": "Design consultation - product understanding + design system proposal",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/design/design-consultation"
+    },
+    "design-html": {
+      "category": "design",
+      "description": "Design finalization - production-quality HTML/CSS generation",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/design/design-html"
+    },
+    "design-review": {
+      "category": "design",
+      "description": "Designer eye QA - visual inconsistency, spacing, AI slop detection",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/design/design-review"
+    },
+    "design-shotgun": {
+      "category": "design",
+      "description": "Generate multiple AI design variants with comparison board",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/design/design-shotgun"
+    },
+    "devex-review": {
+      "category": "testing",
+      "description": "Live developer experience audit using headless browser",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/testing/devex-review"
+    },
+    "document-release": {
+      "category": "docs",
+      "description": "Post-ship documentation update",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/docs/document-release"
+    },
+    "freeze": {
+      "category": "workflow",
+      "description": "Restrict file edits to a specific directory for the session",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/freeze"
+    },
+    "gstack": {
+      "category": "cli",
+      "description": "Root gstack skill - headless browser for QA testing",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/cli/gstack"
+    },
+    "gstack-upgrade": {
+      "category": "cli",
+      "description": "Upgrade gstack to latest version",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/cli/gstack-upgrade"
+    },
+    "guard": {
+      "category": "security",
+      "description": "Full safety mode - destructive warnings + directory-scoped edits",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/security/guard"
+    },
+    "health": {
+      "category": "testing",
+      "description": "Code quality dashboard (type checker, linter, tests, dead code)",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/testing/health"
+    },
+    "investigate": {
+      "category": "debug",
+      "description": "Systematic debugging with root cause investigation (4 phases)",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/debug/investigate"
+    },
+    "land-and-deploy": {
+      "category": "workflow",
+      "description": "Merge PR, wait for CI/deploy, verify production health",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/land-and-deploy"
+    },
+    "learn": {
+      "category": "docs",
+      "description": "Manage project learnings across sessions",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/docs/learn"
+    },
+    "office-hours": {
+      "category": "workflow",
+      "description": "YC Office Hours - startup forcing questions + product review",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/office-hours"
+    },
+    "open-gstack-browser": {
+      "category": "cli",
+      "description": "Launch AI-controlled visible Chromium browser",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/cli/open-gstack-browser"
+    },
+    "pair-agent": {
+      "category": "ai",
+      "description": "Pair a remote AI agent with your browser",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/ai/pair-agent"
+    },
+    "plan-ceo-review": {
+      "category": "workflow",
+      "description": "CEO/founder-mode plan review (10-star product thinking)",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/plan-ceo-review"
+    },
+    "plan-design-review": {
+      "category": "design",
+      "description": "Designer eye plan review - rates dimensions 0-10",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/design/plan-design-review"
+    },
+    "plan-devex-review": {
+      "category": "workflow",
+      "description": "Interactive developer experience plan review",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/plan-devex-review"
+    },
+    "plan-eng-review": {
+      "category": "workflow",
+      "description": "Eng manager plan review - architecture, data flow, edge cases",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/plan-eng-review"
+    },
+    "gstack-qa": {
+      "category": "testing",
+      "description": "QA test web app + iteratively fix bugs found (gstack)",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/testing/gstack-qa"
+    },
+    "gstack-qa-only": {
+      "category": "testing",
+      "description": "Report-only QA testing (no auto-fix)",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/testing/gstack-qa-only"
+    },
+    "retro": {
+      "category": "docs",
+      "description": "Weekly engineering retrospective with trend tracking",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/docs/retro"
+    },
+    "review": {
+      "category": "workflow",
+      "description": "Pre-landing PR review (SQL safety, LLM trust boundaries)",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/review"
+    },
+    "setup-browser-cookies": {
+      "category": "cli",
+      "description": "Import cookies from real browser into headless session",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/cli/setup-browser-cookies"
+    },
+    "setup-deploy": {
+      "category": "workflow",
+      "description": "Configure deployment settings for land-and-deploy",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/setup-deploy"
+    },
+    "ship": {
+      "category": "workflow",
+      "description": "Ship workflow - merge, test, review, bump version, PR",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/ship"
+    },
+    "unfreeze": {
+      "category": "workflow",
+      "description": "Clear the freeze boundary set by /freeze",
+      "source_project": "gstack",
+      "source_url": "https://github.com/garrytan/gstack",
+      "path": "skills/workflow/unfreeze"
     }
   },
   "knowledge": {
