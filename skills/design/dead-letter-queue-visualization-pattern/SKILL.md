@@ -1,6 +1,6 @@
 ---
 name: dead-letter-queue-visualization-pattern
-description: Triage-first DLQ UI pattern separating message inspection, flow topology, and failure forensics across three coordinated panels
+description: Visual patterns for surfacing DLQ message flow, failure reasons, and replay decisions in triage UIs
 category: design
 triggers:
   - dead letter queue visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # dead-letter-queue-visualization-pattern
 
-Effective DLQ visualizations reject the flat "list of failed messages" antipattern and instead split concerns across three views: (1) a triage console showing message rows with failure reason, retry count, age, and originating topic/queue, filterable by error class and time window; (2) a flow visualizer rendering the upstream producer → processor → DLQ topology as a directed graph with animated particles representing in-flight and rejected messages, where edge thickness encodes throughput and red pulses mark rejection events; (3) an autopsy report panel that expands a single message into its full lifecycle — headers, payload diff against schema, stack trace, redelivery history, and correlation IDs to distributed traces.
+Dead-letter-queue UIs must make three things instantly legible: where a message came from (source topic/queue + original consumer group), why it failed (exception class, retry count, timestamp of last attempt), and what operators can do next (replay, edit-and-replay, discard, quarantine). The canonical layout is a three-pane console: left pane lists DLQ entries grouped by failure signature (hashed stack trace or error code) with counts, middle pane shows the selected message's headers/payload with a diff view against the original schema, and right pane exposes action buttons gated by RBAC. Group-by-signature beats chronological listing because DLQs typically contain bursts of the same underlying bug — showing 10,000 identical failures as one row with a count prevents operator fatigue.
 
-Color and motion must encode failure semantics, not aesthetics. Reserve red exclusively for poison messages (non-retryable), amber for transient failures still within retry budget, and gray for parked/quarantined messages awaiting human decision. Use radial or timeline layouts for retry history so operators can spot exponential backoff patterns and "stuck at attempt N" clusters. Always surface the replay/discard/quarantine action affordances directly on each message row — hiding them behind a detail drawer causes operators to batch-dismiss failures without inspection.
+For flow visualization, render the message lifecycle as a directed graph: Source → Consumer → Retry(n) → DLQ → Replay Target. Use color intensity to encode volume (number of messages on each edge) and animate only edges with recent activity to avoid a busy-but-meaningless display. Annotate each retry node with the backoff delay used and the exception raised — this turns an abstract retry policy into something operators can audit. For autopsy/report views, pair a timeline chart (messages entering DLQ per minute) with a Pareto chart of failure reasons; the 80/20 rule almost always applies, and the top 2-3 error signatures drive most remediation work.
 
-Cross-panel selection linking is mandatory: clicking a node in the flow graph filters the triage list; selecting a message row highlights its path in the topology and auto-opens its autopsy. This tri-panel coordination transforms DLQ inspection from reactive firefighting into systematic forensic analysis.
+Always expose the poison-pill detection signal visually: when a single message fails N consecutive replay attempts, flag it distinctly (red border, skull icon, or a dedicated "quarantine" lane) so it cannot be accidentally replayed into an infinite loop. The UI should refuse a replay action on quarantined messages without an explicit override confirmation, and log the override actor for audit.
