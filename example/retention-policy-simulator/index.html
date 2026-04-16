@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retention Policy Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>🗄 Retention &amp; Downsampling Simulator</h1></header>
+<main>
+  <section class="panel">
+    <h2>Tiers</h2>
+    <div id="tiers"></div>
+    <div class="add">
+      <input id="tname" placeholder="tier name">
+      <input id="tres" placeholder="resolution (s)" type="number" value="60">
+      <input id="tret" placeholder="retention (days)" type="number" value="7">
+      <button id="addtier">+ Add Tier</button>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Storage Footprint</h2>
+    <div class="stat"><span>Raw ingest rate</span><b id="ingest">—</b></div>
+    <div class="stat"><span>Points/day</span><b id="ppd">—</b></div>
+    <div class="stat"><span>Total points stored</span><b id="total">—</b></div>
+    <div class="stat"><span>Approx disk usage</span><b id="disk">—</b></div>
+    <svg id="bars" width="100%" height="160"></svg>
+  </section>
+  <section class="panel wide">
+    <h2>Timeline view (last 90 days)</h2>
+    <svg id="timeline" width="100%" height="220"></svg>
+    <div class="legend" id="legend"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

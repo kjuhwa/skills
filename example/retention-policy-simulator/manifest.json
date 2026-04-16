@@ -1,0 +1,12 @@
+{
+  "slug": "retention-policy-simulator",
+  "title": "Retention Policy Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:42:19.016Z",
+  "source_project": "101-retention-policy-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
