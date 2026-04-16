@@ -1,0 +1,12 @@
+{
+  "slug": "cdc-conflict-resolver",
+  "title": "Cdc Conflict Resolver",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:38:03.143Z",
+  "source_project": "102-cdc-conflict-resolver",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CDC Conflict Resolver</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CDC Conflict Resolver</h1>
+  <div class="stats">
+    <span>Pending: <b id="pendingCount">0</b></span>
+    <span>Resolved: <b id="resolvedCount">0</b></span>
+    <button id="genBtn">+ Generate Conflict</button>
+  </div>
+</header>
+<main>
+  <section class="queue">
+    <h2>Conflict Queue</h2>
+    <ul id="queueList"></ul>
+  </section>
+  <section class="resolver">
+    <h2>Resolution View</h2>
+    <div id="resolverBody">
+      <p class="empty">Select a conflict from the queue →</p>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

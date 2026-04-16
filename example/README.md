@@ -310,6 +310,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [topic-river](topic-river/) | Topic River — auto-generated pub-sub tool | html, css, vanilla-js | 2026-04-16 |
 
+| [cdc-conflict-resolver](cdc-conflict-resolver/) | Cdc Conflict Resolver — auto-generated cdc tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
