@@ -1,6 +1,6 @@
 ---
 name: etl-visualization-pattern
-description: Multi-stage ETL flow visualization with source → transform → sink node representation and inter-stage queue depth indicators
+description: Animated stage-based pipeline visualization for ETL flows with extract/transform/load phases
 category: design
 triggers:
   - etl visualization pattern
@@ -11,8 +11,6 @@ version: 1.0.0
 
 # etl-visualization-pattern
 
-ETL applications benefit from a left-to-right directed acyclic graph (DAG) visualization where each node represents a pipeline stage (Extract, Transform, Load) and edges represent data flow between stages. Each node should expose live metrics as overlay badges: records/sec throughput, error count, and current batch size. Inter-stage edges should render as animated paths (dashed stroke-dashoffset animation) whose speed is proportional to current throughput, giving an intuitive sense of flow velocity. Use distinct color semantics per stage type — typically blue for extract (sources), amber for transform (processing), and green for load (sinks) — with a red overlay state when any stage enters error or backpressure.
+ETL visualization apps share a three-stage horizontal flow metaphor: source (extract) → transformation (transform) → sink (load). Render each stage as a distinct node/column with animated data packets (dots, rows, or records) flowing left-to-right along connector edges. Use color coding to represent data health—green for clean records, yellow for warnings, red for quality failures or rejected rows. Stage nodes should expose throughput counters (rows/sec), backlog depth, and current transformation rules, all updating in real-time via requestAnimationFrame ticks.
 
-Queue depth between stages is the most important ETL health signal and deserves first-class rendering. Place a small capacity gauge on each edge showing the buffer fill percentage; when fill exceeds ~80% flip the edge color to amber, and above ~95% to red to indicate imminent backpressure. For transform nodes, expose an expandable panel showing the transform function's input/output schema diff so users can see field-level changes (added, dropped, renamed, coerced). This pattern generalizes across pipeline-visualizer, transform-playground (single-node focus mode), and throughput-monitor (aggregated cross-stage rate panel).
-
-Persist selected node and zoom/pan state in URL query params so deep-links into a pipeline view are shareable. For high-cardinality pipelines (20+ stages) provide a minimap and automatic layout via dagre or elkjs rather than hand-positioned nodes — manual coordinates break the moment a stage is added or reordered.
+For the transform stage specifically, visualize the rule pipeline as stacked sub-nodes (filter → map → aggregate → validate), letting users toggle each rule on/off to see immediate impact on the downstream load count. The data quality radar pattern adds a polar chart overlay showing completeness, validity, uniqueness, consistency, timeliness, and accuracy dimensions—this is the canonical DQ hexagon. Always include a "tail" panel showing the last 20 records that passed through, with inline diff highlighting to show what each transformation rule changed. Pause/step/reset controls are essential because users need to inspect individual record transitions, not just watch the stream fly by.

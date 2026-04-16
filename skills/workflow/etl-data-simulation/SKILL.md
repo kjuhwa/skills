@@ -1,6 +1,6 @@
 ---
 name: etl-data-simulation
-description: Deterministic seeded record generator for ETL demos with configurable throughput, schema drift, and fault injection
+description: Generate realistic dirty source data with injected quality defects for ETL demonstration
 category: workflow
 triggers:
   - etl data simulation
@@ -11,8 +11,6 @@ version: 1.0.0
 
 # etl-data-simulation
 
-ETL demo apps need a synthetic record generator that produces realistic-looking rows without external dependencies. Build a `simulateExtract(seed, ratePerSec, schema)` generator that emits records on a `setInterval` driven by the configured rate, using a seeded PRNG (mulberry32 or similar) so runs are reproducible. Each record should carry a monotonic `eventId`, a jittered `emittedAt` timestamp (not just `Date.now()` — add ±50ms jitter so downstream windowing looks realistic), and payload fields derived from the schema definition. Keep the generator pure and driven by a tick counter so pause/resume and time-travel scrubbing work without re-seeding.
+ETL demos fail when source data is too clean—the transform and quality stages have nothing to do. Build a configurable data generator that emits records with tunable defect rates: null injection (5-10% missing fields), type coercion traps (numeric strings, dates in mixed formats like "2026-04-17", "04/17/2026", "17-Apr-26"), duplicate keys (2-3%), referential orphans (foreign keys with no parent), encoding artifacts (smart quotes, trailing whitespace, zero-width spaces), and range violations (negative ages, future birthdates). Expose each defect knob as a slider so presenters can dial in scenarios on demand.
 
-Layer fault injection on top of the base generator: configurable probabilities for null fields, type coercion failures (string where number expected), duplicate eventIds, late-arriving records (emittedAt in the past), and schema drift events (an unexpected extra field appears at tick N). Expose these as sliders in a dev panel — it is the fastest way to exercise the transform stage's error handling in throughput-monitor and transform-playground. Record all emitted records in a capped ring buffer (e.g. last 5000) so the UI can replay and inspect without hitting memory issues during long-running demos.
-
-For the load stage, simulate sink latency with a configurable P50/P99 distribution rather than a single fixed delay — real sinks (databases, object stores, APIs) have long tails and the demo should surface that. Back-pressure in throughput-monitor only emerges naturally when sink latency exceeds source rate, which is what makes the visualization pattern above informative.
+Structure the generator as a pipeline of mutators applied to a clean base record: `baseRecord → nullInjector → dupeInjector → encodingCorrupter → rangeViolator`. Emit records on a setInterval at a configurable rate (10-1000 rec/sec) and buffer them in a ring buffer of the last ~1000 records so the visualization can scroll backward. Tag each record with a `_defects: string[]` meta field so the downstream quality stage can score ground-truth detection rates—this lets the radar show both claimed quality scores and actual defect catch rates, which is the most compelling demo moment.
