@@ -1,0 +1,12 @@
+{
+  "slug": "saga-pattern-simulator",
+  "title": "Saga Pattern Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:52:59.345Z",
+  "source_project": "49-saga-pattern-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
