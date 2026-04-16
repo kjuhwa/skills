@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Filter Spam Detector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Spam Detector <span class="accent">Demo</span></h1>
+  <p class="sub">A bloom filter pre-screens emails — watch messages flow through</p>
+  <div class="panels">
+    <div class="panel">
+      <h2>Incoming Mail</h2>
+      <div id="inbox" class="list"></div>
+    </div>
+    <div class="panel filter-panel">
+      <h2>Bloom Filter</h2>
+      <svg id="ring" viewBox="0 0 200 200" width="180" height="180"></svg>
+      <div class="legend"><span class="dot on"></span> Set <span class="dot off"></span> Unset</div>
+    </div>
+    <div class="panel">
+      <h2>Result</h2>
+      <div id="results" class="list"></div>
+    </div>
+  </div>
+  <button id="send">Send Next Email</button>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

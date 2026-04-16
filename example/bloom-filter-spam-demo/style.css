@@ -1,0 +1,21 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:system-ui,sans-serif;display:flex;justify-content:center;padding:20px}
+.container{max-width:820px;width:100%;text-align:center}
+h1{font-size:1.5rem;margin-bottom:2px}
+.accent{color:#6ee7b7}
+.sub{color:#64748b;font-size:13px;margin-bottom:16px}
+.panels{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-bottom:16px}
+.panel{background:#1a1d27;border-radius:8px;padding:14px;min-height:260px}
+.panel h2{font-size:13px;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.filter-panel{display:flex;flex-direction:column;align-items:center}
+.list{text-align:left;font-size:13px;max-height:220px;overflow-y:auto}
+.msg{padding:4px 6px;border-radius:4px;margin-bottom:4px;animation:fadein .3s}
+.msg.spam{background:#f8717122;color:#f87171}
+.msg.safe{background:#6ee7b722;color:#6ee7b7}
+.msg.pending{background:#facc1522;color:#facc15}
+@keyframes fadein{from{opacity:0;transform:translateY(-4px)}to{opacity:1}}
+.legend{font-size:11px;color:#64748b;margin-top:8px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 3px}
+.dot.on{background:#6ee7b7}.dot.off{background:#2d3348}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:10px 22px;border-radius:6px;cursor:pointer;font-weight:600;font-size:14px}
+svg{display:block}
