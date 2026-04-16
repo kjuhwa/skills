@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canary Rollback Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Canary Rollback Simulator</h1>
+  <p class="sub">Simulate a canary deploy — watch for anomalies and decide: promote or rollback?</p>
+  <div class="controls">
+    <button id="btnStart">▶ Start Deploy</button>
+    <button id="btnInject" disabled>💥 Inject Fault</button>
+    <button id="btnRollback" disabled>⏪ Rollback</button>
+    <button id="btnPromote" disabled>✅ Promote</button>
+  </div>
+  <canvas id="chart" width="760" height="220"></canvas>
+  <div id="alert" class="alert hidden"></div>
+  <div class="info"><span id="phase">Idle</span> · Canary: <span id="ver">v2.4.1</span> · Uptime: <span id="uptime">0s</span></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

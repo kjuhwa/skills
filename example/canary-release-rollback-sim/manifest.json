@@ -1,0 +1,12 @@
+{
+  "slug": "canary-release-rollback-sim",
+  "title": "Canary Release Rollback Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:17:52.421Z",
+  "source_project": "102-canary-release-rollback-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}
