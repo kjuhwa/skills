@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Materialized View Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Materialized View Builder</h1>
+  <p class="sub">Compose aggregations from a source table and materialize results</p>
+</header>
+<main>
+  <section class="panel">
+    <h2>Source: <span class="badge">orders</span></h2>
+    <div class="table-wrap"><table id="sourceTable"></table></div>
+  </section>
+  <section class="panel controls">
+    <h2>Definition</h2>
+    <label>Group by
+      <select id="groupBy">
+        <option value="region">region</option>
+        <option value="product">product</option>
+        <option value="status">status</option>
+      </select>
+    </label>
+    <label>Aggregate
+      <select id="agg">
+        <option value="sum">SUM(amount)</option>
+        <option value="avg">AVG(amount)</option>
+        <option value="count">COUNT(*)</option>
+        <option value="max">MAX(amount)</option>
+      </select>
+    </label>
+    <label>Filter status
+      <select id="filter">
+        <option value="">all</option>
+        <option value="paid">paid</option>
+        <option value="pending">pending</option>
+        <option value="refunded">refunded</option>
+      </select>
+    </label>
+    <button id="materialize">Materialize</button>
+    <button id="addRow" class="ghost">Insert random row</button>
+    <p class="status" id="status">Stale: never materialized</p>
+  </section>
+  <section class="panel">
+    <h2>Materialized View <span class="badge mv">mv_orders</span></h2>
+    <div class="table-wrap"><table id="mvTable"></table></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
