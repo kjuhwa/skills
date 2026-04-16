@@ -1,0 +1,19 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e5e7eb; font-family: -apple-system, Segoe UI, sans-serif; padding: 24px; }
+.app { max-width: 900px; margin: 0 auto; }
+h1 { color: #6ee7b7; font-size: 22px; margin-bottom: 4px; }
+.sub { color: #9ca3af; font-size: 13px; margin-bottom: 18px; }
+.config { background: #1a1d27; padding: 14px; border-radius: 10px; display: flex; gap: 14px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+.config label { color: #9ca3af; font-size: 13px; display: flex; gap: 6px; align-items: center; }
+.config input { background: #0f1117; border: 1px solid #374151; color: #e5e7eb; padding: 6px 10px; border-radius: 5px; width: 70px; }
+button { background: #6ee7b7; color: #0f1117; border: 0; padding: 8px 14px; border-radius: 5px; font-weight: 600; cursor: pointer; font-size: 13px; }
+button:hover { background: #34d399; }
+button.active { background: #f87171; color: #fff; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+.panel { background: #1a1d27; padding: 14px; border-radius: 10px; }
+.panel h2 { color: #6ee7b7; font-size: 14px; margin-bottom: 10px; }
+svg { width: 100%; height: auto; background: #0f1117; border-radius: 6px; }
+.meter { margin-top: 10px; color: #9ca3af; font-size: 12px; font-family: monospace; }
+.meter span { color: #6ee7b7; font-weight: 700; }
+.explainer { background: #1a1d27; padding: 14px; border-radius: 10px; color: #9ca3af; font-size: 13px; line-height: 1.7; }
+.explainer strong { color: #6ee7b7; }
