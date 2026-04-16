@@ -1,0 +1,12 @@
+{
+  "slug": "command-query-separator",
+  "title": "Command Query Separator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:52:11.875Z",
+  "source_project": "101-command-query-separator",
+  "author": "kjuhwa@nkia.co.kr"
+}

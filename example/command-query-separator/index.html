@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Command-Query Separator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Command / Query Separator</h1>
+  <p class="sub">Type or click to classify operations. Commands mutate state; Queries only read.</p>
+  <div class="input-row">
+    <input id="inp" placeholder="e.g. getUser, deletePost, updateName..." />
+    <button onclick="classify()">Classify</button>
+  </div>
+  <div class="columns"><div id="cmdCol"><h2>Commands <span class="badge" id="cmdN">0</span></h2></div><div id="qryCol"><h2>Queries <span class="badge" id="qryN">0</span></h2></div></div>
+  <svg id="svg" width="100%" height="80"></svg>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
