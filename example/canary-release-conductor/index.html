@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Canary Release Conductor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Canary Release Conductor</h1>
+    <div class="status" id="status">Stable</div>
+  </header>
+  <section class="controls">
+    <label>Canary Traffic: <span id="pctLabel">5</span>%</label>
+    <input type="range" id="slider" min="0" max="100" value="5">
+    <div class="buttons">
+      <button id="promote">Promote</button>
+      <button id="rollback">Rollback</button>
+      <button id="auto">Auto Pilot</button>
+    </div>
+  </section>
+  <section class="grid">
+    <div class="panel">
+      <h2>Traffic Split</h2>
+      <canvas id="pie" width="240" height="240"></canvas>
+      <div class="legend">
+        <span><i class="stable"></i>Stable <b id="stablePct">95%</b></span>
+        <span><i class="canary"></i>Canary <b id="canaryPct">5%</b></span>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Error Rate (live)</h2>
+      <canvas id="chart" width="480" height="220"></canvas>
+      <div class="meta"><span>Stable: <b id="stableErr">0.0</b>%</span><span>Canary: <b id="canaryErr">0.0</b>%</span></div>
+    </div>
+  </section>
+  <section class="log">
+    <h2>Event Log</h2>
+    <ul id="log"></ul>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

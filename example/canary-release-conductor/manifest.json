@@ -1,0 +1,12 @@
+{
+  "slug": "canary-release-conductor",
+  "title": "Canary Release Conductor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:34:03.463Z",
+  "source_project": "100-canary-release-conductor",
+  "author": "kjuhwa@nkia.co.kr"
+}
