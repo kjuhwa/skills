@@ -1,0 +1,81 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e7ef;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+.app { width: 100%; max-width: 720px; }
+header h1 { color: #6ee7b7; font-weight: 600; margin-bottom: 6px; }
+header p { color: #8b93a7; font-size: 14px; margin-bottom: 20px; }
+.k { color: #6ee7b7; font-family: monospace; }
+.controls {
+  background: #1a1d27;
+  padding: 14px;
+  border-radius: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+input {
+  flex: 1;
+  min-width: 180px;
+  background: #0f1117;
+  border: 1px solid #2a2f3f;
+  color: #e4e7ef;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+input:focus { border-color: #6ee7b7; }
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+}
+button:hover { filter: brightness(1.1); }
+button#resetBtn { background: #2a2f3f; color: #e4e7ef; }
+#status { margin-left: auto; font-size: 13px; color: #8b93a7; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.stats div {
+  background: #1a1d27;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.stats span { display: block; color: #8b93a7; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stats b { color: #6ee7b7; font-size: 18px; font-family: monospace; }
+canvas {
+  width: 100%;
+  background: #1a1d27;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 16px;
+}
+.log {
+  background: #1a1d27;
+  padding: 14px 18px;
+  border-radius: 10px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.log h3 { color: #6ee7b7; font-size: 13px; margin-bottom: 8px; font-weight: 500; }
+.log ul { list-style: none; }
+.log li { font-family: monospace; font-size: 12px; color: #c9cfdc; padding: 3px 0; border-bottom: 1px solid #22262f; }
+.log li.hit { color: #6ee7b7; }
+.log li.miss { color: #f87171; }

@@ -294,6 +294,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [raft-consensus-quiz](raft-consensus-quiz/) | Raft Consensus Quiz — auto-generated raft-consensus tool | html, css, vanilla-js | 2026-04-16 |
 
+| [bloom-filter-explorer](bloom-filter-explorer/) | Bloom Filter Explorer — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

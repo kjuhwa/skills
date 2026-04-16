@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bloom Filter Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Bloom Filter Explorer</h1>
+    <p>Watch bits light up as items hash through <span class="k">k</span> functions into an <span class="k">m</span>-bit array.</p>
+  </header>
+  <section class="controls">
+    <input id="word" type="text" placeholder="type a word..." />
+    <button id="addBtn">Add</button>
+    <button id="checkBtn">Check</button>
+    <button id="resetBtn">Reset</button>
+    <span id="status"></span>
+  </section>
+  <section class="stats">
+    <div><span>Items</span><b id="nItems">0</b></div>
+    <div><span>Bits Set</span><b id="nBits">0 / 128</b></div>
+    <div><span>Fill</span><b id="fill">0%</b></div>
+    <div><span>Est. FPR</span><b id="fpr">0%</b></div>
+  </section>
+  <canvas id="grid" width="640" height="240"></canvas>
+  <section class="log">
+    <h3>Hash trace</h3>
+    <ul id="trace"></ul>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
