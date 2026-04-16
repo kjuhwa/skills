@@ -1,6 +1,6 @@
 ---
 name: schema-registry-visualization-pattern
-description: Three complementary views (explorer tree, evolution timeline, compatibility matrix) for schema registry UIs
+description: Multi-panel visualization combining schema tree, version timeline, and compatibility matrix for schema registry exploration
 category: design
 triggers:
   - schema registry visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # schema-registry-visualization-pattern
 
-Schema registry tooling benefits from a tri-view composition where each view answers a distinct question: an **explorer** (subject/version tree with field drill-down) answers "what schemas exist and what do they contain?", a **timeline** (horizontal version lanes with compat-mode bands and breaking-change markers) answers "how did this subject evolve?", and a **compatibility matrix** (reader × writer grid with BACKWARD/FORWARD/FULL cell states) answers "can producer X talk to consumer Y?". Co-locating these around the same subject selector lets users pivot between structural, temporal, and relational perspectives without losing context.
+Schema registry UIs benefit from a three-panel layout that exposes the registry's inherent dimensions: subject hierarchy (left nav tree grouping by namespace/topic), version history (horizontal timeline with BACKWARD/FORWARD/FULL compatibility badges per version transition), and field-level diff (right pane rendering Avro/Protobuf/JSON Schema as collapsible tree with added/removed/modified field highlights). Use color semantics consistently across panels: green for additive/backward-compatible changes, amber for potentially breaking (field renames, type widening), red for breaking (required field removal, type narrowing, enum value removal).
 
-Render schemas as collapsible Avro/Protobuf/JSON-Schema trees with type badges (record, enum, union, optional) and diff-color coding — green for added fields, red for removed, amber for type-narrowed or default-changed. Timelines should pin the current `compatibility` setting as a header band (NONE, BACKWARD, FORWARD, FULL, TRANSITIVE variants) and draw vertical lines at schema IDs where the rule changed, since rule changes often explain why a later evolution was allowed. The matrix should encode three states — compatible, compatible-with-default, incompatible — plus a fourth "not-evaluated" state for missing version pairs, avoiding the trap of showing false greens on untested combinations.
+For the evolution timeline specifically, render each version as a node on a horizontal axis with edges labeled by compatibility mode, and overlay a "compatibility boundary" line showing which versions a consumer pinned to version N can still read. Hover states should reveal the specific schema-resolution rules that apply (default values filling missing fields, aliases resolving renames). The compatibility checker panel should show a side-by-side schema diff with inline annotations explaining *why* a change breaks compatibility in a given mode — not just that it does — since this is the primary learning goal users come to a registry explorer with.
 
-Use a single `SubjectContext` provider holding `{ subject, versions[], currentVersionId, compatMode }` so all three views subscribe to the same selection. Support URL-hash deep links like `#subject=orders-value&v=7&view=matrix` so users can share specific incompat findings. Keep each view independently reloadable — registry fetches for timelines can be expensive (N version GETs), so gate the timeline behind lazy expansion rather than loading it eagerly alongside the explorer.
+Field-level rendering must handle nested records, unions (especially `["null", T]` optionality), logical types (decimal, timestamp-millis), and schema references (Protobuf imports, Avro named type references). Flatten on demand but preserve the ability to drill into referenced schemas without losing scroll position in the parent.
