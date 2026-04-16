@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSM Regex Tester</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Regex → FSM Visualizer</h1>
+  <p class="sub">See how simple regex patterns become finite automata</p>
+  <div class="input-row">
+    <label>Pattern:</label>
+    <select id="pattern">
+      <option value="ab*c">ab*c</option>
+      <option value="a(b|c)d">a(b|c)d</option>
+      <option value="ab+">ab+</option>
+    </select>
+    <label>Test:</label>
+    <input id="test-input" type="text" value="abbc" spellcheck="false">
+    <button id="step-btn">Step</button>
+    <button id="run-btn">Run All</button>
+    <button id="reset-btn">Reset</button>
+  </div>
+  <svg id="svg" viewBox="0 0 700 260"></svg>
+  <div id="result"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
