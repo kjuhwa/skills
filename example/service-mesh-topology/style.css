@@ -1,0 +1,6 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+h1 { text-align: center; padding: 12px; font-size: 1.1rem; color: #6ee7b7; letter-spacing: 2px; }
+#stats { display: flex; justify-content: center; gap: 24px; padding-bottom: 8px; font-size: 0.8rem; color: #94a3b8; }
+#stats span { background: #1a1d27; padding: 4px 12px; border-radius: 6px; }
+canvas { display: block; margin: 0 auto; }
