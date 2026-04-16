@@ -1,0 +1,12 @@
+{
+  "slug": "retry-budget-monitor",
+  "title": "Retry Budget Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:03:34.918Z",
+  "source_project": "102-retry-budget-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}

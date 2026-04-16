@@ -428,6 +428,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [retry-storm-simulator](retry-storm-simulator/) | Retry Storm Simulator — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
 
+| [retry-budget-monitor](retry-budget-monitor/) | Retry Budget Monitor — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

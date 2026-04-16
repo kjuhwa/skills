@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retry Budget Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <h1>Retry Budget</h1>
+    <p class="sub">Live monitoring of retry-to-request ratio across services</p>
+    <div class="budget-card">
+      <div class="label">Budget Ratio</div>
+      <div class="big" id="ratio">0%</div>
+      <div class="bar"><div class="fill" id="ratioBar"></div></div>
+      <div class="label small">Threshold: 10%</div>
+    </div>
+    <div class="stats-grid">
+      <div><span id="totalReq">0</span><label>Total Requests</label></div>
+      <div><span id="totalRetry">0</span><label>Retries</label></div>
+      <div><span id="blocked">0</span><label>Blocked by Budget</label></div>
+    </div>
+    <button id="toggle">Pause</button>
+  </aside>
+  <main>
+    <h2>Service Health</h2>
+    <div id="services"></div>
+    <h2>Budget Timeline</h2>
+    <canvas id="timeline" width="600" height="180"></canvas>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
