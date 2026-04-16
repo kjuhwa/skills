@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe Coding Canvas ✨</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">✨</span>
+      <h1 class="topbar-title">Vibe Coding Canvas</h1>
+      <span class="topbar-badge">BETA</span>
+    </div>
+    <div class="topbar-right">
+      <!-- History -->
+      <div class="history-wrap">
+        <button class="btn-icon" id="historyBtn" title="히스토리">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.27"/>
+          </svg>
+          히스토리
+        </button>
+        <div class="history-dropdown" id="historyDropdown">
+          <div class="history-header">
+            <span>생성 히스토리</span>
+            <button class="btn-clear-history" id="clearHistoryBtn">전체 삭제</button>
+          </div>
+          <div class="history-list" id="historyList">
+            <div class="history-empty">아직 생성된 컴포넌트가 없습니다.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Theme toggle -->
+      <button class="btn-icon" id="themeToggle" title="테마 전환">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="canvas-layout">
+
+    <!-- ── LEFT PANEL ── -->
+    <aside class="panel panel-left">
+
+      <!-- Input section -->
+      <div class="panel-section input-section">
+        <div class="section-label">
+          <span class="label-dot"></span>
+          자연어로 UI 설명하기
+        </div>
+        <div class="textarea-wrap">
+          <textarea
+            id="promptInput"
+            class="prompt-textarea"
+            placeholder="예: 파란색 그라데이션 버튼 3개가 있는 카드&#10;예: 네온 스타일 로그인 폼&#10;예: 미니멀한 프로필 카드 with avatar&#10;예: animated hero section with gradient background"
+            rows="7"
+            spellcheck="false"
+          ></textarea>
+          <div class="textarea-hint" id="charCount">0 자</div>
+        </div>
+        <div class="action-row">
+          <button class="btn-generate" id="generateBtn">
+            <span class="btn-generate-text">생성</span>
+            <span class="btn-generate-icon">⚡</span>
+          </button>
+          <button class="btn-secondary" id="clearBtn" title="입력 초기화">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.27"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Preset grid -->
+      <div class="panel-section preset-section">
+        <div class="section-label">
+          <span class="label-dot"></span>
+          빠른 프리셋
+        </div>
+        <div class="preset-grid" id="presetGrid">
+          <button class="preset-btn" data-preset="버튼">
+            <span class="preset-icon">🔘</span>버튼
+          </button>
+          <button class="preset-btn" data-preset="카드">
+            <span class="preset-icon">🃏</span>카드
+          </button>
+          <button class="preset-btn" data-preset="폼">
+            <span class="preset-icon">📝</span>폼
+          </button>
+          <button class="preset-btn" data-preset="테이블">
+            <span class="preset-icon">📊</span>테이블
+          </button>
+          <button class="preset-btn" data-preset="네비게이션">
+            <span class="preset-icon">🧭</span>네비게이션
+          </button>
+          <button class="preset-btn" data-preset="히어로">
+            <span class="preset-icon">🦸</span>히어로
+          </button>
+          <button class="preset-btn" data-preset="모달">
+            <span class="preset-icon">🪟</span>모달
+          </button>
+          <button class="preset-btn" data-preset="리스트">
+            <span class="preset-icon">📋</span>리스트
+          </button>
+          <button class="preset-btn" data-preset="프로필 카드">
+            <span class="preset-icon">👤</span>프로필
+          </button>
+          <button class="preset-btn" data-preset="대시보드">
+            <span class="preset-icon">📈</span>대시보드
+          </button>
+        </div>
+      </div>
+
+      <!-- Keyword hints -->
+      <div class="panel-section keyword-section">
+        <div class="section-label">
+          <span class="label-dot"></span>
+          사용 가능한 스타일 키워드
+        </div>
+        <div class="keyword-tags">
+          <span class="kw-tag kw-style">둥근</span>
+          <span class="kw-tag kw-style">그라데이션</span>
+          <span class="kw-tag kw-style">네온</span>
+          <span class="kw-tag kw-style">글래스</span>
+          <span class="kw-tag kw-style">미니멀</span>
+          <span class="kw-tag kw-style">애니메이션</span>
+          <span class="kw-tag kw-style">어두운</span>
+          <span class="kw-tag kw-style">큰</span>
+          <span class="kw-tag kw-color">빨간</span>
+          <span class="kw-tag kw-color">파란</span>
+          <span class="kw-tag kw-color">초록</span>
+          <span class="kw-tag kw-color">보라</span>
+          <span class="kw-tag kw-color">노란</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ── RIGHT PANEL ── -->
+    <section class="panel panel-right">
+
+      <!-- Preview pane -->
+      <div class="pane pane-preview">
+        <div class="pane-header">
+          <div class="pane-title">
+            <span class="pane-dot dot-red"></span>
+            <span class="pane-dot dot-yellow"></span>
+            <span class="pane-dot dot-green"></span>
+            <span class="pane-label">미리보기</span>
+          </div>
+          <div class="pane-actions">
+            <span class="preview-status" id="previewStatus">대기 중</span>
+            <button class="btn-pane-action" id="refreshPreviewBtn" title="새로고침">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.27"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="preview-container" id="previewContainer">
+          <div class="preview-placeholder" id="previewPlaceholder">
+            <div class="placeholder-icon">✨</div>
+            <p class="placeholder-title">여기에 미리보기가 표시됩니다</p>
+            <p class="placeholder-sub">왼쪽에서 UI를 설명하고 <strong>생성</strong> 버튼을 눌러보세요</p>
+          </div>
+          <iframe
+            id="previewFrame"
+            class="preview-iframe hidden"
+            sandbox="allow-scripts allow-same-origin"
+            title="Component Preview"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Drag divider -->
+      <div class="pane-divider" id="paneDivider">
+        <div class="divider-handle"></div>
+      </div>
+
+      <!-- Code pane -->
+      <div class="pane pane-code">
+        <div class="pane-header">
+          <div class="pane-title">
+            <span class="pane-dot dot-red"></span>
+            <span class="pane-dot dot-yellow"></span>
+            <span class="pane-dot dot-green"></span>
+            <span class="pane-label">생성된 코드</span>
+          </div>
+          <div class="pane-actions">
+            <button class="btn-pane-action btn-copy" id="copyCodeBtn" title="코드 복사" disabled>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              복사
+            </button>
+          </div>
+        </div>
+        <div class="code-container">
+          <div class="code-placeholder" id="codePlaceholder">
+            <span class="code-hint">// 생성된 HTML/CSS 코드가 여기에 표시됩니다</span>
+          </div>
+          <div class="code-editor hidden" id="codeEditor">
+            <div class="line-numbers" id="lineNumbers"></div>
+            <pre class="code-content" id="codeContent"></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
