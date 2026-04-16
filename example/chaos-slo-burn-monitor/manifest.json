@@ -1,0 +1,12 @@
+{
+  "slug": "chaos-slo-burn-monitor",
+  "title": "Chaos Slo Burn Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:31:02.785Z",
+  "source_project": "102-chaos-slo-burn-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}

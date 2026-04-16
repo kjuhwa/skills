@@ -306,6 +306,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [materialized-view-builder](materialized-view-builder/) | Materialized View Builder — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
 
+| [chaos-slo-burn-monitor](chaos-slo-burn-monitor/) | Chaos Slo Burn Monitor — auto-generated chaos-engineering tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
