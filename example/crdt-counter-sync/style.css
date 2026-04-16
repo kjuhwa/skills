@@ -1,0 +1,84 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 24px;
+}
+header { text-align: center; margin-bottom: 24px; }
+header h1 { color: #6ee7b7; margin-bottom: 6px; }
+header p { color: #94a3b8; font-size: 14px; }
+main { max-width: 1100px; margin: 0 auto; }
+.replicas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.replica {
+  background: #1a1d27;
+  border: 1px solid #2a2f3d;
+  border-radius: 10px;
+  padding: 18px;
+}
+.replica h2 { color: #6ee7b7; font-size: 16px; margin-bottom: 10px; }
+.replica .total {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  color: #f1f5f9;
+}
+.vector {
+  font-family: monospace;
+  font-size: 12px;
+  color: #94a3b8;
+  background: #0f1117;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.replica button {
+  width: 100%;
+  padding: 8px;
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.replica button:hover { background: #5dd9a5; }
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #1a1d27;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.controls button {
+  background: #2a2f3d;
+  color: #e5e7eb;
+  border: 1px solid #3a3f4d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.controls button:hover { border-color: #6ee7b7; }
+#partitionStatus { margin-left: auto; font-size: 13px; color: #94a3b8; }
+.log {
+  background: #1a1d27;
+  border-radius: 10px;
+  padding: 14px;
+  height: 200px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 12px;
+}
+.log .entry { padding: 4px 0; border-bottom: 1px solid #2a2f3d; }
+.log .sync { color: #6ee7b7; }
+.log .inc { color: #fbbf24; }
+.log .part { color: #f87171; }

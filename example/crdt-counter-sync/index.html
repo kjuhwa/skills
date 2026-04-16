@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CRDT Counter Sync</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>G-Counter CRDT</h1>
+  <p>Three replicas increment independently. Sync merges by taking the max per node.</p>
+</header>
+<main>
+  <div class="replicas" id="replicas"></div>
+  <div class="controls">
+    <button id="syncAll">Sync All Replicas</button>
+    <button id="partitionToggle">Toggle Partition</button>
+    <span id="partitionStatus">Network: Connected</span>
+  </div>
+  <div class="log" id="log"></div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
