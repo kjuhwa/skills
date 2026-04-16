@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSDB Retention Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🗄️ Retention Policy Planner</h1>
+<p class="sub">Visualize storage cost vs. data granularity trade-offs</p>
+<div class="grid">
+  <div class="card">
+    <h2>Policy Tiers</h2>
+    <div id="tiers"></div>
+    <button onclick="addTier()">+ Add Tier</button>
+  </div>
+  <div class="card">
+    <h2>Storage Projection</h2>
+    <svg id="barChart" viewBox="0 0 500 220"></svg>
+    <div id="summary"></div>
+  </div>
+  <div class="card wide">
+    <h2>Timeline</h2>
+    <svg id="timeline" viewBox="0 0 900 80"></svg>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -222,6 +222,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [chaos-monkey-simulator](chaos-monkey-simulator/) | Chaos Monkey Simulator — auto-generated chaos-engineering tool | html, css, vanilla-js | 2026-04-16 |
 
+| [tsdb-retention-planner](tsdb-retention-planner/) | Tsdb Retention Planner — auto-generated time-series-db tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
