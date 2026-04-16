@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sidecar Proxy Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Sidecar Proxy Explorer</h1>
+  <p>Live request flow between apps, sidecars, and the mesh.</p>
+</header>
+<main>
+  <section class="topology">
+    <svg id="mesh" viewBox="0 0 800 440"></svg>
+  </section>
+  <aside class="panel">
+    <h2>Inspector</h2>
+    <div class="stats">
+      <div><span class="k">Total</span><span class="v" id="total">0</span></div>
+      <div><span class="k">2xx</span><span class="v" id="ok">0</span></div>
+      <div><span class="k">5xx</span><span class="v" id="err">0</span></div>
+      <div><span class="k">p95 ms</span><span class="v" id="p95">0</span></div>
+    </div>
+    <h3>Recent Traces</h3>
+    <ul id="log"></ul>
+    <div class="controls">
+      <button id="boost">Traffic Spike</button>
+      <button id="fault">Inject Fault</button>
+    </div>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

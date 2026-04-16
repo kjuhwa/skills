@@ -1,0 +1,12 @@
+{
+  "slug": "sidecar-proxy-explorer",
+  "title": "Sidecar Proxy Explorer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:31:00.893Z",
+  "source_project": "100-sidecar-proxy-explorer",
+  "author": "kjuhwa@nkia.co.kr"
+}
