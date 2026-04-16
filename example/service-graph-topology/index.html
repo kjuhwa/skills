@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Service Graph Topology</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Service Graph · Live Traces</h1>
+  <div class="legend">
+    <span><i style="background:#6ee7b7"></i>healthy</span>
+    <span><i style="background:#f59e0b"></i>slow</span>
+    <span><i style="background:#f87171"></i>error</span>
+    <button id="toggle">Pause</button>
+  </div>
+</header>
+<canvas id="cv"></canvas>
+<div id="tooltip"></div>
+<script src="app.js"></script>
+</body>
+</html>

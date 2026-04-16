@@ -438,6 +438,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [cdc-topology-weaver](cdc-topology-weaver/) | Cdc Topology Weaver — auto-generated cdc tool | html, css, vanilla-js | 2026-04-16 |
 
+| [service-graph-topology](service-graph-topology/) | Service Graph Topology — auto-generated distributed-tracing tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
