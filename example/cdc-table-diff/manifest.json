@@ -1,0 +1,12 @@
+{
+  "slug": "cdc-table-diff",
+  "title": "Cdc Table Diff",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:29:44.331Z",
+  "source_project": "101-cdc-table-diff",
+  "author": "kjuhwa@nkia.co.kr"
+}

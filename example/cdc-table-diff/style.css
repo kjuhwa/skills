@@ -1,0 +1,18 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',sans-serif;height:100vh;display:flex;flex-direction:column}
+.toolbar{display:flex;align-items:center;gap:16px;padding:12px 20px;background:#1a1d27;border-bottom:1px solid #2a2d37}
+h1{font-size:15px;color:#6ee7b7;white-space:nowrap}
+select,button{background:#2a2d37;color:#c9d1d9;border:1px solid #3a3d47;padding:6px 12px;border-radius:4px;cursor:pointer;font-size:12px}
+button:hover{background:#6ee7b7;color:#0f1117}
+.panels{flex:1;display:flex;gap:1px;overflow:auto;padding:12px}
+.panel{flex:1;background:#1a1d27;border-radius:6px;padding:12px;overflow:auto}
+.panel h2{font-size:12px;color:#888;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:4px 8px;color:#6ee7b7;border-bottom:1px solid #2a2d37}
+td{padding:4px 8px;border-bottom:1px solid #1f222c}
+td.changed{background:#2a3a2a;color:#6ee7b7}
+td.removed{background:#3a2222;color:#f07178;text-decoration:line-through}
+td.added{background:#1a2a3a;color:#7ec8e3}
+.timeline{height:48px;background:#1a1d27;border-top:1px solid #2a2d37;display:flex;align-items:center;gap:4px;padding:0 20px;overflow-x:auto}
+.timeline .dot{width:10px;height:10px;border-radius:50%;cursor:pointer;flex-shrink:0;opacity:0.5}
+.timeline .dot.active{opacity:1;box-shadow:0 0 6px currentColor}
