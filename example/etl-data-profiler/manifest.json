@@ -1,0 +1,12 @@
+{
+  "slug": "etl-data-profiler",
+  "title": "Etl Data Profiler",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:24:35.172Z",
+  "source_project": "101-etl-data-profiler",
+  "author": "kjuhwa@nkia.co.kr"
+}

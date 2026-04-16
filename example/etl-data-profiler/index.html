@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETL Data Profiler</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>ETL Data Profiler</h1>
+<div class="grid">
+  <div class="card" id="quality"><h2>Data Quality</h2><canvas id="qualityChart" width="280" height="180"></canvas></div>
+  <div class="card" id="types"><h2>Column Types</h2><div id="typeList"></div></div>
+  <div class="card" id="nulls"><h2>Null Distribution</h2><canvas id="nullChart" width="280" height="180"></canvas></div>
+  <div class="card" id="volume"><h2>Row Volume</h2><canvas id="volChart" width="280" height="180"></canvas></div>
+</div>
+<div class="table-wrap"><table id="preview"></table></div>
+<script src="app.js"></script>
+</body>
+</html>
