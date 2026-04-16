@@ -1,6 +1,6 @@
 ---
 name: blue-green-deploy-data-simulation
-description: Generate realistic blue-green deployment telemetry including version skew, traffic weights, and cutover transitions
+description: Deterministic state-machine generator for blue-green cutover phases with realistic traffic drain and health-check dynamics
 category: workflow
 triggers:
   - blue green deploy data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # blue-green-deploy-data-simulation
 
-Simulate blue-green deployment data as two parallel time-series streams sharing a common timeline, with each stack producing independent metrics (request-rate, p50/p95 latency, error-rate, healthy-instance-count, version-hash). Seed blue as the stable production baseline (v1.4.2, 100% traffic, error-rate ~0.1%, latency ~80ms) and green as the newly deployed candidate (v1.5.0, 0% traffic initially, warming up with slightly elevated latency for the first 30-60 seconds to mimic JIT warmup and cache priming).
+Simulate a blue-green deployment as a finite state machine with phases: `idle` → `deploying-green` → `warming-green` → `smoke-testing` → `cutover` → `draining-blue` → `green-active` (and a `rollback` branch from any post-cutover phase back to `blue-active`). Drive each phase with a tick function that advances a shared clock and emits instance-level events; phase durations should be configurable with sensible defaults (warm-up 30–60s, smoke-test 15–30s, cutover 3–10s, drain 30–120s). Keep a single `activeColor` field plus a `trafficSplit` number in [0,1] — during cutover, interpolate `trafficSplit` with an ease-in-out curve rather than a linear ramp so the animation feels realistic, and derive each side's RPS as `totalRPS * split` (or `1-split`).
 
-Drive the simulation through discrete phases with configurable durations: `staging` (green boots, health checks pending), `canary` (5-10% weight, watch error-rate), `ramp` (stepped weights 25→50→75), `cutover` (100% green), `drain` (blue still up but zero traffic for ~5min rollback window), `decommission` (blue torn down). Traffic weight should be an explicit field summing to 1.0 between the two stacks; derive per-stack request-rate from total-rps × weight. Inject realistic failure modes: green error-spike during canary (triggers auto-rollback), latency-regression at 50% weight, or a slow-drain scenario where in-flight requests to blue complete after cutover.
+Generate per-instance health deterministically from a seeded RNG so the same simulation scenario replays identically: during `warming-green`, instances flip from `starting` → `healthy` at staggered intervals; during `smoke-testing`, inject a configurable failure probability (default 5%) on one instance to exercise the rollback path; during `draining-blue`, decay each blue instance's in-flight request count from its pre-cutover level to zero over the drain window. Emit both the aggregate state (for the router view) and a per-instance event log (for the timeline strip) from the same tick so visualizations stay in lockstep.
 
-Timestamps should advance on a fixed tick (1s or 5s) and every record must carry `stack: "blue" | "green"`, `phase`, `weight`, and `version` so downstream visualizations can filter and color consistently.
+Expose scenario presets: `happy-path`, `smoke-test-failure-rollback`, `slow-drain` (long-lived websocket connections), `partial-warmup-failure` (1 of N green instances fails to become healthy), and `double-cutover` (rapid re-deploy). Each preset is a config object, not a hand-coded sequence, so the same tick engine produces all of them — this keeps the simulator honest and lets users toggle scenarios without reloading. Persist the seed and config in the URL so scenarios are shareable.
