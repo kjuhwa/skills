@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDD Event Storming</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Event Storming Board</h1>
+  <div id="palette">
+    <button class="chip" data-type="event" style="--c:#f59e0b">Domain Event</button>
+    <button class="chip" data-type="command" style="--c:#3b82f6">Command</button>
+    <button class="chip" data-type="aggregate" style="--c:#6ee7b7">Aggregate</button>
+    <button class="chip" data-type="policy" style="--c:#c084fc">Policy</button>
+  </div>
+</header>
+<div id="board"></div>
+<script src="app.js"></script>
+</body>
+</html>
