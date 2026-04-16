@@ -1,0 +1,12 @@
+{
+  "slug": "blue-green-deploy-timeline",
+  "title": "Blue Green Deploy Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:17:01.964Z",
+  "source_project": "101-blue-green-deploy-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}

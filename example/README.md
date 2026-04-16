@@ -298,6 +298,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [message-queue-conveyor](message-queue-conveyor/) | Message Queue Conveyor — auto-generated message-queue tool | html, css, vanilla-js | 2026-04-16 |
 
+| [blue-green-deploy-timeline](blue-green-deploy-timeline/) | Blue Green Deploy Timeline — auto-generated blue-green-deploy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

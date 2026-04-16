@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blue-Green Deploy Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Deploy Timeline <span class="badge">blue-green</span></h1>
+  <p class="tag">Click any release to inspect. Use Promote / Rollback to simulate environment swaps.</p>
+
+  <div class="board">
+    <aside class="side">
+      <div class="live-box">
+        <div class="label">LIVE</div>
+        <div class="live" id="liveVer">—</div>
+        <div class="slot" id="liveSlot">BLUE</div>
+      </div>
+      <div class="live-box">
+        <div class="label">IDLE</div>
+        <div class="live idle" id="idleVer">—</div>
+        <div class="slot alt" id="idleSlot">GREEN</div>
+      </div>
+      <button id="promote">⇅ Promote</button>
+      <button id="rollback" class="danger">↶ Rollback</button>
+    </aside>
+
+    <main>
+      <svg id="timeline" viewBox="0 0 760 420"></svg>
+      <div class="detail" id="detail">Select a release node →</div>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
