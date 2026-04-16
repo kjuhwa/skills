@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Limiter Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>API Rate Limiter <span class="accent">Dashboard</span></h1>
+<div class="grid">
+  <div class="card" id="card-users"><div class="ep">/api/users</div><div class="limit">100 req/min</div><canvas width="260" height="80"></canvas><div class="stats"></div></div>
+  <div class="card" id="card-orders"><div class="ep">/api/orders</div><div class="limit">60 req/min</div><canvas width="260" height="80"></canvas><div class="stats"></div></div>
+  <div class="card" id="card-search"><div class="ep">/api/search</div><div class="limit">30 req/min</div><canvas width="260" height="80"></canvas><div class="stats"></div></div>
+  <div class="card" id="card-upload"><div class="ep">/api/upload</div><div class="limit">10 req/min</div><canvas width="260" height="80"></canvas><div class="stats"></div></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

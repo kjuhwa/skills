@@ -1,0 +1,11 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;padding:20px}
+h1{text-align:center;font-size:1.4rem;margin-bottom:18px}
+.accent{color:#6ee7b7}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:900px;margin:0 auto}
+.card{background:#1a1d27;border-radius:10px;padding:14px;position:relative}
+.ep{font-weight:700;font-size:.95rem;color:#6ee7b7}
+.limit{font-size:.72rem;color:#94a3b8;margin-bottom:6px}
+canvas{width:100%;border-radius:4px}
+.stats{display:flex;justify-content:space-between;font-size:.72rem;margin-top:6px;color:#94a3b8}
+.stats .red{color:#f87171}.stats .green{color:#6ee7b7}

@@ -1,0 +1,12 @@
+{
+  "slug": "rate-limiter-dashboard",
+  "title": "Rate Limiter Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:34:07.074Z",
+  "source_project": "101-rate-limiter-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}
