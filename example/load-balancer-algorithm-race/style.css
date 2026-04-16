@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 24px; }
+h1 { color: #6ee7b7; font-size: 1.3rem; margin-bottom: 6px; }
+.desc { color: #888; font-size: 0.82rem; margin-bottom: 14px; }
+button { background: #1a1d27; color: #6ee7b7; border: 1px solid #6ee7b7; padding: 8px 24px; border-radius: 6px; cursor: pointer; margin-bottom: 18px; font-size: 0.9rem; }
+button:hover { background: #6ee7b744; }
+.lanes { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.lane { background: #1a1d27; border-radius: 8px; padding: 14px; width: 270px; }
+.lane h2 { font-size: 0.95rem; color: #6ee7b7; margin-bottom: 10px; }
+.bar-wrap { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+.bar-label { width: 24px; font-size: 0.75rem; color: #888; text-align: right; }
+.bar-bg { flex: 1; height: 18px; background: #0f1117; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.15s; }
+.bar-val { width: 28px; font-size: 0.75rem; }
+.stats { margin-top: 8px; font-size: 0.75rem; color: #888; }
+#result { margin-top: 16px; font-size: 1rem; color: #6ee7b7; min-height: 24px; }
