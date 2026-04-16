@@ -432,6 +432,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [vital-signs-checkup](vital-signs-checkup/) | Vital Signs Checkup — auto-generated health-check tool | html, css, vanilla-js | 2026-04-16 |
 
+| [network-health-radar](network-health-radar/) | Network Health Radar — auto-generated health-check tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
