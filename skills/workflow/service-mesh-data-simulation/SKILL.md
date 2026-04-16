@@ -1,6 +1,6 @@
 ---
 name: service-mesh-data-simulation
-description: Timer-driven simulation of sidecar proxy metrics, circuit breaker state machines, and traffic particle systems for realistic service mesh behavior without a live control plane.
+description: Generate realistic Envoy/Istio telemetry streams with correlated RPS, latency percentiles, and circuit breaker state transitions
 category: workflow
 triggers:
   - service mesh data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # service-mesh-data-simulation
 
-The data simulation layer models three distinct service mesh behaviors using client-side timers. For traffic metrics, a `setInterval` at 1500ms jitters each sidecar's p99 latency (±5ms), throughput (±100 rps), error rate (±0.3%), and CPU (±4%), all clamped to sensible bounds (`Math.max`/`Math.min`). This random-walk approach produces realistic-looking dashboard fluctuations without needing Prometheus or an actual Envoy data plane. Sparkline history is maintained as a fixed-length array with `shift()`/`push()` to create a sliding window effect — a cheap ring buffer that avoids unbounded memory growth, critical when simulating many proxies.
+Service mesh demos need telemetry that *behaves* like Envoy stats — not random noise. Model each service-to-service edge as a Poisson arrival process with a base RPS, then layer perturbations: a slow drift (sine wave, period ~5min) for diurnal pattern, occasional spikes (Bernoulli trigger), and correlated latency that follows a log-normal distribution with p50/p95/p99 derived from a single shape parameter. When you inject a fault, propagate it: a 500-err spike on service B should raise upstream A's p99 and consecutive-error count, not just B's error rate.
 
-For circuit breaker simulation, each service maintains a finite state machine with three states: `closed` (normal), `open` (tripped), and `half-open` (probing). The transition logic mirrors real Istio/Envoy outlier detection: failures increment a counter, and when a threshold is reached (default 5), the breaker opens with a cooldown timer (8 ticks). After cooldown expires, the breaker enters half-open and requires a streak of 3 consecutive successes to close. Fault injection is toggled per-service via click handlers, raising the failure probability from 5% to 70% — simulating what `istioctl experimental fault inject` would do in a real mesh. State transitions are logged to a prepended, capped event log (max 60 entries) with timestamps.
+Circuit breaker state must be derived from the same stream, not generated independently. Implement the Envoy outlier detection state machine: track consecutive 5xx responses per upstream host, trip when count ≥ `consecutive_5xx` threshold (default 5), eject for `base_ejection_time` × eject_count, then half-open with a single probe. Half-open success → closed; half-open failure → re-eject with doubled time. Surface all three Envoy stats (`upstream_rq_pending_overflow`, `ejected_active`, `success_rate`) so the visualization can render the trip cause, not just the trip event.
 
-For topology traffic, a particle system spawns objects on each edge with a progress parameter `t` that advances by a randomized speed (0.005–0.015 per frame). When `t` exceeds 1, the particle resets to the source. New particles are probabilistically spawned (`Math.random() < 0.02`) to simulate bursty microservice traffic. This combination of random-walk metrics, FSM-based circuit breaking, and particle-based traffic flow covers the three primary observability concerns of a service mesh — telemetry, resilience, and topology awareness — entirely client-side.
+For policy simulators, generate request streams tagged with synthetic JWT claims, source namespaces, and SNI values, then evaluate them against the loaded AuthorizationPolicy set using the Istio rule precedence (DENY > ALLOW > default-allow-if-no-policy). Show the *matched rule* for each request so users learn the evaluation order, not just allow/deny outcomes.
