@@ -1,0 +1,12 @@
+{
+  "slug": "raft-partition-lab",
+  "title": "Raft Partition Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:02:12.543Z",
+  "source_project": "19-raft-partition-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

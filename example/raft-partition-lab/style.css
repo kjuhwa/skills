@@ -1,0 +1,15 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Courier New', monospace; display: flex; justify-content: center; padding: 20px; }
+#app { text-align: center; width: 640px; }
+h1 { color: #6ee7b7; font-size: 1.3rem; margin-bottom: 4px; }
+.hint { color: #555; font-size: 0.75rem; margin-bottom: 12px; }
+#net { width: 100%; background: #1a1d27; border-radius: 8px; }
+.link { stroke: #334155; stroke-width: 2; cursor: pointer; transition: stroke 0.2s; }
+.link:hover { stroke: #6ee7b7; }
+.link.cut { stroke: #ef444466; stroke-dasharray: 6 4; }
+.node-circle { stroke-width: 2.5; transition: all 0.3s; cursor: default; }
+.node-text { fill: #c9d1d9; font-family: 'Courier New', monospace; font-size: 12px; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.state-text { fill: #666; font-family: 'Courier New', monospace; font-size: 9px; text-anchor: middle; pointer-events: none; }
+.packet { r: 3; }
+#status-bar { margin-top: 12px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.status-chip { background: #1a1d27; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; border: 1px solid #333; }
