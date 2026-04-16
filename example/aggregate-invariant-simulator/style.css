@@ -1,0 +1,22 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e8ecf4; font-family: -apple-system, system-ui, sans-serif; min-height: 100vh; }
+header { padding: 20px 28px; border-bottom: 1px solid #2a2e3a; }
+header h1 { color: #6ee7b7; font-size: 22px; margin-bottom: 6px; }
+header p { color: #8b93a7; font-size: 13px; }
+main { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; max-width: 1100px; margin: 0 auto; }
+section { background: #1a1d27; border-radius: 12px; padding: 20px; }
+h2 { color: #6ee7b7; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+#state-view { font-family: ui-monospace, Menlo, monospace; font-size: 13px; line-height: 1.7; }
+.field { display: flex; justify-content: space-between; padding: 6px 10px; background: #0f1117; border-radius: 6px; margin-bottom: 6px; }
+.field span:first-child { color: #8b93a7; }
+.items { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #2a2e3a; }
+.item { display: flex; justify-content: space-between; padding: 4px 10px; font-size: 12px; color: #cbd2e0; }
+.status-DRAFT { color: #f59e0b; } .status-SUBMITTED { color: #6ee7b7; } .status-CANCELLED { color: #f472b6; }
+.btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+button { background: #242836; color: #e8ecf4; border: 1px solid #3b4255; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: all .15s; }
+button:hover { background: #2d3346; border-color: #6ee7b7; }
+button.reset { background: #3a1f2b; border-color: #7a2e45; grid-column: span 2; }
+#log { list-style: none; max-height: 320px; overflow-y: auto; font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+#log li { padding: 8px 12px; margin-bottom: 6px; background: #0f1117; border-left: 3px solid #6ee7b7; border-radius: 4px; }
+#log li.rejected { border-left-color: #f472b6; color: #f472b6; }
+#log li .t { color: #8b93a7; margin-right: 8px; }

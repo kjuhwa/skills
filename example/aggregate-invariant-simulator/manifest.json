@@ -1,0 +1,12 @@
+{
+  "slug": "aggregate-invariant-simulator",
+  "title": "Aggregate Invariant Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:41:03.722Z",
+  "source_project": "101-aggregate-invariant-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

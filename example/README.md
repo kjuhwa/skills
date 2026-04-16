@@ -446,6 +446,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [api-gateway-rate-limiter](api-gateway-rate-limiter/) | Api Gateway Rate Limiter — auto-generated api-gateway-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [aggregate-invariant-simulator](aggregate-invariant-simulator/) | Aggregate Invariant Simulator — auto-generated domain-driven tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
