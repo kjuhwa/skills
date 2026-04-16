@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Canary Traffic Shifter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Canary Traffic Shifter</h1>
+    <p>Drag the slider to rebalance live traffic between <span class="stable">Stable v1.4.2</span> and <span class="canary">Canary v1.5.0</span></p>
+  </header>
+  <section class="control">
+    <div class="slider-row">
+      <span class="pct-label stable-label">Stable <b id="stablePct">95%</b></span>
+      <input type="range" id="trafficSlider" min="0" max="100" value="5">
+      <span class="pct-label canary-label">Canary <b id="canaryPct">5%</b></span>
+    </div>
+    <div class="presets">
+      <button data-v="1">1%</button>
+      <button data-v="5">5%</button>
+      <button data-v="25">25%</button>
+      <button data-v="50">50%</button>
+      <button data-v="100">Full Rollout</button>
+      <button id="rollback" class="danger">Rollback</button>
+    </div>
+  </section>
+  <section class="grid">
+    <div class="panel">
+      <h2>Live Request Stream</h2>
+      <canvas id="stream" width="600" height="220"></canvas>
+    </div>
+    <div class="panel">
+      <h2>Health Metrics</h2>
+      <div class="metrics">
+        <div class="metric"><label>Stable Error Rate</label><div class="bar"><div id="stableErr" class="fill stable-bg"></div></div><span id="stableErrVal">0.2%</span></div>
+        <div class="metric"><label>Canary Error Rate</label><div class="bar"><div id="canaryErr" class="fill canary-bg"></div></div><span id="canaryErrVal">0.3%</span></div>
+        <div class="metric"><label>Stable p95 Latency</label><div class="bar"><div id="stableLat" class="fill stable-bg"></div></div><span id="stableLatVal">120ms</span></div>
+        <div class="metric"><label>Canary p95 Latency</label><div class="bar"><div id="canaryLat" class="fill canary-bg"></div></div><span id="canaryLatVal">110ms</span></div>
+      </div>
+      <div id="verdict" class="verdict ok">Canary is healthy</div>
+    </div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
