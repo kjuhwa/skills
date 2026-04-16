@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Algorithm Showdown</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Load Balancer Algorithm Showdown</h1>
+<p class="sub">Parallel simulation: same traffic, 4 strategies. Who distributes best?</p>
+<div class="grid" id="grid"></div>
+<div class="footer">
+  <button id="reset">Reset</button>
+  <label>Traffic pattern:
+    <select id="pattern">
+      <option value="steady">Steady</option>
+      <option value="bursty">Bursty</option>
+      <option value="hotspot">Hotspot IPs</option>
+    </select>
+  </label>
+  <span id="tick">tick: 0</span>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
