@@ -1,0 +1,8 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;display:flex;justify-content:center;padding:20px}
+#app{max-width:740px;width:100%;text-align:center;position:relative}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:4px}
+.sub{color:#555;font-size:.78rem;margin-bottom:12px}
+#eco{width:100%;background:#1a1d27;border-radius:10px}
+#tooltip{position:absolute;background:#0f1117ee;border:1px solid #6ee7b7;color:#c9d1d9;padding:8px 12px;
+  border-radius:6px;font-size:.78rem;pointer-events:none;display:none;text-align:left;max-width:220px;z-index:9}
