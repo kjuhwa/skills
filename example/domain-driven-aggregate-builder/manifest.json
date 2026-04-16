@@ -1,0 +1,12 @@
+{
+  "slug": "domain-driven-aggregate-builder",
+  "title": "Domain Driven Aggregate Builder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T15:36:14.502Z",
+  "source_project": "101-domain-driven-aggregate-builder",
+  "author": "kjuhwa@nkia.co.kr"
+}

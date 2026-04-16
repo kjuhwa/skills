@@ -1,0 +1,20 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif;height:100vh;display:flex;flex-direction:column}
+header{padding:12px 20px;display:flex;align-items:baseline;gap:12px}
+h1{font-size:1.2rem;color:#6ee7b7}
+.sub{font-size:.8rem;color:#484f58}
+#app{display:flex;flex:1;overflow:hidden}
+aside{width:190px;background:#1a1d27;padding:14px;border-right:1px solid #2d333b;display:flex;flex-direction:column;gap:8px}
+aside h3{font-size:.85rem;color:#6ee7b7;margin-bottom:4px}
+aside button{background:#262a36;border:1px solid #2d333b;color:#c9d1d9;padding:8px;border-radius:6px;cursor:pointer;font-size:.8rem;text-align:left}
+aside button:hover{border-color:#6ee7b7}
+#board{flex:1;position:relative;overflow:auto}
+#props{border-left:1px solid #2d333b;border-right:none;font-size:.82rem}
+.node{position:absolute;padding:10px 14px;border-radius:8px;cursor:grab;min-width:110px;text-align:center;font-size:.8rem;font-weight:600;user-select:none}
+.node.root{background:#6ee7b720;border:2px solid #6ee7b7;color:#6ee7b7}
+.node.entity{background:#7dd3fc20;border:2px solid #7dd3fc;color:#7dd3fc}
+.node.vo{background:#fbbf2420;border:2px solid #fbbf24;color:#fbbf24}
+.node.event{background:#f8717120;border:2px dashed #f87171;color:#f87171}
+.node.selected{box-shadow:0 0 0 3px #6ee7b760}
+#detail{color:#8b949e;line-height:1.6}
+#detail input{background:#262a36;border:1px solid #2d333b;color:#c9d1d9;padding:4px 6px;border-radius:4px;width:100%;margin-top:2px}
