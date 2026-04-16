@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-ecosystem",
+  "title": "Strangler Fig Ecosystem",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:36:24.543Z",
+  "source_project": "102-strangler-fig-ecosystem",
+  "author": "kjuhwa@nkia.co.kr"
+}
