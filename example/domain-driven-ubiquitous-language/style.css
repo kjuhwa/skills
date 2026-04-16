@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+h1 { color: #6ee7b7; font-size: 1.3rem; margin-bottom: 12px; }
+#search { width: 100%; max-width: 600px; background: #1a1d27; border: 1px solid #333; border-radius: 8px; padding: 10px 14px; color: #c9d1d9; font-size: 0.9rem; margin-bottom: 16px; outline: none; }
+#search:focus { border-color: #6ee7b7; }
+#grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; width: 100%; max-width: 720px; }
+.card { background: #1a1d27; border: 1px solid #2a2f3a; border-radius: 10px; padding: 14px; cursor: pointer; transition: border-color .2s, transform .15s; }
+.card:hover { border-color: #6ee7b7; transform: translateY(-2px); }
+.card h4 { color: #6ee7b7; font-size: 0.9rem; margin-bottom: 4px; }
+.card .ctx { font-size: 0.7rem; color: #555; }
+.card p { font-size: 0.78rem; margin-top: 6px; color: #888; }
+.tag { display: inline-block; background: #6ee7b718; color: #6ee7b7; font-size: 0.65rem; padding: 2px 7px; border-radius: 4px; margin-right: 4px; }
+.detail { position: fixed; bottom: 0; left: 0; right: 0; background: #1a1d27; border-top: 2px solid #6ee7b7; padding: 20px; transform: translateY(100%); transition: transform .3s; max-height: 40vh; overflow-y: auto; }
+.detail.open { transform: translateY(0); }
+.detail h2 { color: #6ee7b7; font-size: 1.1rem; margin-bottom: 6px; }
+.detail .close { position: absolute; top: 12px; right: 18px; cursor: pointer; color: #555; font-size: 1.2rem; }
