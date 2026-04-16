@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Filter — False Positive Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>False Positive <span class="accent">Lab</span></h1>
+  <p class="sub">Watch false-positive rate climb as the filter fills up</p>
+  <div class="controls">
+    <label>Filter size: <select id="size"><option>32</option><option selected>64</option><option>128</option><option>256</option></select></label>
+    <label>Hash fns: <select id="hashes"><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
+    <button id="run">Run Experiment</button>
+  </div>
+  <canvas id="chart"></canvas>
+  <div id="result" class="result"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
