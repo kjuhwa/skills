@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OAuth Flow Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>OAuth 2.0 Flow Visualizer</h1>
+<div class="controls">
+<button onclick="startFlow('authorization_code')">Authorization Code</button>
+<button onclick="startFlow('client_credentials')">Client Credentials</button>
+<button onclick="startFlow('pkce')">PKCE</button>
+</div>
+<canvas id="canvas" width="900" height="500"></canvas>
+<div id="step-info">Select a flow to begin</div>
+<script src="app.js"></script>
+</body>
+</html>
