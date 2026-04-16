@@ -1,0 +1,12 @@
+{
+  "slug": "supervisor-tree-playground",
+  "title": "Supervisor Tree Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:54:42.759Z",
+  "source_project": "101-supervisor-tree-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}

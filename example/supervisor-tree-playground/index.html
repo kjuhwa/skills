@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Supervisor Tree Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Supervisor Tree · Let It Crash</h1>
+    <p>Erlang-style supervision. Click any worker to crash it and watch the strategy recover.</p>
+  </header>
+  <div class="controls">
+    <label>Strategy:
+      <select id="strategy">
+        <option value="one_for_one">one_for_one</option>
+        <option value="one_for_all">one_for_all</option>
+        <option value="rest_for_one">rest_for_one</option>
+      </select>
+    </label>
+    <button id="chaos">Chaos Monkey</button>
+    <button id="reset">Reset Tree</button>
+  </div>
+  <svg id="tree" viewBox="0 0 900 540"></svg>
+  <div id="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
