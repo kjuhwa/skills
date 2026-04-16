@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Version Negotiator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Version Negotiation Simulator</h1>
+<p class="subtitle">Explore how different versioning strategies resolve client requests</p>
+<div class="container">
+  <div class="panel">
+    <h3>Request Builder</h3>
+    <label>Strategy</label>
+    <select id="strategy">
+      <option value="url">URL Path (/v2/resource)</option>
+      <option value="header">Custom Header (X-API-Version)</option>
+      <option value="accept">Accept Header (application/vnd.api.v2+json)</option>
+      <option value="query">Query Param (?version=2)</option>
+    </select>
+    <label>Requested Version</label>
+    <select id="reqver">
+      <option value="1">v1</option><option value="2">v2</option>
+      <option value="3" selected>v3</option><option value="4">v4 (unreleased)</option>
+    </select>
+    <label>Resource</label>
+    <select id="resource">
+      <option>/users</option><option>/orders</option><option>/products</option>
+    </select>
+    <button id="send-btn" onclick="negotiate()">Send Request →</button>
+  </div>
+  <div class="panel result-panel">
+    <h3>Negotiation Result</h3>
+    <div id="result"><p class="muted">Configure and send a request to see the result.</p></div>
+  </div>
+</div>
+<div class="container">
+  <div class="panel full">
+    <h3>Strategy Comparison</h3>
+    <svg id="comparison" width="100%" height="180"></svg>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
