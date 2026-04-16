@@ -1,0 +1,12 @@
+{
+  "slug": "event-bus-lab",
+  "title": "Event Bus Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:34:34.560Z",
+  "source_project": "102-event-bus-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

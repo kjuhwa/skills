@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Bus Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <section class="col">
+    <h2>Bus State</h2>
+    <div class="metric"><span>Throughput</span><b id="tps">0</b></div>
+    <div class="metric"><span>Queue</span><b id="queue">0</b></div>
+    <div class="metric"><span>Delivered</span><b id="delivered">0</b></div>
+    <canvas id="chart"></canvas>
+    <h2>Controls</h2>
+    <label>Publish Rate <input type="range" id="rate" min="0" max="20" value="6"/><span id="rateV">6</span>/s</label>
+    <label>Subscriber Latency <input type="range" id="lat" min="0" max="500" value="80"/><span id="latV">80</span>ms</label>
+    <button id="spike">Traffic Spike</button>
+  </section>
+  <section class="col wide">
+    <h2>Live Event Bus</h2>
+    <div id="bus"></div>
+    <h2>Handlers</h2>
+    <div id="handlers"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
