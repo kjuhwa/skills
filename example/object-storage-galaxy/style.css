@@ -1,0 +1,9 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;overflow:hidden;font-family:'Courier New',monospace;color:#c9d1d9}
+canvas{display:block}
+#info-panel{position:fixed;top:20px;left:20px;background:#1a1d27;border:1px solid #2a2d37;border-radius:8px;padding:16px;width:260px;z-index:10}
+#info-panel h1{font-size:14px;color:#6ee7b7;margin-bottom:8px;letter-spacing:2px;text-transform:uppercase}
+#hover-info{font-size:11px;color:#8b949e;margin-bottom:10px}
+#details{font-size:12px;line-height:1.6}
+#details span{color:#6ee7b7}
+#stats{margin-top:12px;padding-top:10px;border-top:1px solid #2a2d37;font-size:11px;color:#8b949e}

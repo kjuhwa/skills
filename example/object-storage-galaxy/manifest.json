@@ -1,0 +1,12 @@
+{
+  "slug": "object-storage-galaxy",
+  "title": "Object Storage Galaxy",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:27:59.257Z",
+  "source_project": "24-object-storage-galaxy",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -33,6 +33,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [distributed-lock-visualizer](distributed-lock-visualizer/) | Distributed Lock Visualizer — MongoDB/Redis lock simulation with deadlock, thundering herd, split brain scenarios | html, css, vanilla-js, canvas | 2026-04-16 |
 | [gacha-simulator](gacha-simulator/) | Gacha Simulator Arena — pull system with soft/hard pity, character collection, turn-based combat, status effects | html, css, vanilla-js | 2026-04-16 |
 
+| [object-storage-galaxy](object-storage-galaxy/) | Object Storage Galaxy — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
