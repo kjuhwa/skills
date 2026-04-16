@@ -186,6 +186,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [tsdb-live-monitor](tsdb-live-monitor/) | Tsdb Live Monitor — auto-generated time-series-db tool | html, css, vanilla-js | 2026-04-16 |
 
+| [connection-pool-bubbles](connection-pool-bubbles/) | Connection Pool Bubbles — auto-generated connection-pool tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
