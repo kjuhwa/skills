@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Uptime Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Uptime History</h1>
+  <div class="controls">
+    <select id="range">
+      <option value="30">30 days</option>
+      <option value="60">60 days</option>
+      <option value="90" selected>90 days</option>
+    </select>
+    <button id="refresh">Refresh</button>
+  </div>
+</header>
+<main id="list"></main>
+<div id="tooltip" class="tooltip hidden"></div>
+<script src="app.js"></script>
+</body>
+</html>

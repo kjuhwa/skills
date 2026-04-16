@@ -336,6 +336,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [graphql-query-playground](graphql-query-playground/) | Graphql Query Playground — auto-generated graphql tool | html, css, vanilla-js | 2026-04-16 |
 
+| [health-check-timeline](health-check-timeline/) | Health Check Timeline — auto-generated health-check tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

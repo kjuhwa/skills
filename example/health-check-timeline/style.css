@@ -1,0 +1,94 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e7ed;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 30px;
+}
+header {
+  max-width: 1000px;
+  margin: 0 auto 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h1 { font-size: 22px; color: #6ee7b7; }
+.controls { display: flex; gap: 10px; }
+select, button {
+  background: #1a1d27;
+  color: #e4e7ed;
+  border: 1px solid #2a2f3d;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+button:hover { background: #2a2f3d; }
+button { background: #6ee7b7; color: #0f1117; border-color: #6ee7b7; font-weight: 600; }
+button:hover { background: #34d399; border-color: #34d399; }
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.endpoint {
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+}
+.endpoint-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.endpoint-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+.endpoint-url {
+  color: #9ca3af;
+  font-size: 12px;
+  font-family: monospace;
+  margin-top: 2px;
+}
+.uptime {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #0f1117;
+}
+.uptime.high { color: #6ee7b7; }
+.uptime.mid { color: #fbbf24; }
+.uptime.low { color: #f87171; }
+.bars {
+  display: flex;
+  gap: 2px;
+  height: 32px;
+}
+.bar {
+  flex: 1;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.bar:hover { transform: scaleY(1.15); }
+.bar.ok { background: #6ee7b7; }
+.bar.degraded { background: #fbbf24; }
+.bar.outage { background: #f87171; }
+.bar.unknown { background: #2a2f3d; }
+.tooltip {
+  position: fixed;
+  background: #0f1117;
+  border: 1px solid #2a2f3d;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 10;
+  font-family: monospace;
+}
+.tooltip.hidden { display: none; }
+.tooltip .t-status { font-weight: 600; margin-bottom: 4px; }
