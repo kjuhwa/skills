@@ -476,6 +476,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [cqrs-read-model-racer](cqrs-read-model-racer/) | Cqrs Read Model Racer — auto-generated cqrs tool | html, css, vanilla-js | 2026-04-16 |
 
+| [schema-registry-graph](schema-registry-graph/) | Schema Registry Graph — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
