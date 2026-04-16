@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fleet Health Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>Fleet Health</h1>
+    <span class="tick">Last probe: <b id="lastTick">—</b></span>
+  </div>
+  <div class="legend">
+    <span class="dot ok"></span>Healthy
+    <span class="dot warn"></span>Degraded
+    <span class="dot bad"></span>Out
+  </div>
+</header>
+<main>
+  <section class="summary" id="summary"></section>
+  <section class="fleet" id="fleet"></section>
+  <section class="log">
+    <h2>Probe Log</h2>
+    <ul id="log"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
