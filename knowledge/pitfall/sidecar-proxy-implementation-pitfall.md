@@ -1,6 +1,6 @@
 ---
 name: sidecar-proxy-implementation-pitfall
-description: Common modeling errors that make sidecar-proxy demos technically wrong despite looking correct
+description: Common sidecar-proxy modeling mistakes that break the mental model and produce misleading metrics.
 category: pitfall
 tags:
   - sidecar
@@ -9,8 +9,8 @@ tags:
 
 # sidecar-proxy-implementation-pitfall
 
-The most frequent pitfall is collapsing the sidecar into a single "proxy" box and drawing arrows app→proxy→network, which erases the defining property of a sidecar: traffic is intercepted transparently via iptables/TPROXY redirection, so the app believes it is calling the destination directly. Visualizations must show the app's logical arrow (to the remote service) and the actual physical path (through the local sidecar) as two layers, otherwise viewers leave thinking sidecars are explicit proxies the app calls — which is the mental model of an API gateway, not a sidecar.
+The most frequent mistake is drawing traffic arrows directly between applications, treating the sidecar as a passive annotation. This collapses the whole value proposition — interception, policy enforcement, telemetry emission all happen *in* the sidecar. If users can't see that every byte crosses two sidecars, they won't understand why latency doubles, why mTLS works without app changes, or why a misconfigured filter takes down a service. Always route edges through the sidecar node explicitly, even at the cost of visual density.
 
-Second pitfall: simulating policy enforcement at the wrong hop. RBAC/AuthZ runs on the server-side sidecar (inbound listener of the destination pod), not the client-side sidecar. Many demos incorrectly deny at the source, which hides the real failure signature — a 403 with RBAC: access denied in the destination's access log and a UAEX response flag. Similarly, mTLS termination happens between the two sidecars, so the destination app always sees plaintext HTTP on 127.0.0.1; showing encrypted traffic reaching the app is wrong.
+A second pitfall is ignoring the control plane / data plane split. Simulations that apply config changes instantaneously hide the real-world bug class: config drift during xDS rollout, where half the sidecars have the new timeout and half don't. Your simulation must model propagation delay and show the transient mixed-state window, otherwise the config-lab teaches a dangerously simplified model. Similarly, don't forget that sidecars consume CPU and memory per pod — visualizations that show "free" proxying mislead capacity-planning intuition.
 
-Third pitfall: treating proxy-added latency as a constant. Real Envoy overhead is dominated by filter chain depth and cold xDS config pushes, not a flat "add 2ms". When config churns (e.g. during a canary rollout), p99 spikes come from RDS/CDS update storms, not from the data path itself. Latency-scope apps that model proxy cost as constant miss the single most important operational signal and will mislead users debugging real meshes.
+Third, retry and timeout semantics are easy to get subtly wrong. Retries happen at the *client-side sidecar*, not the server-side one, and timeouts compound across hops (if A→B has 1s timeout and B→C has 1s, A's effective budget for B is less than 1s). Circuit breakers trip on the outbound cluster of the caller's sidecar, not globally. Getting these wrong makes the traffic-sim produce numbers that contradict what operators see in production Istio/Linkerd/Consul, destroying trust in the tool.
