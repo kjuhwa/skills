@@ -1,0 +1,12 @@
+{
+  "slug": "bff-pattern-payload",
+  "title": "Bff Pattern Payload",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:59:55.260Z",
+  "source_project": "102-bff-pattern-payload",
+  "author": "kjuhwa@nkia.co.kr"
+}
