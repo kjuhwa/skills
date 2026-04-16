@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-garden",
+  "title": "Strangler Fig Garden",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:48:10.293Z",
+  "source_project": "101-strangler-fig-garden",
+  "author": "kjuhwa@nkia.co.kr"
+}

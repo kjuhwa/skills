@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Strangler Fig Garden</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Strangler Fig Garden</h1>
+  <p class="hint">Click the host tree to grow new roots. Watch the fig slowly overtake.</p>
+  <canvas id="garden" width="800" height="500"></canvas>
+  <div class="stats">
+    <div><span class="label">Host Vitality</span><span id="host">100%</span></div>
+    <div><span class="label">Fig Coverage</span><span id="fig">0%</span></div>
+    <div><span class="label">Roots Grown</span><span id="roots">0</span></div>
+    <button id="grow">Grow Root</button>
+    <button id="auto">Auto-Grow</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

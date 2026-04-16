@@ -384,6 +384,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [outbox-pattern-pipeline](outbox-pattern-pipeline/) | Outbox Pattern Pipeline — auto-generated outbox-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [strangler-fig-garden](strangler-fig-garden/) | Strangler Fig Garden — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
