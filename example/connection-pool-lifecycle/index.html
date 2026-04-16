@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connection Lifecycle Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Connection Lifecycle Simulator</h1>
+  <div class="controls">
+    <label>Pool Size <input type="range" id="poolSize" min="3" max="16" value="8"><span id="poolVal">8</span></label>
+    <label>Max Wait (ms) <input type="range" id="maxWait" min="500" max="5000" step="500" value="2000"><span id="waitVal">2000</span></label>
+  </div>
+  <div class="lanes" id="lanes"></div>
+  <div class="queue-section"><h2>Wait Queue</h2><div id="queue" class="queue"></div></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

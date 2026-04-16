@@ -1,0 +1,23 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; padding: 20px; display: flex; justify-content: center; }
+.app { width: 860px; }
+h1 { color: #6ee7b7; font-size: 1.3rem; margin-bottom: 10px; }
+h2 { color: #8b949e; font-size: .9rem; margin-bottom: 6px; }
+.controls { display: flex; gap: 24px; margin-bottom: 16px; }
+.controls label { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: #8b949e; }
+.controls input[type=range] { accent-color: #6ee7b7; }
+.controls span { color: #6ee7b7; font-weight: 700; min-width: 28px; }
+.lanes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+.lane { background: #1a1d27; border-radius: 8px; padding: 10px; min-height: 80px; position: relative; }
+.lane .id { font-size: .7rem; color: #555; }
+.lane .bar { height: 6px; border-radius: 3px; margin-top: 8px; transition: width .3s; }
+.lane.idle .bar { background: #6ee7b744; width: 100%; }
+.lane.active .bar { background: #6ee7b7; }
+.lane .state { font-size: .8rem; margin-top: 6px; font-weight: 600; }
+.lane.active .state { color: #6ee7b7; }
+.lane.idle .state { color: #555; }
+.lane.closed { opacity: .3; }
+.queue-section { background: #1a1d27; border-radius: 8px; padding: 12px; }
+.queue { display: flex; gap: 6px; flex-wrap: wrap; min-height: 28px; }
+.queue .req { background: #e06c75; color: #fff; border-radius: 4px; padding: 3px 10px; font-size: .75rem; animation: pop .3s; }
+@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }

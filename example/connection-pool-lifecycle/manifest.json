@@ -1,0 +1,12 @@
+{
+  "slug": "connection-pool-lifecycle",
+  "title": "Connection Pool Lifecycle",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:06:12.335Z",
+  "source_project": "102-connection-pool-lifecycle",
+  "author": "kjuhwa@nkia.co.kr"
+}
