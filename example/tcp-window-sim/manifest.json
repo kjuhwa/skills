@@ -1,0 +1,12 @@
+{
+  "slug": "tcp-window-sim",
+  "title": "Tcp Window Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:47:58.716Z",
+  "source_project": "102-tcp-window-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TCP Window Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>TCP Window Backpressure</h1>
+  <p class="sub">The receiver's advertised window shrinks when the app is slow. The sender must wait. Toggle the app speed to see ZeroWindow events.</p>
+  <div class="grid">
+    <div class="panel">
+      <div class="hdr">Sender</div>
+      <canvas id="senderCanvas" width="380" height="160"></canvas>
+      <div class="row"><span>CWND</span><b id="cwnd">1</b></div>
+      <div class="row"><span>Sent</span><b id="sent">0</b></div>
+      <div class="row"><span>Waiting</span><b id="waiting">no</b></div>
+    </div>
+    <div class="panel">
+      <div class="hdr">Receiver</div>
+      <canvas id="recvCanvas" width="380" height="160"></canvas>
+      <div class="row"><span>RCV Window</span><b id="rwnd">16</b> KB</div>
+      <div class="row"><span>App consuming</span>
+        <select id="appSpeed">
+          <option value="12">fast (12 KB/tick)</option>
+          <option value="4" selected>normal (4 KB/tick)</option>
+          <option value="1">slow (1 KB/tick)</option>
+          <option value="0">frozen (0)</option>
+        </select>
+      </div>
+      <div class="row"><span>ZeroWindow</span><b id="zw">0</b> times</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="hdr">Event timeline</div>
+    <div id="events"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -460,6 +460,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [reactive-stream-juggler](reactive-stream-juggler/) | Reactive Stream Juggler — auto-generated backpressure tool | html, css, vanilla-js | 2026-04-16 |
 
+| [tcp-window-sim](tcp-window-sim/) | Tcp Window Sim — auto-generated backpressure tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
