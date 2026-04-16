@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OAuth Scope Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>OAuth Scope Playground</h1>
+<p class="subtitle">Toggle scopes and see which API endpoints unlock</p>
+<div class="main">
+  <div class="scopes-panel">
+    <h2>Requested Scopes</h2>
+    <div id="scope-list"></div>
+  </div>
+  <div class="endpoints-panel">
+    <h2>API Endpoints</h2>
+    <div id="endpoint-list"></div>
+  </div>
+</div>
+<div class="token-bar">
+  <span>Token Preview:</span>
+  <code id="token-preview"></code>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
