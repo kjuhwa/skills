@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLQ Autopsy Table</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>DLQ Autopsy</h1>
+  <div class="toolbar">
+    <input id="search" placeholder="Filter by error or topic..." oninput="app.filter()">
+    <select id="severity" onchange="app.filter()"><option value="">All</option><option value="critical">Critical</option><option value="warning">Warning</option><option value="info">Info</option></select>
+    <button onclick="app.purgeSelected()">Purge Selected</button>
+    <button onclick="app.retrySelected()">Retry Selected</button>
+  </div>
+</header>
+<div id="table-wrap"><table><thead><tr>
+  <th><input type="checkbox" onchange="app.toggleAll(this)"></th>
+  <th>ID</th><th>Topic</th><th>Error</th><th>Severity</th><th>Retries</th><th>Timestamp</th><th>Payload</th>
+</tr></thead><tbody id="tbody"></tbody></table></div>
+<div id="detail" class="hidden"><div id="detail-inner"><button class="close" onclick="app.closeDetail()">×</button><pre id="detail-json"></pre></div></div>
+<script src="app.js"></script>
+</body>
+</html>
