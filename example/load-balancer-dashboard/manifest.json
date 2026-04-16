@@ -1,0 +1,12 @@
+{
+  "slug": "load-balancer-dashboard",
+  "title": "Load Balancer Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:13:18.954Z",
+  "source_project": "101-load-balancer-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

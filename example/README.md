@@ -146,6 +146,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [raft-leader-election](raft-leader-election/) | Raft Leader Election — auto-generated raft-consensus tool | html, css, vanilla-js | 2026-04-16 |
 
+| [load-balancer-dashboard](load-balancer-dashboard/) | Load Balancer Dashboard — auto-generated load-balancer tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+h1 { font-size: 1.3rem; color: #6ee7b7; }
+#clock { color: #888; font-size: 0.85rem; font-family: monospace; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.card { background: #1a1d27; border-radius: 10px; padding: 16px; border: 1px solid #ffffff0a; }
+.card h3 { font-size: 0.8rem; color: #888; margin-bottom: 6px; text-transform: uppercase; }
+.card .val { font-size: 1.6rem; font-weight: 700; }
+.card .bar { height: 6px; background: #ffffff11; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.card .bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+.healthy { color: #6ee7b7; }
+.warn { color: #fbbf24; }
+.crit { color: #f87171; }
+.chart-wrap { background: #1a1d27; border-radius: 10px; padding: 16px; }
+canvas { width: 100%; height: 180px; }
