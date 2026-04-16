@@ -1,6 +1,6 @@
 ---
 name: pub-sub-data-simulation
-description: Generate realistic publisher bursts, subscription group fan-out, and lag scenarios for pub-sub demos
+description: Generate realistic pub-sub traffic with topic hierarchies, bursty publishers, and heterogeneous subscriber latencies
 category: workflow
 triggers:
   - pub sub data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # pub-sub-data-simulation
 
-Pub-sub simulations need three independent clocks: a publisher tick (bursty, poisson-distributed), a broker delivery tick (steady), and per-subscriber consume ticks (variable, some intentionally slow). Drive publishers from a scenario script that emits to named topics with routing keys drawn from a weighted distribution — uniform keys hide the hot-partition problem that real pub-sub systems exhibit. Include at least one wildcard subscription and one exact-match subscription per topic so matching logic is exercised.
+Seed the simulation with a topic tree (e.g., `news.*`, `news.sports.*`, `news.weather.eu`) and define 3–5 publishers, each bound to a primary topic with a small chance of cross-publishing. Drive publish events from a Poisson process with λ that varies per topic — breaking-news topics get bursty λ (spikes of 5–10 msgs/sec), while weather/traffic topics get steady λ≈0.5/sec. This mix exercises both fan-out scalability and slow-consumer scenarios in the same run.
 
-Model subscription groups as the unit of fan-out: N groups each receive every message, but within a group only one consumer gets it (competing consumers). The simulator should expose a "slow consumer" toggle per subscriber that inflates its consume latency, producing a growing lag that cascades into visible backlog. Seed scripted scenarios for the canonical failure modes: publisher burst, subscriber crash + redelivery, poison message + DLQ routing, and a rebalance event where in-flight messages get reassigned.
+Subscribers should be generated with heterogeneous profiles: fast (≤10ms processing), slow (100–500ms), and flaky (5% drop rate, occasional 2s stalls). Bind each subscriber to 1–3 topics using wildcard patterns so the broker's topic-matching logic gets real exercise. Maintain a per-subscriber inbox queue with a bounded capacity (e.g., 50) — when full, apply the configured overflow policy (drop-oldest, drop-newest, or block-publisher) and emit a visible overflow event to the viz layer.
 
-Keep the simulator deterministic under a seed (for reproducible demos and tests) but allow a "live" mode with wall-clock jitter. Emit a structured event log (publish, enqueue, deliver, ack, nack, redeliver, dlq) that the visualization consumes — this decouples sim from render and lets the same scenario feed unit tests, the canvas, and a throughput chart without duplication.
+Record every publish/deliver/drop as a structured event `{t, topic, publisherId, subscriberId, status}` so the visualization can replay deterministically and so metrics (delivery rate, p99 latency, drop count per topic) can be computed. For pub-sub-radio-tower specifically, add a "tune" action that dynamically rebinds a subscriber mid-stream to demonstrate late-join semantics and whether the broker replays retained messages.

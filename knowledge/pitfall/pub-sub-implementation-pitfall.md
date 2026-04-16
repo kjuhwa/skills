@@ -1,6 +1,6 @@
 ---
 name: pub-sub-implementation-pitfall
-description: Fan-out semantics, ack timing, and ordering guarantees are the three places pub-sub demos silently lie
+description: Synchronous in-loop dispatch causes slow subscribers to block publishers and starve fast ones
 category: pitfall
 tags:
   - pub
@@ -9,8 +9,8 @@ tags:
 
 # pub-sub-implementation-pitfall
 
-The most common pitfall is conflating topic subscribers with subscription groups. Naive implementations deliver each message to every subscriber, which is pub-sub only in the loosest sense — real brokers (Kafka consumer groups, Pulsar shared subs, Redis streams groups) load-balance within a group and fan-out across groups. If your demo shows three subscribers on one topic all receiving every message without a group abstraction, you've built a broadcaster, not pub-sub, and users will build wrong mental models that break when they touch real Kafka.
+The most common pub-sub bug in these labs is dispatching to all subscribers inside the publisher's call stack with a simple `for (sub of topic.subs) sub.onMessage(msg)`. One slow subscriber (or one that throws) now blocks the publisher and every subscriber behind it in the loop. The fix is per-subscriber queues with independent consumer loops (or microtask/setTimeout dispatch), so publisher latency is O(1) regardless of subscriber count or behavior. Also wrap each subscriber callback in try/catch — an unhandled exception in one subscriber must never prevent delivery to the others.
 
-Ack timing is the second trap. Auto-ack on deliver makes the happy path look clean but eliminates the entire class of redelivery/duplicate-handling behavior that is the whole point of pub-sub reliability. Simulations must ack only after the subscriber's consume step completes, and must redeliver on timeout or explicit nack. A related bug: acking before persisting the side effect, which demos almost always get wrong because there is no real side effect — add a synthetic "process" step with artificial latency so the ack-before-process bug is demonstrable.
+A related pitfall is unbounded inbox growth: without a queue cap and overflow policy, a slow subscriber leaks memory until the tab crashes — easy to hit in pub-sub-event-bus-lab when you spin up a flaky subscriber and let the sim run for minutes. Always cap inbox size and surface the overflow policy in the UI.
 
-Third, ordering. Pub-sub guarantees are per-partition/per-key, not global, but demos often render a single global queue which implies total order. When you later add a second partition or a parallel consumer, ordering appears to "break" — it was never guaranteed. Render partitions explicitly from day one, and when showing a key-based routing example, highlight that messages with the same key land on the same partition and are consumed in order by one consumer, while different keys are independent. Getting this visual right prevents weeks of downstream confusion when users try to reason about exactly-once and ordering in production.
+Topic matching is the third trap. Naive string equality breaks wildcard subscriptions (`news.*`, `news.#`), and naive regex conversion mishandles the dot separator — `news.*` accidentally matches `newsXsports`. Build a proper segment-based matcher that splits on `.`, treats `*` as "exactly one segment" and `#` as "zero or more segments", and cache compiled matchers per subscription since topic lookup runs on every publish.

@@ -1,6 +1,6 @@
 ---
 name: pub-sub-visualization-pattern
-description: Canvas-based layout for rendering publishers, broker topics, and subscriber fan-out with animated message flow
+description: Canvas-based visualization showing topic channels, publishers fanning out messages to multiple subscribers with animated message particles
 category: design
 triggers:
   - pub sub visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # pub-sub-visualization-pattern
 
-Pub-sub visualizations share a recurring three-column topology: publishers on the left, a central topic/broker column (often split into per-topic lanes), and subscribers on the right grouped by subscription group. Each topic lane should be rendered as a horizontal swimlane with a visible backlog depth indicator (unacked count) and a retention window marker so viewers can distinguish a slow consumer from a dropped message. Use SVG or Canvas with a fixed coordinate grid keyed off topic name so subscriber reordering does not reflow the publisher side.
+Pub-sub systems benefit from a three-column layout: publishers on the left, topic/channel brokers in the middle, and subscriber groups on the right. Each publisher emits colored message particles that travel to the broker node, get tagged with a topic label, then fan out along curved Bezier paths to every subscriber bound to that topic. Use distinct hues per topic (e.g., "news.sports" = amber, "news.weather" = cyan) so overlapping flows remain readable, and render subscriber nodes with a small badge counter showing received message count.
 
-Animate message flow as discrete tokens traveling along bezier paths from publisher → topic → each matched subscriber, with the token carrying its routing key/headers as a tooltip. Fan-out must be visualized as parallel token emission at the topic node (not sequential), otherwise users misread pub-sub as point-to-point. Color-code tokens by topic and fade them on ack; use a red pulse on the subscriber node when a NACK or redelivery occurs. Keep the broker node "fat" (tall rectangle) to visually accommodate multiple topic partitions stacked vertically.
+The broker node should visually expose its internal topic registry — a stacked list of active topics with subscriber counts — so viewers understand the indirection. Animate message delivery in two phases: publish (publisher → broker, ~300ms) and dispatch (broker → all subscribers in parallel, ~500ms with slight stagger per subscriber to convey fan-out). When a subscriber is offline or has a full queue, render the message particle as dashed/faded and drop it at the subscriber boundary with a small "×" marker rather than silently discarding.
 
-For scale, cap visible in-flight tokens (e.g., 50) and render aggregate throughput counters on edges when exceeded — trying to animate every message at 10k msg/s kills the browser. Persist a mini-timeline strip below the canvas showing publish rate vs. consume rate per topic so lag is visible at a glance, which is the single most important diagnostic signal in pub-sub systems.
+For pub-sub-newsroom, pub-sub-radio-tower, and pub-sub-event-bus-lab, the shared visual vocabulary is: pulsing broker hub, topic-colored particles, fan-out curves, and per-subscriber inbox badges. Always expose subscription lifecycle (subscribe/unsubscribe) as visible edge creation/removal so users can see the decoupling contract — publishers never know who is listening, which is the whole point of pub-sub and must be reinforced by the rendering.
