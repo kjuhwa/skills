@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CDC Replay Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CDC Replay Timeline</h1>
+  <p class="sub">Scrub through change events to reconstruct table state at any LSN</p>
+</header>
+<main>
+  <div class="timeline-wrap">
+    <svg id="timeline" viewBox="0 0 1000 120" preserveAspectRatio="none"></svg>
+    <input type="range" id="scrubber" min="0" max="49" value="49" step="1">
+    <div class="scrubber-info">
+      <span>LSN: <b id="lsnLabel">0</b></span>
+      <span>Event: <b id="evLabel">–</b></span>
+      <button id="playBtn">▶ Play</button>
+    </div>
+  </div>
+  <section class="table-state">
+    <h2>Table: <span class="table-name">users</span> @ replayed state</h2>
+    <table id="stateTable">
+      <thead><tr><th>id</th><th>name</th><th>email</th><th>balance</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

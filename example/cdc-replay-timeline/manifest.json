@@ -1,0 +1,12 @@
+{
+  "slug": "cdc-replay-timeline",
+  "title": "Cdc Replay Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:37:54.622Z",
+  "source_project": "101-cdc-replay-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}
