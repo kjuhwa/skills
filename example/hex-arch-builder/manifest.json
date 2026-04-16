@@ -1,0 +1,12 @@
+{
+  "slug": "hex-arch-builder",
+  "title": "Hex Arch Builder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:26:38.823Z",
+  "source_project": "101-hex-arch-builder",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hex Arch Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+  <h2>Hex Arch Builder</h2>
+  <p class="sub">Drag layers to build your architecture</p>
+  <div id="palette">
+    <div class="chip" draggable="true" data-type="driving-adapter">Driving Adapter</div>
+    <div class="chip" draggable="true" data-type="driving-port">Driving Port</div>
+    <div class="chip" draggable="true" data-type="use-case">Use Case</div>
+    <div class="chip" draggable="true" data-type="entity">Entity</div>
+    <div class="chip" draggable="true" data-type="driven-port">Driven Port</div>
+    <div class="chip" draggable="true" data-type="driven-adapter">Driven Adapter</div>
+  </div>
+  <h3>Architecture Stack</h3>
+  <div id="stack"></div>
+  <button id="btnClear" class="btn">Clear</button>
+  <div id="info"></div>
+</div>
+<div class="main">
+  <svg id="diagram" viewBox="0 0 600 600"></svg>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

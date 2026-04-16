@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; height: 100vh; }
+.sidebar { width: 280px; background: #1a1d27; padding: 20px; overflow-y: auto; border-right: 1px solid #2d333b; }
+.sidebar h2 { color: #6ee7b7; font-size: 1.2rem; }
+.sidebar .sub { font-size: 0.75rem; color: #8b949e; margin: 4px 0 16px; }
+.sidebar h3 { font-size: 0.9rem; color: #6ee7b7; margin: 16px 0 8px; }
+.chip { background: #0f1117; border: 1px solid #2d333b; padding: 8px 12px; border-radius: 6px; margin: 4px 0; cursor: grab; font-size: 0.8rem; }
+.chip:hover { border-color: #6ee7b7; }
+#stack { min-height: 60px; border: 1px dashed #2d333b; border-radius: 8px; padding: 6px; }
+#stack .item { background: rgba(110,231,183,0.1); border: 1px solid #6ee7b7; border-radius: 4px; padding: 6px 10px; margin: 3px 0; font-size: 0.78rem; display: flex; justify-content: space-between; }
+#stack .item .x { cursor: pointer; color: #f87171; }
+.btn { background: #1a1d27; color: #c9d1d9; border: 1px solid #2d333b; padding: 6px 14px; border-radius: 6px; cursor: pointer; margin-top: 10px; font-size: 0.8rem; }
+.btn:hover { border-color: #6ee7b7; }
+#info { margin-top: 14px; font-size: 0.75rem; color: #8b949e; line-height: 1.5; }
+.main { flex: 1; display: flex; align-items: center; justify-content: center; }
+#diagram { width: 100%; max-width: 600px; }
