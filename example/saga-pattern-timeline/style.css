@@ -1,0 +1,8 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif;display:flex;justify-content:center;padding:20px}
+#app{max-width:900px;width:100%}
+h1{text-align:center;color:#6ee7b7;margin-bottom:10px;font-size:1.3rem}
+.legend{display:flex;gap:16px;justify-content:center;margin-bottom:12px;font-size:.8rem}
+.l-ok{color:#6ee7b7}.l-pend{color:#38bdf8}.l-fail{color:#f87171}.l-comp{color:#fbbf24}
+#svg{width:100%;background:#1a1d27;border-radius:10px;border:1px solid #6ee7b722}
+#detail{margin-top:12px;background:#1a1d27;border-radius:8px;padding:12px;font-size:.82rem;min-height:50px;border:1px solid #6ee7b722;font-family:'Cascadia Code',monospace;color:#94a3b8}

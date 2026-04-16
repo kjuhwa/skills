@@ -178,6 +178,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [circuit-breaker-flow](circuit-breaker-flow/) | Circuit Breaker Flow — auto-generated circuit-breaker tool | html, css, vanilla-js | 2026-04-16 |
 
+| [saga-pattern-timeline](saga-pattern-timeline/) | Saga Pattern Timeline — auto-generated saga-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

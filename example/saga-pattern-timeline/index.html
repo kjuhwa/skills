@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saga Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Saga Transaction Timeline</h1>
+  <div class="legend"><span class="l-ok">● Committed</span><span class="l-pend">● Pending</span><span class="l-fail">● Failed</span><span class="l-comp">● Compensated</span></div>
+  <svg id="svg" viewBox="0 0 860 400"></svg>
+  <div id="detail">Click a transaction node for details</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
