@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSDB Query Sandbox</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header><h1>🔍 TSDB Query Sandbox</h1></header>
+  <div class="editor-row">
+    <textarea id="query" spellcheck="false">SELECT avg(temperature) FROM sensors WHERE region = 'us-west' AND time > now() - 1h GROUP BY time(5m)</textarea>
+    <button id="run">▶ Run</button>
+  </div>
+  <div class="panels">
+    <div class="panel"><h3>Results</h3><div id="table-wrap"></div></div>
+    <div class="panel"><h3>Chart</h3><svg id="svg" viewBox="0 0 400 200"></svg></div>
+  </div>
+  <div class="info"><span id="info-text">Ready</span></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
