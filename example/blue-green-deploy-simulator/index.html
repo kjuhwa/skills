@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue-Green Deploy Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Blue-Green Deploy Simulator</h1>
+<div class="controls">
+<button id="deployBtn">Deploy v<span id="nextVer">2</span></button>
+<button id="rollbackBtn" disabled>Rollback</button>
+<span id="status">Serving: Blue (v1)</span>
+</div>
+<div class="env-row">
+<div class="env blue" id="blueEnv">
+<h2>Blue Environment</h2>
+<div class="version">v1</div>
+<div class="traffic-bar"><div class="fill" id="blueFill" style="width:100%"></div></div>
+<canvas id="blueCanvas" width="280" height="100"></canvas>
+</div>
+<div class="router" id="router">ROUTER<div class="arrow" id="arrow">→</div></div>
+<div class="env green" id="greenEnv">
+<h2>Green Environment</h2>
+<div class="version">idle</div>
+<div class="traffic-bar"><div class="fill" id="greenFill" style="width:0%"></div></div>
+<canvas id="greenCanvas" width="280" height="100"></canvas>
+</div>
+</div>
+<div class="log" id="log"></div>
+<script src="app.js"></script>
+</body>
+</html>
