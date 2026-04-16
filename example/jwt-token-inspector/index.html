@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OAuth JWT Inspector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>OAuth JWT Token Inspector</h1>
+  <div class="samples">
+    <button data-sample="valid">Load Valid</button>
+    <button data-sample="expired">Load Expired</button>
+    <button data-sample="refresh">Load Refresh</button>
+  </div>
+</header>
+<main>
+  <section class="input-pane">
+    <label>Encoded JWT</label>
+    <textarea id="jwtInput" spellcheck="false"></textarea>
+    <div id="status" class="status"></div>
+  </section>
+  <section class="decoded-pane">
+    <div class="part header-part">
+      <h3>Header</h3>
+      <pre id="headerOut"></pre>
+    </div>
+    <div class="part payload-part">
+      <h3>Payload</h3>
+      <pre id="payloadOut"></pre>
+    </div>
+    <div class="part sig-part">
+      <h3>Signature</h3>
+      <pre id="sigOut"></pre>
+    </div>
+  </section>
+</main>
+<section class="claims-detail">
+  <h3>Claim Analysis</h3>
+  <ul id="claimList"></ul>
+</section>
+<script src="app.js"></script>
+</body>
+</html>

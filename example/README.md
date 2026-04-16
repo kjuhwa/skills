@@ -352,6 +352,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [event-ledger-replay](event-ledger-replay/) | Event Ledger Replay — auto-generated event-sourcing tool | html, css, vanilla-js | 2026-04-16 |
 
+| [jwt-token-inspector](jwt-token-inspector/) | Jwt Token Inspector — auto-generated oauth tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
