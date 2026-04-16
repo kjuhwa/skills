@@ -1,0 +1,45 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117; color: #e5e7eb;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+}
+header { padding: 24px 32px; border-bottom: 1px solid #1a1d27; }
+header h1 { color: #6ee7b7; font-size: 22px; letter-spacing: .5px; }
+header p { color: #9ca3af; font-size: 13px; margin-top: 4px; }
+main { display: grid; grid-template-columns: 1fr 340px; gap: 16px; padding: 16px; }
+.topology {
+  background: #1a1d27; border-radius: 12px; padding: 16px;
+  border: 1px solid #23263244;
+}
+#mesh { width: 100%; height: auto; }
+.pod { fill: #0f1117; stroke: #6ee7b7; stroke-width: 1.5; }
+.app { fill: #1f2633; stroke: #9ca3af; }
+.sidecar { fill: #1f2633; stroke: #6ee7b7; }
+.label { fill: #e5e7eb; font-size: 11px; font-family: monospace; text-anchor: middle; }
+.edge { stroke: #2a2f3f; stroke-width: 1; fill: none; }
+.packet { fill: #6ee7b7; filter: drop-shadow(0 0 4px #6ee7b7aa); }
+.packet.err { fill: #f87171; filter: drop-shadow(0 0 4px #f87171aa); }
+.panel { background: #1a1d27; border-radius: 12px; padding: 16px; }
+.panel h2 { color: #6ee7b7; font-size: 15px; margin-bottom: 12px; }
+.panel h3 { color: #9ca3af; font-size: 12px; margin: 16px 0 8px; text-transform: uppercase; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stats > div {
+  background: #0f1117; border-radius: 8px; padding: 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.k { color: #9ca3af; font-size: 11px; }
+.v { color: #6ee7b7; font-weight: 600; font-family: monospace; }
+#log { list-style: none; max-height: 220px; overflow: auto; font-family: monospace; font-size: 11px; }
+#log li {
+  padding: 6px 8px; margin-bottom: 4px; border-radius: 6px;
+  background: #0f1117; border-left: 2px solid #6ee7b7;
+}
+#log li.err { border-left-color: #f87171; color: #fca5a5; }
+.controls { margin-top: 14px; display: flex; gap: 8px; }
+.controls button {
+  flex: 1; background: #0f1117; color: #6ee7b7;
+  border: 1px solid #6ee7b744; padding: 8px; border-radius: 8px;
+  cursor: pointer; font-size: 12px;
+}
+.controls button:hover { background: #6ee7b71a; }
