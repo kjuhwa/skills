@@ -1,0 +1,68 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e6eb;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+.app { max-width: 960px; margin: 0 auto; }
+header {
+  background: #1a1d27;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #6ee7b7;
+  margin-bottom: 16px;
+}
+header h1 { color: #6ee7b7; margin-bottom: 6px; }
+header p { color: #9aa0ad; font-size: 14px; }
+header em { color: #6ee7b7; font-style: normal; font-weight: 600; }
+.score-panel {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #1a1d27;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.score {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  background: #0f1117;
+  border-radius: 6px;
+  min-width: 100px;
+}
+.score span { font-size: 11px; color: #9aa0ad; text-transform: uppercase; }
+.score strong { font-size: 20px; color: #6ee7b7; }
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+}
+button:hover { opacity: 0.85; }
+#reset { background: #2a2e3a; color: #e4e6eb; margin-left: 8px; }
+canvas {
+  background: #1a1d27;
+  border-radius: 8px;
+  display: block;
+  cursor: crosshair;
+  width: 100%;
+  height: auto;
+}
+#verdict {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #1a1d27;
+  min-height: 20px;
+  font-family: monospace;
+  color: #9aa0ad;
+}
+#verdict.pass { border-left: 4px solid #6ee7b7; color: #6ee7b7; }
+#verdict.fail { border-left: 4px solid #ff6b6b; color: #ff6b6b; }

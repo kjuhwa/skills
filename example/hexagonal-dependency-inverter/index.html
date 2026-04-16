@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hexagonal Dependency Inverter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Dependency Inverter</h1>
+    <p>Drag dependency arrows. Hexagonal arch requires all arrows point <em>inward</em> to the domain.</p>
+  </header>
+  <div class="score-panel">
+    <div class="score"><span>Inward</span><strong id="inward">0</strong></div>
+    <div class="score"><span>Outward</span><strong id="outward">0</strong></div>
+    <div class="score"><span>Violations</span><strong id="violations">0</strong></div>
+    <button id="validate">Validate Architecture</button>
+    <button id="reset">Reset</button>
+  </div>
+  <canvas id="board" width="900" height="540"></canvas>
+  <div id="verdict"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
