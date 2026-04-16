@@ -252,6 +252,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [hex-arch-port-adapter-sim](hex-arch-port-adapter-sim/) | Hex Arch Port Adapter Sim — auto-generated hexagonal-architecture tool | html, css, vanilla-js | 2026-04-16 |
 
+| [trace-waterfall-viewer](trace-waterfall-viewer/) | Trace Waterfall Viewer — auto-generated distributed-tracing tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
