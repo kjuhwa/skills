@@ -116,6 +116,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [shard-ring-router](shard-ring-router/) | Shard Ring Router — auto-generated database-sharding tool | html, css, vanilla-js | 2026-04-16 |
 
+| [retry-strategy-composer](retry-strategy-composer/) | Retry Strategy Composer — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

@@ -1,0 +1,14 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif}
+.app{max-width:780px;margin:0 auto;padding:24px}
+h1{color:#6ee7b7;text-align:center;font-size:1.4rem;margin-bottom:14px}
+.panel{background:#1a1d27;border-radius:12px;padding:18px}
+.knobs{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.knobs label{display:flex;flex-direction:column;font-size:.78rem;color:#8b949e;gap:3px}
+.knobs select,.knobs input{background:#0f1117;color:#c9d1d9;border:1px solid #30363d;border-radius:6px;padding:5px 8px;width:130px}
+.knobs span{color:#6ee7b7;font-size:.72rem}
+svg{width:100%;background:#0f1117;border-radius:8px;display:block;margin-bottom:12px}
+#table{font-size:.75rem;font-family:'Cascadia Code',monospace}
+#table table{width:100%;border-collapse:collapse}
+#table th{color:#6ee7b7;text-align:left;padding:4px 8px;border-bottom:1px solid #30363d}
+#table td{padding:4px 8px;border-bottom:1px solid #21262d;color:#8b949e}

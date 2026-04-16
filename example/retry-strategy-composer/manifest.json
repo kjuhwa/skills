@@ -1,0 +1,12 @@
+{
+  "slug": "retry-strategy-composer",
+  "title": "Retry Strategy Composer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:20:44.135Z",
+  "source_project": "102-retry-strategy-composer",
+  "author": "kjuhwa@nkia.co.kr"
+}
