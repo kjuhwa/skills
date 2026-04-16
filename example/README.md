@@ -462,6 +462,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [algorithm-showdown](algorithm-showdown/) | Algorithm Showdown — auto-generated load-balancer tool | html, css, vanilla-js | 2026-04-16 |
 
+| [cqrs-command-stream](cqrs-command-stream/) | Cqrs Command Stream — auto-generated cqrs tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

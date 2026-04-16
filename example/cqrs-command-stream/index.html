@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CQRS Command Stream</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CQRS Command Stream</h1>
+  <p>Fire commands on the left, watch the read model project on the right.</p>
+</header>
+<main>
+  <section class="panel write">
+    <h2>Write Side · Commands</h2>
+    <div class="cmd-buttons">
+      <button data-cmd="CreateAccount">CreateAccount</button>
+      <button data-cmd="Deposit">Deposit</button>
+      <button data-cmd="Withdraw">Withdraw</button>
+      <button data-cmd="CloseAccount">CloseAccount</button>
+    </div>
+    <ul id="event-log"></ul>
+  </section>
+  <section class="panel bus">
+    <h2>Event Bus</h2>
+    <canvas id="bus" width="220" height="480"></canvas>
+  </section>
+  <section class="panel read">
+    <h2>Read Side · Projection</h2>
+    <table id="accounts">
+      <thead><tr><th>ID</th><th>Owner</th><th>Balance</th><th>Status</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

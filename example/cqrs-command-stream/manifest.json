@@ -1,0 +1,12 @@
+{
+  "slug": "cqrs-command-stream",
+  "title": "Cqrs Command Stream",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T22:08:26.916Z",
+  "source_project": "100-cqrs-command-stream",
+  "author": "kjuhwa@nkia.co.kr"
+}

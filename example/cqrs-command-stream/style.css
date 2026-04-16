@@ -1,0 +1,22 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#e5e7eb;font-family:system-ui,sans-serif;min-height:100vh}
+header{padding:20px 32px;border-bottom:1px solid #1a1d27}
+h1{color:#6ee7b7;font-size:22px}
+header p{color:#9ca3af;font-size:13px;margin-top:4px}
+main{display:grid;grid-template-columns:1fr 240px 1fr;gap:16px;padding:20px}
+.panel{background:#1a1d27;border-radius:10px;padding:16px;min-height:520px}
+h2{color:#6ee7b7;font-size:14px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.cmd-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.cmd-buttons button{background:#0f1117;color:#6ee7b7;border:1px solid #6ee7b7;padding:8px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-family:monospace}
+.cmd-buttons button:hover{background:#6ee7b7;color:#0f1117}
+#event-log{list-style:none;max-height:400px;overflow:auto;font-family:monospace;font-size:12px}
+#event-log li{padding:6px 8px;border-left:2px solid #6ee7b7;margin-bottom:4px;background:#0f1117;animation:slide .3s}
+@keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1}}
+.bus{display:flex;align-items:center;justify-content:center}
+#bus{display:block;margin:0 auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px;border-bottom:1px solid #0f1117}
+th{color:#9ca3af;font-weight:500;font-size:11px;text-transform:uppercase}
+tr.flash td{background:#6ee7b733;transition:background 1s}
+.status-open{color:#6ee7b7}
+.status-closed{color:#ef4444}
