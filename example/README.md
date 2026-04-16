@@ -424,51 +424,7 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [circuit-breaker-grid](circuit-breaker-grid/) | Circuit Breaker Grid — auto-generated circuit-breaker tool | html, css, vanilla-js | 2026-04-16 |
 
-| [bff-pattern-router](bff-pattern-router/) | Bff Pattern Router — auto-generated bff-pattern tool | html, css, vanilla-js | 2026-04-16 |
-
-| [retry-strategy-lab](retry-strategy-lab/) | Retry Strategy Lab — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
-
-| [service-pulse-monitor](service-pulse-monitor/) | Service Pulse Monitor — auto-generated health-check tool | html, css, vanilla-js | 2026-04-16 |
-
-| [bloom-filter-username-check](bloom-filter-username-check/) | Bloom Filter Username Check — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
-
-| [cdc-replay-theater](cdc-replay-theater/) | Cdc Replay Theater — auto-generated cdc tool | html, css, vanilla-js | 2026-04-16 |
-
-| [trace-waterfall-inspector](trace-waterfall-inspector/) | Trace Waterfall Inspector — auto-generated distributed-tracing tool | html, css, vanilla-js | 2026-04-16 |
-
-| [sliding-window-lab](sliding-window-lab/) | Sliding Window Lab — auto-generated rate-limiter tool | html, css, vanilla-js | 2026-04-16 |
-
-| [graphql-query-builder](graphql-query-builder/) | Graphql Query Builder — auto-generated graphql tool | html, css, vanilla-js | 2026-04-16 |
-
-| [api-diff-viewer](api-diff-viewer/) | Api Diff Viewer — auto-generated api-versioning tool | html, css, vanilla-js | 2026-04-16 |
-
-| [canary-release-conductor](canary-release-conductor/) | Canary Release Conductor — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
-
-| [api-gateway-rate-limiter](api-gateway-rate-limiter/) | Api Gateway Rate Limiter — auto-generated api-gateway-pattern tool | html, css, vanilla-js | 2026-04-16 |
-
-| [aggregate-invariant-simulator](aggregate-invariant-simulator/) | Aggregate Invariant Simulator — auto-generated domain-driven tool | html, css, vanilla-js | 2026-04-16 |
-
-| [circuit-breaker-panel](circuit-breaker-panel/) | Circuit Breaker Panel — auto-generated circuit-breaker tool | html, css, vanilla-js | 2026-04-16 |
-
-| [pipeline-pressure-lab](pipeline-pressure-lab/) | Pipeline Pressure Lab — auto-generated backpressure tool | html, css, vanilla-js | 2026-04-16 |
-
-| [etl-rule-builder](etl-rule-builder/) | Etl Rule Builder — auto-generated etl tool | html, css, vanilla-js | 2026-04-16 |
-
-| [actor-mailbox-sim](actor-mailbox-sim/) | Actor Mailbox Sim — auto-generated actor-model tool | html, css, vanilla-js | 2026-04-16 |
-
-| [materialized-view-query-planner](materialized-view-query-planner/) | Materialized View Query Planner — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
-
-| [dlq-autopsy-report](dlq-autopsy-report/) | Dlq Autopsy Report — auto-generated dead-letter-queue tool | html, css, vanilla-js | 2026-04-16 |
-
-| [algorithm-showdown](algorithm-showdown/) | Algorithm Showdown — auto-generated load-balancer tool | html, css, vanilla-js | 2026-04-16 |
-
-| [cqrs-command-stream](cqrs-command-stream/) | Cqrs Command Stream — auto-generated cqrs tool | html, css, vanilla-js | 2026-04-16 |
-
-| [schema-compat-checker](schema-compat-checker/) | Schema Compat Checker — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
-
-| [canary-traffic-shifter](canary-traffic-shifter/) | Canary Traffic Shifter — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
-
-| [strangler-fig-migration-simulator](strangler-fig-migration-simulator/) | Strangler Fig Migration Simulator — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
+| [bff-pattern-payload](bff-pattern-payload/) | Bff Pattern Payload — auto-generated bff-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
 ## Adding an example
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BFF Payload Shaper</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>BFF Payload Shaper</h1>
+  <p>See how each BFF trims the upstream response to match its client's needs.</p>
+</header>
+<main>
+  <aside class="upstream">
+    <h2>Upstream Product Service</h2>
+    <pre id="upstream"></pre>
+    <div class="stat"><span>Size</span><strong id="upstreamSize">—</strong></div>
+  </aside>
+  <section class="clients">
+    <div class="client" data-key="web">
+      <header><h3>Web BFF</h3><span class="badge" style="background:#6ee7b7">desktop</span></header>
+      <pre class="out"></pre>
+      <div class="stat"><span>Size</span><strong class="sz">—</strong><span class="delta"></span></div>
+    </div>
+    <div class="client" data-key="mobile">
+      <header><h3>Mobile BFF</h3><span class="badge" style="background:#7dd3fc">phone</span></header>
+      <pre class="out"></pre>
+      <div class="stat"><span>Size</span><strong class="sz">—</strong><span class="delta"></span></div>
+    </div>
+    <div class="client" data-key="tv">
+      <header><h3>TV BFF</h3><span class="badge" style="background:#fca5a5">10-foot</span></header>
+      <pre class="out"></pre>
+      <div class="stat"><span>Size</span><strong class="sz">—</strong><span class="delta"></span></div>
+    </div>
+  </section>
+  <div class="controls">
+    <button id="next">Next Product</button>
+    <button id="reshape">Re-shape</button>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
