@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Traffic Router</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>API Traffic Router</h1>
+  <p class="sub">Live simulation of request routing across API versions</p>
+  <div class="controls">
+    <button onclick="toggleSim()">⏯ Toggle</button>
+    <label>Speed <input type="range" id="speed" min="1" max="10" value="5"></label>
+  </div>
+  <canvas id="canvas" width="860" height="400"></canvas>
+  <div id="stats"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
