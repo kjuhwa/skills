@@ -1,6 +1,6 @@
 ---
 name: api-gateway-pattern-data-simulation
-description: Generating realistic gateway traffic with route hits, filter outcomes, and downstream timing for demos and load tests
+description: Generate realistic gateway traffic with route-aware mix, policy-triggering edge cases, and upstream failure injection
 category: workflow
 triggers:
   - api gateway pattern data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # api-gateway-pattern-data-simulation
 
-Simulated gateway traffic must be generated as a layered stream, not as flat random rows. Start with a Poisson arrival process per route (different lambdas per endpoint to mimic hot paths like `/api/v1/auth/*` vs cold admin routes), then for each synthetic request roll outcomes through the filter chain in order: auth-pass probability, rate-limit-token availability (token bucket with replenishment), transform success, and finally a downstream latency draw from a log-normal distribution per backend pool. Skipping the chain ordering produces impossible traces (e.g., a transform applied to a request that auth rejected) that immediately break trust in the demo.
+Drive api-gateway-pattern simulations from a declarative traffic profile: a list of `{route, method, weight, headerTemplate, bodySize, thinkTimeMs}` entries that a weighted sampler draws from each tick. Build the route mix so it actually exercises the gateway — include at least one route per policy class (public unauthenticated, JWT-protected, rate-limited bursty, large-payload transform, slow upstream, flaky upstream) rather than a uniform distribution, because uniform traffic hides the interesting cross-policy interactions the gateway exists to handle. Inject correlated bursts using a Poisson process with a time-varying lambda so rate-limiters and circuit breakers actually trip instead of idling flat.
 
-Build in correlated failure modes: when a downstream pool's simulated latency crosses a threshold, the circuit breaker should flip to OPEN for a configurable window, after which a fraction of requests are short-circuited with a synthetic 503 — not random 503s sprinkled uniformly. Inject burst traffic windows (10x baseline for 30–60s) so rate-limit and bulkhead behavior is observable. Tag each generated record with `routeId`, `filterPathTaken[]`, `circuitState`, `retryCount`, and `downstreamPool` so the visualization layer can filter and replay.
+Model upstreams as independent state machines with tunable latency distributions (lognormal for healthy, bimodal for degraded), error rates, and scheduled failure windows. Each simulated upstream call should sample latency, decide success/failure/timeout, and emit the same event shape a real gateway would log, so the same downstream visualization and policy engine code works against simulated and recorded production traces. Seed the RNG per scenario so "auth-storm at t=30s" or "upstream-B brownout" is bit-for-bit reproducible.
 
-Persist the simulation seed and config alongside the output so a reviewer can regenerate the exact dataset. Expose a "scenario" selector (steady-state, thundering-herd, partial-outage, cold-start) rather than raw knobs — operators reviewing the demo think in scenarios, not in lambda values.
+Expose three simulation knobs at the UI level: RPS multiplier, failure-injection toggle per upstream, and a policy-override slider (e.g. rate-limit threshold, retry count, circuit-breaker error %) so users can A/B the gateway's behavior live. Persist the generated event stream to the same append-only log the visualization consumes; this keeps traffic-router (what routed where), policy-lab (which policies fired), and latency-dashboard (p99 per route/upstream) reading from one source of truth.
