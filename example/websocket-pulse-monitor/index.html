@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Pulse Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>WebSocket Pulse Monitor</h1>
+    <div class="status">
+      <span class="dot" id="dot"></span>
+      <span id="statusText">Connecting...</span>
+      <span class="latency" id="latency">-- ms</span>
+    </div>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>Live Message Throughput</h2>
+      <canvas id="chart" width="800" height="240"></canvas>
+      <div class="stats">
+        <div><label>Msgs/sec</label><strong id="mps">0</strong></div>
+        <div><label>Total</label><strong id="total">0</strong></div>
+        <div><label>Peak</label><strong id="peak">0</strong></div>
+        <div><label>Avg Latency</label><strong id="avgLat">0</strong></div>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Event Stream</h2>
+      <ul id="log"></ul>
+    </section>
+  </main>
+  <footer>
+    <button id="toggle">Pause</button>
+    <button id="burst">Simulate Burst</button>
+    <button id="clear">Clear</button>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
