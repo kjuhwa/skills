@@ -1,0 +1,102 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e7ef;
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 28px 16px;
+}
+.wrap { width: 100%; max-width: 720px; }
+header h1 { color: #6ee7b7; margin-bottom: 4px; font-weight: 600; }
+header p { color: #8b93a7; font-size: 14px; margin-bottom: 18px; }
+.bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.bar div {
+  background: #1a1d27;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.bar span {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #8b93a7;
+  letter-spacing: 0.5px;
+}
+.bar b { color: #6ee7b7; font-family: monospace; font-size: 18px; }
+.inbox {
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.inbox h3 { color: #6ee7b7; font-size: 13px; margin-bottom: 10px; font-weight: 500; }
+.inbox ul { list-style: none; }
+.msg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 0;
+  border-bottom: 1px solid #22262f;
+  font-size: 13px;
+}
+.msg:last-child { border: none; }
+.tag {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.tag.ok { background: rgba(110, 231, 183, 0.15); color: #6ee7b7; }
+.tag.spam { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+.msg.blocked p { color: #8b93a7; text-decoration: line-through; }
+.matches { color: #f87171; font-family: monospace; font-size: 11px; margin-top: 3px; display: block; }
+.compose {
+  background: #1a1d27;
+  padding: 14px;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+}
+textarea {
+  flex: 1;
+  background: #0f1117;
+  border: 1px solid #2a2f3f;
+  border-radius: 6px;
+  color: #e4e7ef;
+  padding: 8px 12px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+textarea:focus { border-color: #6ee7b7; }
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.1); }
+#verdict {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  min-height: 20px;
+}
+#verdict.ok { background: rgba(110, 231, 183, 0.1); color: #6ee7b7; }
+#verdict.spam { background: rgba(248, 113, 113, 0.1); color: #f87171; }

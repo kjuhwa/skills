@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spam Shield — Bloom Filter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🛡 Spam Shield</h1>
+    <p>A Bloom filter trained on spammy tokens rapidly rejects messages without storing the blacklist.</p>
+  </header>
+
+  <section class="bar">
+    <div><span>Blacklist size</span><b id="listN">0</b></div>
+    <div><span>Filter bits set</span><b id="listBits">0</b></div>
+    <div><span>Messages scanned</span><b id="scanned">0</b></div>
+    <div><span>Blocked</span><b id="blocked">0</b></div>
+  </section>
+
+  <section class="inbox">
+    <h3>Simulated inbox</h3>
+    <ul id="messages"></ul>
+  </section>
+
+  <section class="compose">
+    <textarea id="custom" rows="2" placeholder="Compose a message and see if the shield flags it..."></textarea>
+    <button id="sendBtn">Scan</button>
+  </section>
+  <p id="verdict"></p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
