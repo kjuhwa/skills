@@ -1,0 +1,12 @@
+{
+  "slug": "cqrs-projection-lab",
+  "title": "Cqrs Projection Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:49:11.584Z",
+  "source_project": "101-cqrs-projection-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}
