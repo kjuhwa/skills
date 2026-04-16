@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Object Storage Latency Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>S3 Latency Monitor</h1>
+  <div class="row">
+    <div class="card" id="get-card"><span class="label">GET</span><span class="val" id="get-val">--</span><span class="unit">ms</span></div>
+    <div class="card" id="put-card"><span class="label">PUT</span><span class="val" id="put-val">--</span><span class="unit">ms</span></div>
+    <div class="card" id="del-card"><span class="label">DELETE</span><span class="val" id="del-val">--</span><span class="unit">ms</span></div>
+    <div class="card" id="list-card"><span class="label">LIST</span><span class="val" id="list-val">--</span><span class="unit">ms</span></div>
+  </div>
+  <svg id="chart" viewBox="0 0 880 260"></svg>
+  <div id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

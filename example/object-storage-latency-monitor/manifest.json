@@ -1,0 +1,12 @@
+{
+  "slug": "object-storage-latency-monitor",
+  "title": "Object Storage Latency Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:28:24.671Z",
+  "source_project": "101-object-storage-latency-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
