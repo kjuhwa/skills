@@ -1,0 +1,12 @@
+{
+  "slug": "object-storage-flow",
+  "title": "Object Storage Flow",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T15:59:39.675Z",
+  "source_project": "102-object-storage-flow",
+  "author": "kjuhwa@nkia.co.kr"
+}

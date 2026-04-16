@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Object Storage Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="flow"></canvas>
+<div id="hud">
+  <h1>Live Object Flow</h1>
+  <div class="row"><span class="dot up"></span> Uploads <strong id="up-count">0</strong>/s</div>
+  <div class="row"><span class="dot down"></span> Downloads <strong id="dn-count">0</strong>/s</div>
+  <div class="row"><span class="dot del"></span> Deletes <strong id="del-count">0</strong>/s</div>
+  <div id="throughput">Throughput: <strong id="tp">0</strong> MB/s</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
