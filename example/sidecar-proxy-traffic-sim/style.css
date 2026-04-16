@@ -1,0 +1,37 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117; color: #e5e7eb;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+header { padding: 22px 28px; border-bottom: 1px solid #1a1d27; }
+header h1 { color: #6ee7b7; font-size: 22px; }
+header p { color: #9ca3af; font-size: 13px; margin-top: 4px; }
+main { display: grid; grid-template-columns: 1fr 300px; gap: 14px; padding: 14px; }
+section { background: #1a1d27; border-radius: 12px; padding: 16px; }
+#scene { width: 100%; height: auto; background: #0f1117; border-radius: 8px; }
+.controls { display: flex; flex-direction: column; gap: 14px; }
+.knob label {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: #9ca3af; margin-bottom: 6px;
+}
+.knob output { color: #6ee7b7; font-family: monospace; }
+.knob input[type=range] {
+  width: 100%; -webkit-appearance: none; appearance: none;
+  background: #0f1117; height: 4px; border-radius: 2px;
+}
+.knob input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #6ee7b7; cursor: pointer;
+}
+.metrics {
+  margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.metrics > div {
+  background: #0f1117; border-radius: 8px; padding: 10px;
+  display: flex; flex-direction: column;
+}
+.metrics span { color: #9ca3af; font-size: 11px; }
+.metrics b { color: #6ee7b7; font-family: monospace; font-size: 15px; margin-top: 4px; }
+#breaker.OPEN { color: #f87171; }
+#breaker.HALF { color: #fbbf24; }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sidecar Proxy Traffic Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Sidecar Proxy Traffic Simulator</h1>
+  <p>Tune the sidecar, watch the queue, survive the storm.</p>
+</header>
+<main>
+  <section class="scene">
+    <canvas id="scene" width="720" height="320"></canvas>
+  </section>
+  <section class="controls">
+    <div class="knob">
+      <label>Incoming RPS <output id="rpsVal">40</output></label>
+      <input type="range" id="rps" min="5" max="200" value="40">
+    </div>
+    <div class="knob">
+      <label>Sidecar Workers <output id="wVal">3</output></label>
+      <input type="range" id="workers" min="1" max="8" value="3">
+    </div>
+    <div class="knob">
+      <label>Circuit Breaker Threshold <output id="cbVal">15</output></label>
+      <input type="range" id="cb" min="5" max="50" value="15">
+    </div>
+    <div class="metrics">
+      <div><span>Queue</span><b id="qLen">0</b></div>
+      <div><span>Served</span><b id="served">0</b></div>
+      <div><span>Dropped</span><b id="dropped">0</b></div>
+      <div><span>Breaker</span><b id="breaker">CLOSED</b></div>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

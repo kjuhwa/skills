@@ -1,0 +1,12 @@
+{
+  "slug": "sidecar-proxy-traffic-sim",
+  "title": "Sidecar Proxy Traffic Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:31:29.561Z",
+  "source_project": "102-sidecar-proxy-traffic-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}
