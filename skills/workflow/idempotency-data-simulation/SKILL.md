@@ -1,6 +1,6 @@
 ---
 name: idempotency-data-simulation
-description: Generating realistic request streams with controllable duplicate ratios, key collisions, and retry patterns
+description: Generating realistic duplicate-request streams, key-collision scenarios, and retry storms to stress-test idempotency implementations.
 category: workflow
 triggers:
   - idempotency data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # idempotency-data-simulation
 
-Idempotency demos need deterministic-yet-realistic request streams. Generate a base stream of unique logical operations, then apply three independent transformations: (1) a **duplication multiplier** that clones each request N times with the same idempotency key (models client retries), (2) a **jitter injector** that adds 0–500ms delays between clones (models real network retry backoff), and (3) a **corruption rate** that flips a small fraction of duplicates to have the same key but mutated payload (models the collision-detection path). Keep these as three separate sliders rather than one "chaos" knob so each failure mode can be isolated.
+Simulation data for idempotency apps needs three synthetic streams layered together. First, the **baseline unique-request stream**: generate N requests with distinct UUIDv4 idempotency keys, realistic payloads (amounts, user IDs, order items), and timestamps spaced by a Poisson arrival process. Second, the **duplicate stream**: for each baseline request, emit 1-5 replays with the same idempotency key at exponentially-decaying delays (100ms, 1s, 10s, 1m, 1h) — this mimics real retry behavior from clients, proxies, and mobile network hiccups. Third, the **adversarial stream**: inject same-key-different-payload collisions (should 409), expired-key replays (should 410 or re-execute depending on TTL policy), and near-duplicate keys differing by one char (should NOT dedupe).
 
-Seed the RNG from a visible value so reruns are reproducible — users comparing "before cache" and "after cache" need identical input streams. Emit events with `{timestamp, clientId, idempotencyKey, payloadHash, attemptNumber}` so downstream panels can group by key and count attempts. For retry-storm simulation specifically, layer an exponential-backoff generator on top: given a failure event, schedule retries at `base * 2^n + jitter` with a configurable cap, and let the user toggle jitter on/off to visualize the thundering-herd vs. smoothed pattern.
+For the key-vault app specifically, seed the store with keys at varied lifecycle stages: freshly-created (TTL ~24h remaining), mid-life (TTL ~1h), near-expiry (TTL <60s), and tombstoned. Include keys with cached responses of varied sizes (empty 204, small JSON, large payloads hitting size caps) and varied HTTP statuses (2xx cached, 4xx cached-as-terminal, 5xx NOT cached since retry should re-execute).
 
-Pre-bake at least three canonical scenarios users can one-click load: "healthy retries" (10% duplicate rate, no collisions), "flaky network" (50% duplicate rate, heavy jitter), and "buggy client" (30% collision rate — same key, different payloads). These scenarios teach the contract faster than any explanatory text.
+For quiz/playground data, pre-compute scenario pairs: `{operation, call_count, expected_final_state}`. Include subtle cases — `counter += 0` is idempotent, `counter = counter` is idempotent but `counter++` is not; `DELETE /user/42` is idempotent in effect (404 on second call is still "user 42 is gone") even though the status code differs. Seed the DB with a mix of "already applied" rows so replays demonstrate the cache-hit path without requiring a cold start.
