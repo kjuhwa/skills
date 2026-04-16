@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ETL Lineage Map</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>ETL Data Lineage</h1>
+  <div id="details">Click any node to inspect its upstream & downstream</div>
+</header>
+<svg id="graph" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet"></svg>
+<div id="panel">
+  <h3 id="nodeName">—</h3>
+  <div id="nodeInfo"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
