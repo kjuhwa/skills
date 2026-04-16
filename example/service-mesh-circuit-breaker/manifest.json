@@ -1,0 +1,12 @@
+{
+  "slug": "service-mesh-circuit-breaker",
+  "title": "Service Mesh Circuit Breaker",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:59:14.159Z",
+  "source_project": "102-service-mesh-circuit-breaker",
+  "author": "kjuhwa@nkia.co.kr"
+}
