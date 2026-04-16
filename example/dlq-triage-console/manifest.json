@@ -1,0 +1,12 @@
+{
+  "slug": "dlq-triage-console",
+  "title": "Dlq Triage Console",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:38:03.479Z",
+  "source_project": "100-dlq-triage-console",
+  "author": "kjuhwa@nkia.co.kr"
+}

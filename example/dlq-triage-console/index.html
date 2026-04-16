@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DLQ Triage Console</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>DLQ Triage Console</h1>
+  <div class="stats">
+    <span>Total: <b id="total">0</b></span>
+    <span>Selected: <b id="selected">0</b></span>
+    <span class="pulse">LIVE</span>
+  </div>
+</header>
+<main>
+  <aside>
+    <h2>Filters</h2>
+    <input type="text" id="search" placeholder="Search payload...">
+    <div id="reasons"></div>
+    <button id="replay">Replay Selected</button>
+    <button id="purge" class="danger">Purge Selected</button>
+  </aside>
+  <section>
+    <table id="queue">
+      <thead>
+        <tr><th></th><th>ID</th><th>Topic</th><th>Reason</th><th>Retries</th><th>Age</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <pre id="detail">Select a message to inspect payload...</pre>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
