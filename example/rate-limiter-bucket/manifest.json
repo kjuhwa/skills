@@ -1,0 +1,12 @@
+{
+  "slug": "rate-limiter-bucket",
+  "title": "Rate Limiter Bucket",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:33:57.854Z",
+  "source_project": "100-rate-limiter-bucket",
+  "author": "kjuhwa@nkia.co.kr"
+}
