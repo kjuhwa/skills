@@ -1,6 +1,6 @@
 ---
 name: circuit-breaker-data-simulation
-description: Generate realistic circuit breaker request/failure streams with configurable failure modes and recovery patterns
+description: Deterministic synthetic call stream generator for circuit breaker state machine demonstrations
 category: workflow
 triggers:
   - circuit breaker data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # circuit-breaker-data-simulation
 
-Circuit breaker simulations need request streams that exercise all three states meaningfully, not just random noise. Model requests as a Poisson arrival process with configurable RPS, then overlay failure modes: transient spikes (burst of failures then recovery — should trip and reset cleanly), sustained degradation (slow failure rate climb — tests threshold sensitivity), flapping (failures oscillating around threshold — tests hysteresis), and gray failures (timeouts vs. 5xx vs. slow responses, each counted differently). Each simulated request carries a latency, outcome (success/failure/timeout), and timestamp so the sliding window can be computed identically to production code.
+To demonstrate circuit breaker behavior without a real downstream dependency, generate a synthetic call stream using a seeded PRNG combined with a configurable failure-rate schedule. Model each tick as a call with outcome `success | failure | timeout`, driven by a piecewise failure-probability curve (e.g., 0% baseline → spike to 80% between t=10s and t=25s → recover to 5%). The seeded randomness makes runs reproducible for teaching and regression-testing UI transitions, while the schedule ensures the breaker actually trips, cools down, and probes within the demo window.
 
-The simulation clock must be decoupled from wall time — expose a speed multiplier (1x, 10x, 100x) and a step mode so users can watch individual state transitions frame-by-frame. Maintain the canonical breaker state (failure count, success count, last-failure-time, state-entered-at) in a single reducer, and emit events (REQUEST, STATE_CHANGE, PROBE_SENT, PROBE_RESULT) that both the visualization and the metrics panel subscribe to — never let the view compute state independently or drift will appear.
+Drive the state machine from the same synthetic stream rather than simulating states directly. Maintain a sliding window of the last N outcomes (or a time-based window), compute the failure ratio each tick, and apply the canonical rules: trip to OPEN when failure_count ≥ threshold within the window, schedule a cooldown timer on trip, transition to HALF_OPEN on timer expiry, and allow only a fixed number of probe calls before deciding to close or re-open. Persist every tick as an event record `{t, outcome, state_before, state_after, window_fail_ratio}` so the visualization layer and any replay tooling share one source of truth.
 
-For the puzzle/grid variants, seed scenarios with known-good solutions: e.g., "trip breaker within 5 seconds using ≤10 requests" or "keep breaker CLOSED despite 40% failure rate." Deterministic seeds (RNG seeded from scenario ID) are essential so a shared puzzle state reproduces identically across users. Record replay logs as (timestamp, request-outcome) tuples — compact, diffable, and sufficient to reconstruct any run.
+For "race" or comparative simulators running multiple breaker configurations side-by-side, feed all instances from the *same* synthetic stream (same seed, same schedule) and only vary the breaker parameters. This isolates configuration differences as the sole cause of divergent behavior, which is the whole pedagogical point.
