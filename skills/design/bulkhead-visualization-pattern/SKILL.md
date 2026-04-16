@@ -1,6 +1,6 @@
 ---
 name: bulkhead-visualization-pattern
-description: Render bulkhead compartments as isolated panels with per-pool saturation meters and a shared reject/overflow lane
+description: Visual layout conventions for rendering isolated resource pools side-by-side with saturation indicators
 category: design
 triggers:
   - bulkhead visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # bulkhead-visualization-pattern
 
-Visualize a bulkhead by mapping each isolated resource pool to its own compartment panel arranged in a grid or ship-hull layout. Every panel owns three visual channels: a capacity bar (active/queued/max slots), a saturation color ramp (green→amber→red as in-flight approaches max), and a per-pool reject counter badge. The critical design property is that panels must be visually independent — borders, gutters, and separate axes — so viewers intuit that saturation in pool A does not bleed into pool B. This is the whole point of bulkhead and the UI must reinforce it.
+Bulkhead visualizations should present each partition as a distinct, bordered container arranged horizontally or in a grid, never merged into a single aggregate view. The core visual metaphor borrows from ship compartments: each pool gets its own "chamber" with a clear capacity ceiling (e.g., 10 slots rendered as 10 cells or a filled bar), and in-flight requests fill the chamber from the bottom up. Color-code by saturation thresholds — green (0-60%), amber (60-90%), red (90-100%) — so viewers instantly spot which partition is drowning without reading numbers.
 
-Add a shared overflow/reject lane that is visually distinct from the compartments (e.g., a bottom trough or side gutter). When a pool rejects, animate the request sliding from that compartment into the reject lane rather than disappearing — this makes isolation visible as "rejected here, others still flowing." Overlay a global throughput line chart that stacks per-pool contributions so the viewer can see that degrading one pool caps its band while other bands continue unaffected. Avoid a single shared queue visualization; it defeats the mental model.
+Cross-partition comparison requires a shared y-axis scale across all bulkhead panels; otherwise a small pool at 9/10 looks identical to a large pool at 90/100 and the isolation benefit is invisible. Always render a "rejected/queued" overflow indicator outside the chamber boundary (e.g., stacked red dots spilling off the side) to show that back-pressure is kicking in on one partition while others remain healthy — this is the whole point of the pattern and must be the most prominent signal.
 
-For the load-dial and flood variants, add a controllable input rate per pool (slider or pressure gauge) and render incoming requests as particles entering their assigned compartment. Use a fixed legend showing pool identity, max concurrency, and queue depth so readers can correlate the policy configuration with observed saturation. Keep animation timing tied to simulated time, not wall-clock, so pause/step controls work predictably.
+Include a timeline or sparkline strip beneath each chamber showing recent saturation history (last 30-60s). This makes it obvious when one bulkhead has been pegged while neighbors idle, which is the key insight the pattern teaches. Avoid aggregating metrics across bulkheads in headline numbers — show per-partition latency p50/p99 separately, because averaging defeats the isolation narrative.
