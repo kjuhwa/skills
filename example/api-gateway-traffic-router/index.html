@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Gateway Traffic Router</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>API Gateway Traffic Router</h1>
+  <p>Watch requests flow through the gateway to backend microservices</p>
+</header>
+<main>
+  <canvas id="stage" width="900" height="500"></canvas>
+  <aside>
+    <div class="controls">
+      <button id="spawn">Spawn Request</button>
+      <button id="burst">Burst (20)</button>
+      <label>Rate <input type="range" id="rate" min="100" max="2000" value="600"></label>
+    </div>
+    <ul id="services"></ul>
+    <div class="stats">
+      <div>Total: <b id="total">0</b></div>
+      <div>In-flight: <b id="flight">0</b></div>
+      <div>Dropped: <b id="dropped">0</b></div>
+    </div>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

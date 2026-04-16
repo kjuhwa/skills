@@ -1,0 +1,12 @@
+{
+  "slug": "api-gateway-traffic-router",
+  "title": "Api Gateway Traffic Router",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:55:06.567Z",
+  "source_project": "100-api-gateway-traffic-router",
+  "author": "kjuhwa@nkia.co.kr"
+}

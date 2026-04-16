@@ -320,6 +320,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [feature-flags-rollout-simulator](feature-flags-rollout-simulator/) | Feature Flags Rollout Simulator — auto-generated feature-flags tool | html, css, vanilla-js | 2026-04-16 |
 
+| [api-gateway-traffic-router](api-gateway-traffic-router/) | Api Gateway Traffic Router — auto-generated api-gateway-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
