@@ -1,0 +1,12 @@
+{
+  "slug": "service-mesh-traffic",
+  "title": "Service Mesh Traffic",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:26:01.149Z",
+  "source_project": "101-service-mesh-traffic",
+  "author": "kjuhwa@nkia.co.kr"
+}
