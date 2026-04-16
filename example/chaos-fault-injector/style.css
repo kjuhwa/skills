@@ -1,0 +1,11 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;display:flex;justify-content:center;padding:20px}
+#app{width:100%;max-width:900px}
+h1{font-size:1.5rem;color:#6ee7b7;margin-bottom:4px}
+.subtitle{font-size:.85rem;color:#64748b;margin-bottom:12px}
+.toolbar{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.toolbar button{background:#6ee7b7;color:#0f1117;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.85rem}
+.toolbar button:hover{background:#5dd4a8}
+#stats{font-size:.8rem;color:#94a3b8}
+#stats b{color:#6ee7b7}
+canvas{background:#1a1d27;border-radius:10px;display:block;width:100%;cursor:crosshair}

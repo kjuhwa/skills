@@ -1,0 +1,12 @@
+{
+  "slug": "chaos-fault-injector",
+  "title": "Chaos Fault Injector",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:42:19.878Z",
+  "source_project": "41-chaos-fault-injector",
+  "author": "kjuhwa@nkia.co.kr"
+}
