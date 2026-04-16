@@ -1,0 +1,12 @@
+{
+  "slug": "tsdb-live-dashboard",
+  "title": "Tsdb Live Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:45:22.486Z",
+  "source_project": "36-tsdb-live-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSDB Live Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+  <h1>⚡ TSDB Live Dashboard</h1>
+  <div class="controls">
+    <select id="metric">
+      <option value="cpu">CPU Usage</option>
+      <option value="mem">Memory</option>
+      <option value="disk">Disk I/O</option>
+    </select>
+    <button id="toggleBtn">⏸ Pause</button>
+  </div>
+</div>
+<div class="stats" id="stats"></div>
+<canvas id="chart"></canvas>
+<div class="footer">Points: <span id="count">0</span> | Ingestion: <span id="rate">0</span> pts/s</div>
+<script src="app.js"></script>
+</body>
+</html>
