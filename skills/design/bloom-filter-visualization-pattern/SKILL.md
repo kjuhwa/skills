@@ -1,6 +1,6 @@
 ---
 name: bloom-filter-visualization-pattern
-description: Visualize bloom filter bit array state, hash function fan-out, and false positive regions in real time
+description: Visualizing bloom filter bit arrays, hash function mappings, and false-positive regions for interactive exploration
 category: design
 triggers:
   - bloom filter visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # bloom-filter-visualization-pattern
 
-When building a UI around a bloom filter, render three coupled views that update on every insert/query: (1) a bit-array grid where each cell is a colored square indicating 0/1 state, (2) animated lines or arcs connecting the queried element through its k hash functions to the specific bit positions they land on, and (3) a statistics panel showing current fill ratio (n/m), theoretical false positive rate `(1 - e^(-kn/m))^k`, and a counter of confirmed false positives encountered during probes. The bit grid should highlight collision hotspots by darkening cells touched by many inserts, making the intuition for false positives visually obvious.
+When building an interactive bloom filter explorer, render the underlying bit array as a grid of cells (typically 64-256 bits visible) where each cell reflects its 0/1 state with distinct colors — empty cells neutral, set cells filled, and newly-flipped cells highlighted briefly on insertion. Overlay hash function outputs as colored connector lines or arrows from the input token down to the k bit positions it maps to, using one color per hash function (h1, h2, h3) so users can trace which hash caused which bit flip. This makes the "multiple hashes → multiple bits" invariant visually self-evident rather than abstract.
 
-Use distinct visual semantics for the three query outcomes: "definitely not present" (all k bits green/lit through empty cells), "possibly present — true positive" (all k bits lit, element was actually inserted), and "possibly present — false positive" (all k bits lit, but element was never inserted — highlight in red or amber). A history log of recent queries with these outcome badges helps users connect cause and effect. For the bloom-filter-explorer style app, add sliders for m (bit array size) and k (hash count) that trigger a full re-render with re-seeded hash functions so users can explore parameter space interactively.
+For query operations, animate the lookup sequence: highlight the k target bits in order, and resolve to either "definitely not present" (any bit is 0, shown in red) or "possibly present" (all bits are 1, shown in amber — never green, since false positives are possible). Surface a live fill-ratio gauge and a computed false-positive probability `(1 - e^(-kn/m))^k` updated after every insertion so users watch the FPR curve climb as the filter saturates. Collision/race variants should additionally color bits that are "shared" by multiple inserted items differently, making the source of false positives tangible.
 
-For the spam-shield variant, layer domain framing on top of the raw bit-array view: show incoming messages/emails as a feed, and for each one display both the bloom filter decision ("flagged as spam" / "pass") and — during demo mode — the ground truth, so users can watch false positive rate accumulate against real traffic. Keep the bit grid visible but collapsible so the explanatory view doesn't overwhelm the operational view.
+Keep the visualization deterministic and replay-friendly: expose m (bit array size), k (hash count), and the hash seeds as URL-encoded parameters, and provide step-forward/step-back controls over the operation log. This lets users pause mid-insertion to inspect which hashes are about to fire, which is far more instructive than instant commits.
