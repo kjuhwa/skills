@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Traffic Light FSM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Traffic Light State Machine</h1>
+    <p class="subtitle">Watch the FSM transition between states with real-time logging</p>
+  </header>
+  <main>
+    <div class="panel light-panel">
+      <div class="pole">
+        <div class="light red" data-light="red"></div>
+        <div class="light yellow" data-light="yellow"></div>
+        <div class="light green" data-light="green"></div>
+      </div>
+      <div class="timer">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" class="ring-bg"/>
+          <circle cx="60" cy="60" r="54" class="ring-fg" id="ring"/>
+        </svg>
+        <div class="timer-text" id="timerText">0.0s</div>
+      </div>
+    </div>
+    <div class="panel control-panel">
+      <div class="state-display">
+        <span class="label">Current State</span>
+        <span class="state-name" id="stateName">RED</span>
+      </div>
+      <div class="controls">
+        <button id="toggleBtn">Pause</button>
+        <button id="stepBtn">Step →</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+      <div class="transitions">
+        <h3>Transitions</h3>
+        <ul>
+          <li><span class="tag red">RED</span> → <span class="tag green">GREEN</span> (5s)</li>
+          <li><span class="tag green">GREEN</span> → <span class="tag yellow">YELLOW</span> (4s)</li>
+          <li><span class="tag yellow">YELLOW</span> → <span class="tag red">RED</span> (2s)</li>
+        </ul>
+      </div>
+      <div class="log">
+        <h3>Event Log</h3>
+        <ul id="logList"></ul>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "traffic-light-fsm",
+  "title": "Traffic Light Fsm",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:10:19.353Z",
+  "source_project": "100-traffic-light-fsm",
+  "author": "kjuhwa@nkia.co.kr"
+}
