@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aggregate Inspector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>◈ Aggregate Inspector</h1>
+  <div class="panels">
+    <div class="panel" id="aggregates"><h2>Aggregates</h2><div id="aggList"></div></div>
+    <div class="panel" id="events"><h2>Event Stream</h2><div id="evtList"></div></div>
+    <div class="panel" id="snapshot"><h2>State Snapshot</h2><pre id="snapPre">{}</pre>
+      <div class="slider-row"><label>Time travel</label><input type="range" id="slider" min="0" max="0" value="0"></div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

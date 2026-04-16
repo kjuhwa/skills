@@ -1,0 +1,12 @@
+{
+  "slug": "event-sourcing-aggregate",
+  "title": "Event Sourcing Aggregate",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:33:32.096Z",
+  "source_project": "70-event-sourcing-aggregate",
+  "author": "kjuhwa@nkia.co.kr"
+}
