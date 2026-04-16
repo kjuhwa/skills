@@ -1,0 +1,18 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#d8dee9;font-family:'Segoe UI',sans-serif;padding:30px;min-height:100vh}
+h1{color:#6ee7b7;font-size:24px;text-align:center;font-weight:500}
+.sub{text-align:center;color:#6b7280;margin-bottom:30px;font-size:13px}
+.stage{display:flex;justify-content:center;align-items:center;gap:30px;margin-bottom:20px}
+.node{display:flex;flex-direction:column;align-items:center;gap:12px}
+.head{color:#6ee7b7;font-size:12px;letter-spacing:3px;font-weight:bold}
+.box{background:#1a1d27;border:2px solid #242837;border-radius:12px;padding:30px 40px;min-width:160px;text-align:center;font-family:'Consolas',monospace;color:#9aa5b1;transition:.4s}
+.box.active{border-color:#6ee7b7;box-shadow:0 0 20px rgba(110,231,183,.3);color:#6ee7b7}
+#wire{background:#1a1d27;border-radius:12px}
+.messages{max-width:800px;margin:0 auto 20px;background:#1a1d27;border-radius:12px;padding:16px;font-family:'Consolas',monospace;font-size:12px;min-height:160px;border:1px solid #242837}
+.messages div{padding:4px 0;border-bottom:1px solid #242837;color:#9aa5b1}
+.messages div b{color:#6ee7b7}
+.messages div.sent{color:#fbbf24}
+.controls{display:flex;justify-content:center;align-items:center;gap:14px}
+button{background:#1a1d27;color:#6ee7b7;border:1px solid #6ee7b7;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:13px}
+button:hover{background:#6ee7b7;color:#0f1117}
+#stepLabel{color:#6b7280;font-size:12px;margin-left:12px}

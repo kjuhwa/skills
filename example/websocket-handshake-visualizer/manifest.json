@@ -1,0 +1,12 @@
+{
+  "slug": "websocket-handshake-visualizer",
+  "title": "Websocket Handshake Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:34:06.605Z",
+  "source_project": "101-websocket-handshake-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}

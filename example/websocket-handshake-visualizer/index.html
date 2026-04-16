@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Handshake Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>WebSocket Handshake Protocol</h1>
+<p class="sub">Step through the RFC 6455 upgrade exchange</p>
+<div class="stage">
+  <div class="node client">
+    <div class="head">CLIENT</div>
+    <div class="box" id="clientBox">idle</div>
+  </div>
+  <svg id="wire" width="400" height="400"></svg>
+  <div class="node server">
+    <div class="head">SERVER</div>
+    <div class="box" id="serverBox">listening</div>
+  </div>
+</div>
+<div class="messages" id="messages"></div>
+<div class="controls">
+  <button id="next">Next Step</button>
+  <button id="auto">Auto Play</button>
+  <button id="reset">Reset</button>
+  <span id="stepLabel">Step 0 / 6</span>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -376,6 +376,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [log-stream-river](log-stream-river/) | Log Stream River — auto-generated log-aggregation tool | html, css, vanilla-js | 2026-04-16 |
 
+| [websocket-handshake-visualizer](websocket-handshake-visualizer/) | Websocket Handshake Visualizer — auto-generated websocket tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
