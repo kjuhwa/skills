@@ -72,6 +72,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [domain-driven-bounded-context-map](domain-driven-bounded-context-map/) | Domain Driven Bounded Context Map — auto-generated domain-driven tool | html, css, vanilla-js | 2026-04-16 |
 
+| [saga-timeline-viewer](saga-timeline-viewer/) | Saga Timeline Viewer — auto-generated saga-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

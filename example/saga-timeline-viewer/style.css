@@ -1,0 +1,16 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif;padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px}
+h1{color:#6ee7b7;font-size:1.3rem}.sub{color:#6b7280;font-size:.85rem}
+.wrap{display:flex;gap:16px;width:960px;margin-top:8px}
+#list{width:260px;display:flex;flex-direction:column;gap:6px}
+.saga-card{background:#1a1d27;padding:12px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:.15s}
+.saga-card:hover,.saga-card.active{border-color:#6ee7b7}
+.saga-card h3{font-size:.9rem;color:#e5e7eb}.saga-card span{font-size:.75rem}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:600}
+.tag.ok{background:#065f46;color:#6ee7b7}.tag.fail{background:#7f1d1d;color:#f87171}.tag.run{background:#1e3a5f;color:#60a5fa}
+#timeline{flex:1;background:#1a1d27;border-radius:10px;padding:16px;min-height:400px;overflow-y:auto}
+.evt{display:flex;gap:12px;align-items:flex-start;margin-bottom:4px;position:relative;padding-left:20px}
+.evt::before{content:'';position:absolute;left:6px;top:0;bottom:-4px;width:2px;background:#374151}
+.dot{width:12px;height:12px;border-radius:50%;position:absolute;left:1px;top:4px;z-index:1}
+.evt-body{background:#0f1117;padding:8px 12px;border-radius:6px;flex:1;font-size:.82rem;line-height:1.5}
+.evt-body b{color:#6ee7b7}.evt-body .ts{color:#6b7280;font-size:.72rem}
