@@ -1,0 +1,12 @@
+{
+  "slug": "dlq-flow-visualizer",
+  "title": "Dlq Flow Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:32:40.811Z",
+  "source_project": "27-dlq-flow-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}

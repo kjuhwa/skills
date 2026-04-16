@@ -36,6 +36,7 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [object-storage-galaxy](object-storage-galaxy/) | Object Storage Galaxy — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
 
 | [auto-hub-loop](auto-hub-loop/) | Hub Auto-Loop Dashboard — automated pipeline with web dashboard for generating, publishing, and learning | node, html, css, vanilla-js | 2026-04-16 |
+| [dlq-flow-visualizer](dlq-flow-visualizer/) | Dlq Flow Visualizer — auto-generated dead-letter-queue tool | html, css, vanilla-js | 2026-04-16 |
 
 ## Adding an example
 
