@@ -1,0 +1,18 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9cdd5;font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px;min-height:100vh}
+h1{font-size:20px;margin-bottom:4px}h1 span{color:#6ee7b7}
+.sub{font-size:12px;opacity:.5;margin-bottom:20px}
+#board{display:flex;gap:16px;width:100%;max-width:900px}
+#board>div{flex:1;background:#1a1d27;border-radius:10px;padding:14px}
+h2{font-size:13px;color:#6ee7b7;margin-bottom:10px;text-align:center}
+.mod{padding:8px 10px;margin:4px 0;border-radius:6px;font-size:12px;cursor:pointer;transition:.3s}
+.mod.legacy{background:#2a1f1f;border:1px solid #553333}
+.mod.legacy:hover{border-color:#ff6b6b}
+.mod.done{background:#1a2a1f;border:1px solid #335533;opacity:.4;cursor:default}
+.route{padding:6px 10px;margin:4px 0;border-radius:6px;font-size:11px;background:#1e2030;border:1px solid #333}
+.route.new{border-color:#6ee7b7;color:#6ee7b7}
+.svc{padding:8px 10px;margin:4px 0;border-radius:6px;font-size:12px;background:#122320;border:1px solid #2a6e55;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#bar{width:100%;max-width:900px;height:8px;background:#1a1d27;border-radius:4px;margin-top:16px}
+#fill{height:100%;background:#6ee7b7;border-radius:4px;width:0;transition:width .4s}
+#pct{font-size:12px;margin-top:6px;color:#6ee7b7}

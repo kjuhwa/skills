@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strangler Fig Migration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Strangler Fig <span>Migration Pattern</span></h1>
+<p class="sub">Click a legacy module to migrate it to the new system</p>
+<div id="board">
+  <div id="legacy"><h2>Legacy Monolith</h2><div id="modules"></div></div>
+  <div id="facade"><h2>Facade / Proxy</h2><div id="routes"></div></div>
+  <div id="modern"><h2>New Services</h2><div id="services"></div></div>
+</div>
+<div id="bar"><div id="fill"></div></div>
+<p id="pct">0% migrated</p>
+<script src="app.js"></script>
+</body>
+</html>
