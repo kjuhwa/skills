@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canary Traffic Shifter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🐤 Canary Traffic Shifter</h1>
+<div class="controls">
+  <label>Canary %: <input type="range" id="slider" min="0" max="100" value="5"><span id="pct">5%</span></label>
+  <button id="toggleBtn">▶ Start</button>
+</div>
+<canvas id="canvas" width="900" height="420"></canvas>
+<div class="stats" id="stats"></div>
+<script src="app.js"></script>
+</body>
+</html>
