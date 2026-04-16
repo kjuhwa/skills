@@ -1,0 +1,12 @@
+{
+  "slug": "fsm-traffic-sim",
+  "title": "Fsm Traffic Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:22:30.116Z",
+  "source_project": "101-fsm-traffic-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}

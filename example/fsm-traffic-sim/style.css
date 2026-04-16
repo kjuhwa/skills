@@ -1,0 +1,20 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px}
+h1{color:#6ee7b7;margin-bottom:18px;font-size:1.3rem}
+.wrap{display:flex;gap:24px;align-items:flex-start}
+.road{background:#1a1d27;border-radius:12px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:20px}
+.light-post{background:#111;border-radius:12px;padding:12px 18px;display:flex;flex-direction:column;gap:10px;align-items:center}
+.light{width:50px;height:50px;border-radius:50%;background:#222;transition:.4s;border:2px solid #333}
+.light.on-r{background:#ff4444;box-shadow:0 0 24px #ff4444}
+.light.on-y{background:#ffcc00;box-shadow:0 0 24px #ffcc00}
+.light.on-g{background:#6ee7b7;box-shadow:0 0 24px #6ee7b7}
+svg{background:#1a1d27}
+.controls{width:200px;display:flex;flex-direction:column;gap:10px}
+.info{background:#1a1d27;padding:8px 12px;border-radius:8px;font-size:.95rem}
+.info strong{color:#6ee7b7}
+label{color:#888;font-size:.8rem}
+input[type=range]{width:100%}
+button{background:#262a36;border:1px solid #6ee7b744;color:#c9d1d9;padding:8px;border-radius:6px;cursor:pointer}
+button:hover{background:#6ee7b7;color:#0f1117}
+#history{background:#1a1d27;border-radius:8px;padding:8px;font-size:.7rem;max-height:180px;overflow-y:auto}
+#history div{padding:2px 0;opacity:.7}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traffic Light FSM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Traffic Light FSM Simulator</h1>
+<div class="wrap">
+  <div class="road">
+    <div class="light-post">
+      <div class="light" id="light-r"></div>
+      <div class="light" id="light-y"></div>
+      <div class="light" id="light-g"></div>
+    </div>
+    <svg id="diagram" width="360" height="200"></svg>
+  </div>
+  <div class="controls">
+    <div class="info">State: <strong id="cur">RED</strong></div>
+    <div class="info">Timer: <span id="timer">0</span>s</div>
+    <label>Speed <input type="range" id="speed" min="1" max="10" value="5"></label>
+    <button id="toggle">Pause</button>
+    <div id="history"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
