@@ -1,0 +1,12 @@
+{
+  "slug": "shard-traffic-simulator",
+  "title": "Shard Traffic Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:55:44.784Z",
+  "source_project": "102-shard-traffic-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

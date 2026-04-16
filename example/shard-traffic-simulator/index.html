@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shard Traffic Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="dash">
+  <header>
+    <h1>Shard Traffic Simulator</h1>
+    <div class="ops"><span id="opsCount">0</span> ops/sec</div>
+  </header>
+  <div class="controls">
+    <label>Strategy:
+      <select id="strategy">
+        <option value="range">Range-based</option>
+        <option value="hash">Hash-based</option>
+        <option value="geo">Geo-based</option>
+      </select>
+    </label>
+    <label>Load: <input id="loadSlider" type="range" min="1" max="20" value="8"></label>
+    <button id="hotspot">Trigger Hotspot</button>
+    <button id="rebalance">Rebalance</button>
+    <button id="pause">Pause</button>
+  </div>
+  <div class="grid" id="shardGrid"></div>
+  <canvas id="timeline" width="900" height="140"></canvas>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
