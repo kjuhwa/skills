@@ -466,6 +466,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [supervisor-tree-playground](supervisor-tree-playground/) | Supervisor Tree Playground — auto-generated actor-model tool | html, css, vanilla-js | 2026-04-16 |
 
+| [actor-chat-repl](actor-chat-repl/) | Actor Chat Repl — auto-generated actor-model tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
