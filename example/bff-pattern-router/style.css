@@ -1,0 +1,56 @@
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --accent: #6ee7b7;
+  --text: #e5e7eb;
+  --muted: #6b7280;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, Segoe UI, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px;
+}
+header h1 { color: var(--accent); margin: 0 0 4px; }
+header p { color: var(--muted); margin: 0 0 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+button {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid #2a2f3d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+button:hover { border-color: var(--accent); color: var(--accent); }
+#stage {
+  width: 100%;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid #2a2f3d;
+}
+.legend {
+  display: flex; gap: 16px; margin: 12px 0; font-size: 12px; color: var(--muted);
+}
+.legend i {
+  display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px;
+}
+.log {
+  background: var(--surface);
+  border: 1px solid #2a2f3d;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  height: 140px;
+  overflow-y: auto;
+}
+.log div { padding: 2px 0; border-bottom: 1px dashed #2a2f3d; }
+.log .web { color: #6ee7b7; }
+.log .mobile { color: #7dd3fc; }
+.log .tv { color: #fca5a5; }
+.node text { fill: var(--text); font-size: 12px; font-family: sans-serif; }
+.node rect { stroke: #2a2f3d; stroke-width: 1; }

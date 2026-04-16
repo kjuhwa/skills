@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BFF Router Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>BFF Router Visualizer</h1>
+  <p>Watch how different clients route through their dedicated Backend-For-Frontend layers.</p>
+</header>
+<main>
+  <div class="controls">
+    <button data-client="web">Send Web Request</button>
+    <button data-client="mobile">Send Mobile Request</button>
+    <button data-client="tv">Send TV Request</button>
+    <button id="auto">Auto Traffic</button>
+    <button id="reset">Reset</button>
+  </div>
+  <svg id="stage" viewBox="0 0 900 520"></svg>
+  <div class="legend">
+    <span><i style="background:#6ee7b7"></i>Web BFF</span>
+    <span><i style="background:#7dd3fc"></i>Mobile BFF</span>
+    <span><i style="background:#fca5a5"></i>TV BFF</span>
+    <span><i style="background:#e5e7eb"></i>Services</span>
+  </div>
+  <div class="log" id="log"></div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

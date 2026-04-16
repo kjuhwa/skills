@@ -1,0 +1,12 @@
+{
+  "slug": "bff-pattern-router",
+  "title": "Bff Pattern Router",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:59:37.701Z",
+  "source_project": "100-bff-pattern-router",
+  "author": "kjuhwa@nkia.co.kr"
+}
