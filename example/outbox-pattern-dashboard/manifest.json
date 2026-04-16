@@ -1,0 +1,12 @@
+{
+  "slug": "outbox-pattern-dashboard",
+  "title": "Outbox Pattern Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:47:37.603Z",
+  "source_project": "101-outbox-pattern-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

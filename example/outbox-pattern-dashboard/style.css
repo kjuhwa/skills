@@ -1,0 +1,19 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;padding:20px}
+h1{color:#6ee7b7;font-size:20px;margin-bottom:16px}
+h2{color:#6ee7b7;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.stats{display:flex;gap:12px;margin-bottom:16px}
+.stat{background:#1a1d27;border-radius:8px;padding:12px 20px;flex:1;text-align:center}
+.stat .val{font-size:28px;font-weight:700;color:#6ee7b7}
+.stat .label{font-size:11px;color:#888;margin-top:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#1a1d27;border-radius:8px;padding:16px;min-height:200px}
+.card.full{grid-column:1/-1}
+canvas{width:100%;height:160px}
+#queue{max-height:160px;overflow-y:auto}
+#log{max-height:150px;overflow-y:auto;font-size:12px;font-family:monospace}
+.q-item{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #2a2d37;font-size:12px}
+.q-item .status{color:#6ee7b7}
+.log-line{padding:2px 0;border-bottom:1px solid #1a1d27}
+.log-line .ts{color:#555}
+.log-line .ev{color:#6ee7b7}
