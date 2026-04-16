@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLQ Pulse Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>DLQ Pulse Monitor</h1>
+  <div class="stats">
+    <div class="stat"><span id="total">0</span><label>Total</label></div>
+    <div class="stat"><span id="rate">0</span><label>/min</label></div>
+    <div class="stat"><span id="oldest">-</span><label>Oldest</label></div>
+  </div>
+  <canvas id="pulse" width="900" height="220"></canvas>
+  <div id="feed"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
