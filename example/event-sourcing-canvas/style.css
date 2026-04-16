@@ -1,0 +1,13 @@
+```css
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif}
+#app{max-width:820px;margin:0 auto;padding:20px}
+h1{color:#6ee7b7;font-size:1.2rem;margin-bottom:12px}
+.toolbar{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+button{background:#1a1d27;color:#6ee7b7;border:1px solid #6ee7b733;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:.82rem}
+button:hover{background:#6ee7b722}
+input[type=color]{width:32px;height:28px;border:1px solid #6ee7b733;background:#1a1d27;border-radius:4px;cursor:pointer}
+input[type=range]{accent-color:#6ee7b7;width:80px}
+#evtCount{color:#484f58;font-size:.75rem;margin-left:auto}
+canvas{background:#1a1d27;border-radius:8px;border:1px solid #6ee7b722;width:100%;cursor:crosshair}
+```

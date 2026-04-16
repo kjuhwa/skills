@@ -1,0 +1,12 @@
+{
+  "slug": "event-sourcing-canvas",
+  "title": "Event Sourcing Canvas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:12:56.219Z",
+  "source_project": "102-event-sourcing-canvas",
+  "author": "kjuhwa@nkia.co.kr"
+}
