@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idempotency Sandbox</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>⚡ Idempotency Sandbox</h1>
+<p class="subtitle">Click the button multiple times — watch how idempotent vs non-idempotent endpoints behave</p>
+<div class="panels">
+  <div class="panel">
+    <h2>POST /pay (Non-Idempotent)</h2>
+    <button id="btn-non">Send Payment $50</button>
+    <div class="log" id="log-non"></div>
+    <div class="total">Total charged: $<span id="total-non">0</span></div>
+  </div>
+  <div class="panel">
+    <h2>PUT /pay (Idempotent)</h2>
+    <button id="btn-idem">Send Payment $50</button>
+    <div class="log" id="log-idem"></div>
+    <div class="total">Total charged: $<span id="total-idem">0</span></div>
+  </div>
+</div>
+<div class="bar-section">
+  <h2>Request Count vs Side Effects</h2>
+  <canvas id="chart" width="600" height="200"></canvas>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

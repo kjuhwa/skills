@@ -1,0 +1,17 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',sans-serif;padding:24px;max-width:900px;margin:auto}
+h1{color:#6ee7b7;margin-bottom:4px}
+.subtitle{color:#8b949e;margin-bottom:24px;font-size:14px}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.panel{background:#1a1d27;border-radius:10px;padding:20px}
+.panel h2{font-size:14px;color:#6ee7b7;margin-bottom:12px}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700;font-size:14px}
+button:hover{opacity:.85}
+.log{height:140px;overflow-y:auto;margin:12px 0;font-size:12px;font-family:monospace;background:#13151d;border-radius:6px;padding:8px}
+.log div{padding:2px 0;border-bottom:1px solid #1e222e}
+.log .dup{color:#f87171}
+.log .ok{color:#6ee7b7}
+.total{font-size:18px;font-weight:700;color:#e2e8f0}
+.bar-section{background:#1a1d27;border-radius:10px;padding:20px}
+.bar-section h2{font-size:14px;color:#6ee7b7;margin-bottom:12px}
+canvas{width:100%;background:#13151d;border-radius:6px}

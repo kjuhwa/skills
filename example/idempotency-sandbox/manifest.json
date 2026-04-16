@@ -1,0 +1,12 @@
+{
+  "slug": "idempotency-sandbox",
+  "title": "Idempotency Sandbox",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:24:57.595Z",
+  "source_project": "100-idempotency-sandbox",
+  "author": "kjuhwa@nkia.co.kr"
+}

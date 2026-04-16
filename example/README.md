@@ -194,6 +194,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [schema-version-timeline](schema-version-timeline/) | Schema Version Timeline — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
 
+| [idempotency-sandbox](idempotency-sandbox/) | Idempotency Sandbox — auto-generated idempotency tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
