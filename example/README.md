@@ -170,6 +170,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [api-versioning-timeline](api-versioning-timeline/) | Api Versioning Timeline — auto-generated api-versioning tool | html, css, vanilla-js | 2026-04-16 |
 
+| [rate-limiter-visualizer](rate-limiter-visualizer/) | Rate Limiter Visualizer — auto-generated rate-limiter tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

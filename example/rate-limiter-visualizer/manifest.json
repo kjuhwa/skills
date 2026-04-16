@@ -1,0 +1,12 @@
+{
+  "slug": "rate-limiter-visualizer",
+  "title": "Rate Limiter Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:42:29.688Z",
+  "source_project": "100-rate-limiter-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}

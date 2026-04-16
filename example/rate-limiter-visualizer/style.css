@@ -1,0 +1,13 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
+.container { max-width: 840px; width: 100%; }
+h1 { color: #6ee7b7; margin-bottom: 16px; font-size: 1.4rem; }
+.controls { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; background: #1a1d27; padding: 12px 16px; border-radius: 8px; }
+.controls label { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+.controls span { color: #6ee7b7; min-width: 20px; }
+input[type=range] { accent-color: #6ee7b7; width: 100px; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+button:hover { opacity: 0.85; }
+canvas { background: #1a1d27; border-radius: 8px; display: block; width: 100%; }
+#log { margin-top: 10px; background: #1a1d27; border-radius: 8px; padding: 10px 14px; max-height: 120px; overflow-y: auto; font-size: 0.78rem; font-family: monospace; }
+.ok { color: #6ee7b7; } .denied { color: #f87171; }

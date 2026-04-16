@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Limiter Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Token Bucket Visualizer</h1>
+  <div class="controls">
+    <label>Rate: <input type="range" id="rate" min="1" max="20" value="5"><span id="rateVal">5</span>/s</label>
+    <label>Burst: <input type="range" id="burst" min="1" max="30" value="10"><span id="burstVal">10</span></label>
+    <button id="sendBtn">Send Request</button>
+    <button id="floodBtn">Flood (20)</button>
+  </div>
+  <canvas id="canvas" width="800" height="400"></canvas>
+  <div id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
