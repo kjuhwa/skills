@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaos Fault Injector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>⚡ Chaos Fault Injector</h1>
+  <p class="subtitle">Click a node to inject failure — watch it cascade</p>
+  <div class="toolbar">
+    <button id="btnReset">Reset All</button>
+    <span id="stats">Healthy: <b id="hCount">0</b> | Degraded: <b id="dCount">0</b> | Down: <b id="fCount">0</b></span>
+  </div>
+  <canvas id="canvas"></canvas>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
