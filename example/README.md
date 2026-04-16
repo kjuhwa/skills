@@ -388,6 +388,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [queue-conductor](queue-conductor/) | Queue Conductor — auto-generated message-queue tool | html, css, vanilla-js | 2026-04-16 |
 
+| [connection-pool-tycoon](connection-pool-tycoon/) | Connection Pool Tycoon — auto-generated connection-pool tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
