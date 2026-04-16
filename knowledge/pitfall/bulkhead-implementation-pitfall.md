@@ -1,6 +1,6 @@
 ---
 name: bulkhead-implementation-pitfall
-description: Shared thread pool or shared semaphore silently defeats bulkhead isolation despite correct-looking per-pool config
+description: Common mistakes that silently defeat bulkhead isolation in visualizations and real systems
 category: pitfall
 tags:
   - bulkhead
@@ -9,8 +9,8 @@ tags:
 
 # bulkhead-implementation-pitfall
 
-The most common bulkhead mistake is configuring per-pool limits on top of a shared underlying executor. Developers create `BulkheadA(max=10)` and `BulkheadB(max=10)` but both submit to the same `ForkJoinPool.commonPool()` or a shared `CachedThreadPool`. When pool A floods, it consumes all executor threads; pool B's semaphore says "you may proceed" but there is no thread to run on, so pool B starves despite appearing healthy in metrics. The fix is a dedicated executor per bulkhead, and a test that saturates A while asserting B's p99 latency is unchanged.
+The most common pitfall is sharing an underlying resource across supposedly-isolated bulkheads — for example, using `setTimeout` callbacks that all hit the same JS event loop, or in production, thread pools that share a database connection pool underneath. If your "isolated" pools all enqueue to one downstream queue, you've built a façade, not a bulkhead. Always verify that the simulated bottleneck (CPU, connection, lock) is actually partitioned per bulkhead in the model, not just the accounting layer.
 
-A second trap: counting queued requests toward the "in-flight" limit. If admission checks `inFlight + queued < max`, you have built a single queue with a cap, not a bulkhead — the queue becomes the contention point and slow pools back up into fast ones when they share downstream resources (DB connections, HTTP client). Keep `inFlight` and `queued` as distinct counters with distinct caps, and make sure each pool owns its own downstream client instance too, otherwise the bulkhead stops at the application boundary.
+A second trap is sizing all bulkheads identically "for symmetry." Real bulkhead deployments deliberately size partitions asymmetrically based on traffic class priority — the critical-path partition gets more slots than the batch partition. Visualizations that show equal-sized chambers miss this design lever entirely. Include at least one demo scenario where the critical partition is given 70% of total capacity and a low-priority partition gets 30%, so the tradeoff becomes concrete.
 
-Third: unbounded queue with timeout-based rejection. Teams set `queueSize=∞` and rely on request timeouts to shed load. Under sustained overload the queue grows, every request waits the full timeout before failing, and latency collapses. Bulkhead must reject fast (bounded queue, synchronous `rejected++`) so callers get immediate backpressure signal. The visualization is useful here precisely because it makes the "silent queue growth → cliff" failure mode obvious in a way dashboards with averaged latency do not.
+Third, rejected requests are frequently rendered as "disappeared" rather than explicitly shown. This hides the cost of the pattern: bulkheads trade availability for isolation, and users must see the rejection pile growing to understand that tradeoff. Always surface a rejection counter and ideally an animation of requests bouncing off a full chamber. Relatedly, don't let queued requests accumulate unboundedly in the simulation — real bulkheads have bounded queues, and an unbounded visualization queue masks the back-pressure behavior that makes the pattern valuable.
