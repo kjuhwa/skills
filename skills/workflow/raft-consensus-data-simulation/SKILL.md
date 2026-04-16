@@ -1,6 +1,6 @@
 ---
 name: raft-consensus-data-simulation
-description: Deterministic tick-based simulator for generating Raft cluster traces with controllable network partitions
+description: Deterministic event stream generation for Raft scenarios covering elections, replication, and term changes
 category: workflow
 triggers:
   - raft consensus data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # raft-consensus-data-simulation
 
-Drive Raft simulations with a deterministic tick loop rather than wall-clock timers. Each tick advances every node's election timeout and heartbeat timers by a fixed delta, processes one message from each node's inbox, and emits a state snapshot. Seed the PRNG used for randomized election timeouts (150-300ms range by convention) so the same seed always produces the same leader-election sequence — this is essential for reproducing bugs and for quiz scenarios that must have a known correct answer.
+Raft simulation data should be generated as a deterministic event log seeded by scenario name, producing a sequence of typed events: ElectionTimeout, RequestVoteRPC, VoteGranted, BecomeLeader, AppendEntriesRPC, LogAppended, CommitAdvanced, HeartbeatSent, PartitionInjected, NodeRecovered. Each event carries (timestamp, sourceNode, targetNode, term, logIndex, payload) so downstream visualizers can replay state at any cursor position without recomputing. Build a small in-memory state machine that advances one event at a time and snapshots node state (currentTerm, votedFor, log[], commitIndex, role) per tick.
 
-Model the network as a message bus with per-edge delivery flags: `partitioned`, `delayed`, and `dropped`. A partition scenario simply toggles the edge flags between two node subsets, letting you script the classic Raft test cases (minority partition loses leadership, majority partition elects new leader, partition heal causes log reconciliation). Record every RPC as `{tick, from, to, type, term, prevLogIndex, entries, success}` so the trace can be replayed forward and backward in the UI scrubber.
+Cover the canonical scenarios explicitly: happy-path election with single candidate, split-vote requiring retry with randomized timeouts, leader failure triggering re-election, network partition isolating the leader (stale-leader scenario), log divergence requiring AppendEntries consistency-check rejection and truncation, and commit-index advancement only after majority replication. Each scenario should be a named seed so the same scenario always produces identical event streams — crucial for reproducible demos and debugging.
 
-Expose three simulation knobs to the frontend: tick speed (playback rate), election timeout jitter range, and network reliability percentage. Pre-generate a handful of canonical traces (happy path, split vote, leader failover, log divergence, stale leader rejoin) as fixtures so the UI renders instantly without running the simulator on first load.
+Randomized election timeouts (typically 150–300ms range) must be baked into the simulator as a configurable parameter, because the split-vote and convergence behavior depends on this jitter. Expose knobs for cluster size (3, 5, 7 nodes), network latency distribution, packet-loss rate, and partition topology, then ship 5–10 preset scenarios that exercise each knob so users can see how parameter changes affect consensus behavior without building their own simulations.

@@ -1,6 +1,6 @@
 ---
 name: raft-consensus-implementation-pitfall
-description: Common Raft simulation bugs around term updates, log matching, and commit index advancement
+description: Common correctness bugs when modeling or implementing Raft, especially around term handling and commit safety
 category: pitfall
 tags:
   - raft
@@ -9,8 +9,8 @@ tags:
 
 # raft-consensus-implementation-pitfall
 
-The most frequent bug in Raft educational simulators is advancing `commitIndex` based on the leader's own log length rather than on majority replication of entries from the **current term**. Raft explicitly forbids committing entries from previous terms by counting replicas — the leader must replicate an entry from its own term and only then can it mark prior-term entries committed via the log-matching property. Simulators that skip this check will show "committed" entries that real Raft would refuse to commit, misleading learners about the figure-8 anomaly Diego Ongaro's paper warns about.
+The most frequent Raft bug is incorrect term handling on RPC receipt: any node receiving an RPC with a higher term MUST immediately step down to follower and update currentTerm BEFORE processing the RPC body. Simulations that only update term on successful vote/append miss this and produce impossible states like two leaders in the same term. Similarly, a candidate receiving an AppendEntries from the current term must step down — skipping this creates phantom candidates that never resolve.
 
-A second pitfall is failing to reset `votedFor` to null when a node observes a higher term. Every RPC handler (both send and receive paths) must check "if RPC term > currentTerm: currentTerm = term, votedFor = null, state = Follower" **before** processing the RPC body. Skipping this on the send path causes candidates to refuse to step down when they see a newer leader, producing phantom split-brain states that cannot occur in correct implementations.
+Commit-index safety is the second major trap: a leader may only advance commitIndex for entries from its OWN current term (the "Figure 8" problem in the Raft paper). Advancing commitIndex purely by majority replication, without the current-term check, allows committed entries to be overwritten — a silent data-loss bug that won't surface in happy-path demos but breaks under leader churn. Visualizations that don't model this correctly give viewers a dangerously simplified mental model.
 
-Finally, log-replication visualizations often conflate `matchIndex` and `nextIndex`. `nextIndex` is optimistic (what the leader will try to send next) and decrements on AppendEntries failure; `matchIndex` is pessimistic (what is confirmed replicated) and only advances on success. Rendering a single pointer per follower hides the gap where log reconciliation happens, which is precisely the mechanism learners need to see when a stale follower rejoins after a partition.
+Third, election timeout randomization must be per-node and re-randomized on every reset, not a single cluster-wide value. A common simulation shortcut uses fixed timeouts which makes split-vote impossible to demonstrate and understates how timing-sensitive convergence actually is. Also beware of log matching: AppendEntries consistency checks must compare both index AND term of prevLogIndex — comparing only index allows divergent logs to be silently accepted, which is the whole reason the term field exists in log entries.
