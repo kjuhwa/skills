@@ -1,0 +1,90 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  padding: 24px;
+}
+header h1 { color: #6ee7b7; font-size: 1.6rem; margin-bottom: 6px; }
+header p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px; }
+main {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  max-width: 1100px;
+}
+.panel {
+  background: #1a1d27;
+  border: 1px solid #252a36;
+  border-radius: 10px;
+  padding: 18px;
+}
+h2 { font-size: 0.95rem; color: #6ee7b7; margin-bottom: 14px; }
+form { display: flex; flex-direction: column; gap: 12px; }
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+input, select {
+  background: #0f1117;
+  border: 1px solid #252a36;
+  color: #e5e7eb;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+input:focus, select:focus { outline: none; border-color: #6ee7b7; }
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 6px;
+}
+button:hover { background: #5dd4a5; }
+.projection {
+  margin-top: 22px;
+  padding: 16px;
+  background: #0f1117;
+  border-radius: 8px;
+  border: 1px dashed #6ee7b7;
+  text-align: center;
+}
+.small { font-size: 0.75rem; color: #64748b; display: block; }
+#balance {
+  font-size: 2rem;
+  color: #6ee7b7;
+  font-weight: 700;
+  margin: 6px 0;
+  font-family: monospace;
+}
+.log-panel { max-height: 70vh; overflow-y: auto; }
+#log { display: flex; flex-direction: column-reverse; gap: 8px; }
+.event {
+  display: grid;
+  grid-template-columns: 40px 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #0f1117;
+  border-radius: 6px;
+  border-left: 3px solid #6ee7b7;
+  font-size: 0.85rem;
+  animation: slideIn 0.25s ease;
+}
+.event.neg { border-left-color: #f87171; }
+.event .seq { font-family: monospace; color: #6ee7b7; }
+.event .type { font-weight: 600; }
+.event .memo { color: #94a3b8; font-style: italic; font-size: 0.8rem; }
+.event .amt { font-family: monospace; font-weight: 600; }
+.event .amt.pos { color: #6ee7b7; }
+.event .amt.neg { color: #f87171; }
+.event .ts { color: #64748b; font-size: 0.75rem; font-family: monospace; }
+@keyframes slideIn { from { transform: translateY(-8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }

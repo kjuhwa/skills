@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event-Sourced Ledger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Event-Sourced Ledger</h1>
+  <p>Balance is never stored — it is derived by folding every event in the append-only log.</p>
+</header>
+<main>
+  <aside class="panel">
+    <h2>Emit Event</h2>
+    <form id="emit-form">
+      <label>Type
+        <select id="e-type">
+          <option>Deposit</option>
+          <option>Withdraw</option>
+          <option>Interest</option>
+          <option>Fee</option>
+        </select>
+      </label>
+      <label>Amount
+        <input id="e-amount" type="number" value="50" min="1" step="0.01">
+      </label>
+      <label>Memo
+        <input id="e-memo" type="text" placeholder="coffee, salary…">
+      </label>
+      <button type="submit">Append Event</button>
+    </form>
+    <div class="projection">
+      <span class="small">Projected Balance</span>
+      <div id="balance">$0.00</div>
+      <span class="small" id="derive-note">derived from 0 events</span>
+    </div>
+  </aside>
+  <section class="panel log-panel">
+    <h2>Append-Only Event Log</h2>
+    <div id="log"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
