@@ -1,0 +1,12 @@
+{
+  "slug": "bulkhead-ship",
+  "title": "Bulkhead Ship",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:32:35.416Z",
+  "source_project": "101-bulkhead-ship",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -196,6 +196,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [idempotency-sandbox](idempotency-sandbox/) | Idempotency Sandbox — auto-generated idempotency tool | html, css, vanilla-js | 2026-04-16 |
 
+| [bulkhead-ship](bulkhead-ship/) | Bulkhead Ship — auto-generated bulkhead tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

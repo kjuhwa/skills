@@ -1,0 +1,8 @@
+```css
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px;min-height:100vh}
+h1{color:#6ee7b7;font-size:1.5rem;margin-bottom:4px}
+.subtitle{color:#555;font-size:.8rem;margin-bottom:16px}
+canvas{background:#1a1d27;border-radius:12px;cursor:pointer;max-width:100%}
+#status{margin-top:14px;font-size:.85rem;padding:8px 20px;background:#1a1d27;border-radius:8px;border:1px solid #2a2d37}
+```
