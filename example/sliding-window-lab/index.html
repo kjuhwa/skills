@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sliding Window Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Sliding Window Rate Limiter</h1>
+  <p class="sub">Compare fixed-window vs sliding-window algorithms side by side</p>
+  <div class="config">
+    <label>Limit <input id="limit" type="number" min="1" max="20" value="5"></label>
+    <label>Window <input id="window" type="number" min="1" max="10" value="5">s</label>
+    <button id="hit">Simulate Click</button>
+    <button id="auto">Auto-traffic</button>
+    <button id="reset">Reset</button>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <h2>Fixed Window</h2>
+      <svg id="fixed" viewBox="0 0 600 160"></svg>
+      <div class="meter">Allowed: <span id="fOk">0</span> / Rejected: <span id="fKo">0</span></div>
+    </div>
+    <div class="panel">
+      <h2>Sliding Window</h2>
+      <svg id="sliding" viewBox="0 0 600 160"></svg>
+      <div class="meter">Allowed: <span id="sOk">0</span> / Rejected: <span id="sKo">0</span></div>
+    </div>
+  </div>
+  <div class="explainer">
+    <p><strong>Fixed:</strong> counts reset at window boundary — bursty clients can double the limit near edges.</p>
+    <p><strong>Sliding:</strong> counts the exact last N seconds — smoother and fairer.</p>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
