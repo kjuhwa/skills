@@ -1,0 +1,9 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;overflow:hidden;font-family:system-ui,sans-serif;color:#c9cdd5}
+#ui{position:fixed;top:16px;left:16px;z-index:1;background:#1a1d27;padding:16px;border-radius:10px;display:flex;flex-direction:column;gap:8px;min-width:180px}
+h1{font-size:14px;color:#6ee7b7}
+p{font-size:12px}
+input[type=range]{accent-color:#6ee7b7;width:100%}
+label{font-size:11px;opacity:.6}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:600;font-size:12px}
+canvas{display:block}

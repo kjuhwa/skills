@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-growth",
+  "title": "Strangler Fig Growth",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:17:46.059Z",
+  "source_project": "57-strangler-fig-growth",
+  "author": "kjuhwa@nkia.co.kr"
+}
