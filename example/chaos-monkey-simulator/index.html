@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaos Monkey Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>🐒 Chaos Monkey Simulator</h1>
+  <div class="controls">
+    <button id="btnStart">Start Chaos</button>
+    <button id="btnStop" disabled>Stop</button>
+    <label>Intensity <input type="range" id="intensity" min="1" max="10" value="3"></label>
+    <span id="killCount">Kills: 0</span>
+  </div>
+  <canvas id="canvas"></canvas>
+  <div id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
