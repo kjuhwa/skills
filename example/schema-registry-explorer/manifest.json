@@ -1,0 +1,12 @@
+{
+  "slug": "schema-registry-explorer",
+  "title": "Schema Registry Explorer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:58:31.454Z",
+  "source_project": "87-schema-registry-explorer",
+  "author": "kjuhwa@nkia.co.kr"
+}

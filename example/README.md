@@ -76,6 +76,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [retry-strategy-visualizer](retry-strategy-visualizer/) | Retry Strategy Visualizer — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
 
+| [schema-registry-explorer](schema-registry-explorer/) | Schema Registry Explorer — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
