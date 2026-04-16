@@ -288,6 +288,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [shard-router-visualizer](shard-router-visualizer/) | Shard Router Visualizer — auto-generated database-sharding tool | html, css, vanilla-js | 2026-04-16 |
 
+| [service-mesh-traffic-visualizer](service-mesh-traffic-visualizer/) | Service Mesh Traffic Visualizer — auto-generated service-mesh tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

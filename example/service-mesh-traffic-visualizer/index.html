@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Service Mesh Traffic Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Mesh Traffic Visualizer</h1>
+  <div class="controls">
+    <button id="toggle">Pause</button>
+    <button id="chaos">Inject Chaos</button>
+    <label>Rate: <input id="rate" type="range" min="1" max="20" value="8"></label>
+  </div>
+</header>
+<main>
+  <canvas id="mesh" width="900" height="560"></canvas>
+  <aside id="panel">
+    <h2>Live Metrics</h2>
+    <ul id="metrics"></ul>
+    <h3>Selected Service</h3>
+    <div id="detail">Click a node</div>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
