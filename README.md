@@ -117,16 +117,16 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/skills_search <keyword>` | Preview remote matches + available tagged versions, no install | no |
 | `/skills_list` | Show installed skills with source, version, pin state | no |
 | `/skills_sync [--skill=.. --version=..]` | Refresh cache; bulk update, targeted rollback, or `--unpin` | local |
-| `/skills_extract` | **Full project scan** → skill drafts in `.skills-draft/` | local drafts |
-| `/skills_extract_session` | **Current session only** → drafts from recent changes | local drafts |
+| `/skills_extract [keyword] [--max=<n>]` | **Full project scan** → skill drafts in `.skills-draft/`. Optional keyword focuses extraction on that domain. No limit by default. | local drafts |
+| `/skills_extract_session [keyword]` | **Current session only** → drafts from recent changes. Optional keyword filters to that domain. | local drafts |
 | `/skills_publish` | Review drafts → push to remote branch + `skills/<name>/v<ver>` tag | remote branch + tag |
 | `/skills_finalize` | End-of-project: extract → review → publish → cleanup | remote branch |
 | `/skills_cleanup` | Remote maintenance: dedupe, re-index, stale review | remote branch (dry-run default) |
 | `/skills_remove <name>` | Uninstall a local skill | local |
 | `/skills_bootstrap_update [--version=x.y.z]` | Install/rollback the slash-command files themselves | local commands |
 | `/skills_bootstrap_publish [--bump=...]` | Publish command edits + `bootstrap/v<ver>` tag | remote branch + tag |
-| `/skills_extract_knowledge [--from ...]` | Extract **both** executable skills *and* non-executable knowledge (facts, decisions, pitfalls) from session / git diff / commits | local drafts + knowledge |
-| `/skills_extract_project [--scope=... --max=... --only=...]` | **Full project scan** → drafts BOTH skills *and* knowledge (project-wide counterpart of `/skills_extract_knowledge`) | local drafts |
+| `/skills_extract_knowledge [keyword] [--from ...]` | Extract **both** executable skills *and* non-executable knowledge from session / git diff / commits. Optional keyword focuses on that domain. | local drafts + knowledge |
+| `/skills_extract_project [keyword] [--scope=... --max=... --only=...]` | **Full project scan** → drafts BOTH skills *and* knowledge. Optional keyword focuses extraction. No limit by default. | local drafts |
 | `/knowledge_list [--category/--tag/--linked-to/--orphans]` | List locally installed knowledge entries | no |
 | `/knowledge_search <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
 | `/knowledge_publish [--all/--draft=.../--pr]` | Review knowledge drafts → push to a feature branch, update `registry.json` knowledge section. No version tags. | remote branch |
@@ -150,8 +150,10 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 
 # Extract what you learned
 /skills_extract_session   → drafts from just this session
+/skills_extract kafka     → keyword-focused: only kafka-related patterns
 # or
-/skills_extract           → drafts from the whole project
+/skills_extract           → drafts from the whole project (no limit)
+/skills_extract_project tenant  → keyword-focused: only multi-tenancy patterns
 
 # Review & publish
 /skills_publish --pr      → creates branch, opens PR
@@ -306,6 +308,7 @@ Body sections: `## Fact` / `## Context / Why` / `## Evidence` / `## Applies when
 
 ```
 /skills_extract_knowledge --from range main..HEAD   # classify each commit
+/skills_extract_knowledge kafka --from session      # keyword-focused: only kafka-related
 # review preview, toggle entries, confirm
 /knowledge_list                                     # see what was added
 /knowledge_search "kafka routing" --inject          # prime context before work
