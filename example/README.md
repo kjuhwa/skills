@@ -266,6 +266,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [oauth-scope-playground](oauth-scope-playground/) | Oauth Scope Playground — auto-generated oauth tool | html, css, vanilla-js | 2026-04-16 |
 
+| [read-replica-topology](read-replica-topology/) | Read Replica Topology — auto-generated read-replica tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

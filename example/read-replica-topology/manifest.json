@@ -1,0 +1,12 @@
+{
+  "slug": "read-replica-topology",
+  "title": "Read Replica Topology",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:17:50.192Z",
+  "source_project": "100-read-replica-topology",
+  "author": "kjuhwa@nkia.co.kr"
+}
