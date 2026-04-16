@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSM Traffic Controller</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Traffic Light FSM</h1>
+  <div class="row">
+    <div class="light-box">
+      <div class="light" id="red"></div>
+      <div class="light" id="yellow"></div>
+      <div class="light" id="green"></div>
+    </div>
+    <div class="info">
+      <div class="state-label">Current: <strong id="curState">RED</strong></div>
+      <div class="timer">Timer: <span id="timer">0</span>s</div>
+      <div class="transitions" id="transLog"></div>
+    </div>
+  </div>
+  <svg id="diagram" viewBox="0 0 500 160"></svg>
+  <div class="controls">
+    <button id="btnToggle">Pause</button>
+    <button id="btnEmergency">🚨 Emergency</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

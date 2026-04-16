@@ -1,0 +1,19 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',system-ui,sans-serif;display:flex;justify-content:center;padding:24px}
+#app{max-width:560px;width:100%;text-align:center}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:16px}
+.row{display:flex;gap:24px;justify-content:center;align-items:center;margin-bottom:20px}
+.light-box{background:#1a1d27;border-radius:14px;padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.light{width:54px;height:54px;border-radius:50%;background:#222;transition:background .3s,box-shadow .3s}
+.light.on-red{background:#ef4444;box-shadow:0 0 24px #ef4444}
+.light.on-yellow{background:#facc15;box-shadow:0 0 24px #facc15}
+.light.on-green{background:#22c55e;box-shadow:0 0 24px #22c55e}
+.info{text-align:left;min-width:160px}
+.state-label{font-size:1.1rem;margin-bottom:6px}
+.state-label strong{color:#6ee7b7}
+.timer{color:#888;margin-bottom:10px}
+.transitions{font-size:.75rem;color:#555;max-height:90px;overflow-y:auto;line-height:1.6}
+svg{display:block;width:100%;background:#1a1d27;border-radius:10px;margin-bottom:12px}
+.controls{display:flex;gap:10px;justify-content:center}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:6px 18px;border-radius:6px;font-weight:600;cursor:pointer}
+button:hover{opacity:.85}

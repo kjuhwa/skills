@@ -242,6 +242,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [bff-pattern-dashboard](bff-pattern-dashboard/) | Bff Pattern Dashboard — auto-generated bff-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [fsm-traffic-controller](fsm-traffic-controller/) | Fsm Traffic Controller — auto-generated finite-state-machine tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

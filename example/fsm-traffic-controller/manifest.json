@@ -1,0 +1,12 @@
+{
+  "slug": "fsm-traffic-controller",
+  "title": "Fsm Traffic Controller",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T15:32:36.641Z",
+  "source_project": "101-fsm-traffic-controller",
+  "author": "kjuhwa@nkia.co.kr"
+}
