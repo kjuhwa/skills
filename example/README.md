@@ -382,6 +382,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [materialized-view-refresh-simulator](materialized-view-refresh-simulator/) | Materialized View Refresh Simulator — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
 
+| [outbox-pattern-pipeline](outbox-pattern-pipeline/) | Outbox Pattern Pipeline — auto-generated outbox-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
