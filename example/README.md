@@ -29,6 +29,7 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [mcp-protocol-playground](mcp-protocol-playground/) | MCP Protocol Playground — VS Code-inspired IDE for designing, validating, and simulating MCP tool schemas with 10 templates | html, js, css | 2026-04-16 |
 | [vibe-coding-canvas](vibe-coding-canvas/) | Vibe Coding Canvas — natural language to UI component generator, Korean/English input, live preview with generated HTML/CSS | html, js, css | 2026-04-16 |
 | [apm-dashboard](apm-dashboard/) | APM Suite Dashboard — trace waterfall, metrics dashboard (4 golden signals), service topology map with 7+ monitoring skills | html, css, vanilla-js | 2026-04-16 |
+| [binary-protocol-inspector](binary-protocol-inspector/) | Binary Protocol Inspector — hex editor, schema designer, VarInt visualizer, decode/encode with field highlighting | html, css, vanilla-js | 2026-04-16 |
 
 ## Adding an example
 

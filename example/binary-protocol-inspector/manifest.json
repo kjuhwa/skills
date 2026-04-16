@@ -1,0 +1,8 @@
+{
+  "slug": "binary-protocol-inspector",
+  "title": "Binary Protocol Inspector",
+  "stack": ["html", "css", "vanilla-js"],
+  "created_at": "2026-04-16T17:00:00Z",
+  "source_project": "15-binary-protocol",
+  "author": "kjuhwa@nkia.co.kr"
+}
