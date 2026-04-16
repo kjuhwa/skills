@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outbox Flow Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+  <h1>Outbox Flow Simulator</h1>
+  <div class="controls">
+    <button id="addOrder">+ New Order</button>
+    <button id="pollOutbox">Poll Outbox</button>
+    <button id="toggleAuto">Auto-Poll: OFF</button>
+  </div>
+</div>
+<div class="lanes">
+  <div class="lane">
+    <h2>Service DB</h2>
+    <div id="dbLane" class="items"></div>
+  </div>
+  <div class="lane">
+    <h2>Outbox Table</h2>
+    <div id="outboxLane" class="items"></div>
+  </div>
+  <div class="lane">
+    <h2>Message Broker</h2>
+    <div id="brokerLane" class="items"></div>
+  </div>
+</div>
+<canvas id="canvas"></canvas>
+<script src="app.js"></script>
+</body>
+</html>

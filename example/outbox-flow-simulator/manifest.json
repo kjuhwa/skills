@@ -1,0 +1,12 @@
+{
+  "slug": "outbox-flow-simulator",
+  "title": "Outbox Flow Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:47:28.991Z",
+  "source_project": "100-outbox-flow-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
