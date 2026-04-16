@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sidecar Proxy Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Sidecar Proxy Flow</h1>
+  <div class="controls">
+    <button id="injectBtn">Inject Request</button>
+    <button id="toggleMtls">mTLS: <span id="mtlsState">ON</span></button>
+    <button id="chaosBtn">Chaos: <span id="chaosState">OFF</span></button>
+    <label>Rate <input type="range" id="rate" min="200" max="2000" value="800"></label>
+  </div>
+</header>
+<main>
+  <canvas id="stage" width="900" height="420"></canvas>
+  <aside id="log"></aside>
+</main>
+<footer>
+  <div class="stat">In-flight: <b id="inflight">0</b></div>
+  <div class="stat">Proxied: <b id="proxied">0</b></div>
+  <div class="stat">Blocked: <b id="blocked">0</b></div>
+  <div class="stat">P50: <b id="p50">0</b>ms</div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
