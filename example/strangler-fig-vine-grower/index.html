@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Strangler Fig Vine Grower</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <h1>Strangler Fig</h1>
+    <p>Watch the vine climb and replace the host tree, one branch at a time.</p>
+    <div class="metric"><label>Host coverage</label><div class="bar"><div id="coverBar"></div></div><span id="coverPct">0%</span></div>
+    <div class="metric"><label>Branches grown</label><span id="branchCount" class="big">0</span></div>
+    <div class="metric"><label>Iteration</label><span id="iter" class="big">0</span></div>
+    <div class="buttons">
+      <button id="grow">Grow</button>
+      <button id="auto">Auto</button>
+      <button id="reset">Reset</button>
+    </div>
+    <ul class="legend">
+      <li><span class="sw host"></span>Host tree (legacy)</li>
+      <li><span class="sw fig"></span>Fig vine (new)</li>
+      <li><span class="sw node"></span>Service node</li>
+    </ul>
+  </aside>
+  <main>
+    <svg id="scene" viewBox="0 0 600 600"></svg>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

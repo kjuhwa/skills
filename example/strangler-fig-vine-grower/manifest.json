@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-vine-grower",
+  "title": "Strangler Fig Vine Grower",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T22:19:41.453Z",
+  "source_project": "101-strangler-fig-vine-grower",
+  "author": "kjuhwa@nkia.co.kr"
+}
