@@ -1,0 +1,12 @@
+{
+  "slug": "retry-storm-simulator",
+  "title": "Retry Storm Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:03:25.924Z",
+  "source_project": "101-retry-storm-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

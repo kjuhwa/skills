@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retry Storm Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Retry Storm Simulator</h1>
+  <p class="sub">Watch 50 clients hammer a recovering server. Does jitter save us?</p>
+  <div class="panel">
+    <label><input type="radio" name="mode" value="none" checked> No Jitter (Thundering Herd)</label>
+    <label><input type="radio" name="mode" value="full"> Full Jitter</label>
+    <label><input type="radio" name="mode" value="decorrelated"> Decorrelated Jitter</label>
+    <button id="restart">Restart</button>
+  </div>
+  <svg id="stage" viewBox="0 0 800 420"></svg>
+  <div class="metrics">
+    <div class="m"><span id="reqs">0</span><label>Requests/tick</label></div>
+    <div class="m"><span id="succ">0</span><label>Completed</label></div>
+    <div class="m"><span id="peak">0</span><label>Peak Load</label></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
