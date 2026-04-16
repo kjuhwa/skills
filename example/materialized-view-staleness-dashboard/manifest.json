@@ -1,0 +1,12 @@
+{
+  "slug": "materialized-view-staleness-dashboard",
+  "title": "Materialized View Staleness Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:58:26.476Z",
+  "source_project": "102-materialized-view-staleness-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

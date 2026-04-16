@@ -1,0 +1,30 @@
+:root{--bg:#0f1117;--surface:#1a1d27;--accent:#6ee7b7;--muted:#6b7280;--text:#e5e7eb;--warn:#fbbf24;--danger:#fca5a5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,sans-serif;min-height:100vh;padding:20px;}
+header{max-width:1200px;margin:0 auto 20px;}
+h1{font-size:22px;color:var(--accent);}
+.sub{color:var(--muted);font-size:13px;margin:4px 0 10px;}
+.global{display:flex;gap:12px;align-items:center;font-size:13px;color:var(--muted);}
+button{background:var(--accent);color:#0f1117;border:none;padding:7px 12px;border-radius:5px;font-weight:600;cursor:pointer;}
+button:hover{filter:brightness(1.1);}
+label{display:flex;gap:6px;align-items:center;cursor:pointer;}
+#clock{margin-left:auto;font-family:ui-monospace,monospace;color:var(--accent);}
+main{max-width:1200px;margin:0 auto;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px;}
+.tile{background:var(--surface);border:1px solid #252935;border-radius:10px;padding:14px;cursor:pointer;transition:.2s;position:relative;overflow:hidden;}
+.tile:hover{transform:translateY(-2px);border-color:var(--accent);}
+.tile h3{font-size:13px;color:var(--text);margin-bottom:6px;font-family:ui-monospace,monospace;}
+.tile .meta{font-size:11px;color:var(--muted);margin-bottom:10px;}
+.tile .age{font-size:24px;font-weight:700;font-family:ui-monospace,monospace;}
+.tile .bar{height:4px;background:#11141c;border-radius:2px;margin-top:10px;overflow:hidden;}
+.tile .bar span{display:block;height:100%;transition:width .3s;}
+.tile.fresh .age,.tile.fresh .bar span{color:var(--accent);background:var(--accent);}
+.tile.warn .age,.tile.warn .bar span{color:var(--warn);background:var(--warn);}
+.tile.stale .age,.tile.stale .bar span{color:var(--danger);background:var(--danger);}
+.tile .pulse{position:absolute;inset:0;background:var(--accent);opacity:0;pointer-events:none;}
+.tile.refreshing .pulse{animation:pulse .8s;}
+@keyframes pulse{0%{opacity:.3;}100%{opacity:0;}}
+.tile .sla{position:absolute;top:10px;right:10px;font-size:10px;color:var(--muted);}
+.trend{background:var(--surface);border:1px solid #252935;border-radius:10px;padding:16px;}
+.trend h2{font-size:13px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;}
+canvas{width:100%;display:block;}

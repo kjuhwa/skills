@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MV Staleness Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Materialized View Staleness Dashboard</h1>
+  <p class="sub">Monitor freshness across materialized views. Click a tile to refresh.</p>
+  <div class="global">
+    <button id="refreshAll">Refresh All</button>
+    <label><input type="checkbox" id="pause"> Pause clock</label>
+    <span id="clock"></span>
+  </div>
+</header>
+<main>
+  <div class="grid" id="grid"></div>
+  <section class="trend">
+    <h2>Cluster Staleness (last 60s)</h2>
+    <canvas id="chart" width="1100" height="140"></canvas>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
