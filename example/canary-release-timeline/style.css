@@ -1,0 +1,16 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:system-ui,sans-serif;padding:24px;max-width:800px;margin:auto}
+h1{font-size:1.3rem;color:#6ee7b7;margin-bottom:14px}
+.toolbar{display:flex;gap:10px;margin-bottom:18px}
+button{background:#1a1d27;color:#6ee7b7;border:1px solid #6ee7b7;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85rem}
+button:hover{background:#6ee7b7;color:#0f1117}
+#timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.step{display:flex;align-items:flex-start;gap:14px;padding:10px 0;position:relative}
+.dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:2px;border:2px solid #1a1d27}
+.line{position:absolute;left:8px;top:28px;width:2px;height:calc(100% - 18px);background:#22263a}
+.step:last-child .line{display:none}
+.body{flex:1;background:#1a1d27;border-radius:8px;padding:10px 14px;cursor:pointer}
+.body:hover{outline:1px solid #6ee7b7}
+.body h3{font-size:.85rem;margin-bottom:4px}.body p{font-size:.75rem;color:#94a3b8}
+.green{background:#6ee7b7}.yellow{background:#fbbf24}.red{background:#f87171}.blue{background:#3b82f6}.gray{background:#475569}
+#detail{margin-top:16px;background:#1a1d27;border-radius:8px;padding:14px;font-size:.8rem;min-height:60px;color:#94a3b8}
