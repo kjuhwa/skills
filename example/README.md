@@ -416,6 +416,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [actor-mailbox-theater](actor-mailbox-theater/) | Actor Mailbox Theater — auto-generated actor-model tool | html, css, vanilla-js | 2026-04-16 |
 
+| [read-replica-consistency-simulator](read-replica-consistency-simulator/) | Read Replica Consistency Simulator — auto-generated read-replica tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
