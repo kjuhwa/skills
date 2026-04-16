@@ -248,6 +248,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [log-stream-waterfall](log-stream-waterfall/) | Log Stream Waterfall — auto-generated log-aggregation tool | html, css, vanilla-js | 2026-04-16 |
 
+| [schema-compatibility-checker](schema-compatibility-checker/) | Schema Compatibility Checker — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

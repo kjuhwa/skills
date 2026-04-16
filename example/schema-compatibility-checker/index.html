@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schema Compatibility Checker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Schema Compatibility Checker</h1>
+  <div class="panels">
+    <div class="panel">
+      <h2>Base Schema (v1)</h2>
+      <textarea id="base" spellcheck="false"></textarea>
+    </div>
+    <div class="panel">
+      <h2>Evolved Schema (v2)</h2>
+      <textarea id="evolved" spellcheck="false"></textarea>
+    </div>
+  </div>
+  <button id="check">Check Compatibility</button>
+  <div id="results" class="results"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
