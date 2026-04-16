@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Version Diff Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>API Version Diff Simulator</h1>
+  <div class="controls">
+    <label>From <select id="fromV"></select></label>
+    <label>To <select id="toV"></select></label>
+    <label>Endpoint <select id="ep"></select></label>
+    <button id="swap">⇄ Swap</button>
+  </div>
+</header>
+<main>
+  <section class="pane">
+    <h3 id="leftLabel">v1</h3>
+    <pre id="left"></pre>
+  </section>
+  <section class="pane">
+    <h3 id="rightLabel">v2</h3>
+    <pre id="right"></pre>
+  </section>
+  <section class="summary">
+    <h3>Breaking change risk: <span id="risk">–</span></h3>
+    <ul id="notes"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
