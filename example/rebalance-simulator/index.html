@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rebalance Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Rebalance Simulator</h1>
+  <p class="sub">Compare modulo-hashing vs consistent-hashing when nodes change. Rows that move are highlighted.</p>
+  <div class="grid">
+    <section class="card">
+      <h2>Modulo: <code>hash(key) % N</code></h2>
+      <div id="modGrid" class="cellGrid"></div>
+      <div class="stat">moved: <span id="modMoved">0</span> / <span id="total">0</span></div>
+    </section>
+    <section class="card">
+      <h2>Consistent Hashing</h2>
+      <div id="conGrid" class="cellGrid"></div>
+      <div class="stat">moved: <span id="conMoved">0</span> / <span id="total2">0</span></div>
+    </section>
+  </div>
+  <div class="bar">
+    <button id="add">+ Add Node</button>
+    <button id="rm">− Remove Node</button>
+    <button id="reset">Reset</button>
+    <span class="info">nodes: <b id="nList"></b></span>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
