@@ -258,6 +258,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [object-storage-flow](object-storage-flow/) | Object Storage Flow — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
 
+| [dlq-topology-map](dlq-topology-map/) | Dlq Topology Map — auto-generated dead-letter-queue tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

@@ -1,0 +1,6 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;display:flex;justify-content:center;padding:20px}
+#app{width:920px;position:relative}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:12px;letter-spacing:1px}
+svg{background:#1a1d27;border-radius:10px;width:100%;height:auto}
+#tooltip{position:absolute;background:#0f1117ee;border:1px solid #6ee7b7;padding:10px;border-radius:6px;font-size:.72rem;display:none;pointer-events:none;max-width:220px;line-height:1.5}
