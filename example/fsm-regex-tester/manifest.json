@@ -1,0 +1,12 @@
+{
+  "slug": "fsm-regex-tester",
+  "title": "Fsm Regex Tester",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:21:40.848Z",
+  "source_project": "101-fsm-regex-tester",
+  "author": "kjuhwa@nkia.co.kr"
+}
