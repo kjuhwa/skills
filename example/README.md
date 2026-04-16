@@ -128,6 +128,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [chaos-monkey-dashboard](chaos-monkey-dashboard/) | Chaos Monkey Dashboard — auto-generated chaos-engineering tool | html, css, vanilla-js | 2026-04-16 |
 
+| [materialized-view-dag](materialized-view-dag/) | Materialized View Dag — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

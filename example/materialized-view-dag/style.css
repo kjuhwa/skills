@@ -1,0 +1,10 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#1a1d27;border-bottom:1px solid #2a2d37}
+h1{font-size:16px;color:#6ee7b7;font-weight:600}
+.controls{display:flex;gap:8px}
+button{background:#2a2d37;color:#6ee7b7;border:1px solid #6ee7b744;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .2s}
+button:hover{background:#6ee7b722;border-color:#6ee7b7}
+canvas{display:block}
+.tooltip{position:fixed;background:#1a1d27;border:1px solid #6ee7b7;padding:10px 14px;border-radius:8px;font-size:12px;pointer-events:none;opacity:0;transition:opacity .15s;max-width:220px;line-height:1.5}
+.tooltip b{color:#6ee7b7}
