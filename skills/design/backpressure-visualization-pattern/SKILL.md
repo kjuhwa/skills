@@ -1,6 +1,6 @@
 ---
 name: backpressure-visualization-pattern
-description: Visual patterns for rendering producer/consumer rate mismatch, queue saturation, and drop/block signals in backpressure simulators.
+description: Visualize producer/consumer rate mismatch with buffer fill gauges, drop counters, and upstream signal arrows
 category: design
 triggers:
   - backpressure visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # backpressure-visualization-pattern
 
-Backpressure UIs need three synchronized visual layers: a **flow layer** (particles/items moving through pipes, conveyors, or stream windows with velocity proportional to throughput), a **buffer layer** (a bounded container — valve chamber, sliding window, belt segment — with a fill gauge that changes color at soft/hard watermarks: green < 60%, amber 60–85%, red > 85%), and a **signal layer** (upstream indicators showing PAUSE/RESUME/DROP state propagating back toward the producer). The flow-valve-simulator uses particle density, reactive-stream-window uses a scrolling time-windowed queue, and conveyor-belt-jam uses stacked items — but all three share the invariant that the buffer fill % must be the single source of truth driving both downstream slowdown and upstream signaling.
+Backpressure demos need three synchronized visual layers to be legible. The first is a **flow lane** showing items as discrete tokens traveling producer → buffer → consumer, with token color encoding lifecycle state (in-flight, queued, processing, dropped, NACK'd). The second is a **buffer gauge** rendered as a stacked bar or ring with explicit watermarks — low (resume), high (pause), and hard cap (drop/block) — because backpressure is fundamentally about threshold crossings, not absolute fill. The third is a **signal lane** showing the upstream control channel (PAUSE, RESUME, WINDOW_UPDATE, credit grants) as arrows flowing opposite to the data direction; without this reverse-arrow visualization, users cannot distinguish backpressure from simple throttling.
 
-Always render the **rate mismatch explicitly**: show producer rate (items/sec in) and consumer rate (items/sec out) as two numbers or twin sparklines above the buffer. Users cannot intuit backpressure from animation alone — they need to see that 100/s in vs 30/s out causes the 70/s delta to accumulate. Include a "pressure" readout (derivative of buffer fill) so viewers see acceleration toward saturation, not just current level. Drop events should flash red at the point of loss (producer-side for reject, consumer-side for overflow) and leave a fading trail for ~500ms so rapid drops remain visible.
+Overlay a live rate chart with two lines (producer offered rate vs. consumer drain rate) and shade the delta region — the shaded area *is* the backpressure signal. Color convention across pipeline-pressure-lab, reactive-stream-juggler, and tcp-window-sim: green (flowing), amber (paused/blocked upstream), red (dropped/overflow), blue (credit/window token). Always label the **strategy** currently active (drop-oldest, drop-newest, block, buffer-unbounded, NACK) in the gauge header because the same fill level means different things under different strategies.
 
-Use **hysteresis bands** in the visualization (resume threshold strictly below pause threshold, e.g. pause at 85%, resume at 60%) and draw both lines on the buffer gauge. Without a visible resume line, users see a paused system and assume a bug. Animate the transition between states with easing, not instant snaps — backpressure is a feedback-loop phenomenon and abrupt state changes hide the lag that makes the pattern interesting in the first place.
+Interactivity must let the user drag producer rate, consumer rate, and buffer size independently while the sim runs — static sliders that require restart hide the most important lesson, which is the *transient* behavior when parameters change mid-flight. Expose a "burst" button that injects N items instantly to show overflow edges.
