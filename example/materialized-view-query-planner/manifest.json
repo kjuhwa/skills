@@ -1,0 +1,12 @@
+{
+  "slug": "materialized-view-query-planner",
+  "title": "Materialized View Query Planner",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:58:17.522Z",
+  "source_project": "101-materialized-view-query-planner",
+  "author": "kjuhwa@nkia.co.kr"
+}

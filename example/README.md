@@ -456,6 +456,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [actor-mailbox-sim](actor-mailbox-sim/) | Actor Mailbox Sim — auto-generated actor-model tool | html, css, vanilla-js | 2026-04-16 |
 
+| [materialized-view-query-planner](materialized-view-query-planner/) | Materialized View Query Planner — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

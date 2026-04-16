@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Materialized View Query Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Query Planner: With vs Without Materialized View</h1>
+  <p class="sub">Pick a query and see how a materialized view changes the execution plan.</p>
+</header>
+<main>
+  <aside class="queries">
+    <h2>Queries</h2>
+    <div id="queryList"></div>
+  </aside>
+  <section class="plans">
+    <div class="plan">
+      <h2>Without MV <span class="cost" id="costNoMv">—</span></h2>
+      <svg id="svgNoMv" viewBox="0 0 400 300"></svg>
+    </div>
+    <div class="plan">
+      <h2>With MV <span class="cost good" id="costMv">—</span></h2>
+      <svg id="svgMv" viewBox="0 0 400 300"></svg>
+    </div>
+  </section>
+  <footer>
+    <div class="stat"><span>Speedup</span><b id="speedup">—</b></div>
+    <div class="stat"><span>MV Size</span><b id="mvSize">—</b></div>
+    <div class="stat"><span>Freshness</span><b id="fresh">—</b></div>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
