@@ -1,0 +1,18 @@
+* { margin: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; padding: 24px; }
+.container { max-width: 900px; margin: 0 auto; }
+h1 { color: #6ee7b7; font-size: 1.6rem; }
+.subtitle { color: #94a3b8; margin: 6px 0 18px; font-size: 0.85rem; }
+.controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+button:hover { background: #5dd4a8; }
+label { color: #94a3b8; font-size: 0.85rem; cursor: pointer; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel { background: #1a1d27; border-radius: 10px; padding: 16px; min-height: 260px; }
+.panel h2 { color: #6ee7b7; font-size: 0.95rem; margin-bottom: 10px; }
+.log { font-family: monospace; font-size: 0.78rem; line-height: 1.7; max-height: 300px; overflow-y: auto; }
+.log-entry { padding: 3px 6px; border-radius: 4px; margin-bottom: 3px; }
+.log-entry.new { background: #6ee7b71a; }
+.log-entry.dup { background: #f472b61a; color: #f472b6; }
+.log-entry.ok { background: #6ee7b71a; color: #6ee7b7; }
+.balance { margin-top: 14px; font-size: 1.1rem; font-weight: 700; color: #6ee7b7; }

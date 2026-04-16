@@ -1,0 +1,12 @@
+{
+  "slug": "idempotency-replay-lab",
+  "title": "Idempotency Replay Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T15:04:43.793Z",
+  "source_project": "100-idempotency-replay-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

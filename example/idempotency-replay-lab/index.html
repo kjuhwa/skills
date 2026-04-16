@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idempotency Replay Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>🔁 Idempotency Replay Lab</h1>
+  <p class="subtitle">Send requests multiple times — observe how idempotency keys prevent duplicate side-effects</p>
+  <div class="controls">
+    <button id="btnSend" onclick="sendRequest()">Send Payment Request</button>
+    <button id="btnReplay" onclick="replayAll()">Replay All (x3)</button>
+    <button id="btnReset" onclick="resetLab()">Reset</button>
+    <label><input type="checkbox" id="chkKey" checked> Include Idempotency Key</label>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <h2>Request Log</h2>
+      <div id="requestLog" class="log"></div>
+    </div>
+    <div class="panel">
+      <h2>Server State</h2>
+      <div id="serverState" class="log"></div>
+      <div class="balance">Balance Deducted: $<span id="totalDeducted">0.00</span></div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
