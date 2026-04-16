@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Consistent Hash Ring</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Consistent Hash Ring</h1>
+  <p class="sub">Virtual nodes distribute keys around a 360° hash ring. Add or remove shards to see rebalancing.</p>
+  <div class="controls">
+    <button id="addShard">+ Add Shard</button>
+    <button id="removeShard">− Remove Shard</button>
+    <button id="addKeys">+ 25 Keys</button>
+    <button id="reset">Reset</button>
+    <span class="stat">Shards: <b id="nShards">3</b> • Keys: <b id="nKeys">0</b> • VNodes/shard: <b>12</b></span>
+  </div>
+  <svg id="ring" viewBox="0 0 600 600"></svg>
+  <div class="stats" id="distribution"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
