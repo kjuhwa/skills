@@ -1,0 +1,26 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e7e9ee; font: 14px/1.4 -apple-system, Segoe UI, sans-serif; padding: 24px; }
+.app { max-width: 860px; margin: 0 auto; }
+header h1 { color: #6ee7b7; font-size: 22px; margin-bottom: 4px; }
+.sub { color: #8a93a6; font-size: 13px; margin-bottom: 20px; }
+.envs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+.env { background: #1a1d27; border-radius: 10px; padding: 18px; border: 1px solid #252a38; position: relative; overflow: hidden; }
+.env::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; }
+.env.blue::before { background: #60a5fa; }
+.env.green::before { background: #6ee7b7; }
+.tag { font-size: 11px; letter-spacing: 1px; color: #8a93a6; }
+.pct { font-size: 40px; font-weight: 700; margin: 8px 0; transition: color .3s; }
+.env.blue .pct { color: #60a5fa; }
+.env.green .pct { color: #6ee7b7; }
+.meta { display: flex; gap: 16px; color: #8a93a6; font-size: 12px; }
+.meta b { color: #e7e9ee; }
+#flow { width: 100%; background: #1a1d27; border-radius: 10px; display: block; margin: 12px 0; border: 1px solid #252a38; }
+.controls { background: #1a1d27; padding: 16px; border-radius: 10px; border: 1px solid #252a38; }
+#slider { width: 100%; accent-color: #6ee7b7; margin-bottom: 12px; }
+.presets { display: flex; gap: 8px; flex-wrap: wrap; }
+.presets button { background: #252a38; color: #e7e9ee; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+.presets button:hover { background: #6ee7b7; color: #0f1117; }
+.log { margin-top: 16px; background: #1a1d27; padding: 16px; border-radius: 10px; border: 1px solid #252a38; max-height: 180px; overflow-y: auto; }
+.log h3 { color: #6ee7b7; font-size: 13px; margin-bottom: 8px; }
+.log li { font-family: monospace; font-size: 12px; padding: 3px 0; color: #8a93a6; border-bottom: 1px dashed #252a38; }
+.log li b { color: #e7e9ee; }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blue-Green Traffic Shifter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Blue-Green Traffic Shifter</h1>
+    <p class="sub">Drag the slider or click presets to shift live traffic between environments.</p>
+  </header>
+
+  <section class="envs">
+    <div class="env blue" id="envBlue">
+      <div class="tag">BLUE · v1.8.2</div>
+      <div class="pct" id="bluePct">100%</div>
+      <div class="meta">
+        <span>RPS: <b id="blueRps">0</b></span>
+        <span>Errors: <b id="blueErr">0</b></span>
+      </div>
+    </div>
+    <div class="env green" id="envGreen">
+      <div class="tag">GREEN · v1.9.0</div>
+      <div class="pct" id="greenPct">0%</div>
+      <div class="meta">
+        <span>RPS: <b id="greenRps">0</b></span>
+        <span>Errors: <b id="greenErr">0</b></span>
+      </div>
+    </div>
+  </section>
+
+  <canvas id="flow" width="820" height="160"></canvas>
+
+  <section class="controls">
+    <input type="range" id="slider" min="0" max="100" value="0">
+    <div class="presets">
+      <button data-v="0">Blue 100%</button>
+      <button data-v="10">Canary 10%</button>
+      <button data-v="50">Half</button>
+      <button data-v="90">Green 90%</button>
+      <button data-v="100">Cutover</button>
+    </div>
+  </section>
+
+  <section class="log">
+    <h3>Event Log</h3>
+    <ul id="log"></ul>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

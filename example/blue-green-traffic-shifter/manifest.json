@@ -1,0 +1,12 @@
+{
+  "slug": "blue-green-traffic-shifter",
+  "title": "Blue Green Traffic Shifter",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:16:52.626Z",
+  "source_project": "100-blue-green-traffic-shifter",
+  "author": "kjuhwa@nkia.co.kr"
+}
