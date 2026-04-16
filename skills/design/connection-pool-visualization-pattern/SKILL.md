@@ -1,6 +1,6 @@
 ---
 name: connection-pool-visualization-pattern
-description: Rendering connection pool state as discrete slot arrays with color-coded lifecycle phases and waiter queues
+description: Visual conventions for rendering connection pool state, connection lifecycles, and waiter queues in real-time dashboards
 category: design
 triggers:
   - connection pool visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # connection-pool-visualization-pattern
 
-Connection pools visualize best as a fixed-length array of slot cells where each cell represents a physical connection. Each slot surfaces four orthogonal dimensions at once: occupancy (idle/active/validating/closed), lease age (via fill intensity or a mini-progress bar inside the cell), tenant or query tag (via hue), and health (via border color — green healthy, amber validating, red broken). Next to the pool grid, render a separate "waiter queue" lane as a horizontal strip of pill-shaped tokens ordered left-to-right by arrival time, so starvation and FIFO violations are visible at a glance. Avoid pie charts or aggregate bar graphs for the pool itself — they hide per-connection identity, which is the whole point.
+Connection pool visualizations should render the pool as a fixed-width slot grid where each slot represents one physical connection, color-coded by lifecycle state: idle (muted green/grey), active/checked-out (saturated blue), validating (yellow pulse), stale/evicted (orange fading), and broken (red). Overlay each slot with a thin progress bar showing either time-since-checkout (for active) or time-until-idle-timeout (for idle), so users can instantly spot long-running queries and connections about to be reaped. Place a separate "waiter queue" column to the right, stacking pending acquisition requests with their wait-time counters; this makes pool exhaustion visceral rather than an abstract metric.
 
-Pair the slot grid with three always-visible scalar gauges anchored above it: `inUse/max`, `waiting`, and `p99 acquire latency`. When a connection transitions (acquire, release, invalidate, reap), animate only the affected slot with a sub-200ms flash on the border — never reflow the grid. Slot position must be stable across the whole session so operators build muscle memory for "slot 7 is the one that keeps dying." For pools larger than ~64 connections, switch to a wrapped grid with row labels (partition, shard, or connection-id range) rather than shrinking cells; readability of an individual slot trumps fitting the whole pool on one screen.
+Pair the slot grid with a stacked time-series chart (last 60s sliding window) of four key series: active count, idle count, waiters count, and acquisition latency p95. Use the same color language across the grid and the chart so correlation is obvious - a red spike in waiters should visually tie to a fully-blue grid. For config-tuning scenarios, render min/max/overflow thresholds as horizontal reference lines on the active-count series, and shade the "overflow zone" (between max and hard-cap) in a warning tint so users see when they are burning through the burst budget.
 
-Timeline view is the natural companion: a horizontal swimlane per slot with acquire/release spans as filled rectangles, overlaid with validation/eviction events as vertical tick marks. This makes pool-exhaustion episodes obvious — you see vertical bands where every lane is simultaneously filled — and lets users scrub time to correlate with the app-side query that caused the spike. Keep the slot grid and timeline on the same color scale so tenant/query identity carries between views.
+Always include a "connection age histogram" as a secondary panel - buckets of 0-30s, 30s-5min, 5min-30min, 30min+ - since connection reuse distribution is the single most diagnostic view for pool health that raw counts cannot convey. Avoid pie charts for state breakdown; they hide the capacity context that the slot-grid provides naturally.
