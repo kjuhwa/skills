@@ -1,0 +1,7 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
+#canvas { position: fixed; top: 0; left: 0; }
+#overlay { position: fixed; top: 16px; left: 16px; z-index: 10; pointer-events: none; }
+h1 { color: #6ee7b7; font-size: 1.2rem; margin-bottom: 6px; }
+#stats { color: #c9d1d9; font-size: 0.8rem; line-height: 1.6; }
+#lines { display: none; }
