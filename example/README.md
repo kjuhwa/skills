@@ -214,6 +214,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [pub-sub-galaxy](pub-sub-galaxy/) | Pub Sub Galaxy — auto-generated pub-sub tool | html, css, vanilla-js | 2026-04-16 |
 
+| [graphql-schema-galaxy](graphql-schema-galaxy/) | Graphql Schema Galaxy — auto-generated graphql tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

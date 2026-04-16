@@ -1,0 +1,12 @@
+{
+  "slug": "graphql-schema-galaxy",
+  "title": "Graphql Schema Galaxy",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T14:35:56.187Z",
+  "source_project": "100-graphql-schema-galaxy",
+  "author": "kjuhwa@nkia.co.kr"
+}
