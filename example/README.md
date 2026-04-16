@@ -134,6 +134,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [actor-message-flow](actor-message-flow/) | Actor Message Flow — auto-generated actor-model tool | html, css, vanilla-js | 2026-04-16 |
 
+| [saga-pattern-orchestrator](saga-pattern-orchestrator/) | Saga Pattern Orchestrator — auto-generated saga-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

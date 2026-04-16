@@ -1,0 +1,12 @@
+{
+  "slug": "saga-pattern-orchestrator",
+  "title": "Saga Pattern Orchestrator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:56:23.680Z",
+  "source_project": "100-saga-pattern-orchestrator",
+  "author": "kjuhwa@nkia.co.kr"
+}
