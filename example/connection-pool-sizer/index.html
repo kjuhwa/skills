@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Connection Pool Sizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Connection Pool Sizer</h1>
+  <p class="sub">Little's Law: L = λ × W. Find the sweet spot between utilization, latency, and waste.</p>
+  <div class="grid">
+    <div class="panel inputs">
+      <h2>Workload</h2>
+      <label>Arrival rate (λ) <b><span id="lam-v">50</span> req/s</b>
+        <input type="range" id="lam" min="1" max="500" value="50">
+      </label>
+      <label>Service time (S) <b><span id="svc-v">40</span> ms</b>
+        <input type="range" id="svc" min="1" max="500" value="40">
+      </label>
+      <label>Pool size (c) <b><span id="c-v">8</span></b>
+        <input type="range" id="c" min="1" max="64" value="8">
+      </label>
+      <h2>Results</h2>
+      <div class="kpi"><span>Utilization (ρ)</span><b id="r-util">—</b></div>
+      <div class="kpi"><span>Avg queue (Lq)</span><b id="r-lq">—</b></div>
+      <div class="kpi"><span>Avg wait (Wq)</span><b id="r-wq">—</b></div>
+      <div class="kpi"><span>Response (W)</span><b id="r-w">—</b></div>
+      <div class="kpi"><span>Verdict</span><b id="r-verdict">—</b></div>
+    </div>
+    <div class="panel">
+      <h2>Latency vs Pool Size</h2>
+      <svg id="chart" viewBox="0 0 500 320"></svg>
+      <div class="legend">
+        <span><i style="background:#6ee7b7"></i>Wait time (ms)</span>
+        <span><i style="background:#fbbf24"></i>Utilization %</span>
+        <span><i style="background:#f87171"></i>Your choice</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

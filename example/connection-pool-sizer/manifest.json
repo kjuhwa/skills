@@ -1,0 +1,12 @@
+{
+  "slug": "connection-pool-sizer",
+  "title": "Connection Pool Sizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:27:08.978Z",
+  "source_project": "102-connection-pool-sizer",
+  "author": "kjuhwa@nkia.co.kr"
+}
