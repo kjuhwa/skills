@@ -1,0 +1,12 @@
+{
+  "slug": "load-balancer-sim",
+  "title": "Load Balancer Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:13:28.228Z",
+  "source_project": "102-load-balancer-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}

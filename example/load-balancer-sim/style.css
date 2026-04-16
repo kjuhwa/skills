@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
+h1 { color: #6ee7b7; font-size: 1.4rem; }
+.sub { color: #666; font-size: 0.85rem; margin: 6px 0 18px; }
+.lanes { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.lane { background: #1a1d27; border-radius: 10px; padding: 14px; width: 280px; border: 1px solid #ffffff0a; }
+.lane h2 { font-size: 0.9rem; color: #6ee7b7; margin-bottom: 10px; }
+.srv-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.8rem; }
+.srv-row .name { width: 40px; text-align: right; color: #888; }
+.srv-row .track { flex: 1; height: 18px; background: #0f1117; border-radius: 4px; overflow: hidden; position: relative; }
+.srv-row .fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+.srv-row .lbl { position: absolute; right: 4px; top: 1px; font-size: 0.7rem; color: #fff; }
+.stats { display: flex; gap: 14px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+.stat-card { background: #1a1d27; border-radius: 8px; padding: 12px 20px; min-width: 180px; }
+.stat-card h3 { font-size: 0.75rem; color: #888; text-transform: uppercase; }
+.stat-card .v { font-size: 1.3rem; font-weight: 700; color: #6ee7b7; margin-top: 4px; }
