@@ -156,6 +156,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [strangler-fig-ecosystem](strangler-fig-ecosystem/) | Strangler Fig Ecosystem — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
 
+| [canary-release-rollout-sim](canary-release-rollout-sim/) | Canary Release Rollout Sim — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

@@ -1,0 +1,12 @@
+{
+  "slug": "canary-release-rollout-sim",
+  "title": "Canary Release Rollout Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:26:15.664Z",
+  "source_project": "33-canary-release-rollout-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}
