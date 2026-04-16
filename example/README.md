@@ -152,6 +152,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [idempotency-proof-canvas](idempotency-proof-canvas/) | Idempotency Proof Canvas — auto-generated idempotency tool | html, css, vanilla-js | 2026-04-16 |
 
+| [strangler-fig-growth-sim](strangler-fig-growth-sim/) | Strangler Fig Growth Sim — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

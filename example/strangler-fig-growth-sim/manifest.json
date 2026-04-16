@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-growth-sim",
+  "title": "Strangler Fig Growth Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:21:40.415Z",
+  "source_project": "29-strangler-fig-growth-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}
