@@ -1,0 +1,12 @@
+{
+  "slug": "dlq-autopsy-table",
+  "title": "Dlq Autopsy Table",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:32:48.884Z",
+  "source_project": "28-dlq-autopsy-table",
+  "author": "kjuhwa@nkia.co.kr"
+}

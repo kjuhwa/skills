@@ -35,6 +35,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [object-storage-galaxy](object-storage-galaxy/) | Object Storage Galaxy — auto-generated object-storage tool | html, css, vanilla-js | 2026-04-16 |
 
+| [dlq-autopsy-table](dlq-autopsy-table/) | Dlq Autopsy Table — auto-generated dead-letter-queue tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

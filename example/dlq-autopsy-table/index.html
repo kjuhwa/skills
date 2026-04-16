@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLQ Autopsy Table</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>DLQ Autopsy Table</h1>
+  <div class="toolbar">
+    <input id="search" placeholder="Filter by error or topic..." />
+    <button id="btnRetry">Retry Selected</button>
+    <button id="btnPurge">Purge Selected</button>
+  </div>
+</header>
+<div id="tableWrap"><table><thead><tr>
+  <th><input type="checkbox" id="selAll"></th>
+  <th>ID</th><th>Topic</th><th>Error</th><th>Retries</th><th>Age</th><th>Payload</th>
+</tr></thead><tbody id="tbody"></tbody></table></div>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
