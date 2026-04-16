@@ -1,0 +1,14 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; height: 100vh; }
+.app { display: flex; height: 100%; }
+.panel { padding: 20px; overflow-y: auto; }
+.schema { width: 320px; border-right: 1px solid #2a2d37; }
+.output { flex: 1; }
+h2 { color: #6ee7b7; font-size: 1rem; margin-bottom: 12px; }
+pre { background: #1a1d27; padding: 14px; border-radius: 8px; font-size: 0.82rem; white-space: pre-wrap; margin-bottom: 16px; min-height: 60px; line-height: 1.5; }
+.field { padding: 4px 0 4px 16px; cursor: pointer; user-select: none; font-size: 0.85rem; border-radius: 4px; }
+.field:hover { background: #1a1d27; }
+.field.active { color: #6ee7b7; }
+.field .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; background: #334155; }
+.field.active .dot { background: #6ee7b7; }
+.type-label { color: #64748b; font-size: 0.75rem; margin: 10px 0 4px 4px; text-transform: uppercase; letter-spacing: 1px; }
