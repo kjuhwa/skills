@@ -1,0 +1,18 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', monospace; min-height: 100vh; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+h1 { font-size: 1rem; color: #6ee7b7; }
+.toolbar { display: flex; gap: 6px; }
+button { background: #1a1d27; color: #6ee7b7; border: 1px solid #6ee7b744; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: .8rem; }
+button:hover { background: #6ee7b722; }
+#grid { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px 20px; }
+.actor-card { background: #1a1d27; border: 1px solid #6ee7b733; border-radius: 8px; padding: 12px; width: 150px; transition: all .3s; cursor: pointer; }
+.actor-card:hover { border-color: #6ee7b7; }
+.actor-card.dead { opacity: .35; border-color: #f8717144; }
+.actor-card .name { color: #6ee7b7; font-size: .85rem; margin-bottom: 4px; }
+.actor-card .state { font-size: .7rem; margin-bottom: 6px; }
+.actor-card .bar { height: 4px; background: #2a2d37; border-radius: 2px; overflow: hidden; }
+.actor-card .bar-fill { height: 100%; background: #6ee7b7; transition: width .5s; }
+.actor-card.dead .bar-fill { background: #f87171; }
+#stats { position: fixed; bottom: 0; width: 100%; background: #1a1d27; padding: 8px 20px; font-size: .75rem; display: flex; gap: 20px; border-top: 1px solid #6ee7b722; }
+.stat-val { color: #6ee7b7; }

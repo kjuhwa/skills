@@ -1,0 +1,12 @@
+{
+  "slug": "actor-lifecycle-sim",
+  "title": "Actor Lifecycle Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:36:29.136Z",
+  "source_project": "31-actor-lifecycle-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}

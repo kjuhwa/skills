@@ -38,6 +38,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [auto-hub-loop](auto-hub-loop/) | Hub Auto-Loop Dashboard — automated pipeline with web dashboard for generating, publishing, and learning | node, html, css, vanilla-js | 2026-04-16 |
 | [dlq-flow-visualizer](dlq-flow-visualizer/) | Dlq Flow Visualizer — auto-generated dead-letter-queue tool | html, css, vanilla-js | 2026-04-16 |
 
+| [actor-lifecycle-sim](actor-lifecycle-sim/) | Actor Lifecycle Sim — auto-generated actor-model tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
