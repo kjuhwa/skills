@@ -1,0 +1,19 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#e5e7eb;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.container{max-width:960px;width:100%}
+header{margin-bottom:20px}
+h1{font-size:26px;font-weight:600;color:#e5e7eb}
+.dim{color:#64748b;font-weight:400;font-size:16px}
+header p{color:#94a3b8;font-size:13px;margin-top:6px}
+#belt{width:100%;background:#1a1d27;border:1px solid #252836;border-radius:12px;margin-bottom:16px;cursor:pointer}
+.hud{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{background:#1a1d27;border:1px solid #252836;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.stat span{color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.stat b{color:#6ee7b7;font-size:22px}
+.stat.alert.jammed{border-color:#ef4444}
+.stat.alert.jammed b{color:#ef4444}
+.stat.alert.warning{border-color:#f59e0b}
+.stat.alert.warning b{color:#f59e0b}
+.actions{display:flex;gap:10px}
+button{background:#1a1d27;color:#e5e7eb;border:1px solid #252836;padding:10px 18px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px;flex:1}
+button:hover{border-color:#6ee7b7;color:#6ee7b7}

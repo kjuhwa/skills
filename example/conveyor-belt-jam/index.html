@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Conveyor Belt Jam</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Conveyor Belt <span class="dim">:: backpressure game</span></h1>
+    <p>Click boxes to process them before the line jams up. Processing speed can't keep up with arrivals.</p>
+  </header>
+  <svg id="belt" viewBox="0 0 900 260"></svg>
+  <div class="hud">
+    <div class="stat"><span>Processed</span><b id="processed">0</b></div>
+    <div class="stat"><span>Queue</span><b id="queue">0</b></div>
+    <div class="stat"><span>Arrival Rate</span><b id="arrival">1.0</b>/s</div>
+    <div class="stat alert" id="alertStat"><span>Status</span><b id="status">Flowing</b></div>
+  </div>
+  <div class="actions">
+    <button id="reset">Reset</button>
+    <button id="faster">Faster Arrivals</button>
+    <button id="slower">Slower Arrivals</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
