@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Username Availability — Bloom Check</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <div class="brand">
+    <div class="logo">◆</div>
+    <h1>claim.dev</h1>
+  </div>
+  <p class="tagline">Lightning-fast username lookup powered by a bloom filter.<br>
+  A "taken" result is checked again against the real DB — no false negatives possible.</p>
+  <form id="form" autocomplete="off">
+    <div class="input-wrap">
+      <span class="prefix">@</span>
+      <input type="text" id="uname" placeholder="pick a handle" maxlength="20">
+      <span class="status" id="status"></span>
+    </div>
+    <button type="submit">Check availability</button>
+  </form>
+  <div class="hint" id="hint">Start typing to check instantly against 5,000 cached usernames.</div>
+  <div class="panel">
+    <h2>Bloom filter internals</h2>
+    <svg id="bar" viewBox="0 0 400 24" preserveAspectRatio="none"></svg>
+    <div class="metrics">
+      <div><label>Filter size</label><span id="m">2048 bits</span></div>
+      <div><label>Hash functions</label><span id="k">4</span></div>
+      <div><label>Queries</label><span id="queries">0</span></div>
+      <div><label>DB lookups saved</label><span id="saved">0</span></div>
+    </div>
+  </div>
+  <ul id="history"></ul>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

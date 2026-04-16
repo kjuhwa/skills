@@ -430,6 +430,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [service-pulse-monitor](service-pulse-monitor/) | Service Pulse Monitor — auto-generated health-check tool | html, css, vanilla-js | 2026-04-16 |
 
+| [bloom-filter-username-check](bloom-filter-username-check/) | Bloom Filter Username Check — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
