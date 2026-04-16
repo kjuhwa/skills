@@ -30,6 +30,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 | [vibe-coding-canvas](vibe-coding-canvas/) | Vibe Coding Canvas — natural language to UI component generator, Korean/English input, live preview with generated HTML/CSS | html, js, css | 2026-04-16 |
 | [apm-dashboard](apm-dashboard/) | APM Suite Dashboard — trace waterfall, metrics dashboard (4 golden signals), service topology map with 7+ monitoring skills | html, css, vanilla-js | 2026-04-16 |
 | [binary-protocol-inspector](binary-protocol-inspector/) | Binary Protocol Inspector — hex editor, schema designer, VarInt visualizer, decode/encode with field highlighting | html, css, vanilla-js | 2026-04-16 |
+| [distributed-lock-visualizer](distributed-lock-visualizer/) | Distributed Lock Visualizer — MongoDB/Redis lock simulation with deadlock, thundering herd, split brain scenarios | html, css, vanilla-js, canvas | 2026-04-16 |
+| [gacha-simulator](gacha-simulator/) | Gacha Simulator Arena — pull system with soft/hard pity, character collection, turn-based combat, status effects | html, css, vanilla-js | 2026-04-16 |
 
 ## Adding an example
 

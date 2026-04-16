@@ -1,0 +1,8 @@
+{
+  "slug": "distributed-lock-visualizer",
+  "title": "Distributed Lock Visualizer",
+  "stack": ["html", "css", "vanilla-js", "canvas"],
+  "created_at": "2026-04-16T17:00:00Z",
+  "source_project": "16-distributed-lock",
+  "author": "kjuhwa@nkia.co.kr"
+}
