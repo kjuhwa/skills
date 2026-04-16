@@ -1,0 +1,12 @@
+{
+  "slug": "tsdb-live-monitor",
+  "title": "Tsdb Live Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:02:08.882Z",
+  "source_project": "100-tsdb-live-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}
