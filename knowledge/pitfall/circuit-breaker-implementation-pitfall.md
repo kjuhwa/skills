@@ -1,6 +1,6 @@
 ---
 name: circuit-breaker-implementation-pitfall
-description: Common circuit breaker bugs: flapping, stuck HALF_OPEN, wrong window semantics, and thundering-herd recovery
+description: Common bugs when implementing the HALF_OPEN probe state and failure window accounting
 category: pitfall
 tags:
   - circuit
@@ -9,8 +9,8 @@ tags:
 
 # circuit-breaker-implementation-pitfall
 
-The most frequent circuit breaker bug is **flapping between CLOSED and OPEN** because the failure threshold uses a count-based window without hysteresis — a breaker that trips at 5 failures and resets at 0 will oscillate under steady 50% error rates. Fix this with either (a) separate trip and reset thresholds (trip at 50% failure, require 80% success to close), (b) a minimum OPEN-state duration regardless of probe result, or (c) a rolling time window (not count window) so transient bursts smooth out. The simulator must expose this: showing a count-only breaker flapping visibly teaches the lesson better than documentation.
+The most common circuit breaker bug is mishandling the HALF_OPEN state: implementations often allow unlimited concurrent probe calls through, which defeats the purpose of a cautious recovery check and can slam a recovering dependency with a thundering herd. Always gate HALF_OPEN to a fixed small number of in-flight probes (typically 1–3), reject or queue the rest, and only transition to CLOSED after K consecutive probe successes — not after the first success, which gives a false positive on flaky dependencies.
 
-The second pitfall is **stuck HALF_OPEN**: if the probe request hangs (no timeout) or if multiple probes are allowed concurrently, the breaker either never transitions or floods the recovering downstream. HALF_OPEN must permit exactly one in-flight probe with a hard timeout, and that probe's timeout counts as failure. Grid implementations often forget this and let each cell send unlimited probes, producing a thundering herd when many breakers recover simultaneously — stagger recovery with jittered cooldowns.
+A second frequent pitfall is failure-window accounting: using a simple running counter that never resets causes the breaker to trip on stale failures from hours ago, while clearing the counter on every success hides bursty failure patterns. The correct approach is a time-bounded sliding window (e.g., last 60 seconds) or a bounded ring buffer of the last N outcomes. Also ensure that timeouts, circuit-rejected calls, and actual errors are classified distinctly — counting circuit-rejected calls as "failures" creates a self-reinforcing loop where the breaker never closes.
 
-The third pitfall is **window semantics confusion**: sliding-window vs. tumbling-window vs. exponentially-weighted moving average produce very different trip behaviors for the same input. Puzzle-style apps compound this by displaying one window type in the UI while computing state from another, making solutions feel non-deterministic. Always display the exact window the state machine uses, label it explicitly (e.g., "10s sliding window, bucket=1s"), and surface the bucket boundaries — otherwise users cannot reason about why a trip did or didn't happen at a given tick.
+Finally, beware of clock-driven cooldown bugs in simulators: using `setInterval` or wall-clock timestamps without a single monotonic tick source causes drift between the visualization and the state machine, so the UI shows CLOSED while logic is still OPEN (or vice versa). Centralize time on one tick authority — a logical clock for simulation, or `performance.now()` monotonic readings for live systems — and derive all transition deadlines from it.
