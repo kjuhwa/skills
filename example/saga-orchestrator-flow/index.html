@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saga Orchestrator Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Saga Orchestrator Flow</h1>
+  <p>Watch a distributed transaction across 5 services. Trigger failures to see compensating rollbacks.</p>
+</header>
+<main>
+  <div class="controls">
+    <button id="run">Run Saga</button>
+    <button id="fail">Inject Failure</button>
+    <button id="reset">Reset</button>
+    <select id="failStep">
+      <option value="2">Fail at Payment</option>
+      <option value="3">Fail at Inventory</option>
+      <option value="4">Fail at Shipping</option>
+    </select>
+  </div>
+  <canvas id="stage" width="900" height="280"></canvas>
+  <div id="log" class="log"></div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
