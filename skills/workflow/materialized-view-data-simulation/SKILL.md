@@ -1,6 +1,6 @@
 ---
 name: materialized-view-data-simulation
-description: Deterministic seeded generator for base-table writes, refresh jobs, and concurrent query reads
+description: Generating synthetic base-table writes and refresh cycles to exercise materialized-view behaviors without a real warehouse
 category: workflow
 triggers:
   - materialized view data simulation
@@ -11,6 +11,8 @@ version: 1.0.0
 
 # materialized-view-data-simulation
 
-Drive materialized-view simulations from a seeded PRNG so refresh races are reproducible. Generate three event streams on a shared virtual clock: (1) base-table mutations (insert/update/delete with row PKs and a monotonic `writeLsn`), (2) refresh triggers (scheduled at fixed intervals, on-demand, or threshold-driven by write count), and (3) query arrivals (Poisson-distributed, each carrying a `readAt` timestamp). Each refresh job captures a snapshot LSN at start, takes a configured duration to "rebuild", then atomically swaps — queries arriving mid-refresh must deterministically resolve against either the old or new snapshot based on isolation mode (blocking vs CONCURRENTLY).
+Simulate MV behavior with a two-clock model: a fast "write clock" driving base-table inserts/updates/deletes at a configurable rate (e.g., 10–500 ops/sec with Poisson jitter), and a slow "refresh clock" triggering either full-rebuild or incremental-merge strategies. Each synthetic base row carries a `version` and `updated_at` so the MV delta computation is deterministic and replayable from a seed. Model three refresh modes explicitly: `FULL` (O(n) scan, blocks queries in the sim), `INCREMENTAL` (apply changelog since `last_refresh_lsn`), and `CONCURRENT` (non-blocking but doubles memory). Expose knobs for base-table volume, write-skew, and refresh interval so users can reproduce refresh-storm and stale-read scenarios.
 
-Maintain per-row lineage: every view row stores `(sourceWriteLsn, materializedAtLsn)` so staleness = `currentWriteLsn - materializedAtLsn` is computable at any tick. For incremental-refresh demos, emit a delta log between `lastRefreshLsn` and `now`, classify each delta as applicable/non-applicable to the view definition, and animate the apply step row-by-row. Expose knobs for write rate, refresh interval, refresh duration, and query rate; log a compact event journal (JSON lines) so the same seed reproduces identical race outcomes across runs and panel screenshots.
+Seed the simulator with a realistic aggregation workload — `SUM`/`COUNT`/`AVG` over a partition key — because these are the MVs most often deployed in practice and their staleness semantics differ from pass-through projections. For staleness dashboards, inject periodic "burst write" episodes (5× baseline for 30s) to force the amber→red transition so users can observe threshold behavior. For query-planner sims, generate a fixed query catalog with known MV-eligibility so the planner's match/reject decisions are verifiable rather than random.
+
+Record every event (write, refresh-start, refresh-end, query, staleness-threshold-crossed) in an append-only log keyed by simulated timestamp; this lets the UI scrub backward/forward through time and makes the simulation deterministic for screenshots and regression tests. Keep the simulation entirely in-memory with TypedArray-backed ring buffers — a real DB connection defeats the point and adds flaky-test surface area.
