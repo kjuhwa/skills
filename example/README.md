@@ -332,6 +332,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [domain-driven-explorer](domain-driven-explorer/) | Domain Driven Explorer — auto-generated domain-driven tool | html, css, vanilla-js | 2026-04-16 |
 
+| [data-pipeline-flow](data-pipeline-flow/) | Data Pipeline Flow — auto-generated data-pipeline tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

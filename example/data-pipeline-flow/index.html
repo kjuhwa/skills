@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pipeline Flow Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Data Pipeline Flow</h1>
+  <div class="controls">
+    <button id="playBtn">Pause</button>
+    <button id="burstBtn">Burst</button>
+    <label>Rate <input id="rate" type="range" min="1" max="10" value="4"></label>
+  </div>
+</header>
+<main>
+  <canvas id="stage"></canvas>
+  <aside id="stats"></aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
