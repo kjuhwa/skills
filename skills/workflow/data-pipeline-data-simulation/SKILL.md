@@ -1,6 +1,6 @@
 ---
 name: data-pipeline-data-simulation
-description: Generate realistic synthetic pipeline telemetry with bursty arrivals, stage-specific latency, and controllable failure injection.
+description: Generating realistic synthetic pipeline telemetry with backpressure, lag, failure modes, and cascading effects
 category: workflow
 triggers:
   - data pipeline data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # data-pipeline-data-simulation
 
-Simulate pipeline traffic with a per-stage generator rather than a single global stream. Each stage has its own service-time distribution (e.g. source: Poisson arrivals at λ rps; transform: lognormal processing time; sink: fixed batch flush every N ms or M records). Compose them as a token-passing chain where the downstream stage's buffer depth feeds back into upstream admission — this is what produces the realistic backpressure curves and lag spikes that a naive `rate * jitter` generator cannot reproduce. Seed the RNG per scenario so demos and screenshots are reproducible.
+Realistic data-pipeline simulation requires modeling each stage as a producer-consumer with a bounded buffer, an ingest rate, and a processing rate drawn from a noisy distribution (e.g., Gaussian around a target with 10-15% jitter plus occasional Poisson spikes). Compute lag per stage as `buffer_depth / processing_rate` and propagate backpressure upstream: when a downstream buffer fills past ~80%, throttle the upstream stage's effective processing rate. This produces the characteristic "lag wave" that real Kafka/Kinesis/Flink pipelines exhibit and makes visualizations feel authentic rather than independent-random.
 
-Expose a small control surface — arrival rate, burst multiplier, failure rate per stage, and a "slow stage" toggle that multiplies one stage's service time by 5–20× — so reviewers can drive the graph through the four canonical states: steady-state, burst absorption, backpressure propagation, and dead-letter accumulation. For the monitor app, replay a recorded scenario tape rather than live-generating, so the timeline scrubber stays deterministic. For the builder app, run a dry-run simulation of the authored DAG against a sample record batch and surface any schema/type errors inline before the user hits "deploy."
+Seed the simulation with pipeline-specific failure archetypes: (1) schema-drift spikes where error rate jumps on one stage while throughput drops proportionally, (2) slow-consumer scenarios where one stage's rate gradually degrades causing monotonic lag growth, (3) poison-message bursts where a stage's error rate oscillates while throughput stays flat, (4) scheduled-job collisions (for etl-job-scheduler) where two jobs contend for the same sink and both slow down. Drive these via a scenario enum in state so users can switch between "healthy", "degraded-stage-3", "schema-drift", "cascading-failure" and see the visualization respond coherently.
 
-Keep the simulator out of the render loop: run it on a Web Worker or a requestAnimationFrame-decoupled tick so graph animation stays smooth even when simulating 50k rps, and buffer telemetry into fixed-size ring buffers (last 5 min @ 1 s resolution) for the monitoring charts.
+Keep the simulation tick at 250ms-1s and pre-compute ~5-10 minutes of history on mount so charts and sparklines have immediate content rather than starting from empty. Store per-stage time series as ring buffers capped at a fixed length (e.g., 600 points) to prevent memory growth during long demo sessions, and expose a "speed multiplier" control (1x, 5x, 30x) so reviewers can see failure scenarios play out without waiting real time.

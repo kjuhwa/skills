@@ -1,6 +1,6 @@
 ---
 name: data-pipeline-implementation-pitfall
-description: Common failure modes when building pipeline visualizations — unit confusion, missing backpressure, and unbounded telemetry buffers.
+description: Common mistakes that make pipeline visualizations look broken, lie about state, or degrade at scale
 category: pitfall
 tags:
   - data
@@ -9,8 +9,8 @@ tags:
 
 # data-pipeline-implementation-pitfall
 
-The most common pitfall is conflating record counts and byte rates on the same edge label — a pipeline moving 1M tiny records/sec looks identical to one moving 1k large records/sec unless you pick one primary unit per edge and put the other in a tooltip. Teams also routinely forget to visualize backpressure: they show throughput going *into* each stage but not buffer depth or consumer lag, so a silently-stalled sink looks healthy until the source's buffer overflows. Always render the buffer as a first-class signal, not a tooltip detail.
+The most common pitfall is treating each stage as statistically independent — rolling fresh random throughput values per tick per stage. This produces visualizations where the "extract" stage shows 10k rec/s while the immediately downstream "transform" stage shows 200 rec/s with no lag accumulation, which any viewer with pipeline experience spots as fake instantly. Always conserve flow: `stage[i+1].ingest_rate = min(stage[i].output_rate, stage[i+1].max_processing_rate)` and grow the buffer/lag metric from the delta. Similarly, error events must propagate — a failed record at stage 2 cannot silently disappear; it either goes to a DLQ node (make it visible), retries (animate it), or drops (increment a counter).
 
-The builder app fails silently when schema validation runs only at "deploy" time rather than on edge-connect. Users wire up a 12-stage DAG, hit deploy, and get a wall of type errors — fix this by validating each connection at draw time and blocking incompatible joins with a clear inline reason ("source emits `Order`, transform expects `Invoice`"). Related: don't let users save a DAG with cycles or orphan stages; detect and highlight these on the canvas, not in a modal after save.
+A second pitfall is unbounded data accumulation. Throughput sparklines, edge particle arrays, and event logs all grow per tick; without ring-buffer caps a 10-minute demo consumes hundreds of MB and the animation stutters. Cap everything — typically 300-600 history points per stage, max 50-100 in-flight particles per edge regardless of "true" rate (scale particle meaning, not count), and virtualize any event log exceeding ~200 rows. Also avoid rendering every edge particle as its own DOM/React element; use canvas, SVG `<use>` references, or CSS `@property`-driven animations so 1000+ particles don't murder the main thread.
 
-The monitor app's killer bug is unbounded telemetry retention in browser memory — a pipeline emitting per-second samples for 20 stages over a day is 1.7M points and will freeze the tab. Use fixed-size ring buffers per stage (e.g. 300 samples at 1 s resolution, then downsample to 1 min for older data) and drop the raw samples on rotation. Also beware timezone drift between the simulator's synthetic timestamps and the chart axis — always render in the user's local TZ but store UTC, or the timeline scrubber will be off by hours after DST.
+A third pitfall is conflating "pipeline stopped" with "no data". When a stage breaks, naive implementations show zero throughput and a flat line that looks identical to "pipeline is idle overnight". Always distinguish the three states visually: running-healthy, running-degraded, and halted/failed — with explicit iconography and color, not just a value of zero. For etl-job-scheduler specifically, also distinguish "scheduled but not yet started" from "running" from "completed" from "failed" — four states minimum, because a user looking at a dashboard at 03:00 needs to know instantly whether the 02:30 job is late or successfully done.
