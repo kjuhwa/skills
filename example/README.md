@@ -250,6 +250,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [schema-compatibility-checker](schema-compatibility-checker/) | Schema Compatibility Checker — auto-generated schema-registry tool | html, css, vanilla-js | 2026-04-16 |
 
+| [hex-arch-port-adapter-sim](hex-arch-port-adapter-sim/) | Hex Arch Port Adapter Sim — auto-generated hexagonal-architecture tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
