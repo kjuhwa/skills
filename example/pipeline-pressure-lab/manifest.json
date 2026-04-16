@@ -1,0 +1,12 @@
+{
+  "slug": "pipeline-pressure-lab",
+  "title": "Pipeline Pressure Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:47:40.777Z",
+  "source_project": "100-pipeline-pressure-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}
