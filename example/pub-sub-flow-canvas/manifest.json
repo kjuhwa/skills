@@ -1,0 +1,12 @@
+{
+  "slug": "pub-sub-flow-canvas",
+  "title": "Pub Sub Flow Canvas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:55:48.445Z",
+  "source_project": "100-pub-sub-flow-canvas",
+  "author": "kjuhwa@nkia.co.kr"
+}
