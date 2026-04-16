@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Trend Heatmap Dashboard</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --bg-card: #1c2128;
+    --border: #30363d;
+    --border-light: #3d444d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent: #58a6ff;
+    --accent-hover: #79b8ff;
+    --danger: #f85149;
+    --success: #3fb950;
+    --warning: #d29922;
+    --rising: #3fb950;
+    --fading: #f85149;
+    --heat-0: #0a0e14;
+    --heat-10: #0d2137;
+    --heat-20: #0e3b5c;
+    --heat-30: #0f5585;
+    --heat-40: #1a6fa8;
+    --heat-50: #2a8a44;
+    --heat-60: #5aad2a;
+    --heat-70: #a8c520;
+    --heat-80: #d4a020;
+    --heat-90: #e05a20;
+    --heat-100: #ff2020;
+    --cell-size: 22px;
+    --cell-gap: 3px;
+    --row-height: 28px;
+    --sidebar-width: 240px;
+    --header-height: 60px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    height: var(--header-height);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+
+  .header-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .header-title .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 160px;
+    max-width: 300px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 13px;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px 6px 30px;
+    color: var(--text-primary);
+    font-size: 13px;
+    outline: none;
+    transition: border-color .15s;
+  }
+
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  .sort-btn-group {
+    display: flex;
+    gap: 4px;
+  }
+
+  .sort-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+
+  .sort-btn:hover { border-color: var(--border-light); color: var(--text-primary); }
+  .sort-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .lang-toggle {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 12px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+
+  .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Layout ── */
+  .app-body {
+    display: flex;
+    height: calc(100vh - var(--header-height));
+    overflow: hidden;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    flex-shrink: 0;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 6px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .sidebar-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 10px 12px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .sidebar-header .icon { font-size: 13px; }
+  .sidebar-header.rising-hdr { color: var(--rising); }
+  .sidebar-header.fading-hdr { color: var(--fading); }
+
+  .sidebar-list { padding: 6px 0; }
+
+  .sidebar-item {
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background .1s;
+    border-radius: 0;
+  }
+
+  .sidebar-item:hover { background: var(--bg-tertiary); }
+
+  .sidebar-rank {
+    font-size: 10px;
+    color: var(--text-muted);
+    width: 14px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .sidebar-name {
+    font-size: 12px;
+    color: var(--text-primary);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sidebar-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-rising { background: rgba(63,185,80,.15); color: var(--rising); }
+  .badge-fading { background: rgba(248,81,73,.15); color: var(--fading); }
+
+  .slope-bar {
+    height: 3px;
+    border-radius: 2px;
+    margin-top: 2px;
+  }
+
+  /* ── Main content ── */
+  .main {
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .main::-webkit-scrollbar { width: 8px; height: 8px; }
+  .main::-webkit-scrollbar-track { background: var(--bg-primary); }
+  .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .main::-webkit-scrollbar-corner { background: var(--bg-primary); }
+
+  /* ── Heatmap ── */
+  .heatmap-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: fit-content;
+  }
+
+  .heatmap-scroll {
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  .heatmap-scroll::-webkit-scrollbar { height: 6px; }
+  .heatmap-scroll::-webkit-scrollbar-track { background: var(--bg-tertiary); }
+  .heatmap-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .category-block { margin-bottom: 2px; }
+
+  .category-label {
+    padding: 8px 12px 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    position: sticky;
+    left: 0;
+    background: var(--bg-secondary);
+    z-index: 2;
+    border-top: 1px solid var(--border);
+  }
+
+  .category-label:first-child { border-top: none; padding-top: 12px; }
+
+  .heatmap-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: max-content;
+  }
+
+  .month-header-row th {
+    position: sticky;
+    top: 0;
+    background: var(--bg-secondary);
+    z-index: 10;
+    padding: 0;
+  }
+
+  .month-header-row th.row-label-th {
+    width: 160px;
+    min-width: 160px;
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background: var(--bg-secondary);
+  }
+
+  .month-th {
+    width: calc(var(--cell-size) + var(--cell-gap));
+    min-width: calc(var(--cell-size) + var(--cell-gap));
+    padding: 8px 0 6px;
+    text-align: center;
+    font-size: 9px;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: .03em;
+    white-space: nowrap;
+  }
+
+  .month-th.year-start {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 9px;
+  }
+
+  .tech-row {
+    transition: background .1s;
+  }
+
+  .tech-row:hover { background: rgba(88,166,255,.04); }
+  .tech-row:hover .row-label { color: var(--accent); }
+
+  .row-label {
+    padding: 0 12px 0 16px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color .15s;
+    position: sticky;
+    left: 0;
+    background: var(--bg-secondary);
+    z-index: 5;
+    height: var(--row-height);
+    vertical-align: middle;
+    font-weight: 400;
+    width: 160px;
+    min-width: 160px;
+  }
+
+  .row-label:hover { color: var(--accent); }
+
+  .tech-row:hover .row-label {
+    background: rgba(13, 17, 23, 0.95);
+  }
+
+  .cell-td {
+    padding: 3px calc(var(--cell-gap) / 2);
+    vertical-align: middle;
+  }
+
+  .heat-cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 4px;
+    display: block;
+    cursor: pointer;
+    transition: transform .1s, box-shadow .1s, filter .1s;
+    position: relative;
+  }
+
+  .heat-cell:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 8px rgba(255,255,255,.25);
+    filter: brightness(1.2);
+    z-index: 50;
+  }
+
+  .heat-cell.null-cell {
+    background: var(--bg-tertiary) !important;
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  /* ── Tooltip ── */
+  .tooltip {
+    position: fixed;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--text-primary);
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,.5);
+    transition: opacity .1s;
+    opacity: 0;
+  }
+
+  .tooltip.visible { opacity: 1; }
+
+  .tooltip-tech { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
+  .tooltip-month { color: var(--text-secondary); font-size: 11px; margin-bottom: 4px; }
+  .tooltip-score {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .tooltip-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    margin-bottom: 4px;
+    overflow: hidden;
+  }
+  .tooltip-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width .2s;
+  }
+  .tooltip-trend { font-size: 11px; color: var(--text-muted); }
+
+  /* ── Detail Card ── */
+  .detail-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+    backdrop-filter: blur(2px);
+  }
+
+  .detail-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .detail-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 320px;
+    max-width: 420px;
+    width: 90vw;
+    box-shadow: 0 16px 48px rgba(0,0,0,.7);
+    transform: scale(.95);
+    transition: transform .2s;
+  }
+
+  .detail-overlay.open .detail-card { transform: scale(1); }
+
+  .detail-close {
+    float: right;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 0 8px 8px;
+    line-height: 1;
+  }
+
+  .detail-close:hover { color: var(--text-primary); }
+
+  .detail-category {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .detail-tech {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .detail-month {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .detail-score-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .detail-score-big {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .detail-score-meta {
+    padding-bottom: 6px;
+  }
+
+  .detail-score-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 4px;
+  }
+
+  .detail-trend-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+
+  .detail-sparkline {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 16px;
+  }
+
+  .detail-meter {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    height: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .detail-meter-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width .4s;
+  }
+
+  .detail-context {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .legend-label { font-size: 11px; color: var(--text-muted); }
+
+  .legend-gradient {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    flex: 1;
+    max-width: 300px;
+  }
+
+  .legend-cell {
+    flex: 1;
+    height: 14px;
+    border-radius: 3px;
+  }
+
+  .legend-nums {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-left: calc(100% - 300px);
+  }
+
+  /* ── Category color pills ── */
+  .cat-ai { color: #79c0ff; }
+  .cat-fe { color: #7ee787; }
+  .cat-be { color: #ffa657; }
+  .cat-devops { color: #f78166; }
+  .cat-db { color: #d2a8ff; }
+  .cat-mob { color: #ffa8a8; }
+
+  /* ── Stats bar ── */
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 110px;
+    flex: 1;
+  }
+
+  .stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .stat-value { font-size: 20px; font-weight: 700; }
+  .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Scrollbar for main */
+  .heatmap-scroll::-webkit-scrollbar { height: 8px; }
+
+  /* responsive */
+  @media (max-width: 768px) {
+    :root { --sidebar-width: 180px; --cell-size: 16px; }
+    .header { height: auto; padding: 10px; }
+    .app-body { flex-direction: column; height: auto; overflow: visible; }
+    .sidebar { width: 100%; flex-direction: row; overflow-x: auto; overflow-y: visible; max-height: 200px; }
+    .sidebar-section { min-width: 200px; }
+    .main { overflow: visible; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-tech" id="tt-tech"></div>
+  <div class="tooltip-month" id="tt-month"></div>
+  <div class="tooltip-score" id="tt-score"></div>
+  <div class="tooltip-bar"><div class="tooltip-bar-fill" id="tt-bar"></div></div>
+  <div class="tooltip-trend" id="tt-trend"></div>
+</div>
+
+<!-- Detail Overlay -->
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-card">
+    <button class="detail-close" id="detailClose">✕</button>
+    <div class="detail-category" id="dc-cat"></div>
+    <div class="detail-tech" id="dc-tech"></div>
+    <div class="detail-month" id="dc-month"></div>
+    <div class="detail-score-row">
+      <div class="detail-score-big" id="dc-score"></div>
+      <div class="detail-score-meta">
+        <div class="detail-score-label" id="dc-sl">Score</div>
+        <div class="detail-trend-badge" id="dc-trend"></div>
+      </div>
+    </div>
+    <svg class="detail-sparkline" id="dc-spark" viewBox="0 0 300 50" preserveAspectRatio="none"></svg>
+    <div class="detail-meter"><div class="detail-meter-fill" id="dc-meter"></div></div>
+    <div class="detail-context" id="dc-ctx"></div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-title">
+    <span class="dot"></span>
+    <span id="title-text">Tech Trend Heatmap</span>
+  </div>
+  <div class="header-controls">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search technologies..." autocomplete="off">
+    </div>
+    <div class="sort-btn-group">
+      <button class="sort-btn active" data-sort="category" id="btn-category">Category</button>
+      <button class="sort-btn" data-sort="name" id="btn-name">Name</button>
+      <button class="sort-btn" data-sort="score" id="btn-score">Score ↓</button>
+      <button class="sort-btn" data-sort="growth" id="btn-growth">Growth ↓</button>
+    </div>
+    <button class="lang-toggle" id="langToggle">한국어</button>
+  </div>
+</header>
+
+<!-- App Body -->
+<div class="app-body">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-header rising-hdr"><span class="icon">🚀</span> <span id="rising-title">Rising Stars</span></div>
+      <div class="sidebar-list" id="risingList"></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header fading-hdr"><span class="icon">📉</span> <span id="fading-title">Fading</span></div>
+      <div class="sidebar-list" id="fadingList"></div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="stats-bar" id="statsBar"></div>
+    <div class="heatmap-container">
+      <div class="heatmap-scroll" id="heatmapScroll">
+        <div id="heatmapInner"></div>
+      </div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+// ── Data Engine ──────────────────────────────────────────────────────────────
+
+const MONTHS = (() => {
+  const arr = [];
+  const s = new Date(2024, 0, 1);
+  const e = new Date(2026, 3, 1);
+  let d = new Date(s);
+  while (d <= e) {
+    arr.push({ year: d.getFullYear(), month: d.getMonth() });
+    d.setMonth(d.getMonth() + 1);
+  }
+  return arr;
+})();
+
+const MONTH_NAMES_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTH_NAMES_KO = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+
+// Seeded random for reproducibility
+function seededRng(seed) {
+  let s = seed;
+  return () => {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+}
+
+// Smooth interpolation with noise
+function generateScores(keyframes, noiseAmp = 2.5, seed = 1) {
+  const rng = seededRng(seed);
+  // keyframes: [{idx, val}] where idx is month index (0-based)
+  const n = MONTHS.length;
+  const out = new Array(n).fill(null);
+
+  // Fill keyframes
+  for (const kf of keyframes) {
+    if (kf.idx !== null && kf.idx < n) out[kf.idx] = kf.val;
+  }
+
+  // Linear interpolation between keyframes
+  const defined = keyframes.filter(k => k.idx !== null && k.idx < n).sort((a,b) => a.idx - b.idx);
+
+  for (let i = 0; i < defined.length - 1; i++) {
+    const a = defined[i], b = defined[i+1];
+    for (let j = a.idx; j <= b.idx; j++) {
+      const t = (j - a.idx) / (b.idx - a.idx);
+      // Smooth step
+      const ts = t * t * (3 - 2 * t);
+      out[j] = a.val + (b.val - a.val) * ts;
+    }
+  }
+
+  // Clamp and add noise
+  for (let i = 0; i < n; i++) {
+    if (out[i] === null) continue;
+    const noise = (rng() - 0.5) * 2 * noiseAmp;
+    out[i] = Math.round(Math.max(0, Math.min(100, out[i] + noise)));
+  }
+
+  return out;
+}
+
+// Month index helper: months since Jan 2024
+function mi(year, month) { return (year - 2024) * 12 + month; }
+const LEN = MONTHS.length; // 28 months
+
+// Technologies definition
+// keyframes: array of {idx, val}
+const TECHS_DEF = [
+  // ── AI/LLM ──
+  { id: 'chatgpt',    cat: 'AI/LLM',    en: 'ChatGPT',         ko: 'ChatGPT',
+    frames: [{idx:0,val:95},{idx:6,val:98},{idx:12,val:92},{idx:18,val:88},{idx:LEN-1,val:85}],
+    ctx_en: 'Dominant general-purpose LLM. Market leader but facing increased competition from Claude, Gemini, and open-source alternatives.',
+    ctx_ko: '범용 LLM 시장 1위. Claude, Gemini 및 오픈소스 경쟁으로 점유율 소폭 하락 중.' },
+  { id: 'claude',     cat: 'AI/LLM',    en: 'Claude',          ko: 'Claude',
+    frames: [{idx:0,val:40},{idx:4,val:50},{idx:8,val:60},{idx:12,val:72},{idx:18,val:81},{idx:LEN-1,val:88}],
+    ctx_en: 'Anthropic\'s flagship model. Rapid growth driven by strong coding capabilities, 200K context window, and API developer adoption.',
+    ctx_ko: 'Anthropic의 주력 모델. 코딩 성능, 200K 컨텍스트, API 개발자 채택으로 급성장 중.' },
+  { id: 'gemini',     cat: 'AI/LLM',    en: 'Gemini',          ko: 'Gemini',
+    frames: [{idx:0,val:30},{idx:3,val:38},{idx:6,val:45},{idx:12,val:54},{idx:18,val:60},{idx:LEN-1,val:65}],
+    ctx_en: 'Google\'s multimodal LLM integrated into Workspace. Growing steadily but constrained by enterprise trust concerns.',
+    ctx_ko: 'Google 워크스페이스 통합 멀티모달 LLM. 기업 신뢰 우려로 성장세 다소 제한적.' },
+  { id: 'ollama',     cat: 'AI/LLM',    en: 'Local LLMs (Ollama)', ko: '로컬 LLM (Ollama)',
+    frames: [{idx:0,val:15},{idx:4,val:22},{idx:8,val:30},{idx:12,val:38},{idx:18,val:47},{idx:LEN-1,val:55}],
+    ctx_en: 'Privacy-first local model runners surging with Llama 3, Mistral, Phi-3. DevOps and security teams leading adoption.',
+    ctx_ko: 'Llama 3, Mistral, Phi-3 등 로컬 실행 도구. 보안·개인정보 중시 팀에서 채택 급증.' },
+  { id: 'rag',        cat: 'AI/LLM',    en: 'RAG',             ko: 'RAG',
+    frames: [{idx:0,val:20},{idx:4,val:45},{idx:8,val:68},{idx:10,val:75},{idx:14,val:73},{idx:18,val:71},{idx:LEN-1,val:70}],
+    ctx_en: 'Retrieval-Augmented Generation stabilized as default architecture for enterprise knowledge bases. LangChain/LlamaIndex key.',
+    ctx_ko: 'RAG는 기업 지식베이스의 표준 아키텍처로 안정화. LangChain·LlamaIndex가 핵심 도구.' },
+  { id: 'aiagents',  cat: 'AI/LLM',    en: 'AI Agents',       ko: 'AI 에이전트',
+    frames: [{idx:0,val:10},{idx:4,val:18},{idx:8,val:28},{idx:12,val:45},{idx:16,val:62},{idx:20,val:73},{idx:LEN-1,val:80}],
+    ctx_en: 'Autonomous multi-step agents (CrewAI, AutoGen, Claude Agents) are the hottest 2025-2026 trend. Tool-use and memory critical.',
+    ctx_ko: '자율 멀티스텝 에이전트(CrewAI, AutoGen, Claude Agents)가 2025-26 최대 트렌드. 도구 사용과 메모리가 핵심.' },
+  { id: 'mcp',       cat: 'AI/LLM',    en: 'MCP',             ko: 'MCP',
+    frames: [{idx:null,val:0},{idx:mi(2024,10),val:5},{idx:mi(2025,0),val:12},{idx:mi(2025,3),val:22},{idx:mi(2025,6),val:35},{idx:mi(2025,9),val:48},{idx:LEN-1,val:60}],
+    ctx_en: 'Model Context Protocol (Anthropic Nov 2024). Becoming standard for LLM-tool integration. Rapid ecosystem growth in 2025.',
+    ctx_ko: 'Model Context Protocol (Anthropic, 2024년 11월). LLM-도구 통합 표준으로 부상. 2025년 생태계 폭발적 성장.' },
+  { id: 'prompteng', cat: 'AI/LLM',    en: 'Prompt Engineering', ko: '프롬프트 엔지니어링',
+    frames: [{idx:0,val:60},{idx:4,val:55},{idx:8,val:50},{idx:12,val:45},{idx:18,val:40},{idx:LEN-1,val:35}],
+    ctx_en: 'Declining as LLMs improve at instruction-following. Being replaced by agent frameworks, fine-tuning, and RAG approaches.',
+    ctx_ko: '모델의 지시사항 이해력 향상으로 중요도 하락. 에이전트 프레임워크·파인튜닝·RAG로 대체되는 추세.' },
+  { id: 'aicodeassist', cat: 'AI/LLM', en: 'AI Code Assistants', ko: 'AI 코드 어시스턴트',
+    frames: [{idx:0,val:30},{idx:4,val:42},{idx:8,val:55},{idx:12,val:65},{idx:16,val:75},{idx:20,val:81},{idx:LEN-1,val:85}],
+    ctx_en: 'Copilot, Cursor, Claude Code, Cody driving massive developer productivity gains. Becoming standard dev toolchain.',
+    ctx_ko: 'Copilot, Cursor, Claude Code, Cody 등 개발자 생산성 혁명. 표준 개발 도구로 자리잡는 중.' },
+
+  // ── Frontend ──
+  { id: 'react',     cat: 'Frontend',  en: 'React',           ko: 'React',
+    frames: [{idx:0,val:82},{idx:6,val:83},{idx:12,val:82},{idx:18,val:84},{idx:LEN-1,val:83}],
+    ctx_en: 'Stable dominant position. Server Components, React 19, and Next.js ecosystem keep it relevant despite challenger growth.',
+    ctx_ko: '안정적 1위 유지. 서버 컴포넌트, React 19, Next.js 생태계로 지위 공고. 도전자 성장에도 건재.' },
+  { id: 'nextjs',    cat: 'Frontend',  en: 'Next.js',         ko: 'Next.js',
+    frames: [{idx:0,val:71},{idx:4,val:72},{idx:8,val:74},{idx:12,val:73},{idx:18,val:74},{idx:LEN-1,val:75}],
+    ctx_en: 'The production React framework. App Router matured, stable developer mindshare for full-stack JS projects.',
+    ctx_ko: '프로덕션 React 프레임워크 1위. App Router 성숙, 풀스택 JS 프로젝트의 표준 선택.' },
+  { id: 'svelte',    cat: 'Frontend',  en: 'Svelte',          ko: 'Svelte',
+    frames: [{idx:0,val:25},{idx:6,val:29},{idx:12,val:33},{idx:18,val:37},{idx:LEN-1,val:40}],
+    ctx_en: 'SvelteKit 2 and Svelte 5 runes system gaining traction. Loved for simplicity, especially among indie developers.',
+    ctx_ko: 'SvelteKit 2·Svelte 5 Runes 시스템 주목. 간결함으로 인디 개발자들에게 특히 인기.' },
+  { id: 'astro',     cat: 'Frontend',  en: 'Astro',           ko: 'Astro',
+    frames: [{idx:0,val:15},{idx:5,val:20},{idx:10,val:26},{idx:16,val:31},{idx:LEN-1,val:35}],
+    ctx_en: 'Content-first framework with islands architecture. Growing fast for docs, marketing, and blog sites. Zero JS by default.',
+    ctx_ko: '아일랜드 아키텍처 콘텐츠 우선 프레임워크. 문서·마케팅·블로그에서 빠른 성장. 기본 JS 없음.' },
+  { id: 'vue',       cat: 'Frontend',  en: 'Vue.js',          ko: 'Vue.js',
+    frames: [{idx:0,val:53},{idx:6,val:52},{idx:12,val:51},{idx:18,val:50},{idx:LEN-1,val:50}],
+    ctx_en: 'Steady platform, strong in Asia and Laravel ecosystem. Vue 3 Composition API fully adopted but growth stalled.',
+    ctx_ko: '안정적 플랫폼, 아시아·Laravel 생태계에서 강세. Vue 3 컴포지션 API 완전 채택됐으나 성장 정체.' },
+  { id: 'angular',   cat: 'Frontend',  en: 'Angular',         ko: 'Angular',
+    frames: [{idx:0,val:45},{idx:6,val:43},{idx:12,val:40},{idx:18,val:37},{idx:LEN-1,val:35}],
+    ctx_en: 'Declining mindshare outside enterprise. Angular 17+ signals revival attempt with new control flow but trend is down.',
+    ctx_ko: '기업 외 영역에서 점유율 감소. Angular 17+ 새 제어 흐름으로 부활 시도 중이나 하락 추세.' },
+  { id: 'htmx',      cat: 'Frontend',  en: 'HTMX',            ko: 'HTMX',
+    frames: [{idx:0,val:10},{idx:5,val:14},{idx:10,val:18},{idx:16,val:24},{idx:LEN-1,val:30}],
+    ctx_en: 'Hypermedia revival movement gaining developer mind-share. Appeals to backend devs avoiding JS complexity.',
+    ctx_ko: '하이퍼미디어 부활 운동. JS 복잡성을 피하려는 백엔드 개발자들에게 큰 인기. 심플리즘 트렌드.' },
+  { id: 'tailwind',  cat: 'Frontend',  en: 'Tailwind CSS',    ko: 'Tailwind CSS',
+    frames: [{idx:0,val:62},{idx:4,val:66},{idx:8,val:70},{idx:12,val:73},{idx:18,val:77},{idx:LEN-1,val:80}],
+    ctx_en: 'Utility-first CSS firmly dominant. Tailwind v4 with CSS variables and Oxide engine accelerates adoption further.',
+    ctx_ko: '유틸리티 퍼스트 CSS 확실한 지배자. Tailwind v4 CSS 변수·Oxide 엔진으로 채택 가속.' },
+
+  // ── Backend ──
+  { id: 'nodejs',    cat: 'Backend',   en: 'Node.js',         ko: 'Node.js',
+    frames: [{idx:0,val:76},{idx:6,val:75},{idx:12,val:74},{idx:18,val:75},{idx:LEN-1,val:75}],
+    ctx_en: 'Mature stable runtime. Competition from Bun/Deno but Node 22 LTS and massive ecosystem keep it the default.',
+    ctx_ko: '성숙한 안정 런타임. Bun/Deno 경쟁에도 Node 22 LTS와 방대한 생태계로 기본 선택 유지.' },
+  { id: 'bun',       cat: 'Backend',   en: 'Bun',             ko: 'Bun',
+    frames: [{idx:0,val:10},{idx:4,val:16},{idx:8,val:21},{idx:12,val:26},{idx:18,val:31},{idx:LEN-1,val:35}],
+    ctx_en: 'Fast JS/TS runtime eating into Node.js dev workflows. Bun 1.0 reached production stability, growing in CI/CD.',
+    ctx_ko: '빠른 JS/TS 런타임으로 Node.js 개발 워크플로우 잠식. Bun 1.0 프로덕션 안정화, CI/CD 채택 증가.' },
+  { id: 'deno',      cat: 'Backend',   en: 'Deno',            ko: 'Deno',
+    frames: [{idx:0,val:15},{idx:5,val:18},{idx:10,val:22},{idx:16,val:26},{idx:LEN-1,val:30}],
+    ctx_en: 'Deno 2.0 with npm compatibility closing the gap. Edge-first approach resonates with Cloudflare Workers users.',
+    ctx_ko: 'Deno 2.0 npm 호환성으로 격차 좁힘. 엣지 우선 접근법이 Cloudflare Workers 사용자에게 어필.' },
+  { id: 'rust',      cat: 'Backend',   en: 'Rust',            ko: 'Rust',
+    frames: [{idx:0,val:30},{idx:6,val:33},{idx:12,val:37},{idx:18,val:41},{idx:LEN-1,val:45}],
+    ctx_en: 'Steady growth in systems programming, WebAssembly, and increasingly in AI inference runtimes. Most loved language 9 years running.',
+    ctx_ko: '시스템 프로그래밍·WebAssembly·AI 추론 런타임에서 꾸준한 성장. 9년 연속 가장 사랑받는 언어.' },
+  { id: 'golang',    cat: 'Backend',   en: 'Go',              ko: 'Go',
+    frames: [{idx:0,val:57},{idx:6,val:58},{idx:12,val:58},{idx:18,val:59},{idx:LEN-1,val:60}],
+    ctx_en: 'Cloud-native backend workhorse. Kubernetes, Docker, and major cloud tools written in Go. Stable strong adoption.',
+    ctx_ko: '클라우드 네이티브 백엔드의 핵심. Kubernetes·Docker·주요 클라우드 도구가 Go로 작성됨. 안정적 강세.' },
+  { id: 'pythonai',  cat: 'Backend',   en: 'Python (AI/ML)',  ko: 'Python (AI/ML)',
+    frames: [{idx:0,val:70},{idx:4,val:74},{idx:8,val:78},{idx:12,val:82},{idx:18,val:87},{idx:LEN-1,val:90}],
+    ctx_en: 'Explosive growth powered by AI/ML boom. PyTorch, HuggingFace, FastAPI dominance. #1 language by most metrics.',
+    ctx_ko: 'AI/ML 붐으로 폭발적 성장. PyTorch·HuggingFace·FastAPI 지배력. 대부분 지표에서 1위 언어.' },
+  { id: 'typescript', cat: 'Backend',  en: 'TypeScript',      ko: 'TypeScript',
+    frames: [{idx:0,val:65},{idx:4,val:69},{idx:8,val:73},{idx:12,val:77},{idx:18,val:82},{idx:LEN-1,val:85}],
+    ctx_en: 'Becoming the default for all JS projects. TypeScript 5.x improvements and tooling maturity driving adoption to new heights.',
+    ctx_ko: '모든 JS 프로젝트의 기본 선택으로 자리잡음. TypeScript 5.x 개선과 도구 성숙도로 채택 최고 수준.' },
+
+  // ── DevOps ──
+  { id: 'docker',    cat: 'DevOps',    en: 'Docker',          ko: 'Docker',
+    frames: [{idx:0,val:85},{idx:6,val:85},{idx:12,val:85},{idx:18,val:86},{idx:LEN-1,val:85}],
+    ctx_en: 'The containerization standard. Docker Desktop, Docker Scout, and integration with all CI platforms keep it essential.',
+    ctx_ko: '컨테이너화 표준. Docker Desktop·Docker Scout·CI 플랫폼 통합으로 필수 도구 유지.' },
+  { id: 'k8s',       cat: 'DevOps',    en: 'Kubernetes',      ko: 'Kubernetes',
+    frames: [{idx:0,val:76},{idx:6,val:77},{idx:12,val:77},{idx:18,val:78},{idx:LEN-1,val:78}],
+    ctx_en: 'De-facto container orchestration. Growing complexity pushes teams to managed services (EKS, GKE, AKS).',
+    ctx_ko: '사실상의 컨테이너 오케스트레이션 표준. 복잡성 증가로 관리형 서비스(EKS·GKE·AKS) 이동 증가.' },
+  { id: 'ghactions',  cat: 'DevOps',   en: 'GitHub Actions',  ko: 'GitHub Actions',
+    frames: [{idx:0,val:52},{idx:4,val:57},{idx:8,val:62},{idx:12,val:66},{idx:18,val:71},{idx:LEN-1,val:75}],
+    ctx_en: 'Displacing Jenkins and CircleCI as the default CI/CD platform. Native GitHub integration is hard to beat.',
+    ctx_ko: 'Jenkins·CircleCI를 대체하는 기본 CI/CD 플랫폼으로 부상. GitHub 네이티브 통합이 강점.' },
+  { id: 'terraform', cat: 'DevOps',    en: 'Terraform',       ko: 'Terraform',
+    frames: [{idx:0,val:61},{idx:6,val:61},{idx:12,val:60},{idx:18,val:60},{idx:LEN-1,val:60}],
+    ctx_en: 'IaC standard but OpenTofu fork gaining after HashiCorp license change. Stable overall adoption.',
+    ctx_ko: 'IaC 표준이나 HashiCorp 라이선스 변경 후 OpenTofu 포크 성장 중. 전체 채택률은 안정적.' },
+  { id: 'pulumi',    cat: 'DevOps',    en: 'Pulumi',          ko: 'Pulumi',
+    frames: [{idx:0,val:10},{idx:5,val:13},{idx:10,val:17},{idx:16,val:21},{idx:LEN-1,val:25}],
+    ctx_en: 'Code-first IaC growing as developers prefer TypeScript/Python over HCL. Strong in greenfield cloud-native projects.',
+    ctx_ko: '코드 우선 IaC로 성장. HCL 대신 TypeScript·Python 선호 개발자에게 인기. 그린필드 클라우드 프로젝트에서 강세.' },
+
+  // ── Database ──
+  { id: 'postgres',  cat: 'Database',  en: 'PostgreSQL',      ko: 'PostgreSQL',
+    frames: [{idx:0,val:70},{idx:4,val:73},{idx:8,val:77},{idx:12,val:80},{idx:18,val:83},{idx:LEN-1,val:85}],
+    ctx_en: 'The world\'s most advanced open-source database. pgvector extension making it the go-to for AI apps. Supabase amplifying adoption.',
+    ctx_ko: '세계 최고 오픈소스 데이터베이스. pgvector 확장으로 AI 앱의 기본 선택. Supabase가 채택 확산 가속.' },
+  { id: 'mongodb',   cat: 'Database',  en: 'MongoDB',         ko: 'MongoDB',
+    frames: [{idx:0,val:58},{idx:6,val:57},{idx:12,val:56},{idx:18,val:56},{idx:LEN-1,val:55}],
+    ctx_en: 'Stable document database. Atlas cloud offering strong but facing pressure from PostgreSQL JSONB and Supabase.',
+    ctx_ko: '안정적 도큐먼트 데이터베이스. Atlas 클라우드 강세이나 PostgreSQL JSONB·Supabase 압박 증가.' },
+  { id: 'redis',     cat: 'Database',  en: 'Redis',           ko: 'Redis',
+    frames: [{idx:0,val:65},{idx:6,val:65},{idx:12,val:65},{idx:18,val:66},{idx:LEN-1,val:65}],
+    ctx_en: 'Ubiquitous caching and session layer. Redis Stack adding vector search, JSON, graph. License change sparked Valkey fork.',
+    ctx_ko: '어디서나 쓰이는 캐싱·세션 레이어. Redis Stack이 벡터 검색·JSON·그래프 추가. 라이선스 변경으로 Valkey 포크 발생.' },
+  { id: 'vectordb',  cat: 'Database',  en: 'Vector DBs',      ko: '벡터 데이터베이스',
+    frames: [{idx:0,val:5},{idx:3,val:12},{idx:6,val:20},{idx:10,val:30},{idx:14,val:39},{idx:18,val:45},{idx:LEN-1,val:50}],
+    ctx_en: 'Pinecone, Weaviate, Qdrant, Chroma surging with AI/RAG adoption. pgvector offers SQL alternative. Rapidly maturing space.',
+    ctx_ko: 'Pinecone·Weaviate·Qdrant·Chroma가 AI/RAG 채택과 함께 급성장. pgvector가 SQL 대안 제공. 빠르게 성숙 중.' },
+  { id: 'supabase',  cat: 'Database',  en: 'Supabase',        ko: 'Supabase',
+    frames: [{idx:0,val:15},{idx:4,val:21},{idx:8,val:28},{idx:12,val:34},{idx:18,val:40},{idx:LEN-1,val:45}],
+    ctx_en: 'Open-source Firebase alternative built on PostgreSQL. Realtime, Auth, Storage, Edge Functions. Indie dev darling.',
+    ctx_ko: 'PostgreSQL 기반 오픈소스 Firebase 대안. 실시간·Auth·스토리지·엣지 함수. 인디 개발자들의 사랑을 받는 도구.' },
+  { id: 'sqliteedge', cat: 'Database', en: 'SQLite (Edge)',   ko: 'SQLite (엣지)',
+    frames: [{idx:0,val:20},{idx:5,val:24},{idx:10,val:28},{idx:15,val:33},{idx:20,val:37},{idx:LEN-1,val:40}],
+    ctx_en: 'Cloudflare D1, Turso, and edge deployments driving SQLite renaissance. Embedded databases suit serverless architectures.',
+    ctx_ko: 'Cloudflare D1·Turso·엣지 배포로 SQLite 르네상스. 임베디드 DB가 서버리스 아키텍처에 적합.' },
+];
+
+// Generate all scores
+const TECHS = TECHS_DEF.map((t, tidx) => {
+  const frames = t.frames.filter(f => f.idx !== null && f.idx < LEN);
+  const scores = generateScores(frames, 2.5, tidx * 137 + 42);
+  // Null out months before first keyframe
+  const minIdx = Math.min(...frames.map(f => f.idx));
+  for (let i = 0; i < minIdx; i++) scores[i] = null;
+  return { ...t, scores };
+});
+
+// ── Category metadata ──
+const CAT_META = {
+  'AI/LLM':   { cls: 'cat-ai',     color: '#79c0ff', label_ko: 'AI/LLM' },
+  'Frontend': { cls: 'cat-fe',     color: '#7ee787', label_ko: '프론트엔드' },
+  'Backend':  { cls: 'cat-be',     color: '#ffa657', label_ko: '백엔드' },
+  'DevOps':   { cls: 'cat-devops', color: '#f78166', label_ko: 'DevOps' },
+  'Database': { cls: 'cat-db',     color: '#d2a8ff', label_ko: '데이터베이스' },
+  'Mobile':   { cls: 'cat-mob',    color: '#ffa8a8', label_ko: '모바일' },
+};
+
+const CAT_ORDER = ['AI/LLM','Frontend','Backend','DevOps','Database','Mobile'];
+
+// ── State ──
+let lang = 'en';
+let sortMode = 'category';
+let searchQuery = '';
+
+function t(en, ko) { return lang === 'en' ? en : ko; }
+
+// ── Heat Color ──
+function heatColor(v) {
+  if (v === null || v === undefined) return null;
+  // Deep blue (0) → teal (30) → green (50) → yellow-green (65) → orange (80) → red (100)
+  const stops = [
+    [0,   [10,  14, 20]],
+    [10,  [13,  33, 55]],
+    [20,  [14,  59, 92]],
+    [30,  [15,  85, 133]],
+    [40,  [26, 111, 168]],
+    [50,  [42, 138, 68]],
+    [60,  [90, 173, 42]],
+    [65,  [168,197, 32]],
+    [75,  [212,160, 32]],
+    [85,  [224, 90, 32]],
+    [95,  [240, 40, 20]],
+    [100, [255, 20, 20]],
+  ];
+  const clamped = Math.max(0, Math.min(100, v));
+  for (let i = 0; i < stops.length - 1; i++) {
+    const [av, ac] = stops[i];
+    const [bv, bc] = stops[i+1];
+    if (clamped >= av && clamped <= bv) {
+      const t2 = (clamped - av) / (bv - av);
+      const r = Math.round(ac[0] + (bc[0]-ac[0])*t2);
+      const g = Math.round(ac[1] + (bc[1]-ac[1])*t2);
+      const b = Math.round(ac[2] + (bc[2]-ac[2])*t2);
+      return `rgb(${r},${g},${b})`;
+    }
+  }
+  return `rgb(255,20,20)`;
+}
+
+// ── Slope calculation (last 6 months) ──
+function slope6(scores) {
+  const recent = [];
+  for (let i = MONTHS.length - 1; i >= 0 && recent.length < 6; i--) {
+    if (scores[i] !== null) recent.unshift({ i, v: scores[i] });
+  }
+  if (recent.length < 2) return 0;
+  const n = recent.length;
+  const sumX = recent.reduce((s,p,idx) => s + idx, 0);
+  const sumY = recent.reduce((s,p) => s + p.v, 0);
+  const sumXY = recent.reduce((s,p,idx) => s + idx * p.v, 0);
+  const sumX2 = recent.reduce((s,p,idx) => s + idx*idx, 0);
+  const denom = n * sumX2 - sumX * sumX;
+  if (denom === 0) return 0;
+  return (n * sumXY - sumX * sumY) / denom;
+}
+
+function currentScore(scores) {
+  for (let i = scores.length - 1; i >= 0; i--) {
+    if (scores[i] !== null) return scores[i];
+  }
+  return 0;
+}
+
+// ── Filtered & Sorted techs ──
+function getFilteredSorted() {
+  let list = TECHS.filter(t => {
+    if (!searchQuery) return true;
+    const name = (lang === 'en' ? t.en : t.ko).toLowerCase();
+    return name.includes(searchQuery.toLowerCase());
+  });
+
+  if (sortMode === 'category') {
+    list = [...list].sort((a, b) => {
+      const ci = CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat);
+      if (ci !== 0) return ci;
+      return currentScore(b.scores) - currentScore(a.scores);
+    });
+  } else if (sortMode === 'name') {
+    list = [...list].sort((a, b) => {
+      const an = lang === 'en' ? a.en : a.ko;
+      const bn = lang === 'en' ? b.en : b.ko;
+      return an.localeCompare(bn);
+    });
+  } else if (sortMode === 'score') {
+    list = [...list].sort((a, b) => currentScore(b.scores) - currentScore(a.scores));
+  } else if (sortMode === 'growth') {
+    list = [...list].sort((a, b) => slope6(b.scores) - slope6(a.scores));
+  }
+  return list;
+}
+
+// ── Render Stats ──
+function renderStats() {
+  const bar = document.getElementById('statsBar');
+  const allScores = TECHS.flatMap(t => t.scores.filter(s => s !== null));
+  const avg = Math.round(allScores.reduce((s,v) => s+v, 0) / allScores.length);
+  const rising = TECHS.filter(t => slope6(t.scores) > 1).length;
+  const fading = TECHS.filter(t => slope6(t.scores) < -1).length;
+  const hottest = TECHS.reduce((a, b) => currentScore(a.scores) > currentScore(b.scores) ? a : b);
+
+  const labels = {
+    total_en: 'Technologies', total_ko: '기술 수',
+    avg_en: 'Avg Score', avg_ko: '평균 점수',
+    rising_en: 'Rising', rising_ko: '상승 중',
+    fading_en: 'Declining', fading_ko: '하락 중',
+    hottest_en: 'Hottest Now', hottest_ko: '현재 최고 인기',
+  };
+
+  bar.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">${t(labels.total_en, labels.total_ko)}</div>
+      <div class="stat-value" style="color:var(--accent)">${TECHS.length}</div>
+      <div class="stat-sub">${MONTHS.length} ${t('months tracked','개월 추적')}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">${t(labels.avg_en, labels.avg_ko)}</div>
+      <div class="stat-value" style="color:${heatColor(avg)}">${avg}</div>
+      <div class="stat-sub">${t('across all techs','전체 기술 평균')}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">${t(labels.rising_en, labels.rising_ko)}</div>
+      <div class="stat-value" style="color:var(--rising)">↑ ${rising}</div>
+      <div class="stat-sub">${t('last 6 months','최근 6개월')}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">${t(labels.fading_en, labels.fading_ko)}</div>
+      <div class="stat-value" style="color:var(--fading)">↓ ${fading}</div>
+      <div class="stat-sub">${t('last 6 months','최근 6개월')}</div>
+    </div>
+    <div class="stat-card" style="flex:2">
+      <div class="stat-label">${t(labels.hottest_en, labels.hottest_ko)}</div>
+      <div class="stat-value" style="color:${heatColor(currentScore(hottest.scores))};font-size:15px">${lang==='en'?hottest.en:hottest.ko}</div>
+      <div class="stat-sub">${t('Score','점수')}: ${currentScore(hottest.scores)}</div>
+    </div>
+  `;
+}
+
+// ── Render Sidebar ──
+function renderSidebar() {
+  const slopes = TECHS.map(tech => ({ tech, s: slope6(tech.scores) })).sort((a,b)=>b.s-a.s);
+
+  const risingEl = document.getElementById('risingList');
+  const fadingEl = document.getElementById('fadingList');
+
+  document.getElementById('rising-title').textContent = t('Rising Stars','급성장');
+  document.getElementById('fading-title').textContent = t('Fading','하락 중');
+
+  const top = slopes.filter(x => x.s > 0).slice(0, 8);
+  const bot = slopes.filter(x => x.s < 0).sort((a,b) => a.s - b.s).slice(0, 6);
+
+  risingEl.innerHTML = top.map((x,i) => {
+    const sc = currentScore(x.tech.scores);
+    const pct = Math.min(100, Math.round(x.s * 20));
+    return `<div class="sidebar-item" data-tech="${x.tech.id}">
+      <span class="sidebar-rank">${i+1}</span>
+      <span class="sidebar-name">${lang==='en'?x.tech.en:x.tech.ko}</span>
+      <span class="sidebar-badge badge-rising">+${x.s.toFixed(1)}/mo</span>
+    </div>`;
+  }).join('');
+
+  fadingEl.innerHTML = bot.map((x,i) => {
+    const sc = currentScore(x.tech.scores);
+    return `<div class="sidebar-item" data-tech="${x.tech.id}">
+      <span class="sidebar-rank">${i+1}</span>
+      <span class="sidebar-name">${lang==='en'?x.tech.en:x.tech.ko}</span>
+      <span class="sidebar-badge badge-fading">${x.s.toFixed(1)}/mo</span>
+    </div>`;
+  }).join('');
+
+  // Sidebar click → scroll to row
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.tech;
+      const row = document.querySelector(`tr[data-tech="${id}"]`);
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.style.outline = '2px solid var(--accent)';
+        row.style.outlineOffset = '-1px';
+        setTimeout(() => { row.style.outline = ''; row.style.outlineOffset = ''; }, 1500);
+      }
+    });
+  });
+}
+
+// ── Render Heatmap ──
+function renderHeatmap() {
+  const container = document.getElementById('heatmapInner');
+  const list = getFilteredSorted();
+
+  const monthNamesArr = lang === 'en' ? MONTH_NAMES_EN : MONTH_NAMES_KO;
+
+  // Build table
+  let html = `<table class="heatmap-table"><thead><tr class="month-header-row">
+    <th class="row-label-th"></th>`;
+
+  MONTHS.forEach((m, i) => {
+    const isYearStart = m.month === 0;
+    const lbl = isYearStart ? (lang === 'en' ? m.year : m.year+'년') : monthNamesArr[m.month];
+    html += `<th class="month-th${isYearStart?' year-start':''}" title="${m.year}-${monthNamesArr[m.month]}">${lbl}</th>`;
+  });
+  html += `</tr></thead><tbody>`;
+
+  let lastCat = null;
+  list.forEach(tech => {
+    if (sortMode === 'category' && tech.cat !== lastCat) {
+      lastCat = tech.cat;
+      const meta = CAT_META[tech.cat] || {};
+      const catLabel = lang === 'en' ? tech.cat : (meta.label_ko || tech.cat);
+      html += `<tr><td colspan="${MONTHS.length + 1}">
+        <div class="category-label" style="color:${meta.color || '#8b949e'}">${catLabel}</div>
+      </td></tr>`;
+    }
+
+    html += `<tr class="tech-row" data-tech="${tech.id}">
+      <td class="row-label" title="${lang==='en'?tech.en:tech.ko}">${lang==='en'?tech.en:tech.ko}</td>`;
+
+    tech.scores.forEach((score, mi2) => {
+      const m = MONTHS[mi2];
+      const color = score !== null ? heatColor(score) : null;
+      const cellClass = score === null ? 'heat-cell null-cell' : 'heat-cell';
+      const style = color ? `background:${color}` : '';
+      const lbl = `${lang==='en'?tech.en:tech.ko} — ${m.year} ${monthNamesArr[m.month]}: ${score !== null ? score : 'N/A'}`;
+      html += `<td class="cell-td">
+        <span class="${cellClass}" style="${style}"
+          data-tech="${tech.id}"
+          data-mi="${mi2}"
+          title="${lbl}">
+        </span>
+      </td>`;
+    });
+
+    html += `</tr>`;
+  });
+
+  html += `</tbody></table>`;
+  container.innerHTML = html;
+
+  // Bind cell events
+  container.querySelectorAll('.heat-cell:not(.null-cell)').forEach(cell => {
+    cell.addEventListener('mouseenter', onCellHover);
+    cell.addEventListener('mouseleave', onCellLeave);
+    cell.addEventListener('click', onCellClick);
+  });
+}
+
+// ── Render Legend ──
+function renderLegend() {
+  const leg = document.getElementById('legend');
+  const steps = [0,10,20,30,40,50,60,70,80,90,100];
+  const gradient = steps.map(v => `<span class="legend-cell" style="background:${heatColor(v)}"></span>`).join('');
+  leg.innerHTML = `
+    <span class="legend-label">${t('Less','낮음')}</span>
+    <div class="legend-gradient">${gradient}</div>
+    <span class="legend-label">${t('More','높음')}</span>
+    <span style="flex:1"></span>
+    <span class="legend-label" style="font-size:10px;color:var(--text-muted)">${MONTHS.length} ${t('months','개월')} · Jan 2024 → Apr 2026</span>
+  `;
+}
+
+// ── Tooltip ──
+const tooltip = document.getElementById('tooltip');
+let tooltipActive = false;
+
+function onCellHover(e) {
+  const cell = e.currentTarget;
+  const techId = cell.dataset.tech;
+  const mi2 = parseInt(cell.dataset.mi);
+  const tech = TECHS.find(t => t.id === techId);
+  if (!tech) return;
+
+  const score = tech.scores[mi2];
+  const m = MONTHS[mi2];
+  const monthNamesArr = lang === 'en' ? MONTH_NAMES_EN : MONTH_NAMES_KO;
+
+  const prev = mi2 > 0 ? tech.scores.slice(0, mi2).filter(s => s !== null).slice(-1)[0] : null;
+  const delta = prev !== null ? score - prev : null;
+  const trendStr = delta !== null
+    ? (delta >= 0 ? `▲ +${delta} from prev` : `▼ ${delta} from prev`)
+    : '';
+
+  document.getElementById('tt-tech').textContent = lang === 'en' ? tech.en : tech.ko;
+  document.getElementById('tt-month').textContent = `${m.year} ${monthNamesArr[m.month]}`;
+  document.getElementById('tt-score').textContent = score;
+  document.getElementById('tt-score').style.color = heatColor(score);
+  document.getElementById('tt-bar').style.width = score + '%';
+  document.getElementById('tt-bar').style.background = heatColor(score);
+  document.getElementById('tt-trend').textContent = trendStr;
+
+  tooltip.classList.add('visible');
+  tooltipActive = true;
+  positionTooltip(e);
+}
+
+function onCellLeave() {
+  tooltip.classList.remove('visible');
+  tooltipActive = false;
+}
+
+document.addEventListener('mousemove', e => {
+  if (tooltipActive) positionTooltip(e);
+});
+
+function positionTooltip(e) {
+  const tw = tooltip.offsetWidth + 16;
+  const th = tooltip.offsetHeight + 16;
+  let x = e.clientX + 14;
+  let y = e.clientY + 14;
+  if (x + tw > window.innerWidth) x = e.clientX - tw + 2;
+  if (y + th > window.innerHeight) y = e.clientY - th + 2;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+// ── Detail Card ──
+function onCellClick(e) {
+  const cell = e.currentTarget;
+  const techId = cell.dataset.tech;
+  const mi2 = parseInt(cell.dataset.mi);
+  const tech = TECHS.find(t => t.id === techId);
+  if (!tech) return;
+
+  const score = tech.scores[mi2];
+  const m = MONTHS[mi2];
+  const monthNamesArr = lang === 'en' ? MONTH_NAMES_EN : MONTH_NAMES_KO;
+  const meta = CAT_META[tech.cat] || {};
+
+  document.getElementById('dc-cat').textContent = lang === 'en' ? tech.cat : (meta.label_ko || tech.cat);
+  document.getElementById('dc-cat').style.color = meta.color || 'var(--accent)';
+  document.getElementById('dc-tech').textContent = lang === 'en' ? tech.en : tech.ko;
+  document.getElementById('dc-month').textContent = `${m.year} ${monthNamesArr[m.month]}`;
+  document.getElementById('dc-score').textContent = score;
+  document.getElementById('dc-score').style.color = heatColor(score);
+  document.getElementById('dc-sl').textContent = t('Interest Score','관심도 점수');
+
+  const sl = slope6(tech.scores);
+  const trendEl = document.getElementById('dc-trend');
+  if (sl > 1.5) {
+    trendEl.textContent = `▲ ${t('Rising','상승중')} +${sl.toFixed(1)}/mo`;
+    trendEl.style.background = 'rgba(63,185,80,.15)';
+    trendEl.style.color = 'var(--rising)';
+  } else if (sl < -1) {
+    trendEl.textContent = `▼ ${t('Declining','하락중')} ${sl.toFixed(1)}/mo`;
+    trendEl.style.background = 'rgba(248,81,73,.15)';
+    trendEl.style.color = 'var(--fading)';
+  } else {
+    trendEl.textContent = `→ ${t('Stable','안정적')}`;
+    trendEl.style.background = 'rgba(139,148,158,.15)';
+    trendEl.style.color = 'var(--text-muted)';
+  }
+
+  document.getElementById('dc-meter').style.width = score + '%';
+  document.getElementById('dc-meter').style.background = heatColor(score);
+
+  // Context note
+  const ctxText = lang === 'en' ? tech.ctx_en : tech.ctx_ko;
+  document.getElementById('dc-ctx').textContent = ctxText;
+
+  // Sparkline
+  drawSparkline(tech.scores, mi2, score);
+
+  document.getElementById('detailOverlay').classList.add('open');
+}
+
+function drawSparkline(scores, highlighted, hlScore) {
+  const svg = document.getElementById('dc-spark');
+  const W = 300, H = 50;
+  const valid = scores.map((v,i) => ({v,i})).filter(x => x.v !== null);
+  if (valid.length < 2) { svg.innerHTML = ''; return; }
+
+  const minV = 0, maxV = 100;
+  const toX = (i) => (i / (scores.length - 1)) * W;
+  const toY = (v) => H - ((v - minV) / (maxV - minV)) * H;
+
+  // Area path
+  let path = `M ${toX(valid[0].i)} ${toY(valid[0].v)}`;
+  for (let k = 1; k < valid.length; k++) path += ` L ${toX(valid[k].i)} ${toY(valid[k].v)}`;
+  const areaPath = path + ` L ${toX(valid[valid.length-1].i)} ${H} L ${toX(valid[0].i)} ${H} Z`;
+
+  // Highlighted point
+  const hx = toX(highlighted), hy = toY(hlScore);
+
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${heatColor(hlScore)}" stop-opacity=".4"/>
+        <stop offset="100%" stop-color="${heatColor(hlScore)}" stop-opacity=".0"/>
+      </linearGradient>
+    </defs>
+    <path d="${areaPath}" fill="url(#sg)"/>
+    <path d="${path}" fill="none" stroke="${heatColor(hlScore)}" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="${hx}" cy="${hy}" r="4" fill="${heatColor(hlScore)}" stroke="var(--bg-card)" stroke-width="2"/>
+  `;
+}
+
+document.getElementById('detailClose').addEventListener('click', () => {
+  document.getElementById('detailOverlay').classList.remove('open');
+});
+document.getElementById('detailOverlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('detailOverlay')) {
+    document.getElementById('detailOverlay').classList.remove('open');
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.getElementById('detailOverlay').classList.remove('open');
+});
+
+// ── Controls ──
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  renderHeatmap();
+  if (!searchQuery) renderSidebar();
+});
+
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    sortMode = btn.dataset.sort;
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderHeatmap();
+    renderSidebar();
+  });
+});
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  lang = lang === 'en' ? 'ko' : 'en';
+  document.getElementById('langToggle').textContent = lang === 'en' ? '한국어' : 'English';
+  document.getElementById('title-text').textContent = lang === 'en' ? 'Tech Trend Heatmap' : '기술 트렌드 히트맵';
+  document.getElementById('searchInput').placeholder = lang === 'en' ? 'Search technologies...' : '기술 검색...';
+  renderAll();
+});
+
+// ── Render All ──
+function renderAll() {
+  renderStats();
+  renderSidebar();
+  renderHeatmap();
+  renderLegend();
+}
+
+renderAll();
+</script>
+</body>
+</html>

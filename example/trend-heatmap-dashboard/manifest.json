@@ -1,0 +1,8 @@
+{
+  "slug": "trend-heatmap-dashboard",
+  "title": "Trend Heatmap Dashboard",
+  "stack": ["html", "css", "js"],
+  "created_at": "2026-04-16",
+  "source_project": "06-trend-heatmap",
+  "author": "kjuhwa@nkia.co.kr"
+}
