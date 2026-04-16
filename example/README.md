@@ -296,6 +296,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [bloom-filter-explorer](bloom-filter-explorer/) | Bloom Filter Explorer — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
 
+| [message-queue-conveyor](message-queue-conveyor/) | Message Queue Conveyor — auto-generated message-queue tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
