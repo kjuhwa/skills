@@ -1,0 +1,12 @@
+{
+  "slug": "shard-router-visualizer",
+  "title": "Shard Router Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:55:27.643Z",
+  "source_project": "100-shard-router-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}

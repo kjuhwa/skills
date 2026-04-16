@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shard Router Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Shard Router Visualizer</h1>
+    <p class="sub">Hash-based routing across <span id="shardCount">4</span> shards</p>
+  </header>
+  <div class="controls">
+    <input id="keyInput" type="text" placeholder="Enter a key (e.g. user:1024)" />
+    <button id="routeBtn">Route Key</button>
+    <button id="batchBtn">Batch Insert 20</button>
+    <button id="clearBtn">Clear</button>
+    <label>Shards: <input id="shardSlider" type="range" min="2" max="8" value="4"></label>
+  </div>
+  <canvas id="canvas" width="900" height="440"></canvas>
+  <div class="log" id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
