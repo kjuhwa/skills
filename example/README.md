@@ -140,6 +140,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [raft-election-arena](raft-election-arena/) | Raft Election Arena — auto-generated raft-consensus tool | html, css, vanilla-js | 2026-04-16 |
 
+| [domain-driven-context-map](domain-driven-context-map/) | Domain Driven Context Map — auto-generated domain-driven tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

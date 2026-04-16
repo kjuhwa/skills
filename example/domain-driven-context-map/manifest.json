@@ -1,0 +1,12 @@
+{
+  "slug": "domain-driven-context-map",
+  "title": "Domain Driven Context Map",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:04:48.533Z",
+  "source_project": "100-domain-driven-context-map",
+  "author": "kjuhwa@nkia.co.kr"
+}
