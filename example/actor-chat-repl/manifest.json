@@ -1,0 +1,12 @@
+{
+  "slug": "actor-chat-repl",
+  "title": "Actor Chat Repl",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:54:51.946Z",
+  "source_project": "102-actor-chat-repl",
+  "author": "kjuhwa@nkia.co.kr"
+}
