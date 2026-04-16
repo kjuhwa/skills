@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-migration",
+  "title": "Strangler Fig Migration",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:21:54.094Z",
+  "source_project": "30-strangler-fig-migration",
+  "author": "kjuhwa@nkia.co.kr"
+}
