@@ -1,0 +1,12 @@
+{
+  "slug": "saga-orchestrator-sim",
+  "title": "Saga Orchestrator Sim",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T09:49:29.643Z",
+  "source_project": "81-saga-orchestrator-sim",
+  "author": "kjuhwa@nkia.co.kr"
+}
