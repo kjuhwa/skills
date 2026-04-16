@@ -1,0 +1,11 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 30px; }
+.app { max-width: 700px; width: 100%; }
+h1 { color: #6ee7b7; font-size: 1.3rem; margin-bottom: 14px; }
+.controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+label { font-size: .8rem; color: #94a3b8; display: flex; align-items: center; gap: 6px; }
+input[type=range] { accent-color: #6ee7b7; width: 100px; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: .85rem; }
+.chart-area { background: #1a1d27; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+canvas { display: block; }
+.metric { font-size: .8rem; color: #94a3b8; background: #1a1d27; padding: 10px; border-radius: 8px; }

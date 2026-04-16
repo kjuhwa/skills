@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consistent Hashing Load Tester</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Load Distribution Tester</h1>
+  <div class="controls">
+    <label>Nodes: <input type="range" id="nodeCount" min="2" max="10" value="5"></label>
+    <label>Virtual Nodes: <input type="range" id="vnodeCount" min="1" max="200" value="1"></label>
+    <label>Keys: <input type="range" id="keyCount" min="50" max="2000" value="500"></label>
+    <button id="run">Run</button>
+  </div>
+  <div class="chart-area">
+    <canvas id="chart" width="660" height="280"></canvas>
+  </div>
+  <div id="metric" class="metric"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
