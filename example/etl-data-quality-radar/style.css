@@ -1,0 +1,24 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#e5e7eb;font-family:system-ui,sans-serif;padding:20px;min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+h1{color:#6ee7b7}
+select,button{background:#1a1d27;color:#e5e7eb;border:1px solid #2a2f3c;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:0.9rem}
+button{color:#6ee7b7;font-weight:600;margin-left:8px}
+button:hover,select:hover{border-color:#6ee7b7}
+main{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.radar-wrap{background:#1a1d27;border:1px solid #2a2f3c;border-radius:12px;padding:20px;position:relative;display:flex;justify-content:center;align-items:center}
+#radar{width:100%;max-width:460px;height:auto}
+.score-box{position:absolute;top:30px;right:30px;text-align:right}
+.score{font-size:2.8rem;color:#6ee7b7;font-weight:800;line-height:1}
+.grade{color:#9ca3af;font-size:0.85rem;margin-top:4px}
+.details{background:#1a1d27;border:1px solid #2a2f3c;border-radius:12px;padding:20px;overflow:auto}
+h2{color:#6ee7b7;font-size:1rem;margin-bottom:10px;margin-top:8px}
+#metrics li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #2a2f3c;font-size:0.9rem}
+#metrics li .pct{font-family:monospace}
+.good{color:#6ee7b7}.warn{color:#fbbf24}.bad{color:#fca5a5}
+#issues li{font-family:monospace;font-size:0.8rem;color:#c7d2fe;padding:4px 0;border-bottom:1px dashed #2a2f3c}
+.axis{stroke:#2a2f3c;stroke-width:1}
+.grid{fill:none;stroke:#2a2f3c;stroke-width:1}
+.shape{fill:#6ee7b7;fill-opacity:0.25;stroke:#6ee7b7;stroke-width:2}
+.label{fill:#e5e7eb;font-size:11px;font-family:system-ui}
+.dot{fill:#6ee7b7}

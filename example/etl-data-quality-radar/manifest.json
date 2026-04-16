@@ -1,0 +1,12 @@
+{
+  "slug": "etl-data-quality-radar",
+  "title": "Etl Data Quality Radar",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:12:53.933Z",
+  "source_project": "102-etl-data-quality-radar",
+  "author": "kjuhwa@nkia.co.kr"
+}

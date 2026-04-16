@@ -406,6 +406,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [health-check-dashboard](health-check-dashboard/) | Health Check Dashboard — auto-generated load-balancer tool | html, css, vanilla-js | 2026-04-16 |
 
+| [etl-data-quality-radar](etl-data-quality-radar/) | Etl Data Quality Radar — auto-generated etl tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

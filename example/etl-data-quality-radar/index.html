@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ETL Data Quality Radar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>ETL Data Quality Radar</h1>
+  <div>
+    <select id="dataset">
+      <option value="sales">sales_raw</option>
+      <option value="users">users_daily</option>
+      <option value="events">events_stream</option>
+    </select>
+    <button id="rescan">Rescan</button>
+  </div>
+</header>
+<main>
+  <section class="radar-wrap">
+    <svg id="radar" viewBox="0 0 400 400"></svg>
+    <div class="score-box">
+      <div class="score" id="score">—</div>
+      <div class="grade" id="grade">Quality</div>
+    </div>
+  </section>
+  <section class="details">
+    <h2>Metric Breakdown</h2>
+    <ul id="metrics"></ul>
+    <h2>Sample Issues</h2>
+    <ul id="issues"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
