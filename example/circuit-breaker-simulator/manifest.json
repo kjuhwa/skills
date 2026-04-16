@@ -1,0 +1,12 @@
+{
+  "slug": "circuit-breaker-simulator",
+  "title": "Circuit Breaker Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:13:07.004Z",
+  "source_project": "24-circuit-breaker-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

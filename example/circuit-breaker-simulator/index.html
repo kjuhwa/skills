@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuit Breaker Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Circuit Breaker Simulator</h1>
+  <div class="top">
+    <canvas id="canvas" width="520" height="220"></canvas>
+    <div class="panel">
+      <div class="label">State</div>
+      <div class="badge" id="badge">CLOSED</div>
+      <div class="label">Failure Count</div>
+      <div class="val" id="failCount">0 / 5</div>
+      <div class="label">Cooldown</div>
+      <div class="val" id="cooldown">—</div>
+      <button id="btnReq">Send Request</button>
+      <button id="btnFail" class="danger">Send Failing Request</button>
+      <button id="btnReset" class="muted">Reset</button>
+    </div>
+  </div>
+  <div class="log" id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
