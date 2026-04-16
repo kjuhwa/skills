@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Span Latency Heatmap</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Span Latency Heatmap</h1>
+  <div class="controls">
+    <label>Service:
+      <select id="svc"></select>
+    </label>
+    <label>Window:
+      <select id="win">
+        <option value="60">1m</option>
+        <option value="300" selected>5m</option>
+        <option value="900">15m</option>
+      </select>
+    </label>
+    <span id="summary"></span>
+  </div>
+</header>
+<main>
+  <div class="heatmap-wrap">
+    <canvas id="heat"></canvas>
+    <div class="axis y">
+      <span>1s</span><span>500ms</span><span>250ms</span><span>100ms</span><span>50ms</span><span>10ms</span>
+    </div>
+    <div class="axis x" id="xaxis"></div>
+  </div>
+  <div class="percentiles" id="pct"></div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

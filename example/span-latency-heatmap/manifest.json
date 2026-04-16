@@ -1,0 +1,12 @@
+{
+  "slug": "span-latency-heatmap",
+  "title": "Span Latency Heatmap",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:20:32.424Z",
+  "source_project": "102-span-latency-heatmap",
+  "author": "kjuhwa@nkia.co.kr"
+}
