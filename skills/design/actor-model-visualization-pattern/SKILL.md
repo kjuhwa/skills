@@ -1,6 +1,6 @@
 ---
 name: actor-model-visualization-pattern
-description: Visual conventions for rendering actors, mailboxes, and message flows in browser-based actor-model demos
+description: Canvas/SVG rendering of actors-as-nodes with mailboxes, in-flight messages, and supervision edges
 category: design
 triggers:
   - actor model visualization pattern
@@ -11,8 +11,6 @@ version: 1.0.0
 
 # actor-model-visualization-pattern
 
-When visualizing an actor system, represent each actor as a bounded node (circle or rounded rectangle) with three persistent visual slots: an identity badge (PID/name), a mailbox queue rendered as stacked envelopes or a horizontal strip with a visible depth counter, and a state indicator (color-coded: green=idle, amber=processing, red=crashed, gray=stopped). Messages in flight should be animated as discrete tokens traveling along directed edges from sender to receiver's mailbox tail, with easing that reflects latency rather than instant teleportation — this makes asynchrony legible. Supervision hierarchies (as in supervision-tree-viz) must be drawn as a tree with strategy labels on parent edges (one-for-one, one-for-all, rest-for-one) and restart intensity counters visible near each supervisor.
+Each actor renders as a labeled circle whose radius scales with mailbox depth (e.g., `22 + min(mailbox.length * 2, 18)`), with fill color flipping between idle and busy states (`#6ee7b7` for busy/alive). Messages in transit are small dots interpolated along a straight line `from → to` using a per-message `t` parameter incremented each frame; on `t >= 1` the message is pushed into `to.mailbox` and spliced from the in-flight array. Supervision trees use SVG with recursive `layout(node, x, y, w)` that divides horizontal width by `children.length` and steps down ~110px per depth, drawing cubic Bezier edges with midpoint control points `C x,(y+cy)/2 cx,(y+cy)/2 cx,cy-18`.
 
-For orchestration views like message-flow-orchestra, use a timeline or swim-lane layout where each actor owns a lane and messages are arrows crossing lanes at their send/receive timestamps. Critically, show the gap between send and receive — the asynchronous delivery window is the whole point of the model and collapsing it loses pedagogical value. Highlight mailbox backpressure with a visual threshold line and color the mailbox fill when it crosses warning/critical bands.
-
-Always expose a tick/step control alongside play/pause so learners can single-step message delivery. Pair the canvas with a side panel that lists the currently-processing message and the actor's behavior/receive clause, so viewers can connect visual state to the code-level pattern match happening inside each actor.
+Status gets encoded via CSS classes (`alive`, `crashed`, `restarting`) toggled on the SVG `<g>` group, plus a secondary restart-count label `↺${n.restarts}` rendered beneath the node. For throughput graphs, sample `total received - lastCount` on a 1s `setInterval` into a rolling 60-point history array and plot a polyline scaled to `max(10, ...history)`. Keep background trails by filling the canvas with low-alpha black (`rgba(15,17,23,0.2)`) instead of clearing, which produces motion blur for moving actors.
