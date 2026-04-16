@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Materialized View vs Live Query Race</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>MV vs Live Query — Race</h1>
+  <p>Same question, two strategies. Press RUN to race.</p>
+</header>
+<main>
+  <div class="controls">
+    <label>Source rows: <input type="range" id="rowCount" min="1000" max="500000" step="1000" value="50000"><span id="rowLabel">50,000</span></label>
+    <label>MV staleness: <input type="range" id="staleness" min="0" max="100" value="10"><span id="staleLabel">10%</span></label>
+    <button id="runBtn">RUN QUERY</button>
+  </div>
+  <div class="race">
+    <div class="lane">
+      <div class="lane-head"><span class="tag live">LIVE</span> SELECT ... FROM orders GROUP BY ...</div>
+      <div class="track"><div class="runner" id="liveRunner"></div></div>
+      <div class="stats"><span>time: <b id="liveTime">—</b></span><span>rows scanned: <b id="liveScan">—</b></span><span>accuracy: <b class="ok">100%</b></span></div>
+    </div>
+    <div class="lane">
+      <div class="lane-head"><span class="tag mv">MV</span> SELECT * FROM mv_order_summary</div>
+      <div class="track"><div class="runner mv" id="mvRunner"></div></div>
+      <div class="stats"><span>time: <b id="mvTime">—</b></span><span>rows scanned: <b id="mvScan">—</b></span><span>accuracy: <b id="mvAcc">—</b></span></div>
+    </div>
+  </div>
+  <canvas id="chart" width="820" height="220"></canvas>
+  <div class="summary" id="summary">Run a few queries to see speedup.</div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

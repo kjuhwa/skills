@@ -1,0 +1,27 @@
+:root { --bg:#0f1117; --surface:#1a1d27; --accent:#6ee7b7; --text:#e4e6eb; --dim:#8a8f9b; --live:#f59e0b; --mv:#6ee7b7; --err:#ef4444; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", sans-serif; padding: 20px; }
+header h1 { color: var(--accent); font-size: 22px; }
+header p { color: var(--dim); font-size: 13px; margin: 4px 0 18px; }
+.controls { background: var(--surface); padding: 14px; border-radius: 8px; display: flex; gap: 20px; align-items: center; margin-bottom: 18px; border: 1px solid #252834; flex-wrap: wrap; }
+.controls label { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--dim); }
+.controls input[type=range] { width: 180px; accent-color: var(--accent); }
+.controls span { color: var(--text); font-family: monospace; font-size: 12px; min-width: 70px; }
+#runBtn { background: var(--accent); color: #0f1117; border: none; padding: 8px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-left: auto; }
+#runBtn:hover { filter: brightness(1.1); }
+#runBtn:disabled { opacity: 0.5; cursor: wait; }
+.race { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
+.lane { background: var(--surface); padding: 14px; border-radius: 8px; border: 1px solid #252834; }
+.lane-head { font-family: "SF Mono", monospace; font-size: 12px; color: var(--dim); margin-bottom: 10px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+.tag.live { background: var(--live); color: #0f1117; }
+.tag.mv { background: var(--mv); color: #0f1117; }
+.track { height: 12px; background: #0f1117; border-radius: 6px; overflow: hidden; margin-bottom: 10px; border: 1px solid #252834; }
+.runner { height: 100%; width: 0%; background: var(--live); transition: width 0.05s linear; }
+.runner.mv { background: var(--mv); }
+.stats { display: flex; gap: 20px; font-size: 12px; color: var(--dim); font-family: "SF Mono", monospace; }
+.stats b { color: var(--text); }
+.stats .ok { color: var(--accent); }
+.stats .warn { color: var(--live); }
+#chart { background: var(--surface); border-radius: 8px; border: 1px solid #252834; width: 100%; max-width: 820px; display: block; }
+.summary { margin-top: 12px; padding: 12px; background: var(--surface); border-radius: 8px; border-left: 3px solid var(--accent); font-size: 13px; color: var(--text); font-family: "SF Mono", monospace; }
