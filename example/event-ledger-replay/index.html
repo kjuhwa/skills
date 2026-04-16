@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Ledger Replay</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Event Ledger Replay</h1>
+  <p>Scrub through an append-only event log and watch state rebuild.</p>
+</header>
+<main>
+  <section class="panel">
+    <h2>Event Stream</h2>
+    <ul id="stream"></ul>
+  </section>
+  <section class="panel">
+    <h2>Projected State</h2>
+    <div id="state">
+      <div class="stat"><label>Balance</label><span id="balance">$0</span></div>
+      <div class="stat"><label>Tier</label><span id="tier">bronze</span></div>
+      <div class="stat"><label>Events Applied</label><span id="count">0</span></div>
+    </div>
+    <div class="ledger">
+      <canvas id="chart" width="480" height="140"></canvas>
+    </div>
+  </section>
+</main>
+<footer>
+  <input type="range" id="scrub" min="0" max="0" value="0">
+  <div class="controls">
+    <button id="rewind">Rewind</button>
+    <button id="play">Play</button>
+    <button id="step">Step</button>
+  </div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
