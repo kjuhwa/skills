@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Trends Radar 2025–2026</title>
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #161922;
+    --surface2: #1e2330;
+    --border: #2a3045;
+    --text: #e2e8f0;
+    --text-muted: #7a8499;
+    --text-dim: #4a5568;
+    --adopt-color: #00e5a0;
+    --trial-color: #3b9eff;
+    --assess-color: #f5a623;
+    --hold-color: #ff5c7a;
+    --q1-color: #a78bfa;
+    --q2-color: #34d399;
+    --q3-color: #60a5fa;
+    --q4-color: #fb923c;
+    --accent: #7c3aed;
+    --glow: rgba(124, 58, 237, 0.3);
+    --radius: 12px;
+    --sidebar-w: 280px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent), #06b6d4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  .header-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 7px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 12px var(--glow);
+  }
+
+  .btn-lang {
+    background: linear-gradient(135deg, var(--accent), #06b6d4);
+    border-color: transparent;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .btn-lang:hover {
+    opacity: 0.85;
+    background: linear-gradient(135deg, var(--accent), #06b6d4);
+  }
+
+  .blip-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  /* ===== LAYOUT ===== */
+  .app-layout {
+    display: flex;
+    height: calc(100vh - 65px);
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    flex-shrink: 0;
+    padding: 20px 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .filter-section {
+    margin-bottom: 24px;
+  }
+
+  .filter-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .filter-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .filter-chip:hover {
+    background: var(--surface2);
+    border-color: var(--border);
+  }
+
+  .filter-chip.active {
+    background: var(--surface2);
+    border-color: var(--border);
+  }
+
+  .filter-chip .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .filter-chip .chip-count {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 1px 7px;
+    border-radius: 10px;
+  }
+
+  .filter-chip.dimmed {
+    opacity: 0.4;
+  }
+
+  .reset-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px;
+    background: transparent;
+    border: 1px dashed var(--border);
+    color: var(--text-muted);
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .reset-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(124,58,237,0.07);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+  }
+
+  /* ===== LEGEND ===== */
+  .legend-section {
+    margin-top: 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+
+  .legend-ring {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 3px solid;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .legend-text strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .legend-text span {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  #radar-svg {
+    width: 100%;
+    height: 100%;
+    max-width: min(100%, calc(100vh - 120px));
+    max-height: calc(100vh - 120px);
+    aspect-ratio: 1 / 1;
+    overflow: visible;
+    filter: drop-shadow(0 0 40px rgba(0,0,0,0.6));
+  }
+
+  /* ===== BLIP STYLING ===== */
+  .blip {
+    cursor: pointer;
+  }
+
+  .blip circle {
+    transition: r 0.2s ease, filter 0.2s ease;
+  }
+
+  .blip:hover circle {
+    filter: brightness(1.4) drop-shadow(0 0 6px currentColor);
+  }
+
+  .blip.dimmed {
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .blip.highlighted circle {
+    filter: brightness(1.5) drop-shadow(0 0 8px currentColor);
+  }
+
+  /* ===== POPUP ===== */
+  #popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+  }
+
+  #popup-overlay.open {
+    display: flex;
+  }
+
+  .popup-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: min(480px, calc(100vw - 40px));
+    padding: 28px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.05);
+    position: relative;
+    animation: popup-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes popup-in {
+    from { opacity: 0; transform: scale(0.9) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    transition: all 0.15s;
+  }
+
+  .popup-close:hover {
+    background: var(--hold-color);
+    border-color: var(--hold-color);
+    color: #fff;
+  }
+
+  .popup-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid;
+  }
+
+  .popup-name {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .popup-name-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+
+  .popup-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+  }
+
+  .popup-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #c4cdd8;
+    margin-bottom: 18px;
+  }
+
+  .popup-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .trend-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+
+  .trend-arrow {
+    font-size: 18px;
+  }
+
+  .popup-quadrant-info {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ===== TOOLTIP ===== */
+  #tooltip {
+    position: fixed;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 300;
+    opacity: 0;
+    transition: opacity 0.12s;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    :root { --sidebar-w: 220px; }
+
+    .app-layout {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      max-height: 280px;
+      padding: 12px;
+    }
+
+    .filter-section { margin-bottom: 12px; }
+    .filter-group { flex-direction: row; flex-wrap: wrap; }
+    .filter-chip { padding: 5px 10px; }
+    .legend-section { display: none; }
+
+    .main-content {
+      height: 80vw;
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header { padding: 10px 14px; }
+    .header-title { font-size: 15px; }
+    .btn { padding: 6px 12px; font-size: 12px; }
+    .popup-card { padding: 20px; }
+    .popup-name { font-size: 18px; }
+  }
+
+  /* ===== SCROLLBAR GLOBAL ===== */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <div class="logo-mark">R</div>
+    <div>
+      <div class="header-title" data-i18n="title">Tech Trends Radar 2025–2026</div>
+      <div class="header-sub" data-i18n="subtitle">Interactive Technology Assessment</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <span class="blip-count" id="visible-count">43 blips</span>
+    <button class="btn btn-lang" id="lang-toggle" onclick="toggleLang()">한국어</button>
+  </div>
+</header>
+
+<!-- APP LAYOUT -->
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Quadrant Filter -->
+    <div class="filter-section">
+      <div class="filter-title" data-i18n="filter_quadrant">Quadrant</div>
+      <div class="filter-group" id="quadrant-filters">
+        <div class="filter-chip active" data-filter="quadrant" data-value="all" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--text-muted)"></div>
+          <span data-i18n="all">All</span>
+          <span class="chip-count" id="cnt-all-q">0</span>
+        </div>
+        <div class="filter-chip" data-filter="quadrant" data-value="Languages & Frameworks" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--q1-color)"></div>
+          <span data-i18n="q_lang">Languages & Frameworks</span>
+          <span class="chip-count" id="cnt-q1">0</span>
+        </div>
+        <div class="filter-chip" data-filter="quadrant" data-value="Platforms" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--q2-color)"></div>
+          <span data-i18n="q_plat">Platforms</span>
+          <span class="chip-count" id="cnt-q2">0</span>
+        </div>
+        <div class="filter-chip" data-filter="quadrant" data-value="Tools" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--q3-color)"></div>
+          <span data-i18n="q_tools">Tools</span>
+          <span class="chip-count" id="cnt-q3">0</span>
+        </div>
+        <div class="filter-chip" data-filter="quadrant" data-value="Techniques" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--q4-color)"></div>
+          <span data-i18n="q_tech">Techniques</span>
+          <span class="chip-count" id="cnt-q4">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ring Filter -->
+    <div class="filter-section">
+      <div class="filter-title" data-i18n="filter_ring">Ring</div>
+      <div class="filter-group" id="ring-filters">
+        <div class="filter-chip active" data-filter="ring" data-value="all" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--text-muted)"></div>
+          <span data-i18n="all">All</span>
+          <span class="chip-count" id="cnt-all-r">0</span>
+        </div>
+        <div class="filter-chip" data-filter="ring" data-value="Adopt" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--adopt-color)"></div>
+          <span data-i18n="r_adopt">Adopt</span>
+          <span class="chip-count" id="cnt-adopt">0</span>
+        </div>
+        <div class="filter-chip" data-filter="ring" data-value="Trial" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--trial-color)"></div>
+          <span data-i18n="r_trial">Trial</span>
+          <span class="chip-count" id="cnt-trial">0</span>
+        </div>
+        <div class="filter-chip" data-filter="ring" data-value="Assess" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--assess-color)"></div>
+          <span data-i18n="r_assess">Assess</span>
+          <span class="chip-count" id="cnt-assess">0</span>
+        </div>
+        <div class="filter-chip" data-filter="ring" data-value="Hold" onclick="filterClick(this)">
+          <div class="dot" style="background:var(--hold-color)"></div>
+          <span data-i18n="r_hold">Hold</span>
+          <span class="chip-count" id="cnt-hold">0</span>
+        </div>
+      </div>
+      <button class="reset-btn" onclick="resetFilters()" data-i18n="reset_filters">Reset Filters</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Legend -->
+    <div class="legend-section">
+      <div class="filter-title" data-i18n="legend">Legend</div>
+
+      <div class="legend-item">
+        <div class="legend-ring" style="border-color:var(--adopt-color); color:var(--adopt-color)"></div>
+        <div class="legend-text">
+          <strong style="color:var(--adopt-color)" data-i18n="r_adopt">Adopt</strong>
+          <span data-i18n="adopt_desc">Production-ready. Recommended for immediate use in new projects.</span>
+        </div>
+      </div>
+
+      <div class="legend-item">
+        <div class="legend-ring" style="border-color:var(--trial-color); color:var(--trial-color)"></div>
+        <div class="legend-text">
+          <strong style="color:var(--trial-color)" data-i18n="r_trial">Trial</strong>
+          <span data-i18n="trial_desc">Worth pursuing. Apply in non-critical projects to build confidence.</span>
+        </div>
+      </div>
+
+      <div class="legend-item">
+        <div class="legend-ring" style="border-color:var(--assess-color); color:var(--assess-color)"></div>
+        <div class="legend-text">
+          <strong style="color:var(--assess-color)" data-i18n="r_assess">Assess</strong>
+          <span data-i18n="assess_desc">Promising but uncertain. Explore and monitor progress.</span>
+        </div>
+      </div>
+
+      <div class="legend-item">
+        <div class="legend-ring" style="border-color:var(--hold-color); color:var(--hold-color)"></div>
+        <div class="legend-text">
+          <strong style="color:var(--hold-color)" data-i18n="r_hold">Hold</strong>
+          <span data-i18n="hold_desc">Proceed with caution. Not recommended for new projects.</span>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- RADAR -->
+  <main class="main-content">
+    <svg id="radar-svg" viewBox="-500 -500 1000 1000" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <defs>
+        <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1a1f2e" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#0d0f14" stop-opacity="1"/>
+        </radialGradient>
+        <filter id="blip-glow">
+          <feGaussianBlur stdDeviation="2.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glow-soft">
+          <feGaussianBlur stdDeviation="1.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <clipPath id="quad1"><path d="M0,0 L0,-500 A500,500 0 0,1 500,0 Z"/></clipPath>
+        <clipPath id="quad2"><path d="M0,0 L500,0 A500,500 0 0,1 0,500 Z"/></clipPath>
+        <clipPath id="quad3"><path d="M0,0 L0,500 A500,500 0 0,1 -500,0 Z"/></clipPath>
+        <clipPath id="quad4"><path d="M0,0 L-500,0 A500,500 0 0,1 0,-500 Z"/></clipPath>
+      </defs>
+
+      <!-- Background -->
+      <circle r="500" fill="url(#bgGrad)"/>
+
+      <!-- Quadrant colored fills (subtle) -->
+      <path d="M0,0 L0,-480 A480,480 0 0,1 480,0 Z" fill="rgba(167,139,250,0.03)" clip-path="url(#quad1)"/>
+      <path d="M0,0 L480,0 A480,480 0 0,1 0,480 Z" fill="rgba(52,211,153,0.03)" clip-path="url(#quad2)"/>
+      <path d="M0,0 L0,480 A480,480 0 0,1 -480,0 Z" fill="rgba(96,165,250,0.03)" clip-path="url(#quad3)"/>
+      <path d="M0,0 L-480,0 A480,480 0 0,1 0,-480 Z" fill="rgba(251,146,60,0.03)" clip-path="url(#quad4)"/>
+
+      <!-- Ring circles -->
+      <circle r="120" fill="none" stroke="rgba(0,229,160,0.18)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <circle r="240" fill="none" stroke="rgba(59,158,255,0.15)" stroke-width="1" stroke-dasharray="4 3"/>
+      <circle r="360" fill="none" stroke="rgba(245,166,35,0.13)" stroke-width="1" stroke-dasharray="4 3"/>
+      <circle r="460" fill="none" stroke="rgba(255,92,122,0.12)" stroke-width="1" stroke-dasharray="4 3"/>
+
+      <!-- Outer boundary -->
+      <circle r="480" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+      <!-- Axis lines -->
+      <line x1="0" y1="-490" x2="0" y2="490" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <line x1="-490" y1="0" x2="490" y2="0" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+      <!-- Quadrant labels -->
+      <text x="20" y="-465" font-size="12" fill="rgba(167,139,250,0.6)" font-weight="700" letter-spacing="1" text-anchor="start" font-family="Inter,sans-serif">LANGUAGES &amp;</text>
+      <text x="20" y="-450" font-size="12" fill="rgba(167,139,250,0.6)" font-weight="700" letter-spacing="1" text-anchor="start" font-family="Inter,sans-serif">FRAMEWORKS</text>
+      <text x="-20" y="-465" font-size="12" fill="rgba(251,146,60,0.6)" font-weight="700" letter-spacing="1" text-anchor="end" font-family="Inter,sans-serif">TECHNIQUES</text>
+
+      <text x="20" y="462" font-size="12" fill="rgba(52,211,153,0.6)" font-weight="700" letter-spacing="1" text-anchor="start" font-family="Inter,sans-serif">PLATFORMS</text>
+      <text x="-20" y="462" font-size="12" fill="rgba(96,165,250,0.6)" font-weight="700" letter-spacing="1" text-anchor="end" font-family="Inter,sans-serif">TOOLS</text>
+
+      <!-- Ring labels (center) -->
+      <g id="ring-labels">
+        <!-- Adopt -->
+        <text x="0" y="-88" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(0,229,160,0.55)" font-family="Inter,sans-serif">ADOPT</text>
+        <!-- Trial -->
+        <text x="0" y="-172" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(59,158,255,0.5)" font-family="Inter,sans-serif">TRIAL</text>
+        <!-- Assess -->
+        <text x="0" y="-292" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(245,166,35,0.45)" font-family="Inter,sans-serif">ASSESS</text>
+        <!-- Hold -->
+        <text x="0" y="-408" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(255,92,122,0.45)" font-family="Inter,sans-serif">HOLD</text>
+
+        <text x="0" y="96" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(0,229,160,0.55)" font-family="Inter,sans-serif">ADOPT</text>
+        <text x="0" y="178" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(59,158,255,0.5)" font-family="Inter,sans-serif">TRIAL</text>
+        <text x="0" y="298" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(245,166,35,0.45)" font-family="Inter,sans-serif">ASSESS</text>
+        <text x="0" y="415" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="2" fill="rgba(255,92,122,0.45)" font-family="Inter,sans-serif">HOLD</text>
+      </g>
+
+      <!-- BLIPS will be injected here by JS -->
+      <g id="blips-layer"></g>
+
+    </svg>
+  </main>
+
+</div>
+
+<!-- POPUP OVERLAY -->
+<div id="popup-overlay" onclick="closePopup(event)">
+  <div class="popup-card" id="popup-card">
+    <button class="popup-close" onclick="closePopup(null)" aria-label="Close">&#215;</button>
+    <div class="popup-badges" id="popup-badges"></div>
+    <div class="popup-name" id="popup-name"></div>
+    <div class="popup-name-sub" id="popup-name-sub"></div>
+    <div class="popup-divider"></div>
+    <div class="popup-desc" id="popup-desc"></div>
+    <div class="popup-meta">
+      <div class="trend-pill" id="popup-trend"></div>
+      <div class="popup-quadrant-info" id="popup-quad-info"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLTIP -->
+<div id="tooltip"></div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const RINGS = {
+  Adopt:  { color: '#00e5a0', r: 120, label: { en: 'Adopt',  ko: '도입' } },
+  Trial:  { color: '#3b9eff', r: 240, label: { en: 'Trial',  ko: '시도' } },
+  Assess: { color: '#f5a623', r: 360, label: { en: 'Assess', ko: '평가' } },
+  Hold:   { color: '#ff5c7a', r: 460, label: { en: 'Hold',   ko: '보류' } },
+};
+
+const RING_INNER = {
+  Adopt:  0,
+  Trial:  120,
+  Assess: 240,
+  Hold:   360,
+};
+
+const QUADRANTS = {
+  'Languages & Frameworks': { id: 'q1', color: '#a78bfa', quadrant: 1, label: { en: 'Languages & Frameworks', ko: '언어 & 프레임워크' } },
+  'Platforms':              { id: 'q2', color: '#34d399', quadrant: 2, label: { en: 'Platforms',               ko: '플랫폼' } },
+  'Tools':                  { id: 'q3', color: '#60a5fa', quadrant: 3, label: { en: 'Tools',                   ko: '도구' } },
+  'Techniques':             { id: 'q4', color: '#fb923c', quadrant: 4, label: { en: 'Techniques',              ko: '기법' } },
+};
+
+// Quadrant angle ranges (degrees, measured from +x axis, clockwise):
+// Q1 (top-right):  -90 to 0    → Languages & Frameworks
+// Q2 (bottom-right): 0 to 90   → Platforms
+// Q3 (bottom-left): 90 to 180  → Tools
+// Q4 (top-left):  180 to 270   → Techniques
+
+const BLIPS_RAW = [
+  // ── ADOPT ──────────────────────────────────────────────────────────────────
+  {
+    name: 'TypeScript', ring: 'Adopt', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Statically typed superset of JS — the undisputed standard for large-scale web development in 2025.', ko: 'JS의 정적 타입 상위 언어 — 2025년 대규모 웹 개발의 표준으로 자리잡음.' }
+  },
+  {
+    name: 'React', ring: 'Adopt', quadrant: 'Languages & Frameworks', trend: '→',
+    desc: { en: 'Dominant UI library with Server Components and the new compiler stabilizing the ecosystem.', ko: '서버 컴포넌트와 새 컴파일러로 생태계가 안정화된 지배적인 UI 라이브러리.' }
+  },
+  {
+    name: 'Tailwind CSS', ring: 'Adopt', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Utility-first CSS framework — v4 brings zero-config lightning-fast builds and OKLCH color palette.', ko: '유틸리티 우선 CSS 프레임워크 — v4는 무설정 초고속 빌드와 OKLCH 색상 팔레트 제공.' }
+  },
+  {
+    name: 'Docker', ring: 'Adopt', quadrant: 'Platforms', trend: '→',
+    desc: { en: 'Container runtime essential for reproducible environments from dev to production.', ko: '개발부터 프로덕션까지 재현 가능한 환경을 위한 필수 컨테이너 런타임.' }
+  },
+  {
+    name: 'Kubernetes', ring: 'Adopt', quadrant: 'Platforms', trend: '→',
+    desc: { en: 'De facto container orchestration platform — managed offerings (EKS, GKE, AKS) reducing ops burden.', ko: '사실상의 컨테이너 오케스트레이션 플랫폼 — 관리형 서비스로 운영 부담 감소.' }
+  },
+  {
+    name: 'PostgreSQL', ring: 'Adopt', quadrant: 'Platforms', trend: '↑',
+    desc: { en: 'Battle-tested open source RDBMS — vector search extensions make it an AI-era database choice.', ko: '검증된 오픈소스 RDBMS — 벡터 검색 확장으로 AI 시대 데이터베이스로도 활용.' }
+  },
+  {
+    name: 'GitHub Actions', ring: 'Adopt', quadrant: 'Tools', trend: '→',
+    desc: { en: 'Native CI/CD for GitHub repos with vast reusable action marketplace.', ko: 'GitHub 저장소를 위한 네이티브 CI/CD, 방대한 재사용 가능 액션 마켓플레이스 제공.' }
+  },
+  {
+    name: 'VS Code', ring: 'Adopt', quadrant: 'Tools', trend: '→',
+    desc: { en: "Editor of choice for most developers — AI copilot integrations now deeply embedded.", ko: '대부분의 개발자가 선택하는 편집기 — AI 코파일럿 통합이 깊이 내장.' }
+  },
+  {
+    name: 'Git', ring: 'Adopt', quadrant: 'Tools', trend: '→',
+    desc: { en: 'Universal distributed version control. Non-negotiable foundation for any software team.', ko: '보편적인 분산 버전 관리. 모든 소프트웨어 팀을 위한 협의 불가 기반.' }
+  },
+  {
+    name: 'Claude / Anthropic API', ring: 'Adopt', quadrant: 'Techniques', trend: '↑',
+    desc: { en: 'Industry-leading large language model API — Claude 3.5+ sets benchmarks for code generation and reasoning.', ko: '업계 선도 대형 언어 모델 API — Claude 3.5+는 코드 생성과 추론 벤치마크 선도.' }
+  },
+
+  // ── TRIAL ──────────────────────────────────────────────────────────────────
+  {
+    name: 'Svelte', ring: 'Trial', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Compiler-first framework with Svelte 5 runes — minimal boilerplate and exceptional runtime performance.', ko: '컴파일러 우선 프레임워크, Svelte 5 룬 — 최소 보일러플레이트와 탁월한 런타임 성능.' }
+  },
+  {
+    name: 'Deno', ring: 'Trial', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Secure JS/TS runtime with built-in tooling — Deno 2.0 achieves Node.js compatibility.', ko: '내장 도구를 갖춘 안전한 JS/TS 런타임 — Deno 2.0은 Node.js 호환성 달성.' }
+  },
+  {
+    name: 'Bun', ring: 'Trial', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Ultra-fast JS runtime and package manager — 3–20× faster installs, excellent Node.js compatibility.', ko: '초고속 JS 런타임 및 패키지 매니저 — 3~20배 빠른 설치, 탁월한 Node.js 호환성.' }
+  },
+  {
+    name: 'tRPC', ring: 'Trial', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'End-to-end type-safe APIs without schema generation — perfect with TypeScript monorepos.', ko: '스키마 생성 없는 엔드투엔드 타입 안전 API — TypeScript 모노레포에 최적.' }
+  },
+  {
+    name: 'Astro', ring: 'Trial', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Content-focused framework with islands architecture — zero JS by default, any UI framework.', ko: '아일랜드 아키텍처를 갖춘 콘텐츠 중심 프레임워크 — 기본 JS 없음, 모든 UI 프레임워크 지원.' }
+  },
+  {
+    name: 'Supabase', ring: 'Trial', quadrant: 'Platforms', trend: '↑',
+    desc: { en: 'Open-source Firebase alternative — Postgres backend with auth, storage, and edge functions.', ko: '오픈소스 Firebase 대안 — 인증, 스토리지, 엣지 함수를 갖춘 Postgres 백엔드.' }
+  },
+  {
+    name: 'MCP (Model Context Protocol)', ring: 'Trial', quadrant: 'Techniques', trend: '↑',
+    desc: { en: "Anthropic's open protocol for connecting LLMs to tools and data sources — rapidly becoming standard.", ko: 'LLM을 도구와 데이터 소스에 연결하는 Anthropic의 개방형 프로토콜 — 빠르게 표준화 중.' }
+  },
+  {
+    name: 'RAG Patterns', ring: 'Trial', quadrant: 'Techniques', trend: '↑',
+    desc: { en: 'Retrieval-Augmented Generation — grounding LLM responses in external knowledge bases.', ko: '검색 증강 생성 — 외부 지식 베이스를 기반으로 LLM 응답 근거 제공.' }
+  },
+  {
+    name: 'LangChain / LangGraph', ring: 'Trial', quadrant: 'Techniques', trend: '→',
+    desc: { en: 'Orchestration frameworks for LLM pipelines — LangGraph excels at stateful multi-agent workflows.', ko: 'LLM 파이프라인 오케스트레이션 프레임워크 — LangGraph는 상태 저장 다중 에이전트 워크플로에 탁월.' }
+  },
+  {
+    name: 'Claude Code', ring: 'Trial', quadrant: 'Tools', trend: '↑',
+    desc: { en: "Anthropic's agentic coding CLI — operates directly in terminal with file system access and multi-file edits.", ko: 'Anthropic의 에이전트 코딩 CLI — 파일 시스템 접근과 다중 파일 편집으로 터미널에서 직접 동작.' }
+  },
+  {
+    name: 'Cursor IDE', ring: 'Trial', quadrant: 'Tools', trend: '↑',
+    desc: { en: 'AI-native code editor built on VS Code — predictive edits and natural language codebase Q&A.', ko: 'VS Code 기반 AI 네이티브 코드 편집기 — 예측 편집과 자연어 코드베이스 Q&A.' }
+  },
+  {
+    name: 'Turborepo', ring: 'Trial', quadrant: 'Tools', trend: '↑',
+    desc: { en: 'High-performance monorepo build system with smart remote caching.', ko: '스마트 원격 캐싱을 갖춘 고성능 모노레포 빌드 시스템.' }
+  },
+
+  // ── ASSESS ─────────────────────────────────────────────────────────────────
+  {
+    name: 'Effect-TS', ring: 'Assess', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Functional effect system for TypeScript — powerful error handling, dependency injection, and concurrency.', ko: 'TypeScript용 함수형 이펙트 시스템 — 강력한 오류 처리, 의존성 주입, 동시성.' }
+  },
+  {
+    name: 'Drizzle ORM', ring: 'Assess', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Lightweight TypeScript ORM — type-safe SQL queries with schema-as-code, great DX.', ko: '경량 TypeScript ORM — 코드로서의 스키마를 갖춘 타입 안전 SQL 쿼리, 탁월한 DX.' }
+  },
+  {
+    name: 'Rust for Web', ring: 'Assess', quadrant: 'Languages & Frameworks', trend: '↑',
+    desc: { en: 'Rust powering web infrastructure via WASM, Axum, and toolchain components like SWC/Oxc.', ko: 'WASM, Axum, SWC/Oxc 같은 툴체인 컴포넌트를 통해 웹 인프라를 지원하는 Rust.' }
+  },
+  {
+    name: 'Tauri', ring: 'Assess', quadrant: 'Platforms', trend: '↑',
+    desc: { en: 'Rust-based desktop app framework using web frontends — lightweight Electron alternative.', ko: '웹 프론트엔드를 사용하는 Rust 기반 데스크톱 앱 프레임워크 — 경량 Electron 대안.' }
+  },
+  {
+    name: 'WebGPU', ring: 'Assess', quadrant: 'Platforms', trend: '↑',
+    desc: { en: 'Next-generation GPU API for the web — enables ML inference and compute shaders in browsers.', ko: '웹용 차세대 GPU API — 브라우저에서 ML 추론과 컴퓨트 셰이더 가능.' }
+  },
+  {
+    name: 'WASM (WebAssembly)', ring: 'Assess', quadrant: 'Platforms', trend: '↑',
+    desc: { en: 'Near-native performance binary format — WASI extends it beyond browsers to server-side workloads.', ko: '네이티브에 가까운 성능의 바이너리 형식 — WASI로 브라우저를 넘어 서버 사이드 워크로드로 확장.' }
+  },
+  {
+    name: 'Local LLMs (Ollama)', ring: 'Assess', quadrant: 'Platforms', trend: '↑',
+    desc: { en: 'Run LLMs locally with Ollama — privacy-first inference, no API costs, growing model selection.', ko: 'Ollama로 LLM 로컬 실행 — 프라이버시 우선 추론, API 비용 없음, 늘어나는 모델 선택지.' }
+  },
+  {
+    name: 'AI Code Review Tools', ring: 'Assess', quadrant: 'Tools', trend: '↑',
+    desc: { en: 'Automated PR review using LLMs (CodeRabbit, etc.) — catches bugs and style issues before humans.', ko: 'LLM을 활용한 자동화 PR 리뷰 (CodeRabbit 등) — 사람보다 먼저 버그와 스타일 문제 발견.' }
+  },
+  {
+    name: 'AI Agents (Multi-agent)', ring: 'Assess', quadrant: 'Techniques', trend: '↑',
+    desc: { en: 'Orchestrating multiple specialized AI agents to complete complex tasks — rapidly maturing space.', ko: '복잡한 작업을 완료하기 위한 다수의 전문화된 AI 에이전트 오케스트레이션 — 빠르게 성숙하는 분야.' }
+  },
+  {
+    name: 'Prompt Engineering Frameworks', ring: 'Assess', quadrant: 'Techniques', trend: '→',
+    desc: { en: 'Systematic approaches to LLM prompting — chain-of-thought, few-shot, structured output patterns.', ko: 'LLM 프롬프팅에 대한 체계적 접근 — 연쇄 사고, 퓨샷, 구조적 출력 패턴.' }
+  },
+
+  // ── HOLD ───────────────────────────────────────────────────────────────────
+  {
+    name: 'jQuery', ring: 'Hold', quadrant: 'Languages & Frameworks', trend: '↓',
+    desc: { en: 'Legacy DOM manipulation library — superseded by modern JS APIs and component frameworks.', ko: '레거시 DOM 조작 라이브러리 — 현대 JS API와 컴포넌트 프레임워크로 대체됨.' }
+  },
+  {
+    name: 'Moment.js', ring: 'Hold', quadrant: 'Languages & Frameworks', trend: '↓',
+    desc: { en: 'Deprecated date library — migrate to date-fns, Temporal API, or Day.js.', ko: '더 이상 사용하지 않는 날짜 라이브러리 — date-fns, Temporal API, Day.js로 마이그레이션 권장.' }
+  },
+  {
+    name: 'Enzyme', ring: 'Hold', quadrant: 'Tools', trend: '↓',
+    desc: { en: 'React testing utility — no React 18+ support, replaced by React Testing Library.', ko: 'React 테스트 유틸리티 — React 18+ 미지원, React Testing Library로 대체됨.' }
+  },
+  {
+    name: 'Webpack (Legacy config)', ring: 'Hold', quadrant: 'Tools', trend: '↓',
+    desc: { en: 'Complex legacy bundler configs — Vite, Rspack, and Turbopack offer faster alternatives.', ko: '복잡한 레거시 번들러 설정 — Vite, Rspack, Turbopack이 더 빠른 대안 제공.' }
+  },
+  {
+    name: 'FTP Deployments', ring: 'Hold', quadrant: 'Tools', trend: '↓',
+    desc: { en: 'Insecure and manual file transfer for deployments — replace with CI/CD pipelines immediately.', ko: '보안이 취약하고 수동적인 파일 전송 배포 — 즉시 CI/CD 파이프라인으로 교체 필요.' }
+  },
+  {
+    name: 'REST-only (no API evolution)', ring: 'Hold', quadrant: 'Techniques', trend: '↓',
+    desc: { en: 'Rigid REST with no versioning strategy — consider GraphQL, tRPC, or OpenAPI contracts.', ko: '버전 전략 없는 경직된 REST — GraphQL, tRPC 또는 OpenAPI 계약 고려 필요.' }
+  },
+  {
+    name: 'Manual Testing Only', ring: 'Hold', quadrant: 'Techniques', trend: '↓',
+    desc: { en: 'Relying solely on manual QA — unsustainable at scale; automated testing is non-negotiable.', ko: '수동 QA에만 의존 — 규모 확장 시 지속 불가; 자동화 테스트는 필수.' }
+  },
+  {
+    name: 'Monolithic Deployments', ring: 'Hold', quadrant: 'Techniques', trend: '↓',
+    desc: { en: 'Large single-unit deployments — hinders scalability and independent team delivery cycles.', ko: '대형 단일 단위 배포 — 확장성과 독립적인 팀 배포 주기 방해.' }
+  },
+
+  // ── EXTRAS (Assess / Trial) ─────────────────────────────────────────────────
+  {
+    name: 'Vite', ring: 'Adopt', quadrant: 'Tools', trend: '↑',
+    desc: { en: 'Lightning-fast frontend build tool — native ESM dev server with HMR and Rollup-based production builds.', ko: '초고속 프론트엔드 빌드 도구 — 네이티브 ESM 개발 서버, HMR, Rollup 기반 프로덕션 빌드.' }
+  },
+  {
+    name: 'Vitest', ring: 'Trial', quadrant: 'Tools', trend: '↑',
+    desc: { en: 'Vite-native unit testing framework — Jest-compatible API with near-instant test runs via ESM.', ko: 'Vite 네이티브 단위 테스트 프레임워크 — Jest 호환 API, ESM으로 거의 즉각적인 테스트 실행.' }
+  },
+  {
+    name: 'Nx', ring: 'Assess', quadrant: 'Tools', trend: '→',
+    desc: { en: 'Extensible monorepo build system with affected-command graph and distributed task execution.', ko: '영향 명령 그래프와 분산 작업 실행을 갖춘 확장 가능한 모노레포 빌드 시스템.' }
+  },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let currentLang = 'en';
+let activeQuadrant = 'all';
+let activeRing = 'all';
+
+// ============================================================
+// I18N
+// ============================================================
+const i18n = {
+  en: {
+    title: 'Tech Trends Radar 2025–2026',
+    subtitle: 'Interactive Technology Assessment',
+    filter_quadrant: 'Quadrant',
+    filter_ring: 'Ring',
+    all: 'All',
+    q_lang: 'Languages & Frameworks',
+    q_plat: 'Platforms',
+    q_tools: 'Tools',
+    q_tech: 'Techniques',
+    r_adopt: 'Adopt',
+    r_trial: 'Trial',
+    r_assess: 'Assess',
+    r_hold: 'Hold',
+    reset_filters: 'Reset Filters',
+    legend: 'Legend',
+    adopt_desc: 'Production-ready. Recommended for immediate use in new projects.',
+    trial_desc: 'Worth pursuing. Apply in non-critical projects to build confidence.',
+    assess_desc: 'Promising but uncertain. Explore and monitor progress.',
+    hold_desc: 'Proceed with caution. Not recommended for new projects.',
+    trend_rising: 'Rising',
+    trend_stable: 'Stable',
+    trend_declining: 'Declining',
+    lang_toggle: '한국어',
+  },
+  ko: {
+    title: 'Tech Trends Radar 2025–2026',
+    subtitle: '인터랙티브 기술 평가',
+    filter_quadrant: '사분면',
+    filter_ring: '링',
+    all: '전체',
+    q_lang: '언어 & 프레임워크',
+    q_plat: '플랫폼',
+    q_tools: '도구',
+    q_tech: '기법',
+    r_adopt: '도입',
+    r_trial: '시도',
+    r_assess: '평가',
+    r_hold: '보류',
+    reset_filters: '필터 초기화',
+    legend: '범례',
+    adopt_desc: '프로덕션 준비 완료. 새 프로젝트에 즉시 사용 권장.',
+    trial_desc: '추구할 가치 있음. 신뢰 구축을 위해 비중요 프로젝트에 적용.',
+    assess_desc: '유망하나 불확실. 탐색하고 진행 상황을 모니터링.',
+    hold_desc: '주의해서 진행. 새 프로젝트에 권장하지 않음.',
+    trend_rising: '상승',
+    trend_stable: '안정',
+    trend_declining: '하락',
+    lang_toggle: 'English',
+  }
+};
+
+function t(key) {
+  return i18n[currentLang][key] || i18n.en[key] || key;
+}
+
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = t(key);
+  });
+  document.getElementById('lang-toggle').textContent = t('lang_toggle');
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ko' : 'en';
+  applyI18n();
+  renderBlips();
+}
+
+// ============================================================
+// GEOMETRY HELPERS
+// ============================================================
+// Map quadrant name to angle range [minDeg, maxDeg] (clockwise from top = -90)
+const QUAD_ANGLES = {
+  'Languages & Frameworks': { min: -90, max: 0   },  // top-right  (Q1: SVG)
+  'Platforms':              { min:   0, max: 90   },  // bottom-right (Q2)
+  'Tools':                  { min:  90, max: 180  },  // bottom-left (Q3)
+  'Techniques':             { min: 180, max: 270  },  // top-left  (Q4)
+};
+
+// seeded pseudo-random for stable jitter
+function mulberry32(seed) {
+  return function() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function blipPosition(blip, index) {
+  const rng = mulberry32(index * 7919 + 42);
+
+  const ringInner = RING_INNER[blip.ring];
+  const ringOuter = RINGS[blip.ring].r;
+  const pad = 8;
+
+  // Distribute evenly within ring band
+  const r = ringInner + pad + rng() * (ringOuter - ringInner - pad * 2);
+
+  const qa = QUAD_ANGLES[blip.quadrant];
+  const margin = 8; // degrees margin from axis
+  const angMin = (qa.min + margin) * Math.PI / 180;
+  const angMax = (qa.max - margin) * Math.PI / 180;
+  const angle = angMin + rng() * (angMax - angMin);
+
+  // SVG: angle from top (north), clockwise
+  // Convert: x = r*sin(angle), y = -r*cos(angle) when 0deg = top
+  // Our angles are from +x axis clockwise in standard notation, so:
+  const x = r * Math.cos(angle);
+  const y = r * Math.sin(angle);
+
+  return { x, y };
+}
+
+// ============================================================
+// SVG RENDERING
+// ============================================================
+function getRingColor(ring) { return RINGS[ring].color; }
+function getQuadColor(quadrant) { return QUADRANTS[quadrant].color; }
+
+function renderBlips() {
+  const layer = document.getElementById('blips-layer');
+  layer.innerHTML = '';
+
+  BLIPS_RAW.forEach((blip, idx) => {
+    const pos = blipPosition(blip, idx);
+    const qColor = getQuadColor(blip.quadrant);
+    const rColor = getRingColor(blip.ring);
+
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'blip');
+    g.setAttribute('data-index', idx);
+    g.setAttribute('data-ring', blip.ring);
+    g.setAttribute('data-quadrant', blip.quadrant);
+    g.setAttribute('transform', `translate(${pos.x.toFixed(2)}, ${pos.y.toFixed(2)})`);
+
+    // Outer ring (quadrant color)
+    const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    outerCircle.setAttribute('r', '10');
+    outerCircle.setAttribute('fill', qColor + '22');
+    outerCircle.setAttribute('stroke', qColor);
+    outerCircle.setAttribute('stroke-width', '1.5');
+    outerCircle.setAttribute('filter', 'url(#glow-soft)');
+
+    // Inner dot (ring color)
+    const innerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    innerCircle.setAttribute('r', '5');
+    innerCircle.setAttribute('fill', rColor);
+    innerCircle.setAttribute('opacity', '0.92');
+
+    // Trend marker
+    const trendText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    trendText.setAttribute('x', '0');
+    trendText.setAttribute('y', '-14');
+    trendText.setAttribute('text-anchor', 'middle');
+    trendText.setAttribute('font-size', '8');
+    trendText.setAttribute('fill', blip.trend === '↑' ? '#00e5a0' : blip.trend === '↓' ? '#ff5c7a' : '#7a8499');
+    trendText.setAttribute('opacity', '0.8');
+    trendText.textContent = blip.trend;
+
+    g.appendChild(outerCircle);
+    g.appendChild(innerCircle);
+    g.appendChild(trendText);
+
+    // Event listeners
+    g.addEventListener('click', () => openPopup(idx));
+    g.addEventListener('mouseenter', (e) => showTooltip(e, blip.name));
+    g.addEventListener('mouseleave', hideTooltip);
+    g.addEventListener('mousemove', moveTooltip);
+
+    layer.appendChild(g);
+  });
+
+  applyFilters();
+}
+
+// ============================================================
+// FILTERS
+// ============================================================
+function filterClick(el) {
+  const filterType = el.getAttribute('data-filter');
+  const value = el.getAttribute('data-value');
+
+  if (filterType === 'quadrant') {
+    activeQuadrant = value;
+    document.querySelectorAll('[data-filter="quadrant"]').forEach(c => c.classList.remove('active'));
+  } else {
+    activeRing = value;
+    document.querySelectorAll('[data-filter="ring"]').forEach(c => c.classList.remove('active'));
+  }
+
+  el.classList.add('active');
+  applyFilters();
+}
+
+function resetFilters() {
+  activeQuadrant = 'all';
+  activeRing = 'all';
+  document.querySelectorAll('[data-filter="quadrant"]').forEach(c =>
+    c.classList.toggle('active', c.getAttribute('data-value') === 'all'));
+  document.querySelectorAll('[data-filter="ring"]').forEach(c =>
+    c.classList.toggle('active', c.getAttribute('data-value') === 'all'));
+  applyFilters();
+}
+
+function applyFilters() {
+  const blipEls = document.querySelectorAll('.blip');
+  let visible = 0;
+
+  blipEls.forEach(el => {
+    const ring = el.getAttribute('data-ring');
+    const quad = el.getAttribute('data-quadrant');
+    const show = (activeQuadrant === 'all' || quad === activeQuadrant)
+               && (activeRing === 'all' || ring === activeRing);
+    el.classList.toggle('dimmed', !show);
+    if (show) visible++;
+  });
+
+  document.getElementById('visible-count').textContent = `${visible} blips`;
+  updateCounts();
+}
+
+function updateCounts() {
+  const counts = { q1: 0, q2: 0, q3: 0, q4: 0, adopt: 0, trial: 0, assess: 0, hold: 0 };
+  const qMap = {
+    'Languages & Frameworks': 'q1',
+    'Platforms': 'q2',
+    'Tools': 'q3',
+    'Techniques': 'q4',
+  };
+
+  BLIPS_RAW.forEach(b => {
+    const show = (activeQuadrant === 'all' || b.quadrant === activeQuadrant)
+               && (activeRing === 'all' || b.ring === activeRing);
+    if (!show) return;
+    counts[qMap[b.quadrant]]++;
+    counts[b.ring.toLowerCase()]++;
+  });
+
+  ['q1','q2','q3','q4'].forEach(k => {
+    const el = document.getElementById(`cnt-${k}`);
+    if (el) el.textContent = counts[k];
+  });
+  ['adopt','trial','assess','hold'].forEach(k => {
+    const el = document.getElementById(`cnt-${k}`);
+    if (el) el.textContent = counts[k];
+  });
+
+  // Update "All" chip totals
+  const totalVisible = Object.values(counts).slice(0,4).reduce((a,b)=>a+b,0);
+  const allQ = document.getElementById('cnt-all-q');
+  const allR = document.getElementById('cnt-all-r');
+  if (allQ) allQ.textContent = totalVisible;
+  if (allR) allR.textContent = totalVisible;
+}
+
+// ============================================================
+// POPUP
+// ============================================================
+function openPopup(idx) {
+  const blip = BLIPS_RAW[idx];
+  const qColor = getQuadColor(blip.quadrant);
+  const rColor = getRingColor(blip.ring);
+
+  // Badges
+  const badges = document.getElementById('popup-badges');
+  const ringLabel = currentLang === 'ko' ? RINGS[blip.ring].label.ko : blip.ring;
+  const quadLabel = currentLang === 'ko' ? QUADRANTS[blip.quadrant].label.ko : blip.quadrant;
+
+  badges.innerHTML = `
+    <span class="badge" style="color:${rColor};border-color:${rColor}40;background:${rColor}12">${ringLabel}</span>
+    <span class="badge" style="color:${qColor};border-color:${qColor}40;background:${qColor}12">${quadLabel}</span>
+  `;
+
+  // Name
+  document.getElementById('popup-name').textContent = blip.name;
+  document.getElementById('popup-name').style.color = qColor;
+  document.getElementById('popup-name-sub').textContent = blip.name !== blip.name ? blip.name : '';
+  document.getElementById('popup-name-sub').style.display = 'none';
+
+  // Description
+  document.getElementById('popup-desc').textContent = blip.desc[currentLang] || blip.desc.en;
+
+  // Trend
+  const trendEl = document.getElementById('popup-trend');
+  const trendLabel = blip.trend === '↑' ? t('trend_rising') : blip.trend === '↓' ? t('trend_declining') : t('trend_stable');
+  const trendColor = blip.trend === '↑' ? '#00e5a0' : blip.trend === '↓' ? '#ff5c7a' : '#7a8499';
+  trendEl.innerHTML = `<span class="trend-arrow">${blip.trend}</span> ${trendLabel}`;
+  trendEl.style.color = trendColor;
+  trendEl.style.borderColor = trendColor + '40';
+  trendEl.style.background = trendColor + '12';
+
+  // Quad info
+  document.getElementById('popup-quad-info').textContent = `${quadLabel} · ${ringLabel}`;
+
+  // Open
+  const overlay = document.getElementById('popup-overlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup(e) {
+  if (e && e.target !== document.getElementById('popup-overlay')) return;
+  document.getElementById('popup-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closePopup(null);
+});
+
+// ============================================================
+// TOOLTIP
+// ============================================================
+const tooltip = document.getElementById('tooltip');
+
+function showTooltip(e, name) {
+  tooltip.textContent = name;
+  tooltip.style.opacity = '1';
+  moveTooltip(e);
+}
+
+function hideTooltip() {
+  tooltip.style.opacity = '0';
+}
+
+function moveTooltip(e) {
+  const x = e.clientX + 14;
+  const y = e.clientY - 32;
+  const w = tooltip.offsetWidth;
+  const vw = window.innerWidth;
+  tooltip.style.left = (x + w > vw ? x - w - 28 : x) + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  renderBlips();
+  applyI18n();
+  updateCounts();
+}
+
+init();
+</script>
+</body>
+</html>
