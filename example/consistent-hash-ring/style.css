@@ -1,0 +1,61 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e8ef;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.app { display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
+.side {
+  background: #1a1d27;
+  border-right: 1px solid #2a2f3d;
+  padding: 22px;
+  overflow-y: auto;
+}
+h1 { color: #6ee7b7; font-size: 1.15rem; margin-bottom: 8px; }
+h2 { color: #6ee7b7; font-size: 0.85rem; margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 1px; }
+.lede { color: #9aa4b8; font-size: 0.82rem; line-height: 1.5; margin-bottom: 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+button {
+  background: #0f1117;
+  color: #e6e8ef;
+  border: 1px solid #2a2f3d;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+button:hover { background: #6ee7b7; color: #0f1117; border-color: #6ee7b7; }
+.vnode { display: block; font-size: 0.8rem; color: #9aa4b8; margin-bottom: 10px; }
+.vnode input { width: 100%; margin-top: 4px; }
+.vnode span { color: #6ee7b7; font-weight: bold; }
+#dist div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 0.78rem;
+}
+#dist .swatch { width: 10px; height: 10px; border-radius: 50%; }
+#dist .fill { flex: 1; height: 4px; background: #242836; border-radius: 2px; overflow: hidden; }
+#dist .fill > div { height: 100%; transition: width 0.3s; }
+.hint { margin-top: 14px; color: #7a8396; font-size: 0.72rem; font-style: italic; }
+.stage { position: relative; display: flex; align-items: center; justify-content: center; }
+svg { width: 90%; height: 90%; }
+#tooltip {
+  position: absolute;
+  background: #0f1117;
+  border: 1px solid #6ee7b7;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  pointer-events: none;
+  display: none;
+  color: #e6e8ef;
+}
+.ring-bg { fill: none; stroke: #242836; stroke-width: 40; }
+.ring-arc { fill: none; stroke-width: 40; opacity: 0.4; }
+.node-dot { cursor: pointer; }
+.node-dot:hover { transform-origin: center; }
+.key-dot { pointer-events: none; }

@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-hash-ring",
+  "title": "Consistent Hash Ring",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T22:05:10.075Z",
+  "source_project": "102-consistent-hash-ring",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -470,6 +470,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [materialized-view-staleness-dashboard](materialized-view-staleness-dashboard/) | Materialized View Staleness Dashboard — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
 
+| [consistent-hash-ring](consistent-hash-ring/) | Consistent Hash Ring — auto-generated load-balancer tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
