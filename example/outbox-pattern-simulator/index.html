@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Outbox Pattern Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Outbox Pattern Simulator</h1>
+  <p>Watch transactional messages flow from DB → Outbox → Broker</p>
+</header>
+<main>
+  <div class="controls">
+    <button id="emit">Emit Order Event</button>
+    <button id="crash">Simulate Broker Crash</button>
+    <button id="reset">Reset</button>
+    <label>Relay Speed <input id="speed" type="range" min="200" max="2000" value="900"></label>
+  </div>
+  <canvas id="stage" width="900" height="380"></canvas>
+  <section class="panels">
+    <div class="panel"><h3>DB Transaction</h3><ul id="db-log"></ul></div>
+    <div class="panel"><h3>Outbox Table</h3><ul id="outbox-log"></ul></div>
+    <div class="panel"><h3>Broker (Kafka)</h3><ul id="broker-log"></ul></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
