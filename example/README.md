@@ -442,6 +442,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [api-diff-viewer](api-diff-viewer/) | Api Diff Viewer — auto-generated api-versioning tool | html, css, vanilla-js | 2026-04-16 |
 
+| [canary-release-conductor](canary-release-conductor/) | Canary Release Conductor — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
