@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ubiquitous Language Miner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Ubiquitous Language Miner</h1>
+  <p>Paste domain conversation text. The miner extracts candidate domain terms by frequency & co-occurrence.</p>
+</header>
+<main>
+  <section class="input">
+    <textarea id="text" spellcheck="false"></textarea>
+    <div class="actions">
+      <button id="mine">Mine Terms</button>
+      <button id="sample">Load Sample</button>
+      <button id="clear">Clear</button>
+    </div>
+  </section>
+  <section class="output">
+    <h2>Candidate Glossary</h2>
+    <canvas id="chart" width="520" height="260"></canvas>
+    <ul id="terms"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
