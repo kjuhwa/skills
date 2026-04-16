@@ -1,0 +1,7 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;padding:24px;min-height:100vh}
+h1{color:#6ee7b7;font-size:1.3rem;margin-bottom:16px}
+svg{width:100%;max-width:800px;height:500px;background:#1a1d27;border-radius:12px}
+.legend{margin-top:12px;font-size:.75rem;display:flex;gap:16px;align-items:center}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+.dot.text{background:#6ee7b7}.dot.binary{background:#60a5fa}.dot.control{background:#f0abfc}
