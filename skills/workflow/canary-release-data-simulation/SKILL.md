@@ -1,6 +1,6 @@
 ---
 name: canary-release-data-simulation
-description: Generating realistic synthetic canary rollout data with divergent health signals between stable and canary cohorts
+description: Deterministic synthetic generator for canary traffic, SLO metrics, and bake-time gate evaluations
 category: workflow
 triggers:
   - canary release data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # canary-release-data-simulation
 
-Realistic canary simulation data requires two parallel time-series streams (stable and canary) that share a common baseline but diverge on the signals that actually trigger rollbacks in production. Generate stable cohort metrics from a stationary distribution: error rate ~0.1-0.5% with small gaussian noise, latency P95 around a fixed mean with ±10% jitter, RPS following a diurnal curve. Canary cohort metrics should inherit the same diurnal shape (both versions serve the same traffic pattern) but inject one of several failure modes on a configurable schedule: slow regression (latency drifts +5% per minute), sudden error spike (error rate jumps from 0.3% → 3% after bake time 2m), memory leak (latency tail grows while P50 stays flat), or successful rollout (canary matches stable within tolerance).
+To simulate canary-release behavior, drive the clock with a fixed-step tick (e.g., 100ms of wall = 1s of simulated time) and parameterize a release plan as a list of `{weight, bakeSeconds, gates[]}` stages. On every tick, generate N synthetic requests, then roll a Bernoulli weighted split across stable vs canary lanes using the current stage weight. For each request, sample latency from a log-normal distribution per version (canary uses a slightly shifted mean to model the "new build" effect) and sample success/failure from a Bernoulli with a version-specific error rate. Seed the RNG so demos and tests replay identically.
 
-The traffic split must be enforced in the generator itself: if the split is 90/10, generate exactly 10% of request events routed to canary, not 50/50 with post-hoc filtering — this preserves the statistical reality that canary cohorts have lower sample counts and therefore wider confidence intervals on health metrics. Model this explicitly by making canary error-rate variance inversely proportional to sqrt(canary_rps). Include gate-evaluation events as discrete records — each promotion check emits a record with stage, timestamp, SLO thresholds, observed values, and pass/fail — so the UI can replay the decision log. Rollback events should cascade: set canary traffic to 0 over a short drain window (30-60s), not instantaneous.
+Maintain per-version rolling windows (1-min, 5-min) over success count, error count, and latency quantiles. At the end of each stage's bake period, evaluate gate predicates against the rolling windows — `errorRateDelta < threshold`, `p99LatencyDelta < threshold`, `minRequestCount > N`. Emit a `GateResult` event per gate so the UI can animate pass/fail, and advance or roll back the stage pointer accordingly. Expose "inject chaos" hooks (bump canary error rate, add latency spike) so operators can rehearse failure modes.
 
-Seed the RNG deterministically so the same scenario replays identically for demo/test reproducibility, but expose scenario selection as a top-level parameter (healthy-promotion, latency-regression, error-spike, memory-leak, flaky-gate). Canary rollouts are stage-gated events — the data model should reflect that with explicit stage transitions, not a continuous percentage ramp, since real canary controllers (Flagger, Argo Rollouts) work in discrete steps.
+Keep the generator pure and framework-free: inputs are `(releasePlan, chaosProfile, seed)`, output is a stream of `TickEvent | RequestEvent | GateResult | StageTransition`. The UI subscribes and renders; tests assert on the event sequence. This separation lets the same simulator power the timeline app, the shifter app, and the health app without duplicating traffic-generation logic.
