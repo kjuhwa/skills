@@ -452,6 +452,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [pipeline-pressure-lab](pipeline-pressure-lab/) | Pipeline Pressure Lab — auto-generated backpressure tool | html, css, vanilla-js | 2026-04-16 |
 
+| [etl-rule-builder](etl-rule-builder/) | Etl Rule Builder — auto-generated etl tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

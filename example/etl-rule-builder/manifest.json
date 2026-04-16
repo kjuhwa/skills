@@ -1,0 +1,12 @@
+{
+  "slug": "etl-rule-builder",
+  "title": "Etl Rule Builder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:51:15.361Z",
+  "source_project": "101-etl-rule-builder",
+  "author": "kjuhwa@nkia.co.kr"
+}

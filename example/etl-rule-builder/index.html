@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ETL Rule Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>ETL Transform Rule Builder</h1></header>
+<div class="layout">
+  <section class="panel">
+    <h2>Source Rows</h2>
+    <pre id="source"></pre>
+  </section>
+  <section class="panel rules">
+    <h2>Transformations</h2>
+    <div id="ruleList"></div>
+    <div class="add-row">
+      <select id="ruleType">
+        <option value="uppercase">UPPERCASE field</option>
+        <option value="rename">Rename field</option>
+        <option value="filter">Filter rows where</option>
+        <option value="derive">Derive new field</option>
+        <option value="drop">Drop field</option>
+      </select>
+      <input id="ruleArg1" placeholder="field">
+      <input id="ruleArg2" placeholder="value / expr">
+      <button id="addRule">+ Add</button>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Loaded Output</h2>
+    <pre id="output"></pre>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
