@@ -1,0 +1,12 @@
+{
+  "slug": "websocket-arena",
+  "title": "Websocket Arena",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:46:54.695Z",
+  "source_project": "46-websocket-arena",
+  "author": "kjuhwa@nkia.co.kr"
+}
