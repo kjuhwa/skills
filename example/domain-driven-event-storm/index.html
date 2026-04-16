@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Storming Board</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Event Storming</h1>
+  <div class="palette">
+    <button data-kind="command" class="chip cmd">+ Command</button>
+    <button data-kind="event" class="chip evt">+ Event</button>
+    <button data-kind="aggregate" class="chip agg">+ Aggregate</button>
+    <button data-kind="policy" class="chip pol">+ Policy</button>
+    <button id="clear" class="chip clear">Clear</button>
+  </div>
+</header>
+<canvas id="board"></canvas>
+<footer>Drag stickies • Double-click to rename • Timeline flows left → right</footer>
+<script src="app.js"></script>
+</body>
+</html>

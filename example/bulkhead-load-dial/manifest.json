@@ -1,0 +1,12 @@
+{
+  "slug": "bulkhead-load-dial",
+  "title": "Bulkhead Load Dial",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:02:30.032Z",
+  "source_project": "102-bulkhead-load-dial",
+  "author": "kjuhwa@nkia.co.kr"
+}

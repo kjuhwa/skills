@@ -1,0 +1,12 @@
+{
+  "slug": "health-check-vitals",
+  "title": "Health Check Vitals",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:23:17.719Z",
+  "source_project": "101-health-check-vitals",
+  "author": "kjuhwa@nkia.co.kr"
+}

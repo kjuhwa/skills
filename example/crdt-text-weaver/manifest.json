@@ -1,0 +1,12 @@
+{
+  "slug": "crdt-text-weaver",
+  "title": "Crdt Text Weaver",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:34:35.540Z",
+  "source_project": "101-crdt-text-weaver",
+  "author": "kjuhwa@nkia.co.kr"
+}

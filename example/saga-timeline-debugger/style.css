@@ -1,0 +1,98 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e8ef;
+  font-family: system-ui, sans-serif;
+  padding: 24px;
+  min-height: 100vh;
+}
+.wrap { max-width: 960px; margin: 0 auto; }
+h1 { color: #6ee7b7; margin-bottom: 4px; }
+.sub { color: #8a93a8; font-size: 0.9rem; margin-bottom: 20px; }
+.tracks {
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  min-height: 240px;
+}
+.track {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin: 6px 0;
+  position: relative;
+}
+.track-label {
+  width: 110px;
+  font-size: 0.85rem;
+  color: #8a93a8;
+  flex-shrink: 0;
+}
+.track-bar {
+  flex: 1;
+  height: 28px;
+  background: #12141c;
+  border-radius: 4px;
+  position: relative;
+}
+.span {
+  position: absolute;
+  top: 2px;
+  height: 24px;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  color: #0f1117;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.2s;
+  opacity: 0.35;
+}
+.span.active { opacity: 1; box-shadow: 0 0 8px currentColor; }
+.span.forward { background: #6ee7b7; }
+.span.compensate { background: #ffd36e; }
+.span.failed { background: #ff7a90; }
+.playhead {
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  width: 2px;
+  background: #fff;
+  pointer-events: none;
+  left: 110px;
+}
+#scrub {
+  width: 100%;
+  margin: 20px 0 8px;
+  accent-color: #6ee7b7;
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #8a93a8;
+  margin-bottom: 12px;
+}
+.details {
+  background: #1a1d27;
+  border-radius: 8px;
+  padding: 14px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  min-height: 70px;
+  border-left: 3px solid #6ee7b7;
+}
+.presets { display: flex; gap: 10px; margin-top: 14px; }
+button {
+  background: #262a37;
+  color: #e6e8ef;
+  border: 1px solid #353a4d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover, button.active { background: #6ee7b7; color: #0f1117; }

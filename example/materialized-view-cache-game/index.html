@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MV Cache Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Materialized View: The Game</h1>
+  <p class="sub">Queries arrive — refresh views in time to serve them fast. Stale views serve from raw tables (slow).</p>
+</header>
+<div class="hud">
+  <div class="stat"><span>Score</span><b id="score">0</b></div>
+  <div class="stat"><span>Cache Hits</span><b id="hits">0</b></div>
+  <div class="stat"><span>Misses</span><b id="misses">0</b></div>
+  <div class="stat"><span>Avg Latency</span><b id="lat">0ms</b></div>
+  <button id="reset">Reset</button>
+</div>
+<main id="grid"></main>
+<div id="queryFeed" class="feed"><h3>Incoming Queries</h3><ul id="qlist"></ul></div>
+<script src="app.js"></script>
+</body>
+</html>

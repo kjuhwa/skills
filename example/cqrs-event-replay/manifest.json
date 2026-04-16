@@ -1,0 +1,12 @@
+{
+  "slug": "cqrs-event-replay",
+  "title": "Cqrs Event Replay",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:23:35.112Z",
+  "source_project": "101-cqrs-event-replay",
+  "author": "kjuhwa@nkia.co.kr"
+}

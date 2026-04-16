@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CQRS Event Replay</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <h1>Event Replay</h1>
+    <p class="hint">Scrub through the event stream to rebuild the read model at any point in time.</p>
+    <div class="stats">
+      <div><span id="evt-count">0</span><label>events</label></div>
+      <div><span id="evt-index">0</span><label>position</label></div>
+      <div><span id="evt-balance">$0</span><label>balance</label></div>
+    </div>
+    <div class="controls">
+      <button id="play">▶ Play</button>
+      <button id="step">Step</button>
+      <button id="back">◀ Back</button>
+      <button id="rewind">⏮ Rewind</button>
+    </div>
+  </aside>
+  <main>
+    <div class="timeline">
+      <input type="range" id="scrubber" min="0" max="0" value="0">
+    </div>
+    <div class="panes">
+      <section>
+        <h2>Event Stream</h2>
+        <ul id="stream"></ul>
+      </section>
+      <section>
+        <h2>Projected Account State</h2>
+        <div class="balance-card">
+          <div class="amount" id="balance">$0.00</div>
+          <div class="owner" id="owner">—</div>
+        </div>
+        <h3>Recent Activity</h3>
+        <ul id="activity"></ul>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

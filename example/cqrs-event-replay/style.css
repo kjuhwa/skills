@@ -1,0 +1,62 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e8ef;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+}
+.app { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+aside {
+  background: #1a1d27;
+  padding: 24px;
+  border-right: 1px solid #2a2f3e;
+}
+aside h1 { color: #6ee7b7; margin-bottom: 6px; font-size: 22px; }
+aside .hint { color: #8b92a7; font-size: 13px; margin-bottom: 20px; line-height: 1.5; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.stats > div { background: #0f1117; padding: 10px; border-radius: 6px; text-align: center; }
+.stats span { color: #6ee7b7; font-size: 18px; font-weight: 600; display: block; }
+.stats label { color: #8b92a7; font-size: 11px; text-transform: uppercase; }
+.controls { display: flex; flex-wrap: wrap; gap: 6px; }
+button {
+  flex: 1 1 calc(50% - 6px);
+  background: #0f1117;
+  color: #6ee7b7;
+  border: 1px solid #2a2f3e;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+}
+button:hover { background: #2a2f3e; }
+main { padding: 24px; }
+.timeline { margin-bottom: 20px; }
+#scrubber { width: 100%; accent-color: #6ee7b7; }
+.panes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+section { background: #1a1d27; border-radius: 8px; padding: 16px; max-height: 70vh; overflow-y: auto; }
+h2, h3 { color: #6ee7b7; font-size: 13px; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+h3 { margin-top: 14px; }
+ul { list-style: none; font-size: 13px; }
+#stream li {
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  background: #0f1117;
+  border-left: 3px solid #2a2f3e;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+#stream li.active { border-left-color: #6ee7b7; background: #243040; }
+#stream li.future { opacity: 0.4; }
+#stream .type { color: #6ee7b7; font-weight: 600; }
+#stream .meta { color: #8b92a7; font-size: 11px; }
+.balance-card {
+  background: linear-gradient(135deg, #243040, #1a1d27);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.amount { color: #6ee7b7; font-size: 34px; font-weight: 700; }
+.owner { color: #8b92a7; font-size: 13px; margin-top: 4px; }
+#activity li { padding: 4px 0; color: #cdd3e0; font-size: 12px; border-bottom: 1px solid #2a2f3e; }

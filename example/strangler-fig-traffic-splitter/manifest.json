@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-traffic-splitter",
+  "title": "Strangler Fig Traffic Splitter",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:45:56.668Z",
+  "source_project": "102-strangler-fig-traffic-splitter",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,55 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e4e6ea;
+  font-family: -apple-system, Segoe UI, sans-serif;
+  min-height: 100vh;
+  padding: 24px;
+}
+header { text-align: center; margin-bottom: 24px; }
+h1 { color: #6ee7b7; font-size: 26px; }
+header p { color: #8a8f98; margin-top: 6px; font-size: 13px; }
+main { max-width: 900px; margin: 0 auto; }
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #1a1d27;
+  padding: 20px;
+  border-radius: 10px;
+}
+.slider-row input[type=range] {
+  flex: 1;
+  accent-color: #6ee7b7;
+  height: 6px;
+}
+.tag {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.legacy { background: #3a2a2a; color: #f5a5a5; }
+.modern { background: #1f3a2e; color: #6ee7b7; }
+.percent {
+  text-align: center;
+  margin: 14px 0;
+  font-size: 15px;
+  color: #8a8f98;
+}
+.percent span:first-child { color: #f5a5a5; font-weight: 600; }
+.percent span:last-child { color: #6ee7b7; font-weight: 600; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.card { background: #1a1d27; border-radius: 10px; padding: 16px; }
+.card h3 { color: #6ee7b7; font-size: 14px; margin-bottom: 10px; }
+.card canvas { width: 100%; height: 120px; background: #0f1117; border-radius: 6px; }
+.metrics { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: #8a8f98; }
+.metrics b { color: #e4e6ea; }
+.flow { background: #1a1d27; border-radius: 10px; padding: 16px; }
+.flow canvas { width: 100%; height: 120px; background: #0f1117; border-radius: 6px; display: block; }

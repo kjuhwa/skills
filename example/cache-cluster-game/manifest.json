@@ -1,0 +1,12 @@
+{
+  "slug": "cache-cluster-game",
+  "title": "Cache Cluster Game",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:38:33.148Z",
+  "source_project": "102-cache-cluster-game",
+  "author": "kjuhwa@nkia.co.kr"
+}

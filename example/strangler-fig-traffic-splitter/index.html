@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Traffic Splitter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Strangler Fig Traffic Splitter</h1>
+  <p>Drag the slider to shift live traffic between legacy and modern</p>
+</header>
+<main>
+  <div class="slider-row">
+    <span class="tag legacy">Legacy Monolith</span>
+    <input type="range" id="split" min="0" max="100" value="80">
+    <span class="tag modern">Modern Microservice</span>
+  </div>
+  <div class="percent"><span id="legacy-pct">80%</span> / <span id="modern-pct">20%</span></div>
+
+  <section class="grid">
+    <div class="card">
+      <h3>Legacy <span id="l-rps">0</span> req/s</h3>
+      <canvas id="legacy-chart" width="400" height="160"></canvas>
+      <div class="metrics">
+        <span>p95: <b id="l-lat">0</b>ms</span>
+        <span>errors: <b id="l-err">0</b>%</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Modern <span id="m-rps">0</span> req/s</h3>
+      <canvas id="modern-chart" width="400" height="160"></canvas>
+      <div class="metrics">
+        <span>p95: <b id="m-lat">0</b>ms</span>
+        <span>errors: <b id="m-err">0</b>%</span>
+      </div>
+    </div>
+  </section>
+  <section class="flow">
+    <canvas id="flow" width="800" height="120"></canvas>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

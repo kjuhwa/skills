@@ -1,0 +1,12 @@
+{
+  "slug": "chaos-experiment-deck",
+  "title": "Chaos Experiment Deck",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:30:54.105Z",
+  "source_project": "101-chaos-experiment-deck",
+  "author": "kjuhwa@nkia.co.kr"
+}

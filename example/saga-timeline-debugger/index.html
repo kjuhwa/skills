@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saga Timeline Debugger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Saga Timeline Debugger</h1>
+  <p class="sub">Scrub through a recorded distributed transaction. Green = forward, amber = compensating.</p>
+  <div class="tracks" id="tracks"></div>
+  <input type="range" id="scrub" min="0" max="100" value="0">
+  <div class="meta">
+    <span id="time">t = 0ms</span>
+    <span id="status">Ready</span>
+  </div>
+  <div class="details" id="details">Select a span to inspect.</div>
+  <div class="presets">
+    <button data-preset="happy">Happy Path</button>
+    <button data-preset="payfail">Payment Timeout</button>
+    <button data-preset="shipfail">Shipping Failure</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

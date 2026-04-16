@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blue-Green Health Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="dash">
+  <header>
+    <h1>Environment Health <span id="mode" class="mode">BLUE LIVE</span></h1>
+    <div class="actions">
+      <button id="chaos">🔥 Inject Chaos</button>
+      <button id="cutover">⇄ Cutover</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="panel blue">
+      <div class="hd"><span>BLUE</span><span class="ver">v1.8.2</span></div>
+      <div class="metrics">
+        <div><span>Latency</span><b id="bLat">—</b></div>
+        <div><span>Error %</span><b id="bErr">—</b></div>
+        <div><span>CPU</span><b id="bCpu">—</b></div>
+        <div><span>Pods</span><b id="bPod">4/4</b></div>
+      </div>
+      <canvas id="bChart" width="380" height="100"></canvas>
+      <div class="check" id="bCheck">● HEALTHY</div>
+    </div>
+
+    <div class="panel green">
+      <div class="hd"><span>GREEN</span><span class="ver">v1.9.0</span></div>
+      <div class="metrics">
+        <div><span>Latency</span><b id="gLat">—</b></div>
+        <div><span>Error %</span><b id="gErr">—</b></div>
+        <div><span>CPU</span><b id="gCpu">—</b></div>
+        <div><span>Pods</span><b id="gPod">4/4</b></div>
+      </div>
+      <canvas id="gChart" width="380" height="100"></canvas>
+      <div class="check" id="gCheck">● HEALTHY</div>
+    </div>
+  </div>
+
+  <div class="verdict" id="verdict">Monitoring...</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

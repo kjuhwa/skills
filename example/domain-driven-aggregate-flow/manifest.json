@@ -1,0 +1,12 @@
+{
+  "slug": "domain-driven-aggregate-flow",
+  "title": "Domain Driven Aggregate Flow",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:13:07.818Z",
+  "source_project": "102-domain-driven-aggregate-flow",
+  "author": "kjuhwa@nkia.co.kr"
+}

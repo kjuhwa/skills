@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GraphQL Subscription Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>📡 Subscription Monitor</h1>
+  <div class="status"><span class="pulse"></span> <span id="conn">connected</span> · <span id="count">0</span> events</div>
+</header>
+<main>
+  <section class="controls">
+    <h2>Active Subscriptions</h2>
+    <div id="subs"></div>
+    <button id="pause">⏸ Pause</button>
+    <button id="clear">Clear Feed</button>
+  </section>
+  <section class="chart">
+    <h2>Events / sec</h2>
+    <canvas id="graph" width="600" height="160"></canvas>
+  </section>
+  <section class="feed">
+    <h2>Live Event Feed</h2>
+    <div id="events"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

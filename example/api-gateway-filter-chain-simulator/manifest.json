@@ -1,0 +1,12 @@
+{
+  "slug": "api-gateway-filter-chain-simulator",
+  "title": "Api Gateway Filter Chain Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:55:23.103Z",
+  "source_project": "102-api-gateway-filter-chain-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

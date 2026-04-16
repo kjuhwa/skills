@@ -1,0 +1,57 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+.app { max-width: 1200px; margin: 0 auto; }
+header { margin-bottom: 24px; }
+h1 { color: #6ee7b7; font-size: 24px; }
+header p { color: #9ca3af; font-size: 13px; margin-top: 4px; }
+h2, h3 { color: #6ee7b7; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+section { background: #1a1d27; padding: 20px; border-radius: 10px; margin-bottom: 16px; }
+.step-builder { display: grid; grid-template-columns: 1fr 1fr 100px auto; gap: 10px; margin-bottom: 12px; }
+input, button {
+  background: #0f1117;
+  color: #e5e7eb;
+  border: 1px solid #2d3344;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+button { cursor: pointer; }
+button:hover { border-color: #6ee7b7; color: #6ee7b7; }
+button.primary { background: #6ee7b7; color: #0f1117; border-color: #6ee7b7; font-weight: 600; }
+button.primary:hover { background: #5dd4a5; color: #0f1117; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.ledger { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; background: transparent; padding: 0; }
+.col { background: #1a1d27; padding: 16px; border-radius: 10px; min-height: 260px; }
+ul { list-style: none; }
+li {
+  background: #0f1117;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  border-left: 3px solid #2d3344;
+  animation: slide 0.3s ease;
+}
+li.ok { border-left-color: #6ee7b7; }
+li.undo { border-left-color: #fbbf24; text-decoration: line-through; opacity: 0.7; }
+li.fail { border-left-color: #f87171; }
+li .amt { float: right; color: #6ee7b7; font-family: monospace; }
+li.undo .amt { color: #fbbf24; }
+@keyframes slide { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #1a1d27;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 14px;
+}
+#balance { color: #6ee7b7; }
+#status { color: #9ca3af; }

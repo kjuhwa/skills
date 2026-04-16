@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bulkhead Latency Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Bulkhead Latency Lab</h1>
+  <p>Compare a shared thread pool vs isolated bulkheads when one downstream dependency goes slow.</p>
+</header>
+<main>
+  <div class="panel">
+    <label>Slow dependency latency: <output id="lat-val">200</output> ms</label>
+    <input type="range" id="lat" min="20" max="2000" step="20" value="200">
+    <label>Request rate: <output id="rate-val">40</output> rps</label>
+    <input type="range" id="rate" min="5" max="200" step="5" value="40">
+    <button id="toggle">Pause</button>
+  </div>
+  <div class="scene">
+    <div class="col">
+      <h3>Shared pool (20 threads)</h3>
+      <canvas id="shared" width="420" height="260"></canvas>
+      <div class="stats" id="shared-stats"></div>
+    </div>
+    <div class="col">
+      <h3>Bulkheads (10 + 10 threads)</h3>
+      <canvas id="bulk" width="420" height="260"></canvas>
+      <div class="stats" id="bulk-stats"></div>
+    </div>
+  </div>
+  <p class="note">Green = fast endpoint throughput. Red = slow endpoint. In the shared pool, slow calls starve fast ones. Bulkheads keep fast traffic unaffected.</p>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

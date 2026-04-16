@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BFF Latency Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>BFF Latency Lab</h1>
+  <p>Compare direct client fan-out vs. BFF aggregation. Adjust sliders and run simulations.</p>
+</header>
+<main>
+  <section class="panel">
+    <div class="slider">
+      <label>Client RTT: <span id="cVal">120</span> ms</label>
+      <input type="range" id="clientRtt" min="20" max="400" value="120">
+    </div>
+    <div class="slider">
+      <label>BFF→Service RTT: <span id="bVal">15</span> ms</label>
+      <input type="range" id="bffRtt" min="2" max="80" value="15">
+    </div>
+    <div class="slider">
+      <label>Services per request: <span id="sVal">6</span></label>
+      <input type="range" id="svcCount" min="2" max="12" value="6">
+    </div>
+    <button id="run">Run Simulation</button>
+  </section>
+  <section class="results">
+    <div class="card">
+      <h3>Without BFF</h3>
+      <div class="bignum" id="noBff">—</div>
+      <div class="sub">sequential client-side fan-out</div>
+    </div>
+    <div class="card">
+      <h3>With BFF</h3>
+      <div class="bignum" id="withBff">—</div>
+      <div class="sub">parallel BFF aggregation</div>
+    </div>
+    <div class="card accent">
+      <h3>Savings</h3>
+      <div class="bignum" id="savings">—</div>
+      <div class="sub">less time on mobile networks</div>
+    </div>
+  </section>
+  <canvas id="chart" width="900" height="260"></canvas>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

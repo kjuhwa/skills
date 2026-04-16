@@ -1,0 +1,12 @@
+{
+  "slug": "object-storage-cost-simulator",
+  "title": "Object Storage Cost Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:13:46.051Z",
+  "source_project": "101-object-storage-cost-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

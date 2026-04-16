@@ -1,0 +1,91 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e8ef;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  padding: 20px;
+  min-height: 100vh;
+}
+.wrap { max-width: 1200px; margin: 0 auto; }
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+h1 { color: #6ee7b7; }
+.badge {
+  background: #1a1d27;
+  color: #facc15;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  border: 1px solid #2a2f3e;
+}
+.grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.panel {
+  background: #1a1d27;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 320px;
+}
+h2 {
+  color: #6ee7b7;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+form label { display: block; margin-bottom: 10px; color: #8b92a7; font-size: 12px; }
+form input {
+  width: 100%;
+  background: #0f1117;
+  color: #e6e8ef;
+  border: 1px solid #2a2f3e;
+  padding: 8px;
+  border-radius: 6px;
+  margin-top: 4px;
+  font-family: inherit;
+}
+form button {
+  width: 100%;
+  background: #6ee7b7;
+  color: #0f1117;
+  font-weight: 700;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+form button:hover { background: #4bd4a0; }
+.queue-label { color: #8b92a7; font-size: 11px; margin-top: 14px; text-transform: uppercase; }
+#pending { list-style: none; margin-top: 6px; }
+#pending li {
+  background: #0f1117;
+  padding: 6px 10px;
+  margin-top: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #facc15;
+  border-left: 3px solid #facc15;
+  animation: pulse 1s infinite alternate;
+}
+@keyframes pulse { to { opacity: 0.6; } }
+svg { width: 100%; height: 180px; background: #0f1117; border-radius: 6px; }
+.metric { margin-top: 10px; font-size: 13px; color: #cdd3e0; }
+.metric b { color: #6ee7b7; }
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  background: #1a1d27;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+footer label { color: #8b92a7; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+footer input[type=range] { accent-color: #6ee7b7; }
+#flush {
+  background: #1a1d27;
+  color: #f87171;
+  border: 1px solid #3a2833;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}

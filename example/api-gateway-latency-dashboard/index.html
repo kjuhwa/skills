@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Gateway Latency Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="dash">
+  <header>
+    <h1>Gateway Latency · Live</h1>
+    <div class="legend">
+      <span><i style="background:#6ee7b7"></i>gateway</span>
+      <span><i style="background:#60a5fa"></i>upstream</span>
+      <span><i style="background:#f87171"></i>errors</span>
+    </div>
+  </header>
+  <div class="kpis" id="kpis"></div>
+  <div class="panel">
+    <h2>Rolling latency (p50 / p95)</h2>
+    <canvas id="chart" width="900" height="220"></canvas>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <h2>Per-route breakdown</h2>
+      <table id="routes"><thead><tr><th>Route</th><th>RPS</th><th>p50</th><th>p95</th><th>err%</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="panel">
+      <h2>Circuit Breakers</h2>
+      <ul id="breakers"></ul>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retry Policy Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Retry Policy Playground</h1>
+    <p>Design a policy, then watch it battle a flaky API</p>
+  </header>
+  <div class="grid">
+    <section class="builder">
+      <h3>Policy</h3>
+      <div class="field"><span>Max retries</span><input type="number" id="maxRetries" min="0" max="10" value="4"></div>
+      <div class="field"><span>Base (ms)</span><input type="number" id="baseMs" min="10" max="2000" value="100"></div>
+      <div class="field"><span>Multiplier</span><input type="number" id="mult" min="1" max="5" step="0.1" value="2"></div>
+      <div class="field"><span>Cap (ms)</span><input type="number" id="cap" min="100" max="30000" value="5000"></div>
+      <div class="field"><span>Jitter</span>
+        <select id="jitter"><option>none</option><option selected>full</option><option>equal</option></select>
+      </div>
+      <div class="field"><span>Retry on</span>
+        <div class="codes">
+          <label><input type="checkbox" value="429" checked>429</label>
+          <label><input type="checkbox" value="500" checked>500</label>
+          <label><input type="checkbox" value="502" checked>502</label>
+          <label><input type="checkbox" value="503" checked>503</label>
+          <label><input type="checkbox" value="504">504</label>
+        </div>
+      </div>
+      <button id="fire">Fire 20 Requests</button>
+    </section>
+    <section class="results">
+      <h3>Request Timeline</h3>
+      <div id="timeline"></div>
+      <div class="summary" id="summary"></div>
+    </section>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

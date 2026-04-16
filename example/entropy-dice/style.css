@@ -1,0 +1,96 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: 'Georgia', serif;
+  min-height: 100vh;
+  padding: 30px 20px;
+  background-image: radial-gradient(circle at 20% 10%, rgba(110,231,183,0.08), transparent 40%);
+}
+.stage { max-width: 780px; margin: 0 auto; text-align: center; }
+h1 { color: #6ee7b7; font-size: 34px; letter-spacing: 3px; }
+.tagline { color: #94a3b8; margin: 8px 0 30px; font-style: italic; }
+.dice-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.die {
+  background: #1a1d27;
+  padding: 16px 10px;
+  border-radius: 12px;
+  border: 2px solid #252936;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.die.rolling { animation: shake 0.5s infinite; }
+@keyframes shake {
+  0%,100% { transform: translate(0,0) rotate(0deg); }
+  25% { transform: translate(-3px, 2px) rotate(-3deg); }
+  75% { transform: translate(3px, -2px) rotate(3deg); }
+}
+.die .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #6ee7b7;
+  margin-bottom: 8px;
+  font-family: system-ui;
+}
+.die .face {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: system-ui;
+  color: #e5e7eb;
+  text-align: center;
+  line-height: 1.3;
+}
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-family: system-ui;
+  margin-bottom: 24px;
+}
+button:hover { background: #34d399; }
+button:disabled { opacity: 0.5; cursor: wait; }
+.scroll {
+  background: #1a1d27;
+  padding: 22px;
+  border-radius: 10px;
+  text-align: left;
+  font-family: system-ui;
+  margin-bottom: 20px;
+}
+.scroll h2 {
+  color: #6ee7b7;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+.scroll h2:first-of-type { margin-top: 0; }
+.scroll p, .scroll li { color: #e5e7eb; font-size: 14px; line-height: 1.6; }
+.scroll ul { padding-left: 22px; }
+.history {
+  background: #1a1d27;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: left;
+  font-family: system-ui;
+}
+.history h3 { color: #6ee7b7; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px; }
+.history ol { padding-left: 22px; color: #94a3b8; font-size: 12px; }
+.history li { margin-bottom: 4px; }

@@ -1,0 +1,12 @@
+{
+  "slug": "saga-timeline-debugger",
+  "title": "Saga Timeline Debugger",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:06:03.530Z",
+  "source_project": "102-saga-timeline-debugger",
+  "author": "kjuhwa@nkia.co.kr"
+}

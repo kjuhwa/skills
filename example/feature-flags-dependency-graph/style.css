@@ -1,0 +1,61 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: -apple-system, system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 24px;
+}
+.app { max-width: 980px; margin: 0 auto; }
+h1 { color: #6ee7b7; margin-bottom: 4px; }
+.sub { color: #9ca3af; font-size: 13px; margin-bottom: 18px; }
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
+}
+svg {
+  background: #1a1d27;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+aside {
+  background: #1a1d27;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 13px;
+}
+aside h2 { color: #6ee7b7; font-size: 14px; margin-bottom: 10px; }
+.node circle {
+  transition: fill 0.2s, stroke 0.2s;
+  cursor: pointer;
+}
+.node text {
+  fill: #e5e7eb;
+  font-size: 11px;
+  pointer-events: none;
+  text-anchor: middle;
+}
+.node.on circle { fill: #6ee7b7; stroke: #6ee7b7; }
+.node.on text { fill: #0f1117; font-weight: 600; }
+.node.off circle { fill: #1a1d27; stroke: #374151; }
+.node.blocked circle { fill: #1a1d27; stroke: #7a2a2a; stroke-dasharray: 3 3; }
+.node.selected circle { stroke: #fbbf24; stroke-width: 3; }
+.edge { stroke: #374151; stroke-width: 1.5; fill: none; }
+.edge.active { stroke: #6ee7b7; }
+.row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #2a2f3d; }
+.row:last-child { border: none; }
+.tag { color: #9ca3af; }
+.btn {
+  margin-top: 10px;
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+.btn.off { background: #374151; color: #e5e7eb; }

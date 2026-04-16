@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Projection Race</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Projection Race</h1>
+  <p>Two read models consume the same event stream at different speeds. Watch them catch up.</p>
+</header>
+<main>
+  <div class="controls">
+    <button id="emit">Emit Random Event</button>
+    <button id="burst">Emit Burst (×20)</button>
+    <button id="reset">Reset Stream</button>
+    <span class="counter">Stream position: <strong id="streamPos">0</strong></span>
+  </div>
+  <svg id="stage" viewBox="0 0 920 360" preserveAspectRatio="xMidYMid meet"></svg>
+  <section class="panels">
+    <div class="panel fast">
+      <h2>Live Projection <span class="lag" id="lagA">lag 0</span></h2>
+      <ul id="projA"></ul>
+    </div>
+    <div class="panel slow">
+      <h2>Slow Projection <span class="lag" id="lagB">lag 0</span></h2>
+      <ul id="projB"></ul>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

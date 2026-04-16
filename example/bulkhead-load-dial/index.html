@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bulkhead Load Dial</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Bulkhead Load Dial</h1>
+  <p>Tune concurrency limits — watch latency, throughput, and rejection curves collide.</p>
+</header>
+<div class="wrap">
+  <div class="panel">
+    <label>Bulkhead Size <span id="size-v">8</span></label>
+    <input type="range" id="size" min="1" max="30" value="8">
+    <label>Offered Load (req/s) <span id="load-v">20</span></label>
+    <input type="range" id="load" min="1" max="80" value="20">
+    <label>Avg Service Time (ms) <span id="svc-v">250</span></label>
+    <input type="range" id="svc" min="50" max="1000" step="25" value="250">
+  </div>
+  <div class="chart-panel">
+    <svg id="chart" viewBox="0 0 600 280" preserveAspectRatio="none"></svg>
+    <div class="legend">
+      <span class="lg lg-thru">Throughput</span>
+      <span class="lg lg-reject">Rejected</span>
+      <span class="lg lg-util">Utilization</span>
+    </div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><span>Throughput</span><strong id="k-thru">0</strong><em>req/s</em></div>
+    <div class="kpi"><span>Rejected</span><strong id="k-reject">0</strong><em>req/s</em></div>
+    <div class="kpi"><span>Utilization</span><strong id="k-util">0</strong><em>%</em></div>
+    <div class="kpi"><span>Est. Latency</span><strong id="k-lat">0</strong><em>ms</em></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

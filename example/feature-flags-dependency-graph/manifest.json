@@ -1,0 +1,12 @@
+{
+  "slug": "feature-flags-dependency-graph",
+  "title": "Feature Flags Dependency Graph",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:51:28.372Z",
+  "source_project": "101-feature-flags-dependency-graph",
+  "author": "kjuhwa@nkia.co.kr"
+}

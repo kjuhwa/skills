@@ -1,0 +1,12 @@
+{
+  "slug": "bff-pattern-latency",
+  "title": "Bff Pattern Latency",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:59:46.374Z",
+  "source_project": "101-bff-pattern-latency",
+  "author": "kjuhwa@nkia.co.kr"
+}

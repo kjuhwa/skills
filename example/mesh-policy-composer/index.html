@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mesh Policy Composer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Service Mesh Policy Composer</h1><span class="tag">VirtualService YAML Generator</span></header>
+<main>
+  <section class="builder">
+    <h2>Route Configuration</h2>
+    <div class="row"><label>Host</label><input id="host" value="reviews.prod.svc.cluster.local"></div>
+    <div class="row"><label>Gateway</label><input id="gateway" value="mesh-gateway"></div>
+    <h3>Traffic Splits</h3>
+    <div id="splits"></div>
+    <button class="add" id="addSplit">+ Add Destination</button>
+    <h3>Match Conditions</h3>
+    <div class="row"><label>Header</label><input id="hname" placeholder="user-agent"><input id="hval" placeholder="mobile"></div>
+    <div class="row"><label>Timeout</label><input id="timeout" value="5s"></div>
+    <div class="row"><label>Retries</label><input id="retries" type="number" value="3" min="0" max="10"></div>
+    <h3>Fault Injection</h3>
+    <div class="row"><label>Delay %</label><input id="delayPct" type="range" min="0" max="100" value="0"><span id="delayVal">0%</span></div>
+    <div class="row"><label>Abort %</label><input id="abortPct" type="range" min="0" max="100" value="0"><span id="abortVal">0%</span></div>
+  </section>
+  <section class="preview">
+    <div class="tabs"><button class="tab active" data-t="yaml">YAML</button><button class="tab" data-t="viz">Visualize</button><button class="tab" data-t="test">Test</button></div>
+    <div id="yamlView" class="view active"><pre id="yaml"></pre><button id="copy">Copy</button></div>
+    <div id="vizView" class="view"><canvas id="pie"></canvas><div id="legend"></div></div>
+    <div id="testView" class="view"><button id="runTest">Simulate 100 Requests</button><div id="results"></div></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

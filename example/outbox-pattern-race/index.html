@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Outbox vs Dual-Write Race</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Dual-Write vs Outbox Pattern</h1>
+  <p class="sub">Simulate 100 transactions. Watch how many events get lost when systems fail.</p>
+  <div class="scoreboard">
+    <div class="track" id="track-dual">
+      <div class="label">Dual-Write <span class="tag bad">unsafe</span></div>
+      <svg viewBox="0 0 600 140" id="svg-dual"></svg>
+      <div class="metrics">
+        <span>Sent: <b id="dual-sent">0</b></span>
+        <span>Lost: <b id="dual-lost" class="err">0</b></span>
+        <span>Consistency: <b id="dual-pct">100%</b></span>
+      </div>
+    </div>
+    <div class="track" id="track-outbox">
+      <div class="label">Outbox Pattern <span class="tag good">safe</span></div>
+      <svg viewBox="0 0 600 140" id="svg-outbox"></svg>
+      <div class="metrics">
+        <span>Sent: <b id="outbox-sent">0</b></span>
+        <span>Lost: <b id="outbox-lost" class="err">0</b></span>
+        <span>Consistency: <b id="outbox-pct">100%</b></span>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button id="run">Run 100 Transactions</button>
+    <label>Broker Failure Rate
+      <input type="range" id="fail" min="0" max="50" value="20">
+      <span id="fail-val">20%</span>
+    </label>
+    <button id="reset">Reset</button>
+  </div>
+  <div class="summary" id="summary">
+    <strong>How it works:</strong> Dual-Write calls DB and broker separately — a broker hiccup after DB commit causes silent data loss.
+    Outbox pattern writes event to same DB transaction; a relay retries until broker acks. <em>Zero loss.</em>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

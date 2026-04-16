@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ping-Pong Arena</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Actor Ping-Pong Arena</h1>
+  <p class="sub">Two actors trading messages. Watch their mailboxes and throughput.</p>
+  <div class="arena">
+    <div class="actor" id="pinger">
+      <div class="name">Pinger</div>
+      <div class="mbox" id="pinger-mbox"></div>
+      <div class="meta"><span id="pinger-sent">0</span> sent / <span id="pinger-recv">0</span> recv</div>
+    </div>
+    <canvas id="wire"></canvas>
+    <div class="actor" id="ponger">
+      <div class="name">Ponger</div>
+      <div class="mbox" id="ponger-mbox"></div>
+      <div class="meta"><span id="ponger-sent">0</span> sent / <span id="ponger-recv">0</span> recv</div>
+    </div>
+  </div>
+  <div class="controls">
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="burst">Burst (20)</button>
+    <label>Latency <input id="latency" type="range" min="100" max="1500" value="500"> <span id="lat-val">500</span>ms</label>
+    <label>Drop% <input id="drop" type="range" min="0" max="50" value="0"> <span id="drop-val">0</span>%</label>
+  </div>
+  <canvas id="throughput"></canvas>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

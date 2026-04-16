@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CRDT Text Weaver</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Text Weaver <span>— concurrent editing, CRDT-style</span></h1>
+<p class="hint">Two authors edit the same document offline. Type on both sides, then merge. Edits interleave by operation ID, never conflict.</p>
+<div class="workspace">
+  <section class="editor" data-site="alice">
+    <header><span class="dot a"></span>Alice</header>
+    <textarea id="alice" placeholder="Type here..."></textarea>
+    <div class="ops" id="ops-alice"></div>
+  </section>
+  <section class="editor" data-site="bob">
+    <header><span class="dot b"></span>Bob</header>
+    <textarea id="bob" placeholder="Type here..."></textarea>
+    <div class="ops" id="ops-bob"></div>
+  </section>
+</div>
+<div class="merge">
+  <button id="merge">⇅ Merge</button>
+  <div class="result">
+    <header>Merged Document</header>
+    <pre id="merged"></pre>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

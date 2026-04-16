@@ -1,0 +1,107 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e8ef;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px;
+}
+.app { max-width: 1200px; margin: 0 auto; padding: 24px; }
+header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+header h1 { color: #6ee7b7; font-size: 24px; }
+.pill {
+  background: #1a1d27;
+  color: #8a92a8;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+section {
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 18px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+h2 { font-size: 15px; color: #c8cde0; }
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 12px;
+}
+button.del {
+  background: transparent;
+  color: #f472b6;
+  border: 1px solid #f472b6;
+}
+.route {
+  background: #252938;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+.route input, .route select {
+  background: #0f1117;
+  border: 1px solid #2a2f3f;
+  color: #e6e8ef;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  width: 100%;
+  font-family: monospace;
+}
+.route select { font-family: inherit; }
+pre {
+  background: #0f1117;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: "SF Mono", Consolas, monospace;
+  color: #c8cde0;
+  overflow: auto;
+  max-height: 320px;
+  line-height: 1.5;
+}
+pre .k { color: #6ee7b7; }
+pre .v { color: #fbbf24; }
+pre .s { color: #f472b6; }
+.test { margin-top: 16px; }
+.test h3 { font-size: 13px; color: #8a92a8; margin-bottom: 8px; }
+.test input, .test select {
+  background: #0f1117;
+  border: 1px solid #2a2f3f;
+  color: #e6e8ef;
+  padding: 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+#testResult {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 12px;
+}
+#testResult.ok { background: rgba(110,231,183,0.1); color: #6ee7b7; }
+#testResult.fail { background: rgba(244,114,182,0.1); color: #f472b6; }

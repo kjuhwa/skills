@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vending Machine FSM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Vending Machine FSM</h1>
+  <div class="machine">
+    <div class="display">
+      <div class="state-tag" id="stateTag">IDLE</div>
+      <div class="message" id="message">Insert coin to begin</div>
+      <div class="credit">Credit: $<span id="credit">0.00</span></div>
+    </div>
+    <div class="items">
+      <button class="item" data-price="1.50" data-name="Cola">🥤<br>Cola<br>$1.50</button>
+      <button class="item" data-price="1.00" data-name="Chips">🍟<br>Chips<br>$1.00</button>
+      <button class="item" data-price="2.00" data-name="Candy">🍫<br>Candy<br>$2.00</button>
+      <button class="item" data-price="0.75" data-name="Gum">🍬<br>Gum<br>$0.75</button>
+    </div>
+    <div class="coins">
+      <button class="coin" data-val="0.25">25¢</button>
+      <button class="coin" data-val="0.50">50¢</button>
+      <button class="coin" data-val="1.00">$1</button>
+      <button class="coin" data-val="2.00">$2</button>
+      <button class="coin refund" id="refund">↩ Refund</button>
+    </div>
+    <div class="tray" id="tray">
+      <span class="empty-tray">— Dispenser —</span>
+    </div>
+  </div>
+  <div class="diagram-panel">
+    <h2>State Diagram</h2>
+    <canvas id="diagram" width="520" height="280"></canvas>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

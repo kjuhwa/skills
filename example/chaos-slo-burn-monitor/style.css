@@ -1,0 +1,91 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #d7dae0;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  min-height: 100vh;
+}
+.shell { max-width: 1000px; margin: 0 auto; padding: 24px; }
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 16px; border-bottom: 1px solid #22252f;
+}
+header h1 { color: #6ee7b7; font-size: 22px; letter-spacing: 2px; }
+.status {
+  display: flex; align-items: center; gap: 8px;
+  background: #1a1d27; padding: 8px 14px; border-radius: 20px;
+  font-size: 12px; letter-spacing: 1px;
+}
+.dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #6ee7b7; box-shadow: 0 0 8px #6ee7b7;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.dot.warn { background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
+.dot.fail { background: #f87171; box-shadow: 0 0 10px #f87171; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.5; } }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+.panel {
+  background: #1a1d27;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #22252f;
+}
+.panel.wide { grid-column: 1 / -1; }
+.panel h3 {
+  color: #6ee7b7;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+canvas { width: 100%; height: 120px; display: block; }
+.stat {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-top: 10px;
+}
+.stat span { font-size: 26px; color: #d7dae0; }
+.stat small { color: #8a8f99; font-size: 11px; }
+.budget { padding: 6px 0; }
+.bar {
+  height: 18px;
+  background: #22252f;
+  border-radius: 9px;
+  overflow: hidden;
+  position: relative;
+}
+#budgetFill {
+  height: 100%;
+  background: linear-gradient(90deg, #6ee7b7, #34d399);
+  transition: width 0.5s, background 0.5s;
+  width: 100%;
+}
+.bstats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.bstats b { display: block; color: #6ee7b7; font-size: 20px; }
+.bstats small { color: #8a8f99; font-size: 11px; }
+.controls {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 20px;
+}
+button {
+  flex: 1; min-width: 140px;
+  background: #1a1d27;
+  color: #d7dae0;
+  border: 1px solid #2b2f3b;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit; font-size: 12px; letter-spacing: 1px;
+  transition: all 0.2s;
+}
+button:hover { border-color: #6ee7b7; color: #6ee7b7; }
+button[data-inject="calm"]:hover { border-color: #6ee7b7; }

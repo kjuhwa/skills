@@ -1,0 +1,12 @@
+{
+  "slug": "websocket-chat-swarm",
+  "title": "Websocket Chat Swarm",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:44:47.287Z",
+  "source_project": "102-websocket-chat-swarm",
+  "author": "kjuhwa@nkia.co.kr"
+}

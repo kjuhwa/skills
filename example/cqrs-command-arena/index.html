@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CQRS Command Arena</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Command Arena</h1>
+    <div class="badge" id="lag-badge">Read Lag: <span id="lag">0</span>ms</div>
+  </header>
+  <div class="grid">
+    <section class="panel">
+      <h2>Command Dispatcher</h2>
+      <form id="cmd-form">
+        <label>Product <input id="f-product" value="Keyboard"></label>
+        <label>Qty <input id="f-qty" type="number" value="3" min="1"></label>
+        <label>Price <input id="f-price" type="number" value="89.99" step="0.01"></label>
+        <button type="submit">Issue AddToCart Command</button>
+      </form>
+      <div class="queue-label">Pending Events</div>
+      <ul id="pending"></ul>
+    </section>
+    <section class="panel">
+      <h2>Write Model (Strong Consistency)</h2>
+      <svg id="write-svg" viewBox="0 0 300 200"></svg>
+      <div class="metric">Cart Items: <b id="write-count">0</b> · Total: <b id="write-total">$0</b></div>
+    </section>
+    <section class="panel">
+      <h2>Read Model (Eventual Consistency)</h2>
+      <svg id="read-svg" viewBox="0 0 300 200"></svg>
+      <div class="metric">Cart Items: <b id="read-count">0</b> · Total: <b id="read-total">$0</b></div>
+    </section>
+  </div>
+  <footer>
+    <label>Projection Delay: <input id="delay" type="range" min="100" max="3000" value="900">
+      <span id="delay-val">900</span>ms</label>
+    <button id="flush">Flush All</button>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

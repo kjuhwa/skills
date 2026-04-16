@@ -1,0 +1,12 @@
+{
+  "slug": "read-write-split-lab",
+  "title": "Read Write Split Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:23:56.074Z",
+  "source_project": "102-read-write-split-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

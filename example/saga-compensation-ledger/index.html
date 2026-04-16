@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saga Compensation Ledger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Saga Compensation Ledger</h1>
+    <p>Forward actions &amp; their compensating transactions</p>
+  </header>
+  <section class="builder">
+    <h2>Build a Saga</h2>
+    <div class="step-builder">
+      <input id="stepName" placeholder="Forward action (e.g. DebitAccount)">
+      <input id="compName" placeholder="Compensation (e.g. CreditAccount)">
+      <input id="amount" type="number" placeholder="$" value="100">
+      <button id="addStep">+ Add Step</button>
+    </div>
+    <div class="actions">
+      <button id="commit" class="primary">Commit Saga</button>
+      <button id="failAt">Simulate Failure at Random Step</button>
+      <button id="resetAll">Reset Ledger</button>
+    </div>
+  </section>
+  <section class="ledger">
+    <div class="col">
+      <h3>Pending Steps</h3>
+      <ul id="pending"></ul>
+    </div>
+    <div class="col">
+      <h3>Committed (Forward)</h3>
+      <ul id="committed"></ul>
+    </div>
+    <div class="col">
+      <h3>Compensated (Rollback)</h3>
+      <ul id="compensated"></ul>
+    </div>
+  </section>
+  <footer>
+    <span id="balance">Balance: $0</span>
+    <span id="status">Idle</span>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

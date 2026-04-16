@@ -1,0 +1,64 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, system-ui, sans-serif;
+  background: #0f1117;
+  color: #e8eaf0;
+  padding: 24px;
+  min-height: 100vh;
+}
+header h1 { color: #6ee7b7; font-size: 24px; }
+header p { color: #8a92a8; font-size: 13px; margin-top: 4px; margin-bottom: 20px; }
+.wrap { display: grid; grid-template-columns: 1fr 280px; gap: 20px; }
+canvas {
+  background: #1a1d27;
+  border: 1px solid #2a2f3d;
+  border-radius: 10px;
+  cursor: crosshair;
+  width: 100%;
+  height: auto;
+}
+aside { display: flex; flex-direction: column; gap: 14px; }
+.telemetry {
+  background: #1a1d27;
+  border: 1px solid #2a2f3d;
+  border-radius: 10px;
+  padding: 14px;
+}
+.telemetry h2 { font-size: 13px; color: #8a92a8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.bar {
+  height: 10px;
+  background: #0f1117;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+#integrity-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ef4444, #f59e0b, #6ee7b7);
+  width: 100%;
+  transition: width 0.3s;
+}
+#integrity-text { font-size: 18px; font-weight: 600; color: #6ee7b7; }
+#log {
+  list-style: none;
+  font-size: 12px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+#log li {
+  padding: 4px 0;
+  border-bottom: 1px solid #2a2f3d;
+  color: #8a92a8;
+}
+#log li.crit { color: #ef4444; }
+#log li.ok { color: #6ee7b7; }
+button {
+  background: #1a1d27;
+  color: #6ee7b7;
+  border: 1px solid #6ee7b7;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+button:hover { background: #6ee7b7; color: #0f1117; }

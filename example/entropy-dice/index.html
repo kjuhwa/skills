@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Entropy Dice</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stage">
+  <h1>Entropy Dice</h1>
+  <p class="tagline">Roll to conjure a chaos experiment for your next GameDay.</p>
+  <div class="dice-row">
+    <div class="die" id="die-fault"><span class="label">Fault</span><span class="face" id="f-fault">?</span></div>
+    <div class="die" id="die-target"><span class="label">Target</span><span class="face" id="f-target">?</span></div>
+    <div class="die" id="die-blast"><span class="label">Blast</span><span class="face" id="f-blast">?</span></div>
+    <div class="die" id="die-duration"><span class="label">Duration</span><span class="face" id="f-duration">?</span></div>
+  </div>
+  <button id="roll">🎲 Roll Chaos</button>
+  <div class="scroll" id="scroll">
+    <h2>Hypothesis</h2>
+    <p id="hypothesis">Press roll to generate an experiment...</p>
+    <h2>Steady-State Metric</h2>
+    <p id="ssmetric">—</p>
+    <h2>Abort Conditions</h2>
+    <ul id="aborts"></ul>
+  </div>
+  <div class="history">
+    <h3>Past Rolls</h3>
+    <ol id="history"></ol>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

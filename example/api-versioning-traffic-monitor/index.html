@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Version Traffic Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>API Version Traffic Monitor</h1>
+  <p class="sub">Live simulated request stream across active API versions</p>
+</header>
+<main>
+  <section class="stats" id="stats"></section>
+  <section class="chart">
+    <canvas id="chart" width="900" height="260"></canvas>
+  </section>
+  <section class="log">
+    <h3>Recent requests</h3>
+    <div id="log"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

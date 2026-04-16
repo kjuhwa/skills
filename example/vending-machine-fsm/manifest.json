@@ -1,0 +1,12 @@
+{
+  "slug": "vending-machine-fsm",
+  "title": "Vending Machine Fsm",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:10:28.573Z",
+  "source_project": "101-vending-machine-fsm",
+  "author": "kjuhwa@nkia.co.kr"
+}

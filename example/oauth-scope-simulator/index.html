@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OAuth Scope Consent Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="phone">
+  <div class="phone-bar">
+    <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+    <span class="url">auth.acme.com/consent</span>
+  </div>
+  <div class="phone-screen">
+    <div class="app-header">
+      <div class="logo">A</div>
+      <div>
+        <h2 id="appName">Planner Pro</h2>
+        <p id="appOrigin">wants to access your Acme account</p>
+      </div>
+    </div>
+    <div class="scope-list" id="scopeList"></div>
+    <div class="actions">
+      <button class="deny" id="denyBtn">Deny</button>
+      <button class="allow" id="allowBtn">Allow Selected</button>
+    </div>
+  </div>
+</div>
+<div class="sidebar">
+  <h3>Granted Permissions</h3>
+  <canvas id="permViz" width="320" height="260"></canvas>
+  <div class="summary">
+    <div>Access Token TTL: <span id="ttl">3600s</span></div>
+    <div>Selected scopes: <span id="scopeCount">0</span></div>
+    <div>Risk level: <span id="riskLevel">—</span></div>
+  </div>
+  <h3>Demo Apps</h3>
+  <div class="apps">
+    <button data-app="planner">Planner Pro</button>
+    <button data-app="analytics">Data Analytics</button>
+    <button data-app="social">SocialShare</button>
+  </div>
+  <h3>Consent Log</h3>
+  <div id="consentLog"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

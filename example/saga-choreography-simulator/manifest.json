@@ -1,0 +1,12 @@
+{
+  "slug": "saga-choreography-simulator",
+  "title": "Saga Choreography Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:05:54.942Z",
+  "source_project": "101-saga-choreography-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

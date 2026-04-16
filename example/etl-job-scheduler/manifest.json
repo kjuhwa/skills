@@ -1,0 +1,12 @@
+{
+  "slug": "etl-job-scheduler",
+  "title": "Etl Job Scheduler",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:00:00.657Z",
+  "source_project": "101-etl-job-scheduler",
+  "author": "kjuhwa@nkia.co.kr"
+}

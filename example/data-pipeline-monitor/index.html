@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pipeline Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Pipeline Health Monitor</h1>
+  <div id="clock">--:--:--</div>
+</header>
+<section id="kpis"></section>
+<section id="charts">
+  <div class="card">
+    <h3>Throughput (msg/s) — last 60s</h3>
+    <svg id="throughput" viewBox="0 0 600 160" preserveAspectRatio="none"></svg>
+  </div>
+  <div class="card">
+    <h3>Lag by Stage</h3>
+    <svg id="lag" viewBox="0 0 600 160" preserveAspectRatio="none"></svg>
+  </div>
+</section>
+<section id="log">
+  <h3>Event Log</h3>
+  <ul id="events"></ul>
+</section>
+<script src="app.js"></script>
+</body>
+</html>

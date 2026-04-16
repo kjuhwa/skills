@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Bus Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🧪 Pub-Sub Event Bus Lab</h1>
+<div class="lab">
+  <div class="panel">
+    <h2>Publish Event</h2>
+    <label>Channel <input id="ch" value="user.login"></label>
+    <label>Payload <input id="pl" value='{"id":42}'></label>
+    <button id="pub">📤 Publish</button>
+    <h3>Quick Fire</h3>
+    <div class="quick">
+      <button data-ch="cart.add" data-pl='{"item":"book"}'>cart.add</button>
+      <button data-ch="user.login" data-pl='{"id":7}'>user.login</button>
+      <button data-ch="order.ship" data-pl='{"order":99}'>order.ship</button>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>Subscriptions <small>(supports * wildcard)</small></h2>
+    <label>Pattern <input id="pat" placeholder="e.g. user.* or cart.add"></label>
+    <button id="sub">➕ Subscribe</button>
+    <ul id="subs"></ul>
+  </div>
+  <div class="panel log">
+    <h2>Event Log</h2>
+    <div id="log"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

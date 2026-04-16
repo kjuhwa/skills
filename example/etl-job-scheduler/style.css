@@ -1,0 +1,87 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+}
+.app { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+h1 {
+  color: #6ee7b7;
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+}
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+button:hover { background: #5dd4a3; }
+button.ghost {
+  background: transparent;
+  color: #9ca3af;
+  border: 1px solid #3a3f4e;
+  padding: 0.3rem 0.75rem;
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+button.ghost:hover { color: #6ee7b7; border-color: #6ee7b7; }
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.stat {
+  background: #1a1d27;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 3px solid #6ee7b7;
+}
+.stat .label { font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em; }
+.stat .value { font-size: 1.6rem; font-weight: 700; margin-top: 0.25rem; }
+.jobs { display: flex; flex-direction: column; gap: 0.75rem; }
+.job {
+  background: #1a1d27;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 1rem;
+  align-items: center;
+}
+.job-info h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+.job-info p { color: #9ca3af; font-size: 0.8rem; }
+.progress-bar {
+  width: 160px;
+  height: 8px;
+  background: #2a2e3a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: #6ee7b7;
+  transition: width 0.3s;
+}
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge.running { background: rgba(110, 231, 183, 0.15); color: #6ee7b7; }
+.badge.queued { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+.badge.done { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+.badge.failed { background: rgba(239, 68, 68, 0.15); color: #ef4444; }

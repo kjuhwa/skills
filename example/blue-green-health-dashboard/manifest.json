@@ -1,0 +1,12 @@
+{
+  "slug": "blue-green-health-dashboard",
+  "title": "Blue Green Health Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:17:10.299Z",
+  "source_project": "102-blue-green-health-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

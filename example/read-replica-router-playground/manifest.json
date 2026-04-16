@@ -1,0 +1,12 @@
+{
+  "slug": "read-replica-router-playground",
+  "title": "Read Replica Router Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:45:48.652Z",
+  "source_project": "101-read-replica-router-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}

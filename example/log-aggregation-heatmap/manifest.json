@@ -1,0 +1,12 @@
+{
+  "slug": "log-aggregation-heatmap",
+  "title": "Log Aggregation Heatmap",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:30:36.468Z",
+  "source_project": "101-log-aggregation-heatmap",
+  "author": "kjuhwa@nkia.co.kr"
+}

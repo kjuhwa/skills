@@ -1,0 +1,12 @@
+{
+  "slug": "mesh-policy-composer",
+  "title": "Mesh Policy Composer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:27:29.540Z",
+  "source_project": "102-mesh-policy-composer",
+  "author": "kjuhwa@nkia.co.kr"
+}

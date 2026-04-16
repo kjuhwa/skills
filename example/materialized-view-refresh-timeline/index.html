@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MV Refresh Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Materialized View Refresh Timeline</h1>
+  <div class="legend">
+    <span><i class="dot fresh"></i>Fresh</span>
+    <span><i class="dot stale"></i>Stale</span>
+    <span><i class="dot refresh"></i>Refreshing</span>
+    <span><i class="dot fail"></i>Failed</span>
+  </div>
+</header>
+<main>
+  <aside>
+    <h2>Views</h2>
+    <ul id="viewList"></ul>
+    <div class="actions">
+      <button id="pause">Pause</button>
+      <button id="refreshAll" class="primary">Refresh All</button>
+    </div>
+  </aside>
+  <section class="canvas-wrap">
+    <canvas id="timeline" width="900" height="500"></canvas>
+    <div id="tooltip" class="tooltip" hidden></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

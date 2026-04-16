@@ -1,0 +1,12 @@
+{
+  "slug": "data-pipeline-monitor",
+  "title": "Data Pipeline Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:16:36.462Z",
+  "source_project": "102-data-pipeline-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}

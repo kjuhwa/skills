@@ -1,0 +1,24 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#d4d8e2;font-family:'Consolas',monospace;height:100vh;overflow:hidden}
+.repl{display:grid;grid-template-columns:240px 1fr;height:100vh}
+.sidebar{background:#1a1d27;padding:16px;overflow-y:auto;border-right:1px solid #262a36}
+.sidebar h2{color:#6ee7b7;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:12px 0 8px}
+.sidebar h2:first-child{margin-top:0}
+.sidebar ul{list-style:none;font-size:12px}
+.sidebar li{padding:6px 8px;border-radius:3px;cursor:pointer;margin-bottom:2px;color:#94c8ff}
+.sidebar li:hover{background:#0f1117;color:#6ee7b7}
+.sidebar .examples li{color:#d4d8e2;font-size:11px}
+.main{display:flex;flex-direction:column;height:100vh}
+.terminal{flex:1;padding:16px;overflow-y:auto;font-size:13px;line-height:1.5}
+.input-row{display:flex;background:#1a1d27;padding:12px 16px;border-top:1px solid #262a36;align-items:center}
+.prompt{color:#6ee7b7;margin-right:8px;font-weight:bold}
+#input{flex:1;background:transparent;border:none;color:#d4d8e2;font-family:inherit;font-size:13px;outline:none}
+.entry{margin-bottom:12px}
+.entry .q{color:#6ee7b7}
+.entry .q::before{content:'tsdb> ';color:#6b7280}
+.result-table{margin-top:6px;border-collapse:collapse;font-size:12px}
+.result-table th{background:#1a1d27;color:#6ee7b7;padding:4px 10px;text-align:left;border:1px solid #262a36}
+.result-table td{padding:3px 10px;border:1px solid #262a36;color:#d4d8e2}
+.err{color:#f87171}
+.info{color:#6b7280;font-style:italic;font-size:11px}
+.sparkline{display:inline-block;margin-top:6px}

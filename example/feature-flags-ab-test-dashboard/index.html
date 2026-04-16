@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A/B Test Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>A/B Test Dashboard</h1>
+    <p>Live conversion data for multi-variant feature flags.</p>
+  </header>
+  <div class="experiments" id="experiments"></div>
+</div>
+<template id="cardTpl">
+  <div class="card">
+    <div class="card-head">
+      <h2></h2>
+      <span class="status"></span>
+    </div>
+    <canvas width="400" height="140"></canvas>
+    <div class="variants"></div>
+    <div class="winner"></div>
+  </div>
+</template>
+<script src="app.js"></script>
+</body>
+</html>

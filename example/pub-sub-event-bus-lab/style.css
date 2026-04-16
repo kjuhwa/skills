@@ -1,0 +1,25 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e4e4e7; font-family: system-ui, sans-serif; padding: 1.5rem; min-height: 100vh; }
+h1 { color: #6ee7b7; text-align: center; margin-bottom: 1rem; }
+.lab { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 1rem; max-width: 1300px; margin: 0 auto; }
+.panel { background: #1a1d27; border: 1px solid #2a2d37; border-radius: 12px; padding: 1rem; }
+.panel h2 { color: #6ee7b7; font-size: 1rem; margin-bottom: 0.7rem; }
+.panel h2 small { color: #9ca3af; font-weight: 400; font-size: 0.75rem; }
+.panel h3 { color: #9ca3af; font-size: 0.8rem; margin: 0.8rem 0 0.4rem; }
+label { display: block; font-size: 0.8rem; color: #9ca3af; margin-bottom: 0.5rem; }
+input { width: 100%; background: #0f1117; color: #e4e4e7; border: 1px solid #2a2d37; border-radius: 6px; padding: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.85rem; margin-top: 0.2rem; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 0.5rem 0.8rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+button:hover { background: #5dd3a3; }
+.quick { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.quick button { background: #242834; color: #6ee7b7; font-family: monospace; font-size: 0.75rem; }
+.quick button:hover { background: #2a2d37; }
+#subs { list-style: none; margin-top: 0.7rem; }
+#subs li { background: #242834; padding: 0.4rem 0.7rem; border-radius: 6px; margin-bottom: 0.3rem; font-family: monospace; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; }
+#subs li .rm { color: #f87171; cursor: pointer; font-weight: bold; }
+#subs li .hits { color: #6ee7b7; font-size: 0.7rem; }
+#log { max-height: 400px; overflow-y: auto; font-family: 'Courier New', monospace; font-size: 0.8rem; }
+.evt { padding: 0.4rem 0.6rem; border-radius: 4px; margin-bottom: 0.3rem; background: #242834; border-left: 3px solid #6ee7b7; }
+.evt.match { border-left-color: #fbbf24; }
+.evt .ch { color: #6ee7b7; font-weight: 600; }
+.evt .pl { color: #9ca3af; }
+.evt .matched { color: #fbbf24; font-size: 0.72rem; margin-top: 0.2rem; }

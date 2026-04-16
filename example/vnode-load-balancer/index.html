@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Virtual Node Load Balancer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Virtual Node Load Balancer</h1>
+    <p>Tune virtual-node count to flatten load variance. 5,000 keys streamed continuously.</p>
+  </header>
+  <div class="controls">
+    <label>Virtual nodes per server: <b id="vL">1</b>
+      <input id="vn" type="range" min="1" max="300" value="1">
+    </label>
+    <label>Servers: <b id="sL">5</b>
+      <input id="sv" type="range" min="2" max="12" value="5">
+    </label>
+    <div class="kpi">
+      <div><span>std-dev</span><b id="sd">—</b></div>
+      <div><span>min</span><b id="mn">—</b></div>
+      <div><span>max</span><b id="mx">—</b></div>
+      <div><span>spread</span><b id="sp">—</b></div>
+    </div>
+  </div>
+  <div class="charts">
+    <div class="card">
+      <h3>Load per server</h3>
+      <svg id="bars" viewBox="0 0 600 240" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="card">
+      <h3>Std-dev over time (lower is better)</h3>
+      <svg id="line" viewBox="0 0 600 200" preserveAspectRatio="none"></svg>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

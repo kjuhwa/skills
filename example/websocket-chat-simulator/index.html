@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Chat Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside>
+  <h2>◉ rooms</h2>
+  <ul id="rooms">
+    <li data-room="general" class="active"># general <span class="badge" id="b-general">0</span></li>
+    <li data-room="dev"># dev <span class="badge" id="b-dev">0</span></li>
+    <li data-room="random"># random <span class="badge" id="b-random">0</span></li>
+  </ul>
+  <h2>online</h2>
+  <ul id="users"></ul>
+</aside>
+<main>
+  <header><h1 id="roomTitle"># general</h1><span id="connInfo">ws://mock.local — 3 peers</span></header>
+  <div id="chat"></div>
+  <div id="typing"></div>
+  <form id="form">
+    <input id="input" placeholder="Type message..." autocomplete="off"/>
+    <button>Send</button>
+  </form>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

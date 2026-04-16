@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Time Travel Tree</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Time Travel Tree</h1>
+  <p>Branching event timelines. Fork history, explore counterfactuals, merge realities.</p>
+</header>
+<div class="app">
+  <svg id="tree" viewBox="0 0 800 500"></svg>
+  <aside>
+    <h2>Active Branch</h2>
+    <div class="info">
+      <div><label>Node</label><span id="node-id">—</span></div>
+      <div><label>Event</label><span id="node-event">—</span></div>
+      <div><label>State</label><span id="node-state">—</span></div>
+      <div><label>Depth</label><span id="node-depth">0</span></div>
+    </div>
+    <h2>Emit</h2>
+    <div class="actions">
+      <button data-act="hire">hire (+1)</button>
+      <button data-act="promote">promote (×2)</button>
+      <button data-act="layoff">layoff (-3)</button>
+      <button data-act="reorg">reorg (reset)</button>
+    </div>
+    <h2>Branch</h2>
+    <button id="fork" class="fork">Fork from selected node</button>
+    <p class="hint">Click any node to time-travel.</p>
+  </aside>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

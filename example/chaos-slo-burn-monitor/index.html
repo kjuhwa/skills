@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SLO Burn Monitor — Chaos Mode</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <header>
+    <h1>SLO Burn Monitor</h1>
+    <div class="status"><span class="dot" id="dot"></span><span id="mode">STEADY STATE</span></div>
+  </header>
+  <section class="grid">
+    <div class="panel">
+      <h3>Error Rate</h3>
+      <canvas id="errChart" width="400" height="120"></canvas>
+      <div class="stat"><span id="errVal">0.00%</span><small>target &lt; 1%</small></div>
+    </div>
+    <div class="panel">
+      <h3>Latency p99</h3>
+      <canvas id="latChart" width="400" height="120"></canvas>
+      <div class="stat"><span id="latVal">0ms</span><small>target &lt; 400ms</small></div>
+    </div>
+    <div class="panel wide">
+      <h3>Error Budget (30d)</h3>
+      <div class="budget">
+        <div class="bar"><div id="budgetFill"></div></div>
+        <div class="bstats">
+          <div><b id="budgetPct">100.0%</b><small>remaining</small></div>
+          <div><b id="burnRate">0.0×</b><small>burn rate</small></div>
+          <div><b id="timeout">—</b><small>time to exhaust</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="controls">
+    <button data-inject="latency">Inject Latency</button>
+    <button data-inject="errors">Inject Errors</button>
+    <button data-inject="partition">Network Partition</button>
+    <button data-inject="calm">Stop Chaos</button>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

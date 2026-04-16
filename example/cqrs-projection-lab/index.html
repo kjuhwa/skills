@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CQRS Projection Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>CQRS Projection Lab</h1>
+<p class="sub">One event stream, many read models. Emit commands and watch projections diverge.</p>
+<div class="bus">
+  <h2>Command Bus</h2>
+  <div class="cmd-row">
+    <button data-cmd="PlaceOrder">PlaceOrder</button>
+    <button data-cmd="ShipOrder">ShipOrder</button>
+    <button data-cmd="CancelOrder">CancelOrder</button>
+    <button data-cmd="RefundOrder">RefundOrder</button>
+    <button data-cmd="Reset" class="warn">Reset Store</button>
+  </div>
+</div>
+<div class="workspace">
+  <section class="store">
+    <h2>Event Store</h2>
+    <ol id="events"></ol>
+  </section>
+  <section class="projections">
+    <div class="proj">
+      <h3>Orders by Status</h3>
+      <div id="by-status"></div>
+    </div>
+    <div class="proj">
+      <h3>Revenue Counter</h3>
+      <div class="big" id="revenue">$0</div>
+      <small id="rev-detail">0 shipped · 0 refunded</small>
+    </div>
+    <div class="proj">
+      <h3>Activity Heatmap</h3>
+      <svg id="heatmap" viewBox="0 0 300 80"></svg>
+    </div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

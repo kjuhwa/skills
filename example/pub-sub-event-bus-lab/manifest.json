@@ -1,0 +1,12 @@
+{
+  "slug": "pub-sub-event-bus-lab",
+  "title": "Pub Sub Event Bus Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:17:21.413Z",
+  "source_project": "102-pub-sub-event-bus-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

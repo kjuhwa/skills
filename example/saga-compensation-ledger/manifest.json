@@ -1,0 +1,12 @@
+{
+  "slug": "saga-compensation-ledger",
+  "title": "Saga Compensation Ledger",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:06:47.058Z",
+  "source_project": "102-saga-compensation-ledger",
+  "author": "kjuhwa@nkia.co.kr"
+}

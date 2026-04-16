@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flag Dependency Graph</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Flag Dependency Graph</h1>
+  <p class="sub">Click flags to toggle. Dependents auto-disable when parents are off.</p>
+  <div class="layout">
+    <svg id="graph" viewBox="0 0 600 420"></svg>
+    <aside id="panel">
+      <h2>Select a flag</h2>
+      <div id="detail"><em>No flag selected.</em></div>
+    </aside>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

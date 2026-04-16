@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Read Replica Router Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <h1>Query Router</h1>
+    <p class="hint">Type a SQL query — the router decides whether to hit the primary or a replica.</p>
+    <label>Routing Strategy</label>
+    <select id="strategy">
+      <option value="rw">Read/Write split</option>
+      <option value="round">Round-robin replicas</option>
+      <option value="nearest">Nearest region</option>
+      <option value="sticky">Session sticky</option>
+    </select>
+    <label>Your Region</label>
+    <select id="region">
+      <option>us-east-1</option>
+      <option>us-west-2</option>
+      <option>eu-west-1</option>
+      <option>ap-south-1</option>
+    </select>
+    <label>SQL</label>
+    <textarea id="sql" spellcheck="false">SELECT * FROM orders WHERE user_id = 42;</textarea>
+    <button id="runBtn">Route Query</button>
+    <div class="examples">
+      <div class="ex" data-q="SELECT COUNT(*) FROM users;">SELECT COUNT(*) FROM users;</div>
+      <div class="ex" data-q="UPDATE orders SET status='paid' WHERE id=1;">UPDATE orders SET status='paid';</div>
+      <div class="ex" data-q="INSERT INTO events VALUES (1,'login');">INSERT INTO events VALUES...</div>
+      <div class="ex" data-q="SELECT name FROM products LIMIT 10;">SELECT FROM products LIMIT 10;</div>
+    </div>
+  </aside>
+  <section class="viz">
+    <svg id="topology" viewBox="0 0 600 440"></svg>
+    <div class="log">
+      <h2>Routing Log</h2>
+      <ul id="logList"></ul>
+    </div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

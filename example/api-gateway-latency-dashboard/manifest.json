@@ -1,0 +1,12 @@
+{
+  "slug": "api-gateway-latency-dashboard",
+  "title": "Api Gateway Latency Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:56:44.150Z",
+  "source_project": "102-api-gateway-latency-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

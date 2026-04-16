@@ -1,0 +1,12 @@
+{
+  "slug": "read-replica-consistency-simulator",
+  "title": "Read Replica Consistency Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:45:57.459Z",
+  "source_project": "102-read-replica-consistency-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

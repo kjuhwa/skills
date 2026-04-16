@@ -1,0 +1,12 @@
+{
+  "slug": "cqrs-command-arena",
+  "title": "Cqrs Command Arena",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:23:43.211Z",
+  "source_project": "102-cqrs-command-arena",
+  "author": "kjuhwa@nkia.co.kr"
+}

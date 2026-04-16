@@ -1,0 +1,12 @@
+{
+  "slug": "oauth-scope-simulator",
+  "title": "Oauth Scope Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:53:05.225Z",
+  "source_project": "102-oauth-scope-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,14 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e4e4e7; font-family: system-ui, sans-serif; padding: 1.5rem; min-height: 100vh; }
+h1 { color: #6ee7b7; text-align: center; }
+.hint { text-align: center; color: #9ca3af; font-size: 0.85rem; margin-bottom: 1rem; }
+#stage { background: #1a1d27; border-radius: 12px; border: 1px solid #2a2d37; max-width: 900px; margin: 0 auto 1rem; }
+svg { display: block; width: 100%; height: auto; }
+#controls { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; }
+#freqs, #log { background: #1a1d27; border-radius: 12px; padding: 1rem; border: 1px solid #2a2d37; }
+#freqs h3, #log h3 { color: #6ee7b7; font-size: 0.9rem; margin-bottom: 0.6rem; }
+.freq { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.7rem; margin-bottom: 0.3rem; background: #242834; border-radius: 6px; cursor: pointer; user-select: none; font-size: 0.85rem; }
+.freq.active { background: #6ee7b7; color: #0f1117; font-weight: 600; }
+.log-entry { padding: 0.4rem 0.6rem; border-left: 3px solid #6ee7b7; background: #242834; margin-bottom: 0.3rem; font-size: 0.8rem; font-family: 'Courier New', monospace; }
+.log-entry.missed { border-left-color: #4b5563; opacity: 0.6; }
+#log-inner { max-height: 220px; overflow-y: auto; }

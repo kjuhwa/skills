@@ -1,0 +1,12 @@
+{
+  "slug": "ship-bulkhead-flood",
+  "title": "Ship Bulkhead Flood",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:02:21.560Z",
+  "source_project": "101-ship-bulkhead-flood",
+  "author": "kjuhwa@nkia.co.kr"
+}

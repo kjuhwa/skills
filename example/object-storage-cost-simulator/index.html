@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Storage Cost Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Object Storage Cost Calculator</h1>
+  <div class="grid">
+    <div class="panel">
+      <h2>Configure Workload</h2>
+      <label>Storage (GB) <span id="vGb">500</span>
+        <input type="range" id="gb" min="10" max="10000" value="500">
+      </label>
+      <label>Storage Class
+        <select id="cls">
+          <option value="0.023">Standard ($0.023/GB)</option>
+          <option value="0.0125">Infrequent Access ($0.0125/GB)</option>
+          <option value="0.004">Glacier ($0.004/GB)</option>
+          <option value="0.00099">Deep Archive ($0.00099/GB)</option>
+        </select>
+      </label>
+      <label>GET requests / month <span id="vGet">10000</span>
+        <input type="range" id="get" min="0" max="1000000" step="1000" value="10000">
+      </label>
+      <label>PUT requests / month <span id="vPut">2000</span>
+        <input type="range" id="put" min="0" max="100000" step="500" value="2000">
+      </label>
+      <label>Outbound transfer (GB) <span id="vTx">50</span>
+        <input type="range" id="tx" min="0" max="5000" value="50">
+      </label>
+    </div>
+    <div class="panel">
+      <h2>Monthly Estimate</h2>
+      <canvas id="chart" width="400" height="260"></canvas>
+      <div class="total">$<span id="total">0.00</span> / mo</div>
+      <ul id="breakdown"></ul>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "domain-driven-event-storm",
+  "title": "Domain Driven Event Storm",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:12:59.120Z",
+  "source_project": "101-domain-driven-event-storm",
+  "author": "kjuhwa@nkia.co.kr"
+}

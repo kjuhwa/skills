@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OR-Set Garden</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>OR-Set Garden 🌱</h1>
+<p class="hint">Observed-Remove Set CRDT. Plant flowers in two gardens offline. Add-wins: a concurrent add+remove keeps the flower. Click merge to converge.</p>
+<div class="gardens">
+  <section class="garden" data-id="g1">
+    <header>Garden Alpha <span class="count" id="count-g1">0</span></header>
+    <svg class="plot" viewBox="0 0 300 200" id="plot-g1"></svg>
+    <div class="tools">
+      <button data-action="add" data-g="g1">+ Plant</button>
+      <button data-action="remove" data-g="g1">− Pluck</button>
+    </div>
+    <div class="tombstones" id="tomb-g1"></div>
+  </section>
+  <section class="garden" data-id="g2">
+    <header>Garden Beta <span class="count" id="count-g2">0</span></header>
+    <svg class="plot" viewBox="0 0 300 200" id="plot-g2"></svg>
+    <div class="tools">
+      <button data-action="add" data-g="g2">+ Plant</button>
+      <button data-action="remove" data-g="g2">− Pluck</button>
+    </div>
+    <div class="tombstones" id="tomb-g2"></div>
+  </section>
+</div>
+<div class="merged-wrap">
+  <button id="merge">🌿 Merge Gardens</button>
+  <section class="garden merged">
+    <header>Converged Garden <span class="count" id="count-m">0</span></header>
+    <svg class="plot" viewBox="0 0 300 200" id="plot-m"></svg>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

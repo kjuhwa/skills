@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Gateway Config Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Gateway Route Config</h1>
+    <span class="pill">YAML Preview</span>
+  </header>
+  <div class="layout">
+    <section class="routes">
+      <div class="section-head">
+        <h2>Routes</h2>
+        <button id="add">+ Add Route</button>
+      </div>
+      <div id="routeList"></div>
+    </section>
+    <section class="preview">
+      <h2>gateway.yaml</h2>
+      <pre id="yaml"></pre>
+      <div class="test">
+        <h3>Test a Request</h3>
+        <input id="testPath" placeholder="/api/users/42" value="/api/users/42">
+        <select id="testMethod">
+          <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option>
+        </select>
+        <button id="testBtn">Match Route</button>
+        <div id="testResult"></div>
+      </div>
+    </section>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

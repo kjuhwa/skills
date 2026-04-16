@@ -1,0 +1,12 @@
+{
+  "slug": "websocket-frame-inspector",
+  "title": "Websocket Frame Inspector",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:44:38.745Z",
+  "source_project": "101-websocket-frame-inspector",
+  "author": "kjuhwa@nkia.co.kr"
+}

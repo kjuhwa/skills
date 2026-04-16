@@ -1,0 +1,86 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e6e9ef;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  padding: 24px;
+}
+h1 { color: #6ee7b7; font-size: 1.5rem; }
+.hint { color: #8b93a7; font-size: 0.85rem; margin: 6px 0 16px; max-width: 720px; }
+.gardens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.garden {
+  background: #1a1d27;
+  border-radius: 10px;
+  border: 1px solid #262a36;
+  padding: 14px;
+}
+.garden header {
+  color: #6ee7b7;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.count {
+  background: #0f1117;
+  color: #e6e9ef;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+.plot {
+  width: 100%;
+  height: 200px;
+  background: #0f1117;
+  border-radius: 6px;
+  display: block;
+}
+.tools {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.tools button {
+  flex: 1;
+  background: #262a36;
+  color: #e6e9ef;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.tools button:hover { background: #6ee7b7; color: #0f1117; }
+.tombstones {
+  margin-top: 8px;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #e06c75;
+  min-height: 18px;
+}
+.merged-wrap {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+}
+#merge {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: stretch;
+}
+#merge:hover { background: #4fd1a5; }
+.merged header { color: #f5a97f; }
+.flower { transition: transform 0.3s; transform-origin: center; }

@@ -1,0 +1,12 @@
+{
+  "slug": "data-pipeline-builder",
+  "title": "Data Pipeline Builder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:16:26.833Z",
+  "source_project": "101-data-pipeline-builder",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "retry-policy-playground",
+  "title": "Retry Policy Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:48:15.639Z",
+  "source_project": "102-retry-policy-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A/B Experiment Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>A/B Experiment: <span class="flag">checkout_v2</span></h1>
+  <div class="meta">Live traffic • <span id="elapsed">0</span>s elapsed</div>
+</header>
+<section class="variants">
+  <div class="variant" id="control">
+    <div class="vhead"><h2>Control</h2><span class="tag">50%</span></div>
+    <div class="big"><span id="cRate">0.00</span><small>% conversion</small></div>
+    <div class="mini">visitors <b id="cVis">0</b> · conversions <b id="cConv">0</b></div>
+  </div>
+  <div class="variant" id="treatment">
+    <div class="vhead"><h2>Treatment</h2><span class="tag">50%</span></div>
+    <div class="big"><span id="tRate">0.00</span><small>% conversion</small></div>
+    <div class="mini">visitors <b id="tVis">0</b> · conversions <b id="tConv">0</b></div>
+  </div>
+</section>
+<section class="chart">
+  <canvas id="chart" width="800" height="220"></canvas>
+</section>
+<section class="verdict" id="verdict">Collecting data…</section>
+<div class="controls">
+  <button id="pause">Pause</button>
+  <button id="reset">Reset</button>
+  <label>Speed <input type="range" id="speed" min="1" max="20" value="8"></label>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

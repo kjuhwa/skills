@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pipeline Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Pipeline Builder</h1><span id="output">—</span></header>
+<main>
+  <div id="palette">
+    <h3>Blocks</h3>
+    <div class="block" data-type="source" data-op="users">users[]</div>
+    <div class="block" data-type="filter" data-op="active">filter: active</div>
+    <div class="block" data-type="filter" data-op="adult">filter: age≥18</div>
+    <div class="block" data-type="map" data-op="upper">map: name→UPPER</div>
+    <div class="block" data-type="map" data-op="addTax">map: price+tax</div>
+    <div class="block" data-type="reduce" data-op="count">reduce: count</div>
+    <div class="block" data-type="reduce" data-op="sumAge">reduce: sumAge</div>
+    <div class="block" data-type="sort" data-op="byAge">sort: age desc</div>
+  </div>
+  <div id="pipeline-wrap">
+    <h3>Pipeline <button id="clearBtn">Clear</button> <button id="runBtn">Run</button></h3>
+    <div id="pipeline"></div>
+    <h3>Result</h3>
+    <pre id="result">Run to see output</pre>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chaos Experiment Deck</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Chaos Experiment Deck</h1>
+    <p>Draw a card. Review the hypothesis. Run the game day.</p>
+  </header>
+  <section class="deck">
+    <div class="card-stack">
+      <div id="card" class="card">
+        <div class="card-inner">
+          <div class="front">
+            <span class="tag">CHAOS</span>
+            <h2>Draw to Begin</h2>
+            <p>Tap the deck to reveal a chaos experiment.</p>
+          </div>
+          <div class="back"></div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="draw">Draw Experiment</button>
+      <button id="shuffle">Shuffle Deck</button>
+    </div>
+  </section>
+  <section class="history">
+    <h3>Run History</h3>
+    <div id="history"></div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: -apple-system, system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 24px;
+}
+.app { max-width: 1100px; margin: 0 auto; }
+header h1 { color: #6ee7b7; }
+header p { color: #9ca3af; font-size: 13px; margin-bottom: 20px; }
+.experiments {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid #2a2f3d;
+}
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.card-head h2 { font-size: 15px; color: #e5e7eb; }
+.status {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #2a2f3d;
+  color: #9ca3af;
+}
+.status.live { background: rgba(110,231,183,.15); color: #6ee7b7; }
+canvas {
+  display: block;
+  width: 100%;
+  height: 140px;
+  background: #0f1117;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.variants { display: grid; gap: 6px; font-size: 12px; }
+.variant { display: flex; justify-content: space-between; padding: 4px 0; }
+.variant .name { display: flex; align-items: center; gap: 8px; }
+.swatch { width: 10px; height: 10px; border-radius: 3px; }
+.variant .rate { font-weight: 600; color: #e5e7eb; }
+.winner {
+  margin-top: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: center;
+  background: #0f1117;
+  color: #9ca3af;
+}
+.winner.has { background: rgba(110,231,183,.1); color: #6ee7b7; }
