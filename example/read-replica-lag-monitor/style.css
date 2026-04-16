@@ -1,0 +1,69 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+}
+header {
+  padding: 20px 32px;
+  background: #1a1d27;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2a2f3d;
+}
+h1 { font-size: 20px; color: #6ee7b7; font-weight: 600; }
+.status { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #6ee7b7; box-shadow: 0 0 8px #6ee7b7;
+}
+.dot.warn { background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
+.dot.crit { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+main { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.card {
+  background: #1a1d27;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #2a2f3d;
+  transition: border-color .2s;
+}
+.card.primary { border-color: #6ee7b7; }
+.card.down { opacity: .55; }
+.card h3 { font-size: 13px; margin-bottom: 8px; color: #9ca3af; }
+.card .name { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.card .lag { font-size: 24px; color: #6ee7b7; font-weight: 700; }
+.card .lag.warn { color: #fbbf24; }
+.card .lag.crit { color: #ef4444; }
+.card .meta { font-size: 11px; color: #6b7280; margin-top: 6px; }
+.chart-wrap {
+  background: #1a1d27;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #2a2f3d;
+  margin-bottom: 24px;
+}
+.chart-wrap h2 { font-size: 14px; margin-bottom: 14px; color: #9ca3af; }
+canvas { width: 100%; display: block; }
+.legend { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; font-size: 12px; }
+.legend span { display: flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 3px; display: inline-block; }
+.controls { display: flex; gap: 10px; }
+button {
+  background: #1a1d27;
+  color: #e5e7eb;
+  border: 1px solid #2a2f3d;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all .2s;
+}
+button:hover { border-color: #6ee7b7; color: #6ee7b7; }

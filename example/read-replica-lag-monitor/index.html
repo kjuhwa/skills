@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Read Replica Lag Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Replica Lag Monitor</h1>
+  <div class="status">
+    <span class="dot"></span>
+    <span id="clusterStatus">Cluster Healthy</span>
+  </div>
+</header>
+<main>
+  <section class="cards" id="replicaCards"></section>
+  <section class="chart-wrap">
+    <h2>Replication Lag (seconds)</h2>
+    <canvas id="lagChart" width="900" height="260"></canvas>
+    <div class="legend" id="legend"></div>
+  </section>
+  <section class="controls">
+    <button id="spikeBtn">Inject Lag Spike</button>
+    <button id="failBtn">Fail Random Replica</button>
+    <button id="healBtn">Heal All</button>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
