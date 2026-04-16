@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Log Stream River</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Log Stream River</h1>
+  <div class="controls">
+    <label>Rate: <input type="range" id="rate" min="1" max="50" value="15"></label>
+    <button id="pause">Pause</button>
+    <select id="filter">
+      <option value="all">All</option>
+      <option value="ERROR">Error</option>
+      <option value="WARN">Warn</option>
+      <option value="INFO">Info</option>
+      <option value="DEBUG">Debug</option>
+    </select>
+  </div>
+</header>
+<main>
+  <canvas id="river"></canvas>
+  <aside id="panel">
+    <h2>Aggregated</h2>
+    <ul id="stats"></ul>
+    <h2>Recent</h2>
+    <ol id="feed"></ol>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

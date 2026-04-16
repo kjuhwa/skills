@@ -1,0 +1,66 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #d9e0ea;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background: #1a1d27;
+  padding: 14px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #272b38;
+}
+h1 { color: #6ee7b7; font-size: 18px; letter-spacing: 1px; }
+.controls { display: flex; gap: 14px; align-items: center; font-size: 13px; }
+.controls input, .controls select, .controls button {
+  background: #0f1117;
+  color: #d9e0ea;
+  border: 1px solid #272b38;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+button:hover { border-color: #6ee7b7; cursor: pointer; }
+main { flex: 1; display: grid; grid-template-columns: 1fr 320px; overflow: hidden; }
+canvas { width: 100%; height: 100%; display: block; background: #0f1117; }
+#panel {
+  background: #1a1d27;
+  border-left: 1px solid #272b38;
+  padding: 16px;
+  overflow-y: auto;
+}
+#panel h2 {
+  font-size: 12px;
+  color: #6ee7b7;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 12px 0 8px;
+}
+#stats li {
+  list-style: none;
+  padding: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #272b38;
+  font-size: 13px;
+}
+#feed {
+  list-style: none;
+  font-family: 'Consolas', monospace;
+  font-size: 11px;
+}
+#feed li {
+  padding: 4px 0;
+  border-bottom: 1px solid #272b38;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lvl-ERROR { color: #ff6b6b; }
+.lvl-WARN { color: #ffd866; }
+.lvl-INFO { color: #78dce8; }
+.lvl-DEBUG { color: #8a8f9b; }
