@@ -1,0 +1,12 @@
+{
+  "slug": "api-version-timeline",
+  "title": "Api Version Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:31:16.066Z",
+  "source_project": "100-api-version-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}

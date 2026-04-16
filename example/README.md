@@ -92,6 +92,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [hex-arch-flow-simulator](hex-arch-flow-simulator/) | Hex Arch Flow Simulator — auto-generated hexagonal-architecture tool | html, css, vanilla-js | 2026-04-16 |
 
+| [api-version-timeline](api-version-timeline/) | Api Version Timeline — auto-generated api-versioning tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
