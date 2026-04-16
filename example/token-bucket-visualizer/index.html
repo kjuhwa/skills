@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Token Bucket Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Token Bucket Visualizer</h1>
+  <div class="controls">
+    <label>Bucket Size: <input type="range" id="bucketSize" min="5" max="30" value="15"><span id="bucketSizeVal">15</span></label>
+    <label>Refill Rate: <input type="range" id="refillRate" min="1" max="10" value="3"><span id="refillRateVal">3</span>/s</label>
+    <button id="sendRequest">Send Request</button>
+    <button id="burstBtn">Burst x5</button>
+  </div>
+  <canvas id="canvas" width="700" height="400"></canvas>
+  <div id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
