@@ -1,0 +1,12 @@
+{
+  "slug": "mv-dependency-graph",
+  "title": "Mv Dependency Graph",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:40:53.251Z",
+  "source_project": "33-mv-dependency-graph",
+  "author": "kjuhwa@nkia.co.kr"
+}
