@@ -1,0 +1,12 @@
+{
+  "slug": "object-storage-treemap",
+  "title": "Object Storage Treemap",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:28:07.970Z",
+  "source_project": "25-object-storage-treemap",
+  "author": "kjuhwa@nkia.co.kr"
+}
