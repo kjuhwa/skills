@@ -1,6 +1,6 @@
 ---
 name: websocket-visualization-pattern
-description: Reusable visual encoding patterns for rendering WebSocket connection state, frame flow, and latency in canvas/SVG dark-theme dashboards.
+description: Real-time visualization pattern for WebSocket frame flow, connection state, and message throughput
 category: design
 triggers:
   - websocket visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # websocket-visualization-pattern
 
-Render WebSocket traffic as a directed particle stream between client and server nodes on a dark canvas (#0f1117 background). Each frame type gets a distinct visual encoding: text frames as green (#6ee7b7) rectangles, binary frames as cyan circles, ping/pong as small amber diamonds, and close frames as red Xs. Animate particles along a spline path from sender to receiver at a speed inversely proportional to simulated latency, so users can visually perceive delay without reading numbers. Draw a persistent "connection rail" line between endpoints — solid for OPEN state, dashed-animated for CONNECTING, and faded-red for CLOSED — so connection lifecycle is always visible at a glance.
+WebSocket-focused dashboards should visualize three distinct layers simultaneously: the connection lifecycle (CONNECTING → OPEN → CLOSING → CLOSED with ping/pong heartbeats overlaid), the frame stream (binary vs text frames, opcodes 0x1/0x2/0x8/0x9/0xA rendered as colored lanes on a horizontal timeline), and aggregate throughput (frames/sec and bytes/sec as dual-axis sparklines). Use a split-pane layout: left pane shows the raw frame inspector with hex+ASCII dump, right pane shows the aggregated timeline. Each frame should animate in from the right edge with a fade, giving operators a visceral sense of traffic intensity without needing to parse numbers.
 
-For heartbeat visualization (as in websocket-pulse), use a pulsating ring around the server node that expands on each ping and contracts on pong receipt. Map the ring's color from green→yellow→red based on round-trip time thresholds (e.g., <50ms green, 50-200ms yellow, >200ms red). Overlay a trailing sparkline of the last 30 RTT samples beside the connection rail. For frame inspection (as in websocket-frames), render each frame as a horizontal bar in a vertical waterfall timeline — width proportional to payload size, color-coded by opcode. Add a tooltip layer showing raw header bits (FIN, RSV1-3, opcode, mask, payload length) decoded from the simulated frame structure.
+Color-code by semantic role rather than opcode value: green for application data (text/binary), amber for control frames (ping/pong), red for close frames, grey for continuation. Highlight masked vs unmasked frames with a border treatment since this distinguishes client→server from server→client flow. For chat-swarm style multi-client views, render each connection as a horizontal swim lane with a synchronized time axis so operators can spot fan-out patterns, stuck clients, and correlated disconnects at a glance.
 
-For multi-connection scenarios (as in websocket-arena), arrange N client nodes in a semicircle facing the server. Use stacked bar charts beneath each client showing cumulative bytes sent vs received. Highlight the connection with the highest throughput using a glow effect. When a connection drops, animate a "crack" effect on its rail and grey out its node, preserving its position so the topology remains stable. All visualizations should use requestAnimationFrame with a 60fps target and batch canvas draw calls per frame to avoid per-particle overhead.
+Always surface backpressure signals visually: bufferedAmount growth should render as a rising fill in the connection row, and frame-rate drops should pulse the lane amber. These derived signals matter more than raw frame counts because they predict disconnects before they happen.
