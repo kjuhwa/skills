@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Frame Inspector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <h1>Frames</h1>
+    <div class="filter">
+      <input type="text" id="search" placeholder="Filter frames...">
+    </div>
+    <ul id="frameList"></ul>
+  </aside>
+  <main>
+    <div class="detail-header">
+      <span class="opcode" id="opcode">—</span>
+      <span id="direction">—</span>
+      <span class="size" id="size">0 bytes</span>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-tab="decoded">Decoded</button>
+      <button class="tab" data-tab="raw">Raw Binary</button>
+      <button class="tab" data-tab="headers">Frame Bits</button>
+    </div>
+    <div class="content">
+      <pre id="decoded" class="pane active"></pre>
+      <pre id="raw" class="pane"></pre>
+      <div id="headers" class="pane"></div>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
