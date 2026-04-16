@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idempotent Function Prover</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>ƒ(ƒ(x)) = ƒ(x) — Idempotent Function Prover</h1>
+  <p class="subtitle">Watch functions applied repeatedly — idempotent ones stabilize after one pass</p>
+  <div class="controls">
+    <button class="fn active" data-fn="floor">Math.floor</button>
+    <button class="fn" data-fn="abs">Math.abs</button>
+    <button class="fn" data-fn="upper">toUpperCase</button>
+    <button class="fn" data-fn="clamp">clamp(0,1)</button>
+    <button class="fn not-idemp" data-fn="double">×2 (NOT idemp)</button>
+  </div>
+  <canvas id="canvas"></canvas>
+  <div id="verdict"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

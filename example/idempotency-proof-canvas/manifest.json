@@ -1,0 +1,12 @@
+{
+  "slug": "idempotency-proof-canvas",
+  "title": "Idempotency Proof Canvas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:17:42.894Z",
+  "source_project": "27-idempotency-proof-canvas",
+  "author": "kjuhwa@nkia.co.kr"
+}
