@@ -1,0 +1,12 @@
+{
+  "slug": "retry-strategy-lab",
+  "title": "Retry Strategy Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T21:03:15.719Z",
+  "source_project": "100-retry-strategy-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}

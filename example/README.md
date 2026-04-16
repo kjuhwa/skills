@@ -426,6 +426,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [bff-pattern-router](bff-pattern-router/) | Bff Pattern Router — auto-generated bff-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [retry-strategy-lab](retry-strategy-lab/) | Retry Strategy Lab — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
