@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retry Strategy Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Retry Strategy Lab</h1>
+  <p class="sub">Compare backoff algorithms against a flaky service</p>
+</header>
+<main>
+  <section class="controls">
+    <label>Strategy
+      <select id="strategy">
+        <option value="fixed">Fixed</option>
+        <option value="linear">Linear</option>
+        <option value="exponential" selected>Exponential</option>
+        <option value="jitter">Exponential + Jitter</option>
+        <option value="decorrelated">Decorrelated Jitter</option>
+      </select>
+    </label>
+    <label>Max Retries <input type="number" id="maxRetries" value="6" min="1" max="12"></label>
+    <label>Base Delay (ms) <input type="number" id="baseDelay" value="100" min="10" max="2000"></label>
+    <label>Failure Rate <input type="range" id="failRate" min="0" max="100" value="65"><span id="failRateVal">65%</span></label>
+    <button id="runBtn">Run Simulation</button>
+  </section>
+  <section class="viz">
+    <canvas id="chart" width="760" height="280"></canvas>
+  </section>
+  <section class="log">
+    <h3>Attempt Log</h3>
+    <ul id="log"></ul>
+    <div class="stats" id="stats"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
