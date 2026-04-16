@@ -1,6 +1,6 @@
 ---
 name: idempotency-implementation-pitfall
-description: Common bugs when implementing idempotency keys — race windows, fingerprint mismatches, and TTL traps
+description: Common failure modes when implementing idempotency keys — race conditions, improper scope, and caching the wrong response.
 category: pitfall
 tags:
   - idempotency
@@ -9,8 +9,8 @@ tags:
 
 # idempotency-implementation-pitfall
 
-The most common bug is the **check-then-store race**: a naive implementation reads the key vault, sees no entry, then executes the operation, then stores the result. Two concurrent requests with the same key both see an empty vault and both execute. The fix is an atomic "insert-if-absent" that also stores an `IN_FLIGHT` sentinel, with later duplicates blocking on that sentinel until the first completes. Demos that skip this and just use `get` + `set` will pass casual testing but fail under true concurrency — and users will copy the broken pattern.
+The most dangerous pitfall is the **check-then-act race**: two concurrent requests with the same idempotency key both read "key not found", both execute the operation, both try to insert the key. Without a unique constraint + atomic INSERT-or-SELECT (or `SELECT FOR UPDATE` inside a transaction, or Redis `SET NX`), you get double-execution — exactly the outcome idempotency was meant to prevent. The vault must treat key-insertion as the serialization point, not a post-hoc bookkeeping step. Related: caching the response BEFORE the operation commits means a crash mid-operation can leave a cached "success" for work that never completed.
 
-The second trap is **payload fingerprinting**. An idempotency key alone is not enough: if the client reuses a key with a different body (buggy client, or stale retry after a payload-mutating interceptor), the server must reject with 422, not silently return the old response. This requires storing a hash of the canonicalized request body alongside the key. Canonicalization is subtle — JSON key order, number formatting, and whitespace all matter. Many implementations forget this and end up with keys that match but payloads that don't, returning wrong answers.
+Scope pitfalls are subtle. An idempotency key scoped globally lets user A's key collide with user B's; scoped per-user but not per-endpoint lets `POST /charge` and `POST /refund` collide. The correct scope is usually `(tenant, user, endpoint, key)`. Equally, forgetting to fingerprint the **request payload** means a client that retries with a mutated body under the same key gets the cached response for the old body — silently dropping their new intent. The fix: store a payload hash alongside the key and return 422/409 on mismatch rather than serving a stale cached response.
 
-Third, **TTL semantics are tricky**. If the TTL is too short, legitimate client retries (e.g., after a 30s mobile network stall) miss the cache and cause double-execution. If too long, the vault grows unbounded and stale keys may collide with new unrelated operations. The pragmatic range is 24h–7d for most APIs, with the TTL starting from *completion* time, not *first-seen* time — otherwise a slow operation can expire its own idempotency guarantee mid-flight.
+Finally, **not everything should be cached**. 5xx responses must NOT be cached as idempotent results — the retry is the whole point. Streaming responses, responses with `Set-Cookie`, and responses that embed timestamps or one-time tokens also break under replay. And TTL must exceed the client's maximum retry window (often 24h for mobile clients with offline queues); a 5-minute TTL on a key that a client retries at hour 6 causes re-execution of an operation the user believed was already done. Idempotency is a contract between client retry policy and server retention policy — mismatched TTLs silently void the guarantee.
