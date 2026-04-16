@@ -1,0 +1,12 @@
+{
+  "slug": "graphql-query-playground",
+  "title": "Graphql Query Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:19:51.490Z",
+  "source_project": "100-graphql-query-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}

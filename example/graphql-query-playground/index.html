@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GraphQL Query Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>GraphQL Playground</h1>
+  <span class="endpoint">mock://api/graphql</span>
+</header>
+<main>
+  <section class="editor">
+    <div class="tab-bar">
+      <button class="tab active" data-q="users">users</button>
+      <button class="tab" data-q="posts">posts</button>
+      <button class="tab" data-q="nested">nested</button>
+    </div>
+    <textarea id="query" spellcheck="false"></textarea>
+    <button id="run">▶ Run Query</button>
+  </section>
+  <section class="result">
+    <div class="result-head">Response <span id="time"></span></div>
+    <pre id="output"></pre>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

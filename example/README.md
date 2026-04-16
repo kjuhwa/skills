@@ -334,6 +334,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [data-pipeline-flow](data-pipeline-flow/) | Data Pipeline Flow — auto-generated data-pipeline tool | html, css, vanilla-js | 2026-04-16 |
 
+| [graphql-query-playground](graphql-query-playground/) | Graphql Query Playground — auto-generated graphql tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
