@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retry Storm Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Retry Storm Simulator</h1>
+    <p class="sub">A flaky network retries requests. Watch what happens with and without idempotency.</p>
+  </header>
+  <div class="controls">
+    <label><input type="checkbox" id="idem" checked> Idempotency enabled</label>
+    <label>Flakiness: <input type="range" id="flaky" min="0" max="90" value="60">
+      <span id="flakyVal">60%</span>
+    </label>
+    <button id="send">Send 1 request</button>
+    <button id="burst">Burst (10)</button>
+    <button id="reset">Reset</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="label">Sent</div><div class="value" id="sent">0</div></div>
+    <div class="stat"><div class="label">Network retries</div><div class="value" id="retries">0</div></div>
+    <div class="stat"><div class="label">Actual writes</div><div class="value" id="writes">0</div></div>
+    <div class="stat danger"><div class="label">Duplicates</div><div class="value" id="dupes">0</div></div>
+  </div>
+  <canvas id="canvas" width="860" height="280"></canvas>
+  <div class="legend">
+    <span><i style="background:#6ee7b7"></i>Request sent</span>
+    <span><i style="background:#fbbf24"></i>Retry</span>
+    <span><i style="background:#ef4444"></i>Duplicate write</span>
+    <span><i style="background:#8b8fa3"></i>Deduped</span>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

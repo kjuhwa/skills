@@ -1,0 +1,21 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e4e6eb; font-family: 'Segoe UI', sans-serif; padding: 24px; }
+.app { max-width: 920px; margin: 0 auto; }
+header h1 { color: #6ee7b7; font-size: 1.8rem; }
+.sub { color: #8b8fa3; margin-top: 4px; margin-bottom: 20px; }
+.controls { background: #1a1d27; padding: 16px; border-radius: 10px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; border: 1px solid #262a38; margin-bottom: 16px; }
+.controls label { color: #e4e6eb; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: inherit; }
+button:hover { background: #5cd4a3; }
+#reset { background: #262a38; color: #e4e6eb; }
+#reset:hover { background: #313646; }
+input[type=range] { accent-color: #6ee7b7; }
+input[type=checkbox] { accent-color: #6ee7b7; width: 16px; height: 16px; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.stat { background: #1a1d27; padding: 14px; border-radius: 8px; border: 1px solid #262a38; text-align: center; }
+.stat .label { color: #8b8fa3; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat .value { color: #6ee7b7; font-size: 1.8rem; font-weight: 700; margin-top: 4px; font-family: monospace; }
+.stat.danger .value { color: #ef4444; }
+canvas { background: #1a1d27; border-radius: 10px; border: 1px solid #262a38; width: 100%; display: block; }
+.legend { margin-top: 12px; display: flex; gap: 16px; color: #8b8fa3; font-size: 0.85rem; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }

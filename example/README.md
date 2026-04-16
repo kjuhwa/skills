@@ -312,6 +312,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [cdc-replay-timeline](cdc-replay-timeline/) | Cdc Replay Timeline — auto-generated cdc tool | html, css, vanilla-js | 2026-04-16 |
 
+| [retry-storm-simulator](retry-storm-simulator/) | Retry Storm Simulator — auto-generated idempotency tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
