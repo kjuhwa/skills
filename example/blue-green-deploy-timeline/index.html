@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Deploy Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Deploy History Timeline</h1>
+  <div class="legend">
+    <span class="dot blue"></span> Blue active
+    <span class="dot green"></span> Green active
+    <span class="dot fail"></span> Rollback
+  </div>
+  <canvas id="chart" width="900" height="280"></canvas>
+  <div class="details" id="details">
+    <h3>Click a deployment for details</h3>
+  </div>
+  <div class="stats">
+    <div class="stat"><span id="totalDeploys">0</span><label>Total Deploys</label></div>
+    <div class="stat"><span id="successRate">0%</span><label>Success Rate</label></div>
+    <div class="stat"><span id="avgDuration">0s</span><label>Avg Duration</label></div>
+    <div class="stat"><span id="rollbacks">0</span><label>Rollbacks</label></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
