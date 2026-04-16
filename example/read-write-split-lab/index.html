@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Read/Write Split Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Read/Write Split Lab <span class="sub">CQRS with eventual consistency</span></h1>
+<div class="grid">
+  <div class="panel write">
+    <h2>Write DB (Normalized)</h2>
+    <form id="userForm">
+      <input id="uName" placeholder="User name" required>
+      <input id="uCity" placeholder="City" required>
+      <button>Create User</button>
+    </form>
+    <table id="writeTbl"><thead><tr><th>ID</th><th>Name</th><th>City</th></tr></thead><tbody></tbody></table>
+  </div>
+  <div class="panel lag">
+    <h2>Replication Lag</h2>
+    <label>Delay: <span id="lagVal">800</span>ms</label>
+    <input type="range" id="lag" min="0" max="3000" value="800">
+    <div class="queue">
+      <h3>Pending Projections</h3>
+      <ul id="queueList"></ul>
+    </div>
+  </div>
+  <div class="panel read">
+    <h2>Read DB (Denormalized)</h2>
+    <input id="search" placeholder="Search projection...">
+    <div class="cards" id="readCards"></div>
+    <div class="stats">Cities: <b id="cityCount">0</b> • Users: <b id="userCount">0</b></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

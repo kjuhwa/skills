@@ -370,6 +370,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [feature-flag-rollout-simulator](feature-flag-rollout-simulator/) | Feature Flag Rollout Simulator — auto-generated feature-flags tool | html, css, vanilla-js | 2026-04-16 |
 
+| [read-write-split-lab](read-write-split-lab/) | Read Write Split Lab — auto-generated cqrs tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

@@ -1,0 +1,29 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e5e7eb; font-family: 'Segoe UI', sans-serif; padding: 20px; min-height: 100vh; }
+h1 { color: #6ee7b7; margin-bottom: 4px; font-size: 22px; }
+.sub { color: #9ca3af; font-size: 13px; font-weight: 400; margin-left: 8px; }
+.grid { display: grid; grid-template-columns: 1fr 280px 1fr; gap: 16px; margin-top: 20px; }
+.panel { background: #1a1d27; border-radius: 12px; padding: 18px; border: 1px solid #2a2f3f; }
+.panel h2 { color: #6ee7b7; font-size: 15px; margin-bottom: 14px; }
+.panel h3 { color: #9ca3af; font-size: 12px; margin-bottom: 8px; text-transform: uppercase; }
+.write { border-left: 3px solid #f0abfc; }
+.read { border-left: 3px solid #6ee7b7; }
+.lag { border-left: 3px solid #fde68a; }
+form { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+input { background: #0f1117; border: 1px solid #2a2f3f; color: #e5e7eb; padding: 8px 10px; border-radius: 6px; font-size: 13px; flex: 1; min-width: 100px; }
+input:focus { outline: none; border-color: #6ee7b7; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 8px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+button:hover { filter: brightness(1.1); }
+table { width: 100%; font-size: 13px; border-collapse: collapse; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #2a2f3f; }
+th { color: #9ca3af; font-weight: 500; }
+.queue { margin-top: 16px; }
+#queueList { list-style: none; max-height: 250px; overflow-y: auto; }
+#queueList li { background: #0f1117; padding: 8px 10px; margin-bottom: 4px; border-radius: 6px; font-size: 12px; font-family: monospace; color: #fde68a; border-left: 2px solid #fde68a; animation: slideIn .3s ease; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; } }
+.cards { display: flex; flex-direction: column; gap: 6px; max-height: 280px; overflow-y: auto; margin-top: 10px; }
+.card { background: #0f1117; padding: 10px 12px; border-radius: 6px; border-left: 2px solid #6ee7b7; font-size: 13px; }
+.card b { color: #6ee7b7; }
+.card small { color: #9ca3af; }
+.stats { margin-top: 14px; padding-top: 12px; border-top: 1px solid #2a2f3f; font-size: 13px; color: #9ca3af; }
+.stats b { color: #6ee7b7; font-size: 16px; margin: 0 4px; }
