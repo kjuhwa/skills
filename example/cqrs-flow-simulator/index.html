@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CQRS Flow Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CQRS Flow Simulator</h1>
+  <p>Watch commands mutate state while queries read from the projection.</p>
+</header>
+<main>
+  <section class="panel commands">
+    <h2>Command Side</h2>
+    <div class="controls">
+      <button data-cmd="deposit">Deposit $50</button>
+      <button data-cmd="withdraw">Withdraw $20</button>
+      <button data-cmd="transfer">Transfer $10</button>
+      <button data-cmd="reset">Reset</button>
+    </div>
+    <ul id="command-log"></ul>
+  </section>
+  <section class="panel canvas-panel">
+    <h2>Event Bus</h2>
+    <canvas id="bus" width="400" height="260"></canvas>
+  </section>
+  <section class="panel queries">
+    <h2>Query Side</h2>
+    <div class="projection">
+      <div class="stat"><span>Balance</span><strong id="balance">$0</strong></div>
+      <div class="stat"><span>Events</span><strong id="event-count">0</strong></div>
+      <div class="stat"><span>Last Op</span><strong id="last-op">—</strong></div>
+    </div>
+    <ul id="query-log"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "cqrs-flow-simulator",
+  "title": "Cqrs Flow Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:19:23.178Z",
+  "source_project": "100-cqrs-flow-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}
