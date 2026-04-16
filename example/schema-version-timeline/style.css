@@ -1,0 +1,8 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:'Segoe UI',sans-serif}
+.app{padding:20px;height:100vh;display:flex;flex-direction:column}
+h1{font-size:18px;color:#6ee7b7;margin-bottom:12px}
+.controls{margin-bottom:16px}
+select{background:#1a1d27;color:#c9d1d9;border:1px solid #2a2d37;padding:8px 12px;border-radius:6px;font-size:13px}
+canvas{flex:1;border-radius:8px;background:#1a1d27;cursor:crosshair}
+.tooltip{position:fixed;background:#1a1d27;border:1px solid #6ee7b7;color:#c9d1d9;padding:10px 14px;border-radius:6px;font-size:12px;pointer-events:none;display:none;z-index:10;max-width:240px;line-height:1.5}
