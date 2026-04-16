@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Supervision Tree</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Supervision Tree — let it crash</h1>
+    <div>
+      <select id="strategy">
+        <option value="one-for-one">one-for-one</option>
+        <option value="all-for-one">all-for-one</option>
+        <option value="rest-for-one">rest-for-one</option>
+      </select>
+      <button id="crash">Crash Random Worker</button>
+      <button id="reset">Reset</button>
+    </div>
+  </header>
+  <svg id="tree"></svg>
+  <div id="stats"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "actor-supervision-tree",
+  "title": "Actor Supervision Tree",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:41:36.737Z",
+  "source_project": "101-actor-supervision-tree",
+  "author": "kjuhwa@nkia.co.kr"
+}
