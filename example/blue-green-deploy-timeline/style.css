@@ -1,0 +1,19 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #d4d7e0; font-family: 'Segoe UI', sans-serif; padding: 30px; min-height: 100vh; }
+.app { max-width: 960px; margin: 0 auto; }
+h1 { color: #6ee7b7; margin-bottom: 16px; font-size: 22px; letter-spacing: 1px; }
+.legend { margin-bottom: 16px; font-size: 13px; color: #8b92a8; display: flex; gap: 18px; align-items: center; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+.dot.blue { background: #60a5fa; }
+.dot.green { background: #6ee7b7; }
+.dot.fail { background: #f87171; }
+canvas { background: #1a1d27; border-radius: 10px; display: block; cursor: pointer; margin-bottom: 20px; }
+.details { background: #1a1d27; border-radius: 10px; padding: 20px; min-height: 140px; margin-bottom: 20px; border-left: 3px solid #6ee7b7; }
+.details h3 { color: #6ee7b7; margin-bottom: 10px; font-size: 15px; }
+.details .row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #262a36; font-size: 13px; }
+.details .row span:first-child { color: #8b92a8; }
+.details .row span:last-child { color: #d4d7e0; font-family: monospace; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stat { background: #1a1d27; padding: 16px; border-radius: 8px; text-align: center; }
+.stat span { display: block; font-size: 26px; font-weight: bold; color: #6ee7b7; margin-bottom: 4px; }
+.stat label { font-size: 11px; color: #8b92a8; text-transform: uppercase; letter-spacing: 1px; }
