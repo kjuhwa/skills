@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Versioning Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>API Version Timeline</h1>
+<div class="controls">
+  <button onclick="app.filterStatus('all')" class="active" data-filter="all">All</button>
+  <button onclick="app.filterStatus('active')" data-filter="active">Active</button>
+  <button onclick="app.filterStatus('deprecated')" data-filter="deprecated">Deprecated</button>
+  <button onclick="app.filterStatus('sunset')" data-filter="sunset">Sunset</button>
+</div>
+<div id="timeline"></div>
+<div id="detail-panel" class="hidden">
+  <button class="close-btn" onclick="app.closeDetail()">✕</button>
+  <div id="detail-content"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; padding: 24px; }
+h1 { text-align: center; color: #6ee7b7; margin-bottom: 20px; font-size: 1.6rem; }
+.controls { display: flex; justify-content: center; gap: 8px; margin-bottom: 28px; }
+.controls button { background: #1a1d27; border: 1px solid #2d3348; color: #94a3b8; padding: 6px 16px; border-radius: 6px; cursor: pointer; transition: all .2s; }
+.controls button.active, .controls button:hover { background: #6ee7b7; color: #0f1117; border-color: #6ee7b7; }
+#timeline { position: relative; max-width: 700px; margin: 0 auto; padding-left: 40px; }
+#timeline::before { content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 2px; background: #2d3348; }
+.t-node { position: relative; margin-bottom: 20px; cursor: pointer; transition: transform .2s; }
+.t-node:hover { transform: translateX(4px); }
+.t-dot { position: absolute; left: -30px; top: 12px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #0f1117; }
+.t-dot.active { background: #6ee7b7; }
+.t-dot.deprecated { background: #fbbf24; }
+.t-dot.sunset { background: #f87171; }
+.t-card { background: #1a1d27; border: 1px solid #2d3348; border-radius: 8px; padding: 14px 18px; }
+.t-card h3 { color: #6ee7b7; font-size: 1rem; }
+.t-card .date { font-size: .75rem; color: #64748b; margin-top: 2px; }
+.t-card .desc { font-size: .85rem; color: #94a3b8; margin-top: 6px; }
+.badge { display: inline-block; font-size: .65rem; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+.badge.active { background: #065f4630; color: #6ee7b7; }
+.badge.deprecated { background: #78350f30; color: #fbbf24; }
+.badge.sunset { background: #7f1d1d30; color: #f87171; }
+#detail-panel { position: fixed; right: -380px; top: 0; width: 360px; height: 100%; background: #1a1d27; border-left: 1px solid #2d3348; padding: 24px; transition: right .3s; overflow-y: auto; z-index: 10; }
+#detail-panel.show { right: 0; }
+.close-btn { position: absolute; top: 12px; right: 12px; background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; }
+.hidden { }
+#detail-content h2 { color: #6ee7b7; margin-bottom: 12px; }
+#detail-content p { color: #94a3b8; font-size: .85rem; line-height: 1.6; margin-bottom: 10px; }
+#detail-content .ep-list { list-style: none; }
+#detail-content .ep-list li { background: #0f1117; padding: 6px 10px; border-radius: 4px; margin-bottom: 4px; font-size: .8rem; color: #cbd5e1; font-family: monospace; }
