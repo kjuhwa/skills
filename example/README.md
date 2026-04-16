@@ -154,6 +154,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [fsm-regex-tester](fsm-regex-tester/) | Fsm Regex Tester — auto-generated finite-state-machine tool | html, css, vanilla-js | 2026-04-16 |
 
+| [strangler-fig-ecosystem](strangler-fig-ecosystem/) | Strangler Fig Ecosystem — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
