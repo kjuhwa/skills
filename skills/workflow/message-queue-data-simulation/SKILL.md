@@ -1,6 +1,6 @@
 ---
 name: message-queue-data-simulation
-description: Synthetic workload generator for exercising queue backpressure, priority inversion, and fan-out scenarios
+description: Deterministic producer-consumer event generation for reproducible queue behavior demos
 category: workflow
 triggers:
   - message queue data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # message-queue-data-simulation
 
-Message queue demos need simulated workloads that expose characteristic behaviors of each topology. Build a pluggable producer driver with three profiles: steady-rate (constant λ for conveyor/FIFO demos), bursty-priority (Poisson bursts with skewed priority distributions for heap demos), and topic-fanout (weighted topic selection with variable subscriber counts for pub-sub demos). Parameterize each profile with sliders — arrival rate, priority skew, burst size, topic cardinality — so users can provoke edge cases like starvation, head-of-line blocking, or slow-subscriber backpressure on demand.
+Generate queue workloads from a seeded PRNG so scenarios replay identically across sessions. Model each producer as an independent Poisson process with a configurable rate (msgs/sec) and each consumer as a service-time distribution (exponential or log-normal). Pre-compute the full event stream into a timestamped array before rendering — this decouples simulation logic from animation and lets the UI scrub backwards. Include fields: `{seq, producerId, topic, priority, payload, producedAt, expectedLatency}`.
 
-Consumer simulation is equally important: model service time as a distribution (exponential for realistic jitter, fixed for deterministic demos) and let users inject failure modes like nack-with-requeue, consumer crash, or slow-consumer drag. For priority heaps, seed scenarios that demonstrate priority inversion — low-priority messages starving when a high-priority firehose arrives — and expose an age-based promotion knob so users can see how aging policies resolve it. For pub-sub, seed scenarios where one slow subscriber backs up the whole fan-out to motivate per-subscriber buffering.
+For teaching scenarios, hand-craft "pathological" presets alongside random ones: a burst preset (10x normal rate for 2s) to demonstrate backpressure, a slow-consumer preset where service time exceeds arrival rate to show unbounded queue growth, and a priority-inversion preset where low-priority messages pile up behind a stuck high-priority batch. For pub/sub, seed subscriber lag asymmetrically (one fast, one slow, one crashed) so fan-out semantics become visible. Keep preset JSON files under 5KB each and version them — old saved scenarios should still replay.
 
-Always drive simulation from a seedable PRNG so the same scenario replays identically, and ship 4–6 named preset scenarios (`steady`, `burst`, `starvation`, `slow-consumer`, `topic-hotspot`, `crash-recovery`) as entry points. Record every simulated event to an append-only log that the visualization layer consumes, keeping simulation and rendering decoupled so the same workload can drive multiple topology views side-by-side.
+Surface the simulation clock as a first-class control and let users inject manual events (click producer → emit message now) on top of the scripted stream. Tag injected events distinctly in the trace log so learners can distinguish their experiments from the baseline workload.
