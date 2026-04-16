@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Gateway Policy Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>API Gateway · Policy Lab</h1>
+  <p class="sub">Chain policies and send a request through the pipeline.</p>
+  <div class="grid">
+    <section class="builder">
+      <h2>Pipeline</h2>
+      <div id="pipeline"></div>
+      <h3>Add policy</h3>
+      <div id="palette"></div>
+    </section>
+    <section class="tester">
+      <h2>Request</h2>
+      <label>Method <select id="method"><option>GET</option><option>POST</option><option>DELETE</option></select></label>
+      <label>Path <input id="path" value="/orders/42"></label>
+      <label>Token <input id="token" value="eyJhbGciOi...valid"></label>
+      <label>Body size (KB) <input id="size" type="number" value="12"></label>
+      <button id="send">Send through gateway</button>
+      <h2>Trace</h2>
+      <ol id="trace"></ol>
+    </section>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

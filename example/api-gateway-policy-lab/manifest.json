@@ -1,0 +1,12 @@
+{
+  "slug": "api-gateway-policy-lab",
+  "title": "Api Gateway Policy Lab",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:56:35.387Z",
+  "source_project": "101-api-gateway-policy-lab",
+  "author": "kjuhwa@nkia.co.kr"
+}
