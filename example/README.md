@@ -410,6 +410,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [blue-green-deploy-timeline](blue-green-deploy-timeline/) | Blue Green Deploy Timeline — auto-generated blue-green-deploy tool | html, css, vanilla-js | 2026-04-16 |
 
+| [query-playground](query-playground/) | Query Playground — auto-generated command-query tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

@@ -1,0 +1,81 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, Segoe UI, sans-serif;
+  background: #0f1117;
+  color: #e6e8ef;
+  height: 100vh;
+  overflow: hidden;
+}
+.app { display: grid; grid-template-columns: 240px 1fr; height: 100vh; }
+.sidebar {
+  background: #1a1d27;
+  border-right: 1px solid #262a36;
+  padding: 20px;
+  overflow-y: auto;
+}
+.sidebar h2 {
+  color: #6ee7b7;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 16px 0 8px;
+}
+.sidebar ul { list-style: none; }
+.sidebar li {
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #b8becd;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+.sidebar li:hover { background: #262a36; color: #6ee7b7; }
+main { padding: 24px; overflow-y: auto; }
+header h1 { color: #6ee7b7; font-size: 22px; }
+header p { color: #8a93a6; font-size: 13px; margin: 6px 0 16px; }
+#editor {
+  width: 100%;
+  height: 120px;
+  background: #1a1d27;
+  border: 1px solid #262a36;
+  color: #e6e8ef;
+  font-family: 'Consolas', monospace;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  resize: vertical;
+}
+#editor:focus { outline: none; border-color: #6ee7b7; }
+.toolbar { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+button#run {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button#run:hover { background: #4ade80; }
+.status {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.status.idle { background: #262a36; color: #8a93a6; }
+.status.query { background: rgba(110, 231, 183, 0.2); color: #6ee7b7; }
+.status.command { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+.status.error { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+#result {
+  background: #1a1d27;
+  border: 1px solid #262a36;
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 400px;
+  overflow: auto;
+}
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 8px; color: #6ee7b7; border-bottom: 1px solid #262a36; }
+td { padding: 8px; color: #b8becd; border-bottom: 1px solid #1f2330; }
+.msg { color: #8a93a6; font-family: monospace; font-size: 13px; }

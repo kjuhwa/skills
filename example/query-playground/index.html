@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Query Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <h2>Tables</h2>
+    <ul id="tables"></ul>
+    <h2>Sample Queries</h2>
+    <ul id="samples">
+      <li data-q="SELECT * FROM users">all users</li>
+      <li data-q="SELECT * FROM users WHERE age > 25">users over 25</li>
+      <li data-q="SELECT * FROM orders WHERE total > 100">big orders</li>
+      <li data-q="COMMAND INSERT users name=Ada age=30">insert user</li>
+      <li data-q="COMMAND DELETE users WHERE age < 20">delete young</li>
+    </ul>
+  </aside>
+  <main>
+    <header>
+      <h1>Query vs Command Playground</h1>
+      <p>Run SELECT queries (read-only) or COMMAND mutations. Same data, two lanes.</p>
+    </header>
+    <textarea id="editor" spellcheck="false">SELECT * FROM users WHERE age > 25</textarea>
+    <div class="toolbar">
+      <button id="run">Run</button>
+      <span id="status" class="status idle">Idle</span>
+    </div>
+    <div id="result"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
