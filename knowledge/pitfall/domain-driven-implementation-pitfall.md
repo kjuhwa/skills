@@ -1,6 +1,6 @@
 ---
 name: domain-driven-implementation-pitfall
-description: Common failure modes when building DDD visualization tools — conflating tactical and strategic views
+description: Common failures when modeling bounded contexts, aggregate streams, and ubiquitous language in code
 category: pitfall
 tags:
   - domain
@@ -9,8 +9,8 @@ tags:
 
 # domain-driven-implementation-pitfall
 
-The most frequent pitfall is **flattening the strategic/tactical distinction**: rendering bounded contexts and aggregates in the same visual hierarchy so users can't tell which is which. Aggregates inside Context A should never be drawn as siblings of Context B. Enforce this with a strict two-level nesting rule in the renderer and reject data where an aggregate lacks a `contextId`. Related pitfall: treating every entity as an aggregate root — the generator and UI should distinguish aggregate roots (thick border) from internal entities (thin border, only visible on drill-down) or users will think every noun is a transactional boundary.
+The biggest trap is treating bounded contexts as folders rather than translation boundaries — apps collapse when a shared "User" type is imported across contexts, because the glossary app will then lie about the drift it is supposed to visualize. Enforce it structurally: each context owns its own TypeScript namespace/module with no cross-imports of domain types, only explicit ACL (anti-corruption layer) translators at the edges. If the bounded-context-mapper app shows Partnership or Shared-Kernel arrows that don't correspond to actual code-level sharing, the visualization becomes aspirational fiction.
 
-A second trap is **static layouts that don't survive domain growth**. Force-directed layouts (d3-force) look great with 10 nodes and become unreadable at 80+. Switch to a hierarchical layout (dagre or elk.js) for event-storm and aggregate-flow views, and reserve force-directed only for the context map where node count stays small. Persist manual node positions to localStorage keyed by domain-template-hash so user adjustments survive reloads — otherwise every page refresh destroys the layout work and users abandon the tool.
+Aggregate event streams frequently fail on replay correctness: developers store derived state alongside events and then can't reconstruct history. The fix is strict event-sourcing discipline — the aggregate-event-stream app must compute projections purely from the event log, never from cached snapshots, at least in demo mode. A second pitfall is unbounded aggregates: an "Order" aggregate that grows to 10,000 line-item events becomes unscrubbable. Cap aggregate lifetimes realistically (close/archive) and start new aggregates for new business cycles.
 
-Finally, beware **event/command arrow-direction inversion**: commands flow *into* aggregates (request), events flow *out* (fact). Many implementations draw both as generic edges, making causality ambiguous. Use distinct edge styles (solid arrow for command→aggregate, dashed arrow with open arrowhead for aggregate→event, dotted for policy→command) and validate at data-load time that no command has an aggregate as source or event as target. Getting this wrong silently teaches users an incorrect mental model of CQRS/ES, which is worse than showing no diagram at all.
+For ubiquitous language glossaries, the silent killer is definitions written by a single author in a single voice — real ubiquitous language emerges from conversation, so seed definitions with deliberate contradictions and "disputed" flags rather than authoritative-sounding prose. Also avoid synonym chains that collapse meaning (Customer→Client→Account→Customer) without context qualifiers; always attach the bounded-context tag to every synonym edge, or the graph will suggest false equivalences that undermine the whole point of context-specific language.
