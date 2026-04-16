@@ -1,0 +1,20 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; display: flex; justify-content: center; padding: 2rem; }
+.app { max-width: 960px; width: 100%; }
+h1 { color: #6ee7b7; margin-bottom: 0.25rem; }
+.subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
+.controls { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+button:hover { background: #5dd4a8; }
+#retryBtn { background: #f59e0b; }
+#resetBtn { background: #64748b; color: #e2e8f0; }
+.panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1rem; }
+.panel { background: #1a1d27; border-radius: 8px; padding: 1rem; min-height: 280px; }
+.panel h2 { font-size: 0.85rem; color: #6ee7b7; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.log { font-family: monospace; font-size: 0.78rem; line-height: 1.6; max-height: 240px; overflow-y: auto; }
+.log-entry { padding: 0.3rem 0.5rem; border-radius: 4px; margin-bottom: 0.3rem; }
+.log-entry.new { background: rgba(110,231,183,0.1); }
+.log-entry.dup { background: rgba(245,158,11,0.1); color: #f59e0b; }
+.log-entry.stored { background: rgba(110,231,183,0.08); }
+.stats { display: flex; gap: 2rem; color: #94a3b8; font-size: 0.85rem; }
+.stats strong { color: #6ee7b7; }

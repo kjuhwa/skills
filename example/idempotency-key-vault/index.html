@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idempotency Key Vault</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>🔑 Idempotency Key Vault</h1>
+  <p class="subtitle">Send duplicate API requests — watch the server deduplicate them</p>
+  <div class="controls">
+    <button id="sendBtn">Send Payment Request</button>
+    <button id="retryBtn">Retry Same Request</button>
+    <button id="resetBtn">New Key</button>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <h2>Request Log</h2>
+      <div id="requestLog" class="log"></div>
+    </div>
+    <div class="panel">
+      <h2>Key Store</h2>
+      <div id="keyStore" class="log"></div>
+    </div>
+    <div class="panel">
+      <h2>Server Responses</h2>
+      <div id="responseLog" class="log"></div>
+    </div>
+  </div>
+  <div class="stats">
+    <span>Requests sent: <strong id="sentCount">0</strong></span>
+    <span>Actually processed: <strong id="processedCount">0</strong></span>
+    <span>Deduped: <strong id="dedupedCount">0</strong></span>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

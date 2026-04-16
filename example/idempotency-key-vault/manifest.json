@@ -1,0 +1,12 @@
+{
+  "slug": "idempotency-key-vault",
+  "title": "Idempotency Key Vault",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:07:06.461Z",
+  "source_project": "93-idempotency-key-vault",
+  "author": "kjuhwa@nkia.co.kr"
+}
