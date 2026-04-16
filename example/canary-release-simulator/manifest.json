@@ -1,0 +1,12 @@
+{
+  "slug": "canary-release-simulator",
+  "title": "Canary Release Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:07:36.041Z",
+  "source_project": "102-canary-release-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -260,6 +260,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [dlq-pulse-monitor](dlq-pulse-monitor/) | Dlq Pulse Monitor — auto-generated dead-letter-queue tool | html, css, vanilla-js | 2026-04-16 |
 
+| [canary-release-simulator](canary-release-simulator/) | Canary Release Simulator — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
