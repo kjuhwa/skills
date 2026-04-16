@@ -1,0 +1,12 @@
+{
+  "slug": "chaos-monkey-dashboard",
+  "title": "Chaos Monkey Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T11:40:08.904Z",
+  "source_project": "101-chaos-monkey-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}
