@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Trace Waterfall Inspector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Trace Waterfall Inspector</h1>
+  <div class="controls">
+    <select id="traceSelect"></select>
+    <button id="regen">Regenerate</button>
+    <span id="stats"></span>
+  </div>
+</header>
+<main>
+  <div class="waterfall" id="waterfall"></div>
+  <aside id="detail">
+    <h2>Span Detail</h2>
+    <div id="detailBody">Click a span to inspect.</div>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
