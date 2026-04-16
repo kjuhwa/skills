@@ -82,6 +82,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [idempotency-key-vault](idempotency-key-vault/) | Idempotency Key Vault — auto-generated idempotency tool | html, css, vanilla-js | 2026-04-16 |
 
+| [pipeline-dag-builder](pipeline-dag-builder/) | Pipeline Dag Builder — auto-generated data-pipeline tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

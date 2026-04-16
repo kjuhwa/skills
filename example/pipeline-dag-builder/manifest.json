@@ -1,0 +1,12 @@
+{
+  "slug": "pipeline-dag-builder",
+  "title": "Pipeline Dag Builder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:11:02.421Z",
+  "source_project": "97-pipeline-dag-builder",
+  "author": "kjuhwa@nkia.co.kr"
+}
