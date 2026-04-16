@@ -1,0 +1,12 @@
+{
+  "slug": "connection-pool-tycoon",
+  "title": "Connection Pool Tycoon",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:26:59.773Z",
+  "source_project": "101-connection-pool-tycoon",
+  "author": "kjuhwa@nkia.co.kr"
+}

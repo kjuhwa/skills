@@ -1,0 +1,95 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+}
+.game { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { margin-bottom: 20px; }
+h1 { color: #6ee7b7; font-size: 26px; margin-bottom: 12px; }
+h2 { color: #9ca3af; font-size: 15px; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px; }
+.hud { display: flex; gap: 16px; flex-wrap: wrap; }
+.metric {
+  background: #1a1d27;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.metric span { color: #6ee7b7; }
+main { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel { background: #1a1d27; padding: 18px; border-radius: 10px; }
+#pool {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  min-height: 200px;
+  margin-bottom: 16px;
+}
+.slot {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: #0f1117;
+  border: 2px solid #2a2f3e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.slot.busy { border-color: #6ee7b7; }
+.slot .progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 4px;
+  background: #6ee7b7;
+  transition: width 0.1s linear;
+}
+.slot .id { font-family: monospace; font-size: 12px; color: #6ee7b7; }
+.slot.idle .id { color: #4b5563; }
+#queue {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.req {
+  background: #0f1117;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  border-left: 3px solid #fbbf24;
+  font-family: monospace;
+  font-size: 13px;
+}
+.req.urgent { border-left-color: #f87171; animation: pulse 0.5s infinite alternate; }
+@keyframes pulse { to { background: #1f1518; } }
+.shop { display: flex; flex-wrap: wrap; gap: 8px; }
+button {
+  background: #6ee7b7;
+  color: #0f1117;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+}
+button:disabled { background: #374151; color: #6b7280; cursor: not-allowed; }
+button:hover:not(:disabled) { background: #34d399; }
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1a1d27;
+  border-left: 3px solid #6ee7b7;
+  padding: 10px 16px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#toast.show { opacity: 1; }

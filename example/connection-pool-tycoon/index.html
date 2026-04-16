@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Connection Pool Tycoon</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="game">
+  <header>
+    <h1>Connection Pool Tycoon</h1>
+    <div class="hud">
+      <div class="metric">💰 <span id="money">$500</span></div>
+      <div class="metric">⚡ <span id="served">0</span> served</div>
+      <div class="metric">😡 <span id="lost">0</span> timed out</div>
+      <div class="metric">⭐ <span id="score">0</span></div>
+    </div>
+  </header>
+  <main>
+    <div class="panel">
+      <h2>Your Pool</h2>
+      <div id="pool"></div>
+      <div class="shop">
+        <button id="buy-slot">Buy Slot (<span id="slot-cost">$100</span>)</button>
+        <button id="upgrade-speed">Upgrade Speed Lv<span id="speed-lvl">1</span> (<span id="speed-cost">$150</span>)</button>
+        <button id="upgrade-capacity">Upgrade Queue Lv<span id="cap-lvl">1</span> (<span id="cap-cost">$120</span>)</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Incoming Requests</h2>
+      <div id="queue"></div>
+    </div>
+  </main>
+  <div id="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
