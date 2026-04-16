@@ -1,0 +1,12 @@
+{
+  "slug": "retry-strategy-timeline",
+  "title": "Retry Strategy Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T14:18:29.499Z",
+  "source_project": "101-retry-strategy-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}
