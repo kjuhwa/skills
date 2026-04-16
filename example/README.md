@@ -418,6 +418,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [read-replica-lag-monitor](read-replica-lag-monitor/) | Read Replica Lag Monitor — auto-generated read-replica tool | html, css, vanilla-js | 2026-04-16 |
 
+| [raft-term-timeline](raft-term-timeline/) | Raft Term Timeline — auto-generated raft-consensus tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
