@@ -1,0 +1,12 @@
+{
+  "slug": "outbox-pattern-timeline",
+  "title": "Outbox Pattern Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:44:37.777Z",
+  "source_project": "101-outbox-pattern-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}

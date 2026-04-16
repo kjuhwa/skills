@@ -384,6 +384,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [materialized-view-query-race](materialized-view-query-race/) | Materialized View Query Race — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
 
+| [outbox-pattern-timeline](outbox-pattern-timeline/) | Outbox Pattern Timeline — auto-generated outbox-pattern tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
