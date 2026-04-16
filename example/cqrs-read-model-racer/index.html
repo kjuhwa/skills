@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CQRS Read Model Racer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Read Model Racer</h1>
+  <p>The same event stream feeds three read models — each optimized for a different query.</p>
+</header>
+<main>
+  <div class="producer">
+    <div>Event rate: <strong id="rate-label">3</strong>/s</div>
+    <input type="range" id="rate" min="1" max="15" value="3">
+    <button id="pause">⏸ Pause</button>
+    <div class="latencies">
+      <span>Write lag: <em id="lag">0ms</em></span>
+    </div>
+  </div>
+  <section class="models">
+    <article class="model" data-lag="120">
+      <h2>Leaderboard <small>~120ms lag</small></h2>
+      <canvas width="300" height="260"></canvas>
+      <ol class="lb"></ol>
+    </article>
+    <article class="model" data-lag="60">
+      <h2>Live Ticker <small>~60ms lag</small></h2>
+      <ul class="ticker"></ul>
+    </article>
+    <article class="model" data-lag="400">
+      <h2>Daily Rollup <small>~400ms lag</small></h2>
+      <div class="grid"></div>
+    </article>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
