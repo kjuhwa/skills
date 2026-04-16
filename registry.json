@@ -1,0 +1,3481 @@
+{
+  "version": 2,
+  "skills": {
+    "swagger-ai-optimization": {
+      "category": "workflow",
+      "version": "1.0.0",
+      "scope": "global",
+      "path": "~/.claude/skills/swagger-ai-optimization",
+      "source_commit": "ca698572bf73213c2c35d8845519159b7c1326a4",
+      "installed_at": "2026-04-15",
+      "linked_knowledge": []
+    },
+    "openapi-to-mcp-tag-grouping": {
+      "category": "ai",
+      "version": "0.1.0-draft",
+      "scope": "global",
+      "path": "~/.claude/skills/openapi-to-mcp-tag-grouping",
+      "source_commit": "ca698572bf73213c2c35d8845519159b7c1326a4",
+      "installed_at": "2026-04-15",
+      "linked_knowledge": []
+    },
+    "polestar10-dev": {
+      "category": "local",
+      "version": "1.0.0-local",
+      "scope": "user",
+      "path": "~/.claude/skills/omc-learned/polestar10-dev",
+      "source_commit": "local",
+      "installed_at": "2026-04-15",
+      "linked_knowledge": [],
+      "notes": "local-only; generic anonymized versions published to skills-hub"
+    },
+    "slack-notify": {
+      "category": "local",
+      "version": "1.0.0-local",
+      "scope": "user",
+      "path": "~/.claude/skills/omc-learned/slack-notify",
+      "source_commit": "local",
+      "installed_at": "2026-04-15",
+      "linked_knowledge": [],
+      "notes": "local-only; generic anonymized versions published to skills-hub"
+    },
+    "adaptive-strategy-hot-swap": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "ai-call-with-mock-fallback": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "ai-subagent-scope-narrowing": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "async-subagent-resume-on-missing-artifact": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "audit-change-data-capture-pattern": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "availability-ttl-punctuate-processor": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "avro-event-with-change-flags": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "avro-gradle-kafka-schema-pipeline": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "axios-refresh-queue-zustand": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "baseline-historical-comparison-threshold": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "bootrun-jvmargs-jdwp-opens-java21": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "bucket-parallel-java-annotation-dispatch": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "build-error-triage": {
+      "category": "debug",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "byte-aware-sms-truncation-with-ellipsis": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "cache-variance-ttl-jitter": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "calendar-cron-vs-spring-cron-migration": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "challenge-response-auth-redis-ttl": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "character-sheet-multi-panel-consistency": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "chunked-resource-id-batch-fetch": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "clang-tidy-integration-workflow": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "claude-cli-from-jvm-via-node-wrapper": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "claude-code-skill-scaffold": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "claude-plugin-catalog-publish": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "collection-routing-by-period": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "compact-binary-wire-protocol-with-variable-length-encoding": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "concurrent-jdbc-pool-datasource-lifecycle": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "conditional-feature-flag-rollout": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "custom-actuator-command-whitelist": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "debug-lockorder-detection-system": {
+      "category": "debug",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "definition-registry-helper-cache": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "design-an-interface": {
+      "category": "misc",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "deterministic-coverage-verification": {
+      "category": "testing",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "dev-controller-tenant-wrapping-helper": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "distributed-lock-mongodb": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "divide-by-zero-rate-guard": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "docker-compose-service-inventory-files": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "docker-compose-v1-v2-auto-detect": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "domain-category-endpoint-registry": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "dotenv-multi-env-routing": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "dry-run-confirm-retry-write-flow": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "dual-jre-docker-oz-report": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "dynamic-gridfs-template-multi-tenant": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "eclipse-rcp-rich-client-for-apm-ui": {
+      "category": "apm",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "edit-article": {
+      "category": "docs",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "elasticsearch-xpack-ssl-transport": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "enable-async-tenant-aware": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "encrypted-pii-decrypt-before-send": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "eureka-service-discovery-wait-annotation": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "event-driven-kafka-scheduling": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "excel-download-null-date-range-handling": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "excel-export-enum-replacer": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "feed-envelope-frame": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "folder-coloc-style-types": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "font-cache-alpine-locale-docker": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "freemarker-two-phase-expression-subst": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "frozen-detection-consecutive-count": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "fuzz-corpus-seed-management": {
+      "category": "testing",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "gacha-soft-hard-pity": {
+      "category": "game-dev",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "git-guardrails-claude-code": {
+      "category": "cli",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "git-tag-registry-versioning": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "github-triage": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "gradle-bootjar-conditional-archive-bundle": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "gradle-bootrun-local-dev-env": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "gradle-jacoco-exclusion-strategy": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "gradle-shared-exclusions-jacoco-sonar": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "grid-filter-to-criteria-converter": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "grill-me": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "hibernate-multi-dialect-swap": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "hierarchical-group-entity-mongo": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "identifier-truncate-with-hash-suffix": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "immutable-action-event-log": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "improve-codebase-architecture": {
+      "category": "refactor",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "init-deadline-guard": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "ip-allowlist-cidr-validator": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jacoco-exclude-boilerplate-layers": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jacoco-sonar-shared-exclusion-list": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "java-agent-bytecode-instrumentation-with-asm": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jdbc-configurable-sql-insert-sender": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jenkins-dual-registry-docker-push": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jest-test-file-naming-test-only": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jj-jujutsu-day-one-workflow": {
+      "category": "git",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "json-seeded-jpa-loader": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jwt-extraction-via-base-controller": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "jwt-refresh-rotation-spring": {
+      "category": "security",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "k8s-health-via-getnodelist": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-avro-producer-gzip-30mb": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-avro-topic-auto-create-config": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-batch-consumer-partition-tuning": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-consumer-config-3-factories": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-consumer-errorhandling-wrapper": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-consumer-semaphore-chunking": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-consumer-tenant-fan-out": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-debounce-event-coalescing": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-engine-distributed-job-framework": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-message-header-metadata": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-producer-async-callback": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "kafka-producer-config-avro-schema-registry": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "layered-risk-gates": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "lean-verified-code-threat-boundary": {
+      "category": "security",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "llm-integration-test-failure-diagnosis": {
+      "category": "testing",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "llm-json-extraction": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mcp-capability-negotiated-initialize": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mcp-runtime-prompt-refresh": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "measurement-grouping-combiner": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "menu-key-config-registry": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mermaid-gitlab-mr-size-rules": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "message-loader-gated-on-database-ready": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mfa-memoryrouter-isolation": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mfa-plain-html-dropdown-escape-hatch": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "migrate-to-shoehorn": {
+      "category": "refactor",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "migration-processor-pipeline": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "module-federation-expose-react-component": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "module-federation-expose-wrapper": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongo-aggregation-filter-optimization": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongo-criteria-maker-elemmatch-and-or": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongo-timestamp-densification": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongo-ttl-with-aggregation-delta": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongodb-changestream-field-filter": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongodb-compound-index-esr-rule": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongodb-datetrunc-binsize-zero-guard": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "mongodb-volume-copy-backup": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "multi-dbms-resource-provider-pattern": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "multi-resource-or-batch-query": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "multi-tenant-kafka-header-organization-context": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "multi-tenant-scheduler-iteration": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "netty-tcp-reconnect-backoff": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "non-metric-saveraw-null-rule": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "oauth-token-env-persistence": {
+      "category": "security",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "obsidian-vault": {
+      "category": "docs",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "openssl-4-migration-checklist": {
+      "category": "security",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "opentelemetry-java-bootstrap": {
+      "category": "apm",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "optional-outbound-adapter-no-op-port": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "org-scoped-kafka-topic-bootstrap": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "paired-flag-multi-instance-registration": {
+      "category": "cli",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "parallel-bulk-annotation": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "parallel-tasks-generic-extraction": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "period-mode-enum-config": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "playwright-exception-advice": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "playwright-inspector-codegen": {
+      "category": "debug",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "playwright-java-dockerfile": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "playwright-java-spring-lifecycle": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "pluggable-sender-factory-pattern": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "plugin-resource-provider-architecture": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "policy-target-evaluation-with-groups-tags": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "polymorphic-command-entities": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "prd-to-issues": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "prd-to-plan": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "qa": {
+      "category": "testing",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "querydsl-q-class-exclusion-pattern": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "react-native-android-emulator-localhost": {
+      "category": "mobile",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "reactive-webclient-ssl-jdk": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "reactor-subscription-router-backpressure": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "realtime-vs-polling-fallback": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "redis-lock-recheck-flag-pattern": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "request-refactor-plan": {
+      "category": "refactor",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "resource-provider-registry": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "resource-summary-resolve-override-template": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "scaffold-exercises": {
+      "category": "misc",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "second-aggregation-snapshot-merge": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "server-plugin-scripting-and-builtin-extensibility": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "service-discovery-replica-leader-tracking": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "service-readiness-event-listener-pattern": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "service-status-provider-actuator": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "servicejar-embeddable-library-task": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "session-lock-tree-blocking-chain-modeling": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "setup-pre-commit": {
+      "category": "cli",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "shared-apis-endpoint-service-pattern": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "shared-package-only-cross-module": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "site-per-customer-override-modules": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "skill-md-validator": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "skill-repo-bootstrap-architecture": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "slack-webhook-notify": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "slash-command-authoring": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-actuator-health-collector": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-applicationrunner-system-seed": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-bootrun-local-dev-env-block": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-data-mongo-repository-custom-split": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-dual-profile-flyway": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-mongo-lightweight-migration": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-profile-datasource-activation": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-testcontainers-multitenant-base": {
+      "category": "testing",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "spring-typed-config-properties": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "springdoc-yaml-externalization": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "stable-horde-async-poll": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "stack-parse-tag-filter-to-mongo-criteria": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "stale-persistent-context-detection": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "stateless-turn-combat-engine": {
+      "category": "game-dev",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "status-effect-enum-system": {
+      "category": "game-dev",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "stomp-cookie-auth-handshake": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "stomp-principal-jwt-channel": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "strategy-spi-list-to-map-autoinject": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "swagger-spec-baseline-from-git": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tdd": {
+      "category": "testing",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tenant-context-holder-propagation": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tenant-context-try-finally-on-worker": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tenant-db-initialization-on-startup": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tenant-isolated-mongo-collection": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tenant-per-database-mongo-routing": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "testcontainers-mongo-kafka-abstract-base": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "testcontainers-reuse-disabled": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "thread-pool-config-tenant-aware": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "thread-pool-queue-backpressure": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tiered-rebalance-schedule": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "transaction-trace-pack-serialization-with-step-hierarchy": {
+      "category": "apm",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "triage-issue": {
+      "category": "debug",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "triple-env-file-split-loader": {
+      "category": "devops",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "ts-type-prefix-convention": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "tsv-driven-permission-bootstrap": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "ubiquitous-language": {
+      "category": "docs",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "udp-with-tcp-fallback-metrics-transport": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "version-specific-sql-map-selection": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "vllm-nginx-tls-single-port-routing": {
+      "category": "ai",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "websocket-stomp-channel-pool-config": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "widget-confid-injection-sweep": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "widget-grid-type-registration-checklist": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "write-a-prd": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "write-a-skill": {
+      "category": "misc",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "x-filterable-fields-extraction": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "yorkie-crdt-sync-pattern": {
+      "category": "backend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "1.0.0",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "zustand-preset-manager": {
+      "category": "frontend",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "version": "0.1.0-draft",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "figma-token-to-tailwind-theme": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "mfa-portal-css-isolation": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": [
+        "tailwind-mfa-css-isolation-pitfalls"
+      ]
+    },
+    "antd-wrapper-component-pattern": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": [
+        "sirius-wraps-antd-design-system"
+      ]
+    },
+    "dnd-kit-tab-reordering": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "widget-card-composition": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": [
+        "widget-high-prop-count-debt"
+      ]
+    },
+    "ag-grid-custom-filter-system": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "echarts-svg-worker-chart": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "drawer-resizable-mouse-drag": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-16",
+      "version": "1.0.0",
+      "source_commit": "release/combined-20260416",
+      "pinned": false,
+      "linked_knowledge": []
+    }
+  },
+  "knowledge": {
+    "k-git-tag-registry-versioning": {
+      "category": "arch",
+      "scope": "global",
+      "path": "~/.claude/skills-hub/knowledge/arch/k-git-tag-registry-versioning.md",
+      "source": {
+        "kind": "commit",
+        "ref": "cff6174d1193992e9eb10196ff266122493779aa"
+      },
+      "confidence": "high",
+      "linked_skills": [
+        "git-tag-registry-versioning"
+      ],
+      "tags": [
+        "git",
+        "versioning",
+        "registry",
+        "rollback",
+        "semver"
+      ],
+      "extracted_at": "2026-04-15"
+    },
+    "k-kafka-message-header-metadata": {
+      "category": "decision",
+      "scope": "global",
+      "path": "~/.claude/skills-hub/knowledge/decision/k-kafka-message-header-metadata.md",
+      "source": {
+        "kind": "commit",
+        "ref": "da42d24373484f3275430e1f61d914bdd02ac740"
+      },
+      "confidence": "medium",
+      "linked_skills": [
+        "kafka-message-header-metadata"
+      ],
+      "tags": [
+        "kafka",
+        "multi-tenant",
+        "routing",
+        "message-schema"
+      ],
+      "extracted_at": "2026-04-15"
+    },
+    "additive-registry-schema-versioning": {
+      "category": "arch",
+      "scope": "global",
+      "path": "~/.claude/skills-hub/knowledge/arch/additive-registry-schema-versioning.md",
+      "source": {
+        "kind": "session",
+        "ref": "session-2026-04-15-skills-extract-knowledge"
+      },
+      "confidence": "high",
+      "linked_skills": [],
+      "tags": [
+        "registry",
+        "schema",
+        "versioning",
+        "migration",
+        "backwards-compat"
+      ],
+      "extracted_at": "2026-04-15"
+    },
+    "classifier-both-verdict-self-reference": {
+      "category": "pitfall",
+      "scope": "global",
+      "path": "~/.claude/skills-hub/knowledge/pitfall/classifier-both-verdict-self-reference.md",
+      "source": {
+        "kind": "session",
+        "ref": "session-2026-04-15-skills-extract-knowledge"
+      },
+      "confidence": "medium",
+      "linked_skills": [],
+      "tags": [
+        "llm",
+        "classifier",
+        "schema",
+        "post-processing",
+        "linking"
+      ],
+      "extracted_at": "2026-04-15"
+    },
+    "caveats-absence-confidence-cap": {
+      "category": "decision",
+      "scope": "global",
+      "path": "~/.claude/skills-hub/knowledge/decision/caveats-absence-confidence-cap.md",
+      "source": {
+        "kind": "session",
+        "ref": "session-2026-04-15-skills-extract-knowledge"
+      },
+      "confidence": "medium",
+      "linked_skills": [],
+      "tags": [
+        "calibration",
+        "confidence",
+        "falsifiability",
+        "knowledge-quality"
+      ],
+      "extracted_at": "2026-04-15"
+    },
+    "boilerplate-generated-business-logic-manual": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "openapi-as-single-fe-be-contract": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "domain-registry-plus-projects-yaml": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "multi-domain-split-via-domain-mapping": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "port-out-no-optional-raise-in-adapter": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "existing-code-patterns-over-standard-rules": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "stub-in-service-unblocks-fe-parallelism": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "do-not-ask-planners-for-api-design": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "planning-doc-in-issue-description": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "serial-pipeline-failure-compounding": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "ai-guess-mark-and-review-checklist": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "claude-plugin-marketplace-owner-required": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "anonymize-examples-in-skill-docs": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "claude-plugin-skill-md-is-sufficient": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "hierarchical-agents-md-catalog": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "shallow-clone-mktemp-cleanup-pattern": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "plugin-repo-scope-generic-skills-only": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "skill-registry-vs-skill-config-split": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "pims-write-requires-dryrun-confirm": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "jvm-module-opens-java21-spring-kafka": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "lucida-framework-gate-annotations": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-consumer-group-id-hostname-not-timezone": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "actuator-path-dual-compatibility": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "confid-vs-resourceid-routing": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "es-xpack-transport-vs-rest-ssl": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-avro-change-flag-contract": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-organization-id-record-header": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "live-chart-timestamp-normalization": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "stomp-heartbeat-10s-bidirectional": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "timeselector-mode-interval-range-mapping": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "xlog-extended-transaction-trace-with-compression": {
+      "category": "api",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "assumeutxo-snapshot-chainstate-phases": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "bilingual-user-facing-strings": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "commons-logging-exclusion-strategy": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "data-patch-package-for-migrations": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "dual-redis-lock-vs-access-control": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "env-override-last-wins-chain": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "event-driven-init-wait-for-services": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "gradle-avro-plugin-config": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "interface-abstraction-for-modularity": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "jar-task-disabled-bootjar-only": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-1h-topic-and-nonmetric-pool": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "kafka-consumer-semaphore-chunking"
+      ]
+    },
+    "kafka-avro-schedule-event-chain": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-avro-schema-registry-env-topology": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-partition-topology-design": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "kafka-batch-consumer-partition-tuning"
+      ]
+    },
+    "live-mode-aggregation-exceptions": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongodb-aggregated-stats-as-views": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "multiprocess-architecture-via-ipc": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "nfs-backed-volumes-for-docker-swarm": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-ai-slop-cleaner": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-ask": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-autopilot": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-cancel": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-ccg": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-configure-notifications": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-debug": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-deep-dive": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-deep-interview": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-deepinit": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-external-context": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-hud": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-learner": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-mcp-setup": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-omc-doctor": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-omc-reference": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-omc-setup": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-omc-teams": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-plan": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-project-session-manager": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-ralph": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-ralplan": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-release": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-remember": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-sciomc": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-self-improve": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-setup": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-skill": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-skillify": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-team": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-trace": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-ultraqa": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-ultrawork": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-verify": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-visual-verdict": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-wiki": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oh-my-claudecode-writer-memory": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "plugin-architecture-runtime-vs-startup-loading": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "published-vs-realtime-view-pages": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "redis-change-counter-for-versioning-trigger": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "scouter-three-tier-architecture": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "widget-is-frozen-group-snapshot": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "yorkie-team-server-split": {
+      "category": "arch",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "actuator-endpoints-skip-auth-by-design": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "admin-role-disabled-secretkey": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "alarm-raw-over-1min-aggregate": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "kafka-consumer-semaphore-chunking"
+      ]
+    },
+    "assume-semantics-for-compiler-hints": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "avro-private-fields-no-setters": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "cache-even-when-enable-false": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "circular-dependency-detection-script": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "confid-only-query-over-resource-tuple": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "copy-naming-suffix-numbered": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "cors-allow-credentials-star-origin": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "csp-frame-ancestors-required": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "dataavro-json-wrapper-pattern": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "god-controller-split-by-resource": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "hyperloglog-for-unique-user-counting": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "jacoco-exclude-business-layers": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "jacoco-sonar-exclusion-policy": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "querydsl-q-class-exclusion-pattern"
+      ]
+    },
+    "jacoco-sonar-exclusion-rationale": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "java-21-upgrade-rationale": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "java-21-upgrade-rationale"
+      ]
+    },
+    "jest-coverage-80-threshold": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "jwt-stateless-refresh-24h-default": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-batch-size-timeout-tuning": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "kafka-batch-consumer-partition-tuning"
+      ]
+    },
+    "large-range-query-raw-collections": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "license-apply-window-15d": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "measurement-batch-send-per-config": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "node-npm-pin-matches-jenkins": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "organization-soft-delete-grace-period": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "postgres-version-rolling-support": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "prefer-static-import-over-constant-inheritance": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "push-local-removed-use-doc-update": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "query-manager-version-conversion-fallback": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "rcp-desktop-client-design-rationale-vs-saas-web": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "resource-mount-unmount-use-jar-defaults": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "save-child-only-when-changed": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "scatter-topic-1min-retention": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "system-notification-shared-with-2fa-and-password-find": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "tabular-metric-excluded-from-list": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "tag-values-separate-collection": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "tomcat-request-timeout-1h-for-oz-report": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "udp-for-throughput-tcp-for-reliability": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "variable-length-integer-encoding-for-metrics-bandwidth": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "vllm-kv-cache-fp8-with-mtp": {
+      "category": "decision",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "account-lockout-configurable-threshold": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "encrypted-pii-decode-on-export": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongodb-exclude-system-databases": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mysql-mariadb-performance-schema-detection": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "one-default-template-per-type-rule": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "period-interval-naming-convention": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "period-mode-enum-config"
+      ]
+    },
+    "root-span-error-propagation": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "topresource-immediate-generation-invariant": {
+      "category": "domain",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "actuator-metric-call-aggressive-timeout": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "asm-based-classloader-instrumentation-caveats": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "audit-changed-prev-after-field-swap-bug": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "audit-change-data-capture-pattern"
+      ]
+    },
+    "auto-lock-must-not-bump-lastEditedTime": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "binsize-zero-fallback-to-one": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "catalina-urlencoder-internal-api": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "common-alarm-policy-init-gotcha": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "kafka-debounce-event-coalescing"
+      ]
+    },
+    "compare-counts-exclude-added-deleted": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "composite-alarm-all-deleted-npe": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "conf-info-may-lack-resource-type": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "docker-engine-29-requires-traefik-upgrade": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "enum-notnull-comparison-pitfall": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "enum-whitelist-blocks-time-based-sqli": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "gridfs-template-upload-data-loss-pitfall": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "hibernate-date-format-lowercase": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "history-view-yearly-partition-pitfall": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "injectmocks-generics-type-erasure": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "ipv6-colon-detection-edge": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "jackson-version-pinning-2.17.1": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "jdbc-template-var-xml-escape-bypass": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "k8s-clusterrole-aggregation-npe": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-error-handling-deserializer-fallback": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "kafka-sticky-partitioner-key-null": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "konva-center-coord-system": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "latest-availability-deletion-risk": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "availability-ttl-punctuate-processor"
+      ]
+    },
+    "legacy-datasource-naming": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongo-direct-connection-flag": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongo-timeseries-forced-hint-kills-pushdown": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongo-timeseries-match-split-for-pushdown": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongo-timeseries-view-pushdown-broken-8_2_3": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongodb-changestream-resubscribe": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "mongodb-changestream-field-filter"
+      ]
+    },
+    "mongodb-compound-index-on-views": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongodb-documentreference-lazy-removal": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongodb-field-name-underscore-to-dot": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongodb-single-node-directconnection": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mongodb-string-id-field-type-mapping": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "oz-license-file-placement-flip-flop": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "page-map-returns-new-instance": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "policy-edit-saveraw-loss": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "non-metric-saveraw-null-rule"
+      ]
+    },
+    "refresh-token-do-not-regenerate": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "sibling-scoped-name-uniqueness": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "simpledateformat-not-thread-safe": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "skip-schedule-if-previous-running": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "snmp-ifindex-not-stable": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "span-hash-determinism": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "span-lifetime-safety-documentation": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "spec-excluded-from-jest": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "sql-hash-unsigned-integer": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "sql-text-null-check-session-history-consistency": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "sqlserver-sqltextinfo-index-constraint": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "static-value-injection-race-condition": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "tenant-context-clear-after-completion": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "tenant-flag-over-name-detection": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "testcontainers-springboot-cache-conflict": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "time-unit-consistency-us-ms-ns": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "top-bottom-widest-collection-range": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "topn-unwind-match-to-filter": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": [
+        "mongo-aggregation-filter-optimization"
+      ]
+    },
+    "trace-context-async-execution-propagation": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "traefik-2.11-requires-explicit-idletimeout": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "udp-receiver-needs-large-socket-buffer": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "unit-enum-silent-filter": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "user-sql-source-requires-select-only-and-readonly": {
+      "category": "pitfall",
+      "scope": "user",
+      "installed_at": "2026-04-16T00:40:04Z",
+      "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "linked_skills": []
+    },
+    "mf-cross-remote-import-forbidden": {
+      "category": "arch",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": []
+    },
+    "mf-expose-requires-memoryrouter-wrapper": {
+      "category": "arch",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": []
+    },
+    "sirius-wraps-antd-design-system": {
+      "category": "arch",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": [
+        "antd-wrapper-component-pattern"
+      ]
+    },
+    "triple-styling-paradigm-coexistence": {
+      "category": "decision",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": []
+    },
+    "crypto-randomuuid-requires-secure-context": {
+      "category": "pitfall",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": []
+    },
+    "mf-select-unstable-options-infinite-loop": {
+      "category": "pitfall",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": []
+    },
+    "tailwind-mfa-css-isolation-pitfalls": {
+      "category": "pitfall",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": [
+        "mfa-portal-css-isolation"
+      ]
+    },
+    "widget-high-prop-count-debt": {
+      "category": "pitfall",
+      "added_at": "2026-04-16",
+      "source": "lucida-ui@4b922a9043",
+      "linked_skills": [
+        "widget-card-composition"
+      ]
+    }
+  }
+}
