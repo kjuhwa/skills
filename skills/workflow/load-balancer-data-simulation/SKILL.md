@@ -1,6 +1,6 @@
 ---
 name: load-balancer-data-simulation
-description: Deterministic request-stream and backend-behavior simulation for load balancer demos
+description: Deterministic request/server simulation loop for driving load balancer demos without real traffic
 category: workflow
 triggers:
   - load balancer data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # load-balancer-data-simulation
 
-Simulated load balancer data must be driven by a seeded PRNG so the same scenario replays identically — critical for comparing algorithms side-by-side. Model three independent streams: (1) a request generator with configurable arrival distribution (Poisson for steady state, bursty Pareto for flash-crowd demos, diurnal sine for realistic traffic), each request carrying a client-id (for hash-based algorithms), payload size, and expected service time; (2) a backend pool where each server has capacity, baseline latency, jitter, and a failure script (e.g. "server-3 CPU spikes at t=30s, fails health check at t=45s, recovers at t=70s"); (3) a health-check probe stream firing on its own interval independent of request traffic.
+Drive the simulation with a fixed-tick scheduler (e.g., 100ms ticks via `setInterval` or `requestAnimationFrame` accumulator) that emits synthetic requests at a configurable rate (req/sec) with optional Poisson jitter. Each request carries `{id, clientIp, sizeKb, cpuCost, arrivalTime}`. Seed randomness via a PRNG (e.g., mulberry32) initialized from a user-visible seed input so scenarios are reproducible across reloads and across the three apps — critical when users want to re-run the same burst to compare algorithm behavior.
 
-Drive dispatching through a pluggable strategy interface (`pickBackend(request, pool, state) → backend`) so round-robin, least-connections, weighted-random, consistent-hash-ring, least-response-time, and IP-hash all share the same simulation harness. Track per-backend active-connection counts by incrementing on dispatch and decrementing on a scheduled completion event — don't approximate with rolling averages, because the whole point of the demo is to show how least-connections reacts to in-flight state. For consistent-hash specifically, pre-build the ring with 100–200 virtual nodes per physical backend and cache the sorted hash array; on node add/remove, only the affected arc needs recomputation, which matches real-world behavior and makes the "only 1/N keys move" claim observable.
+Model backend servers as state machines with three knobs: `capacity` (max concurrent), `processingMs` (base latency), and `failureRate` (probability of 5xx). On each tick, advance in-flight requests by the tick delta, decrement remaining work, and release the connection slot when done. Inject scripted failure scenarios — flap a server's health every 3s, spike one server's CPU to 95%, or kill a server mid-burst — to exercise health-check-dashboard's detection logic and force LB re-routing.
 
-Surface three derived metrics continuously: p50/p95/p99 latency per backend, connection-count variance across the pool (the load-balance quality score), and request-drop rate under capacity saturation. These three numbers, updated every tick, let viewers watch algorithms diverge: weighted round-robin keeps variance low but p99 high when a weighted backend is slow; least-connections minimizes variance but thrashes under equal backends; consistent-hash trades variance for cache-locality wins that this simulation should expose by tagging a fraction of requests as "cache-hit if routed to previous backend."
+Expose a scenario registry: `lightLoad`, `burstTraffic`, `hotspotClient` (same IP hammering for IP-hash demo), `cascadingFailure`, `weightedMismatch`. Each scenario is a declarative config `{durationMs, rps, serverOverrides, failureScript}` so the same simulator core powers all three apps with just a scenario swap.
