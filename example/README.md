@@ -400,6 +400,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [etl-transform-playground](etl-transform-playground/) | Etl Transform Playground — auto-generated etl tool | html, css, vanilla-js | 2026-04-16 |
 
+| [blue-green-deploy-cockpit](blue-green-deploy-cockpit/) | Blue Green Deploy Cockpit — auto-generated blue-green-deploy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

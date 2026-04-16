@@ -1,0 +1,33 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #d4d7e0; font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+header { background: #1a1d27; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #262a36; }
+header h1 { font-size: 20px; color: #6ee7b7; letter-spacing: 1px; }
+.status { font-size: 14px; }
+.status span { color: #6ee7b7; font-weight: bold; }
+main { padding: 24px; display: grid; gap: 20px; max-width: 1100px; margin: 0 auto; }
+.envs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.env { background: #1a1d27; border-radius: 10px; padding: 20px; border: 2px solid transparent; transition: border-color .3s; }
+.env.active { border-color: #6ee7b7; box-shadow: 0 0 20px rgba(110,231,183,0.15); }
+.env h2 { letter-spacing: 3px; margin-bottom: 8px; }
+.env.blue h2 { color: #60a5fa; }
+.env.green h2 { color: #6ee7b7; }
+.version { font-family: monospace; color: #8b92a8; margin-bottom: 10px; }
+.traffic { background: #262a36; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
+.bar { height: 100%; background: linear-gradient(90deg, #6ee7b7, #60a5fa); transition: width .4s; width: 0%; }
+.pods { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
+.pods li { height: 26px; background: #262a36; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: monospace; }
+.pods li.up { background: #1e3a2e; color: #6ee7b7; }
+.pods li.down { background: #3a1e1e; color: #f87171; }
+.health { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #8b92a8; }
+.controls { background: #1a1d27; padding: 20px; border-radius: 10px; }
+.controls label { display: block; margin-bottom: 10px; font-size: 13px; }
+#pctLabel { color: #6ee7b7; font-weight: bold; }
+input[type=range] { width: 100%; accent-color: #6ee7b7; margin-bottom: 14px; }
+.btns { display: flex; gap: 10px; }
+button { flex: 1; background: #262a36; color: #d4d7e0; border: 1px solid #333948; padding: 10px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all .2s; }
+button:hover { background: #333948; border-color: #6ee7b7; }
+.log { background: #1a1d27; padding: 20px; border-radius: 10px; max-height: 220px; overflow-y: auto; }
+.log h3 { color: #6ee7b7; margin-bottom: 10px; font-size: 14px; }
+#log { list-style: none; font-family: monospace; font-size: 12px; }
+#log li { padding: 4px 0; color: #8b92a8; border-bottom: 1px solid #262a36; }
+#log li .ts { color: #60a5fa; margin-right: 8px; }

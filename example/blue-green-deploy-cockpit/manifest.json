@@ -1,0 +1,12 @@
+{
+  "slug": "blue-green-deploy-cockpit",
+  "title": "Blue Green Deploy Cockpit",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:15:55.661Z",
+  "source_project": "100-blue-green-deploy-cockpit",
+  "author": "kjuhwa@nkia.co.kr"
+}

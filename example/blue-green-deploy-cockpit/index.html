@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blue-Green Deploy Cockpit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Deploy Cockpit</h1>
+  <div class="status">Active: <span id="activeEnv">BLUE</span></div>
+</header>
+<main>
+  <section class="envs">
+    <div class="env blue" id="envBlue">
+      <h2>BLUE</h2>
+      <div class="version" id="verBlue">v1.4.2</div>
+      <div class="traffic"><div class="bar" id="barBlue"></div></div>
+      <ul class="pods" id="podsBlue"></ul>
+      <div class="health" id="healthBlue">healthy</div>
+    </div>
+    <div class="env green" id="envGreen">
+      <h2>GREEN</h2>
+      <div class="version" id="verGreen">v1.4.3</div>
+      <div class="traffic"><div class="bar" id="barGreen"></div></div>
+      <ul class="pods" id="podsGreen"></ul>
+      <div class="health" id="healthGreen">idle</div>
+    </div>
+  </section>
+  <section class="controls">
+    <label>Traffic shift: <span id="pctLabel">0%</span> → green</label>
+    <input type="range" id="shift" min="0" max="100" value="0">
+    <div class="btns">
+      <button id="promote">Promote Green</button>
+      <button id="rollback">Rollback</button>
+      <button id="deploy">Deploy New Version</button>
+    </div>
+  </section>
+  <section class="log">
+    <h3>Event Log</h3>
+    <ul id="log"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
