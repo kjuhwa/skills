@@ -1,0 +1,12 @@
+{
+  "slug": "materialized-view-refresh-simulator",
+  "title": "Materialized View Refresh Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:40:54.763Z",
+  "source_project": "100-materialized-view-refresh-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

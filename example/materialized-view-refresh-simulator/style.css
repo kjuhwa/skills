@@ -1,0 +1,30 @@
+:root { --bg:#0f1117; --surface:#1a1d27; --accent:#6ee7b7; --text:#e4e6eb; --dim:#8a8f9b; --warn:#f59e0b; --err:#ef4444; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", sans-serif; padding: 24px; }
+header { margin-bottom: 20px; }
+header h1 { color: var(--accent); font-size: 22px; }
+.subtitle { color: var(--dim); font-size: 13px; margin-top: 4px; }
+main { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel { background: var(--surface); border-radius: 8px; padding: 16px; border: 1px solid #252834; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.panel-header h2 { font-size: 14px; font-weight: 500; }
+.panel-header code { color: var(--accent); background: #0f1117; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+.actions { display: flex; gap: 6px; align-items: center; }
+.actions label { font-size: 12px; color: var(--dim); display: flex; gap: 4px; align-items: center; }
+button { background: #252834; color: var(--text); border: 1px solid #343745; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+button:hover { background: #2e313d; border-color: var(--accent); }
+#refreshBtn { background: var(--accent); color: #0f1117; border-color: var(--accent); font-weight: 600; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: "SF Mono", Consolas, monospace; }
+th { text-align: left; color: var(--dim); padding: 6px 8px; border-bottom: 1px solid #2a2d38; font-weight: 500; }
+td { padding: 6px 8px; border-bottom: 1px solid #22242f; }
+tr.new { animation: flash 1s ease-out; }
+tr.removed { opacity: 0.4; text-decoration: line-through; }
+@keyframes flash { 0% { background: rgba(110, 231, 183, 0.3); } 100% { background: transparent; } }
+.stale-bar { position: relative; height: 20px; background: #0f1117; border-radius: 4px; margin-bottom: 12px; overflow: hidden; }
+#staleFill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--warn), var(--err)); transition: width 0.3s; }
+#staleText { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--text); mix-blend-mode: difference; }
+.log-panel { grid-column: span 2; max-height: 180px; overflow-y: auto; }
+#log { list-style: none; font-family: "SF Mono", monospace; font-size: 11px; }
+#log li { padding: 3px 0; color: var(--dim); border-bottom: 1px dashed #22242f; }
+#log li.refresh { color: var(--accent); font-weight: 600; }
+#log li .ts { color: #555; margin-right: 8px; }

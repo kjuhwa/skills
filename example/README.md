@@ -380,6 +380,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [crdt-counter-sync](crdt-counter-sync/) | Crdt Counter Sync — auto-generated crdt tool | html, css, vanilla-js | 2026-04-16 |
 
+| [materialized-view-refresh-simulator](materialized-view-refresh-simulator/) | Materialized View Refresh Simulator — auto-generated materialized-view tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

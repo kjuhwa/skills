@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Materialized View Refresh Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Materialized View Refresh Simulator</h1>
+  <p class="subtitle">Watch a materialized view stay in sync with its source table</p>
+</header>
+<main>
+  <section class="panel">
+    <div class="panel-header">
+      <h2>Source Table: <code>orders</code></h2>
+      <div class="actions">
+        <button id="insertBtn">Insert Row</button>
+        <button id="updateBtn">Update Row</button>
+        <button id="deleteBtn">Delete Row</button>
+      </div>
+    </div>
+    <table id="sourceTable"><thead><tr><th>id</th><th>customer</th><th>amount</th><th>status</th></tr></thead><tbody></tbody></table>
+  </section>
+  <section class="panel">
+    <div class="panel-header">
+      <h2>Materialized View: <code>mv_customer_totals</code></h2>
+      <div class="actions">
+        <label><input type="checkbox" id="autoRefresh"> Auto-refresh</label>
+        <button id="refreshBtn">REFRESH MV</button>
+      </div>
+    </div>
+    <div class="stale-bar"><div id="staleFill"></div><span id="staleText">fresh</span></div>
+    <table id="mvTable"><thead><tr><th>customer</th><th>orders</th><th>total</th></tr></thead><tbody></tbody></table>
+  </section>
+  <section class="panel log-panel">
+    <h2>Event Log</h2>
+    <ul id="log"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
