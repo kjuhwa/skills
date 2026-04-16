@@ -1,6 +1,6 @@
 ---
 name: strangler-fig-visualization-pattern
-description: Side-by-side legacy/modern pane visualization with traffic routing overlay for strangler-fig migration progress
+description: Side-by-side legacy/new system visualization with traffic routing overlay for strangler-fig migration apps
 category: design
 triggers:
   - strangler fig visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # strangler-fig-visualization-pattern
 
-When visualizing a strangler-fig migration, render the legacy monolith and the new microservice(s) as two spatially-separated panes (left=legacy, right=modern) connected by a routing facade/proxy layer drawn between them. Each capability or route is a node that physically migrates from the legacy pane to the modern pane over time — use position interpolation rather than color-only state changes so the "strangling" metaphor is visually literal. Render percentage-of-traffic as edge thickness on the facade layer, and use a vine/growth motif (gradient from brown→green, or dashed→solid edges) to reinforce that the new system is progressively overtaking the old.
+Strangler-fig visualizations share a three-zone layout: a **legacy monolith panel** (left, typically rendered in muted/grey tones to signal deprecation), a **new service panel** (right, in vibrant/green tones to signal growth), and a **routing facade layer** (top or center) that shows which endpoints/routes are currently proxied to which side. Each endpoint or feature is rendered as a node with a migration-state badge: `legacy-only`, `shadowed`, `canary`, `migrated`, `retired`. Color transitions (grey → amber → green) communicate progress without requiring a legend.
 
-Always include a third overlay showing the facade/router decision logic — a horizontal bar split by percentage allocation per endpoint, updated live. This is the single most informative element because strangler-fig's defining characteristic is the routing shim, not the endpoints themselves. Provide per-capability drill-down panels that show: current routing %, error rate delta between legacy and modern, and a "retirement readiness" score (derived from traffic %, parity test pass rate, and soak time).
+The routing facade should animate request flows as particles or arrows traveling from the client through the facade to either the legacy or new backend. Percentage splits (e.g., 10% canary → new, 90% → legacy) are shown as weighted edge thickness or as a split-flow animation where particle counts match the routing ratio. Hovering a node reveals its migration metadata (dependencies, call volume, last-migrated date, rollback window).
 
-For timeline-style views, use a Gantt-like horizontal band per capability with three phases color-coded: `proxied` (facade added, 0% to modern), `migrating` (1–99% to modern), `retired` (100% + legacy code deleted). Never show binary "old vs new" states — the whole point of strangler-fig is the intermediate coexistence period, and the visualization must make that middle phase the most prominent.
+A **vine/ivy metaphor overlay** (literal in vine-grower, abstracted in migration-simulator/route-router) works well: new-service growth visually "wraps" the legacy node until the legacy node shrinks and disappears on retirement. Timeline scrubbers let users replay migration history; a "kill legacy" control simulates the final cutover to verify no traffic still routes to the retired path.

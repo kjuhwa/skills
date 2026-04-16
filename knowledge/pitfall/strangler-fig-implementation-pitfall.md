@@ -1,6 +1,6 @@
 ---
 name: strangler-fig-implementation-pitfall
-description: Common failure modes when implementing strangler-fig migrations that visualizations must surface
+description: Common failure modes when building strangler-fig migration tooling: premature legacy retirement, shadow drift, dependency blindness
 category: pitfall
 tags:
   - strangler
@@ -9,8 +9,8 @@ tags:
 
 # strangler-fig-implementation-pitfall
 
-The most dangerous pitfall is treating "100% traffic on new service" as "migration complete" and deleting legacy code immediately. There is almost always a hidden consumer — a batch job, an internal admin tool, a cron, or a downstream service with cached endpoint URLs — that bypasses the facade. Retiring legacy too early causes silent data loss or 3am incidents. Enforce a mandatory soak period (typically 2–4 weeks at 100%) with legacy kept warm and logging any incoming calls, and surface "legacy still receiving N requests/day" as a blocking metric in any strangler-fig dashboard.
+The most frequent pitfall across these three apps is **premature legacy retirement** — the UI/simulator lets users mark an endpoint `retired` while live traffic (or simulated traffic) is still hitting it. The router then silently 404s or, worse, falls through to a default handler. Mitigation: enforce a `retired` transition guard that requires zero traffic for N consecutive ticks AND zero inbound dependencies, and surface a "retirement readiness" score on the node rather than a free-form button.
 
-A second pitfall is the facade becoming permanent. Teams add the proxy, migrate 60-80% of capabilities, and then the remaining tail sits forever because the hard ones were deferred. The facade itself accrues logic (auth translation, request shaping, header munging) and becomes a third system to maintain. Visualizations should track "age of oldest unmigrated capability" and "lines of code in facade" as leading indicators of stalled migrations — if facade complexity grows faster than legacy shrinks, the pattern has degenerated into permanent API gateway.
+A related pitfall is **shadow drift**: when an endpoint is in `shadowing` state, both legacy and new handlers run and results are compared, but apps often forget to persist diff-rate metrics over time. A shadowing endpoint with a 2% diff rate looks "fine" until you realize it's been 2% for two weeks and nobody investigated. Always render a diff-rate sparkline per shadowed endpoint and block `canary` promotion if diff-rate > threshold.
 
-A third pitfall is data-layer coupling: teams strangle the application tier but both services share the legacy database, making true independence impossible. A strangler-fig migration is not complete until the data store is also migrated, which is typically 3–10× harder than the code migration. Surface per-capability "data migration status" separately from "traffic migration status" — they are independent axes and collapsing them hides the real work remaining.
+Finally, **dependency blindness**: the vine-grower-style visual makes migration look like independent nodes, but real strangler-fig migrations have hidden coupling (shared sessions, shared DB tables, shared auth middleware). If your simulation doesn't model a `sharedState[]` field alongside `dependencies[]`, users will design migration orders that look valid topologically but deadlock on shared resources in production. Add a "shared-state conflict" detector that flags any two endpoints touching the same shared resource when one is `migrated` and the other is still `legacy`.
