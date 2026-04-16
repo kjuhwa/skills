@@ -388,6 +388,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [outbox-pattern-lab](outbox-pattern-lab/) | Outbox Pattern Lab — auto-generated outbox-pattern tool | html, css, vanilla-js | 2026-04-16 |
 
+| [strangler-fig-timeline](strangler-fig-timeline/) | Strangler Fig Timeline — auto-generated strangler-fig tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

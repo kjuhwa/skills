@@ -1,0 +1,12 @@
+{
+  "slug": "strangler-fig-timeline",
+  "title": "Strangler Fig Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:48:19.369Z",
+  "source_project": "102-strangler-fig-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}

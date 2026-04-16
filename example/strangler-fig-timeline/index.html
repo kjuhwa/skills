@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Strangler Fig Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <h1>Fig Timeline</h1>
+    <p>Architectural migration over 18 months</p>
+    <div id="legend">
+      <span class="sw legacy"></span> Legacy Monolith
+      <span class="sw fig"></span> New Service
+      <span class="sw proxy"></span> Proxy Layer
+    </div>
+    <div id="detail">
+      <h3>Select a phase</h3>
+      <p class="body">Click a milestone on the timeline to inspect it.</p>
+    </div>
+  </aside>
+  <main>
+    <svg id="timeline" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet"></svg>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
