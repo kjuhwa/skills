@@ -1,6 +1,6 @@
 ---
 name: actor-model-visualization-pattern
-description: Canvas/SVG rendering of actors-as-nodes with mailboxes, in-flight messages, and supervision edges
+description: Render actor mailboxes, supervision trees, and message flows as live, inspectable graphs
 category: design
 triggers:
   - actor model visualization pattern
@@ -11,6 +11,8 @@ version: 1.0.0
 
 # actor-model-visualization-pattern
 
-Each actor renders as a labeled circle whose radius scales with mailbox depth (e.g., `22 + min(mailbox.length * 2, 18)`), with fill color flipping between idle and busy states (`#6ee7b7` for busy/alive). Messages in transit are small dots interpolated along a straight line `from → to` using a per-message `t` parameter incremented each frame; on `t >= 1` the message is pushed into `to.mailbox` and spliced from the in-flight array. Supervision trees use SVG with recursive `layout(node, x, y, w)` that divides horizontal width by `children.length` and steps down ~110px per depth, drawing cubic Bezier edges with midpoint control points `C x,(y+cy)/2 cx,(y+cy)/2 cx,cy-18`.
+Actor-model apps benefit from a split-pane visualization where the left pane shows the supervision hierarchy as a collapsible tree (root supervisor → child supervisors → worker actors) and the right pane shows per-actor mailbox state (queue depth, current message, processed count, restart count). Each actor node should expose four visual states via color coding: `running` (green), `processing` (pulsing blue), `restarting` (amber with a countdown to backoff expiry), and `stopped` (gray). Message envelopes animate along parent→child edges with a short trail so causal order is visible even when throughput is high.
 
-Status gets encoded via CSS classes (`alive`, `crashed`, `restarting`) toggled on the SVG `<g>` group, plus a secondary restart-count label `↺${n.restarts}` rendered beneath the node. For throughput graphs, sample `total received - lastCount` on a 1s `setInterval` into a rolling 60-point history array and plot a polyline scaled to `max(10, ...history)`. Keep background trails by filling the canvas with low-alpha black (`rgba(15,17,23,0.2)`) instead of clearing, which produces motion blur for moving actors.
+For the mailbox view, render the FIFO queue as a horizontal strip of message cards with sender PID, message type, and enqueue timestamp; when an actor dequeues, slide the head card into a "current" slot and fade it out on completion. Include overlays for the three invariants that matter in actor debugging: (1) one-message-at-a-time per actor (highlight violations in red), (2) let-it-crash boundaries (draw a dashed ring around supervised subtrees and flash the ring on restart), and (3) mailbox backpressure (gradient fill intensifying as queue depth approaches the configured bound).
+
+Keep the visualization driven by an append-only event log (ActorSpawned, MessageSent, MessageReceived, ActorCrashed, ActorRestarted, ActorStopped) rather than by polling actor state. This makes the view replayable: scrubbing a timeline slider re-derives the tree and mailbox state at any past instant, which is essential for explaining supervision semantics to users who are new to the model.
