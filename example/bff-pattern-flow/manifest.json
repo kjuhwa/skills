@@ -1,0 +1,12 @@
+{
+  "slug": "bff-pattern-flow",
+  "title": "Bff Pattern Flow",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:39:03.845Z",
+  "source_project": "100-bff-pattern-flow",
+  "author": "kjuhwa@nkia.co.kr"
+}
