@@ -1,6 +1,6 @@
 ---
 name: sidecar-proxy-data-simulation
-description: Generate synthetic Envoy-style telemetry with listener/cluster/route hierarchy and injectable policy/latency faults
+description: Generate synthetic sidecar proxy traffic with realistic latency, retry, and mTLS handshake semantics.
 category: workflow
 triggers:
   - sidecar proxy data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # sidecar-proxy-data-simulation
 
-Simulate sidecar proxy data by modeling the Envoy object graph explicitly: listeners (inbound:15006, outbound:15001), filter chains, clusters (one per upstream service + passthrough), endpoints, and RDS routes. Seed a small service mesh (4–8 services) with a deterministic call graph, then generate requests as events carrying {trace_id, source_pod, dest_service, path, method, headers}. Each request should fan out through a pipeline function that applies listener match → filter chain → HTTP connection manager → router → cluster LB → endpoint, recording a span at each hop. This lets flow, policy, and latency apps share one generator and toggle which hops they visualize.
+Model each simulated request as a state machine traversing hops: `app_egress → local_sidecar_out → network → remote_sidecar_in → remote_app → remote_sidecar_out → network → local_sidecar_in → app_ingress`. Attach a latency contribution per hop drawn from a configurable distribution (log-normal for network, fixed+jitter for sidecar processing ~0.5–2ms, one-time mTLS handshake cost ~5–30ms amortized via connection reuse). This hop decomposition is what makes simulated p50/p99 numbers feel credible and lets the config-lab show the cost of adding a new filter.
 
-Inject realistic faults via three knobs: policy rules (AuthZ allow/deny with principal + path matchers mirroring Istio AuthorizationPolicy), latency distributions per hop (log-normal for app, fixed+jitter for TLS handshake, bimodal for cold-start filter compilation), and failure modes (503 upstream_reset, 504 upstream_timeout, 403 rbac_denied). Emit access logs in Envoy's default format string so downstream views can parse response_flags (UH, UF, UO, NR, RL) into human-readable causes.
+Seed traffic with a small service graph (3–7 services) and per-edge RPS, then let each service fan out to downstreams based on a call-ratio matrix. Inject faults at the sidecar layer — not the app — to reflect reality: connection resets, 503s from upstream circuit-breaker trips, retry budget exhaustion, and rate-limit rejections. Each synthetic event should carry `{trace_id, source_workload, dest_workload, protocol, mtls_used, outcome, latency_ms, retry_count}` so downstream visualizations can filter and aggregate consistently across the explorer, config-lab, and traffic-sim apps.
 
-For the latency-scope view specifically, precompute p50/p90/p99 per hop per route over a sliding window, and tag each request with whether it breached the SLO — this enables heatmaps and percentile-split coloring without recomputation on every frame. Keep the generator pure and seedable so the same scenario reproduces across reloads and demos.
+Expose three tunable knobs at minimum: global RPS multiplier, fault-injection probability per edge, and policy-change events (timeout/retry/circuit-breaker config pushes) that take effect after a simulated xDS propagation delay (~100–500ms). Replaying the same seed must produce identical traces so users can A/B compare "before policy change" vs "after" deterministically — this reproducibility is non-negotiable for a config lab.
