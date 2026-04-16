@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stream Throughput Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Stream Throughput Monitor</h1>
+  <p class="sub">Live metrics for the ingest→transform→sink pipeline</p>
+  <div class="grid">
+    <div class="card">
+      <div class="card-head"><span>Ingest rate</span><strong id="ingest">0 msg/s</strong></div>
+      <svg id="ingestChart" viewBox="0 0 400 120"></svg>
+    </div>
+    <div class="card">
+      <div class="card-head"><span>Lag (records)</span><strong id="lag">0</strong></div>
+      <svg id="lagChart" viewBox="0 0 400 120"></svg>
+    </div>
+    <div class="card">
+      <div class="card-head"><span>Error rate</span><strong id="err">0%</strong></div>
+      <svg id="errChart" viewBox="0 0 400 120"></svg>
+    </div>
+    <div class="card">
+      <div class="card-head"><span>P99 latency</span><strong id="lat">0 ms</strong></div>
+      <svg id="latChart" viewBox="0 0 400 120"></svg>
+    </div>
+  </div>
+  <div class="topics">
+    <h2>Partition backlog</h2>
+    <div id="partitions"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
