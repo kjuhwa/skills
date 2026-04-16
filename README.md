@@ -1,9 +1,9 @@
 # skills-hub
 
-> **Skill & knowledge registry for Claude Code** — 217 reusable skills you can install into any project with a single slash command.
+> **Skill & knowledge registry for Claude Code** — 277 reusable skills you can install into any project with a single slash command.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/skills-217-blue)](./index.json)
+[![Skills](https://img.shields.io/badge/skills-277-blue)](./index.json)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kjuhwa/skills-hub)
 ![GitHub stars](https://img.shields.io/github/stars/kjuhwa/skills-hub?style=social)
 
@@ -14,16 +14,17 @@ Stop re-deriving the same patterns in every Claude Code session. `skills-hub` is
 curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/install.sh | bash
 
 # Then in any Claude Code session
-/init_skills react testing        # search + install matching skills
-/skills_extract_project           # mine this repo for new skills
-/skills_publish                   # ship them back to the hub
+/hub-install react testing        # search + install matching skills
+/hub-extract                      # mine this repo for new skills
+/hub-publish-skills               # ship them back to the hub
 ```
 
 **Highlights**
-- 🔎 **Search before you code** — `/skills_search "kafka retry"` finds prior-art from every project you've shipped.
-- 📦 **Category-separated registry** — 19 canonical categories (`apm`, `backend`, `ai`, `arch`, …), one skill per folder, frontmatter-driven.
+- 🔎 **Search before you code** — `/hub-search-skills "kafka retry"` finds prior-art from every project you've shipped.
+- 📦 **Category-separated registry** — 19 canonical categories (`apm`, `backend`, `ai`, `arch`, ...), one skill per folder, frontmatter-driven.
 - 🧠 **Two kinds of memory** — executable **skills** (recipes with triggers) + non-executable **knowledge** (facts, decisions, pitfalls).
 - 🔁 **Round-trip workflow** — extract drafts from a session or full project → review → publish via one PR.
+- 🌐 **Import from anywhere** — `/hub-import <git-url>` pulls skills from external repos (authored or extracted).
 - 🤝 **Claude Code + [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) compatible** — works with vanilla Claude Code; integrates deeper with OMC.
 
 ---
@@ -38,40 +39,42 @@ skills/                       # category-separated skill registry
       content.md              # main prompt / knowledge body (required)
       examples/               # optional
 bootstrap/
-  commands/                   # slash-command markdown files (recursive: subdirs become command namespaces)
-    init_skills.md
-    init_skills_all.md              # bulk install of ALL skills and ALL knowledge in one shot
-    skills_search.md
-    skills_list.md
-    skills_sync.md
-    skills_extract.md
-    skills_extract_session.md
-    skills_publish.md
-    skills_finalize.md
-    skills_cleanup.md
-    skills_remove.md
-    skills_import_git.md            # import skills/knowledge from an arbitrary git repo (authored or extracted)
-    skills_research.md              # research skills/knowledge from the web by keyword, or pull current trends when no keyword is given
-    example_list.md                 # list projects already published under example/ in the remote (duplication check)
-    example_add.md                  # publish a local creation to example/<slug>/ with a generated README, branch, and PR
-    make_something.md               # creative build command — inventories skills/knowledge, checks example/ prior art, builds and offers to publish
-    skills_bootstrap_update.md      # pull command files (latest or tagged version; recursive)
-    skills_bootstrap_publish.md     # publish command edits + bootstrap/v<ver> tag (recursive)
-    skills_extract_knowledge.md     # extract skills + non-executable knowledge (session/diff/commits)
-    skills_extract_project.md       # full-project scan → drafts BOTH skills and knowledge
-    knowledge_list.md               # list locally installed knowledge entries
-    knowledge_search.md             # search knowledge and optionally inject matches into context
-    knowledge_publish.md            # review knowledge drafts → push to remote branch (no version tags)
-    publish_all.md                  # one-shot publish of both skills and knowledge on a single branch / PR
-    skills_merge.md                 # combine 2+ remote entries into one new draft (/skills_merge)
-    skills_split.md                 # decompose one remote entry into N focused drafts (/skills_split)
-    skills_refactor.md              # scan remote for merge + split candidates in one pass (/skills_refactor)
+  commands/                   # slash-command markdown files
+    hub-install.md
+    hub-install-all.md
+    hub-search-skills.md
+    hub-search-knowledge.md
+    hub-list-skills.md
+    hub-list-knowledge.md
+    hub-list-examples.md
+    hub-show.md
+    hub-status.md
+    hub-sync.md
+    hub-extract.md
+    hub-extract-session.md
+    hub-publish-skills.md
+    hub-publish-knowledge.md
+    hub-publish-all.md
+    hub-publish-example.md
+    hub-finalize.md
+    hub-cleanup.md
+    hub-remove.md
+    hub-import.md
+    hub-research.md
+    hub-merge.md
+    hub-split.md
+    hub-refactor.md
+    hub-make.md
+    hub-doctor.md
+    hub-commands-update.md
+    hub-commands-publish.md
   skills/
     skills-hub/SKILL.md       # umbrella OMC skill
   install.sh                  # bash installer
   install.ps1                 # PowerShell installer
 CATEGORIES.md                 # canonical category list
-index.json                    # flat catalog (auto-generated by /skills_cleanup --reindex)
+registry.json                 # skill + knowledge catalog
+index.json                    # flat catalog (auto-generated by /hub-cleanup --reindex)
 ```
 
 ---
@@ -82,13 +85,13 @@ index.json                    # flat catalog (auto-generated by /skills_cleanup 
 
 **Linux / macOS / Git Bash on Windows:**
 ```bash
-git clone https://github.com/kjuhwa/skills.git ~/.claude/skills-hub/remote
+git clone https://github.com/kjuhwa/skills-hub.git ~/.claude/skills-hub/remote
 bash ~/.claude/skills-hub/remote/bootstrap/install.sh
 ```
 
 **PowerShell (Windows):**
 ```powershell
-git clone https://github.com/kjuhwa/skills.git $HOME\.claude\skills-hub\remote
+git clone https://github.com/kjuhwa/skills-hub.git $HOME\.claude\skills-hub\remote
 powershell -ExecutionPolicy Bypass -File $HOME\.claude\skills-hub\remote\bootstrap\install.ps1
 ```
 
@@ -102,7 +105,7 @@ Restart Claude Code to pick up the new slash commands.
 
 Inside Claude Code:
 ```
-/skills_list
+/hub-list-skills
 ```
 Should report "no skills installed yet" plus the empty registry — proves the hub is wired up.
 
@@ -110,56 +113,84 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 
 ## Command Reference
 
+### Install & Search
+
 | Command | Purpose | Writes? |
 |---|---|---|
-| `/init_skills <keyword \| name@version>` | Search remote → interactive install; supports version pinning | local install |
-| `/init_skills_all [--global/--skills-only/--knowledge-only/--category=...]` | **Bulk install** every skill and every knowledge entry in one shot (installs from `main` HEAD; collisions are skipped) | local install |
-| `/skills_search <keyword>` | Preview remote matches + available tagged versions, no install | no |
-| `/skills_list` | Show installed skills with source, version, pin state | no |
-| `/skills_sync [--skill=.. --version=..]` | Refresh cache; bulk update, targeted rollback, or `--unpin` | local |
-| `/skills_extract [keyword] [--max=<n>]` | **Full project scan** → skill drafts in `.skills-draft/`. Optional keyword focuses extraction on that domain. No limit by default. | local drafts |
-| `/skills_extract_session [keyword]` | **Current session only** → drafts from recent changes. Optional keyword filters to that domain. | local drafts |
-| `/skills_publish` | Review drafts → push to remote branch + `skills/<name>/v<ver>` tag | remote branch + tag |
-| `/skills_finalize` | End-of-project: extract → review → publish → cleanup | remote branch |
-| `/skills_cleanup` | Remote maintenance: dedupe, re-index, stale review | remote branch (dry-run default) |
-| `/skills_remove <name>` | Uninstall a local skill | local |
-| `/skills_bootstrap_update [--version=x.y.z]` | Install/rollback the slash-command files themselves | local commands |
-| `/skills_bootstrap_publish [--bump=...]` | Publish command edits + `bootstrap/v<ver>` tag | remote branch + tag |
-| `/skills_extract_knowledge [keyword] [--from ...]` | Extract **both** executable skills *and* non-executable knowledge from session / git diff / commits. Optional keyword focuses on that domain. | local drafts + knowledge |
-| `/skills_extract_project [keyword] [--scope=... --max=... --only=...]` | **Full project scan** → drafts BOTH skills *and* knowledge. Optional keyword focuses extraction. No limit by default. | local drafts |
-| `/knowledge_list [--category/--tag/--linked-to/--orphans]` | List locally installed knowledge entries | no |
-| `/knowledge_search <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
-| `/knowledge_publish [--all/--draft=.../--pr]` | Review knowledge drafts → push to a feature branch, update `registry.json` knowledge section. No version tags. | remote branch |
-| `/publish_all [--all/--pr/--only ...]` | One-shot publish of BOTH `.skills-draft/` and `.knowledge-draft/` on a single branch + PR, knowledge-first commit order for cross-link resolution | remote branch + skill tags |
-| `/skills_merge <selector1> <selector2> [...]` | Combine 2+ remote skills/knowledge into one new draft. Supports cross-kind (skill+knowledge), version pinning (`@v1.2.0`), mandatory `merged_from` provenance | local drafts |
-| `/skills_split <selector> [--by=section\|step\|concern\|auto]` | Decompose one remote entry into N focused drafts. Refuses trivially-small inputs; records `split_from`/`replaces`/`siblings` | local drafts |
-| `/skills_refactor [--scope/--merge-threshold/...]` | Scan remote for merge + split candidates in one pass, delegate to the two commands above. Bias toward merge when an entry qualifies for both | local drafts |
-| `/skills_research [<keyword>] [--trend-source=... --depth=... --only=... --dry-run]` | Research skills/knowledge from the web by keyword, or pull current engineering trends when no keyword is given. Stages drafts with web-source attribution under `.skills-draft/` and `.knowledge-draft/` | local drafts |
-| `/example_list [--refresh/--verbose]` | List projects already published under `example/` in the remote; use as a duplication check before `/make_something` | no |
-| `/example_add <slug> [--from/--title/--why/--stack/--no-pr]` | Publish a local creation to `example/<slug>/` with a generated README, feature branch, commit, and PR | remote branch + PR |
-| `/make_something [hint...]` | Creative build command — inventories installed skills/knowledge, checks `example/` prior art to avoid duplication, proposes 2–3 candidates, builds, verifies, and offers to publish via `/example_add` | local build + optional remote |
+| `/hub-install <keyword \| name@version>` | Search remote → interactive install; supports version pinning | local install |
+| `/hub-install-all [--global/--skills-only/--knowledge-only/--category=...]` | **Bulk install** every skill and every knowledge entry in one shot (from `main` HEAD; collisions skipped) | local install |
+| `/hub-search-skills <keyword>` | Preview remote skill matches + available tagged versions, no install | no |
+| `/hub-search-knowledge <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
+| `/hub-list-skills` | Show installed skills with source, version, pin state | no |
+| `/hub-list-knowledge [--category/--tag/--linked-to/--orphans]` | List locally installed knowledge entries | no |
+| `/hub-list-examples [--refresh/--verbose]` | List projects published under `example/` in the remote | no |
+| `/hub-show <name>` | Display the full content of an installed skill or knowledge entry | no |
+| `/hub-status` | Show a compact summary of the skills hub (counts, staleness, health) | no |
+| `/hub-sync [--skill=.. --version=..]` | Refresh cache; bulk update, targeted rollback, or `--unpin` | local |
+| `/hub-remove <name>` | Uninstall a local skill | local |
+
+### Extract & Draft
+
+| Command | Purpose | Writes? |
+|---|---|---|
+| `/hub-extract [keyword] [--max=<n> --only=...]` | **Full project scan** → drafts BOTH skills and knowledge in `.skills-draft/` / `.knowledge-draft/`. Optional keyword focuses extraction. | local drafts |
+| `/hub-extract-session [keyword]` | **Current session only** → drafts from recent changes. Optional keyword filters to that domain. | local drafts |
+| `/hub-import <git-url> [--ref=... --extract/--no-extract/--as-knowledge]` | Import skills/knowledge from an external git repo (authored or extracted) and stage as drafts | local drafts |
+| `/hub-research [<keyword>] [--trend-source=... --depth=... --only=... --dry-run]` | Research skills/knowledge from the web by keyword, or pull current engineering trends | local drafts |
+
+### Publish & Ship
+
+| Command | Purpose | Writes? |
+|---|---|---|
+| `/hub-publish-skills` | Review skill drafts → push to remote branch + `skills/<name>/v<ver>` tag | remote branch + tag |
+| `/hub-publish-knowledge [--all/--draft=.../--pr]` | Review knowledge drafts → push to a feature branch, update `registry.json` | remote branch |
+| `/hub-publish-all [--all/--pr/--only ...]` | One-shot publish of BOTH `.skills-draft/` and `.knowledge-draft/` on a single branch + PR | remote branch + skill tags |
+| `/hub-publish-example <slug> [--from/--title/--why/--stack/--no-pr]` | Publish a local creation to `example/<slug>/` with README, branch, and PR | remote branch + PR |
+| `/hub-finalize` | End-of-project: extract → review → publish → cleanup | remote branch |
+
+### Refactor & Maintain
+
+| Command | Purpose | Writes? |
+|---|---|---|
+| `/hub-merge <selector1> <selector2> [...]` | Combine 2+ remote skills/knowledge into one new draft | local drafts |
+| `/hub-split <selector> [--by=section\|step\|concern\|auto]` | Decompose one remote entry into N focused drafts | local drafts |
+| `/hub-refactor [--scope/--merge-threshold/...]` | Scan remote for merge + split candidates in one pass | local drafts |
+| `/hub-cleanup` | Remote maintenance: dedupe, re-index, stale review | remote branch (dry-run default) |
+| `/hub-doctor` | Diagnose and repair local skills hub installation issues | local |
+| `/hub-make [hint...]` | Creative build — inventories skills, checks prior art, builds, offers to publish | local + optional remote |
+
+### Bootstrap (command files)
+
+| Command | Purpose | Writes? |
+|---|---|---|
+| `/hub-commands-update [--version=x.y.z]` | Install/rollback the slash-command files themselves | local commands |
+| `/hub-commands-publish [--bump=...]` | Publish command edits + `bootstrap/v<ver>` tag | remote branch + tag |
 
 ### Typical Workflow
 
 ```
 # Project start
-/init_skills apm          → install observability skills for an APM project
-/init_skills backend      → grab useful backend patterns
+/hub-install apm             → install observability skills for an APM project
+/hub-install backend         → grab useful backend patterns
 
 # During work — nothing needed, installed skills auto-activate via triggers
 
 # Extract what you learned
-/skills_extract_session   → drafts from just this session
-/skills_extract kafka     → keyword-focused: only kafka-related patterns
+/hub-extract-session          → drafts from just this session
+/hub-extract kafka            → keyword-focused: only kafka-related patterns
 # or
-/skills_extract           → drafts from the whole project (no limit)
-/skills_extract_project tenant  → keyword-focused: only multi-tenancy patterns
+/hub-extract                  → drafts from the whole project (no limit)
+
+# Import from external repos
+/hub-import https://github.com/garrytan/gstack   → stage external skills as drafts
 
 # Review & publish
-/skills_publish --pr      → creates branch, opens PR
+/hub-publish-skills --pr     → creates branch, opens PR
+# or
+/hub-publish-all --pr        → publish both skills + knowledge in one PR
 
 # Project wrap-up (one-shot)
-/skills_finalize --scope=full --auto-pr
+/hub-finalize --scope=full --auto-pr
 ```
 
 ---
@@ -173,31 +204,31 @@ Both skill content and the bootstrap command files use git tags for immutable ve
 - **Per-skill**: `skills/<name>/v<semver>` — e.g. `skills/kafka-header-metadata/v1.2.0`
 - **Bootstrap (command files)**: `bootstrap/v<semver>` — e.g. `bootstrap/v1.0.0`
 
-Tags are annotated and created automatically by `/skills_publish` and `/skills_bootstrap_publish`.
+Tags are annotated and created automatically by `/hub-publish-skills` and `/hub-commands-publish`.
 
 ### Installing a specific skill version
 
 ```
-/init_skills my-skill@1.1.0
+/hub-install my-skill@1.1.0
 # or
-/init_skills my-skill --version=1.1.0
+/hub-install my-skill --version=1.1.0
 ```
 
-Versioned installs are marked `pinned: true` in `~/.claude/skills-hub/registry.json` and are skipped by bulk `/skills_sync` (unless `--force`).
+Versioned installs are marked `pinned: true` in `~/.claude/skills-hub/registry.json` and are skipped by bulk `/hub-sync` (unless `--force`).
 
 ### Rolling back an installed skill
 
 ```
-/skills_sync --skill=my-skill --version=1.0.0   # rollback to v1.0.0, pins
-/skills_sync --skill=my-skill --unpin           # resume tracking latest
+/hub-sync --skill=my-skill --version=1.0.0   # rollback to v1.0.0, pins
+/hub-sync --skill=my-skill --unpin           # resume tracking latest
 ```
 
 ### Updating the slash commands themselves
 
 ```
-/skills_bootstrap_update                     # latest (main HEAD)
-/skills_bootstrap_update --version=1.2.0     # specific tagged release
-/skills_bootstrap_update --dry-run           # preview diff only
+/hub-commands-update                     # latest (main HEAD)
+/hub-commands-update --version=1.2.0     # specific tagged release
+/hub-commands-update --dry-run           # preview diff only
 ```
 
 Current bootstrap version is recorded in `~/.claude/skills-hub/bootstrap.json`. Rolling back to an older tag is supported — you will be asked to confirm a downgrade.
@@ -207,7 +238,7 @@ Current bootstrap version is recorded in `~/.claude/skills-hub/bootstrap.json`. 
 After editing local command files under `~/.claude/commands/`:
 
 ```
-/skills_bootstrap_publish --bump=patch --pr
+/hub-commands-publish --bump=patch --pr
 ```
 
 This creates a branch, commits the changes under `bootstrap/commands/`, adds tag `bootstrap/v<next>`, pushes both, and (optionally) opens a PR. Existing tags are never overwritten.
@@ -254,20 +285,20 @@ Structure:
 
 ## Contributing
 
-1. Use `/skills_extract` or `/skills_extract_session` in a real project to produce drafts.
+1. Use `/hub-extract` or `/hub-extract-session` in a real project to produce drafts.
 2. Review each draft locally — sanitize, add examples, refine triggers.
-3. `/skills_publish --pr` creates a branch like `skills/add-<category>-<date>` and opens a PR.
+3. `/hub-publish-skills --pr` creates a branch like `skills/add-<category>-<date>` and opens a PR.
 4. Never push directly to `main` — all contributions go through branches.
 
 ### Category Proposals
 
-If you need a new category, edit `CATEGORIES.md` in the same PR that adds the first skill using it. Keep categories **broad** (≤20 total) — tags do the fine-grained work.
+If you need a new category, edit `CATEGORIES.md` in the same PR that adds the first skill using it. Keep categories **broad** (<=20 total) — tags do the fine-grained work.
 
 ---
 
 ## Knowledge (non-executable)
 
-`/skills_extract_knowledge` recognises two distinct artifact classes when mining a session or git history:
+`/hub-extract` recognises two distinct artifact classes when mining a session or git history:
 
 - **Skills** — reusable *executable* procedures (existing flow). Stored under `~/.claude/skills/<slug>/`.
 - **Knowledge** — *non-executable* facts, architecture decisions, pitfalls, domain context that are valuable to remember but not to "run". Stored under `~/.claude/skills-hub/knowledge/<category>/<slug>.md`.
@@ -276,8 +307,8 @@ If you need a new category, edit `CATEGORIES.md` in the same PR that adds the fi
 
 | Chunk shape | Verdict |
 |---|---|
-| "Do X by following steps …" (input → procedure → output) | `skill` |
-| "X is true because …" (declaration, constraint, decision, lesson) | `knowledge` |
+| "Do X by following steps ..." (input -> procedure -> output) | `skill` |
+| "X is true because ..." (declaration, constraint, decision, lesson) | `knowledge` |
 | Procedure + rationale mixed | `both` — two files with bidirectional `linked_*` references |
 | One-off / context-dependent fragment | `drop` |
 
@@ -307,62 +338,84 @@ Body sections: `## Fact` / `## Context / Why` / `## Evidence` / `## Applies when
 ### Typical flow
 
 ```
-/skills_extract_knowledge --from range main..HEAD   # classify each commit
-/skills_extract_knowledge kafka --from session      # keyword-focused: only kafka-related
+/hub-extract --from range main..HEAD         # classify each commit
+/hub-extract kafka --from session            # keyword-focused: only kafka-related
 # review preview, toggle entries, confirm
-/knowledge_list                                     # see what was added
-/knowledge_search "kafka routing" --inject          # prime context before work
+/hub-list-knowledge                          # see what was added
+/hub-search-knowledge "kafka routing" --inject  # prime context before work
 ```
 
-Knowledge publishing is now supported. Use `/knowledge_publish` to push drafts under `.knowledge-draft/` to a feature branch (no version tags — knowledge is content-addressed, history is the trail). For releases that contain both skills and knowledge from the same extraction round, use `/publish_all` to ship them on a single branch + PR; knowledge commits land first so skills can reference the knowledge slug in the same branch. Registry schema is `v2` (`knowledge: {}` key + `linked_knowledge` on each skill).
+Knowledge publishing is supported. Use `/hub-publish-knowledge` to push drafts under `.knowledge-draft/` to a feature branch (no version tags — knowledge is content-addressed, history is the trail). For releases that contain both skills and knowledge from the same extraction round, use `/hub-publish-all` to ship them on a single branch + PR; knowledge commits land first so skills can reference the knowledge slug in the same branch. Registry schema is `v2` (`knowledge: {}` key + `linked_knowledge` on each skill).
+
+---
+
+## Importing from External Repos
+
+`/hub-import` lets you pull skills and knowledge from any public (or accessible) git repository:
+
+```
+# Repo with authored SKILL.md files — stage verbatim as drafts
+/hub-import https://github.com/garrytan/gstack
+
+# Arbitrary source repo — extraction pipeline discovers patterns
+/hub-import https://github.com/some-org/their-project --extract-only
+
+# Convert external skills into knowledge references for comparison
+/hub-import https://github.com/garrytan/gstack --as-knowledge
+
+# After import, publish the drafts
+/hub-publish-all --pr
+```
+
+Imported drafts are staged under `.skills-draft/` and `.knowledge-draft/` with full attribution (`source_type`, `source_url`, `source_commit`). Nothing is installed directly — review before publishing.
 
 ---
 
 ## Remote Maintenance: merge / split / refactor
 
-Once the registry has grown, three commands help keep it coherent. All three are **read-only on the remote cache** — they produce drafts under `.skills-draft/` / `.knowledge-draft/` that ship via the normal publish flow (`/skills_publish`, `/knowledge_publish`, or `/publish_all`).
+Once the registry has grown, three commands help keep it coherent. All three are **read-only on the remote cache** — they produce drafts under `.skills-draft/` / `.knowledge-draft/` that ship via the normal publish flow (`/hub-publish-skills`, `/hub-publish-knowledge`, or `/hub-publish-all`).
 
 ### Selectors
 
-`/skills_merge` and `/skills_split` accept selectors pointing to existing remote entries:
+`/hub-merge` and `/hub-split` accept selectors pointing to existing remote entries:
 
 - `skill:<category>/<name>` — e.g. `skill:backend/retry-with-jitter-backoff`
 - `knowledge:<category>/<slug>` — e.g. `knowledge:pitfall/retry-storms-without-jitter`
-- `<category>/<name>` — kind auto-detected; ambiguous → error, require prefix
+- `<category>/<name>` — kind auto-detected; ambiguous -> error, require prefix
 - `@v<semver>` suffix on any of the above pins to a tag (skills only): `skill:backend/retry@v1.2.0`
 
 ### Merge — consolidate overlapping entries
 
 ```
-/skills_merge skill:backend/retry-with-jitter skill:backend/retry-on-5xx \
+/hub-merge skill:backend/retry-with-jitter skill:backend/retry-on-5xx \
     knowledge:pitfall/retry-storms --name=unified-retry-strategy
 ```
 
-Produces one new skill draft with the union of problems, a single unified `Pattern`, preserved `Alternative examples`, and mandatory `merged_from` / `## Provenance` attribution. Knowledge sources are summarized into a `## Background` section and cross-linked via `linked_knowledge`, not duplicated as files. Default behavior marks sources with `supersedes: [...]` so `/skills_cleanup` can later propose deprecation; `--keep-sources` omits the hint.
+Produces one new skill draft with the union of problems, a single unified `Pattern`, preserved `Alternative examples`, and mandatory `merged_from` / `## Provenance` attribution. Knowledge sources are summarized into a `## Background` section and cross-linked via `linked_knowledge`, not duplicated as files. Default behavior marks sources with `supersedes: [...]` so `/hub-cleanup` can later propose deprecation; `--keep-sources` omits the hint.
 
 ### Split — break up multi-purpose entries
 
 ```
-/skills_split skill:backend/retry-strategy --by=concern
+/hub-split skill:backend/retry-strategy --by=concern
 ```
 
-Strategies: `section` (split by topical `##` headers), `step` (skills-only — per-step decomposition), `concern` (cluster paragraphs by dominant tag), `auto` (try `concern` → `section` → `step`). Refuses to split entries below ~400 body lines. Each child draft inherits confidence (knowledge) and lists its `siblings` for navigation. Oversize alone doesn't qualify — the detector must find ≥2 clean clusters.
+Strategies: `section` (split by topical `##` headers), `step` (skills-only — per-step decomposition), `concern` (cluster paragraphs by dominant tag), `auto` (try `concern` -> `section` -> `step`). Refuses to split entries below ~400 body lines. Each child draft inherits confidence (knowledge) and lists its `siblings` for navigation. Oversize alone doesn't qualify — the detector must find >=2 clean clusters.
 
 ### Refactor — one pass, both operations
 
 ```
-/skills_refactor --scope=backend --merge-threshold=0.75
+/hub-refactor --scope=backend --merge-threshold=0.75
 ```
 
-Scans the remote, finds merge candidates (tag + content similarity clusters) **and** split candidates (large entries with ≥2 concerns), resolves overlap (merge wins when an entry qualifies for both), presents a single review table, then delegates to `/skills_merge` and `/skills_split` for accepted candidates. Results aggregate into `.skills-draft/_REFACTOR_MANIFEST.md`. Ship with `/publish_all --pr` so cross-links land in one branch.
+Scans the remote, finds merge candidates (tag + content similarity clusters) **and** split candidates (large entries with >=2 concerns), resolves overlap (merge wins when an entry qualifies for both), presents a single review table, then delegates to `/hub-merge` and `/hub-split` for accepted candidates. Results aggregate into `.skills-draft/_REFACTOR_MANIFEST.md`. Ship with `/hub-publish-all --pr` so cross-links land in one branch.
 
-Use `/skills_refactor` periodically (monthly, or after a burst of publish activity). For targeted single operations, call `/skills_merge` or `/skills_split` directly — they're cheaper.
+Use `/hub-refactor` periodically (monthly, or after a burst of publish activity). For targeted single operations, call `/hub-merge` or `/hub-split` directly — they're cheaper.
 
 ---
 
 ## Safety & Conventions
 
-- `/skills_publish` and `/skills_cleanup` always dry-run first. Writes require per-item confirmation.
+- `/hub-publish-skills` and `/hub-cleanup` always dry-run first. Writes require per-item confirmation.
 - Cleanup **never auto-deletes** stale skills. Always human-reviewed PRs.
 - `extract` writes only to `.skills-draft/` (add it to your project `.gitignore`).
 - Skill content must be **generalizable** — no business names, credentials, internal URLs.
