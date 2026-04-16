@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canary Release Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="dash">
+  <header><h1>Canary Release Dashboard</h1><span class="badge" id="status">ROLLING OUT</span></header>
+  <div class="grid">
+    <div class="card"><h3>Deployment Timeline</h3><svg id="timeline" viewBox="0 0 600 120"></svg></div>
+    <div class="card"><h3>Latency (ms)</h3><canvas id="latencyChart" width="280" height="130"></canvas></div>
+    <div class="card"><h3>Error Budget</h3><div id="budgetRing"></div></div>
+    <div class="card"><h3>Event Log</h3><ul id="log"></ul></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "slug": "canary-release-dashboard",
+  "title": "Canary Release Dashboard",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:17:42.875Z",
+  "source_project": "101-canary-release-dashboard",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -190,6 +190,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [event-sourcing-ledger](event-sourcing-ledger/) | Event Sourcing Ledger — auto-generated event-sourcing tool | html, css, vanilla-js | 2026-04-16 |
 
+| [canary-release-dashboard](canary-release-dashboard/) | Canary Release Dashboard — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
