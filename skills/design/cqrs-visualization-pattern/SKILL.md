@@ -1,6 +1,6 @@
 ---
 name: cqrs-visualization-pattern
-description: Split-pane visualization separating command (write) and query (read) paths with a synchronized event bus in the middle
+description: Split-pane command/query flow visualizer with distinct write-model and read-model lanes for CQRS apps
 category: design
 triggers:
   - cqrs visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # cqrs-visualization-pattern
 
-CQRS visualizations should use a three-column layout that mirrors the architectural separation: commands on the left, an event/projection bus in the middle, and queries on the right. Commands flow left-to-right as discrete boxes (CreateOrder, UpdateInventory, CancelOrder) into a write-model aggregate, which emits domain events downward onto the bus. The bus fans out to one or more read-model projections (OrderSummaryView, InventoryCountView), each rendered as its own denormalized table or card so viewers see why projections are purpose-built rather than normalized. Queries enter from the right and resolve instantly against these views, highlighting the asymmetry that makes CQRS valuable.
+CQRS visualizations should render the command side (left lane) and query side (right lane) as visually distinct swim-lanes, with an explicit projection/sync arrow crossing between them. The command lane shows: incoming command → validator → aggregate/write-model → event emission. The query lane shows: materialized view(s) → query handler → response. Use one color family for write (e.g., amber/red — mutation) and another for read (e.g., blue/green — safe), and animate events traveling from write to read so eventual-consistency lag is visible rather than hidden.
 
-Use motion and color to reinforce the divide: commands animate with a "request→validate→persist→emit" multi-stage path in one hue (e.g., orange for writes), while queries animate as a single fast lookup in a contrasting hue (e.g., blue for reads). Events on the bus need a third color and carry a visible sequence number so users can trace causality from command to projection update. Always show eventual consistency explicitly — a lag indicator (ms or event count) between event emission and projection apply is the single most educational element, because it's the property newcomers most often miss.
+For cqrs-flow-visualizer and read-write-split-lab style apps, expose a "projection delay" slider (0–5000ms) so users can watch the read model catch up after a command. Render the event log as a middle column or bus between the two lanes — this makes it obvious that reads never touch the write store directly. For event-sourced-counter style apps, layer a replay timeline below the lanes so the user can scrub through events and watch the projection rebuild; the current counter value should visibly tick as each event is re-applied.
 
-Include a toggle to collapse one side at a time. Letting the user hide the read side shows "pure command sourcing" feel; hiding the write side shows "pure materialized views." This teaches that CQRS is a dial, not a binary choice, and prevents the common misreading that CQRS requires event sourcing.
+Always surface three counters in a HUD: commands/sec, events/sec, queries/sec. Divergence between event rate and query-model update rate is the single most useful diagnostic signal in a CQRS demo, and hiding it defeats the purpose of the visualization.
