@@ -1,0 +1,12 @@
+{
+  "slug": "read-replica-loadbalancer",
+  "title": "Read Replica Loadbalancer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:18:08.153Z",
+  "source_project": "102-read-replica-loadbalancer",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read Replica Load Balancer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Read Replica Load Balancer</h1>
+<div id="controls">
+  <button onclick="setStrategy('round-robin')">Round Robin</button>
+  <button onclick="setStrategy('least-conn')">Least Connections</button>
+  <button onclick="setStrategy('weighted')">Weighted</button>
+</div>
+<div id="panel">
+  <div id="lb-box"><div class="tag">Load Balancer</div><div id="strategy-label">round-robin</div><div id="total-req">0 requests</div></div>
+  <div id="replicas"></div>
+</div>
+<div id="log"></div>
+<script src="app.js"></script>
+</body>
+</html>
