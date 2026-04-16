@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ubiquitous Language Glossary</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Ubiquitous Language</h1>
+  <input id="search" placeholder="Search terms, synonyms, contexts...">
+  <select id="ctx">
+    <option value="">All Contexts</option>
+  </select>
+</header>
+<main>
+  <ul id="terms"></ul>
+  <article id="detail">
+    <p class="empty">Select a term to view its definition.</p>
+  </article>
+</main>
+<footer>
+  <span id="stats"></span>
+  <span class="legend">
+    <span class="dot core"></span> Core
+    <span class="dot supporting"></span> Supporting
+    <span class="dot generic"></span> Generic
+  </span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
