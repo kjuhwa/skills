@@ -1,0 +1,12 @@
+{
+  "slug": "cqrs-command-query-split",
+  "title": "Cqrs Command Query Split",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T14:09:20.794Z",
+  "source_project": "101-cqrs-command-query-split",
+  "author": "kjuhwa@nkia.co.kr"
+}

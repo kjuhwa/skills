@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CQRS Command/Query Split Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>CQRS Split Dashboard</h1>
+<div class="dash">
+  <div class="col">
+    <h2>Command Side</h2>
+    <form id="cmd-form">
+      <select id="cmd-type"><option>AddUser</option><option>PlaceOrder</option><option>ShipItem</option></select>
+      <input id="cmd-payload" placeholder="payload..." />
+      <button type="submit">Execute</button>
+    </form>
+    <div id="events" class="feed"></div>
+  </div>
+  <div class="col">
+    <h2>Query Side</h2>
+    <div class="stat-grid" id="stats"></div>
+    <h3>Event Sourced Log</h3>
+    <div id="projection" class="feed"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -202,6 +202,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [sidecar-proxy-traffic-flow](sidecar-proxy-traffic-flow/) | Sidecar Proxy Traffic Flow — auto-generated sidecar-proxy tool | html, css, vanilla-js | 2026-04-16 |
 
+| [cqrs-command-query-split](cqrs-command-query-split/) | Cqrs Command Query Split — auto-generated cqrs tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
