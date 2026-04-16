@@ -1899,6 +1899,62 @@
       "source_commit": "f11166f9f5f8a11e668346fe1c1e37270868b2ba",
       "pinned": false,
       "linked_knowledge": []
+    },
+    "mfa-federated-component-loader": {
+      "category": "frontend",
+      "version": "1.0.0",
+      "scope": "global",
+      "installed_at": "2026-04-16",
+      "source_commit": "4b922a9043",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "ag-grid-cell-renderer-pattern": {
+      "category": "frontend",
+      "version": "1.0.0",
+      "scope": "global",
+      "installed_at": "2026-04-16",
+      "source_commit": "4b922a9043",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "recoil-domain-atom-store": {
+      "category": "frontend",
+      "version": "1.0.0",
+      "scope": "global",
+      "installed_at": "2026-04-16",
+      "source_commit": "4b922a9043",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "drawer-resizable-composition": {
+      "category": "frontend",
+      "version": "1.0.0",
+      "scope": "global",
+      "installed_at": "2026-04-16",
+      "source_commit": "4b922a9043",
+      "pinned": false,
+      "linked_knowledge": [
+        "drawer-over-modal"
+      ]
+    },
+    "axios-token-refresh-queue": {
+      "category": "backend",
+      "version": "1.0.0",
+      "scope": "global",
+      "installed_at": "2026-04-16",
+      "source_commit": "4b922a9043",
+      "pinned": false,
+      "linked_knowledge": []
+    },
+    "sse-fetch-streaming": {
+      "category": "frontend",
+      "version": "1.0.0",
+      "scope": "global",
+      "installed_at": "2026-04-16",
+      "source_commit": "4b922a9043",
+      "pinned": false,
+      "linked_knowledge": []
     }
   },
   "knowledge": {
@@ -3521,6 +3577,48 @@
       "added_at": "2026-04-16",
       "linked_skills": [
         "mfa-portal-css-isolation"
+      ]
+    },
+    "endpoint-service-dual-pattern": {
+      "category": "api",
+      "source_project": "lucida-ui",
+      "added_at": "2026-04-16",
+      "linked_skills": []
+    },
+    "mf-shared-singleton-config": {
+      "category": "arch",
+      "source_project": "lucida-ui",
+      "added_at": "2026-04-16",
+      "linked_skills": [
+        "mfa-federated-component-loader"
+      ]
+    },
+    "scss-css-variable-theme-system": {
+      "category": "arch",
+      "source_project": "lucida-ui",
+      "added_at": "2026-04-16",
+      "linked_skills": []
+    },
+    "sirius-component-taxonomy": {
+      "category": "arch",
+      "source_project": "lucida-ui",
+      "added_at": "2026-04-16",
+      "linked_skills": []
+    },
+    "drawer-over-modal": {
+      "category": "decision",
+      "source_project": "lucida-ui",
+      "added_at": "2026-04-16",
+      "linked_skills": [
+        "drawer-resizable-composition"
+      ]
+    },
+    "recoil-over-redux": {
+      "category": "decision",
+      "source_project": "lucida-ui",
+      "added_at": "2026-04-16",
+      "linked_skills": [
+        "recoil-domain-atom-store"
       ]
     }
   }
