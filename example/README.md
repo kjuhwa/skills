@@ -378,7 +378,7 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [websocket-handshake-visualizer](websocket-handshake-visualizer/) | Websocket Handshake Visualizer — auto-generated websocket tool | html, css, vanilla-js | 2026-04-16 |
 
-| [crdt-lww-editor](crdt-lww-editor/) | Crdt Lww Editor — auto-generated crdt tool | html, css, vanilla-js | 2026-04-16 |
+| [crdt-orset-graph](crdt-orset-graph/) | Crdt Orset Graph — auto-generated crdt tool | html, css, vanilla-js | 2026-04-16 |
 
 ## Adding an example
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OR-Set Causal Graph</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Observed-Remove Set</h1>
+  <p>Add/remove tags across replicas. Remove only tombstones observed adds — concurrent adds survive.</p>
+</header>
+<main>
+  <div class="workspace">
+    <aside class="controls">
+      <div class="replica-ctl" data-r="R1">
+        <h3>Replica R1</h3>
+        <div class="chips" id="chips-R1"></div>
+        <input type="text" placeholder="new tag..." data-r="R1" />
+        <button data-r="R1">Add</button>
+      </div>
+      <div class="replica-ctl" data-r="R2">
+        <h3>Replica R2</h3>
+        <div class="chips" id="chips-R2"></div>
+        <input type="text" placeholder="new tag..." data-r="R2" />
+        <button data-r="R2">Add</button>
+      </div>
+      <button id="merge" class="merge-btn">Merge R1 ⇄ R2</button>
+      <button id="reset" class="reset-btn">Reset</button>
+    </aside>
+    <svg id="graph" viewBox="0 0 520 480"></svg>
+  </div>
+  <section class="legend">
+    <span><i class="dot add"></i>Add (tag, uid)</span>
+    <span><i class="dot rem"></i>Tombstone</span>
+    <span><i class="dot live"></i>Live element</span>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
