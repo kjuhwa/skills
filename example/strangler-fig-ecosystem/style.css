@@ -1,0 +1,9 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;overflow:hidden;font-family:system-ui,sans-serif;color:#c9cdd5}
+canvas{display:block}
+#info{position:fixed;top:16px;right:16px;background:#1a1d27;padding:16px;border-radius:10px;width:200px}
+h1{font-size:14px;color:#6ee7b7;margin-bottom:8px}
+#hover{font-size:11px;min-height:32px;opacity:.7}
+#stats{margin-top:8px;font-size:11px}
+.st{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #222}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
