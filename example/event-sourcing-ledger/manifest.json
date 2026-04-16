@@ -1,0 +1,12 @@
+{
+  "slug": "event-sourcing-ledger",
+  "title": "Event Sourcing Ledger",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T13:12:46.933Z",
+  "source_project": "101-event-sourcing-ledger",
+  "author": "kjuhwa@nkia.co.kr"
+}

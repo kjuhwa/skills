@@ -188,6 +188,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [connection-pool-bubbles](connection-pool-bubbles/) | Connection Pool Bubbles — auto-generated connection-pool tool | html, css, vanilla-js | 2026-04-16 |
 
+| [event-sourcing-ledger](event-sourcing-ledger/) | Event Sourcing Ledger — auto-generated event-sourcing tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

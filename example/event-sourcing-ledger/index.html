@@ -1,0 +1,33 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Sourcing Ledger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>🏦 Account Ledger — Event Sourced</h1>
+  <div class="row">
+    <div class="panel">
+      <h2>Commands</h2>
+      <select id="cmd"><option>Deposit</option><option>Withdraw</option><option>Transfer</option><option>Interest</option></select>
+      <input id="amt" type="number" placeholder="Amount" value="50">
+      <button id="exec">Execute</button>
+    </div>
+    <div class="panel balance">
+      <h2>Balance</h2>
+      <div id="bal">$0.00</div>
+      <div id="snap" class="snap"></div>
+      <button id="takeSnap">📸 Snapshot</button>
+    </div>
+  </div>
+  <canvas id="chart" height="140"></canvas>
+  <div id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
+```
