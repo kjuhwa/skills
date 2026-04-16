@@ -1,0 +1,12 @@
+{
+  "slug": "rate-limiter-playground",
+  "title": "Rate Limiter Playground",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:42:49.091Z",
+  "source_project": "102-rate-limiter-playground",
+  "author": "kjuhwa@nkia.co.kr"
+}

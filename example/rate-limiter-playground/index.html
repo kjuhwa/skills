@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Limiter Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Algorithm Playground</h1>
+  <div class="tabs">
+    <button class="tab active" data-alg="fixed">Fixed Window</button>
+    <button class="tab" data-alg="sliding">Sliding Window</button>
+    <button class="tab" data-alg="leaky">Leaky Bucket</button>
+  </div>
+  <div class="main">
+    <div class="panel">
+      <label>Max requests: <input type="number" id="maxReq" value="10" min="1" max="50"></label>
+      <label>Window (ms): <input type="number" id="winMs" value="3000" min="500" max="10000" step="500"></label>
+      <button id="fire">Fire Request</button>
+      <button id="burst">Burst x15</button>
+      <button id="reset">Reset</button>
+    </div>
+    <svg id="timeline" width="780" height="280"></svg>
+    <div class="stats">
+      <span>Allowed: <b id="sOk" class="green">0</b></span>
+      <span>Rejected: <b id="sNo" class="red">0</b></span>
+      <span>Total: <b id="sTot">0</b></span>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

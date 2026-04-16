@@ -1,0 +1,17 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
+.app { max-width: 820px; width: 100%; }
+h1 { color: #6ee7b7; font-size: 1.3rem; margin-bottom: 12px; }
+.tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+.tab { background: #1a1d27; color: #8b949e; border: 1px solid #2d333b; padding: 6px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+.tab.active { background: #6ee7b7; color: #0f1117; border-color: #6ee7b7; font-weight: 600; }
+.main { background: #1a1d27; border-radius: 8px; padding: 16px; }
+.panel { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.panel label { font-size: 0.82rem; display: flex; align-items: center; gap: 4px; }
+.panel input { background: #0f1117; border: 1px solid #2d333b; color: #c9d1d9; padding: 4px 8px; border-radius: 4px; width: 70px; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.82rem; }
+button:hover { opacity: 0.85; }
+#reset { background: #2d333b; color: #c9d1d9; }
+svg { display: block; width: 100%; background: #0f1117; border-radius: 6px; }
+.stats { margin-top: 10px; display: flex; gap: 20px; font-size: 0.85rem; }
+.green { color: #6ee7b7; } .red { color: #f87171; }
