@@ -1,6 +1,6 @@
 ---
 name: websocket-data-simulation
-description: Deterministic synthetic WebSocket traffic generator for demos and load simulation
+description: Deterministic fake WebSocket traffic generator with opcode/frame fidelity for offline demos
 category: workflow
 triggers:
   - websocket data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # websocket-data-simulation
 
-WebSocket demos need realistic-feeling traffic without a real backend. Build a simulator that emits frames on three independent clocks: a fast clock (50-200ms) for application data frames with randomized payload sizes drawn from a log-normal distribution (most frames small, occasional bursts), a slow clock (20-30s) for ping/pong pairs to match RFC 6455 defaults, and a rare-event clock (seeded PRNG) for connection churn (opens, closes with various codes 1000/1001/1006/1011, reconnects with exponential backoff).
+Simulating WebSocket traffic requires generating events at the *frame* level, not just the message level, so visualizations can show fragmentation, control frames, and backpressure realistically. Model each emitted event as `{ts, direction, opcode, fin, payloadLen, maskKey?, payloadPreview}` and drive emission from a seeded PRNG so the same seed replays the same session — critical for screenshots, tests, and shareable demo links.
 
-Drive the simulator from a seeded PRNG so demos are reproducible — the same seed produces the same frame sequence, the same disconnect at t=47s, the same burst at t=112s. Expose knobs for frame-rate multiplier, error injection probability, and client count. For swarm scenarios, model each virtual client as an independent state machine with its own RTT jitter (sample from a gamma distribution, mean 30-80ms) so the aggregate looks natural rather than lockstep.
+Use scenario presets that each exercise a distinct protocol behavior: a *chat* preset emits bursty text frames with idle ping/pong every 30s; a *pulse-monitor* preset emits steady 1Hz telemetry with occasional reconnect storms; a *handshake* preset emits only the upgrade sequence and first few frames then stops. Each preset should expose knobs for message rate, fragmentation threshold (split payloads >N bytes into continuation frames with opcode 0x0), and artificial latency/jitter so the visualization can demonstrate backpressure and out-of-order arrival.
 
-Critically, simulate the asymmetries real WebSocket traffic exhibits: server→client is usually higher volume than client→server, control frames cluster around reconnects, and close frames often arrive without a preceding close handshake (code 1006). A simulator that only emits clean text frames at a steady rate will mislead viewers about what production traffic actually looks like.
+Crucially, do not import a real `ws` client. A pure in-memory EventEmitter loop is faster, works offline, and avoids the CORS/TLS friction that kills browser-based WS demos. Expose a single `start(seed, preset)` / `stop()` / `step()` API so the UI layer stays agnostic of whether events come from a live socket or the simulator.

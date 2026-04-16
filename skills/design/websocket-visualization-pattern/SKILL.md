@@ -1,6 +1,6 @@
 ---
 name: websocket-visualization-pattern
-description: Real-time visualization pattern for WebSocket frame flow, connection state, and message throughput
+description: Canvas/SVG-based frame-level visualization for WebSocket protocol state, handshake phases, and message flow
 category: design
 triggers:
   - websocket visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # websocket-visualization-pattern
 
-WebSocket-focused dashboards should visualize three distinct layers simultaneously: the connection lifecycle (CONNECTING → OPEN → CLOSING → CLOSED with ping/pong heartbeats overlaid), the frame stream (binary vs text frames, opcodes 0x1/0x2/0x8/0x9/0xA rendered as colored lanes on a horizontal timeline), and aggregate throughput (frames/sec and bytes/sec as dual-axis sparklines). Use a split-pane layout: left pane shows the raw frame inspector with hex+ASCII dump, right pane shows the aggregated timeline. Each frame should animate in from the right edge with a fade, giving operators a visceral sense of traffic intensity without needing to parse numbers.
+WebSocket visualizations benefit from a three-layer rendering model: (1) a connection-lifecycle timeline showing CONNECTING→OPEN→CLOSING→CLOSED states with color-coded transitions, (2) a bidirectional message lane (client↑ / server↓) where each frame is a rectangle whose width encodes payload size and whose fill encodes opcode (0x1 text, 0x2 binary, 0x8 close, 0x9 ping, 0xA pong), and (3) an overlay for control events (masking key, FIN bit, RSV reserved bits). Render with a fixed time axis scrolling left-to-right so live traffic and replay share the same coordinate system.
 
-Color-code by semantic role rather than opcode value: green for application data (text/binary), amber for control frames (ping/pong), red for close frames, grey for continuation. Highlight masked vs unmasked frames with a border treatment since this distinguishes client→server from server→client flow. For chat-swarm style multi-client views, render each connection as a horizontal swim lane with a synchronized time axis so operators can spot fan-out patterns, stuck clients, and correlated disconnects at a glance.
+For handshake visualization specifically, split the HTTP upgrade into discrete animated steps: client GET with `Sec-WebSocket-Key`, server 101 with `Sec-WebSocket-Accept` (= base64(sha1(key + GUID))), then protocol switch. Expose the SHA-1 computation inline so learners see *why* the accept value is derived, not just that it is. Use monospace for headers, highlight the magic GUID `258EAFA5-E914-47DA-95CA-C5AB0DC85B11` as an immutable constant.
 
-Always surface backpressure signals visually: bufferedAmount growth should render as a rising fill in the connection row, and frame-rate drops should pulse the lane amber. These derived signals matter more than raw frame counts because they predict disconnects before they happen.
+Keep the canvas stateless and redraw from an event log on every frame — this makes scrubbing, pause/resume, and deterministic replay trivial, and avoids the mutable-DOM bugs that plague live-updated WS dashboards.
