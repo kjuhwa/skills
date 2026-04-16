@@ -316,6 +316,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [websocket-pulse-monitor](websocket-pulse-monitor/) | Websocket Pulse Monitor — auto-generated websocket tool | html, css, vanilla-js | 2026-04-16 |
 
+| [retry-strategy-explorer](retry-strategy-explorer/) | Retry Strategy Explorer — auto-generated retry-strategy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

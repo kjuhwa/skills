@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retry Strategy Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Retry Strategy Explorer</h1>
+  <p>Compare backoff algorithms over simulated failing requests</p>
+</header>
+<main>
+  <aside class="controls">
+    <label>Strategy
+      <select id="strategy">
+        <option value="fixed">Fixed Interval</option>
+        <option value="linear">Linear Backoff</option>
+        <option value="exponential" selected>Exponential Backoff</option>
+        <option value="jitter">Exponential + Jitter</option>
+        <option value="decorrelated">Decorrelated Jitter</option>
+      </select>
+    </label>
+    <label>Base delay (ms) <input type="range" id="base" min="50" max="1000" value="200"></label>
+    <label>Max attempts <input type="range" id="max" min="3" max="12" value="8"></label>
+    <label>Failure rate <input type="range" id="fail" min="0" max="100" value="60"></label>
+    <button id="run">Run Simulation</button>
+    <div class="stats" id="stats"></div>
+  </aside>
+  <section class="viz">
+    <canvas id="chart" width="760" height="420"></canvas>
+    <ul id="log"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
