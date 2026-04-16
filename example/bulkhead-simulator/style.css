@@ -1,0 +1,10 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;display:flex;justify-content:center;padding:30px}
+#app{text-align:center}
+h1{color:#6ee7b7;margin-bottom:6px;font-size:1.4rem}
+.sub{color:#8b949e;font-size:.85rem;margin-bottom:16px}
+canvas{background:#1a1d27;border-radius:10px;cursor:crosshair;display:block;margin:0 auto}
+#controls{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:16px}
+button{background:#6ee7b7;color:#0f1117;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:600}
+button:hover{opacity:.85}
+#status{font-size:.85rem;color:#8b949e}
