@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gacha Simulator Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top Nav -->
+    <header class="top-bar">
+      <div class="logo">★ Gacha Arena</div>
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="gacha">Gacha</button>
+        <button class="tab-btn" data-tab="collection">Collection</button>
+        <button class="tab-btn" data-tab="combat">Combat</button>
+      </nav>
+      <div class="currency">
+        <span class="gem-icon">💎</span>
+        <span id="gem-count">10000</span>
+      </div>
+    </header>
+
+    <!-- GACHA TAB -->
+    <div id="tab-gacha" class="tab-content active">
+      <div class="three-col-layout">
+
+        <!-- Left Sidebar -->
+        <aside class="sidebar-left">
+          <section class="panel">
+            <h3 class="panel-title">Banner</h3>
+            <div class="banner-list" id="banner-list">
+              <button class="banner-btn active" data-banner="standard">
+                <span class="banner-icon">🌟</span>
+                <span class="banner-name">Standard</span>
+                <span class="banner-sub">Always available</span>
+              </button>
+              <button class="banner-btn" data-banner="featured">
+                <span class="banner-icon">⚡</span>
+                <span class="banner-name">Featured</span>
+                <span class="banner-sub">Limited time</span>
+              </button>
+              <button class="banner-btn" data-banner="legendary">
+                <span class="banner-icon">👑</span>
+                <span class="banner-name">Legendary</span>
+                <span class="banner-sub">Ultra rare pool</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h3 class="panel-title">Pity Counter</h3>
+            <div class="pity-display">
+              <div class="pity-row">
+                <span class="pity-label">Current Pulls</span>
+                <span class="pity-value" id="pity-count">0</span>
+              </div>
+              <div class="pity-progress-wrap">
+                <div class="pity-bar-bg">
+                  <div class="pity-bar-fill" id="pity-bar"></div>
+                  <div class="pity-soft-marker" id="soft-marker"></div>
+                </div>
+                <div class="pity-labels-row">
+                  <span>0</span><span>75</span><span>90</span>
+                </div>
+              </div>
+              <div class="pity-row">
+                <span class="pity-label">Current Rate</span>
+                <span class="pity-value accent" id="pity-rate">2.00%</span>
+              </div>
+              <div class="pity-row">
+                <span class="pity-label">Hard Pity at</span>
+                <span class="pity-value">90 pulls</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h3 class="panel-title">Pull</h3>
+            <div class="pull-cost-row">
+              <span class="gem-icon">💎</span>
+              <span id="pull-cost-label">160 / 1600</span>
+            </div>
+            <div class="pull-buttons">
+              <button class="pull-btn pull-1x" id="btn-pull1">
+                <span class="pull-btn-icon">✦</span>
+                <span class="pull-btn-label">Pull 1×</span>
+              </button>
+              <button class="pull-btn pull-10x" id="btn-pull10">
+                <span class="pull-btn-icon">✦✦</span>
+                <span class="pull-btn-label">Pull 10×</span>
+              </button>
+            </div>
+            <button class="btn-secondary" id="btn-free-gems">+ Free 10,000 Gems</button>
+          </section>
+        </aside>
+
+        <!-- Center -->
+        <main class="center-area">
+          <div class="banner-hero" id="banner-hero">
+            <div class="banner-hero-content">
+              <div class="banner-title-large" id="banner-title-large">Standard Banner</div>
+              <div class="banner-desc" id="banner-desc">Pull to discover powerful heroes. Guaranteed Legendary at 90 pulls.</div>
+              <div class="rate-pills">
+                <span class="rate-pill common">Common 60%</span>
+                <span class="rate-pill rare">Rare 30%</span>
+                <span class="rate-pill epic">Epic 8%</span>
+                <span class="rate-pill legendary">Legendary 2%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card reveal area -->
+          <div class="card-reveal-area" id="card-reveal-area" style="display:none">
+            <div class="reveal-cards" id="reveal-cards"></div>
+            <button class="btn-primary" id="btn-close-reveal">Continue</button>
+          </div>
+
+          <!-- Pull history -->
+          <div class="pull-history-wrap">
+            <h3 class="panel-title">Pull History <span class="history-count" id="history-count">(0)</span></h3>
+            <div class="pull-history-list" id="pull-history-list">
+              <div class="history-empty">No pulls yet. Start pulling!</div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar-right">
+          <section class="panel">
+            <h3 class="panel-title">Statistics</h3>
+            <div class="stat-grid">
+              <div class="stat-item">
+                <div class="stat-value" id="stat-total">0</div>
+                <div class="stat-label">Total Pulls</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value legendary-text" id="stat-legendary">0</div>
+                <div class="stat-label">Legendary</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value epic-text" id="stat-epic">0</div>
+                <div class="stat-label">Epic</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value rare-text" id="stat-rare">0</div>
+                <div class="stat-label">Rare</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value" id="stat-avg-pity">—</div>
+                <div class="stat-label">Avg Pity</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value accent" id="stat-luck">—</div>
+                <div class="stat-label">Luck Rating</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" id="char-detail-panel" style="display:none">
+            <h3 class="panel-title">Character Detail</h3>
+            <div id="char-detail-content"></div>
+          </section>
+
+          <section class="panel">
+            <h3 class="panel-title">Recent Legendary</h3>
+            <div id="legendary-log" class="legendary-log">
+              <div class="history-empty">No legendaries yet</div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <!-- COLLECTION TAB -->
+    <div id="tab-collection" class="tab-content">
+      <div class="collection-layout">
+        <aside class="sidebar-left">
+          <section class="panel">
+            <h3 class="panel-title">Filter</h3>
+            <div class="filter-group">
+              <label class="filter-label">Rarity</label>
+              <div class="filter-pills" id="filter-rarity">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="Legendary">★★★★</button>
+                <button class="filter-pill" data-filter="Epic">★★★</button>
+                <button class="filter-pill" data-filter="Rare">★★</button>
+                <button class="filter-pill" data-filter="Common">★</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Type</label>
+              <div class="filter-pills" id="filter-type">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="Warrior">Warrior</button>
+                <button class="filter-pill" data-filter="Mage">Mage</button>
+                <button class="filter-pill" data-filter="Archer">Archer</button>
+                <button class="filter-pill" data-filter="Healer">Healer</button>
+                <button class="filter-pill" data-filter="Tank">Tank</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Owned</label>
+              <div class="filter-pills" id="filter-owned">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="owned">Owned</button>
+                <button class="filter-pill" data-filter="locked">Not Owned</button>
+              </div>
+            </div>
+            <div class="collection-summary">
+              <div class="pity-row">
+                <span class="pity-label">Owned</span>
+                <span class="pity-value" id="coll-owned-count">0</span>
+              </div>
+              <div class="pity-row">
+                <span class="pity-label">Total</span>
+                <span class="pity-value" id="coll-total-count">0</span>
+              </div>
+            </div>
+          </section>
+        </aside>
+        <main class="center-area">
+          <h2 class="section-title">Character Collection</h2>
+          <div class="collection-grid" id="collection-grid"></div>
+        </main>
+        <aside class="sidebar-right">
+          <section class="panel" id="coll-char-detail" style="display:none">
+            <h3 class="panel-title">Character Detail</h3>
+            <div id="coll-char-content"></div>
+          </section>
+          <section class="panel">
+            <h3 class="panel-title">Collection Stats</h3>
+            <div class="stat-grid">
+              <div class="stat-item">
+                <div class="stat-value legendary-text" id="coll-stat-leg">0</div>
+                <div class="stat-label">Legendary</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value epic-text" id="coll-stat-epic">0</div>
+                <div class="stat-label">Epic</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value rare-text" id="coll-stat-rare">0</div>
+                <div class="stat-label">Rare</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value" id="coll-stat-common">0</div>
+                <div class="stat-label">Common</div>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <!-- COMBAT TAB -->
+    <div id="tab-combat" class="tab-content">
+      <div class="three-col-layout">
+        <!-- Left: Team selection -->
+        <aside class="sidebar-left">
+          <section class="panel">
+            <h3 class="panel-title">Your Team (3)</h3>
+            <div class="team-slots" id="team-slots">
+              <div class="team-slot empty" data-slot="0"><span>+ Add Hero</span></div>
+              <div class="team-slot empty" data-slot="1"><span>+ Add Hero</span></div>
+              <div class="team-slot empty" data-slot="2"><span>+ Add Hero</span></div>
+            </div>
+            <button class="btn-primary" id="btn-start-combat" disabled>Start Battle</button>
+            <button class="btn-secondary" id="btn-clear-team">Clear Team</button>
+          </section>
+          <section class="panel">
+            <h3 class="panel-title">Owned Heroes</h3>
+            <div class="combat-hero-list" id="combat-hero-list"></div>
+          </section>
+        </aside>
+
+        <!-- Center: Combat arena -->
+        <main class="center-area">
+          <div id="combat-setup-view">
+            <div class="combat-idle-msg">
+              <div class="combat-idle-icon">⚔️</div>
+              <h2>Select 3 Heroes to Battle</h2>
+              <p>Pick heroes from the left panel, then press Start Battle.</p>
+            </div>
+          </div>
+          <div id="combat-arena-view" style="display:none">
+            <!-- Enemy team -->
+            <div class="arena-team enemies">
+              <h3 class="arena-team-label">Enemies — Wave <span id="wave-num">1</span></h3>
+              <div class="arena-units" id="enemy-units"></div>
+            </div>
+            <!-- VS divider -->
+            <div class="arena-vs">⚔️</div>
+            <!-- Player team -->
+            <div class="arena-team players">
+              <h3 class="arena-team-label">Your Team</h3>
+              <div class="arena-units" id="player-units"></div>
+            </div>
+            <!-- Action buttons -->
+            <div class="combat-actions" id="combat-actions">
+              <button class="action-btn" id="act-attack">Attack</button>
+              <button class="action-btn" id="act-skill">Skill</button>
+              <button class="action-btn" id="act-defend">Defend</button>
+              <button class="action-btn" id="act-item">Item</button>
+            </div>
+            <div class="turn-indicator" id="turn-indicator">Waiting...</div>
+          </div>
+          <div id="combat-result-view" style="display:none">
+            <div class="combat-result-box" id="combat-result-box"></div>
+            <button class="btn-primary" id="btn-next-wave">Next Wave</button>
+            <button class="btn-secondary" id="btn-end-combat">End Combat</button>
+          </div>
+        </main>
+
+        <!-- Right: Combat log -->
+        <aside class="sidebar-right">
+          <section class="panel" style="flex:1">
+            <h3 class="panel-title">Combat Log</h3>
+            <div class="combat-log" id="combat-log">
+              <div class="history-empty">No combat yet</div>
+            </div>
+          </section>
+          <section class="panel">
+            <h3 class="panel-title">Turn Order</h3>
+            <div class="turn-order-list" id="turn-order-list">
+              <div class="history-empty">—</div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
