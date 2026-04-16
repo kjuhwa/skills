@@ -1,0 +1,12 @@
+{
+  "slug": "mv-freshness-monitor",
+  "title": "Mv Freshness Monitor",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T08:41:02.068Z",
+  "source_project": "34-mv-freshness-monitor",
+  "author": "kjuhwa@nkia.co.kr"
+}

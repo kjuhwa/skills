@@ -1,0 +1,15 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; padding: 16px; }
+h1 { text-align: center; margin-bottom: 16px; font-size: 1.1rem; color: #6ee7b7; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.card { background: #1a1d27; border-radius: 10px; padding: 16px; border-left: 4px solid #6ee7b7; transition: border-color 0.3s; }
+.card.stale { border-left-color: #f85149; }
+.card.warning { border-left-color: #d29922; }
+.card h2 { font-size: 0.95rem; margin-bottom: 8px; }
+.card .meta { font-size: 0.78rem; color: #8b949e; margin-bottom: 10px; }
+.bar-bg { height: 8px; background: #2d333b; border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+.bar-fg { height: 100%; border-radius: 4px; transition: width 1s; }
+.card .actions { display: flex; gap: 8px; margin-top: 10px; }
+.card button { background: transparent; border: 1px solid #6ee7b7; color: #6ee7b7; padding: 3px 10px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+.card button:hover { background: #6ee7b722; }
+.sparkline { height: 30px; margin: 6px 0; }
