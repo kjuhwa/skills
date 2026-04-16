@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ETL Transform Playground</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>ETL Transform Playground</h1>
+  <p>Chain transformations and inspect row-by-row output</p>
+</header>
+<main>
+  <section class="panel">
+    <h2>Source Data</h2>
+    <pre id="source"></pre>
+  </section>
+  <section class="panel">
+    <h2>Transform Chain</h2>
+    <div id="chain"></div>
+    <div class="add-row">
+      <select id="opPick">
+        <option value="filter">filter: amount &gt; 50</option>
+        <option value="upper">uppercase: name</option>
+        <option value="trim">trim: name</option>
+        <option value="tax">add column: tax (8%)</option>
+        <option value="status">map: status → label</option>
+        <option value="dropcol">drop: email</option>
+        <option value="round">round: amount</option>
+      </select>
+      <button id="addOp">+ Add Step</button>
+      <button id="clearOp">Clear</button>
+    </div>
+  </section>
+  <section class="panel wide">
+    <h2>Output <span id="count"></span></h2>
+    <div id="output"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
