@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bulkhead Pool Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Bulkhead Pool Simulator</h1>
+  <p>Isolated thread pools protecting services from cascading failure</p>
+</header>
+<main>
+  <section class="controls">
+    <button id="spawn-payment">+ Payment Request</button>
+    <button id="spawn-search">+ Search Request</button>
+    <button id="spawn-report">+ Report Request</button>
+    <button id="toggle-chaos">Toggle Chaos Mode</button>
+  </section>
+  <section class="pools" id="pools"></section>
+  <section class="queue-panel">
+    <h2>Rejected / Queued</h2>
+    <div id="rejected"></div>
+  </section>
+  <section class="stats">
+    <div class="stat"><span class="label">Accepted</span><span id="accepted">0</span></div>
+    <div class="stat"><span class="label">Rejected</span><span id="rejected-count">0</span></div>
+    <div class="stat"><span class="label">Uptime</span><span id="uptime">0s</span></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

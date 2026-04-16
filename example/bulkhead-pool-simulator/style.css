@@ -1,0 +1,106 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, system-ui, sans-serif;
+  background: #0f1117;
+  color: #e8eaf0;
+  padding: 24px;
+  min-height: 100vh;
+}
+header { margin-bottom: 24px; }
+header h1 { color: #6ee7b7; font-size: 28px; margin-bottom: 4px; }
+header p { color: #8a92a8; font-size: 14px; }
+main {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+}
+.controls {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+button {
+  background: #1a1d27;
+  color: #6ee7b7;
+  border: 1px solid #2a2f3d;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+button:hover { background: #242834; border-color: #6ee7b7; }
+.pools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.pool {
+  background: #1a1d27;
+  border: 1px solid #2a2f3d;
+  border-radius: 10px;
+  padding: 16px;
+}
+.pool h3 { font-size: 14px; margin-bottom: 12px; display: flex; justify-content: space-between; }
+.pool h3 .badge { font-size: 11px; color: #8a92a8; font-weight: normal; }
+.slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.slot {
+  aspect-ratio: 1;
+  background: #0f1117;
+  border: 1px solid #2a2f3d;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.slot.busy { border-color: #6ee7b7; }
+.slot .fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #6ee7b7;
+  opacity: 0.5;
+  transition: height 0.1s linear;
+}
+.slot.failed .fill { background: #ef4444; }
+.pool-queue { font-size: 11px; color: #8a92a8; }
+.queue-panel {
+  background: #1a1d27;
+  border: 1px solid #2a2f3d;
+  border-radius: 10px;
+  padding: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.queue-panel h2 { font-size: 14px; margin-bottom: 10px; color: #8a92a8; }
+.queued-item {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-left: 3px solid #ef4444;
+  margin-bottom: 4px;
+  background: #0f1117;
+  animation: slide 0.3s;
+}
+@keyframes slide { from { opacity: 0; transform: translateX(10px); } }
+.stats {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+}
+.stat {
+  flex: 1;
+  background: #1a1d27;
+  border: 1px solid #2a2f3d;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.stat .label { color: #8a92a8; font-size: 12px; }
+.stat span:last-child { color: #6ee7b7; font-weight: 600; }
