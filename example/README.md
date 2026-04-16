@@ -106,6 +106,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [pub-sub-flow-canvas](pub-sub-flow-canvas/) | Pub Sub Flow Canvas — auto-generated pub-sub tool | html, css, vanilla-js | 2026-04-16 |
 
+| [sidecar-proxy-topology](sidecar-proxy-topology/) | Sidecar Proxy Topology — auto-generated sidecar-proxy tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
