@@ -1,6 +1,6 @@
 ---
 name: retry-strategy-visualization-pattern
-description: Visual timeline pattern for rendering retry attempts with backoff intervals, jitter bands, and success/failure outcomes
+description: Visualize retry attempts as timeline tracks with backoff intervals, jitter bands, and terminal outcome markers
 category: design
 triggers:
   - retry strategy visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # retry-strategy-visualization-pattern
 
-Retry strategy visualizers benefit from a horizontal time-axis layout where each attempt is rendered as a discrete marker (circle or bar) positioned by its scheduled dispatch time. The gap between markers visually encodes the backoff curve — exponential strategies produce widening gaps, linear strategies produce uniform gaps, and fixed strategies produce identical spacing. Overlay a translucent "jitter band" around each attempt marker to show the randomization window (±jitter%), which makes the difference between full-jitter, equal-jitter, and decorrelated-jitter immediately legible. Color-code markers by outcome: amber for in-flight, red for failed (retryable), dark-red for exhausted, green for success.
+Render each in-flight request as a horizontal track on a time axis, with attempt markers (circles) placed at t₀, t₀+delay₁, t₀+delay₂, ... where delay_n follows the chosen backoff policy (fixed, linear, exponential, decorrelated jitter). Color-code each attempt by outcome: green for success, amber for retryable failure (429/503/timeout), red for terminal failure (4xx non-retryable), and gray for attempts suppressed by budget or circuit breaker. Overlay the computed backoff interval as a translucent band between markers so viewers can distinguish wait time from actual request latency.
 
-A second synchronized panel should show the cumulative delay budget consumed versus the configured deadline/timeout ceiling as a stacked area chart. This surfaces the "retry cliff" — the moment where the next scheduled attempt would exceed the deadline and must be aborted. Annotate circuit breaker state transitions (closed → open → half-open) as vertical guide lines across both panels so viewers can correlate retry bursts with breaker trips. For multi-request scenarios, use small multiples (one row per request-id) rather than overlaying, since retry timelines quickly become unreadable when superimposed.
+For exponential-backoff strategies, draw the theoretical delay curve (base · 2^n) as a dashed reference line behind the actual attempt markers; jittered delays then visibly scatter around that curve, making the jitter distribution legible at a glance. Add a secondary panel showing aggregate metrics updated per tick: success rate, p50/p99 attempts-to-success, total retries issued, and budget consumption (retries / total_requests). A small legend should map every attempt-state color and annotate the active strategy parameters (base delay, max attempts, jitter mode, budget cap).
 
-Interactive controls should live in a sticky side panel with grouped sliders: base delay, max delay, multiplier, jitter factor, max attempts, and a strategy-type radio group. Re-render on slider drag using requestAnimationFrame throttling; full re-simulation on pointer-up. Always display the computed sequence as a readable list (attempt #, delay ms, cumulative ms) beneath the chart — the numeric view is what engineers copy into config files.
+Keep the canvas scrolling horizontally in a fixed time window (e.g., last 30 seconds) so long-running simulations don't compress into unreadable density. Sticky the y-axis labels (request IDs) and let users hover any attempt marker to see exact delay, HTTP status, and retry-after header value. This pattern scales from single-request debugging (one track, zoomed-in) to storm analysis (hundreds of tracks, zoomed-out heatmap view).
