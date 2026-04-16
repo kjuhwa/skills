@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TSDB Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>⏱ Time-Series DB Explorer</h1>
+  <div class="controls">
+    <select id="metric">
+      <option value="cpu">cpu.usage</option>
+      <option value="mem">memory.rss</option>
+      <option value="net">network.rx</option>
+      <option value="disk">disk.iops</option>
+    </select>
+    <select id="range">
+      <option value="60">Last 1m</option>
+      <option value="300" selected>Last 5m</option>
+      <option value="900">Last 15m</option>
+      <option value="3600">Last 1h</option>
+    </select>
+    <select id="agg">
+      <option value="raw">raw</option>
+      <option value="avg">avg(10s)</option>
+      <option value="max">max(10s)</option>
+      <option value="p95">p95(10s)</option>
+    </select>
+    <button id="live">● LIVE</button>
+  </div>
+</header>
+<main>
+  <section class="chart-wrap">
+    <canvas id="chart"></canvas>
+    <div id="tooltip" class="tooltip hidden"></div>
+  </section>
+  <aside>
+    <h3>Query</h3>
+    <pre id="query"></pre>
+    <h3>Stats</h3>
+    <ul id="stats"></ul>
+    <h3>Recent Points</h3>
+    <ul id="points"></ul>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

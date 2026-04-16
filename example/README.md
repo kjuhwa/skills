@@ -346,6 +346,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [hash-ring-visualizer](hash-ring-visualizer/) | Hash Ring Visualizer — auto-generated consistent-hashing tool | html, css, vanilla-js | 2026-04-16 |
 
+| [time-series-db-explorer](time-series-db-explorer/) | Time Series Db Explorer — auto-generated time-series-db tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

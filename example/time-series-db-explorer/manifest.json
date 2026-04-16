@@ -1,0 +1,12 @@
+{
+  "slug": "time-series-db-explorer",
+  "title": "Time Series Db Explorer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:42:10.438Z",
+  "source_project": "100-time-series-db-explorer",
+  "author": "kjuhwa@nkia.co.kr"
+}
