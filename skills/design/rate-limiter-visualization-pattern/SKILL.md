@@ -1,6 +1,6 @@
 ---
 name: rate-limiter-visualization-pattern
-description: Canvas/SVG bucket-fill and timeline rendering for real-time rate limiter state.
+description: Visual patterns for rendering token buckets, sliding windows, and quota consumption in real-time dashboards
 category: design
 triggers:
   - rate limiter visualization pattern
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # rate-limiter-visualization-pattern
 
-Rate limiter visualizations converge on two complementary views: a **capacity gauge** (bucket fill-level) and a **temporal timeline** (request dots over time). The bucket gauge draws a rectangular container whose fill height is `(currentTokens / maxTokens) * bucketHeight`, with individual token circles arranged in a grid inside the filled region. Color-coding is binary — green (`#6ee7b7`) for healthy capacity, red (`#f87171`) when tokens are critically low or a request is rejected. The timeline view (SVG or Canvas) maps `request.timestamp` to an x-coordinate via `x = (t - viewStart) / (viewEnd - viewStart) * width`, plotting accepted vs. rejected requests as colored circles within a sliding window highlight region.
+Rate limiter visualizations share three core visual primitives: a **capacity meter** (bucket fill level, window occupancy, quota remaining), a **request timeline** (accepted vs. rejected events plotted against time), and a **refill/decay indicator** (token drip animation, window slide, quota reset countdown). For token-bucket-visualizer, render the bucket as a vertical gauge with animated token drops at the refill rate; color-code requests green (accepted, token consumed) or red (rejected, bucket empty). For sliding-window-lab, overlay two translucent time windows (previous + current) with a weighted interpolation bar showing the effective count — this makes the "smoothing" behavior of sliding-window-log vs. sliding-window-counter visually distinct.
 
-For multi-endpoint dashboards, each endpoint gets a **sparkline card** — a small Canvas drawing a polyline of request-rate samples over a rolling window (typically 30-40 data points). A dashed horizontal line marks the rate limit threshold, and any sample exceeding the threshold gets a red dot overlay. Stats (total requests, blocked count, pass percentage) are computed incrementally per tick and rendered below the sparkline. This card-per-endpoint pattern scales to any number of APIs by iterating an endpoint config array with `{id, limit, data[], blocked, total}`.
+Use a shared x-axis time scale across all three panels so operators can correlate cause (burst traffic) and effect (rejection spike). Reserve the top-right for a **live KPI strip**: current rate (req/s), rejection ratio (%), and time-to-reset. For api-quota-dashboard, add a horizontal stacked bar per API key/tenant showing daily/hourly/burst quota tiers — hitting any tier triggers a border-flash animation rather than a modal, so the view stays scannable during incidents.
 
-Particle effects add polish to the single-bucket view: on each request, spawn a particle at the bucket mouth with `{x, y, vy, life, ok}`, update position each frame, and filter out dead particles. The `requestAnimationFrame` loop handles both smooth token refill (`tokens += refillRate * dt`) and particle animation in a single render pass, avoiding the jank of `setInterval`-only approaches.
+Critical: always render **both limits and current usage on the same axis**. A gauge showing "847" means nothing without "/ 1000" visible. Use log scale only when burst capacity exceeds sustained rate by >10x (common for token buckets), otherwise linear scale preserves intuition about proximity to the limit.

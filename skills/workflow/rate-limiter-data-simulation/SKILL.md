@@ -1,6 +1,6 @@
 ---
 name: rate-limiter-data-simulation
-description: Client-side traffic generation and token accounting for rate limiter demos without a backend.
+description: Generating realistic request arrival patterns to stress-test rate limiter algorithms in demo apps
 category: workflow
 triggers:
   - rate limiter data simulation
@@ -11,8 +11,8 @@ version: 1.0.0
 
 # rate-limiter-data-simulation
 
-Rate limiter simulations require two independent clocks: a **refill timer** that replenishes tokens and a **traffic generator** that consumes them. The token bucket model maintains `tokens = Math.min(maxTokens, tokens + refillRate * dt)` each frame, where `dt` comes from `performance.now()` deltas for smooth fractional accounting. The simpler `setInterval` variant increments by 1 token per tick at `1000/refillRate` ms but causes visible stairstepping. The sliding window model stores each request's timestamp and counts `requests.filter(r => now - r.t < windowSize)` to decide acceptance — no token state needed, just an array with a cap (e.g., splice at 200 entries to bound memory).
+Rate limiter demos need traffic that exercises edge cases, not uniform Poisson noise. Build a **scenario library** with at least five patterns: (1) steady baseline (exposes sustained-rate limits), (2) burst-then-idle (exposes token-bucket refill behavior), (3) boundary-straddle (requests clustered at window edges — exposes sliding-window-counter's weighted math vs. fixed-window's "double allowance" bug), (4) sawtooth ramp (finds the exact rejection threshold), and (5) multi-tenant mixed (uneven load across keys — exposes isolation bugs in api-quota-dashboard). Drive each from a single seeded PRNG so replays are deterministic.
 
-Traffic generation uses three patterns across the apps: **manual fire** (single button click), **burst/flood** (loop N requests synchronously or via staggered `setTimeout(tryRequest, i * 60)`), and **auto-fire** (togglable `setInterval` at 300-700ms with optional randomness). The dashboard variant generates random load per endpoint as `Math.floor(Math.random() * limit * 1.6)`, ensuring roughly 37% of ticks exceed the threshold — enough to demonstrate blocking without making the system look perpetually overloaded. Each request outcome is logged to a DOM element with prepend-and-cap (`if (log.children.length > 50) log.lastChild.remove()`) to prevent unbounded DOM growth.
+Simulate time with a **virtual clock** decoupled from wall-clock, advanced by a tick function the UI controls (play/pause/10x speed). This lets users scrub a 1-hour scenario in 30 seconds and freeze on the instant a rejection fires. Emit each request as an event `{t, key, accepted, remaining, algorithm_state}` — the `algorithm_state` snapshot (bucket level, window buckets, quota counters) is what powers the visualization replay without re-running the simulation.
 
-Interactive controls bind `<input type="range">` or `<select>` elements to simulation parameters (bucket size, refill rate, window size, max requests) via `oninput`/`onchange` handlers that update variables immediately. When bucket size shrinks, tokens must be clamped: `tokens = Math.min(tokens, maxTokens)` — omitting this creates the visually broken state of more tokens than the bucket can hold.
+For sliding-window-lab specifically, generate paired scenarios that produce identical fixed-window outcomes but different sliding-window outcomes — this is the pedagogical payoff. For token-bucket-visualizer, include a scenario where request cost varies (weighted tokens) to show non-uniform consumption. Keep simulations in-browser (Web Worker) so there's no backend dependency; a 10k-event scenario runs in <50ms.
