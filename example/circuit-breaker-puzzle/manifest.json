@@ -1,0 +1,12 @@
+{
+  "slug": "circuit-breaker-puzzle",
+  "title": "Circuit Breaker Puzzle",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:20:19.507Z",
+  "source_project": "101-circuit-breaker-puzzle",
+  "author": "kjuhwa@nkia.co.kr"
+}
