@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Timeline Chronicle</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #0f0f1a;
+    --bg3: #141428;
+    --surface: #1a1a2e;
+    --surface2: #16213e;
+    --border: #2a2a4a;
+    --text: #e8e8f0;
+    --text2: #9090b0;
+    --text3: #5050708;
+    --llm: #7c3aed;
+    --llm-glow: #a855f7;
+    --llm-bg: rgba(124,58,237,0.12);
+    --agents: #0891b2;
+    --agents-glow: #22d3ee;
+    --agents-bg: rgba(8,145,178,0.12);
+    --opensource: #16a34a;
+    --opensource-glow: #4ade80;
+    --opensource-bg: rgba(22,163,74,0.12);
+    --regulation: #dc2626;
+    --regulation-glow: #f87171;
+    --regulation-bg: rgba(220,38,38,0.12);
+    --hardware: #d97706;
+    --hardware-glow: #fbbf24;
+    --hardware-bg: rgba(217,119,6,0.12);
+    --card-h: 120px;
+    --lane-h: 160px;
+    --header-h: 60px;
+    --label-w: 130px;
+    --px-per-day: 3.2;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+  }
+
+  /* ── Top bar ── */
+  #topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: linear-gradient(180deg, #0a0a18 0%, rgba(10,10,24,0.95) 100%);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+
+  #topbar h1 {
+    font-size: 16px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #a855f7, #22d3ee, #4ade80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  .tb-sep { width:1px; height:28px; background:var(--border); flex-shrink:0; }
+
+  .tb-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tb-btn:hover { background: var(--surface2); border-color: var(--llm-glow); color: var(--llm-glow); }
+
+  #zoom-display {
+    font-size: 12px;
+    color: var(--text2);
+    min-width: 40px;
+    text-align: center;
+  }
+
+  #lang-toggle {
+    margin-left: auto;
+    background: linear-gradient(135deg, var(--llm), var(--agents));
+    border: none;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: opacity 0.2s;
+  }
+  #lang-toggle:hover { opacity: 0.85; }
+
+  #surprise-btn {
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    border: none;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s;
+    animation: pulse-btn 3s ease-in-out infinite;
+  }
+  @keyframes pulse-btn {
+    0%,100% { box-shadow: 0 0 8px rgba(124,58,237,0.4); }
+    50% { box-shadow: 0 0 20px rgba(124,58,237,0.8), 0 0 40px rgba(8,145,178,0.4); }
+  }
+
+  /* ── Main viewport ── */
+  #viewport {
+    position: fixed;
+    top: var(--header-h);
+    left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+    cursor: grab;
+  }
+  #viewport.dragging { cursor: grabbing; }
+
+  /* ── Lane labels sidebar ── */
+  #lane-labels {
+    position: absolute;
+    left: 0; top: 0;
+    width: var(--label-w);
+    z-index: 20;
+    background: linear-gradient(90deg, var(--bg) 70%, transparent);
+    pointer-events: none;
+  }
+
+  .lane-label {
+    height: var(--lane-h);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    pointer-events: auto;
+  }
+  .lane-label span {
+    writing-mode: horizontal-tb;
+    white-space: nowrap;
+  }
+
+  /* ── Canvas area ── */
+  #timeline-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    will-change: transform;
+  }
+
+  /* ── Lanes ── */
+  .lane {
+    height: var(--lane-h);
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .lane-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+  }
+  .lane[data-cat="LLM"] .lane-bg { background: var(--llm); }
+  .lane[data-cat="Agents"] .lane-bg { background: var(--agents); }
+  .lane[data-cat="Open Source"] .lane-bg { background: var(--opensource); }
+  .lane[data-cat="Regulation"] .lane-bg { background: var(--regulation); }
+  .lane[data-cat="Hardware"] .lane-bg { background: var(--hardware); }
+
+  /* ── Grid lines ── */
+  .grid-year {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.12);
+    z-index: 1;
+  }
+  .grid-year-label {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    z-index: 2;
+    padding: 4px 0;
+    white-space: nowrap;
+  }
+  .grid-month {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.04);
+    z-index: 1;
+  }
+  .grid-month-label {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: rgba(255,255,255,0.2);
+    pointer-events: none;
+    z-index: 2;
+    padding: 4px 0;
+    white-space: nowrap;
+  }
+
+  /* ── Axis bar ── */
+  #axis-bar {
+    position: absolute;
+    left: 0; right: 0;
+    height: 32px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    z-index: 25;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* ── Event cards ── */
+  .event-card {
+    position: absolute;
+    width: 150px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    z-index: 10;
+    overflow: hidden;
+    animation: card-appear 0.4s ease-out forwards;
+  }
+  @keyframes card-appear {
+    from { opacity: 0; transform: translateY(8px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 8px 8px 0 0;
+  }
+  .event-card[data-cat="LLM"]::before { background: var(--llm-glow); }
+  .event-card[data-cat="Agents"]::before { background: var(--agents-glow); }
+  .event-card[data-cat="Open Source"]::before { background: var(--opensource-glow); }
+  .event-card[data-cat="Regulation"]::before { background: var(--regulation-glow); }
+  .event-card[data-cat="Hardware"]::before { background: var(--hardware-glow); }
+
+  .event-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    z-index: 15;
+  }
+  .event-card[data-cat="LLM"]:hover { box-shadow: 0 4px 20px rgba(168,85,247,0.4), 0 0 0 1px var(--llm-glow); }
+  .event-card[data-cat="Agents"]:hover { box-shadow: 0 4px 20px rgba(34,211,238,0.4), 0 0 0 1px var(--agents-glow); }
+  .event-card[data-cat="Open Source"]:hover { box-shadow: 0 4px 20px rgba(74,222,128,0.4), 0 0 0 1px var(--opensource-glow); }
+  .event-card[data-cat="Regulation"]:hover { box-shadow: 0 4px 20px rgba(248,113,113,0.4), 0 0 0 1px var(--regulation-glow); }
+  .event-card[data-cat="Hardware"]:hover { box-shadow: 0 4px 20px rgba(251,191,36,0.4), 0 0 0 1px var(--hardware-glow); }
+
+  .card-date {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    opacity: 0.7;
+  }
+  .event-card[data-cat="LLM"] .card-date { color: var(--llm-glow); }
+  .event-card[data-cat="Agents"] .card-date { color: var(--agents-glow); }
+  .event-card[data-cat="Open Source"] .card-date { color: var(--opensource-glow); }
+  .event-card[data-cat="Regulation"] .card-date { color: var(--regulation-glow); }
+  .event-card[data-cat="Hardware"] .card-date { color: var(--hardware-glow); }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .card-summary {
+    font-size: 9.5px;
+    color: var(--text2);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-stars {
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .event-card[data-cat="LLM"] .card-stars { color: var(--llm-glow); }
+  .event-card[data-cat="Agents"] .card-stars { color: var(--agents-glow); }
+  .event-card[data-cat="Open Source"] .card-stars { color: var(--opensource-glow); }
+  .event-card[data-cat="Regulation"] .card-stars { color: var(--regulation-glow); }
+  .event-card[data-cat="Hardware"] .card-stars { color: var(--hardware-glow); }
+
+  /* connector line from card to lane center */
+  .card-connector {
+    position: absolute;
+    width: 1px;
+    background: var(--border);
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* ── Detail overlay ── */
+  #detail-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  #detail-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+  #detail-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 520px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.25s;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  #detail-overlay.visible #detail-panel {
+    transform: scale(1) translateY(0);
+  }
+  #detail-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  #detail-panel[data-cat="LLM"]::before { background: linear-gradient(90deg, var(--llm), var(--llm-glow)); }
+  #detail-panel[data-cat="Agents"]::before { background: linear-gradient(90deg, var(--agents), var(--agents-glow)); }
+  #detail-panel[data-cat="Open Source"]::before { background: linear-gradient(90deg, var(--opensource), var(--opensource-glow)); }
+  #detail-panel[data-cat="Regulation"]::before { background: linear-gradient(90deg, var(--regulation), var(--regulation-glow)); }
+  #detail-panel[data-cat="Hardware"]::before { background: linear-gradient(90deg, var(--hardware), var(--hardware-glow)); }
+
+  #detail-close {
+    position: absolute;
+    top: 12px; right: 14px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+  #detail-close:hover { background: var(--border); color: var(--text); }
+
+  #detail-cat-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  #detail-date { font-size: 12px; color: var(--text2); margin-bottom: 8px; letter-spacing: 0.06em; }
+  #detail-title { font-size: 22px; font-weight: 800; margin-bottom: 10px; line-height: 1.2; }
+  #detail-stars { font-size: 18px; margin-bottom: 14px; letter-spacing: 2px; }
+  #detail-summary { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; border-left: 3px solid var(--border); padding-left: 14px; }
+  #detail-description { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+  /* ── Particles canvas ── */
+  #particles-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  /* ── Scrollbar ── */
+  #scrollbar-track {
+    position: fixed;
+    bottom: 0; left: var(--label-w); right: 0;
+    height: 6px;
+    background: var(--bg2);
+    z-index: 50;
+  }
+  #scrollbar-thumb {
+    position: absolute;
+    top: 0; height: 100%;
+    background: var(--border);
+    border-radius: 3px;
+    cursor: ew-resize;
+    transition: background 0.2s;
+  }
+  #scrollbar-thumb:hover { background: #4a4a6a; }
+
+  /* ── Today indicator ── */
+  .today-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #f59e0b, transparent);
+    z-index: 8;
+    pointer-events: none;
+  }
+  .today-line::before {
+    content: 'TODAY';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 8px;
+    font-weight: 700;
+    color: #f59e0b;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  /* ── Mini-map ── */
+  #minimap {
+    position: fixed;
+    bottom: 20px;
+    right: 16px;
+    width: 180px;
+    height: 50px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 50;
+    opacity: 0.8;
+  }
+  #minimap-viewport {
+    position: absolute;
+    top: 0; bottom: 0;
+    background: rgba(168,85,247,0.2);
+    border: 1px solid rgba(168,85,247,0.5);
+    pointer-events: none;
+  }
+  .minimap-dot {
+    position: absolute;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* ── Keyboard hint ── */
+  #kbd-hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 10px;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* ── Category filter pills ── */
+  #cat-filters {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .cat-pill {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .cat-pill[data-cat="LLM"] { border-color: var(--llm); color: var(--llm-glow); }
+  .cat-pill[data-cat="Agents"] { border-color: var(--agents); color: var(--agents-glow); }
+  .cat-pill[data-cat="Open Source"] { border-color: var(--opensource); color: var(--opensource-glow); }
+  .cat-pill[data-cat="Regulation"] { border-color: var(--regulation); color: var(--regulation-glow); }
+  .cat-pill[data-cat="Hardware"] { border-color: var(--hardware); color: var(--hardware-glow); }
+  .cat-pill.active[data-cat="LLM"] { background: var(--llm-bg); }
+  .cat-pill.active[data-cat="Agents"] { background: var(--agents-bg); }
+  .cat-pill.active[data-cat="Open Source"] { background: var(--opensource-bg); }
+  .cat-pill.active[data-cat="Regulation"] { background: var(--regulation-bg); }
+  .cat-pill.active[data-cat="Hardware"] { background: var(--hardware-bg); }
+  .cat-pill:not(.active) { opacity: 0.35; }
+
+  /* ── Jump animation ── */
+  @keyframes jump-flash {
+    0% { box-shadow: 0 0 0 0 rgba(168,85,247,0.8); }
+    50% { box-shadow: 0 0 0 12px rgba(168,85,247,0); }
+    100% { box-shadow: 0 0 0 0 rgba(168,85,247,0); }
+  }
+  .card-jump { animation: card-appear 0.4s ease-out forwards, jump-flash 0.8s 0.4s ease-out; }
+
+  /* scrollbar styling */
+  #detail-panel::-webkit-scrollbar { width: 4px; }
+  #detail-panel::-webkit-scrollbar-track { background: transparent; }
+  #detail-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- Top bar -->
+<div id="topbar">
+  <h1 id="app-title">AI Timeline Chronicle</h1>
+  <div class="tb-sep"></div>
+  <div id="cat-filters">
+    <span class="cat-pill active" data-cat="LLM">LLM</span>
+    <span class="cat-pill active" data-cat="Agents">Agents</span>
+    <span class="cat-pill active" data-cat="Open Source">Open Source</span>
+    <span class="cat-pill active" data-cat="Regulation">Regulation</span>
+    <span class="cat-pill active" data-cat="Hardware">Hardware</span>
+  </div>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="zoom-in">＋</button>
+  <span id="zoom-display">100%</span>
+  <button class="tb-btn" id="zoom-out">－</button>
+  <div class="tb-sep"></div>
+  <button id="surprise-btn" class="tb-btn">✦ Surprise Me</button>
+  <button id="lang-toggle">한국어</button>
+</div>
+
+<!-- Main viewport -->
+<div id="viewport">
+  <div id="timeline-canvas">
+    <!-- Axis bar rendered by JS -->
+    <div id="axis-bar"></div>
+    <!-- Lane labels -->
+    <div id="lane-labels"></div>
+  </div>
+</div>
+
+<!-- Scrollbar -->
+<div id="scrollbar-track"><div id="scrollbar-thumb"></div></div>
+
+<!-- Detail overlay -->
+<div id="detail-overlay">
+  <div id="detail-panel">
+    <button id="detail-close">✕</button>
+    <div id="detail-cat-badge"></div>
+    <div id="detail-date"></div>
+    <div id="detail-title"></div>
+    <div id="detail-stars"></div>
+    <div id="detail-summary"></div>
+    <div id="detail-description"></div>
+  </div>
+</div>
+
+<!-- Minimap -->
+<div id="minimap"><div id="minimap-viewport"></div></div>
+
+<!-- Keyboard hint -->
+<div id="kbd-hint">Drag or scroll to pan • +/− to zoom • Click card for details</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  DATA
+// ─────────────────────────────────────────────
+const EVENTS_DATA = [
+  // LLM
+  { id:'e001', cat:'LLM', date:'2023-03-14', impact:5,
+    en:{ title:'GPT-4 Launch', summary:'OpenAI releases GPT-4, a multimodal large language model.', desc:'OpenAI releases GPT-4, a multimodal large language model capable of processing image and text inputs. It significantly outperforms GPT-3.5 across professional and academic benchmarks, including bar exams and SAT scores.' },
+    ko:{ title:'GPT-4 출시', summary:'OpenAI가 멀티모달 대형 언어 모델 GPT-4를 공개했습니다.', desc:'OpenAI가 이미지·텍스트 입력을 처리할 수 있는 멀티모달 LLM GPT-4를 출시했습니다. 변호사 시험, SAT 등 전문·학술 벤치마크에서 GPT-3.5를 크게 능가하는 성능을 보였습니다.' }
+  },
+  { id:'e002', cat:'LLM', date:'2023-07-11', impact:4,
+    en:{ title:'Claude 2', summary:'Anthropic releases Claude 2 with a 100K context window.', desc:'Anthropic releases Claude 2, featuring a 100,000-token context window—unprecedented at the time. It shows improved reasoning, coding, and safety characteristics, cementing Anthropic as a top-tier LLM provider.' },
+    ko:{ title:'Claude 2 출시', summary:'Anthropic이 10만 토큰 컨텍스트 창을 가진 Claude 2를 출시했습니다.', desc:'Anthropic이 당시 전례 없는 100,000 토큰 컨텍스트 창을 갖춘 Claude 2를 출시했습니다. 추론, 코딩, 안전성 면에서 개선되어 Anthropic을 최고 수준의 LLM 공급자로 자리매김했습니다.' }
+  },
+  { id:'e003', cat:'LLM', date:'2023-07-18', impact:5,
+    en:{ title:'Llama 2', summary:'Meta releases Llama 2, a powerful open-weight model family.', desc:'Meta releases Llama 2 in partnership with Microsoft, providing 7B, 13B, and 70B parameter models under a commercial-use license. It dramatically accelerates open-source AI development and research.' },
+    ko:{ title:'Llama 2 출시', summary:'Meta가 강력한 오픈 웨이트 모델 패밀리 Llama 2를 출시했습니다.', desc:'Meta가 Microsoft와 파트너십을 맺고 Llama 2를 출시했습니다. 상업용 라이선스 하에 7B, 13B, 70B 파라미터 모델을 제공하며 오픈소스 AI 개발·연구를 크게 가속화했습니다.' }
+  },
+  { id:'e004', cat:'LLM', date:'2023-09-27', impact:4,
+    en:{ title:'Mistral 7B', summary:'Mistral AI releases a highly efficient 7B parameter model.', desc:'French startup Mistral AI releases Mistral 7B, which outperforms Llama 2 13B on most benchmarks despite having fewer parameters. It demonstrates that smaller, well-optimized models can compete with larger ones.' },
+    ko:{ title:'Mistral 7B 출시', summary:'Mistral AI가 매우 효율적인 70억 파라미터 모델을 공개했습니다.', desc:'프랑스 스타트업 Mistral AI가 Mistral 7B를 출시했습니다. 파라미터 수가 적음에도 대부분의 벤치마크에서 Llama 2 13B를 능가하며 소형 모델의 가능성을 증명했습니다.' }
+  },
+  { id:'e005', cat:'LLM', date:'2023-12-06', impact:4,
+    en:{ title:'Gemini Pro', summary:'Google DeepMind launches the Gemini model family.', desc:'Google DeepMind launches Gemini, its most capable AI model family. The Gemini Ultra model achieves human-expert level performance on MMLU and is the first model to outperform human experts on this benchmark.' },
+    ko:{ title:'Gemini Pro 출시', summary:'Google DeepMind가 Gemini 모델 패밀리를 선보였습니다.', desc:'Google DeepMind가 Gemini를 출시했습니다. Gemini Ultra는 MMLU에서 인간 전문가 수준의 성능을 달성하며 해당 벤치마크에서 최초로 인간 전문가를 능가한 모델이 되었습니다.' }
+  },
+  { id:'e006', cat:'LLM', date:'2024-03-04', impact:5,
+    en:{ title:'Claude 3', summary:'Anthropic unveils Claude 3: Haiku, Sonnet, and Opus.', desc:"Anthropic releases Claude 3 as a family of three models—Haiku, Sonnet, and Opus—with Opus claiming top position on most AI benchmarks. It features multimodal capabilities and near-perfect recall across its 200K context window." },
+    ko:{ title:'Claude 3 출시', summary:'Anthropic이 Claude 3: Haiku, Sonnet, Opus를 공개했습니다.', desc:'Anthropic이 Haiku, Sonnet, Opus 세 가지 모델로 구성된 Claude 3 패밀리를 출시했습니다. Opus는 대부분의 AI 벤치마크에서 최상위를 차지하고, 200K 컨텍스트 창에서 거의 완벽한 기억력을 갖추고 있습니다.' }
+  },
+  { id:'e007', cat:'LLM', date:'2024-05-13', impact:5,
+    en:{ title:'GPT-4o', summary:"OpenAI's omni-model with real-time audio, vision and text.", desc:"OpenAI releases GPT-4o ('omni'), a model that natively handles audio, vision, and text in real-time with human-like response speeds. It marks a shift toward multimodal AI assistants capable of natural voice conversation." },
+    ko:{ title:'GPT-4o 출시', summary:'실시간 오디오·비전·텍스트를 지원하는 OpenAI의 옴니 모델.', desc:"OpenAI가 오디오, 비전, 텍스트를 실시간으로 처리할 수 있는 GPT-4o('omni')를 출시했습니다. 사람과 유사한 응답 속도로 자연스러운 음성 대화가 가능한 멀티모달 AI 어시스턴트 시대를 열었습니다." }
+  },
+  { id:'e008', cat:'LLM', date:'2024-07-23', impact:4,
+    en:{ title:'Llama 3.1', summary:'Meta releases Llama 3.1, including a 405B parameter version.', desc:'Meta releases Llama 3.1 with models ranging from 8B to 405B parameters. The 405B version challenges GPT-4 on many benchmarks and is released as a fully open model, including weights, under a permissive license.' },
+    ko:{ title:'Llama 3.1 출시', summary:'Meta가 4050억 파라미터 버전을 포함한 Llama 3.1을 출시했습니다.', desc:'Meta가 80억~4050억 파라미터 범위의 Llama 3.1을 출시했습니다. 4050억 파라미터 버전은 많은 벤치마크에서 GPT-4와 경쟁하며 허용적 라이선스 하에 완전 공개 모델로 제공됩니다.' }
+  },
+  { id:'e009', cat:'LLM', date:'2024-06-20', impact:5,
+    en:{ title:'Claude 3.5 Sonnet', summary:'Fastest and most intelligent Claude model at launch.', desc:"Anthropic releases Claude 3.5 Sonnet, which outperforms Claude 3 Opus on many benchmarks while running at twice the speed and one-fifth the cost. It introduces 'Artifacts'—a side-by-side document view for generated code and documents." },
+    ko:{ title:'Claude 3.5 Sonnet 출시', summary:'출시 당시 가장 빠르고 지능적인 Claude 모델.', desc:'Anthropic이 Claude 3.5 Sonnet을 출시했습니다. Claude 3 Opus보다 많은 벤치마크에서 성능이 우수하면서도 2배 빠르고 비용은 5분의 1 수준입니다. 생성된 코드·문서를 나란히 볼 수 있는 \'아티팩트\' 기능을 도입했습니다.' }
+  },
+  { id:'e010', cat:'LLM', date:'2024-09-12', impact:5,
+    en:{ title:'o1 Preview', summary:'OpenAI releases reasoning model with chain-of-thought.', desc:"OpenAI releases o1, a new reasoning-focused model that 'thinks' before responding using reinforcement learning on chain-of-thought. It dramatically outperforms GPT-4o on math and coding tasks, marking a new paradigm for LLM problem-solving." },
+    ko:{ title:'o1 Preview 출시', summary:'OpenAI가 사고 사슬을 활용한 추론 모델을 공개했습니다.', desc:'OpenAI가 응답 전 \'생각\'하는 추론 특화 모델 o1을 출시했습니다. 사고 사슬에 대한 강화학습을 활용하며 수학·코딩 과제에서 GPT-4o를 크게 능가해 LLM 문제 해결의 새로운 패러다임을 제시했습니다.' }
+  },
+  { id:'e011', cat:'LLM', date:'2024-12-11', impact:4,
+    en:{ title:'Gemini 2.0', summary:'Google launches Gemini 2.0 with agentic capabilities.', desc:'Google releases Gemini 2.0 Flash and Pro, designed for the agentic era. The models support multimodal outputs, tool use, and are significantly faster. Gemini 2.0 Flash becomes one of the most-used AI models globally.' },
+    ko:{ title:'Gemini 2.0 출시', summary:'Google이 에이전트 기능을 갖춘 Gemini 2.0을 출시했습니다.', desc:'Google이 에이전트 시대를 위해 설계된 Gemini 2.0 Flash와 Pro를 출시했습니다. 멀티모달 출력, 도구 사용을 지원하며 속도가 크게 향상되었습니다. Gemini 2.0 Flash는 전 세계에서 가장 많이 사용되는 AI 모델 중 하나가 되었습니다.' }
+  },
+  { id:'e012', cat:'LLM', date:'2024-10-22', impact:3,
+    en:{ title:'Claude 3.5 Haiku', summary:'Fast and affordable Claude 3.5-class model.', desc:'Anthropic releases Claude 3.5 Haiku, the fastest and most compact model in the Claude 3.5 family. It delivers Claude 3.5-level intelligence at speeds and prices suitable for high-volume, latency-sensitive applications.' },
+    ko:{ title:'Claude 3.5 Haiku 출시', summary:'빠르고 저렴한 Claude 3.5급 모델.', desc:'Anthropic이 Claude 3.5 패밀리에서 가장 빠르고 컴팩트한 Claude 3.5 Haiku를 출시했습니다. 고용량·저지연 응용 프로그램에 적합한 속도와 가격으로 Claude 3.5 수준의 지능을 제공합니다.' }
+  },
+  { id:'e013', cat:'LLM', date:'2024-12-26', impact:5,
+    en:{ title:'DeepSeek V3', summary:'Chinese AI lab releases top-tier open model.', desc:'DeepSeek releases DeepSeek V3, a 685B-parameter Mixture-of-Experts model trained for an astonishing $5.6M—far less than comparable Western models. It matches or beats GPT-4o on many benchmarks, sending shockwaves through AI industry.' },
+    ko:{ title:'DeepSeek V3 출시', summary:'중국 AI 연구소가 최고급 오픈 모델을 공개했습니다.', desc:'DeepSeek이 6850억 파라미터 MoE 모델 DeepSeek V3를 불과 560만 달러라는 놀라운 비용으로 훈련하여 출시했습니다. 서양 모델과 비교해 훨씬 적은 비용으로 많은 벤치마크에서 GPT-4o와 동등하거나 능가하여 AI 업계에 충격을 주었습니다.' }
+  },
+  { id:'e014', cat:'LLM', date:'2025-02-19', impact:4,
+    en:{ title:'GPT-4.5', summary:'OpenAI releases GPT-4.5 with improved emotional intelligence.', desc:'OpenAI releases GPT-4.5, positioned as a major improvement in emotional intelligence, nuanced understanding, and world knowledge. It features better instruction following but is positioned as a precursor to GPT-5.' },
+    ko:{ title:'GPT-4.5 출시', summary:'OpenAI가 감성 지능이 향상된 GPT-4.5를 출시했습니다.', desc:'OpenAI가 감성 지능, 미묘한 이해력, 세계 지식이 크게 향상된 GPT-4.5를 출시했습니다. 더 나은 명령 이행 능력을 갖추고 있으며 GPT-5의 전신으로 자리매김합니다.' }
+  },
+  { id:'e015', cat:'LLM', date:'2025-02-24', impact:5,
+    en:{ title:'Claude 3.7 Sonnet', summary:'Extended thinking model with hybrid reasoning.', desc:'Anthropic releases Claude 3.7 Sonnet, the first Claude model with extended thinking—a hybrid reasoning mode that can toggle between standard and deep reasoning. It achieves state-of-the-art on coding benchmarks including SWE-bench.' },
+    ko:{ title:'Claude 3.7 Sonnet 출시', summary:'하이브리드 추론이 가능한 확장 사고 모델.', desc:'Anthropic이 확장 사고 기능을 탑재한 첫 번째 Claude 모델인 Claude 3.7 Sonnet을 출시했습니다. 표준 모드와 심층 추론 모드를 전환할 수 있는 하이브리드 추론 방식을 제공하며 SWE-bench를 포함한 코딩 벤치마크에서 최고 성능을 달성했습니다.' }
+  },
+  { id:'e016', cat:'LLM', date:'2025-03-25', impact:4,
+    en:{ title:'Gemini 2.5 Pro', summary:'Google\'s best reasoning model with 1M context.', desc:'Google releases Gemini 2.5 Pro Experimental, featuring a 1-million token context window and improved reasoning capabilities. It tops several benchmarks including coding and math, establishing Google as a leader in long-context AI.' },
+    ko:{ title:'Gemini 2.5 Pro 출시', summary:'100만 토큰 컨텍스트를 갖춘 Google의 최고 추론 모델.', desc:'Google이 100만 토큰 컨텍스트 창과 향상된 추론 능력을 갖춘 Gemini 2.5 Pro Experimental을 출시했습니다. 코딩·수학을 포함한 여러 벤치마크에서 1위를 차지하며 장문 컨텍스트 AI 분야 선두를 확립했습니다.' }
+  },
+  { id:'e017', cat:'LLM', date:'2025-04-01', impact:5,
+    en:{ title:'Claude 4 Sonnet', summary:'Anthropic\'s next-generation Sonnet model.', desc:'Anthropic releases Claude 4 Sonnet, representing a major leap in agentic capabilities, code generation, and reasoning. It is designed for extended autonomous workflows and features improved tool use and memory management.' },
+    ko:{ title:'Claude 4 Sonnet 출시', summary:'Anthropic의 차세대 Sonnet 모델.', desc:'Anthropic이 에이전트 기능, 코드 생성, 추론 능력이 크게 향상된 Claude 4 Sonnet을 출시했습니다. 장기 자율 워크플로우를 위해 설계되었으며 향상된 도구 사용 및 메모리 관리 기능을 갖추고 있습니다.' }
+  },
+  { id:'e018', cat:'LLM', date:'2025-04-10', impact:5,
+    en:{ title:'Claude 4 Opus', summary:'Anthropic\'s most powerful model, Claude 4 Opus.', desc:'Anthropic releases Claude 4 Opus, its most intelligent model to date. Designed for the most demanding tasks, it excels at complex reasoning, research synthesis, and long-horizon planning with unprecedented depth and accuracy.' },
+    ko:{ title:'Claude 4 Opus 출시', summary:'Anthropic의 가장 강력한 모델, Claude 4 Opus.', desc:'Anthropic이 역대 가장 지능적인 모델 Claude 4 Opus를 출시했습니다. 가장 까다로운 작업을 위해 설계되었으며 전례 없는 깊이와 정확성으로 복잡한 추론, 연구 종합, 장기 계획에서 탁월한 성능을 발휘합니다.' }
+  },
+  { id:'e019', cat:'LLM', date:'2025-08-01', impact:5,
+    en:{ title:'GPT-5 (Projected)', summary:'OpenAI\'s anticipated next-generation model.', desc:'OpenAI is expected to release GPT-5, representing a potential leap toward more general AI capabilities. Anticipated features include improved reasoning, much larger context windows, enhanced multimodality, and more robust agentic behavior.' },
+    ko:{ title:'GPT-5 (예정)', summary:'OpenAI의 기대되는 차세대 모델.', desc:'OpenAI가 더 일반적인 AI 능력을 향한 잠재적 도약을 나타내는 GPT-5를 출시할 것으로 예상됩니다. 향상된 추론, 훨씬 큰 컨텍스트 창, 강화된 멀티모달리티, 더 강력한 에이전트 행동이 기대됩니다.' }
+  },
+
+  // Agents
+  { id:'e020', cat:'Agents', date:'2023-04-03', impact:4,
+    en:{ title:'AutoGPT Hype', summary:'AutoGPT goes viral as the first popular autonomous AI agent.', desc:'AutoGPT becomes a viral sensation on GitHub with over 100K stars in days, demonstrating the concept of autonomous AI agents that chain GPT-4 calls to complete long-horizon tasks. It sparks the AI agent movement despite its limited real-world reliability.' },
+    ko:{ title:'AutoGPT 열풍', summary:'AutoGPT가 최초의 인기 자율 AI 에이전트로 바이럴 현상을 일으켰습니다.', desc:'AutoGPT가 며칠 만에 GitHub에서 10만 개 이상의 스타를 기록하며 바이럴 센세이션이 되었습니다. GPT-4 호출을 연결하여 장기 작업을 수행하는 자율 AI 에이전트 개념을 시연하며 실용성에 한계가 있음에도 AI 에이전트 운동에 불을 붙였습니다.' }
+  },
+  { id:'e021', cat:'Agents', date:'2023-04-08', impact:3,
+    en:{ title:'BabyAGI', summary:'Minimalist task-driven autonomous agent framework.', desc:'Yohei Nakajima releases BabyAGI, a simple Python script that uses GPT-4 and a vector database to create, prioritize, and execute tasks autonomously. Its simplicity makes it highly accessible and influential in the early agent ecosystem.' },
+    ko:{ title:'BabyAGI 출시', summary:'최소한의 작업 기반 자율 에이전트 프레임워크.', desc:'Yohei Nakajima가 GPT-4와 벡터 데이터베이스를 사용해 자율적으로 작업을 생성, 우선순위 지정, 실행하는 간단한 파이썬 스크립트 BabyAGI를 공개했습니다. 단순함 덕분에 초기 에이전트 생태계에서 높은 접근성과 영향력을 가졌습니다.' }
+  },
+  { id:'e022', cat:'Agents', date:'2023-08-15', impact:3,
+    en:{ title:'MetaGPT', summary:'Multi-agent framework simulating a software company.', desc:'MetaGPT is released, a multi-agent framework where different AI agents take on roles like Product Manager, Architect, and Engineer to collaboratively produce software. It shows the promise of role-based agent collaboration.' },
+    ko:{ title:'MetaGPT 출시', summary:'소프트웨어 회사를 시뮬레이션하는 멀티 에이전트 프레임워크.', desc:'MetaGPT가 출시되었습니다. 다양한 AI 에이전트가 제품 관리자, 아키텍트, 엔지니어 역할을 맡아 협력적으로 소프트웨어를 제작하는 멀티 에이전트 프레임워크입니다. 역할 기반 에이전트 협업의 가능성을 보여주었습니다.' }
+  },
+  { id:'e023', cat:'Agents', date:'2023-12-10', impact:3,
+    en:{ title:'CrewAI Launch', summary:'Framework for orchestrating role-playing AI agents.', desc:'CrewAI launches as a framework for orchestrating collaborative AI agents, making it easier to define roles, goals, and backstories for multi-agent systems. It rapidly gains adoption for production use cases.' },
+    ko:{ title:'CrewAI 출시', summary:'역할극 AI 에이전트 조율을 위한 프레임워크.', desc:'CrewAI가 협업 AI 에이전트를 조율하기 위한 프레임워크로 출시되었습니다. 멀티 에이전트 시스템에서 역할, 목표, 배경 스토리를 쉽게 정의할 수 있게 해주며 프로덕션 사용 사례에서 빠르게 채택되었습니다.' }
+  },
+  { id:'e024', cat:'Agents', date:'2024-03-12', impact:5,
+    en:{ title:'Devin Announced', summary:'Cognition Labs unveils the first "AI software engineer".', desc:'Cognition Labs unveils Devin, claiming it to be the first fully autonomous AI software engineer capable of completing entire engineering tasks from start to finish, including coding, testing, and deployment. It generates immense media coverage.' },
+    ko:{ title:'Devin 발표', summary:'Cognition Labs가 최초의 "AI 소프트웨어 엔지니어"를 공개했습니다.', desc:'Cognition Labs가 코딩, 테스트, 배포까지 엔지니어링 작업 전체를 처음부터 끝까지 완수할 수 있는 최초의 완전 자율 AI 소프트웨어 엔지니어라고 주장하는 Devin을 공개했습니다. 엄청난 미디어 보도를 받았습니다.' }
+  },
+  { id:'e025', cat:'Agents', date:'2024-10-22', impact:5,
+    en:{ title:'Claude Computer Use', summary:'Anthropic enables Claude to control computers.', desc:'Anthropic releases the Computer Use API, allowing Claude to autonomously control a computer—clicking buttons, typing text, navigating browsers, and running code—to complete complex tasks. It marks a fundamental shift in AI-computer interaction.' },
+    ko:{ title:'Claude Computer Use 출시', summary:'Anthropic이 Claude가 컴퓨터를 제어할 수 있도록 했습니다.', desc:'Anthropic이 Claude가 버튼 클릭, 텍스트 입력, 브라우저 탐색, 코드 실행 등 컴퓨터를 자율적으로 제어하여 복잡한 작업을 완료할 수 있는 Computer Use API를 출시했습니다. AI-컴퓨터 상호작용의 근본적인 변화를 가져왔습니다.' }
+  },
+  { id:'e026', cat:'Agents', date:'2024-10-11', impact:3,
+    en:{ title:'OpenAI Swarm', summary:'OpenAI releases lightweight multi-agent orchestration.', desc:'OpenAI releases Swarm, an experimental framework for multi-agent orchestration designed to be lightweight and easy-to-use. It introduces the concept of "handoffs" between agents and influences subsequent multi-agent frameworks.' },
+    ko:{ title:'OpenAI Swarm 출시', summary:'OpenAI가 경량 멀티 에이전트 조율 프레임워크를 출시했습니다.', desc:'OpenAI가 경량화되고 사용하기 쉬운 멀티 에이전트 조율을 위한 실험적 프레임워크 Swarm을 출시했습니다. 에이전트 간 "핸드오프" 개념을 도입하여 이후 멀티 에이전트 프레임워크에 영향을 주었습니다.' }
+  },
+  { id:'e027', cat:'Agents', date:'2024-11-25', impact:5,
+    en:{ title:'MCP Protocol', summary:'Anthropic releases the Model Context Protocol standard.', desc:'Anthropic releases the Model Context Protocol (MCP), an open standard for connecting AI models to data sources and tools. MCP rapidly becomes the de-facto standard for AI tool integration, adopted by hundreds of companies and projects.' },
+    ko:{ title:'MCP 프로토콜 출시', summary:'Anthropic이 모델 컨텍스트 프로토콜 표준을 발표했습니다.', desc:'Anthropic이 AI 모델을 데이터 소스 및 도구와 연결하기 위한 개방형 표준인 모델 컨텍스트 프로토콜(MCP)을 출시했습니다. MCP는 수백 개의 회사와 프로젝트가 채택하며 AI 도구 통합의 사실상 표준이 되었습니다.' }
+  },
+  { id:'e028', cat:'Agents', date:'2025-02-24', impact:5,
+    en:{ title:'Claude Code Launch', summary:'Anthropic releases Claude Code, an agentic coding tool.', desc:'Anthropic releases Claude Code, an agentic coding tool that lives in the terminal and can autonomously edit files, run tests, manage git, and perform complex multi-step software engineering tasks. It represents a new paradigm for developer tools.' },
+    ko:{ title:'Claude Code 출시', summary:'Anthropic이 에이전트 코딩 도구 Claude Code를 출시했습니다.', desc:'Anthropic이 터미널에서 동작하며 파일 편집, 테스트 실행, git 관리, 복잡한 다단계 소프트웨어 엔지니어링 작업을 자율적으로 수행할 수 있는 에이전트 코딩 도구 Claude Code를 출시했습니다. 개발자 도구의 새로운 패러다임을 제시했습니다.' }
+  },
+  { id:'e029', cat:'Agents', date:'2025-03-06', impact:4,
+    en:{ title:'Manus AI', summary:'Chinese agentic AI assistant causes viral sensation.', desc:'Manus, a general-purpose AI agent from Chinese startup Monica, goes viral globally. It claims to autonomously perform complex real-world tasks including research, coding, and data analysis without human intervention, sparking debate about AGI timelines.' },
+    ko:{ title:'Manus AI 등장', summary:'중국의 에이전트 AI 어시스턴트가 바이럴 현상을 일으켰습니다.', desc:'중국 스타트업 Monica의 범용 AI 에이전트 Manus가 전 세계적으로 바이럴 현상을 일으켰습니다. 사람의 개입 없이 조사, 코딩, 데이터 분석을 포함한 복잡한 실제 작업을 자율적으로 수행한다고 주장하며 AGI 일정에 대한 논쟁을 촉발했습니다.' }
+  },
+  { id:'e030', cat:'Agents', date:'2025-04-15', impact:4,
+    en:{ title:'Claude Agent SDK', summary:'Anthropic formalizes agentic framework for developers.', desc:'Anthropic releases a comprehensive Agent SDK, providing standardized primitives for building, deploying, and monitoring AI agents. It includes orchestration tools, memory management, and safety guardrails for production agent systems.' },
+    ko:{ title:'Claude Agent SDK 출시', summary:'Anthropic이 개발자를 위한 에이전트 프레임워크를 공식화했습니다.', desc:'Anthropic이 AI 에이전트 구축, 배포, 모니터링을 위한 표준화된 기본 요소를 제공하는 종합 Agent SDK를 출시했습니다. 프로덕션 에이전트 시스템을 위한 조율 도구, 메모리 관리, 안전 가드레일이 포함되어 있습니다.' }
+  },
+
+  // Open Source
+  { id:'e031', cat:'Open Source', date:'2023-07-18', impact:5,
+    en:{ title:'Llama 2 Open Release', summary:'Meta opens Llama 2 for commercial use.', desc:'Meta releases Llama 2 under a license allowing commercial use, immediately democratizing access to powerful language models. Developers worldwide can now run capable LLMs on their own infrastructure, fueling the open-source AI renaissance.' },
+    ko:{ title:'Llama 2 오픈 릴리즈', summary:'Meta가 Llama 2를 상업용으로 개방했습니다.', desc:'Meta가 상업적 사용을 허용하는 라이선스로 Llama 2를 출시하여 강력한 언어 모델에 대한 접근성을 즉시 민주화했습니다. 전 세계 개발자들이 자체 인프라에서 강력한 LLM을 실행할 수 있게 되어 오픈소스 AI 르네상스를 촉진했습니다.' }
+  },
+  { id:'e032', cat:'Open Source', date:'2023-09-27', impact:4,
+    en:{ title:'Mistral Open Models', summary:'European AI releases powerful open-weight models.', desc:'Mistral AI releases Mistral 7B as open weights under Apache 2.0 license, providing a model that outperforms Llama 2 13B despite half the parameters. It establishes Mistral as a leader in efficient, open-weight AI research.' },
+    ko:{ title:'Mistral 오픈 모델', summary:'유럽 AI 기업이 강력한 오픈 웨이트 모델을 공개했습니다.', desc:'Mistral AI가 Apache 2.0 라이선스로 Mistral 7B를 오픈 웨이트로 출시했습니다. 절반의 파라미터로 Llama 2 13B를 능가하는 모델을 제공하며 효율적인 오픈 웨이트 AI 연구의 선두주자로 자리매김했습니다.' }
+  },
+  { id:'e033', cat:'Open Source', date:'2023-12-11', impact:4,
+    en:{ title:'Mixtral 8x7B', summary:'First major open MoE model matching GPT-3.5.', desc:'Mistral AI releases Mixtral 8x7B, a Mixture-of-Experts model that matches GPT-3.5 performance while only using two of its eight experts per token. It demonstrates MoE as a key technique for efficient open-source models.' },
+    ko:{ title:'Mixtral 8x7B 출시', summary:'GPT-3.5에 필적하는 최초의 주요 오픈 MoE 모델.', desc:'Mistral AI가 토큰당 8개의 전문가 중 2개만 사용하면서 GPT-3.5 성능에 필적하는 Mixture-of-Experts 모델 Mixtral 8x7B를 출시했습니다. MoE가 효율적인 오픈소스 모델의 핵심 기술임을 증명했습니다.' }
+  },
+  { id:'e034', cat:'Open Source', date:'2023-12-01', impact:3,
+    en:{ title:'Phi-2', summary:'Microsoft\'s small language model with outsized performance.', desc:'Microsoft Research releases Phi-2, a 2.7B parameter model that outperforms models up to 25x its size on coding and reasoning tasks. It demonstrates that data quality and training methodology matter more than raw scale.' },
+    ko:{ title:'Phi-2 출시', summary:'Microsoft의 탁월한 성능을 가진 소형 언어 모델.', desc:'Microsoft Research가 코딩 및 추론 작업에서 최대 25배 큰 모델을 능가하는 27억 파라미터 모델 Phi-2를 출시했습니다. 데이터 품질과 훈련 방법론이 순수한 규모보다 더 중요하다는 것을 증명했습니다.' }
+  },
+  { id:'e035', cat:'Open Source', date:'2024-04-18', impact:4,
+    en:{ title:'Llama 3', summary:'Meta releases Llama 3 with massive performance gains.', desc:'Meta releases Llama 3 in 8B and 70B variants, with performance improvements that surpass all previous open models at those scales. It is trained on 15 trillion tokens and features improved instruction following and reasoning.' },
+    ko:{ title:'Llama 3 출시', summary:'Meta가 대규모 성능 향상과 함께 Llama 3를 출시했습니다.', desc:'Meta가 해당 규모의 모든 이전 오픈 모델을 능가하는 성능 향상을 보인 Llama 3의 8B와 70B 변형을 출시했습니다. 15조 토큰으로 훈련되었으며 향상된 명령 이행 및 추론 능력을 갖추고 있습니다.' }
+  },
+  { id:'e036', cat:'Open Source', date:'2024-04-23', impact:3,
+    en:{ title:'Phi-3', summary:'Microsoft releases Phi-3 family of small but capable models.', desc:'Microsoft releases the Phi-3 family, with the Phi-3-mini achieving performance comparable to GPT-3.5 at just 3.8B parameters. It runs natively on mobile devices, bringing capable AI to edge deployments.' },
+    ko:{ title:'Phi-3 출시', summary:'Microsoft가 작지만 강력한 Phi-3 모델 패밀리를 출시했습니다.', desc:'Microsoft가 Phi-3 패밀리를 출시했습니다. Phi-3-mini는 단 38억 파라미터로 GPT-3.5에 필적하는 성능을 달성합니다. 모바일 기기에서 기본적으로 실행되어 엣지 배포에 강력한 AI를 제공합니다.' }
+  },
+  { id:'e037', cat:'Open Source', date:'2024-06-07', impact:3,
+    en:{ title:'Qwen2', summary:'Alibaba releases the Qwen2 open model series.', desc:'Alibaba releases Qwen2, a series of open-source models from 0.5B to 72B parameters. The 72B version beats Llama 3 70B on multiple benchmarks, demonstrating strong Chinese AI research capabilities in the open domain.' },
+    ko:{ title:'Qwen2 출시', summary:'Alibaba가 Qwen2 오픈 모델 시리즈를 출시했습니다.', desc:'Alibaba가 5억~720억 파라미터 범위의 오픈소스 모델 시리즈 Qwen2를 출시했습니다. 720억 버전은 여러 벤치마크에서 Llama 3 70B를 능가하며 오픈 도메인에서 강력한 중국 AI 연구 역량을 입증했습니다.' }
+  },
+  { id:'e038', cat:'Open Source', date:'2024-06-17', impact:3,
+    en:{ title:'DeepSeek Coder V2', summary:'Open-source coding model challenging GPT-4 Turbo.', desc:'DeepSeek releases DeepSeek Coder V2, a 236B MoE model specialized for coding that matches or beats GPT-4 Turbo on coding benchmarks while being fully open-source. It signals Chinese AI labs as serious open-source contributors.' },
+    ko:{ title:'DeepSeek Coder V2 출시', summary:'GPT-4 Turbo에 도전하는 오픈소스 코딩 모델.', desc:'DeepSeek이 코딩에 특화된 2360억 MoE 모델 DeepSeek Coder V2를 출시했습니다. 코딩 벤치마크에서 GPT-4 Turbo와 동등하거나 능가하면서 완전한 오픈소스로 제공됩니다. 중국 AI 연구소가 진지한 오픈소스 기여자임을 알렸습니다.' }
+  },
+  { id:'e039', cat:'Open Source', date:'2024-07-23', impact:5,
+    en:{ title:'Llama 3.1 405B', summary:'Meta releases largest-ever open-source LLM.', desc:'Meta releases Llama 3.1 405B, the largest open-source LLM ever released, with performance comparable to GPT-4o and Claude 3.5 Sonnet. It sets a new standard for open-source AI and enables previously impossible self-hosted applications.' },
+    ko:{ title:'Llama 3.1 405B 출시', summary:'Meta가 역대 최대 규모의 오픈소스 LLM을 출시했습니다.', desc:'Meta가 GPT-4o 및 Claude 3.5 Sonnet에 필적하는 성능을 가진 역대 최대 오픈소스 LLM인 Llama 3.1 405B를 출시했습니다. 오픈소스 AI의 새로운 기준을 세우고 이전에는 불가능했던 자체 호스팅 애플리케이션을 가능하게 했습니다.' }
+  },
+  { id:'e040', cat:'Open Source', date:'2024-09-18', impact:3,
+    en:{ title:'Qwen2.5', summary:'Alibaba releases Qwen2.5 with major capability improvements.', desc:'Alibaba releases Qwen2.5, a significantly upgraded series offering models from 0.5B to 72B. It features improved coding, math, and instruction-following capabilities, further solidifying Alibaba\'s position in the open-source AI race.' },
+    ko:{ title:'Qwen2.5 출시', summary:'Alibaba가 주요 성능 향상과 함께 Qwen2.5를 출시했습니다.', desc:'Alibaba가 5억~720억 범위의 대폭 업그레이드된 시리즈 Qwen2.5를 출시했습니다. 향상된 코딩, 수학, 명령 이행 능력을 제공하며 오픈소스 AI 경쟁에서 Alibaba의 입지를 더욱 공고히 했습니다.' }
+  },
+  { id:'e041', cat:'Open Source', date:'2025-01-20', impact:5,
+    en:{ title:'DeepSeek R1', summary:'Open reasoning model matching o1 at a fraction of the cost.', desc:'DeepSeek releases R1, a reasoning model trained entirely via reinforcement learning that matches OpenAI o1 on math and coding benchmarks. It is fully open-source and its training methodology (GRPO) inspires a wave of replications worldwide.' },
+    ko:{ title:'DeepSeek R1 출시', summary:'o1과 동등한 성능을 훨씬 낮은 비용으로 제공하는 오픈 추론 모델.', desc:'DeepSeek이 수학·코딩 벤치마크에서 OpenAI o1에 필적하는 강화학습만으로 훈련된 추론 모델 R1을 출시했습니다. 완전히 오픈소스이며 훈련 방법론(GRPO)이 전 세계적으로 복제 물결을 일으켰습니다.' }
+  },
+
+  // Regulation
+  { id:'e042', cat:'Regulation', date:'2023-06-14', impact:4,
+    en:{ title:'EU AI Act Proposed', summary:'European Parliament passes its version of the EU AI Act.', desc:'The European Parliament passes its negotiating position on the EU AI Act, with significant additions including regulations on foundation models and generative AI. It is the world\'s first comprehensive attempt at AI regulation.' },
+    ko:{ title:'EU AI 법안 제안', summary:'유럽의회가 EU AI 법안을 통과시켰습니다.', desc:'유럽의회가 기반 모델 및 생성형 AI에 대한 규제를 포함한 EU AI 법안에 대한 협상 입장을 통과시켰습니다. 이는 세계 최초의 포괄적인 AI 규제 시도입니다.' }
+  },
+  { id:'e043', cat:'Regulation', date:'2023-10-30', impact:4,
+    en:{ title:'Biden AI Executive Order', summary:'US President signs landmark AI safety executive order.', desc:'President Biden signs a sweeping executive order on AI safety, directing federal agencies to evaluate AI risks, establish safety standards, and requiring AI companies to share safety test results with the government before releasing powerful models.' },
+    ko:{ title:'바이든 AI 행정명령', summary:'미국 대통령이 획기적인 AI 안전 행정명령에 서명했습니다.', desc:'바이든 대통령이 연방 기관에 AI 위험 평가, 안전 기준 수립을 지시하고 AI 기업이 강력한 모델을 출시하기 전에 정부에 안전 테스트 결과를 공유하도록 요구하는 광범위한 AI 안전 행정명령에 서명했습니다.' }
+  },
+  { id:'e044', cat:'Regulation', date:'2023-05-19', impact:3,
+    en:{ title:'G7 Hiroshima AI Process', summary:'G7 nations agree on international AI governance principles.', desc:'At the Hiroshima summit, G7 leaders launch the Hiroshima AI Process to develop international guidelines and codes of conduct for AI. It leads to the adoption of the International Code of Conduct for Advanced AI Systems.' },
+    ko:{ title:'G7 히로시마 AI 프로세스', summary:'G7 국가들이 국제 AI 거버넌스 원칙에 합의했습니다.', desc:'히로시마 정상회담에서 G7 지도자들이 AI에 대한 국제 지침 및 행동 강령 개발을 위한 히로시마 AI 프로세스를 출범시켰습니다. 이는 첨단 AI 시스템을 위한 국제 행동 강령 채택으로 이어졌습니다.' }
+  },
+  { id:'e045', cat:'Regulation', date:'2024-03-13', impact:5,
+    en:{ title:'EU AI Act Passed', summary:'EU formally adopts world\'s first comprehensive AI law.', desc:'The European Parliament formally adopts the EU AI Act, the world\'s first comprehensive legal framework for AI. It establishes risk-based categories for AI applications and sets obligations for high-risk systems, with enforcement beginning in stages.' },
+    ko:{ title:'EU AI 법 통과', summary:'EU가 세계 최초의 포괄적인 AI 법률을 공식 채택했습니다.', desc:'유럽의회가 세계 최초의 포괄적인 AI 법적 프레임워크인 EU AI 법을 공식 채택했습니다. AI 응용 프로그램에 대한 위험 기반 범주를 확립하고 고위험 시스템에 대한 의무를 설정하며 단계적으로 시행이 시작됩니다.' }
+  },
+  { id:'e046', cat:'Regulation', date:'2024-07-01', impact:3,
+    en:{ title:'California SB-1047 Debate', summary:'Controversial AI safety bill sparks national debate in US.', desc:'California\'s SB-1047 bill, which would require AI companies to conduct safety testing for frontier models, sparks intense debate. It eventually fails to pass, but highlights the tension between AI safety advocates and industry innovation concerns.' },
+    ko:{ title:'캘리포니아 SB-1047 논쟁', summary:'논란이 많은 AI 안전 법안이 미국에서 전국적인 논쟁을 불러일으켰습니다.', desc:'프론티어 모델에 대한 안전 테스트를 AI 기업에 요구하는 캘리포니아 SB-1047 법안이 치열한 논쟁을 촉발했습니다. 결국 통과되지 못했지만 AI 안전 옹호자와 산업 혁신 관련 우려 사이의 긴장을 부각시켰습니다.' }
+  },
+  { id:'e047', cat:'Regulation', date:'2024-09-01', impact:3,
+    en:{ title:'China AI Regulations', summary:'China implements comprehensive AI content regulations.', desc:'China\'s Cyberspace Administration implements comprehensive regulations governing AI-generated content, requiring watermarking, content filtering, and user data protection. China becomes one of the first nations to implement enforceable AI content rules.' },
+    ko:{ title:'중국 AI 규제', summary:'중국이 포괄적인 AI 콘텐츠 규제를 시행했습니다.', desc:'중국 사이버공간 관리국이 AI 생성 콘텐츠에 대한 포괄적인 규제를 시행하여 워터마킹, 콘텐츠 필터링, 사용자 데이터 보호를 요구합니다. 중국은 집행 가능한 AI 콘텐츠 규칙을 시행한 최초의 국가 중 하나가 되었습니다.' }
+  },
+  { id:'e048', cat:'Regulation', date:'2025-08-02', impact:4,
+    en:{ title:'EU AI Act Enforcement', summary:'EU AI Act begins full enforcement for prohibited AI uses.', desc:'The EU AI Act enters full enforcement for prohibited AI applications, including real-time biometric identification in public spaces and social scoring. Companies face fines up to €35M or 7% of global revenue for violations.' },
+    ko:{ title:'EU AI 법 시행', summary:'EU AI 법이 금지된 AI 사용에 대한 전면 시행을 시작했습니다.', desc:'EU AI 법이 공공장소에서의 실시간 생체 인식 및 사회 점수 매기기 등 금지된 AI 응용 프로그램에 대한 전면 시행에 돌입했습니다. 위반 시 최대 3,500만 유로 또는 전 세계 매출의 7%에 달하는 벌금이 부과됩니다.' }
+  },
+
+  // Hardware
+  { id:'e049', cat:'Hardware', date:'2023-03-01', impact:4,
+    en:{ title:'NVIDIA H100 Dominance', summary:'NVIDIA H100 GPU becomes the gold standard for AI training.', desc:'NVIDIA\'s H100 GPU, launched in late 2022, establishes an iron grip on the AI training market in 2023. With 80GB HBM3 and 700GB/s memory bandwidth, it becomes the must-have hardware for every major AI lab, causing massive supply shortages.' },
+    ko:{ title:'NVIDIA H100 지배', summary:'NVIDIA H100 GPU가 AI 훈련의 표준이 되었습니다.', desc:'2022년 말 출시된 NVIDIA H100 GPU가 2023년 AI 훈련 시장을 장악했습니다. 80GB HBM3와 700GB/s 메모리 대역폭으로 모든 주요 AI 연구소의 필수 하드웨어가 되어 대규모 공급 부족을 초래했습니다.' }
+  },
+  { id:'e050', cat:'Hardware', date:'2023-10-30', impact:3,
+    en:{ title:'Apple M3', summary:'Apple launches M3 chips with improved neural engine.', desc:'Apple launches the M3 chip family for Macs, featuring a 3nm architecture with significant improvements to the Neural Engine. It enables powerful on-device AI inference, making Apple Silicon a capable platform for running local LLMs.' },
+    ko:{ title:'Apple M3 출시', summary:'Apple이 향상된 신경 엔진을 갖춘 M3 칩을 출시했습니다.', desc:'Apple이 Mac용 M3 칩 패밀리를 출시했습니다. 신경 엔진이 크게 향상된 3nm 아키텍처를 특징으로 하며 강력한 온디바이스 AI 추론을 가능하게 하여 Apple Silicon을 로컬 LLM 실행에 유능한 플랫폼으로 만들었습니다.' }
+  },
+  { id:'e051', cat:'Hardware', date:'2023-12-07', impact:3,
+    en:{ title:'AMD MI300X', summary:'AMD launches competitive AI accelerator challenging NVIDIA.', desc:'AMD launches the Instinct MI300X AI accelerator with 192GB HBM3 memory—the highest GPU memory capacity at launch. It positions AMD as a credible alternative to NVIDIA for AI inference workloads, especially for large model deployment.' },
+    ko:{ title:'AMD MI300X 출시', summary:'AMD가 NVIDIA에 도전하는 경쟁력 있는 AI 가속기를 출시했습니다.', desc:'AMD가 출시 당시 최고 GPU 메모리 용량인 192GB HBM3 메모리를 탑재한 Instinct MI300X AI 가속기를 출시했습니다. AMD를 AI 추론 워크로드, 특히 대형 모델 배포에서 NVIDIA의 신뢰할 수 있는 대안으로 자리매김했습니다.' }
+  },
+  { id:'e052', cat:'Hardware', date:'2023-12-13', impact:3,
+    en:{ title:'Google TPU v5p', summary:'Google launches most powerful TPU for large-scale training.', desc:'Google announces TPU v5p, its most powerful AI accelerator to date, designed for training very large language models. With 460 TFLOPS of BF16 performance and high-bandwidth interconnects, it underpins Google\'s training infrastructure.' },
+    ko:{ title:'Google TPU v5p 출시', summary:'Google이 대규모 훈련을 위한 가장 강력한 TPU를 출시했습니다.', desc:'Google이 초대형 언어 모델 훈련을 위해 설계된 역대 가장 강력한 AI 가속기 TPU v5p를 발표했습니다. 460 TFLOPS의 BF16 성능과 고대역폭 인터커넥트로 Google의 훈련 인프라를 뒷받침합니다.' }
+  },
+  { id:'e053', cat:'Hardware', date:'2024-02-22', impact:4,
+    en:{ title:'Groq LPU Launch', summary:'Groq\'s LPU enables record-breaking inference speeds.', desc:'Groq launches its Language Processing Unit (LPU) commercially, achieving inference speeds of 500+ tokens/second—10x faster than GPU-based systems. It demonstrates that purpose-built AI inference chips can dramatically outperform GPUs for specific tasks.' },
+    ko:{ title:'Groq LPU 출시', summary:'Groq의 LPU가 기록적인 추론 속도를 달성했습니다.', desc:'Groq가 초당 500토큰 이상의 추론 속도를 달성하는 언어처리장치(LPU)를 상업적으로 출시했습니다. GPU 기반 시스템보다 10배 빠른 속도로 목적에 맞게 제작된 AI 추론 칩이 특정 작업에서 GPU를 크게 능가할 수 있음을 증명했습니다.' }
+  },
+  { id:'e054', cat:'Hardware', date:'2024-03-18', impact:5,
+    en:{ title:'NVIDIA Blackwell Announced', summary:'NVIDIA unveils next-gen Blackwell GPU architecture.', desc:'NVIDIA announces the Blackwell architecture and GB200 NVL72 system, featuring 2nd-gen transformer engine, NVLink 5.0, and 1.4 ExaFLOPS of AI performance in a single rack. It promises 5x inference throughput improvement over Hopper.' },
+    ko:{ title:'NVIDIA Blackwell 발표', summary:'NVIDIA가 차세대 Blackwell GPU 아키텍처를 공개했습니다.', desc:'NVIDIA가 2세대 트랜스포머 엔진, NVLink 5.0, 단일 랙에서 1.4 엑사FLOPS AI 성능을 갖춘 Blackwell 아키텍처와 GB200 NVL72 시스템을 발표했습니다. Hopper 대비 5배 추론 처리량 향상을 약속합니다.' }
+  },
+  { id:'e055', cat:'Hardware', date:'2024-03-25', impact:3,
+    en:{ title:'Cerebras WSE-3', summary:'Cerebras launches largest chip ever made for AI.', desc:'Cerebras launches the Wafer Scale Engine 3 (WSE-3), the largest chip ever manufactured, with 900,000 AI cores and 44GB on-chip SRAM. It enables training of large models without inter-chip communication bottlenecks.' },
+    ko:{ title:'Cerebras WSE-3 출시', summary:'Cerebras가 AI를 위한 역대 최대 칩을 출시했습니다.', desc:'Cerebras가 900,000개의 AI 코어와 44GB 온칩 SRAM을 갖춘 역대 최대 제조 칩인 웨이퍼 스케일 엔진 3(WSE-3)를 출시했습니다. 칩 간 통신 병목 없이 대형 모델 훈련이 가능합니다.' }
+  },
+  { id:'e056', cat:'Hardware', date:'2024-06-10', impact:3,
+    en:{ title:'Apple M4', summary:'Apple M4 chip debuts with neural engine upgrades.', desc:'Apple launches the M4 chip in the iPad Pro, featuring a 3nm TSMC process and a new Neural Engine capable of 38 TOPS. It brings consumer-grade on-device AI to a new level, enabling real-time AI features without cloud connectivity.' },
+    ko:{ title:'Apple M4 출시', summary:'Apple M4 칩이 신경 엔진 업그레이드와 함께 데뷔했습니다.', desc:'Apple이 iPad Pro에 M4 칩을 출시했습니다. TSMC 3nm 공정과 38 TOPS 성능의 새로운 신경 엔진을 특징으로 합니다. 클라우드 연결 없이 실시간 AI 기능을 가능하게 하며 소비자급 온디바이스 AI를 새로운 수준으로 끌어올렸습니다.' }
+  },
+  { id:'e057', cat:'Hardware', date:'2024-08-01', impact:4,
+    en:{ title:'NVIDIA B200', summary:'NVIDIA starts shipping Blackwell B200 GPUs.', desc:'NVIDIA begins shipping B200 Blackwell GPUs to cloud providers and enterprise customers. With 192GB HBM3e and new FP4 precision support, it offers a 30x inference speedup over H100 for large language models, reshaping AI infrastructure.' },
+    ko:{ title:'NVIDIA B200 출시', summary:'NVIDIA가 Blackwell B200 GPU 출하를 시작했습니다.', desc:'NVIDIA가 클라우드 제공업체와 기업 고객에게 B200 Blackwell GPU 출하를 시작했습니다. 192GB HBM3e와 새로운 FP4 정밀도 지원으로 대형 언어 모델에서 H100 대비 30배의 추론 속도 향상을 제공하며 AI 인프라를 재편하고 있습니다.' }
+  }
+];
+
+// ─────────────────────────────────────────────
+//  CONSTANTS & STATE
+// ─────────────────────────────────────────────
+const CATEGORIES = ['LLM','Agents','Open Source','Regulation','Hardware'];
+const CAT_COLORS = {
+  'LLM': { main:'#7c3aed', glow:'#a855f7', bg:'rgba(124,58,237,0.12)' },
+  'Agents': { main:'#0891b2', glow:'#22d3ee', bg:'rgba(8,145,178,0.12)' },
+  'Open Source': { main:'#16a34a', glow:'#4ade80', bg:'rgba(22,163,74,0.12)' },
+  'Regulation': { main:'#dc2626', glow:'#f87171', bg:'rgba(220,38,38,0.12)' },
+  'Hardware': { main:'#d97706', glow:'#fbbf24', bg:'rgba(217,119,6,0.12)' }
+};
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTHS_KO = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+
+const START_DATE = new Date('2023-01-01');
+const END_DATE = new Date('2026-12-31');
+const TOTAL_DAYS = Math.ceil((END_DATE - START_DATE) / 86400000);
+
+const LANE_H = 160;
+const AXIS_H = 32;
+const CARD_W = 150;
+const CARD_H = 115;
+const CARD_TOP_OFFSET = 22; // from lane top
+
+let state = {
+  lang: 'en',
+  zoom: 1.0,
+  offsetX: 0,
+  pxPerDay: 3.2,
+  activeCats: new Set(CATEGORIES),
+  dragging: false,
+  dragStartX: 0,
+  dragStartOffsetX: 0,
+  pinchLastDist: 0,
+  selectedEvent: null
+};
+
+// ─────────────────────────────────────────────
+//  UTILS
+// ─────────────────────────────────────────────
+function dayOffset(dateStr) {
+  const d = new Date(dateStr);
+  return Math.floor((d - START_DATE) / 86400000);
+}
+
+function xForDay(day) {
+  return day * state.pxPerDay * state.zoom;
+}
+
+function totalWidth() {
+  return TOTAL_DAYS * state.pxPerDay * state.zoom;
+}
+
+function viewportWidth() {
+  return window.innerWidth - 130; // label width
+}
+
+function clampOffset(x) {
+  const maxOff = Math.max(0, totalWidth() - viewportWidth() + 40);
+  return Math.max(-40, Math.min(maxOff, x));
+}
+
+function starsHTML(n) {
+  return '★'.repeat(n) + '☆'.repeat(5-n);
+}
+
+// ─────────────────────────────────────────────
+//  PARTICLE SYSTEM
+// ─────────────────────────────────────────────
+const pCanvas = document.getElementById('particles-canvas');
+const pCtx = pCanvas.getContext('2d');
+let particles = [];
+
+function initParticles() {
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+  particles = [];
+  const count = Math.floor(window.innerWidth * window.innerHeight / 12000);
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * pCanvas.width,
+      y: Math.random() * pCanvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+      alpha: Math.random() * 0.5 + 0.1,
+      color: ['#a855f7','#22d3ee','#4ade80','#f87171','#fbbf24'][Math.floor(Math.random()*5)]
+    });
+  }
+}
+
+let animFrame;
+function animateParticles() {
+  pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = pCanvas.width;
+    if (p.x > pCanvas.width) p.x = 0;
+    if (p.y < 0) p.y = pCanvas.height;
+    if (p.y > pCanvas.height) p.y = 0;
+    pCtx.beginPath();
+    pCtx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    pCtx.fillStyle = p.color;
+    pCtx.globalAlpha = p.alpha;
+    pCtx.fill();
+    pCtx.globalAlpha = 1;
+  });
+  animFrame = requestAnimationFrame(animateParticles);
+}
+
+// ─────────────────────────────────────────────
+//  LAYOUT COMPUTATION (card stacking)
+// ─────────────────────────────────────────────
+// For each lane, compute vertical positions to avoid overlap
+function computeCardPositions() {
+  const positions = {}; // eventId -> {x, y}
+  CATEGORIES.forEach((cat, laneIdx) => {
+    const events = EVENTS_DATA.filter(e => e.cat === cat);
+    events.sort((a,b) => new Date(a.date) - new Date(b.date));
+    const slots = []; // {x1, x2, row}
+    const ROW_H = CARD_H + 8;
+    events.forEach(ev => {
+      const x = xForDay(dayOffset(ev.date));
+      const x1 = x - CARD_W/2, x2 = x + CARD_W/2;
+      // find lowest row with no overlap
+      let row = 0;
+      let placed = false;
+      while (!placed) {
+        const conflict = slots.some(s => s.row === row && x1 < s.x2 + 8 && x2 > s.x1 - 8);
+        if (!conflict) { placed = true; } else { row++; }
+      }
+      slots.push({x1, x2, row});
+      // y within lane: start from top
+      const laneTop = laneIdx * LANE_H + AXIS_H;
+      const y = laneTop + CARD_TOP_OFFSET + row * ROW_H;
+      positions[ev.id] = {x: x - CARD_W/2, y, row, laneTop, laneCenter: laneTop + LANE_H/2};
+    });
+  });
+  return positions;
+}
+
+// ─────────────────────────────────────────────
+//  RENDER
+// ─────────────────────────────────────────────
+const viewport = document.getElementById('viewport');
+const canvas = document.getElementById('timeline-canvas');
+const axisBar = document.getElementById('axis-bar');
+const laneLabels = document.getElementById('lane-labels');
+
+let cardEls = {};
+let connectorEls = {};
+let cardPositions = {};
+
+function buildLayout() {
+  // Clear previous
+  canvas.innerHTML = '';
+  canvas.appendChild(axisBar);
+  canvas.appendChild(laneLabels);
+  axisBar.innerHTML = '';
+  laneLabels.innerHTML = '';
+  cardEls = {}; connectorEls = {};
+
+  const tw = totalWidth();
+  canvas.style.width = (tw + 200) + 'px';
+  canvas.style.height = (CATEGORIES.length * LANE_H + AXIS_H + 10) + 'px';
+
+  // Lanes
+  CATEGORIES.forEach((cat, i) => {
+    const lane = document.createElement('div');
+    lane.className = 'lane';
+    lane.dataset.cat = cat;
+    lane.style.marginTop = i === 0 ? AXIS_H + 'px' : '0';
+    lane.style.width = (tw + 200) + 'px';
+    const bg = document.createElement('div');
+    bg.className = 'lane-bg';
+    lane.appendChild(bg);
+    canvas.appendChild(lane);
+
+    // Lane label
+    const lbl = document.createElement('div');
+    lbl.className = 'lane-label';
+    lbl.style.color = CAT_COLORS[cat].glow;
+    lbl.innerHTML = `<span>${cat === 'Open Source' ? (state.lang==='ko'?'오픈소스':cat) : (state.lang==='ko' ? {LLM:'LLM',Agents:'에이전트',Regulation:'규제',Hardware:'하드웨어'}[cat]||cat : cat)}</span>`;
+    laneLabels.appendChild(lbl);
+  });
+
+  // Grid lines on axis
+  const yearStart = START_DATE.getFullYear();
+  const yearEnd = END_DATE.getFullYear();
+  for (let y = yearStart; y <= yearEnd; y++) {
+    const d = new Date(y, 0, 1);
+    const x = xForDay(Math.floor((d - START_DATE)/86400000));
+    const line = document.createElement('div');
+    line.className = 'grid-year';
+    line.style.left = x + 'px';
+    line.style.top = AXIS_H + 'px';
+    line.style.bottom = '0';
+    canvas.appendChild(line);
+
+    const lbl = document.createElement('div');
+    lbl.className = 'grid-year-label';
+    lbl.style.left = x + 'px';
+    lbl.style.top = '4px';
+    lbl.textContent = y;
+    axisBar.appendChild(lbl);
+
+    // Month lines
+    for (let m = 1; m < 12; m++) {
+      const md = new Date(y, m, 1);
+      const mx = xForDay(Math.floor((md - START_DATE)/86400000));
+      const ml = document.createElement('div');
+      ml.className = 'grid-month';
+      ml.style.left = mx + 'px';
+      ml.style.top = AXIS_H + 'px';
+      ml.style.bottom = '0';
+      canvas.appendChild(ml);
+
+      if (state.zoom > 0.7) {
+        const mlbl = document.createElement('div');
+        mlbl.className = 'grid-month-label';
+        mlbl.style.left = mx + 'px';
+        mlbl.style.top = '16px';
+        mlbl.textContent = (state.lang==='ko' ? MONTHS_KO : MONTHS)[m];
+        axisBar.appendChild(mlbl);
+      }
+    }
+  }
+
+  // Today line
+  const todayDay = Math.floor((new Date() - START_DATE)/86400000);
+  if (todayDay >= 0 && todayDay <= TOTAL_DAYS) {
+    const tl = document.createElement('div');
+    tl.className = 'today-line';
+    tl.style.left = xForDay(todayDay) + 'px';
+    tl.style.top = AXIS_H + 'px';
+    canvas.appendChild(tl);
+  }
+
+  // Compute card positions
+  cardPositions = {};
+  CATEGORIES.forEach((cat, laneIdx) => {
+    const events = EVENTS_DATA.filter(e => e.cat === cat);
+    events.sort((a,b) => new Date(a.date) - new Date(b.date));
+    const slots = [];
+    const ROW_H = CARD_H + 8;
+    events.forEach(ev => {
+      const cx = xForDay(dayOffset(ev.date));
+      const x1 = cx - CARD_W/2, x2 = cx + CARD_W/2;
+      let row = 0, placed = false;
+      while (!placed) {
+        const conflict = slots.some(s => s.row === row && x1 < s.x2 + 8 && x2 > s.x1 - 8);
+        if (!conflict) placed = true; else row++;
+      }
+      slots.push({x1, x2, row});
+      const laneTop = laneIdx * LANE_H + AXIS_H;
+      const y = laneTop + CARD_TOP_OFFSET + row * ROW_H;
+      cardPositions[ev.id] = {x: cx - CARD_W/2, y, cx, laneTop};
+    });
+  });
+
+  // Cards
+  EVENTS_DATA.forEach(ev => {
+    const pos = cardPositions[ev.id];
+    if (!pos) return;
+    const visible = state.activeCats.has(ev.cat);
+
+    const card = document.createElement('div');
+    card.className = 'event-card';
+    card.dataset.cat = ev.cat;
+    card.dataset.id = ev.id;
+    card.style.left = pos.x + 'px';
+    card.style.top = pos.y + 'px';
+    card.style.width = CARD_W + 'px';
+    card.style.display = visible ? '' : 'none';
+    card.style.animationDelay = (Math.random()*0.3) + 's';
+
+    const d = new Date(ev.date);
+    const dateStr = state.lang==='ko'
+      ? `${d.getFullYear()}년 ${d.getMonth()+1}월`
+      : `${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+
+    const content = ev[state.lang] || ev.en;
+    card.innerHTML = `
+      <div class="card-date">${dateStr}</div>
+      <div class="card-title">${content.title}</div>
+      <div class="card-summary">${content.summary}</div>
+      <div class="card-stars">${starsHTML(ev.impact)}</div>
+    `;
+
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openDetail(ev);
+    });
+
+    canvas.appendChild(card);
+    cardEls[ev.id] = card;
+
+    // Connector
+    const conn = document.createElement('div');
+    conn.className = 'card-connector';
+    conn.style.left = (pos.cx - 0.5) + 'px';
+    conn.style.top = pos.laneTop + 'px';
+    conn.style.height = (pos.y - pos.laneTop) + 'px';
+    conn.style.display = visible ? '' : 'none';
+    canvas.appendChild(conn);
+    connectorEls[ev.id] = conn;
+  });
+
+  updateTransform();
+  updateScrollbar();
+  updateMinimap();
+}
+
+function updateTransform() {
+  canvas.style.transform = `translateX(${-state.offsetX + 130}px)`;
+  // Keep axis fixed
+  axisBar.style.transform = `translateX(${state.offsetX - 130}px)`;
+  axisBar.style.left = '0';
+  axisBar.style.right = '0';
+  laneLabels.style.transform = `translateX(${state.offsetX - 130}px)`;
+}
+
+function updateScrollbar() {
+  const tw = totalWidth();
+  const vw = viewportWidth();
+  const ratio = Math.min(1, vw / tw);
+  const thumb = document.getElementById('scrollbar-thumb');
+  thumb.style.width = (ratio * 100) + '%';
+  const maxOff = Math.max(0, tw - vw);
+  const pos = maxOff > 0 ? state.offsetX / maxOff : 0;
+  thumb.style.left = (pos * (100 - ratio * 100)) + '%';
+}
+
+function updateMinimap() {
+  const mm = document.getElementById('minimap');
+  const mmVP = document.getElementById('minimap-viewport');
+  // Clear dots
+  mm.querySelectorAll('.minimap-dot').forEach(d => d.remove());
+
+  const tw = totalWidth();
+  const vw = viewportWidth();
+  const mmW = 180;
+
+  // Dots
+  EVENTS_DATA.forEach(ev => {
+    if (!state.activeCats.has(ev.cat)) return;
+    const pos = cardPositions[ev.id];
+    if (!pos) return;
+    const dot = document.createElement('div');
+    dot.className = 'minimap-dot';
+    dot.style.background = CAT_COLORS[ev.cat].glow;
+    dot.style.left = ((pos.cx / tw) * mmW) + 'px';
+    dot.style.top = (CATEGORIES.indexOf(ev.cat) / CATEGORIES.length * 50 + 5) + 'px';
+    mm.appendChild(dot);
+  });
+
+  // Viewport indicator
+  const ratio = vw / tw;
+  mmVP.style.width = (ratio * mmW) + 'px';
+  mmVP.style.left = ((state.offsetX / tw) * mmW) + 'px';
+}
+
+// ─────────────────────────────────────────────
+//  DETAIL PANEL
+// ─────────────────────────────────────────────
+function openDetail(ev) {
+  const overlay = document.getElementById('detail-overlay');
+  const panel = document.getElementById('detail-panel');
+  const content = ev[state.lang] || ev.en;
+  const d = new Date(ev.date);
+  const dateStr = state.lang==='ko'
+    ? `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`
+    : `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+
+  panel.dataset.cat = ev.cat;
+  const c = CAT_COLORS[ev.cat];
+  document.getElementById('detail-cat-badge').textContent = ev.cat;
+  document.getElementById('detail-cat-badge').style.cssText = `background:${c.bg};color:${c.glow};border:1px solid ${c.main};display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;`;
+  document.getElementById('detail-date').textContent = dateStr;
+  document.getElementById('detail-title').textContent = content.title;
+  document.getElementById('detail-stars').textContent = starsHTML(ev.impact);
+  document.getElementById('detail-stars').style.color = c.glow;
+  document.getElementById('detail-summary').textContent = content.summary;
+  document.getElementById('detail-description').textContent = content.desc;
+
+  state.selectedEvent = ev;
+  overlay.classList.add('visible');
+}
+
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('visible');
+  state.selectedEvent = null;
+}
+
+document.getElementById('detail-close').addEventListener('click', closeDetail);
+document.getElementById('detail-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeDetail();
+});
+
+// ─────────────────────────────────────────────
+//  NAVIGATION
+// ─────────────────────────────────────────────
+function scrollTo(x, smooth=true) {
+  const target = clampOffset(x);
+  if (!smooth) {
+    state.offsetX = target;
+    updateTransform();
+    updateScrollbar();
+    updateMinimap();
+    return;
+  }
+  const start = state.offsetX;
+  const diff = target - start;
+  const dur = 600;
+  const t0 = performance.now();
+  function step(t) {
+    const p = Math.min(1, (t-t0)/dur);
+    const ease = p < 0.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2; // cubic ease-in-out
+    state.offsetX = start + diff * ease;
+    updateTransform();
+    updateScrollbar();
+    updateMinimap();
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function jumpToEvent(ev) {
+  const pos = cardPositions[ev.id];
+  if (!pos) return;
+  const targetX = pos.cx - viewportWidth()/2;
+  scrollTo(targetX);
+  // Flash card
+  setTimeout(() => {
+    const card = cardEls[ev.id];
+    if (card) {
+      card.classList.remove('card-jump');
+      void card.offsetWidth;
+      card.classList.add('card-jump');
+    }
+    openDetail(ev);
+  }, 650);
+}
+
+// ─────────────────────────────────────────────
+//  ZOOM
+// ─────────────────────────────────────────────
+function setZoom(newZoom, centerX) {
+  newZoom = Math.max(0.3, Math.min(4, newZoom));
+  const ratio = newZoom / state.zoom;
+  const cx = centerX !== undefined ? centerX : viewportWidth()/2;
+  // Adjust offset so zoom centers on cx
+  const worldX = (state.offsetX + cx - 130) / state.zoom;
+  state.zoom = newZoom;
+  state.offsetX = worldX * state.zoom - cx + 130;
+  state.offsetX = clampOffset(state.offsetX);
+  document.getElementById('zoom-display').textContent = Math.round(state.zoom*100)+'%';
+  buildLayout();
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => setZoom(state.zoom * 1.3));
+document.getElementById('zoom-out').addEventListener('click', () => setZoom(state.zoom / 1.3));
+
+// ─────────────────────────────────────────────
+//  DRAG / SCROLL
+// ─────────────────────────────────────────────
+viewport.addEventListener('mousedown', (e) => {
+  if (e.button !== 0) return;
+  state.dragging = true;
+  state.dragStartX = e.clientX;
+  state.dragStartOffsetX = state.offsetX;
+  viewport.classList.add('dragging');
+  e.preventDefault();
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (!state.dragging) return;
+  const dx = e.clientX - state.dragStartX;
+  state.offsetX = clampOffset(state.dragStartOffsetX - dx);
+  updateTransform();
+  updateScrollbar();
+  updateMinimap();
+});
+
+window.addEventListener('mouseup', () => {
+  state.dragging = false;
+  viewport.classList.remove('dragging');
+});
+
+viewport.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  if (e.ctrlKey || e.metaKey) {
+    // Zoom
+    const factor = e.deltaY > 0 ? 0.9 : 1.1;
+    setZoom(state.zoom * factor, e.clientX - 130);
+  } else {
+    // Scroll
+    state.offsetX = clampOffset(state.offsetX + e.deltaY * 1.2 + e.deltaX * 1.2);
+    updateTransform();
+    updateScrollbar();
+    updateMinimap();
+  }
+}, { passive: false });
+
+// Touch
+let lastTouchX = 0;
+let lastTouchDist = 0;
+viewport.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 1) {
+    lastTouchX = e.touches[0].clientX;
+    state.dragStartOffsetX = state.offsetX;
+  } else if (e.touches.length === 2) {
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    lastTouchDist = Math.sqrt(dx*dx + dy*dy);
+  }
+}, { passive: true });
+
+viewport.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if (e.touches.length === 1) {
+    const dx = e.touches[0].clientX - lastTouchX;
+    state.offsetX = clampOffset(state.offsetX - dx);
+    lastTouchX = e.touches[0].clientX;
+    updateTransform();
+    updateScrollbar();
+    updateMinimap();
+  } else if (e.touches.length === 2) {
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (lastTouchDist > 0) {
+      const factor = dist / lastTouchDist;
+      const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - 130;
+      setZoom(state.zoom * factor, cx);
+    }
+    lastTouchDist = dist;
+  }
+}, { passive: false });
+
+// Scrollbar drag
+let sbDragging = false, sbStartX = 0, sbStartOffset = 0;
+const sbThumb = document.getElementById('scrollbar-thumb');
+const sbTrack = document.getElementById('scrollbar-track');
+sbThumb.addEventListener('mousedown', (e) => {
+  sbDragging = true;
+  sbStartX = e.clientX;
+  sbStartOffset = state.offsetX;
+  e.preventDefault();
+});
+window.addEventListener('mousemove', (e) => {
+  if (!sbDragging) return;
+  const tw = totalWidth();
+  const vw = viewportWidth();
+  const trackW = window.innerWidth - 130;
+  const ratio = (tw - vw) / trackW;
+  state.offsetX = clampOffset(sbStartOffset + (e.clientX - sbStartX) * ratio);
+  updateTransform();
+  updateScrollbar();
+  updateMinimap();
+});
+window.addEventListener('mouseup', () => { sbDragging = false; });
+
+// ─────────────────────────────────────────────
+//  SURPRISE ME
+// ─────────────────────────────────────────────
+document.getElementById('surprise-btn').addEventListener('click', () => {
+  const visible = EVENTS_DATA.filter(e => state.activeCats.has(e.cat));
+  if (!visible.length) return;
+  const ev = visible[Math.floor(Math.random()*visible.length)];
+  jumpToEvent(ev);
+});
+
+// ─────────────────────────────────────────────
+//  LANGUAGE TOGGLE
+// ─────────────────────────────────────────────
+document.getElementById('lang-toggle').addEventListener('click', () => {
+  state.lang = state.lang === 'en' ? 'ko' : 'en';
+  document.getElementById('lang-toggle').textContent = state.lang === 'en' ? '한국어' : 'English';
+  document.getElementById('app-title').textContent = state.lang === 'ko' ? 'AI 타임라인 연대기' : 'AI Timeline Chronicle';
+  document.getElementById('surprise-btn').textContent = state.lang === 'ko' ? '✦ 랜덤 이동' : '✦ Surprise Me';
+  document.getElementById('kbd-hint').textContent = state.lang === 'ko'
+    ? '드래그·스크롤로 이동 • +/−로 줌 • 카드 클릭시 상세보기'
+    : 'Drag or scroll to pan • +/− to zoom • Click card for details';
+  buildLayout();
+  if (state.selectedEvent) openDetail(state.selectedEvent);
+});
+
+// ─────────────────────────────────────────────
+//  CATEGORY FILTER
+// ─────────────────────────────────────────────
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const cat = pill.dataset.cat;
+    if (state.activeCats.has(cat)) {
+      if (state.activeCats.size === 1) return; // keep at least one
+      state.activeCats.delete(cat);
+      pill.classList.remove('active');
+    } else {
+      state.activeCats.add(cat);
+      pill.classList.add('active');
+    }
+    EVENTS_DATA.forEach(ev => {
+      const card = cardEls[ev.id];
+      const conn = connectorEls[ev.id];
+      const vis = state.activeCats.has(ev.cat);
+      if (card) card.style.display = vis ? '' : 'none';
+      if (conn) conn.style.display = vis ? '' : 'none';
+    });
+    updateMinimap();
+  });
+});
+
+// ─────────────────────────────────────────────
+//  KEYBOARD
+// ─────────────────────────────────────────────
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('detail-overlay').classList.contains('visible')) {
+    if (e.key === 'Escape') closeDetail();
+    return;
+  }
+  if (e.key === '+' || e.key === '=') { e.preventDefault(); setZoom(state.zoom*1.2); }
+  if (e.key === '-' || e.key === '_') { e.preventDefault(); setZoom(state.zoom/1.2); }
+  if (e.key === 'ArrowRight') { state.offsetX = clampOffset(state.offsetX+80); updateTransform(); updateScrollbar(); updateMinimap(); }
+  if (e.key === 'ArrowLeft') { state.offsetX = clampOffset(state.offsetX-80); updateTransform(); updateScrollbar(); updateMinimap(); }
+  if (e.key === 's' || e.key === 'S') { document.getElementById('surprise-btn').click(); }
+});
+
+// ─────────────────────────────────────────────
+//  RESIZE
+// ─────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  initParticles();
+  buildLayout();
+});
+
+// ─────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────
+function init() {
+  initParticles();
+  animateParticles();
+  buildLayout();
+  // Scroll to start of 2023
+  state.offsetX = 0;
+  updateTransform();
+}
+
+init();
+</script>
+</body>
+</html>
