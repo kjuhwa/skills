@@ -44,6 +44,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [tsdb-live-dashboard](tsdb-live-dashboard/) | Tsdb Live Dashboard — auto-generated time-series-db tool | html, css, vanilla-js | 2026-04-16 |
 
+| [ws-packet-visualizer](ws-packet-visualizer/) | Ws Packet Visualizer — auto-generated websocket tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

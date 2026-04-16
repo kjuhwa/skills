@@ -1,0 +1,13 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+h1 { text-align: center; color: #6ee7b7; margin-bottom: 16px; font-size: 1.4rem; }
+.stats { display: flex; gap: 20px; justify-content: center; margin-bottom: 16px; }
+.stat { background: #1a1d27; padding: 12px 24px; border-radius: 8px; text-align: center; }
+.stat span { display: block; font-size: 1.5rem; color: #6ee7b7; font-weight: bold; }
+.stat label { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; }
+canvas { width: 100%; height: 260px; background: #1a1d27; border-radius: 8px; display: block; margin-bottom: 16px; }
+.log { background: #1a1d27; border-radius: 8px; padding: 12px; height: 150px; overflow-y: auto; font-size: 0.8rem; font-family: monospace; }
+.log div { padding: 2px 0; border-bottom: 1px solid #262a36; }
+.log .out { color: #6ee7b7; }
+.log .in { color: #7dd3fc; }
