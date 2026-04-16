@@ -1,0 +1,45 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1117; color: #d7dae3;
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh; padding: 24px;
+}
+.wrap { max-width: 960px; margin: 0 auto; }
+h1 {
+  color: #6ee7b7; font-weight: 400;
+  letter-spacing: 2px; margin-bottom: 6px;
+}
+.sub { color: #8b8f9e; margin-bottom: 20px; font-size: 14px; }
+svg {
+  background: #1a1d27; border-radius: 8px;
+  width: 100%; height: auto; display: block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.detail {
+  margin-top: 16px; background: #1a1d27;
+  padding: 18px; border-radius: 8px;
+  font-family: monospace; font-size: 13px;
+  border-left: 3px solid #6ee7b7;
+  min-height: 100px; white-space: pre-wrap;
+  line-height: 1.6;
+}
+.detail .k { color: #6ee7b7; }
+.detail .v { color: #fbbf24; }
+.legend {
+  margin-top: 14px; display: flex; gap: 18px;
+  font-size: 12px; color: #8b8f9e;
+}
+.legend i {
+  display: inline-block; width: 10px; height: 10px;
+  border-radius: 50%; margin-right: 6px; vertical-align: middle;
+}
+.event-dot { cursor: pointer; transition: r 0.15s; }
+.event-dot:hover { filter: brightness(1.4); }
+.event-dot.active { stroke: #fff; stroke-width: 2; }
+.lane-line { stroke: #252836; stroke-width: 1; }
+.lane-label {
+  fill: #8b8f9e; font-size: 11px;
+  font-family: monospace; text-transform: uppercase;
+}
+.link-line { stroke: #6ee7b7; stroke-width: 1; opacity: 0.3; stroke-dasharray: 2 3; }
+.title { fill: #d7dae3; font-size: 11px; font-family: monospace; }

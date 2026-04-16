@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Outbox Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Outbox Pattern · Event Timeline</h1>
+  <p class="sub">Click any event to inspect its journey from DB commit to consumer ack.</p>
+  <svg id="timeline" viewBox="0 0 900 460"></svg>
+  <div id="detail" class="detail">Select an event →</div>
+  <div class="legend">
+    <span><i style="background:#6ee7b7"></i>committed</span>
+    <span><i style="background:#60a5fa"></i>relayed</span>
+    <span><i style="background:#fbbf24"></i>in-broker</span>
+    <span><i style="background:#a78bfa"></i>acked</span>
+    <span><i style="background:#f87171"></i>retry</span>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
