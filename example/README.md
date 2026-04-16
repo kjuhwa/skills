@@ -90,6 +90,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [canary-release-traffic-shifter](canary-release-traffic-shifter/) | Canary Release Traffic Shifter — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
 
+| [hex-arch-layer-builder](hex-arch-layer-builder/) | Hex Arch Layer Builder — auto-generated hexagonal-architecture tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:

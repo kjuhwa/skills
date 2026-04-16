@@ -1,0 +1,12 @@
+{
+  "slug": "hex-arch-layer-builder",
+  "title": "Hex Arch Layer Builder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T10:27:09.346Z",
+  "source_project": "101-hex-arch-layer-builder",
+  "author": "kjuhwa@nkia.co.kr"
+}
