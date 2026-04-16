@@ -1,0 +1,12 @@
+{
+  "slug": "service-mesh-policy-simulator",
+  "title": "Service Mesh Policy Simulator",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T16:59:05.165Z",
+  "source_project": "101-service-mesh-policy-simulator",
+  "author": "kjuhwa@nkia.co.kr"
+}

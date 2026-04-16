@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mesh Policy Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Service Mesh Policy Simulator</h1><span class="sub">Test authorization rules against mock requests</span></header>
+<div class="layout">
+  <section class="policies">
+    <h2>Authorization Policies</h2>
+    <div id="policyList"></div>
+    <button id="addPolicy">+ Add Policy</button>
+  </section>
+  <section class="traffic">
+    <h2>Incoming Requests</h2>
+    <div class="req-input">
+      <input id="source" placeholder="from (e.g. users-svc)" value="users-svc">
+      <input id="dest" placeholder="to (e.g. orders-svc)" value="orders-svc">
+      <select id="method"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option></select>
+      <button id="send">Send</button>
+      <button id="burst">Burst 20</button>
+    </div>
+    <div id="log"></div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

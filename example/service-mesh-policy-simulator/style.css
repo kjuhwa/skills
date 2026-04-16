@@ -1,0 +1,27 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e5e7eb; font-family: ui-monospace, monospace; min-height: 100vh; }
+header { padding: 20px 28px; background: #1a1d27; border-bottom: 1px solid #2a2f3d; }
+header h1 { color: #6ee7b7; font-size: 20px; display: inline-block; margin-right: 14px; }
+.sub { color: #9ca3af; font-size: 12px; }
+.layout { display: grid; grid-template-columns: 420px 1fr; gap: 20px; padding: 20px 28px; }
+section { background: #1a1d27; border-radius: 8px; padding: 18px; }
+section h2 { color: #6ee7b7; font-size: 13px; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.policy { background: #0f1117; padding: 12px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #6ee7b7; }
+.policy.deny { border-left-color: #f87171; }
+.policy .row { display: flex; gap: 6px; margin-bottom: 6px; }
+.policy input, .policy select { flex: 1; background: #1a1d27; color: #e5e7eb; border: 1px solid #2a2f3d; padding: 5px 8px; border-radius: 4px; font: inherit; font-size: 11px; }
+.policy .del { background: transparent; color: #f87171; border: none; cursor: pointer; font-size: 14px; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; }
+button:hover { opacity: 0.85; }
+#addPolicy { width: 100%; margin-top: 6px; }
+.req-input { display: grid; grid-template-columns: 1fr 1fr 90px auto auto; gap: 8px; margin-bottom: 14px; }
+.req-input input, .req-input select { background: #0f1117; color: #e5e7eb; border: 1px solid #2a2f3d; padding: 8px; border-radius: 4px; font: inherit; font-size: 12px; }
+#log { max-height: 540px; overflow-y: auto; font-size: 12px; }
+.log-entry { padding: 8px 10px; margin-bottom: 4px; border-radius: 4px; display: flex; gap: 10px; }
+.log-entry.allow { background: rgba(110, 231, 183, 0.08); border-left: 3px solid #6ee7b7; }
+.log-entry.deny { background: rgba(248, 113, 113, 0.08); border-left: 3px solid #f87171; }
+.log-entry .verdict { font-weight: 700; width: 60px; }
+.log-entry.allow .verdict { color: #6ee7b7; }
+.log-entry.deny .verdict { color: #f87171; }
+.log-entry .path { color: #9ca3af; flex: 1; }
+.log-entry .reason { color: #fbbf24; font-size: 11px; }
