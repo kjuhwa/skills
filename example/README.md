@@ -262,6 +262,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [canary-release-simulator](canary-release-simulator/) | Canary Release Simulator — auto-generated canary-release tool | html, css, vanilla-js | 2026-04-16 |
 
+| [log-funnel-analyzer](log-funnel-analyzer/) | Log Funnel Analyzer — auto-generated log-aggregation tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
