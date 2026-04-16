@@ -1,0 +1,12 @@
+{
+  "slug": "object-storage-explorer",
+  "title": "Object Storage Explorer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T19:13:37.524Z",
+  "source_project": "100-object-storage-explorer",
+  "author": "kjuhwa@nkia.co.kr"
+}

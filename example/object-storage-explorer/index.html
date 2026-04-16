@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Object Storage Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>S3 Bucket Explorer</h1>
+  <div class="path" id="path">/</div>
+</header>
+<main>
+  <aside>
+    <h3>Buckets</h3>
+    <ul id="buckets"></ul>
+  </aside>
+  <section>
+    <div class="toolbar">
+      <button id="back">← Back</button>
+      <input id="search" placeholder="Filter objects...">
+      <span id="stats"></span>
+    </div>
+    <table>
+      <thead><tr><th>Name</th><th>Size</th><th>Modified</th><th>Class</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
