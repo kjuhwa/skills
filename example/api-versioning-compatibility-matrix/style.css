@@ -1,0 +1,20 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;padding:24px;max-width:880px;margin:0 auto}
+h1{text-align:center;color:#6ee7b7;font-size:1.5rem;margin-bottom:4px}
+.subtitle{text-align:center;color:#64748b;font-size:.82rem;margin-bottom:16px}
+.legend{display:flex;justify-content:center;gap:18px;margin-bottom:20px;font-size:.8rem;color:#94a3b8}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin-right:4px}
+#matrix{overflow-x:auto}
+table{border-collapse:separate;border-spacing:3px;margin:0 auto}
+th{background:#1a1d27;padding:8px 12px;font-size:.78rem;color:#94a3b8;border-radius:4px;white-space:nowrap}
+th.ver-header{writing-mode:vertical-lr;text-orientation:mixed;min-width:42px;text-align:center}
+td{width:42px;height:42px;border-radius:6px;text-align:center;cursor:pointer;transition:.2s;font-size:.75rem;font-weight:700}
+td:hover{transform:scale(1.18);z-index:2;box-shadow:0 0 12px rgba(110,231,183,.25)}
+td.compat{background:#6ee7b7;color:#0f1117}
+td.partial{background:#f59e0b;color:#0f1117}
+td.breaking{background:#ef4444;color:#fff}
+td.na{background:#2a2d3a;color:#4a5568;cursor:default}
+td.na:hover{transform:none;box-shadow:none}
+#tooltip{position:fixed;background:#1a1d27;border:1px solid #6ee7b7;border-radius:8px;padding:14px;max-width:280px;font-size:.82rem;line-height:1.5;color:#cbd5e1;pointer-events:none;z-index:20;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+#tooltip.hidden{display:none}
+#tooltip strong{color:#6ee7b7;display:block;margin-bottom:6px}
