@@ -1,0 +1,12 @@
+{
+  "slug": "http-method-idempotency-quiz",
+  "title": "Http Method Idempotency Quiz",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:02:15.066Z",
+  "source_project": "102-http-method-idempotency-quiz",
+  "author": "kjuhwa@nkia.co.kr"
+}

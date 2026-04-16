@@ -1,0 +1,21 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e4e7ef; font-family: system-ui, sans-serif; padding: 24px; }
+.app { max-width: 1000px; margin: 0 auto; }
+header h1 { color: #6ee7b7; font-size: 26px; }
+.sub { color: #8b92a7; margin-bottom: 16px; font-size: 14px; }
+.score { background: #1a1d27; padding: 10px 16px; border-radius: 6px; margin-bottom: 16px; font-family: monospace; }
+.score span { color: #6ee7b7; font-weight: 600; }
+.game { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; }
+.pool { background: #1a1d27; padding: 16px; border-radius: 8px; min-height: 300px; }
+.buckets { display: grid; grid-template-rows: 1fr 1fr; gap: 12px; }
+.bucket { background: #1a1d27; padding: 12px; border-radius: 8px; }
+.bucket h3 { color: #6ee7b7; font-size: 14px; margin-bottom: 8px; }
+.drop { min-height: 100px; background: #0f1117; border-radius: 6px; padding: 8px; border: 2px dashed #2a2f3e; }
+.drop.over { border-color: #6ee7b7; }
+.card { background: #2a2f3e; padding: 10px 12px; border-radius: 6px; margin-bottom: 6px; cursor: grab; font-family: monospace; font-size: 13px; user-select: none; }
+.card.correct { background: #14532d; border-left: 3px solid #6ee7b7; }
+.card.wrong { background: #7f1d1d; border-left: 3px solid #f87171; }
+.card .method { color: #6ee7b7; font-weight: 600; margin-right: 6px; }
+button { background: #6ee7b7; color: #0f1117; border: none; padding: 10px 18px; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 16px; margin-right: 8px; }
+#reset { background: #2a2f3e; color: #e4e7ef; }
+#feedback { margin-top: 16px; font-size: 14px; color: #8b92a7; min-height: 24px; }

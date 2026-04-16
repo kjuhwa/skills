@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HTTP Idempotency Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>HTTP Method Idempotency</h1>
+    <p class="sub">Drag each request into the correct bucket. Safe repeats vs. side-effecting duplicates.</p>
+  </header>
+  <div class="score">Score: <span id="score">0</span> / <span id="total">0</span></div>
+  <div class="game">
+    <div class="pool" id="pool"></div>
+    <div class="buckets">
+      <div class="bucket" data-val="yes">
+        <h3>Idempotent ✓</h3>
+        <div class="drop" data-val="yes"></div>
+      </div>
+      <div class="bucket" data-val="no">
+        <h3>NOT Idempotent ✗</h3>
+        <div class="drop" data-val="no"></div>
+      </div>
+    </div>
+  </div>
+  <button id="check">Check Answers</button>
+  <button id="reset">New Round</button>
+  <div id="feedback"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
