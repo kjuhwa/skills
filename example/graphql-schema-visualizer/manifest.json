@@ -1,0 +1,12 @@
+{
+  "slug": "graphql-schema-visualizer",
+  "title": "Graphql Schema Visualizer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T18:20:00.197Z",
+  "source_project": "101-graphql-schema-visualizer",
+  "author": "kjuhwa@nkia.co.kr"
+}

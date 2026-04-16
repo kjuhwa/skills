@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GraphQL Schema Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside>
+  <h1>Schema</h1>
+  <ul id="type-list"></ul>
+  <div class="legend">
+    <div><span class="dot scalar"></span>Scalar</div>
+    <div><span class="dot object"></span>Object</div>
+    <div><span class="dot enum"></span>Enum</div>
+  </div>
+</aside>
+<main>
+  <svg id="canvas"></svg>
+  <div id="tooltip"></div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

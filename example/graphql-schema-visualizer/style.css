@@ -1,0 +1,24 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1117; color: #e5e7eb; font-family: system-ui, sans-serif; display: flex; height: 100vh; overflow: hidden; }
+aside { width: 240px; background: #1a1d27; border-right: 1px solid #2a2f3d; padding: 20px; overflow-y: auto; }
+h1 { color: #6ee7b7; font-size: 16px; margin-bottom: 16px; }
+#type-list { list-style: none; margin-bottom: 24px; }
+#type-list li { padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 13px; margin-bottom: 4px; border-left: 2px solid transparent; }
+#type-list li:hover { background: #0f1117; border-left-color: #6ee7b7; }
+#type-list li.active { background: #0f1117; border-left-color: #6ee7b7; color: #6ee7b7; }
+.legend { padding-top: 16px; border-top: 1px solid #2a2f3d; font-size: 12px; color: #9ca3af; }
+.legend div { display: flex; align-items: center; margin-bottom: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+.dot.scalar { background: #fbbf24; }
+.dot.object { background: #6ee7b7; }
+.dot.enum { background: #f472b6; }
+main { flex: 1; position: relative; background: radial-gradient(circle at 50% 50%, #1a1d27 0%, #0f1117 100%); }
+#canvas { width: 100%; height: 100%; }
+.node-rect { fill: #1a1d27; stroke: #6ee7b7; stroke-width: 1.5; cursor: pointer; }
+.node-rect:hover { fill: #232734; }
+.node-title { fill: #6ee7b7; font-weight: 600; font-size: 13px; font-family: monospace; pointer-events: none; }
+.node-field { fill: #e5e7eb; font-size: 11px; font-family: monospace; pointer-events: none; }
+.field-type { fill: #fbbf24; }
+.edge { stroke: #2a2f3d; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+.edge.highlight { stroke: #6ee7b7; stroke-width: 2; }
+#tooltip { position: absolute; background: #0f1117; border: 1px solid #6ee7b7; padding: 8px 12px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity 0.15s; border-radius: 4px; }
