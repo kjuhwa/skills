@@ -1,0 +1,36 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#e5e7eb;font-family:-apple-system,Segoe UI,sans-serif;min-height:100vh;padding:24px}
+.app{max-width:1100px;margin:0 auto}
+header{margin-bottom:20px}
+header h1{font-size:26px;color:#6ee7b7;margin-bottom:6px}
+header p{color:#9ca3af;font-size:14px}
+.stable{color:#60a5fa;font-weight:600}
+.canary{color:#6ee7b7;font-weight:600}
+.control{background:#1a1d27;border:1px solid #2a2f3d;border-radius:12px;padding:20px;margin-bottom:20px}
+.slider-row{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.pct-label{font-size:13px;color:#9ca3af;min-width:110px}
+.stable-label{text-align:right}
+.pct-label b{color:#e5e7eb;font-size:18px;margin-left:6px}
+#trafficSlider{flex:1;-webkit-appearance:none;height:8px;border-radius:4px;background:linear-gradient(90deg,#60a5fa 0%,#60a5fa 95%,#6ee7b7 95%);outline:none}
+#trafficSlider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#6ee7b7;cursor:pointer;border:3px solid #0f1117}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{background:#2a2f3d;border:none;color:#e5e7eb;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:13px;transition:.2s}
+.presets button:hover{background:#374151}
+.presets .danger{background:#7f1d1d;color:#fecaca;margin-left:auto}
+.presets .danger:hover{background:#991b1b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:#1a1d27;border:1px solid #2a2f3d;border-radius:12px;padding:18px}
+.panel h2{font-size:15px;margin-bottom:12px;color:#d1d5db}
+canvas{width:100%;height:220px;background:#0f1117;border-radius:8px}
+.metrics{display:flex;flex-direction:column;gap:14px}
+.metric{display:grid;grid-template-columns:140px 1fr 60px;gap:10px;align-items:center;font-size:13px}
+.metric label{color:#9ca3af}
+.bar{height:10px;background:#0f1117;border-radius:5px;overflow:hidden}
+.fill{height:100%;transition:width .3s;border-radius:5px}
+.stable-bg{background:#60a5fa}
+.canary-bg{background:#6ee7b7}
+.verdict{margin-top:16px;padding:10px;border-radius:8px;text-align:center;font-weight:600;font-size:14px}
+.verdict.ok{background:rgba(110,231,183,.15);color:#6ee7b7}
+.verdict.warn{background:rgba(251,191,36,.15);color:#fbbf24}
+.verdict.bad{background:rgba(239,68,68,.2);color:#fca5a5}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
