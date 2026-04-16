@@ -1,0 +1,12 @@
+{
+  "slug": "api-gateway-pattern-config-builder",
+  "title": "Api Gateway Pattern Config Builder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T17:55:14.882Z",
+  "source_project": "101-api-gateway-pattern-config-builder",
+  "author": "kjuhwa@nkia.co.kr"
+}
