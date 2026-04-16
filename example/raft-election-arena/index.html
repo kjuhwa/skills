@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raft Election Arena</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Raft Election Arena</h1>
+  <div id="controls">
+    <button onclick="killLeader()">Kill Leader</button>
+    <button onclick="resetAll()">Reset</button>
+    <span id="term-display">Term: 0</span>
+  </div>
+  <canvas id="arena" width="700" height="500"></canvas>
+  <div id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

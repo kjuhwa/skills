@@ -1,0 +1,12 @@
+{
+  "slug": "raft-election-arena",
+  "title": "Raft Election Arena",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:01:48.044Z",
+  "source_project": "17-raft-election-arena",
+  "author": "kjuhwa@nkia.co.kr"
+}

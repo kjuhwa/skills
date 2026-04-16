@@ -1,0 +1,12 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f1117; color: #c9d1d9; font-family: 'Courier New', monospace; display: flex; justify-content: center; }
+#app { text-align: center; padding: 20px; }
+h1 { color: #6ee7b7; margin-bottom: 12px; font-size: 1.4rem; }
+#controls { margin-bottom: 10px; display: flex; gap: 10px; justify-content: center; align-items: center; }
+button { background: #1a1d27; color: #6ee7b7; border: 1px solid #6ee7b7; padding: 6px 16px; cursor: pointer; border-radius: 4px; font-family: inherit; }
+button:hover { background: #6ee7b733; }
+#term-display { color: #6ee7b7; font-size: 1.1rem; }
+canvas { background: #1a1d27; border-radius: 8px; display: block; margin: 0 auto; }
+#log { margin-top: 10px; text-align: left; max-height: 120px; overflow-y: auto; background: #1a1d27; border-radius: 6px; padding: 8px 12px; font-size: 0.75rem; width: 700px; margin-left: auto; margin-right: auto; }
+.log-entry { padding: 2px 0; border-bottom: 1px solid #ffffff08; }
+.leader { color: #6ee7b7; } .candidate { color: #fbbf24; } .follower { color: #94a3b8; } .dead { color: #ef4444; }
