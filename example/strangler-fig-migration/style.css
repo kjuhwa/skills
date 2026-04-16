@@ -1,0 +1,21 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1117;color:#c9d1d9;font-family:system-ui,sans-serif;padding:20px;display:flex;justify-content:center}
+#app{max-width:680px;width:100%}
+h1{color:#6ee7b7;font-size:1.3rem;text-align:center}
+.subtitle{text-align:center;font-size:.8rem;color:#555;margin:4px 0 16px}
+#services{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.svc{background:#1a1d27;border-radius:8px;padding:12px;cursor:pointer;border:1px solid #2a2d37;transition:border-color .2s}
+.svc:hover{border-color:#6ee7b7}
+.svc .name{font-weight:600;font-size:.9rem;margin-bottom:4px}
+.svc .meta{font-size:.75rem;color:#666}
+.svc .pbar{height:4px;background:#2a2d37;border-radius:2px;margin-top:6px;overflow:hidden}
+.svc .pfill{height:100%;border-radius:2px;transition:width .4s}
+.legacy .pfill{background:#ef4444}
+.inprogress .pfill{background:#f59e0b}
+.migrated .pfill{background:#6ee7b7}
+.summary{margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
+.stat{text-align:center;min-width:70px}
+.stat span{display:block;font-size:1.6rem;font-weight:700;color:#6ee7b7}
+.stat small{font-size:.7rem;color:#666}
+.bar{flex:1;min-width:200px;height:8px;background:#2a2d37;border-radius:4px;overflow:hidden}
+#progressBar{height:100%;background:linear-gradient(90deg,#6ee7b7,#34d399);width:0;transition:width .4s;border-radius:4px}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strangler Fig Migration Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>Strangler Fig Migration Tracker</h1>
+  <p class="subtitle">Legacy monolith → microservices migration dashboard</p>
+  <div id="services"></div>
+  <div class="summary">
+    <div class="stat"><span id="migrated">0</span><small>Migrated</small></div>
+    <div class="stat"><span id="inprogress">0</span><small>In Progress</small></div>
+    <div class="stat"><span id="legacy">0</span><small>Legacy</small></div>
+    <div class="bar"><div id="progressBar"></div></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
