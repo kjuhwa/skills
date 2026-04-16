@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hex Arch Port &amp; Adapter Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>⬡ Port &amp; Adapter Simulator</h1>
+<div class="container">
+  <svg id="hex-svg" viewBox="0 0 600 400"></svg>
+  <div id="log"></div>
+</div>
+<div class="controls">
+  <button onclick="sendMessage('HTTP Request')">HTTP Request</button>
+  <button onclick="sendMessage('DB Query')">DB Query</button>
+  <button onclick="sendMessage('Event Bus')">Event Bus</button>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
