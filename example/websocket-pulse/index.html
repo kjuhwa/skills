@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebSocket Pulse Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>WebSocket Pulse Monitor</h1>
+  <div class="stats">
+    <div class="stat"><span id="latency">0</span><small>ms latency</small></div>
+    <div class="stat"><span id="msgs">0</span><small>messages/s</small></div>
+    <div class="stat"><span id="status">CONNECTED</span><small>status</small></div>
+  </div>
+  <canvas id="pulse"></canvas>
+  <div class="log" id="log"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
