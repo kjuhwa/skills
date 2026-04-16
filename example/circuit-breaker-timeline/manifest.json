@@ -1,0 +1,12 @@
+{
+  "slug": "circuit-breaker-timeline",
+  "title": "Circuit Breaker Timeline",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T12:50:33.864Z",
+  "source_project": "102-circuit-breaker-timeline",
+  "author": "kjuhwa@nkia.co.kr"
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuit Breaker Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Circuit Breaker Timeline</h1>
+<div class="header">
+  <span id="status" class="tag closed">CLOSED</span>
+  <span id="counter">0 requests</span>
+  <button id="toggleAuto">Pause</button>
+</div>
+<canvas id="timeline" height="260"></canvas>
+<div class="legend"><span class="dot ok"></span>Success <span class="dot err"></span>Failure <span class="dot trip"></span>Tripped</div>
+<script src="app.js"></script>
+</body>
+</html>
