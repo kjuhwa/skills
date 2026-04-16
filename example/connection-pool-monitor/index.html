@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connection Pool Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Connection Pool Monitor</h1>
+<div class="dashboard">
+  <div class="stats">
+    <div class="stat"><span id="active">0</span><label>Active</label></div>
+    <div class="stat"><span id="idle">0</span><label>Idle</label></div>
+    <div class="stat"><span id="waiting">0</span><label>Waiting</label></div>
+    <div class="stat"><span id="total">0</span><label>Total</label></div>
+  </div>
+  <canvas id="chart" width="800" height="260"></canvas>
+  <div class="controls">
+    <button onclick="addLoad()">+ Load</button>
+    <button onclick="releaseLoad()">- Load</button>
+    <button onclick="togglePause()">Pause</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
