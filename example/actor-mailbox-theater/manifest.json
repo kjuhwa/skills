@@ -1,0 +1,12 @@
+{
+  "slug": "actor-mailbox-theater",
+  "title": "Actor Mailbox Theater",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-16T20:41:26.292Z",
+  "source_project": "100-actor-mailbox-theater",
+  "author": "kjuhwa@nkia.co.kr"
+}
