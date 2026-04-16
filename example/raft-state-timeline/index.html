@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raft State Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Raft State Timeline</h1>
+<p class="sub">Watch node states evolve across terms</p>
+<div class="controls">
+<button id="btnPlay">▶ Play</button>
+<button id="btnStep">Step</button>
+<button id="btnReset">Reset</button>
+<span id="termInfo">Term 0</span>
+</div>
+<svg id="timeline" width="800" height="340"></svg>
+<div id="legend">
+<span class="leg"><span class="dot" style="background:#4b5563"></span>Follower</span>
+<span class="leg"><span class="dot" style="background:#f59e0b"></span>Candidate</span>
+<span class="leg"><span class="dot" style="background:#6ee7b7"></span>Leader</span>
+<span class="leg"><span class="dot" style="background:#ef4444"></span>Down</span>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

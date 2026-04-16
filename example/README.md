@@ -144,6 +144,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [bloom-filter-visualizer](bloom-filter-visualizer/) | Bloom Filter Visualizer — auto-generated bloom-filter tool | html, css, vanilla-js | 2026-04-16 |
 
+| [raft-state-timeline](raft-state-timeline/) | Raft State Timeline — auto-generated raft-consensus tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
