@@ -358,6 +358,8 @@ End-to-end, runnable **example projects** built from (and demonstrating) skills 
 
 | [pipeline-flow-visualizer](pipeline-flow-visualizer/) | Pipeline Flow Visualizer — auto-generated data-pipeline tool | html, css, vanilla-js | 2026-04-16 |
 
+| [bulkhead-latency-lab](bulkhead-latency-lab/) | Bulkhead Latency Lab — auto-generated bulkhead tool | html, css, vanilla-js | 2026-04-16 |
+
 ## Adding an example
 
 Use the `/example_add <slug>` slash command from a working copy that contains the artifact. It will:
