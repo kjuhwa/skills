@@ -1,0 +1,151 @@
+:root{
+  --bg:#0a0a0a;
+  --surface:#1a1a1a;
+  --surface-2:#0f0f0f;
+  --accent:#33ff33;
+  --accent-dim:#1a8f1a;
+  --amber:#ffbb33;
+  --danger:#ff3355;
+  --cyan:#33ffee;
+  --ink:#88ff88;
+  --ink-dim:#447744;
+  --border:#222822;
+  --mono:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  background:
+    repeating-linear-gradient(0deg, rgba(51,255,51,0.02) 0px, rgba(51,255,51,0.02) 2px, transparent 2px, transparent 4px),
+    radial-gradient(1200px 800px at 50% 0%, #0a140a 0%, transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:12.5px;
+  overflow:hidden;
+}
+#shell{
+  display:grid;
+  grid-template-rows:28px 1fr 22px;
+  height:100vh;
+}
+.prompt{
+  background:var(--surface);
+  border-bottom:1px solid var(--accent-dim);
+  padding:4px 12px;
+  display:flex;align-items:center;gap:6px;
+  color:var(--accent);
+  font-size:12px;
+}
+.prompt .ps1{color:var(--accent);font-weight:700}
+.prompt .path{color:var(--cyan)}
+.prompt .cmd{color:var(--ink);flex:1}
+.prompt .caret{
+  display:inline-block;width:8px;height:14px;background:var(--accent);
+  animation:blink 1.1s steps(2,jump-none) infinite;
+}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+.grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  grid-template-rows:1fr 1fr;
+  grid-template-areas:
+    "topo calc"
+    "log  ledger";
+  gap:1px;
+  background:var(--border);
+  overflow:hidden;
+}
+.pane{
+  background:var(--surface-2);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  min-height:0;min-width:0;
+}
+.pane.topo{grid-area:topo}
+.pane.calc{grid-area:calc;overflow:auto}
+.pane.log{grid-area:log}
+.pane.ledger{grid-area:ledger}
+
+.pane-head{
+  background:var(--surface);
+  display:flex;align-items:center;gap:10px;
+  padding:5px 10px;
+  border-bottom:1px solid var(--border);
+  font-size:11px;
+  letter-spacing:.08em;
+}
+.tag{color:var(--amber)}
+.h{color:var(--accent)}
+.spacer{flex:1}
+.btn{
+  background:transparent;
+  border:1px solid var(--accent-dim);
+  color:var(--accent);
+  padding:2px 8px;
+  font:inherit;font-size:11px;
+  cursor:pointer;
+  border-radius:0;
+  transition:background .1s;
+}
+.btn:hover{background:var(--accent);color:var(--bg)}
+.kbd{color:var(--ink-dim);font-size:10.5px}
+
+.topo-svg{flex:1;width:100%;background:#060806}
+.banner{
+  position:absolute;top:38px;left:50%;transform:translateX(-50%);
+  background:rgba(255,51,85,0.12);border:1px solid var(--danger);
+  color:var(--danger);padding:3px 10px;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;
+  display:none;
+}
+.banner.show{display:block}
+.pane.topo{position:relative}
+
+.calc-body{padding:10px;font-size:11.5px;display:flex;flex-direction:column;gap:6px}
+.input-row{display:grid;grid-template-columns:120px 1fr 40px;align-items:center;gap:8px}
+.input-row label{color:var(--ink-dim)}
+.input-row input[type=range]{accent-color:var(--accent)}
+.input-row .v{color:var(--accent);text-align:right}
+.calc-out{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:8px 10px;
+  margin:8px 0;
+  white-space:pre;
+  font-size:11.5px;
+  line-height:1.55;
+  color:var(--ink);
+}
+.chart-title{color:var(--amber);font-size:10.5px;letter-spacing:.1em;margin-top:6px;margin-bottom:2px;text-transform:uppercase}
+.micro-chart{width:100%;height:110px;background:var(--surface);border:1px solid var(--border)}
+
+.log-body{
+  flex:1;overflow:auto;padding:6px 10px;
+  font-size:11px;line-height:1.55;
+}
+.log-body .row{display:grid;grid-template-columns:60px 50px 1fr;gap:10px;padding:1px 0}
+.log-body .t{color:var(--ink-dim)}
+.log-body .lvl{font-weight:700}
+.log-body .lvl.INFO{color:var(--cyan)}
+.log-body .lvl.ELECT{color:var(--accent)}
+.log-body .lvl.WARN{color:var(--amber)}
+.log-body .lvl.ERR{color:var(--danger)}
+.log-body .lvl.HB{color:var(--ink-dim)}
+
+.scenarios-svg{flex:1;width:100%;background:var(--surface-2)}
+.scenario-row:hover{cursor:pointer}
+.scenario-bar{fill:var(--accent-dim)}
+.scenario-bar.active{fill:var(--accent)}
+
+.status-bar{
+  background:var(--accent);
+  color:var(--bg);
+  display:flex;gap:18px;align-items:center;
+  padding:0 12px;
+  font-size:11px;font-weight:700;
+  letter-spacing:.08em;
+}
+.status-bar .spacer{flex:1}
+.status-bar .kbd{color:var(--bg);opacity:0.7;font-weight:400}

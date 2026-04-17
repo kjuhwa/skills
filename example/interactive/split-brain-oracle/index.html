@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>split-brain-oracle :: terminal</title>
+<!--
+  ## Skills applied
+  `consistent-hashing-visualization-pattern`, `consistent-hashing-data-simulation`,
+  `raft-consensus-visualization-pattern`, `raft-consensus-data-simulation`,
+  `load-balancer-visualization-pattern`, `load-balancer-data-simulation`,
+  `rate-limiter-visualization-pattern`, `rate-limiter-data-simulation`,
+  `backpressure-visualization-pattern`, `backpressure-data-simulation`,
+  `health-check-visualization-pattern`, `health-check-data-simulation`,
+  `circuit-breaker-visualization-pattern`, `circuit-breaker-data-simulation`,
+  `retry-strategy-visualization-pattern`, `retry-strategy-data-simulation`,
+  `distributed-tracing-visualization-pattern`, `distributed-tracing-data-simulation`,
+  `message-queue-visualization-pattern`, `message-queue-data-simulation`,
+  `pub-sub-visualization-pattern`, `pub-sub-data-simulation`,
+  `outbox-pattern-visualization-pattern`, `outbox-pattern-data-simulation`,
+  `saga-pattern-visualization-pattern`, `saga-pattern-data-simulation`,
+  `dead-letter-queue-visualization-pattern`, `dead-letter-queue-data-simulation`,
+  `log-aggregation-visualization-pattern`, `log-aggregation-data-simulation`,
+  `idempotency-visualization-pattern`, `idempotency-data-simulation`,
+  `connection-pool-visualization-pattern`, `connection-pool-data-simulation`,
+  `read-replica-visualization-pattern`, `read-replica-data-simulation`,
+  `database-sharding-visualization-pattern`, `database-sharding-data-simulation`,
+  `cqrs-visualization-pattern`, `cqrs-data-simulation`,
+  `event-sourcing-visualization-pattern`, `event-sourcing-data-simulation`,
+  `schema-registry-visualization-pattern`, `schema-registry-data-simulation`,
+  `time-series-db-visualization-pattern`, `time-series-db-data-simulation`,
+  `etl-visualization-pattern`, `etl-data-simulation`,
+  `blue-green-deploy-visualization-pattern`, `canary-release-visualization-pattern`,
+  `strangler-fig-visualization-pattern`, `feature-flags-visualization-pattern`,
+  `service-mesh-visualization-pattern`, `sidecar-proxy-visualization-pattern`,
+  `api-gateway-pattern-visualization-pattern`, `bff-pattern-visualization-pattern`,
+  `command-query-visualization-pattern`, `domain-driven-visualization-pattern`,
+  `hexagonal-architecture-visualization-pattern`, `actor-model-visualization-pattern`,
+  `chaos-engineering-visualization-pattern`, `bulkhead-visualization-pattern`,
+  `bloom-filter-visualization-pattern`, `crdt-visualization-pattern`,
+  `finite-state-machine-visualization-pattern`, `websocket-visualization-pattern`,
+  `graphql-visualization-pattern`, `object-storage-visualization-pattern`,
+  `oauth-visualization-pattern`, `materialized-view-visualization-pattern`,
+  `api-versioning-visualization-pattern`, `lantern-visualization-pattern`,
+  `baseline-historical-comparison-threshold`, `frozen-detection-consecutive-count`,
+  `divide-by-zero-rate-guard`, `cache-variance-ttl-jitter`,
+  `identifier-truncate-with-hash-suffix`, `hybrid-logical-clock-merge`.
+
+  ## Knowledge respected
+  `quorum-visualization-off-by-one` (⌊2N/3⌋+1 for byzantine, ⌊n/2⌋+1 for simple quorum),
+  `raft-consensus-implementation-pitfall`, `consistent-hashing-implementation-pitfall`,
+  `time-unit-consistency-us-ms-ns` (pick one canonical internal unit),
+  `symlog-for-lag-metrics-near-zero` (symlog axis for near-zero visibility),
+  `arbitrary-display-caps-hide-signal` (show all events, no silent slice),
+  `canvas-event-coord-devicepixel-rescale`,
+  `actuator-metric-call-aggressive-timeout` (aggressive probe timeouts),
+  `skip-schedule-if-previous-running`.
+-->
+<script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="shell">
+  <header class="prompt">
+    <span class="ps1">oracle@split-brain</span>
+    <span class="path">:~/clusters/prod$</span>
+    <span class="cmd" id="cmd-line"></span>
+    <span class="caret"/>
+  </header>
+
+  <section class="grid">
+    <div class="pane topo">
+      <div class="pane-head">
+        <span class="tag">[topology]</span>
+        <span class="h">force-directed cluster map</span>
+        <span class="spacer"/>
+        <button class="btn" id="btn-partition">:: partition</button>
+        <button class="btn" id="btn-heal">:: heal</button>
+        <button class="btn" id="btn-kill">:: kill-node</button>
+        <button class="btn" id="btn-add">:: add-node</button>
+        <button class="btn" id="btn-reset">:: reset</button>
+      </div>
+      <svg id="topo" class="topo-svg"></svg>
+      <div class="banner" id="banner"></div>
+    </div>
+
+    <div class="pane calc">
+      <div class="pane-head"><span class="tag">[calc]</span><span class="h">quorum arithmetic</span></div>
+      <div class="calc-body">
+        <div class="input-row">
+          <label>nodes (N)</label>
+          <input type="range" id="n-range" min="3" max="17" step="2" value="7"/>
+          <span class="v" id="n-val">7</span>
+        </div>
+        <div class="input-row">
+          <label>heartbeat (ms)</label>
+          <input type="range" id="hb-range" min="50" max="2000" step="50" value="500"/>
+          <span class="v" id="hb-val">500</span>
+        </div>
+        <div class="input-row">
+          <label>election timeout (ms)</label>
+          <input type="range" id="et-range" min="150" max="5000" step="50" value="1500"/>
+          <span class="v" id="et-val">1500</span>
+        </div>
+        <div class="input-row">
+          <label>rtt p99 (ms)</label>
+          <input type="range" id="rtt-range" min="1" max="500" step="1" value="40"/>
+          <span class="v" id="rtt-val">40</span>
+        </div>
+
+        <div class="calc-out" id="calc-out"></div>
+
+        <div class="chart-title">worst-case election latency vs fleet size</div>
+        <svg id="lat-chart" class="micro-chart"></svg>
+
+        <div class="chart-title">quorum threshold curve (simple · byzantine)</div>
+        <svg id="q-chart" class="micro-chart"></svg>
+      </div>
+    </div>
+
+    <div class="pane ledger">
+      <div class="pane-head">
+        <span class="tag">[ledger]</span>
+        <span class="h">named scenarios</span>
+      </div>
+      <svg id="scenarios" class="scenarios-svg"></svg>
+    </div>
+
+    <div class="pane log">
+      <div class="pane-head">
+        <span class="tag">[journald]</span>
+        <span class="h">cluster log · /var/log/oracle</span>
+        <span class="spacer"/>
+        <span class="kbd">clear · k</span>
+      </div>
+      <div id="log" class="log-body"></div>
+    </div>
+  </section>
+
+  <footer class="status-bar">
+    <span id="sb-fleet">fleet=7</span>
+    <span id="sb-quorum">Q=⌊n/2⌋+1=4</span>
+    <span id="sb-leader">leader=—</span>
+    <span id="sb-partition">partition=off</span>
+    <span id="sb-term">term=1</span>
+    <span class="spacer"/>
+    <span class="kbd">[space] pause · [p] partition · [k] kill · [a] add · [r] reset · [s] scenario</span>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
