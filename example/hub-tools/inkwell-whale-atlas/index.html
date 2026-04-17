@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Inkwell Whale Atlas</title>
+<link rel="stylesheet" href="style.css"/>
+<!--
+## Skills applied
+`lantern-visualization-pattern`, `lantern-data-simulation`, `canvas-chromakey-bg-removal`, `echarts-svg-worker-chart`,
+`layout-stable-hover-via-inset-shadow`, `click-to-inspect-corpus-from-dashboard`, `time-series-db-visualization-pattern`,
+`distributed-tracing-visualization-pattern`, `service-mesh-visualization-pattern`, `raft-consensus-visualization-pattern`,
+`graphql-visualization-pattern`, `canary-release-visualization-pattern`, `api-gateway-pattern-visualization-pattern`,
+`outbox-pattern-visualization-pattern`, `pub-sub-visualization-pattern`, `websocket-visualization-pattern`,
+`message-queue-visualization-pattern`, `rate-limiter-visualization-pattern`, `bloom-filter-visualization-pattern`,
+`consistent-hashing-visualization-pattern`, `circuit-breaker-visualization-pattern`, `finite-state-machine-visualization-pattern`,
+`hexagonal-architecture-visualization-pattern`, `domain-driven-visualization-pattern`, `event-sourcing-visualization-pattern`,
+`saga-pattern-visualization-pattern`, `cqrs-visualization-pattern`, `backpressure-visualization-pattern`,
+`schema-registry-visualization-pattern`, `materialized-view-visualization-pattern`, `database-sharding-visualization-pattern`,
+`crdt-visualization-pattern`, `health-check-visualization-pattern`, `bulkhead-visualization-pattern`,
+`sidecar-proxy-visualization-pattern`, `hue-rotate-sprite-identity`, `css-sprite-sheet-phase-row-switch`,
+`widget-card-composition`, `feature-flags-visualization-pattern`, `log-aggregation-visualization-pattern`,
+`connection-pool-visualization-pattern`, `dead-letter-queue-visualization-pattern`, `etl-visualization-pattern`,
+`read-replica-visualization-pattern`, `load-balancer-visualization-pattern`, `retry-strategy-visualization-pattern`,
+`strangler-fig-visualization-pattern`, `api-versioning-visualization-pattern`, `oauth-visualization-pattern`,
+`bff-pattern-visualization-pattern`, `idempotency-visualization-pattern`, `data-pipeline-visualization-pattern`,
+`blue-green-deploy-visualization-pattern`, `chaos-engineering-visualization-pattern`, `cdc-visualization-pattern`.
+
+## Knowledge respected
+`lantern-implementation-pitfall` (no additive-blend saturation — halos capped; flicker desync enforced with per-lantern seed),
+`arbitrary-display-caps-hide-signal` (no hidden `slice(0,N)` — whale count shown verbatim),
+`single-keyword-formulaic-llm-output` (constellation names seeded from multi-word theme fragments, not one word),
+`konva-center-coord-system` (all canvas rects use top-left origin explicitly),
+`time-unit-consistency-us-ms-ns` (every timestamp is `performance.now()` ms — no mixed units).
+-->
+</head>
+<body>
+<header class="bar">
+  <h1>Inkwell Whale Atlas</h1>
+  <div class="legend">
+    <span class="pill lantern">lantern</span>
+    <span class="pill whale">whale</span>
+    <span class="pill star">star</span>
+    <span class="meta" id="meta">drift 0</span>
+  </div>
+  <div class="controls">
+    <label>drift <input id="drift" type="range" min="0" max="100" value="35"/></label>
+    <label>lanterns <input id="lamps" type="range" min="3" max="40" value="16"/></label>
+    <label>whales <input id="whales" type="range" min="1" max="12" value="5"/></label>
+    <button id="reseed">reseed</button>
+  </div>
+</header>
+<main>
+  <canvas id="sea" width="1200" height="700"></canvas>
+  <svg id="stars" viewBox="0 0 1200 700" preserveAspectRatio="none"></svg>
+</main>
+<aside id="panel" hidden>
+  <button class="x" id="close">×</button>
+  <h2 id="pt"></h2>
+  <pre id="pb"></pre>
+</aside>
+<script src="app.js"></script>
+</body>
+</html>
