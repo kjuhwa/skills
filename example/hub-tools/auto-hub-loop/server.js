@@ -436,13 +436,12 @@ features:
 - <feature bullet 3>
 stack: <the assigned framework: "react" or "vue3" or "d3">
 ===FILE:index.html===
-<complete HTML — include CDN script tags, inline <style>, and inline <script>>
-===END===
-===FILE:style.css===
-<complete CSS — must match the assigned palette and layout style above>
-===END===
-===FILE:app.js===
-<complete JS — must use the assigned rendering technology above>
+<SINGLE SELF-CONTAINED HTML FILE with everything inline:
+  - CDN <script src="..."> tags for framework (React/Vue/D3)
+  - ALL CSS inside <style> tags (no external .css file)
+  - ALL JS/JSX inside <script type="text/babel"> or <script> tags (no external .js file)
+  - For React: use <script type="text/babel"> with JSX directly in the HTML
+  - The file must work when opened via file:// protocol — NO external local file references>
 ===END===
 ===END-APP===
 
@@ -451,8 +450,9 @@ Technical requirements:
 - Each app MUST use its assigned framework/library (React / Vue / D3) — DO NOT mix frameworks
 - Each app MUST have a visually distinct layout — opening all 3 side-by-side must show 3 clearly different UIs
 - CDN imports ONLY (unpkg.com or cdnjs.cloudflare.com) — no npm, no build step, no bundler
-- MINIMUM 500 lines total per app (aim for 700–1000+ lines) — each app must be substantial, equivalent to at least 10 printed pages of code
-- Include multiple interactive sections, panels, or views per app — not a single-screen demo
+- MINIMUM 10,000 lines total per app — each app must be a full-scale production-quality application equivalent to 20+ printed pages of code
+- Include at least 20 distinct interactive sections, panels, tabs, or views per app — NOT a single-screen demo
+- Each section must have its own state, data model, and user interactions
 - Immediately interactive on load with meaningful simulated/mock data
 - Modern UX: hover states, transitions, keyboard shortcuts where natural
 
@@ -551,12 +551,17 @@ async function phaseBuild(claudeOutput, keyword, cycleNum) {
       totalLines += file.content.split('\n').length;
     }
 
-    // Validate JS
-    const jsFile = path.join(projDir, 'app.js');
+    // Validate JS — check app.js if it exists (legacy), otherwise skip (single-file HTML apps embed JS inline)
     let valid = true;
+    const jsFile = path.join(projDir, 'app.js');
     if (fs.existsSync(jsFile)) {
-      try { shellSync(`node --check "${jsFile}"`); }
-      catch { log('warn', `${app.name}: JS syntax error`); valid = false; }
+      // Skip syntax check for JSX files (contain < tokens that node --check rejects)
+      const content = fs.readFileSync(jsFile, 'utf8');
+      const isJSX = /React|jsx|createElement|<\w+[\s/>]/.test(content);
+      if (!isJSX) {
+        try { shellSync(`node --check "${jsFile}"`); }
+        catch { log('warn', `${app.name}: JS syntax error`); valid = false; }
+      }
     }
 
     const title = app.title || app.name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
@@ -704,9 +709,7 @@ async function phasePublish(apps, cycleNum) {
         '',
         '```',
         `${slug}/`,
-        '  index.html    — shell, markup, inline SVG where used',
-        '  style.css     — dark-theme styling and animations',
-        '  app.js        — interactions, simulated data, render loop',
+        '  index.html    — self-contained single-file app (HTML + CSS + JS inline)',
         '  manifest.json — hub metadata',
         '```',
         '',
