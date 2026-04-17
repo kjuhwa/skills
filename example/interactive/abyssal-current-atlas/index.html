@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Abyssal Current Atlas</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="bar">
+  <h1>Abyssal Current Atlas</h1>
+  <div class="layers">
+    <label><input type="checkbox" data-layer="currents" checked> currents</label>
+    <label><input type="checkbox" data-layer="kelp" checked> kelp</label>
+    <label><input type="checkbox" data-layer="whales" checked> whales</label>
+    <label><input type="checkbox" data-layer="temples" checked> temples</label>
+    <label><input type="checkbox" data-layer="bio" checked> bioluminescence</label>
+  </div>
+  <div class="hint">click any glyph · <kbd>space</kbd> pause · <kbd>r</kbd> reseed</div>
+</header>
+<main>
+  <canvas id="scene"></canvas>
+  <aside id="panel" class="panel hidden">
+    <button id="close">×</button>
+    <h2 id="pTitle"></h2>
+    <div id="pBody"></div>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
