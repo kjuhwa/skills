@@ -29,6 +29,20 @@ const state = {
   runOnce: false,    // single-cycle mode
 };
 
+// ── Token Usage (accumulated from `claude -p --output-format json`) ──
+const tokenUsage = { input: 0, output: 0, cacheRead: 0, cacheCreation: 0, costUsd: 0, calls: 0, lastUpdated: null };
+function addUsage(u, costUsd) {
+  if (!u) return;
+  tokenUsage.input += u.input_tokens || 0;
+  tokenUsage.output += u.output_tokens || 0;
+  tokenUsage.cacheRead += u.cache_read_input_tokens || 0;
+  tokenUsage.cacheCreation += u.cache_creation_input_tokens || 0;
+  tokenUsage.costUsd += costUsd || 0;
+  tokenUsage.calls += 1;
+  tokenUsage.lastUpdated = Date.now();
+  broadcast({ type: 'usage', usage: tokenUsage });
+}
+
 // ── SSE Clients ──
 const clients = [];
 const logBuffer = [];    // Keep last 200 log entries for new SSE connections
@@ -163,8 +177,8 @@ async function askClaude(prompt, timeout = 900000) {
   return new Promise((resolve, reject) => {
     // Use shell redirect `< file` so claude's stdin comes from the file
     const cmd = process.platform === 'win32'
-      ? `claude -p < "${tmpFile.replace(/\\/g, '/')}"`
-      : `claude -p < "${tmpFile}"`;
+      ? `claude -p --output-format json < "${tmpFile.replace(/\\/g, '/')}"`
+      : `claude -p --output-format json < "${tmpFile}"`;
     const child = spawn(cmd, [], {
       shell: true,
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -182,8 +196,12 @@ async function askClaude(prompt, timeout = 900000) {
     child.on('close', (code) => {
       clearTimeout(timer);
       try { fs.unlinkSync(tmpFile); } catch {}
-      if (code !== 0) reject(new Error(`claude exited ${code}: ${stderr.split('\n')[0]}`));
-      else resolve(stdout.trim());
+      if (code !== 0) { reject(new Error(`claude exited ${code}: ${stderr.split('\n')[0]}`)); return; }
+      try {
+        const parsed = JSON.parse(stdout.trim());
+        addUsage(parsed.usage, parsed.total_cost_usd);
+        resolve((parsed.result || '').trim());
+      } catch { resolve(stdout.trim()); }
     });
   });
 }
@@ -1112,6 +1130,13 @@ const server = http.createServer((req, res) => {
     for (const entry of logBuffer) {
       res.write(`data: ${JSON.stringify(entry)}\n\n`);
     }
+    return;
+  }
+
+  // API: auto-hub-loop exact token usage (accumulated from `claude -p --output-format json`)
+  if (url.pathname === '/api/usage') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(tokenUsage));
     return;
   }
 

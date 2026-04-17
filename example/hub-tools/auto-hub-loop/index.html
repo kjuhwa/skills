@@ -27,6 +27,10 @@ header .controls{margin-left:auto;display:flex;gap:8px;align-items:center}
 .status-idle{background:#2e3344;color:var(--dim)}
 .status-running{background:#065f4620;color:var(--accent);animation:pulse 2s infinite}
 .status-error{background:#7f1d1d40;color:var(--danger)}
+.usage-chip{display:inline-flex;align-items:center;gap:8px;padding:4px 10px;border-radius:99px;background:var(--surface2);border:1px solid var(--border);font-size:11px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--dim)}
+.usage-chip .u-label{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.6px}
+.usage-chip .u-seg{display:inline-flex;align-items:center;gap:3px}
+.usage-chip .u-val{font-size:12px;color:var(--text)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
 
 /* Heartbeat dot */
@@ -96,7 +100,8 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 4
 .app-status.merged{background:#fbbf2420;color:var(--warn)}
 
 /* Skills/Knowledge */
-.skill-row{display:flex;align-items:center;gap:8px;padding:4px 8px;font-size:12px;border-bottom:1px solid var(--border)}
+.skill-row{display:flex;align-items:center;gap:8px;padding:4px 8px;font-size:12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
+.skill-row:hover{background:var(--surface2)}
 .skill-badge{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:700;flex-shrink:0}
 .skill-badge.skill{background:#818cf830;color:var(--accent2)}
 .skill-badge.knowledge{background:#38bdf830;color:var(--info)}
@@ -285,6 +290,13 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 4
   </div>
   <div class="heartbeat" id="heartbeat"></div>
   <span class="status-pill status-idle" id="statusPill">IDLE</span>
+  <div class="usage-chip" id="usageChip" title="Auto-hub-loop token usage (accumulated from claude -p JSON output)">
+    <span class="u-label">LOOP USED</span>
+    <span class="u-seg"><span class="u-label">in</span><span class="u-val" id="uTokIn">0</span></span>
+    <span class="u-seg"><span class="u-label">out</span><span class="u-val" id="uTokOut">0</span></span>
+    <span class="u-seg"><span class="u-label">$</span><span class="u-val" id="uCost">0.00</span></span>
+    <span class="u-seg"><span class="u-label">calls</span><span class="u-val" id="uCalls">0</span></span>
+  </div>
   <div class="controls">
     <button class="btn btn-go" id="btnStart" onclick="start()">Start Loop</button>
     <button class="btn btn-once" id="btnOnce" onclick="runOnce()">Run Once</button>
@@ -612,6 +624,8 @@ function addSkill(sk) {
   const list = document.getElementById('skList');
   const row = document.createElement('div');
   row.className = 'skill-row';
+  row.title = `Click to view ${sk.type === 'skill' ? 'SKILL.md' : sk.name + '.md'}`;
+  row.onclick = () => openHubItem(sk.type, sk.name);
   row.innerHTML = `
     <span class="skill-badge ${sk.type}">${sk.type === 'skill' ? 'SKILL' : 'KNOW'}</span>
     <span class="skill-name">${sk.name}</span>
@@ -1031,6 +1045,34 @@ goIdle();
 // Auto-connect on load
 fetch(API + '/api/state').then(r => r.json()).then(handleEvent).catch(() => {});
 connectSSE();
+
+function fmtNum(n) {
+  if (n == null) return '0';
+  if (n >= 1e6) return (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1) + 'k';
+  return String(n);
+}
+function applyUsage(u) {
+  if (!u) return;
+  const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  set('uTokIn',  fmtNum((u.input || 0) + (u.cacheRead || 0) + (u.cacheCreation || 0)));
+  set('uTokOut', fmtNum(u.output || 0));
+  set('uCost',   (u.costUsd || 0).toFixed(4));
+  set('uCalls',  String(u.calls || 0));
+}
+async function refreshUsage() {
+  try {
+    const r = await fetch(API + '/api/usage');
+    if (r.ok) applyUsage(await r.json());
+  } catch {}
+}
+refreshUsage();
+setInterval(refreshUsage, 15000);
+const _origHandle = handleEvent;
+handleEvent = function(data) {
+  if (data && data.type === 'usage') { applyUsage(data.usage); return; }
+  return _origHandle(data);
+};
 </script>
 </body>
 </html>
