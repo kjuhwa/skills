@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><title>Leviathan Song Forge</title><link rel="stylesheet" href="style.css"/></head>
+<body>
+<header>
+  <h1>Leviathan Song Forge</h1>
+  <div class="hint">type a phrase · <kbd>enter</kbd> forge · <kbd>p</kbd> play · <kbd>s</kbd> stop · <kbd>e</kbd> export</div>
+</header>
+<main>
+  <section class="inputs">
+    <label>seed phrase
+      <input id="seed" value="bioluminescent currents ripple through sunken temples" maxlength="140"/>
+    </label>
+    <div class="row">
+      <label>mode
+        <select id="mode">
+          <option value="dorian">dorian</option>
+          <option value="phrygian">phrygian</option>
+          <option value="aeolian" selected>aeolian</option>
+          <option value="lydian">lydian</option>
+          <option value="pentatonic">pentatonic</option>
+        </select>
+      </label>
+      <label>bpm <input id="bpm" type="number" value="58" min="30" max="160"/></label>
+      <label>bars <input id="bars" type="number" value="4" min="1" max="16"/></label>
+      <label>jitter <input id="jit" type="range" min="0" max="40" value="12"/></label>
+    </div>
+    <div class="btns">
+      <button id="forge">forge</button>
+      <button id="play">play</button>
+      <button id="stop">stop</button>
+      <button id="export">export log</button>
+    </div>
+  </section>
+  <section class="output">
+    <div class="card">
+      <h2>cartographer's log</h2>
+      <pre id="log"></pre>
+    </div>
+    <div class="card">
+      <h2>legend glyphs</h2>
+      <ul id="legend"></ul>
+    </div>
+    <div class="card">
+      <h2>melody preview</h2>
+      <canvas id="roll"></canvas>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
