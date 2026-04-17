@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shipmaster's Codex</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="title">
+    <span class="mark">✦</span>
+    <div>
+      <h1>The Shipmaster's Polymorphic Codex</h1>
+      <p>A weathered logbook of typed harbor commands &middot; serialized for the distant cartographers</p>
+    </div>
+  </div>
+  <div class="counters">
+    <div><span class="k">Entries</span><span id="c-entries">0</span></div>
+    <div><span class="k">Route</span><span id="c-route">0 nm</span></div>
+    <div><span class="k">Beacon budget</span><span id="c-beacon">70 B</span></div>
+  </div>
+</header>
+
+<main>
+  <section class="composer">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-type="Chart">Chart</button>
+      <button class="tab" data-type="Sail">Sail</button>
+      <button class="tab" data-type="Anchor">Anchor</button>
+      <button class="tab" data-type="Signal">Signal</button>
+      <button class="tab" data-type="Lantern">Lantern</button>
+    </div>
+    <div id="form" class="form"></div>
+    <div class="form-footer">
+      <button id="add" class="primary">Inscribe entry</button>
+      <span class="kbd">Enter</span>
+    </div>
+
+    <h2>Logbook</h2>
+    <ul id="log" class="log"></ul>
+  </section>
+
+  <aside class="manifest">
+    <div class="tabs-mini">
+      <button class="mini active" data-view="json">Manifest</button>
+      <button class="mini" data-view="summary">Summary</button>
+    </div>
+    <pre id="preview"></pre>
+    <div class="actions">
+      <button id="copy">Copy</button>
+      <button id="download">Download .json</button>
+      <button id="clear" class="ghost">Clear log</button>
+      <button id="seed" class="ghost">Seed sample</button>
+    </div>
+  </aside>
+</main>
+
+<footer class="hint">Commands carry a <code>@type</code> discriminator, Jackson-style, so a backend can replay this log verbatim.</footer>
+<script src="app.js"></script>
+</body>
+</html>
