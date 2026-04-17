@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Silver Tapestry Loomwright</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <h1>Silver Tapestry Loomwright</h1>
+  <div class="tabs">
+    <button data-tab="compose" class="active">compose</button>
+    <button data-tab="preview">preview</button>
+    <button data-tab="manifest">manifest</button>
+    <button data-tab="diff">diff</button>
+  </div>
+</header>
+<main>
+  <section class="pane" id="pane-compose">
+    <div class="col">
+      <label>ritual phrase <input id="phrase" value="mountain cloud-weavers spin thunderheads into silver tapestries"/></label>
+      <label>strand count <input id="count" type="range" min="1" max="64" value="18"/> <b id="countOut">18</b></label>
+      <label>bolt threshold <input id="bolt" type="range" min="0" max="100" value="55"/> <b id="boltOut">55</b></label>
+      <label>giant dream depth <input id="dream" type="range" min="0" max="100" value="40"/> <b id="dreamOut">40</b></label>
+      <label>meadow chorus <input id="chorus" type="range" min="0" max="100" value="65"/> <b id="chorusOut">65</b></label>
+      <label>period mode
+        <select id="period">
+          <option value="RAW">raw (live)</option>
+          <option value="MIN_1" selected>1-minute</option>
+          <option value="HOUR">hour</option>
+          <option value="DAY">day</option>
+        </select>
+      </label>
+      <label>strand filter <input id="filter" placeholder="kind=storm AND hue>200"/></label>
+    </div>
+    <div class="col">
+      <h2>strand catalog</h2>
+      <ul id="catalog"></ul>
+    </div>
+  </section>
+  <section class="pane hidden" id="pane-preview">
+    <canvas id="previewCvs"></canvas>
+  </section>
+  <section class="pane hidden" id="pane-manifest">
+    <pre id="manifest"></pre>
+  </section>
+  <section class="pane hidden" id="pane-diff">
+    <pre id="diff"></pre>
+  </section>
+</main>
+<footer>
+  <button id="gen">weave [g]</button>
+  <button id="copy">copy manifest [c]</button>
+  <button id="export">export .md [e]</button>
+  <span id="stat">—</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
