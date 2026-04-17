@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Cartographer's Forgotten Starfield</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1>The Cartographer's Forgotten Starfield</h1>
+    <p class="sub">Weathered charts &middot; <span id="star-count">0</span> stars adrift &middot; <span id="const-count">0</span> constellations remembered</p>
+  </div>
+  <nav class="tools">
+    <button id="btn-new" title="(N) Begin a new constellation">New Weave</button>
+    <button id="btn-save" title="(Enter) Name and save">Save to Atlas</button>
+    <button id="btn-clear" title="(C) Clear the current weave">Clear</button>
+    <button id="btn-regen" title="(R) Regenerate stars">Regen Sky</button>
+  </nav>
+</header>
+<main>
+  <section class="canvas-wrap">
+    <canvas id="sky"></canvas>
+    <svg id="lines" aria-hidden="true"></svg>
+    <div class="coord" id="coord">lat —°, lon —°</div>
+    <div class="parch" id="naming" hidden>
+      <label for="const-name">Name this forgotten constellation</label>
+      <input id="const-name" maxlength="32" placeholder="The Lantern Fisherman">
+      <div class="row">
+        <button id="confirm-name">Inscribe</button>
+        <button id="cancel-name" class="ghost">Dismiss</button>
+      </div>
+    </div>
+  </section>
+  <aside class="side">
+    <div class="card">
+      <h2>Atlas Index</h2>
+      <input id="search" placeholder="Search forgotten names…">
+      <ul id="const-list" class="const-list"></ul>
+    </div>
+    <div class="card">
+      <h2>Bloom Catalog</h2>
+      <p class="hint">Each known name stains three cells in the weathered parchment. Matches highlight in <span class="k-accent">mint</span>.</p>
+      <div id="bloom" class="bloom"></div>
+      <p class="bloom-meta"><span id="bloom-set">0</span> / 128 cells inked</p>
+    </div>
+  </aside>
+</main>
+<footer class="legend">
+  <span>Click stars to weave &middot; Enter to save &middot; N new &middot; C clear &middot; R regen</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
