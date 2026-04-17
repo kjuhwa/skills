@@ -1,0 +1,12 @@
+{
+  "slug": "lantern-cipher",
+  "title": "Lantern Cipher",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T00:26:22.715Z",
+  "source_project": "101-lantern-cipher",
+  "author": "kjuhwa@nkia.co.kr"
+}

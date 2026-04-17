@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lantern Cipher</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>⟨ Lantern Cipher ⟩</h1>
+    <p>A hanging lantern signals hidden letters. Decode the pattern.</p>
+  </header>
+  <section class="lanterns" id="row"></section>
+  <div class="decode">
+    <input id="message" placeholder="Type a message to encode..." maxlength="32">
+    <button id="encode">Encode</button>
+  </div>
+  <div class="readout">
+    <div class="label">SIGNAL</div>
+    <div id="signal" class="signal"></div>
+    <div class="label">DECODED</div>
+    <div id="decoded" class="decoded">—</div>
+  </div>
+  <footer>ON = lit • OFF = dark • Binary alphabet A=00001 … Z=11010 + spaces</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
