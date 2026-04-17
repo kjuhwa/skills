@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Whispering Lantern Keep</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Whispering Lantern Keep</h1>
+  <div class="stats">
+    <span>turn <b id="turn">0</b></span>
+    <span>lit <b id="lit">0</b></span>
+    <span>shadow <b id="shadow">0</b></span>
+    <span>seed <b id="seed">—</b></span>
+  </div>
+</header>
+<main>
+  <section class="board-wrap">
+    <div id="board" class="board"></div>
+    <div id="status" class="status">Place a lantern. Shadow advances each turn.</div>
+  </section>
+  <aside class="sidebar">
+    <h2>Lanterns</h2>
+    <div class="tools">
+      <button class="tool" data-kind="pulse">pulse<small>r=1, decay 3</small></button>
+      <button class="tool" data-kind="warden" disabled>warden<small>r=2, decay 1</small></button>
+      <button class="tool" data-kind="beacon" disabled>beacon<small>r=3, single-use</small></button>
+    </div>
+    <div class="stock">
+      pulse <b id="nPulse">∞</b> · warden <b id="nWarden">3</b> · beacon <b id="nBeacon">1</b>
+    </div>
+    <h2>Actions</h2>
+    <div class="actions">
+      <button id="end">end turn (space)</button>
+      <button id="undo">undo (z)</button>
+      <button id="reset">new seed (n)</button>
+    </div>
+    <h2>Rules</h2>
+    <ul class="rules">
+      <li>Lanterns illuminate adjacent cells by their radius.</li>
+      <li>Each end-turn, shadow spreads into unlit neighbors.</li>
+      <li>Lanterns decay; relight before they die.</li>
+      <li>Contain all shadow by turn 20 to win.</li>
+    </ul>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

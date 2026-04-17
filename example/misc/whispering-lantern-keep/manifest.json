@@ -1,0 +1,14 @@
+{
+  "slug": "whispering-lantern-keep",
+  "title": "Whispering Lantern Keep",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T01:34:32.416Z",
+  "source_project": "101-whispering-lantern-keep",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "lantern",
+  "cycle": 1
+}
