@@ -1,0 +1,36 @@
+:root{
+  --bg:#0f1117;
+  --surface:#1a1d27;
+  --accent:#6ee7b7;
+  --copper:#c88a5b;
+  --moon:#f4e9c1;
+  --storm:#f59e7a;
+  --ink:#e7e3d4;
+  --rule:rgba(200,138,91,.25);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:13px/1.45 ui-monospace,Menlo,Consolas,monospace}
+.topbar{display:flex;gap:18px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--rule);background:#12141d}
+.topbar h1{font-size:14px;margin:0;letter-spacing:.08em;color:var(--copper)}
+.hud{margin-left:auto;display:flex;gap:14px;font-size:12px;color:#b6a98d}
+.hud b{color:var(--accent);font-weight:500;margin-left:4px}
+main{display:grid;grid-template-columns:1fr 300px;height:calc(100vh - 80px)}
+.arena{display:flex;flex-direction:column;gap:10px;padding:12px}
+#scene{width:100%;flex:1;background:radial-gradient(ellipse at 50% 110%,#2a1d14,#0b0708);border:1px solid var(--rule);border-radius:6px}
+.rhythm-rail{background:#12141d;border:1px solid var(--rule);border-radius:6px;padding:10px}
+.rail-track{position:relative;height:24px;background:linear-gradient(90deg,#1d212b,#0f1117);border-radius:3px;overflow:hidden}
+.golden{position:absolute;top:0;left:46%;width:8%;height:100%;background:linear-gradient(180deg,rgba(244,233,193,.6),rgba(200,138,91,.4));border-left:1px solid var(--moon);border-right:1px solid var(--moon)}
+.cursor{position:absolute;top:0;width:2px;height:100%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.rail-label{color:#b6a98d;margin-top:6px;font-size:11px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{background:#1a1d27;border:1px solid var(--rule);color:var(--ink);padding:7px 12px;border-radius:4px;cursor:pointer;transition:box-shadow .2s}
+button:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+.log{border-left:1px solid var(--rule);background:var(--surface);padding:12px;overflow:auto}
+.log h2{font-size:11px;letter-spacing:.1em;color:var(--copper);margin:6px 0}
+.log ul{list-style:none;padding:0;margin:0 0 10px}
+.log li{font-size:11px;padding:4px 0;border-bottom:1px dashed var(--rule);color:#d6ccb3}
+.log li.hit{color:var(--accent)}
+.log li.miss{color:var(--storm)}
+.log li.moon{color:var(--moon)}
+.status{padding:6px 16px;border-top:1px solid var(--rule);background:#0c0e15;color:#b6a98d;font-size:11px}
+kbd{background:#111420;border:1px solid var(--rule);padding:1px 4px;border-radius:3px}

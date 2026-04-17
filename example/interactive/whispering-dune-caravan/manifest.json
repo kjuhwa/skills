@@ -1,0 +1,14 @@
+{
+  "slug": "whispering-dune-caravan",
+  "title": "Whispering Dune Caravan Trials",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T10:58:20.966Z",
+  "source_project": "21-whispering-dune-caravan",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "Desert nomads trace constellations on copper maps while sandstorms sculpt forgotten cities beneath twin moons rising slowly",
+  "cycle": 2
+}

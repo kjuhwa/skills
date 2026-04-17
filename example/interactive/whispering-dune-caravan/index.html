@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Whispering Dune Caravan Trials</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="topbar">
+  <h1>whispering-dune-caravan-trials</h1>
+  <div class="hud">
+    <span>day <b id="h-day">1</b></span>
+    <span>stamina <b id="h-stam">100</b></span>
+    <span>water <b id="h-water">12</b></span>
+    <span>copper <b id="h-copper">7</b></span>
+    <span>pity <b id="h-pity">0</b>/9</span>
+    <span>moons <b id="h-moons">◐ ◓</b></span>
+  </div>
+</header>
+<main>
+  <section class="arena">
+    <canvas id="scene" width="920" height="420"></canvas>
+    <div class="rhythm-rail">
+      <div class="rail-track"><div class="golden"></div><div class="cursor" id="cursor"></div></div>
+      <div class="rail-label">strike the golden wind · press <kbd>J</kbd></div>
+    </div>
+    <div class="actions">
+      <button data-act="march">march (J · rhythm)</button>
+      <button data-act="rest">rest at oasis</button>
+      <button data-act="invoke">invoke twin moons</button>
+      <button data-act="reroute">reroute caravan</button>
+      <button data-act="commit">log the verse</button>
+    </div>
+  </section>
+  <aside class="log">
+    <h2>verse log</h2>
+    <ul id="events"></ul>
+    <h2>status wheel</h2>
+    <ul id="effects"></ul>
+  </aside>
+</main>
+<footer class="status" id="status">the dunes wait · a verse is expected</footer>
+<script src="app.js" defer></script>
+</body>
+</html>
