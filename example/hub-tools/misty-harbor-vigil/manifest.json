@@ -1,0 +1,14 @@
+{
+  "slug": "misty-harbor-vigil",
+  "title": "Misty Harbor Lantern Vigil",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T01:45:49.851Z",
+  "source_project": "101-misty-harbor-vigil",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "Weathered cartographers chart forgotten constellations while paper lanterns drift above misty harbors and sleeping fishing boats",
+  "cycle": 1
+}
