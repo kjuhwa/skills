@@ -160,18 +160,20 @@ const usedKeywords = new Set();
 
 async function pickKeyword() {
   const recent = [...usedKeywords].slice(-5).join(' | ') || '(none)';
-  const prompt = `Generate ONE random evocative theme phrase (10 to 20 English words) suitable as a creative theme for a set of 3 interactive HTML visualization apps.
+  const prompt = `Generate ONE random evocative theme phrase (5 to 15 English words) suitable as a creative theme for a set of 3 interactive HTML visualization apps.
 
 Constraints:
-- Must be 10-20 words total (count carefully)
-- Mix nouns and verbs — concrete, sensory, evocative
-- Describe a scene, activity, or concept (not a product)
+- Must be 5-15 words total (count carefully)
+- NOUNS ONLY — no verbs, no adjectives, no adverbs. Every word must be a noun.
+- IT / computer science / distributed systems terminology ONLY
+- Combine multiple IT concepts into a creative compound phrase
 - Must NOT repeat these recent themes: ${recent}
-- No technical jargon (no "api", "database", "server", "framework", etc.)
 - Examples of good themes:
-  - "A cozy lighthouse keeper decodes midnight signals drifting across the stormy ocean horizon"
-  - "Tiny garden gnomes orchestrate a symphony while moonflowers bloom and fireflies weave patterns"
-  - "Ancient librarians sort whispered secrets into glowing tomes within a floating crystal archive"
+  - "consensus raft quorum leader election heartbeat timeout partition"
+  - "cache eviction shard replica failover circuit breaker backpressure"
+  - "merkle tree bloom filter consistent hashing ring topology gossip protocol"
+  - "container orchestration pod namespace service mesh sidecar proxy"
+  - "event sourcing saga outbox CDC snapshot aggregate projection"
 
 Output ONLY the phrase, no quotes, no explanation, nothing else.`;
 
@@ -399,15 +401,27 @@ Relevant knowledge/pitfalls to respect (${allKnowledge.length} total):
 ${knowBlock}
 
 
-Generate exactly 3 apps that take this theme from THREE FUNDAMENTALLY DIFFERENT ANGLES (not 3 variations of the same idea):
+Generate exactly 3 apps that take this theme from THREE FUNDAMENTALLY DIFFERENT ANGLES.
+Each app MUST have a COMPLETELY DIFFERENT visual style, color palette, layout, and rendering technology:
 
-  App 1: a VISUALIZATION/EXPLORER — interactive view over generated data (graph, map, timeline, canvas scene)
-  App 2: a SIMULATION/GAME — stateful mechanic with user agency (physics, turn-based, rhythm, puzzle)
-  App 3: a TOOL/CALCULATOR — practical utility (converter, generator, analyzer, composer)
+  App 1: a VISUALIZATION/EXPLORER — built with React (via CDN: react, react-dom, babel-standalone)
+    Style: deep ocean palette (--bg #0a0e1a, --surface #111a2e, --accent #00d4ff)
+    Tech stack: React 18+ with hooks (useState, useEffect, useRef, useMemo), JSX via Babel standalone, Canvas 2D for rendering
+    Must use: functional components, custom hooks, React.memo for optimization
+
+  App 2: a SIMULATION/GAME — built with Vue 3 (via CDN: vue@3 global build)
+    Style: warm amber/copper palette (--bg #1a1410, --surface #2a2018, --accent #f0a050)
+    Tech stack: Vue 3 Composition API (ref, reactive, computed, watch, onMounted), SVG-based rendering
+    Must use: single-file component style with <script setup> pattern, v-for/v-if directives, event handling
+
+  App 3: a TOOL/CALCULATOR — built with D3.js (via CDN: d3@7)
+    Style: green-on-black terminal palette (--bg #0a0a0a, --surface #1a1a1a, --accent #33ff33)
+    Tech stack: D3.js v7 for data-driven DOM manipulation, scales, axes, transitions, force simulations
+    Must use: d3.select, d3.scaleLinear, d3.transition, data join pattern (enter/update/exit)
 
 Creative naming rules:
 - Each app name must be EVOCATIVE and UNIQUE — do NOT use the pattern "<keyword>-explorer" or "<keyword>-dashboard"
-- Combine the keyword metaphorically with a distinctive word (e.g. "${keyword}-atlas", "whispering-<keyword>", "<keyword>-kaleidoscope", "echo-<keyword>")
+- Combine the keyword metaphorically with a distinctive word (e.g. "${keyword}-atlas", "whispering-<keyword>", "${keyword}-kaleidoscope", "echo-<keyword>")
 - Kebab-case, 2–4 words
 
 Output format — for each of the 3 apps, emit EXACTLY this block, in order:
@@ -420,25 +434,26 @@ features:
 - <feature bullet 1>
 - <feature bullet 2>
 - <feature bullet 3>
-stack: html, css, vanilla-js
+stack: <the assigned framework: "react" or "vue3" or "d3">
 ===FILE:index.html===
-<complete HTML>
+<complete HTML — include CDN script tags, inline <style>, and inline <script>>
 ===END===
 ===FILE:style.css===
-<complete CSS>
+<complete CSS — must match the assigned palette and layout style above>
 ===END===
 ===FILE:app.js===
-<complete JS>
+<complete JS — must use the assigned rendering technology above>
 ===END===
 ===END-APP===
 
 Technical requirements:
-- Dark theme: --bg #0f1117, --surface #1a1d27, --accent #6ee7b7 (use CSS variables)
-- Zero dependencies, vanilla JS only, no external scripts
+- Each app MUST use its assigned color palette — DO NOT reuse the same palette across apps
+- Each app MUST use its assigned framework/library (React / Vue / D3) — DO NOT mix frameworks
+- Each app MUST have a visually distinct layout — opening all 3 side-by-side must show 3 clearly different UIs
+- CDN imports ONLY (unpkg.com or cdnjs.cloudflare.com) — no npm, no build step, no bundler
 - MINIMUM 500 lines total per app (aim for 700–1000+ lines) — each app must be substantial, equivalent to at least 10 printed pages of code
 - Include multiple interactive sections, panels, or views per app — not a single-screen demo
 - Immediately interactive on load with meaningful simulated/mock data
-- Use canvas or SVG where visualization helps
 - Modern UX: hover states, transitions, keyboard shortcuts where natural
 
 CRITICAL OUTPUT RULES:
