@@ -1,0 +1,12 @@
+{
+  "slug": "barrier-forge-harbor",
+  "title": "Barrier Forge Harbor",
+  "stack": [
+    "vue3"
+  ],
+  "created_at": "2026-04-17T13:06:43.147Z",
+  "source_project": "27-barrier-forge-harbor",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "stream processor windowing watermark checkpoint barrier state backend changelog topic",
+  "cycle": 3
+}
