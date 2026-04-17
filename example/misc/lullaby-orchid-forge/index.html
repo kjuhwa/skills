@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lullaby Orchid Forge</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Lullaby Orchid Forge</h1>
+  <div class="hud">
+    <span id="wave">Wave 1</span>
+    <span id="score">Calm 0</span>
+    <span id="pity">Pity 0</span>
+    <span id="streak">Miss 0</span>
+  </div>
+</header>
+<main>
+  <canvas id="stage" width="720" height="360"></canvas>
+  <section class="panel">
+    <div id="grade" class="grade">— press SPACE on the hum —</div>
+    <div class="bar"><div id="hum"></div><div id="window"></div></div>
+    <ol id="log"></ol>
+    <div class="help">SPACE · strike orchid  |  R · reset wave  |  1/2/3 · tune element</div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
