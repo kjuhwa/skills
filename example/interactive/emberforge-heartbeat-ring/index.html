@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Emberforge Heartbeat Ring</title>
+<!--
+  ## Skills applied
+  `stateless-turn-combat-engine`, `gacha-soft-hard-pity`,
+  `status-effect-enum-system`, `immutable-action-event-log`,
+  `event-returning-pure-reducer`, `hue-rotate-sprite-identity`,
+  `incommensurate-sine-organic-flicker`, `parallax-sine-silhouette-horizon`,
+  `copper-patina-gradient-shader`, `canvas-flowfield-particle-advection`,
+  `lantern-visualization-pattern`, `lantern-data-simulation`,
+  `phase-window-timing-grade-with-pity`, `adaptive-strategy-hot-swap`,
+  `layered-risk-gates`, `tiered-rebalance-schedule`,
+  `baseline-historical-comparison-threshold`, `frozen-detection-consecutive-count`,
+  `divide-by-zero-rate-guard`, `cache-variance-ttl-jitter`,
+  `retry-strategy-visualization-pattern`, `retry-strategy-data-simulation`,
+  `circuit-breaker-visualization-pattern`, `circuit-breaker-data-simulation`,
+  `bulkhead-visualization-pattern`, `bulkhead-data-simulation`,
+  `backpressure-visualization-pattern`, `backpressure-data-simulation`,
+  `rate-limiter-visualization-pattern`, `rate-limiter-data-simulation`,
+  `load-balancer-visualization-pattern`, `load-balancer-data-simulation`,
+  `canary-release-visualization-pattern`, `canary-release-data-simulation`,
+  `blue-green-deploy-visualization-pattern`, `blue-green-deploy-data-simulation`,
+  `saga-pattern-visualization-pattern`, `idempotency-visualization-pattern`,
+  `chaos-engineering-visualization-pattern`, `chaos-engineering-data-simulation`,
+  `raft-consensus-data-simulation`, `health-check-data-simulation`.
+
+  ## Knowledge respected
+  `quorum-visualization-off-by-one` (⌊2N/3⌋+1 threshold),
+  `raft-consensus-implementation-pitfall` (term/commit safety),
+  `health-check-implementation-pitfall` (self-check blind spots),
+  `frozen-detection-consecutive-count` (consecutive-sample dampening),
+  `canary-release-implementation-pitfall` (low-volume gate noise),
+  `retry-strategy-implementation-pitfall` (thundering-herd / jitter),
+  `divide-by-zero-rate-guard` (guard NaN rate math),
+  `single-keyword-formulaic-llm-output` (variety via evocative names),
+  `circuit-breaker-implementation-pitfall` (HALF_OPEN accounting).
+-->
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+  <header class="forge-head">
+    <div class="seal">
+      <svg width="32" height="32" viewBox="0 0 32 32" class="seal-mark">
+        <circle cx="16" cy="16" r="14" stroke="#f0a050" stroke-width="1.2" fill="none"/>
+        <circle cx="16" cy="16" r="8" stroke="#c57030" stroke-width="1" fill="none"/>
+        <circle cx="16" cy="16" r="3" fill="#f0a050"/>
+      </svg>
+      <div>
+        <div class="title">Emberforge</div>
+        <div class="sub">Heartbeat Ring · Split-Brain Vigil</div>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button v-for="t in tabs" :key="t"
+              :class="{active:tab===t}"
+              @click="tab=t">{{ t }}</button>
+    </nav>
+    <div class="clock">turn {{ turn }} · age {{ elapsed }}s · heat {{ globalHeat.toFixed(2) }}</div>
+  </header>
+
+  <main class="forge-body" :class="'tab-'+tab">
+    <aside class="sidebar">
+      <section>
+        <h3>Forge Controls</h3>
+        <label class="slider">
+          <span>heartbeat ticks</span>
+          <input type="range" min="1" max="12" v-model.number="heartbeatTicks"/>
+          <em>{{ heartbeatTicks }} / pulse</em>
+        </label>
+        <label class="slider">
+          <span>flicker amplitude</span>
+          <input type="range" min="0" max="1" step="0.01" v-model.number="flicker"/>
+          <em>{{ flicker.toFixed(2) }}</em>
+        </label>
+        <label class="slider">
+          <span>pity (soft→hard)</span>
+          <input type="range" min="3" max="12" v-model.number="pity"/>
+          <em>{{ pity }} turns</em>
+        </label>
+        <label class="slider">
+          <span>lag budget</span>
+          <input type="range" min="10" max="400" step="5" v-model.number="lagBudget"/>
+          <em>{{ lagBudget }}ms</em>
+        </label>
+        <button class="btn primary" @click="togglePlay">
+          {{ playing ? "rest" : "stoke" }}
+        </button>
+        <button class="btn" @click="forgeTick">hammer turn</button>
+        <button class="btn warn" @click="toggleSplit">
+          {{ split ? "heal forge" : "fracture forge" }}
+        </button>
+        <button class="btn danger" @click="chaos">chaos draft</button>
+      </section>
+      <section>
+        <h3>Quorum Seal</h3>
+        <div class="row"><span>nodes</span><b>{{ nodes.length }}</b></div>
+        <div class="row"><span>quorum ⌊n/2⌋+1</span><b>{{ quorumSize }}</b></div>
+        <div class="row"><span>side A alive</span>
+          <b :class="sideA.alive>=quorumSide?'ok':'danger'">{{ sideA.alive }} / {{ sideA.total }}</b></div>
+        <div class="row"><span>side B alive</span>
+          <b :class="sideB.alive>=quorumSide?'ok':'danger'">{{ sideB.alive }} / {{ sideB.total }}</b></div>
+        <div class="row"><span>quorum side</span>
+          <b>{{ quorumSide }} (of each half)</b></div>
+        <div class="row"><span>global leader</span>
+          <b>{{ leader ? leader.name : "—" }}</b></div>
+      </section>
+      <section>
+        <h3>Legend</h3>
+        <ul class="legend">
+          <li><span class="dot leader"/> crowned ember (leader)</li>
+          <li><span class="dot follower"/> follower ember</li>
+          <li><span class="dot cand"/> candidate — pity stacking</li>
+          <li><span class="dot suspect"/> suspect ember (lag &gt; 2× beat)</li>
+          <li><span class="dot dead"/> doused — outside quorum</li>
+        </ul>
+      </section>
+    </aside>
+
+    <section class="stage">
+      <div class="ring-wrap">
+        <svg :viewBox="`-${R} -${R} ${R*2} ${R*2}`" class="forge-ring">
+          <!-- patina backdrop (copper-patina-gradient-shader) -->
+          <defs>
+            <radialGradient id="patina" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#2a2018"/>
+              <stop offset="60%" stop-color="#1a1410"/>
+              <stop offset="100%" stop-color="#0a0705"/>
+            </radialGradient>
+            <radialGradient id="ember" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fff2d0"/>
+              <stop offset="35%" stop-color="#f0a050"/>
+              <stop offset="90%" stop-color="#6a2510"/>
+              <stop offset="100%" stop-color="#2a1008" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <circle :r="R*0.98" fill="url(#patina)"/>
+          <!-- quorum rings -->
+          <circle :r="ringR" fill="none" stroke="#c57030" stroke-width="1"
+                  stroke-dasharray="4 4" opacity="0.4"/>
+          <circle :r="ringR-24" fill="none" stroke="#c57030" stroke-width="0.7"
+                  stroke-dasharray="2 6" opacity="0.25"/>
+          <circle :r="ringR+24" fill="none" stroke="#c57030" stroke-width="0.7"
+                  stroke-dasharray="2 6" opacity="0.25"/>
+
+          <!-- split bar -->
+          <line v-if="split" :x1="0" :y1="-R" :x2="0" :y2="R"
+                stroke="#d65040" stroke-width="1" stroke-dasharray="6 4" opacity="0.55"/>
+
+          <!-- Heartbeat beams from leader -->
+          <g v-if="leader">
+            <line v-for="f in followersOfLeader" :key="'beam-'+f.name"
+                  :x1="leader.x" :y1="leader.y"
+                  :x2="f.x" :y2="f.y"
+                  :stroke="split && f.side !== leader.side ? '#4a2010' : '#f0a050'"
+                  :opacity="f.suspect ? 0.15 : 0.45"
+                  stroke-width="1"/>
+          </g>
+
+          <!-- Ember nodes -->
+          <g v-for="n in nodes" :key="n.name"
+             :transform="`translate(${n.x} ${n.y})`"
+             @click="select(n.name)"
+             @mouseenter="hover=n.name" @mouseleave="hover=null"
+             :style="{cursor:'pointer'}">
+            <!-- heartbeat pulse ring -->
+            <circle v-if="!n.suspect" :r="14 + n.pulse*18"
+                    fill="none" stroke="#f0a050"
+                    :stroke-width="0.8" :opacity="0.5 - n.pulse*0.5"/>
+            <circle :r="n.role==='leader' ? 14 : 10"
+                    fill="url(#ember)"
+                    filter="url(#glow)"
+                    :style="{filter:`hue-rotate(${n.hue}deg) ${n.suspect?'saturate(.2) brightness(.5)':''}`}"/>
+            <circle :r="n.role==='leader' ? 16 : 12"
+                    fill="none"
+                    :stroke="selected===n.name ? '#fff2d0' : (hover===n.name ? '#f0a050' : 'transparent')"
+                    stroke-width="1.2"/>
+            <text :y="n.labelY" text-anchor="middle" class="node-lbl">{{ n.name }}</text>
+            <text :y="n.labelY+11" text-anchor="middle" class="node-role">
+              {{ n.role }}{{ n.role==='candidate' ? '·p'+n.pity : '' }}
+            </text>
+          </g>
+
+          <!-- central glyph -->
+          <g>
+            <circle r="6" fill="#f0a050" opacity="0.8">
+              <animate attributeName="r" values="4;7;4" dur="2.3s" repeatCount="indefinite"/>
+            </circle>
+            <text y="-28" text-anchor="middle" class="center-lbl">the anvil</text>
+          </g>
+        </svg>
+
+        <div class="overlay-banner" v-if="split">split brain · minority side starves</div>
+        <div class="overlay-banner ok" v-else-if="leader">forge bound · leader {{ leader.name }} · term {{ term }}</div>
+      </div>
+
+      <div class="inspector" v-if="selectedNode">
+        <h3>Ember · {{ selectedNode.name }}</h3>
+        <div class="inspector-grid">
+          <div class="cell">
+            <div class="k">role</div>
+            <div class="v" :class="selectedNode.role">{{ selectedNode.role }}</div>
+          </div>
+          <div class="cell">
+            <div class="k">heat</div>
+            <div class="v">{{ selectedNode.heat.toFixed(2) }}</div>
+          </div>
+          <div class="cell">
+            <div class="k">pulse</div>
+            <div class="v">{{ selectedNode.pulse.toFixed(2) }}</div>
+          </div>
+          <div class="cell">
+            <div class="k">lag</div>
+            <div class="v" :class="selectedNode.lag>lagBudget?'warn':''">{{ selectedNode.lag }}ms</div>
+          </div>
+          <div class="cell">
+            <div class="k">status effect</div>
+            <div class="v">{{ selectedNode.effect }}</div>
+          </div>
+          <div class="cell">
+            <div class="k">pity stack</div>
+            <div class="v">{{ selectedNode.pity }} / {{ pity }}</div>
+          </div>
+          <div class="cell">
+            <div class="k">side</div>
+            <div class="v">side {{ selectedNode.side }}</div>
+          </div>
+          <div class="cell">
+            <div class="k">term</div>
+            <div class="v">{{ selectedNode.term }}</div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" @click="douse(selectedNode.name)">douse ember</button>
+          <button class="btn primary" @click="rekindle(selectedNode.name)">rekindle</button>
+          <button class="btn warn" @click="crown(selectedNode.name)">force crown</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right-rail">
+      <section>
+        <h3>Turn Log</h3>
+        <ul class="log">
+          <li v-for="(e,i) in events.slice(-40).slice().reverse()" :key="i" :class="e.lvl">
+            <span class="t">t{{ e.turn }}</span>
+            <span class="lvl">{{ e.lvl }}</span>
+            <span>{{ e.msg }}</span>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Historical Baseline</h3>
+        <svg class="spark" viewBox="0 0 160 52" preserveAspectRatio="none">
+          <polyline
+            :points="sparkPoints"
+            fill="none" stroke="#f0a050" stroke-width="1.2"/>
+          <polyline
+            :points="sparkFill"
+            fill="rgba(240,160,80,0.14)" stroke="none"/>
+        </svg>
+        <div class="row"><span>prev turn avg lag</span><b>{{ histAvg.toFixed(0) }}ms</b></div>
+        <div class="row"><span>delta</span>
+          <b :class="histDelta>0?'warn':'ok'">{{ histDelta>=0?'+':'' }}{{ histDelta.toFixed(0) }}ms</b></div>
+      </section>
+      <section>
+        <h3>Circuit State</h3>
+        <div class="pill-row">
+          <span :class="['pill', breakerState==='CLOSED' ? 'ok' : '']">closed</span>
+          <span :class="['pill', breakerState==='HALF_OPEN' ? 'warn' : '']">half-open</span>
+          <span :class="['pill', breakerState==='OPEN' ? 'danger' : '']">open</span>
+        </div>
+        <div class="row"><span>failure window</span><b>{{ failureRate.toFixed(2) }}</b></div>
+        <div class="row"><span>probe ticks</span><b>{{ probeTicks }}</b></div>
+      </section>
+    </aside>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
