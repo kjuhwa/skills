@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Luminous Pollen Composer</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="bar">
+  <h1>Luminous Pollen Composer</h1>
+  <div class="controls">
+    <input id="phrase" value="A clockwork beekeeper winds brass hives at dusk" aria-label="seed phrase" />
+    <label>Hives<input id="count" type="number" min="3" max="48" value="12" /></label>
+    <label>Cadence
+      <select id="cadence">
+        <option value="fast">Fast · 8s</option>
+        <option value="mid" selected>Mid · 30s</option>
+        <option value="slow">Slow · 2m</option>
+      </select>
+    </label>
+    <button id="compose" type="button">Compose</button>
+    <button id="copy" type="button">Copy JSON</button>
+    <button id="csv" type="button">Download CSV</button>
+  </div>
+</header>
+<main>
+  <section class="preview">
+    <h2>Manifest preview</h2>
+    <table id="table"><thead><tr><th>Hive</th><th>Role</th><th>Shard</th><th>Cadence</th><th>Window</th><th>Pollen</th><th>Flag</th><th>Gate</th></tr></thead><tbody></tbody></table>
+  </section>
+  <section class="json">
+    <h2>JSON manifest</h2>
+    <pre id="out" tabindex="0" aria-live="polite"></pre>
+  </section>
+</main>
+<footer class="legend" id="legend"></footer>
+<script src="app.js"></script>
+</body>
+</html>

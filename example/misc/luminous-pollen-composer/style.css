@@ -1,0 +1,23 @@
+:root{--bg:#0f1117;--surface:#1a1d27;--accent:#6ee7b7;--brass:#c9a14a;--amber:#f6c774;--copper:#b36a2e;--ink:#e7ecf3;--muted:#8b94a7;--line:#252a38}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 ui-sans-serif,system-ui,sans-serif}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#141823,#0f1117);flex-wrap:wrap;gap:10px}
+.bar h1{margin:0;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.controls input,.controls select{background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:7px 9px;border-radius:6px;font:inherit}
+#phrase{width:340px}
+button{background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:7px 12px;border-radius:6px;cursor:pointer}
+button:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+main{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;padding:16px;height:calc(100vh - 140px)}
+.preview,.json{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto}
+h2{margin:0 0 10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px dashed var(--line)}
+th{color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+td b{color:var(--amber)}
+tr:hover{background:#20263a}
+tr td:nth-child(7){color:var(--accent);font-size:11px}
+tr td:nth-child(8){color:var(--copper);font-size:11px}
+pre{margin:0;font:12px/1.55 ui-monospace,monospace;color:var(--ink);white-space:pre-wrap;word-break:break-word}
+.legend{padding:8px 22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+.badge{display:inline-block;padding:1px 7px;border-radius:999px;border:1px solid var(--line);margin-right:6px;font-size:11px}
