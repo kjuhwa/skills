@@ -1,0 +1,28 @@
+:root { --bg:#0f1117; --surface:#1a1d27; --accent:#6ee7b7; --ink:#c8cedb; --muted:#7d8395; --amber:#f6c177; --rose:#f87171; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 13px/1.5 ui-sans-serif, system-ui, sans-serif; }
+header { display: flex; align-items: center; gap: 18px; padding: 10px 18px; background: linear-gradient(#141824,#0f1117); border-bottom: 1px solid #1f2433; }
+h1 { margin: 0; font-size: 15px; letter-spacing: .08em; color: var(--accent); text-transform: uppercase; }
+.hud { display: flex; gap: 16px; color: var(--muted); font-size: 12px; }
+.hud b { color: var(--accent); font-family: ui-monospace, monospace; margin-left: 4px; }
+button { background: transparent; border: 1px solid #2a3144; color: var(--ink); padding: 4px 12px; border-radius: 4px; cursor: pointer; transition: box-shadow .15s; }
+button:hover { box-shadow: inset 0 0 0 1px var(--accent); color: var(--accent); }
+main { display: grid; grid-template-columns: 1fr 340px; gap: 12px; padding: 12px; height: calc(100% - 50px); }
+.stage { position: relative; background: radial-gradient(ellipse at 50% 40%, #1a2236 0%, #0c0f17 70%); border-radius: 10px; overflow: hidden; }
+.stage canvas, .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.judgement { position: absolute; top: 30%; left: 50%; transform: translateX(-50%); font-size: 44px; font-weight: 700; letter-spacing: .08em; pointer-events: none; transition: opacity .4s, transform .4s; opacity: 0; }
+.judgement.perfect { color: var(--accent); }
+.judgement.good { color: var(--amber); }
+.judgement.miss { color: var(--rose); }
+.judgement.show { opacity: 1; transform: translate(-50%, -14px); }
+.panel { display: flex; flex-direction: column; gap: 10px; overflow: auto; }
+.card { background: var(--surface); border: 1px solid #222938; border-radius: 8px; padding: 10px 12px; }
+.card h2 { margin: 0 0 6px; font-size: 11px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+#bells { margin: 0; padding-left: 18px; font-family: ui-monospace, monospace; color: var(--ink); max-height: 220px; overflow: auto; }
+#bells li.on { color: var(--accent); }
+#events { list-style: none; margin: 0; padding: 0; font-family: ui-monospace, monospace; font-size: 11px; max-height: 200px; overflow: auto; }
+#events li { padding: 2px 0; color: var(--muted); border-bottom: 1px dashed #1f2433; }
+#events li.perfect { color: var(--accent); }
+#events li.good { color: var(--amber); }
+#events li.miss { color: var(--rose); }
+kbd { background: #0c0f17; border: 1px solid #2a3144; border-radius: 3px; padding: 1px 6px; font-family: ui-monospace, monospace; font-size: 11px; }

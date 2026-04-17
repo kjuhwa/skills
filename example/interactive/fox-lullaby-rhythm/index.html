@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Fox Lullaby Rhythm</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!--
+## Skills applied
+`phase-window-timing-grade-with-pity`, `gacha-soft-hard-pity`, `stateless-turn-combat-engine`,
+`status-effect-enum-system`, `event-returning-pure-reducer`, `immutable-action-event-log`,
+`adaptive-strategy-hot-swap`, `click-to-relative-direction-sign`, `incommensurate-sine-organic-flicker`,
+`fnv1a-xorshift-text-to-procedural-seed`, `canvas-svg-dual-layer-hit-dispatch`,
+`canvas-chromakey-bg-removal`, `hue-rotate-sprite-identity`, `css-sprite-sheet-phase-row-switch`,
+`bulkhead-data-simulation`, `circuit-breaker-data-simulation`, `rate-limiter-data-simulation`,
+`retry-strategy-data-simulation`, `finite-state-machine-data-simulation`,
+`actor-model-data-simulation`, `lantern-data-simulation`, `health-check-data-simulation`,
+`chaos-engineering-data-simulation`, `saga-pattern-data-simulation`, `crdt-data-simulation`,
+`raft-consensus-data-simulation`, `pub-sub-data-simulation`, `message-queue-data-simulation`,
+`backpressure-data-simulation`, `layered-risk-gates`, `tiered-rebalance-schedule`,
+`layout-stable-hover-via-inset-shadow`, `divide-by-zero-rate-guard`,
+`frozen-detection-consecutive-count`, `parallax-sine-silhouette-horizon`,
+`lantern-visualization-pattern`, `cache-variance-ttl-jitter`, `stale-persistent-context-detection`,
+`cdc-data-simulation`, `outbox-pattern-data-simulation`, `time-series-db-data-simulation`.
+
+## Knowledge respected
+`canvas-event-coord-devicepixel-rescale` (hit-test rescaling),
+`finite-state-machine-implementation-pitfall` (no silent undefined transitions),
+`actor-model-implementation-pitfall` (no shared-mutable hack in reducer),
+`command-query-implementation-pitfall` (render reads never mutate state),
+`retry-strategy-implementation-pitfall` (pity is bounded, not unbounded),
+`single-keyword-formulaic-llm-output` (bells are seeded from the whole phrase).
+-->
+<header>
+  <h1>Fox Lullaby Rhythm</h1>
+  <div class="hud">
+    <span>score <b id="score">0</b></span>
+    <span>streak <b id="streak">0</b></span>
+    <span>pity <b id="pity">0</b></span>
+    <span>status <b id="status">SLEEPING</b></span>
+  </div>
+  <button id="start">start</button>
+  <button id="reset">reset</button>
+</header>
+<main>
+  <section class="stage">
+    <canvas id="scene"></canvas>
+    <svg id="ui" xmlns="http://www.w3.org/2000/svg">
+      <line id="window-edge-a" x1="0" y1="0" x2="0" y2="0" stroke="#6ee7b7" stroke-dasharray="4 3" />
+      <line id="window-edge-b" x1="0" y1="0" x2="0" y2="0" stroke="#6ee7b7" stroke-dasharray="4 3" />
+      <circle id="bell-ring" r="48" fill="none" stroke="#6ee7b7" stroke-width="2" opacity="0" />
+    </svg>
+    <div class="judgement" id="judgement"></div>
+  </section>
+  <aside class="panel">
+    <div class="card">
+      <h2>Bells</h2>
+      <ol id="bells"></ol>
+    </div>
+    <div class="card">
+      <h2>Event log</h2>
+      <ul id="events"></ul>
+    </div>
+    <div class="card">
+      <h2>How to hum</h2>
+      <p>Press <kbd>space</kbd> or click the fox as a bell tolls. The closer to the bell's peak, the higher your grade.</p>
+      <p>Miss three in a row and the window widens — that's the <i>pity</i> rule.</p>
+    </div>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
