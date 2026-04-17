@@ -1,0 +1,12 @@
+{
+  "slug": "wal-tombstone-atlas",
+  "title": "WAL Tombstone Atlas — Segment Compaction Explorer",
+  "stack": [
+    "react"
+  ],
+  "created_at": "2026-04-17T13:56:41.926Z",
+  "source_project": "38-wal-tombstone-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "write-ahead log segment compaction tombstone snapshot offset index",
+  "cycle": 8
+}
