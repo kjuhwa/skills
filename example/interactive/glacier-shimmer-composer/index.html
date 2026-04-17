@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glacier Shimmer Composer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Glacier Shimmer Composer</h1>
+  <div id="ctrl">
+    <button id="play">▶ Play</button>
+    <button id="stop">■ Stop</button>
+    <button id="export">⬇ Export</button>
+  </div>
+</header>
+<main>
+  <section id="tuners">
+    <h2>Tuners</h2>
+    <label>Aurora hue <input type="range" id="hue" min="100" max="280" value="170"><output id="hueV">170</output></label>
+    <label>Tide cadence <input type="range" id="tide" min="1" max="16" value="6"><output id="tideV">6/16</output></label>
+    <label>Pine drone <input type="range" id="drone" min="40" max="180" value="85"><output id="droneV">85 Hz</output></label>
+    <label>Bear footfall <input type="range" id="foot" min="0" max="100" value="35"><output id="footV">35%</output></label>
+    <label>Volcano rumble <input type="range" id="rumble" min="0" max="100" value="15"><output id="rumbleV">15%</output></label>
+    <label>Shimmer jitter <input type="range" id="jitter" min="0" max="100" value="25"><output id="jitterV">25%</output></label>
+    <label>Seed text <input type="text" id="seed" value="arctic mapmaker trace aurora"></label>
+  </section>
+  <section id="score">
+    <h2>Visual score</h2>
+    <canvas id="vis"></canvas>
+    <pre id="binOut"></pre>
+  </section>
+  <aside id="presets">
+    <h2>Presets</h2>
+    <div id="presetName"><input id="pname" placeholder="preset name" maxlength="24"><button id="save">Save</button></div>
+    <ul id="plist"></ul>
+    <h2 style="margin-top:22px">Event log</h2>
+    <ol id="evlog"></ol>
+  </aside>
+</main>
+</body>
+<script src="app.js"></script>
+</html>

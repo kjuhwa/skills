@@ -1,0 +1,14 @@
+{
+  "slug": "glacier-shimmer-composer",
+  "title": "Glacier Shimmer Composer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T11:07:51.065Z",
+  "source_project": "25-glacier-shimmer-composer",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "Arctic mapmakers trace auroras across frozen rivers while polar bears guard sleeping volcanoes beneath shimmering glaciers and whispering pines",
+  "cycle": 3
+}
