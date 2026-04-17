@@ -1,6 +1,6 @@
 ---
 name: lantern-implementation-pitfall
-description: Common failure modes when building lantern-themed apps: additive glow blowout, timezone drift, and cipher key leakage
+description: Common failure modes when building lantern visualizations: additive-blend saturation, flicker desync, and ember leak
 category: pitfall
 tags:
   - lantern
@@ -9,8 +9,8 @@ tags:
 
 # lantern-implementation-pitfall
 
-The most frequent visual regression is "glow blowout" — once you enable `globalCompositeOperation = 'lighter'` for halos, stacking more than ~40 overlapping lanterns saturates every pixel to white and the paper bodies disappear into a featureless bloom. The fix is not lowering halo alpha globally (that makes sparse scenes look dead); it's capping per-pixel accumulation by rendering halos into an offscreen buffer, applying a `pow(x, 0.7)` tone-map, then compositing back. Also watch for iOS Safari silently dropping `lighter` under low-power mode — feature-detect and fall back to `source-over` with pre-brightened sprites.
+The most common visual failure is additive-blend saturation: when 20+ lantern halos overlap, the cumulative `'lighter'` composite clips to pure white and the scene loses its warm amber character, looking like a flashlight convention instead of a lantern festival. Mitigate by capping per-halo alpha at 0.15, using a pre-multiplied warm tint (rgb ~ 255,180,90) rather than pure white, and applying a final full-screen tone-map pass (multiply by 0.88, then add subtle blue-shadow in the 0.0–0.2 luminance range) to reintroduce contrast. Do not try to fix this by lowering halo count — it destroys the atmospheric density that makes lantern scenes feel magical.
 
-Timezone drift bites all three apps because `releasedAt` is generated in UTC but the festival view wants local-time diurnal bias, the explorer wants local-time tooltips, and the cipher app timestamps decoded messages in the viewer's zone. If any layer uses `new Date(releasedAt).getHours()` without an explicit IANA zone, the 19:00–23:00 release cluster smears across the day for users outside the festival's home zone and the scene looks wrong. Always carry `{releasedAt: ISO-UTC, originZone: IANA}` together and resolve with `Intl.DateTimeFormat`, never the host locale.
+Flicker desync is the second pitfall: if each lantern advances its flicker phase by `Math.random() * dt`, frames where `dt` spikes (tab backgrounded, GC pause) cause visible phase jumps and the fleet looks like broken Christmas lights. Always drive flicker from `Math.sin(elapsed * freq + perLanternOffset)` where `elapsed` is the monotonic shared clock and `perLanternOffset` is assigned once at spawn. Similarly, do not reset `elapsed` on tab refocus — cap `dt` at 100ms instead so physics stays stable without losing phase coherence.
 
-Cipher key leakage is the subtle one: it's tempting to store `cipherKey` on the same `Lantern` object that the festival and explorer views render, because it keeps one data model. But any `JSON.stringify(lantern)` for debug logs, devtools snapshots, or share-links then exposes the key and makes the cipher app trivial. Keep `cipherKey` in a parallel `Map<id, key>` that only the cipher app loads, and have festival/explorer consume a `PublicLantern` projection that strips it at the corpus-loader boundary — not at render time, which is too late once it's in component state.
+Ember particle leaks are the sneaky one: particles emitted when a lantern drifts off-screen (drifting-ember-flight) or when the composer rapid-fires releases must be culled against both viewport bounds AND a hard `maxAge` (typically 2.5s). Teams frequently add the viewport cull but forget maxAge, so embers from a lantern that flew up and out keep accumulating in the particle array forever — after ~5 minutes the array hits 10k+ entries and framerate collapses. Audit the particle pool size in devtools during long demo sessions, not just on initial load.
