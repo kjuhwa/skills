@@ -74,6 +74,7 @@ For targeted installs (keyword / version pinning), use `/hub-install` instead.
 
 ## Rules
 
+- **Always install from `main` branch HEAD.** Never use feature branches (`example/*`, `skill/*`, etc.) — they may contain outdated or unmerged content. All sources must come from the `main` checkout.
 - Never modify the remote clone cache's working tree (read-only usage).
 - Bulk mode always installs from `main` HEAD — use `/hub-install` for version-pinned installs.
 - Collisions are silently **skipped**, not overwritten — this is a bulk-install convenience, not a sync. For overwrites use `/hub-sync` or targeted `/hub-install <name>`.

@@ -56,6 +56,7 @@ Install skills from the central repository matching the keyword.
 
 ## Rules
 
+- **Always install from `main` branch.** All skill/knowledge sources must come from the `main` branch of the remote cache. Never use feature branches (`example/*`, `skill/*`, etc.) — they may contain outdated or unmerged content. Version-pinned installs use tags that point to commits on `main`.
 - Never install without explicit user selection unless `--yes` flag.
 - Never modify the remote clone cache's working tree (read-only usage).
 - If `$ARGUMENTS` is empty, list top-level categories from `CATEGORIES.md` and prompt.

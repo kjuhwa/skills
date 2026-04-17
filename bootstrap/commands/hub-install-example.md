@@ -15,7 +15,8 @@ Install example projects from the central repository into the current working di
    - If present and older than 1h: `git -C ~/.claude/skills-hub/remote fetch --tags --prune origin && git -C ~/.claude/skills-hub/remote reset --hard origin/main`.
 
 2. **Scan available examples**
-   - Read all `example/*/manifest.json` files from the remote cache.
+   - **MUST use `main` branch (HEAD) only.** Never install from `example/*` feature branches — they may contain outdated or unmerged versions. Always read from the `main` checkout of the remote cache.
+   - Scan `example/**/manifest.json` files from the remote cache at `main` HEAD (recursive — examples may be nested under category subdirectories like `example/hub-tools/auto-hub-loop/`).
    - Build a list: `slug`, `title`, `stack[]`, `created_at`.
    - If no `manifest.json` exists for an example dir, infer slug from directory name and mark stack as `unknown`.
 
@@ -68,6 +69,7 @@ Install example projects from the central repository into the current working di
 
 ## Rules
 
+- **Always install from `main` branch HEAD.** Never use `example/*` feature branches — they may contain outdated or unmerged content. All installation sources must come from the `main` checkout.
 - **Read-only on remote cache.** Copy files out; never modify the cache.
 - Never install without explicit user confirmation unless only 1 exact-slug match.
 - If the example contains a `package.json`, remind the user to run `npm install` after installation.
