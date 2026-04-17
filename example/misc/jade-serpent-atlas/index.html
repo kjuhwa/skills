@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jade Serpent Atlas</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <h1>Jade Serpent Atlas</h1>
+  <div class="controls">
+    <input id="q" placeholder="filter: serpent, orchid, alchemist…" />
+    <select id="lens">
+      <option value="all">all lenses</option>
+      <option value="alchemist">alchemists</option>
+      <option value="serpent">serpents</option>
+      <option value="orchid">clockwork orchids</option>
+      <option value="storm">storm elixirs</option>
+    </select>
+    <button id="reseed">reseed</button>
+    <button id="pause">pause</button>
+  </div>
+</header>
+<main>
+  <canvas id="graph"></canvas>
+  <aside id="inspector">
+    <h2 id="iname">Hover a node</h2>
+    <div class="chips" id="ichips"></div>
+    <p id="idesc"></p>
+    <ul id="ievents"></ul>
+  </aside>
+</main>
+<footer>
+  <span id="legend">
+    <i class="dot alchemist"></i> alchemist
+    <i class="dot serpent"></i> serpent
+    <i class="dot orchid"></i> orchid
+    <i class="dot storm"></i> storm
+  </span>
+  <span id="stats"></span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

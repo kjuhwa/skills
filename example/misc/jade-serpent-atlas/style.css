@@ -1,0 +1,38 @@
+:root{
+  --bg:#0f1117; --surface:#1a1d27; --accent:#6ee7b7;
+  --muted:#8892a6; --edge:#26303f; --warn:#f59e0b; --bad:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:#e7ecf3;
+  font-family:ui-sans-serif,system-ui,sans-serif}
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;border-bottom:1px solid var(--edge);background:#0c0e14}
+.topbar h1{margin:0;font-size:15px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent)}
+.controls{display:flex;gap:8px}
+input,select,button{background:var(--surface);color:#e7ecf3;border:1px solid var(--edge);
+  border-radius:6px;padding:6px 10px;font-size:12px;outline:none;transition:.15s}
+input:focus,select:focus{border-color:var(--accent)}
+button{cursor:pointer}
+button:hover{border-color:var(--accent);color:var(--accent)}
+main{display:grid;grid-template-columns:1fr 320px;height:calc(100% - 88px)}
+#graph{width:100%;height:100%;display:block;background:radial-gradient(
+  circle at 50% 50%,#13212a 0%,#0f1117 70%)}
+#inspector{border-left:1px solid var(--edge);background:var(--surface);
+  padding:14px;overflow-y:auto}
+#inspector h2{margin:0 0 8px;font-size:13px;color:var(--accent);
+  letter-spacing:.08em;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.chip{background:#0f1117;border:1px solid var(--edge);padding:2px 6px;
+  border-radius:999px;font-size:10px;color:var(--muted)}
+.chip.ok{color:var(--accent);border-color:var(--accent)}
+.chip.warn{color:var(--warn);border-color:var(--warn)}
+.chip.bad{color:var(--bad);border-color:var(--bad)}
+#idesc{font-size:12px;color:var(--muted);line-height:1.5}
+#ievents{list-style:none;padding:0;margin:12px 0 0;font-size:11px;font-family:ui-monospace,monospace}
+#ievents li{padding:4px 0;border-bottom:1px dashed var(--edge);color:#c7d2de}
+footer{display:flex;justify-content:space-between;align-items:center;
+  padding:6px 16px;border-top:1px solid var(--edge);font-size:11px;color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 6px 0 12px;vertical-align:middle}
+.dot.alchemist{background:#a78bfa}.dot.serpent{background:#6ee7b7}
+.dot.orchid{background:#fbbf24}.dot.storm{background:#60a5fa}
