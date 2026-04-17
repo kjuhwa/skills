@@ -1,0 +1,14 @@
+{
+  "slug": "aurora-cartographer-atlas",
+  "title": "Aurora Cartographer Atlas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T11:07:21.710Z",
+  "source_project": "23-aurora-cartographer-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "Arctic mapmakers trace auroras across frozen rivers while polar bears guard sleeping volcanoes beneath shimmering glaciers and whispering pines",
+  "cycle": 3
+}
