@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Drifting Cranes Atlas</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!--
+## Skills applied
+`parallax-sine-silhouette-horizon`, `lantern-visualization-pattern`, `lantern-data-simulation`,
+`incommensurate-sine-organic-flicker`, `fnv1a-xorshift-text-to-procedural-seed`,
+`canvas-chromakey-bg-removal`, `canvas-svg-dual-layer-hit-dispatch`, `hue-rotate-sprite-identity`,
+`css-sprite-sheet-phase-row-switch`, `time-series-db-visualization-pattern`,
+`raft-consensus-visualization-pattern`, `distributed-tracing-visualization-pattern`,
+`bloom-filter-visualization-pattern`, `consistent-hashing-visualization-pattern`,
+`saga-pattern-visualization-pattern`, `retry-strategy-visualization-pattern`,
+`service-mesh-visualization-pattern`, `health-check-visualization-pattern`,
+`api-gateway-pattern-visualization-pattern`, `strangler-fig-visualization-pattern`,
+`cdc-visualization-pattern`, `materialized-view-visualization-pattern`,
+`schema-registry-visualization-pattern`, `blue-green-deploy-visualization-pattern`,
+`outbox-pattern-visualization-pattern`, `read-replica-visualization-pattern`,
+`log-aggregation-visualization-pattern`, `pub-sub-visualization-pattern`,
+`message-queue-visualization-pattern`, `backpressure-visualization-pattern`,
+`actor-model-visualization-pattern`, `finite-state-machine-visualization-pattern`,
+`circuit-breaker-visualization-pattern`, `hexagonal-architecture-visualization-pattern`,
+`rate-limiter-visualization-pattern`, `crdt-visualization-pattern`,
+`load-balancer-visualization-pattern`, `sidecar-proxy-visualization-pattern`,
+`data-pipeline-visualization-pattern`, `connection-pool-visualization-pattern`,
+`dead-letter-queue-visualization-pattern`, `feature-flags-visualization-pattern`,
+`event-sourcing-visualization-pattern`, `bff-pattern-visualization-pattern`,
+`oauth-visualization-pattern`, `graphql-visualization-pattern`,
+`click-to-inspect-corpus-from-dashboard`, `widget-card-composition`, `echarts-svg-worker-chart`.
+
+## Knowledge respected
+`canvas-event-coord-devicepixel-rescale` (pointer coords rescaled for crisp hit-tests),
+`live-chart-timestamp-normalization` (tide timeline normalized to ms),
+`dashboard-decoration-vs-evidence` (every ornament carries a legible signal),
+`time-series-db-implementation-pitfall` (rollup boundaries respected),
+`arbitrary-display-caps-hide-signal` (queue tail reveals overflow count, never silently trims),
+`single-keyword-formulaic-llm-output` (seed blends the full phrase, not just a keyword),
+`pixel-smooth-style-mismatch` (all layers share a washed-ink aesthetic).
+-->
+<header>
+  <h1>Drifting Cranes Atlas</h1>
+  <label>seed <input id="seed" value="silver-river-lullaby" /></label>
+  <label>tide <input id="tide" type="range" min="20" max="180" value="70" /></label>
+  <label>density <input id="density" type="range" min="3" max="24" value="12" /></label>
+  <button id="reseed">reseed</button>
+</header>
+<main>
+  <section class="scene">
+    <canvas id="sky"></canvas>
+    <svg id="overlay" xmlns="http://www.w3.org/2000/svg"></svg>
+  </section>
+  <aside class="panel">
+    <div class="card" id="crane-card">
+      <h2>Crane queue</h2>
+      <ol id="queue"></ol>
+    </div>
+    <div class="card">
+      <h2>Bell topology</h2>
+      <svg id="ring" viewBox="-110 -110 220 220"></svg>
+    </div>
+    <div class="card">
+      <h2>River health</h2>
+      <div class="gauges">
+        <div class="g"><span class="k">tide</span><b id="g-tide">—</b></div>
+        <div class="g"><span class="k">lag</span><b id="g-lag">—</b></div>
+        <div class="g"><span class="k">circuit</span><b id="g-circuit">CLOSED</b></div>
+        <div class="g"><span class="k">pressure</span><b id="g-pressure">—</b></div>
+      </div>
+      <canvas id="spark"></canvas>
+    </div>
+    <div class="card">
+      <h2>Whisper log</h2>
+      <ul id="log"></ul>
+    </div>
+  </aside>
+</main>
+<dialog id="lullaby">
+  <form method="dialog">
+    <h3 id="lb-title">—</h3>
+    <pre id="lb-body"></pre>
+    <menu><button value="close">close</button></menu>
+  </form>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
