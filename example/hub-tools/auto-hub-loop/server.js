@@ -216,7 +216,7 @@ function shellSync(cmd, opts = {}) {
 }
 
 // ── Claude CLI Helper ──
-async function askClaude(prompt, timeout = 900000) {
+async function askClaude(prompt, timeout = 1800000) {
   const { spawn } = require('child_process');
   // Write prompt to a temp file and pipe via shell redirect — avoids argv length limits AND stdin propagation issues
   const tmpFile = path.join(require('os').tmpdir(), `claude-prompt-${Date.now()}-${Math.random().toString(36).slice(2,8)}.txt`);
@@ -464,7 +464,7 @@ CRITICAL OUTPUT RULES:
 - If you catch yourself writing "The apps were delivered above" or similar — STOP and restart with just the blocks
 - The response MUST start with "===APP===" and end with "===END-APP===", nothing else`;
 
-  const response = await askClaude(prompt, 600000);
+  const response = await askClaude(prompt, 1800000);
   return response;
 }
 
