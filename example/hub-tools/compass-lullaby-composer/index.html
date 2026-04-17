@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Compass Lullaby Composer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Compass Lullaby Composer</h1>
+  <p class="subtitle">Hum a lullaby by charting brass compass bearings toward sleeping constellations</p>
+</header>
+<main>
+  <section class="compose">
+    <div class="dial-wrap">
+      <svg id="dial" viewBox="-110 -110 220 220" aria-label="brass compass"></svg>
+    </div>
+    <div class="readout">
+      <div>Bearing <b id="heading">0°</b></div>
+      <div>Frequency <b id="freq">220.0 Hz</b></div>
+      <div>Note <b id="note">A3</b></div>
+      <div>Length <b id="lenout">½ ♩</b></div>
+    </div>
+    <div class="controls">
+      <label class="rangelabel">Bearing <input id="bearing" type="range" min="0" max="359" value="0"></label>
+      <div class="rowctl">
+        <label>Length
+          <select id="duration">
+            <option value="q">¼</option>
+            <option value="h" selected>½</option>
+            <option value="w">1</option>
+            <option value="d">2</option>
+          </select>
+        </label>
+        <button id="add" class="primary">Add Note (Enter)</button>
+      </div>
+      <div class="rowctl">
+        <button id="play">Play (P)</button>
+        <button id="undo">Undo (U)</button>
+        <button id="clear">Clear</button>
+      </div>
+    </div>
+  </section>
+  <section class="score">
+    <h2>Score <span class="count" id="count">0</span></h2>
+    <canvas id="staff" width="720" height="170"></canvas>
+    <ol id="notes"></ol>
+    <label class="exportlabel">Export
+      <textarea id="export" readonly rows="2" placeholder="(no notes yet)"></textarea>
+    </label>
+  </section>
+</main>
+<footer>Skills — immutable-action-event-log · period-mode-enum-config · lantern-visualization-pattern</footer>
+<script src="app.js"></script>
+</body>
+</html>
