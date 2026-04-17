@@ -1,0 +1,91 @@
+<!--
+# Ember Rebalance Forge
+
+A Vue 3 + SVG simulation where the theme becomes craft: each consumer-group
+rebalance is a trip to the forge — the coordinator heats an ingot (partition),
+strikes an anvil (assignment), tempers in the checkpoint trough (commit), and
+inspects the grain (lag).
+
+## Skills applied
+- `event-driven-kafka-scheduling` — Kafka-delivered JobExecuteNotice
+- `availability-ttl-punctuate-processor` — wall-clock punctuate TTL
+- `second-aggregation-snapshot-merge` — per-second snapshot-and-reset
+- `consistent-hashing-data-simulation` — rebalance event streams
+- `consistent-hashing-visualization-pattern` — ring placement
+- `raft-consensus-visualization-pattern` — leader election panel
+- `raft-consensus-data-simulation` — deterministic elections
+- `saga-pattern-visualization-pattern` — step + compensation flow
+- `saga-pattern-data-simulation` — failure injection + compensation chains
+- `finite-state-machine-visualization-pattern` — FSM node graph
+- `finite-state-machine-data-simulation` — deterministic event queue
+- `immutable-action-event-log` — append-only action events
+- `event-sourcing-visualization-pattern` — append-only log + projections
+- `event-sourcing-data-simulation` — causal streams
+- `outbox-pattern-visualization-pattern` — 3-lane transactional outbox
+- `outbox-pattern-data-simulation` — deterministic outbox streams
+- `cdc-visualization-pattern` — CDC event flow
+- `cdc-data-simulation` — LSN monotonic streams
+- `idempotency-visualization-pattern` — replay + dedup animations
+- `idempotency-data-simulation` — duplicate-request streams
+- `cqrs-visualization-pattern` — split command/query lanes
+- `cqrs-data-simulation` — correlated command/event streams
+- `circuit-breaker-visualization-pattern` — 3-state transitions
+- `circuit-breaker-data-simulation` — deterministic call streams
+- `retry-strategy-visualization-pattern` — backoff + jitter bands
+- `retry-strategy-data-simulation` — synthetic failure streams
+- `gacha-soft-hard-pity` — soft/hard reassign pity math
+- `phase-window-timing-grade-with-pity` — golden-window grading
+- `stateless-turn-combat-engine` — pure reducer combat
+- `status-effect-enum-system` — per-turn tick decay
+- `event-returning-pure-reducer` — (state,action)→(newState,events,done)
+- `distributed-lock-mongodb` — findAndModify with TTL
+- `redis-lock-recheck-flag-pattern` — recheck flag pattern
+- `challenge-response-auth-redis-ttl` — random challenge with TTL
+- `multi-tenant-kafka-header-organization-context` — tenant header propagation
+- `org-scoped-kafka-topic-bootstrap` — per-tenant topic boot
+- `tenant-context-holder-propagation` — ThreadLocal tenant id
+- `avro-event-change-flags` — actionType + changed-section flags
+- `avro-gradle-kafka-schema-pipeline` — davidmc24 Avro plugin
+- `kafka-message-header-metadata` — RecordHeader metadata
+- `feed-envelope-frame` — uniform WS payload wrapper
+- `reactor-subscription-router-backpressure` — per-session Flux router
+- `realtime-vs-polling-fallback` — push-vs-polling per resource
+- `strategy-spi-list-to-map-autoinject` — List<T>→Map<Key,T>
+- `pluggable-sender-factory-pattern` — FactoryBean dispatch by enum
+- `adaptive-strategy-hot-swap` — weighted composite score with hysteresis
+- `incommensurate-sine-organic-flicker` — natural flicker composition
+- `parallax-sine-silhouette-horizon` — layered sine silhouettes
+- `canvas-flowfield-particle-advection` — particle advection sparks
+- `hierarchical-group-entity` — parent/path/pathIds tree
+- `definition-registry-helper-cache` — ConcurrentHashMap static lookup
+- `service-discovery-replica-leader-tracking` — leader/replica UP/DOWN
+- `yorkie-crdt-sync-pattern` — doc.update + pullRemoteChangesIntoLocal
+- `service-readiness-event-listener-pattern` — leader-only init
+- `kafka-consumer-tenant-fan-out` — topicPattern across tenants
+
+## Knowledge respected
+- `raft-consensus-implementation-pitfall` — term handling + commit safety
+- `saga-pattern-implementation-pitfall` — non-compensatable pivot steps
+- `event-sourcing-implementation-pitfall` — non-deterministic projections
+- `cqrs-implementation-pitfall` — projector idempotency + rebuild cost
+- `idempotency-implementation-pitfall` — improper key scope
+- `outbox-pattern-implementation-pitfall` — ordering + stuck rows
+- `finite-state-machine-implementation-pitfall` — undefined-transition no-ops
+- `cdc-implementation-pitfall` — position state, tombstones, transactions
+- `composite-alarm-all-deleted-npe` — null guards in combinators
+- `skip-schedule-if-previous-running` — never queue re-entrant ticks
+- `caveats-absence-confidence-cap` — absence of warnings ≠ confidence
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ember Rebalance Forge</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://unpkg.com/vue@3.4.27/dist/vue.global.prod.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script src="app.js"></script>
+</body>
+</html>
