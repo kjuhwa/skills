@@ -1,20 +1,40 @@
 ---
 name: module-federation-expose-react-component
-description: Expose a React component from one MF remote to be consumed by other remotes via a stable 6-step pipeline (implementation → expose wrapper → config → MF constant → RemoteApp wrapper → consumer import).
+description: Canonical 6-step pipeline for exposing a React component from one Module Federation remote and consuming it from another — implementation → expose wrapper (MemoryRouter) → MF config → shared MF-name constants → shared RemoteApp wrapper → consumer import. Prevents direct cross-remote imports and webpack `@/` alias collisions.
 category: frontend
-tags: [module-federation, micro-frontend, react, webpack, expose, monorepo]
-triggers: ["expose a component across module federation remotes", "share React component between MFA remotes", "MFA expose pipeline", "cross-remote import forbidden"]
-source_project: lucida-ui
-version: 1.0.0
+tags: [module-federation, micro-frontend, webpack, react, remote, expose, mfa, monorepo]
+triggers:
+  - "expose a component across module federation remotes"
+  - "share React component between MFA remotes"
+  - "MFA expose pipeline"
+  - "cross-remote import forbidden"
+  - "RemoteApp wrapper"
+  - "webpack alias collision"
+source_project: merged
+version: 1.1.0
+merged_from:
+  - "skill:arch/module-federation-expose-wrapper"
+  - "skill:frontend/module-federation-expose-react-component"
+supersedes:
+  - "skill:arch/module-federation-expose-wrapper"
+  - "skill:frontend/module-federation-expose-react-component"
 ---
 
 # Expose a React component across Module Federation remotes
 
-Use when a component lives in remote A but must render inside remote B (or host), and direct cross-remote import is forbidden (webpack alias collisions, build isolation).
+Use when a component lives in remote A but must render inside remote B (or host), and direct cross-remote import is forbidden (webpack `@/` alias collisions, build isolation, independent deploys).
+
+**Rule**: never import across sibling remotes. Expose through a shared indirection layer so webpack alias resolution stays local to each remote.
+
+## When to use
+
+- Multi-remote (host + N remotes) webpack Module Federation setup.
+- A component implemented in remote A needs to be rendered inside remote B.
+- You have a `shared/` package that both remotes depend on.
 
 ## Steps
 
-1. **Implement in source remote only.**
+1. **Implement in the source remote only.**
    - Path: `remotes/<producer>/src/layout/<Component>.tsx`
    - Rule: use `@<shared-scope>/shared/...` imports only. Do not import from sibling remotes.
 
@@ -45,21 +65,27 @@ Use when a component lives in remote A but must render inside remote B (or host)
 
 - [ ] Producer imports only from `shared/` (no cross-remote `@/`).
 - [ ] Expose wrapper uses `MemoryRouter`.
-- [ ] Expose wrapper imports producer's styles.
-- [ ] `modulefederation.config.js` exposes updated.
-- [ ] MF name constant added to `shared/types`.
+- [ ] Expose wrapper imports the producer's stylesheets.
+- [ ] `modulefederation.config.js` `exposes` updated.
+- [ ] MF name constant added to `shared/types/remoteAppProps.d.ts`.
 - [ ] `RemoteApp` wrapper added under `shared/remote-components/imports/<producer>/`.
 - [ ] Consumer uses the shared wrapper, never the producer path directly.
 
 ## Why this shape
 
 - `shared/` is the only safe cross-cutting surface; producer and consumer remotes have different webpack aliases for `@/`.
-- Wrapping the expose with `MemoryRouter` avoids Router context loss when the consumer is served from a different dev-server origin (see linked skill).
-- The dedicated `RemoteApp` wrapper gives consumers a normal ESM import experience and hides federation loading.
+- The **expose wrapper** isolates expose-boundary concerns (styles, Router) from the pure implementation.
+- Wrapping the expose with `MemoryRouter` avoids Router context loss when the consumer is served from a different dev-server origin.
+- The **shared `RemoteApp` wrapper** means consumers import a normal React component — no knowledge of MF plumbing leaks out, and MF scope/module names cannot drift across config and consumers.
 
 ## Related skills
 
 - `frontend/mfa-memoryrouter-isolation` — deep-dive on why `MemoryRouter` is the right choice at the expose boundary.
 - `frontend/mfa-plain-html-dropdown-escape-hatch` — common follow-up fix when a DS Dropdown inside the exposed subtree infinite-loops.
 
-See `content.md` for minimal code templates.
+## Provenance
+
+- skill:arch/module-federation-expose-wrapper @ 7f01754
+- skill:frontend/module-federation-expose-react-component @ 40ea2b2
+
+See `content.md` for code templates and pitfalls.
