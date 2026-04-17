@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Polar Bear Patrol Vigil</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Polar Bear Patrol Vigil</h1>
+  <div id="meta">
+    <span>Turn <b id="turn">1</b></span>
+    <span>Calm <b id="calm">100</b></span>
+    <span>Pity <b id="pity">0</b></span>
+    <span>Breaker <b id="breaker">CLOSED</b></span>
+  </div>
+</header>
+<main>
+  <section id="field">
+    <h2>Volcano watch</h2>
+    <div id="volcanoes"></div>
+  </section>
+  <section id="bears">
+    <h2>Bear patrol · <span id="budget">3</span> moves</h2>
+    <div id="bearList"></div>
+    <div id="actions">
+      <button data-act="circle" title="Q">🐻 Circle (Q)</button>
+      <button data-act="trace" title="W">🌌 Trace aurora (W)</button>
+      <button data-act="freeze" title="E">❄ Freeze river (E)</button>
+      <button data-act="rest" title="R">💤 Rest (R)</button>
+      <button id="end" title="Space">End turn ⏎</button>
+    </div>
+  </section>
+  <aside id="log"><h2>Action log</h2><ol id="events"></ol></aside>
+</main>
+</body>
+<script src="app.js"></script>
+</html>
