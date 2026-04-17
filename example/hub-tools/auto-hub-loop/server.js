@@ -382,90 +382,104 @@ async function phaseGenerate(keyword) {
 
   log('info', `Inventory: ${allSkills.length} skills + ${allKnowledge.length} knowledge available`);
 
-  const prompt = `You are a creative developer mimicking the /hub-make workflow. The theme keyword is "${keyword}".
+  // ── Phase 1a: Generate 3 app IDEAS (lightweight — names, descriptions, tech assignments) ──
+  const appSpecs = [
+    { role: 'VISUALIZATION/EXPLORER', framework: 'React 18+ (CDN: react, react-dom, babel-standalone)', palette: 'deep ocean (--bg #0a0e1a, --surface #111a2e, --accent #00d4ff)', tech: 'Canvas 2D, hooks, functional components' },
+    { role: 'SIMULATION/GAME', framework: 'Vue 3 (CDN: vue@3 global build)', palette: 'warm amber/copper (--bg #1a1410, --surface #2a2018, --accent #f0a050)', tech: 'SVG, Composition API, directives' },
+    { role: 'TOOL/CALCULATOR', framework: 'D3.js v7 (CDN: d3@7)', palette: 'terminal green (--bg #0a0a0a, --surface #1a1a1a, --accent #33ff33)', tech: 'D3 data joins, scales, force simulations' },
+  ];
 
-FULL hub inventory below (300+ skills + 300+ knowledge entries).
+  const ideaPrompt = `Generate 3 app ideas for the theme "${keyword}". Each from a DIFFERENT angle:
 
-CRITICAL — WIDE UTILIZATION IS THE POINT:
-- Scan the ENTIRE inventory. Cite a MINIMUM of **100 skill/knowledge entries total across the 3 apps** (combined). More is better.
-- Each app's features list MUST reference 30+ skills by their exact backtick name, e.g. \`canvas-chromakey-bg-removal\`, \`kafka-batch-consumer-partition-tuning\`.
-- Include a dedicated "## Skills applied" section in each app's README-style commentary naming all cited skills.
-- Include a "## Knowledge respected" section naming relevant pitfalls/decisions.
-- Don't force nonsense — pick skills that PLAUSIBLY apply to this theme (theme is loose; almost every skill has a metaphorical angle: rate-limiters → tide rhythm, distributed-lock → territorial claim, etc).
-- Quality of application doesn't matter as much as breadth of acknowledgment. The hub's purpose is to surface patterns; this cycle proves the pool is being scanned.
+1. ${appSpecs[0].role} (${appSpecs[0].framework})
+2. ${appSpecs[1].role} (${appSpecs[1].framework})
+3. ${appSpecs[2].role} (${appSpecs[2].framework})
 
-Available skills (${allSkills.length} total):
-${skillsBlock}
+For each, output EXACTLY:
+===IDEA===
+name: <kebab-case, 2-4 words, evocative>
+title: <Human Readable Title>
+why: <one sentence, 10-20 words>
+features:
+- <feature 1>
+- <feature 2>
+- <feature 3>
+- <feature 4>
+- <feature 5>
+===END-IDEA===
 
-Relevant knowledge/pitfalls to respect (${allKnowledge.length} total):
-${knowBlock}
+Output ONLY the 3 IDEA blocks, nothing else.`;
 
+  log('info', 'Phase 1a: Generating 3 app ideas...');
+  const ideasRaw = await askClaude(ideaPrompt, 120000);
+  const ideaRegex = /===IDEA===\n([\s\S]*?)===END-IDEA===/g;
+  const ideas = [];
+  let im;
+  while ((im = ideaRegex.exec(ideasRaw)) !== null) {
+    const block = im[1];
+    ideas.push({
+      name: (block.match(/^\s*name:\s*(.+)$/m)?.[1] || '').trim(),
+      title: (block.match(/^\s*title:\s*(.+)$/m)?.[1] || '').trim(),
+      why: (block.match(/^\s*why:\s*(.+)$/m)?.[1] || '').trim(),
+      features: (block.match(/features:\n([\s\S]*?)$/)?.[1] || '').trim(),
+    });
+  }
 
-Generate exactly 3 apps that take this theme from THREE FUNDAMENTALLY DIFFERENT ANGLES.
-Each app MUST have a COMPLETELY DIFFERENT visual style, color palette, layout, and rendering technology:
+  if (ideas.length < 3) {
+    log('warn', `Only ${ideas.length} ideas parsed, expected 3`);
+    return ideasRaw; // fallback to legacy single-pass
+  }
 
-  App 1: a VISUALIZATION/EXPLORER — built with React (via CDN: react, react-dom, babel-standalone)
-    Style: deep ocean palette (--bg #0a0e1a, --surface #111a2e, --accent #00d4ff)
-    Tech stack: React 18+ with hooks (useState, useEffect, useRef, useMemo), JSX via Babel standalone, Canvas 2D for rendering
-    Must use: functional components, custom hooks, React.memo for optimization
+  log('info', `Ideas: ${ideas.map(i => i.name).join(', ')}`);
 
-  App 2: a SIMULATION/GAME — built with Vue 3 (via CDN: vue@3 global build)
-    Style: warm amber/copper palette (--bg #1a1410, --surface #2a2018, --accent #f0a050)
-    Tech stack: Vue 3 Composition API (ref, reactive, computed, watch, onMounted), SVG-based rendering
-    Must use: single-file component style with <script setup> pattern, v-for/v-if directives, event handling
+  // ── Phase 1b: Generate code for EACH app individually ──
+  const allResponses = [];
+  for (let i = 0; i < 3; i++) {
+    const spec = appSpecs[i];
+    const idea = ideas[i];
+    log('info', `Phase 1b-${i+1}: Generating code for "${idea.name}" (${spec.framework})...`);
 
-  App 3: a TOOL/CALCULATOR — built with D3.js (via CDN: d3@7)
-    Style: green-on-black terminal palette (--bg #0a0a0a, --surface #1a1a1a, --accent #33ff33)
-    Tech stack: D3.js v7 for data-driven DOM manipulation, scales, axes, transitions, force simulations
-    Must use: d3.select, d3.scaleLinear, d3.transition, data join pattern (enter/update/exit)
+    const codePrompt = `You are building a single web app. Theme: "${keyword}". App concept: "${idea.title}" — ${idea.why}
 
-Creative naming rules:
-- Each app name must be EVOCATIVE and UNIQUE — do NOT use the pattern "<keyword>-explorer" or "<keyword>-dashboard"
-- Combine the keyword metaphorically with a distinctive word (e.g. "${keyword}-atlas", "whispering-<keyword>", "${keyword}-kaleidoscope", "echo-<keyword>")
-- Kebab-case, 2–4 words
+Features to implement:
+${idea.features}
 
-Output format — for each of the 3 apps, emit EXACTLY this block, in order:
+Available skills inventory (use relevant ones):
+${skillsBlock.slice(0, 8000)}
+
+Technical spec:
+- Role: ${spec.role}
+- Framework: ${spec.framework} — use it properly with idiomatic patterns
+- Color palette: ${spec.palette}
+- Rendering: ${spec.tech}
+- CDN imports ONLY (unpkg.com or cdnjs.cloudflare.com)
+- MINIMUM 1,500 lines (aim for 2,000+) — this is ONE app, use the FULL response for it
+- Include 5+ distinct interactive sections/panels/tabs with independent state
+- Immediately interactive on load with meaningful mock data
+- Modern UX: hover states, transitions, keyboard shortcuts
+
+Output EXACTLY this format:
 
 ===APP===
-name: <kebab-case-name>
-title: <Human Readable Title>
-why: <one-sentence motivation, 10-20 words>
+name: ${idea.name}
+title: ${idea.title}
+why: ${idea.why}
 features:
-- <feature bullet 1>
-- <feature bullet 2>
-- <feature bullet 3>
-stack: <the assigned framework: "react" or "vue3" or "d3">
+${idea.features}
+stack: ${spec.framework.split(' ')[0].toLowerCase()}
 ===FILE:index.html===
-<SINGLE SELF-CONTAINED HTML FILE with everything inline:
-  - CDN <script src="..."> tags for framework (React/Vue/D3)
-  - ALL CSS inside <style> tags (no external .css file)
-  - ALL JS/JSX inside <script type="text/babel"> or <script> tags (no external .js file)
-  - For React: use <script type="text/babel"> with JSX directly in the HTML
-  - The file must work when opened via file:// protocol — NO external local file references>
+<SINGLE SELF-CONTAINED HTML FILE — ALL CSS in <style>, ALL JS in <script>. NO external .js/.css files. Must work via file:// protocol.>
 ===END===
 ===END-APP===
 
-Technical requirements:
-- Each app MUST use its assigned color palette — DO NOT reuse the same palette across apps
-- Each app MUST use its assigned framework/library (React / Vue / D3) — DO NOT mix frameworks
-- Each app MUST have a visually distinct layout — opening all 3 side-by-side must show 3 clearly different UIs
-- CDN imports ONLY (unpkg.com or cdnjs.cloudflare.com) — no npm, no build step, no bundler
-- MINIMUM 10,000 lines total per app — each app must be a full-scale production-quality application equivalent to 20+ printed pages of code
-- Include at least 20 distinct interactive sections, panels, tabs, or views per app — NOT a single-screen demo
-- Each section must have its own state, data model, and user interactions
-- Immediately interactive on load with meaningful simulated/mock data
-- Modern UX: hover states, transitions, keyboard shortcuts where natural
+CRITICAL: Output ONLY the APP block. No commentary, no code fences, no explanation.`;
 
-CRITICAL OUTPUT RULES:
-- Output the three complete APP blocks INLINE in this single text response
-- DO NOT use any tools, file writes, or side channels — return ALL code as text in the response body
-- DO NOT summarize, confirm, or describe what you delivered — just emit the blocks
-- DO NOT wrap in code fences (\`\`\`) — emit the raw ===APP=== markers
-- If you catch yourself writing "The apps were delivered above" or similar — STOP and restart with just the blocks
-- The response MUST start with "===APP===" and end with "===END-APP===", nothing else`;
+    const response = await askClaude(codePrompt, 1800000);
+    allResponses.push(response);
+    log('info', `App ${i+1} "${idea.name}" generated (${response.length} chars)`);
+  }
 
-  const response = await askClaude(prompt, 1800000);
-  return response;
+  return allResponses.join('\n\n');
 }
 
 async function phaseBuild(claudeOutput, keyword, cycleNum) {
