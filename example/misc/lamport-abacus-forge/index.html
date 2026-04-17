@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lamport Abacus Forge</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="dot"></span>
+    <h1>Lamport Abacus Forge</h1>
+    <span class="tag">log → vector clock · lamport · conflict verdict</span>
+  </div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="input">Input</button>
+    <button class="tab" data-tab="clocks">Clocks</button>
+    <button class="tab" data-tab="conflicts">Conflicts</button>
+    <button class="tab" data-tab="resolve">Resolve</button>
+    <button class="tab" data-tab="export">Export</button>
+  </nav>
+  <div class="ctrl">
+    <button id="sampleBtn">Load Sample</button>
+    <button id="parseBtn">Parse ▶</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+</header>
+<main>
+  <section id="input" class="panel active">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Raw Event Log</h3>
+        <p class="muted">
+          One event per line. Formats accepted:<br>
+          <code>t=12 A send→B key=X value=5</code><br>
+          <code>t=13 B recv←A key=X</code><br>
+          <code>A local key=counter op=inc</code>
+        </p>
+        <textarea id="logInput" spellcheck="false"></textarea>
+      </div>
+      <div class="card">
+        <h3>Parse Report</h3>
+        <div id="parseReport" class="readout"></div>
+        <h3>Participants</h3>
+        <div id="participants" class="readout small"></div>
+        <h3>Warnings</h3>
+        <ul id="parseWarnings" class="log"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="clocks" class="panel">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Event-by-Event Table</h3>
+        <div class="table-wrap">
+          <table id="clockTable">
+            <thead><tr>
+              <th>#</th><th>t</th><th>actor</th><th>kind</th><th>partner</th>
+              <th>Lamport</th><th>Vector Clock</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Per-Replica Final State</h3>
+        <div id="finalState" class="readout"></div>
+        <h3>Happens-Before Graph</h3>
+        <canvas id="hbCanvas" width="420" height="320"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="conflicts" class="panel">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Concurrent Operation Pairs</h3>
+        <div id="concurrentPairs" class="readout"></div>
+      </div>
+      <div class="card">
+        <h3>Byzantine Risk Scoring</h3>
+        <div id="byzantineScore" class="readout"></div>
+        <h3>Layered Gates</h3>
+        <ul id="gates" class="log"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="resolve" class="panel">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Per-Key Conflict Resolution</h3>
+        <div id="resolutionTable"></div>
+      </div>
+      <div class="card">
+        <h3>Strategy Composer</h3>
+        <label>Default strategy
+          <select id="defaultStrategy">
+            <option value="lww">LWW (Lamport tiebreak)</option>
+            <option value="orset">OR-Set (union)</option>
+            <option value="gcounter">G-Counter (sum)</option>
+            <option value="mvreg">MV-Register (keep both)</option>
+            <option value="pbft">Byzantine commit (2f+1)</option>
+          </select>
+        </label>
+        <label>Assumed faulty replicas (f)
+          <input type="number" id="fInput" value="1" min="0" max="3"/>
+        </label>
+        <label>Total replicas (N)
+          <input type="number" id="nInput" value="4" min="1" max="9"/>
+        </label>
+        <button id="recomputeBtn">Recompute</button>
+        <h3>Quorum Sanity</h3>
+        <div id="quorumSanity" class="readout"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="export" class="panel">
+    <div class="grid-2">
+      <div class="card">
+        <h3>CSV</h3>
+        <textarea id="exportCsv" spellcheck="false" readonly></textarea>
+        <button id="copyCsvBtn">Copy CSV</button>
+      </div>
+      <div class="card">
+        <h3>JSON</h3>
+        <textarea id="exportJson" spellcheck="false" readonly></textarea>
+        <button id="copyJsonBtn">Copy JSON</button>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <span id="eventCount">0 events</span>
+  <span id="replicaCount">0 replicas</span>
+  <span id="concurrentCount">0 concurrent</span>
+  <span id="hintReadout">Ctrl/Cmd+Enter = Parse · Tabs = switch view</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
