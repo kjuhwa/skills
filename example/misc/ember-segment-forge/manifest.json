@@ -1,0 +1,12 @@
+{
+  "slug": "ember-segment-forge",
+  "title": "Ember Segment Forge — Compaction Simulator",
+  "stack": [
+    "vue3"
+  ],
+  "created_at": "2026-04-17T13:56:56.851Z",
+  "source_project": "39-ember-segment-forge",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "write-ahead log segment compaction tombstone snapshot offset index",
+  "cycle": 8
+}
