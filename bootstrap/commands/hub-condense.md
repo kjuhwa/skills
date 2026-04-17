@@ -1,6 +1,6 @@
 ---
 description: Scan kjuhwa/skills-hub for duplicated content chunks across entries and for single-entry compression opportunities, producing tightening drafts in one pass
-argument-hint: [--mode=dedup|compress|auto] [--scope=all|<category>] [--dedup-min-lines=<n>] [--dedup-min-occurrences=<n>] [--compress-min-lines=<n>] [--compress-min-savings=<pct>] [--max-dedups=<n>] [--max-compressions=<n>] [--dry-run] [--yes]
+argument-hint: [--mode=dedup|compress|auto] [--scope=all|<category>] [--dedup-min-lines=<n>] [--dedup-min-occurrences=<n>] [--compress-min-lines=<n>] [--compress-min-savings=<pct>] [--max-dedups=<n>] [--max-compressions=<n>] [--include-external-imports] [--dry-run] [--yes]
 ---
 
 # /hub-condense $ARGUMENTS
@@ -24,6 +24,7 @@ Different axis from `/hub-cleanup` (which handles metadata hygiene: malformed fr
 - `--compress-min-savings=<pct>` — reject an LLM rewrite whose line-count reduction is below this. Default `15`. Prevents cosmetic rewrites that add review burden without meaningful tightening.
 - `--max-dedups=<n>` — cap on dedup proposals. Default `5`.
 - `--max-compressions=<n>` — cap on compression proposals. Default `5`.
+- `--include-external-imports` — by default skills with `source_type: external-git` are excluded from both dedup and compression passes (upstream-import fidelity outranks local tightening; modifying them would break `/hub-sync` and diverge from the source project). Pass this flag to override.
 - `--dry-run` — print the candidate report and stop without writing any drafts or calling the LLM.
 - `--yes` — auto-accept every candidate the scan surfaces (still shows the report). **Use with care.** For compression in particular, per-candidate review of the diff is strongly recommended.
 
@@ -34,7 +35,12 @@ Different axis from `/hub-cleanup` (which handles metadata hygiene: malformed fr
 
 2. **Inventory**
    - Walk `skills/<category>/<name>/SKILL.md` + `content.md` and `knowledge/<category>/<slug>.md` (filtered by `--scope`).
-   - Record per-entry: kind, category, slug, combined body text, body line count, frontmatter (including `archived` — skip archived entries).
+   - Record per-entry: kind, category, slug, combined body text, body line count, frontmatter (including `archived` and `source_type`).
+   - Skip archived entries (`archived: true`).
+   - Unless `--include-external-imports` was passed, skip mirror-imported entries:
+     - **Skills** whose frontmatter has `source_type: external-git` (e.g. imports from gstack).
+     - **Knowledge** entries whose `extracted_by` contains `skills_import_git`, or whose `source.repo` is `external` (e.g. mass-extracted catalogs like `knowledge/arch/oh-my-claudecode-*`).
+     - Modifying any of these diverges from the upstream source and breaks `/hub-sync` on re-import. This guard mirrors `/hub-refactor`'s treatment of the same entries.
 
 3. **Detect dedup candidates** (mode=dedup|auto)
    - For each entry, extract candidate blocks:
@@ -143,6 +149,7 @@ Different axis from `/hub-cleanup` (which handles metadata hygiene: malformed fr
 - **Preserve headings and frontmatter.** The rewrite is a prose tightening, not a restructure. Structural changes should go through `/hub-refactor` (merge / split).
 - **Dedup priority is canonical-home-first.** When three entries share a block, pick one home, replace the other two. Do NOT replace all three with cross-references — that breaks the link chain.
 - **Skip archived entries.** `archived: true` entries are not considered for either dedup or compression (they are not surfaced to installers anyway).
+- **Skip externally-imported skills by default.** Skills with `source_type: external-git` are mirrors of upstream repos (gstack, mattpocock-skills, etc.). Their duplication and verbosity patterns come from upstream conventions — modifying them here makes `/hub-sync` conflict on the next import and violates upstream fidelity. Use `--include-external-imports` only when you have explicit ownership of the upstream or are deliberately forking.
 - **Honor caps strictly.** `--max-dedups` and `--max-compressions` are hard caps. Rankers discard low-rank candidates rather than growing the queue.
 - **No cascading condense in one run.** A compressed entry's rewritten body isn't fed back into Step 3's dedup detector — that would oscillate. Run `/hub-condense` again after publishing if needed.
 - **Refuse empty scope.** If the inventory under `--scope` has fewer than 5 entries, refuse — the heuristic isn't useful at small N.
