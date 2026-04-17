@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aurora Cartographer Atlas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Aurora Cartographer Atlas</h1>
+  <nav id="lenses">
+    <button data-lens="aurora" class="active">1 · Aurora</button>
+    <button data-lens="rivers">2 · Rivers</button>
+    <button data-lens="volcanoes">3 · Volcanoes</button>
+    <button data-lens="bears">4 · Bears</button>
+  </nav>
+</header>
+<main>
+  <canvas id="sky"></canvas>
+  <svg id="overlay" xmlns="http://www.w3.org/2000/svg"></svg>
+  <aside id="legend">
+    <div class="gauge"><label>Tide rhythm</label><div class="bar"><span id="tideFill"></span></div></div>
+    <div class="gauge"><label>Volcano sleep</label><div class="bar"><span id="volcFill"></span></div></div>
+    <div class="gauge"><label>Pine whisper</label><div class="bar"><span id="pineFill"></span></div></div>
+    <ul id="journal"></ul>
+  </aside>
+</main>
+<dialog id="inspector"><h2 id="insTitle"></h2><p id="insBody"></p><button id="closeIns">Close</button></dialog>
+</body>
+<script src="app.js"></script>
+</html>
