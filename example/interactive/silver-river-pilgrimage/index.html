@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Silver-River Pilgrimage</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <h1>Silver-River Pilgrimage</h1>
+  <div class="stats">
+    <span>turn <b id="turn">1</b></span>
+    <span>ink <b id="ink">9</b></span>
+    <span>oil <b id="oil">12</b></span>
+    <span>rep <b id="rep">0</b></span>
+  </div>
+  <div class="actions">
+    <button id="sketch" title="S">sketch constellation [S]</button>
+    <button id="rest" title="R">rest by river [R]</button>
+    <button id="reseed">new pilgrimage</button>
+  </div>
+</header>
+<main>
+  <canvas id="map" width="900" height="600"></canvas>
+  <aside class="log">
+    <h2>Field Journal</h2>
+    <ol id="journal"></ol>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
