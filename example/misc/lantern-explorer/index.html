@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lantern Cave Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game">
+  <canvas id="view"></canvas>
+  <div class="panel">
+    <div class="stat"><span>OIL</span><div class="bar"><div id="oil" class="fill"></div></div></div>
+    <div class="stat"><span>FOUND</span><div id="found">0 / 5</div></div>
+    <div class="hint">Move: WASD / Arrows · Refill oil on green pools · Find 5 crystals</div>
+  </div>
+  <div id="overlay" class="hidden"><div class="dialog"><h2 id="end-title">Light fades…</h2><p id="end-msg"></p><button id="again">Try Again</button></div></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

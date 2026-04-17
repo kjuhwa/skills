@@ -1,0 +1,12 @@
+{
+  "slug": "lantern-explorer",
+  "title": "Lantern Explorer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T00:26:31.404Z",
+  "source_project": "102-lantern-explorer",
+  "author": "kjuhwa@nkia.co.kr"
+}
