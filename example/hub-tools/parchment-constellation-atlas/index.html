@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Parchment Constellation Atlas</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Parchment Constellation Atlas</h1>
+  <p class="sub">Stitch forgotten stars. Silver comets carry the rest.</p>
+</header>
+<main>
+  <section class="stage">
+    <canvas id="sky"></canvas>
+    <svg id="hit" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="hud">
+      <span id="count">0 stars stitched</span>
+      <button id="clear">clear thread</button>
+      <button id="seed">new sky</button>
+    </div>
+  </section>
+  <aside class="ledger">
+    <h2>Cartographer's Ledger</h2>
+    <ul id="log"></ul>
+    <h3>Whispered Lore</h3>
+    <p id="lore">Click a star to begin the stitch.</p>
+  </aside>
+</main>
+</body>
+</html>
