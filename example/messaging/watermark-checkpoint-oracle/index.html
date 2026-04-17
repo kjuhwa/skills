@@ -1,0 +1,174 @@
+<!--
+# Watermark Checkpoint Oracle
+
+A D3 v7 terminal calculator that computes consumer-lag budgets, watermark
+safety windows, and checkpoint cadence against a live force-directed
+partition/group graph — and surfaces 50+ distributed-systems patterns
+as analytic columns.
+
+## Skills applied
+- `actor-model-visualization-pattern` — mailbox + supervision tree layout
+- `actor-model-data-simulation` — crash/restart + backpressure events
+- `service-mesh-visualization-pattern` — sidecar topology
+- `service-mesh-data-simulation` — synthetic mesh traffic
+- `time-series-db-visualization-pattern` — LTTB scrolling multi-series
+- `time-series-db-data-simulation` — trend + seasonality + noise + anomalies
+- `materialized-view-visualization-pattern` — MV lifecycle
+- `materialized-view-data-simulation` — base writes + refresh cycles
+- `distributed-tracing-visualization-pattern` — waterfall + service graph
+- `distributed-tracing-data-simulation` — parent/child causality
+- `log-aggregation-visualization-pattern` — streaming + heatmap
+- `log-aggregation-data-simulation` — bursts + level distributions
+- `hybrid-logical-clock-merge` — wall+logical monotonic timestamps
+- `vector-clock-concurrency-matrix` — N×N happens-before grid
+- `concurrent-edit-merge-arbitration-table` — deterministic tiebreaker
+- `crdt-visualization-pattern` — convergence indicators
+- `crdt-data-simulation` — partition + concurrent edit scenarios
+- `yorkie-crdt-sync-pattern` — doc.update + pullRemoteChangesIntoLocal
+- `schema-registry-visualization-pattern` — evolution + compatibility
+- `schema-registry-data-simulation` — realistic evolution histories
+- `api-versioning-visualization-pattern` — version lifecycle + diffs
+- `api-versioning-data-simulation` — version timelines + migration
+- `blue-green-deploy-visualization-pattern` — dual-env layout
+- `blue-green-deploy-data-simulation` — cutover phases
+- `canary-release-visualization-pattern` — split-lane canary
+- `canary-release-data-simulation` — canary + SLO gates
+- `chaos-engineering-visualization-pattern` — blast radius
+- `chaos-engineering-data-simulation` — fault-injection scenarios
+- `strangler-fig-visualization-pattern` — legacy/new side-by-side
+- `strangler-fig-data-simulation` — migration-state machine
+- `bloom-filter-visualization-pattern` — bit arrays + hashes
+- `bloom-filter-data-simulation` — collisions + concurrent inserts
+- `idempotency-visualization-pattern` — replay + dedup
+- `idempotency-data-simulation` — duplicate streams + retries
+- `object-storage-visualization-pattern` — buckets + replication
+- `object-storage-data-simulation` — size/access distributions
+- `read-replica-visualization-pattern` — primary + replica lag
+- `read-replica-data-simulation` — replication-log generation
+- `health-check-visualization-pattern` — heterogeneous signals
+- `health-check-data-simulation` — correlated failures + flapping
+- `sidecar-proxy-visualization-pattern` — paired app+proxy
+- `sidecar-proxy-data-simulation` — synthetic mTLS + latency
+- `oauth-visualization-pattern` — flow + scope
+- `oauth-data-simulation` — tokens + flow states
+- `websocket-visualization-pattern` — frame-level state
+- `websocket-data-simulation` — opcode/frame fidelity
+- `load-balancer-data-simulation` — deterministic seeded traffic
+- `connection-pool-data-simulation` — acquire/validate/evict
+- `rate-limiter-data-simulation` — arrival patterns
+- `outbox-pattern-data-simulation` — outbox streams
+- `cdc-data-simulation` — LSN monotonic streams
+- `etl-data-simulation` — row counts + job runs
+- `etl-visualization-pattern` — flow + lineage
+- `graphql-visualization-pattern` — operations + subscriptions
+- `graphql-data-simulation` — offline responses/schemas
+- `api-gateway-pattern-visualization-pattern` — gateway lanes
+- `api-gateway-pattern-data-simulation` — gateway traffic + bursts
+- `cqrs-data-simulation` — command/event/projection streams
+- `event-sourcing-data-simulation` — causally-ordered streams
+- `saga-pattern-data-simulation` — saga transaction data
+- `raft-consensus-data-simulation` — elections + replication
+- `consistent-hashing-data-simulation` — rebalance events
+- `database-sharding-data-simulation` — sharding scenarios
+- `retry-strategy-data-simulation` — failure streams + retries
+- `circuit-breaker-data-simulation` — 3-state streams
+- `backpressure-data-simulation` — token-stepped producer/buffer/consumer
+- `bulkhead-data-simulation` — isolation + failure containment
+- `pub-sub-data-simulation` — topic hierarchies
+- `domain-driven-data-simulation` — bounded context corpus
+
+## Knowledge respected
+- `distributed-tracing-implementation-pitfall` — clock skew, orphan spans, sampling bias
+- `crdt-implementation-pitfall` — LWW tiebreaking, OR-Set tag reuse
+- `quorum-visualization-off-by-one` — ⌊2N/3⌋+1 vs ⌈2N/3⌉
+- `concurrent-edge-detection-without-full-clock-compare` — O(n²) for concurrent edges
+- `span-hash-determinism` — stable span-dedup hash
+- `time-unit-consistency-us-ms-ns` — canonical internal unit
+- `canvas-event-coord-devicepixel-rescale` — devicePixelRatio rescaling
+- `bloom-filter-implementation-pitfall` — hash independence, bit indexing
+- `materialized-view-implementation-pitfall` — refresh semantics
+- `strangler-fig-implementation-pitfall` — premature legacy retirement
+- `health-check-implementation-pitfall` — self-check blind spots
+- `schema-registry-implementation-pitfall` — compat model errors
+- `consistent-hashing-implementation-pitfall` — undersized virtual nodes
+- `saga-pattern-implementation-pitfall` — non-compensatable pivot
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Watermark Checkpoint Oracle</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js"></script>
+</head>
+<body>
+<div id="shell">
+  <header>
+    <span class="logo">▓▒░ WATERMARK::CHECKPOINT::ORACLE ░▒▓</span>
+    <span class="sub">› partition · offset · consumer-group · rebalance · lag · watermark · checkpoint</span>
+    <span class="spacer"></span>
+    <span id="clock-readout"></span>
+  </header>
+  <div class="cols">
+    <aside id="left">
+      <section class="calc">
+        <h2>› lag budget calculator</h2>
+        <div class="row"><label>throughput msg/s</label><input id="in-thru" type="number" value="8500" /></div>
+        <div class="row"><label>partitions</label><input id="in-parts" type="number" value="24" /></div>
+        <div class="row"><label>consumers</label><input id="in-cons" type="number" value="6" /></div>
+        <div class="row"><label>max-poll-records</label><input id="in-poll" type="number" value="200" /></div>
+        <div class="row"><label>processing ms/msg</label><input id="in-proc" type="number" value="4.2" /></div>
+        <div class="row"><label>SLO lag ceiling</label><input id="in-slo" type="number" value="30000" /></div>
+        <button id="btn-run">▶ compute oracle</button>
+      </section>
+      <section id="oracle-output" class="oracle-out"></section>
+      <section class="calc">
+        <h2>› watermark safety window</h2>
+        <div class="row"><label>checkpoint interval s</label><input id="in-cp" type="number" value="15" /></div>
+        <div class="row"><label>retention hours</label><input id="in-ret" type="number" value="168" /></div>
+        <div class="row"><label>allowed lateness s</label><input id="in-late" type="number" value="60" /></div>
+      </section>
+      <section id="wm-output" class="oracle-out"></section>
+    </aside>
+
+    <main>
+      <section class="panel-head">
+        <h2>› partition force graph — actor-model · service-mesh</h2>
+        <div class="tabs">
+          <button class="tab active" data-view="graph">graph</button>
+          <button class="tab" data-view="matrix">vector matrix</button>
+          <button class="tab" data-view="waterfall">trace waterfall</button>
+          <button class="tab" data-view="timeseries">lag lttb</button>
+          <button class="tab" data-view="heatmap">log heatmap</button>
+        </div>
+      </section>
+      <section id="view-graph" class="view active"><svg id="graph-svg"></svg></section>
+      <section id="view-matrix" class="view"><svg id="matrix-svg"></svg></section>
+      <section id="view-waterfall" class="view"><svg id="waterfall-svg"></svg></section>
+      <section id="view-timeseries" class="view"><svg id="timeseries-svg"></svg></section>
+      <section id="view-heatmap" class="view"><svg id="heatmap-svg"></svg></section>
+    </main>
+
+    <aside id="right">
+      <section class="panel">
+        <h2>› pattern analytics</h2>
+        <div class="col-grid" id="pattern-grid"></div>
+      </section>
+      <section class="panel">
+        <h2>› live event log — cdc · outbox · trace</h2>
+        <div id="log-tail" class="log-tail"></div>
+      </section>
+      <section class="panel">
+        <h2>› cluster quorum</h2>
+        <div id="quorum-out"></div>
+      </section>
+    </aside>
+  </div>
+  <footer>
+    <span>oracle v7 · d3 force · data-join enter/update/exit · transitions · LTTB</span>
+    <span id="warn-bar"></span>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

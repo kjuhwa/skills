@@ -1,0 +1,225 @@
+:root {
+  --bg: #0a0a0a;
+  --surface: #1a1a1a;
+  --surface-2: #222222;
+  --accent: #33ff33;
+  --accent-dim: #1fbe1f;
+  --accent-glow: #33ff3355;
+  --muted: #558855;
+  --fg: #aaffaa;
+  --dim: #336633;
+  --warn: #ffcc33;
+  --err: #ff5555;
+  --cyan: #33ffdd;
+  --mag: #ff55ff;
+  --line: #1f3f1f;
+}
+* { box-sizing: border-box; }
+html, body, #shell { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "VT323", "IBM Plex Mono", "Courier New", monospace;
+  font-size: 14px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+  pointer-events: none;
+  z-index: 1000;
+}
+#shell {
+  display: grid;
+  grid-template-rows: 44px 1fr 28px;
+}
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 14px;
+  font-family: "VT323", monospace;
+}
+header .logo {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
+  letter-spacing: 0.15em;
+  font-size: 16px;
+}
+header .sub {
+  color: var(--muted);
+  font-size: 12px;
+}
+header .spacer { flex: 1; }
+#clock-readout {
+  color: var(--accent);
+  font-size: 12px;
+}
+.cols {
+  display: grid;
+  grid-template-columns: 320px 1fr 340px;
+  gap: 1px;
+  background: var(--line);
+  overflow: hidden;
+}
+aside, main {
+  background: var(--bg);
+  overflow-y: auto;
+}
+main { position: relative; padding: 10px 14px; }
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.panel-head h2 { flex: 1; }
+h2 {
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin: 8px 0 6px;
+  text-transform: lowercase;
+}
+.calc, .panel, .oracle-out { padding: 10px 14px; border-bottom: 1px dashed var(--line); }
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 3px 0;
+  font-size: 13px;
+}
+.row label { color: var(--muted); text-transform: lowercase; }
+.row input {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 3px 6px;
+  outline: none;
+}
+.row input:focus { border-color: var(--accent); box-shadow: 0 0 6px var(--accent-glow); }
+button {
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 5px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  letter-spacing: 0.15em;
+}
+button:hover { background: var(--accent); color: var(--bg); text-shadow: none; }
+.oracle-out {
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--fg);
+  white-space: pre-wrap;
+}
+.oracle-out .k { color: var(--muted); display: inline-block; width: 180px; }
+.oracle-out .v { color: var(--accent); }
+.oracle-out .w { color: var(--warn); }
+.oracle-out .e { color: var(--err); }
+.tabs { display: flex; gap: 4px; }
+.tab {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 2px 10px;
+  margin: 0;
+  font-size: 11px;
+  text-transform: lowercase;
+}
+.tab.active { border-color: var(--accent); color: var(--accent); }
+.view { display: none; width: 100%; height: calc(100vh - 160px); }
+.view.active { display: block; }
+svg { width: 100%; height: 100%; display: block; }
+.node-partition { cursor: pointer; }
+.link { stroke: var(--dim); stroke-opacity: 0.6; }
+.link.hot { stroke: var(--warn); stroke-opacity: 1; }
+.node-label { fill: var(--muted); font-size: 9px; pointer-events: none; text-anchor: middle; }
+.axis path, .axis line { stroke: var(--line); }
+.axis text { fill: var(--muted); font-size: 10px; }
+.series-line { fill: none; stroke-width: 1.4; }
+.series-area { opacity: 0.12; }
+.col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.metric-cell {
+  padding: 6px 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 11px;
+}
+.metric-cell .k { color: var(--muted); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; }
+.metric-cell .v { color: var(--accent); font-size: 16px; text-shadow: 0 0 6px var(--accent-glow); }
+.metric-cell .delta { font-size: 10px; }
+.metric-cell .delta.up { color: var(--cyan); }
+.metric-cell .delta.down { color: var(--mag); }
+.log-tail {
+  height: 180px;
+  overflow-y: auto;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.log-tail .line { display: grid; grid-template-columns: 78px 90px 1fr; gap: 6px; border-bottom: 1px dotted var(--line); padding: 1px 0; }
+.log-tail .ts { color: var(--dim); }
+.log-tail .t { letter-spacing: 0.1em; }
+.log-tail .t.cdc { color: var(--cyan); }
+.log-tail .t.outbox { color: var(--accent); }
+.log-tail .t.trace { color: var(--mag); }
+.log-tail .t.rebalance { color: var(--warn); }
+.log-tail .t.watermark { color: #8f8; }
+#quorum-out .q-bar {
+  height: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  margin: 4px 0;
+  position: relative;
+}
+#quorum-out .q-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--cyan) 100%);
+  transition: width 400ms;
+}
+#quorum-out .q-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  font-weight: bold;
+  text-shadow: none;
+}
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 11px;
+  color: var(--muted);
+}
+footer span:last-child { margin-left: auto; }
+#warn-bar { color: var(--warn); }
+.cell-rect { stroke: var(--bg); stroke-width: 0.5; }
+.matrix-label { fill: var(--muted); font-size: 9px; }
+.hit-circle { fill: var(--accent); opacity: 0.7; }
+.wm-oracle-ok { color: var(--accent); }
+.wm-oracle-warn { color: var(--warn); }
+.wm-oracle-err { color: var(--err); }
+.ascii-divider { color: var(--dim); letter-spacing: 0; }
