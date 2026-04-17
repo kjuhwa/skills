@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aurora Cartograph Atlas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Aurora Cartograph Atlas</h1>
+  <p class="subtitle">Charting shifting dream-currents beneath auroras above silver dunes</p>
+</header>
+<main>
+  <canvas id="scene" width="900" height="500"></canvas>
+  <aside class="panel">
+    <section class="legend">
+      <h2>Dream-Currents</h2>
+      <ul id="currents"></ul>
+    </section>
+    <section class="controls">
+      <label>Drift <input id="drift" type="range" min="0" max="100" value="32"></label>
+      <label>Aurora <input id="aurora" type="range" min="0" max="100" value="62"></label>
+      <button id="pause">Pause</button>
+    </section>
+    <section class="readout">
+      <div>Cursor <span id="cursor">—</span></div>
+      <div>Nearest <span id="nearest">—</span></div>
+      <div>Depth <span id="depth">—</span></div>
+    </section>
+  </aside>
+</main>
+<footer>Skills applied — lantern-visualization-pattern · time-series-db-visualization-pattern</footer>
+<script src="app.js"></script>
+</body>
+</html>
