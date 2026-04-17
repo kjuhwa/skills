@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Whispered Parchment Forge</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Whispered Parchment Forge</h1>
+  <p class="sub">Pour a secret in. Receive a constellation recipe.</p>
+</header>
+<main>
+  <section class="pane input">
+    <label for="secret">Whispered secret</label>
+    <textarea id="secret" placeholder="A shepherd counted stars the way his grandmother counted beads..."></textarea>
+    <div class="row">
+      <label>Stars <input id="n" type="number" min="3" max="24" value="9" /></label>
+      <label>Jitter <input id="j" type="range" min="0" max="100" value="40" /></label>
+      <button id="forge">forge</button>
+      <button id="export">export svg</button>
+    </div>
+    <div class="name">
+      <span>Constellation:</span>
+      <input id="cname" type="text" value="Untitled" />
+    </div>
+  </section>
+  <section class="pane out">
+    <svg id="parchment" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"></svg>
+    <pre id="recipe"></pre>
+  </section>
+  <aside class="pane hist">
+    <h3>Forge Log</h3>
+    <ul id="hist"></ul>
+  </aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+:root{
+  --bg:#0f1117;
+  --surface:#1a1d27;
+  --accent:#6ee7b7;
+  --parchment:#d9c8a0;
+  --silver:#d6e2ee;
+  --muted:#7b8196;
+  --ink:#2a2f3d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--parchment);font-family:'Georgia',serif;min-height:100vh}
+header{padding:16px 24px;border-bottom:1px solid #222836}
+header h1{margin:0;color:var(--accent);font-size:20px}
+header .sub{margin:4px 0 0;color:var(--muted);font-size:12px;font-style:italic}
+main{display:grid;grid-template-columns:320px 1fr 260px;gap:16px;padding:16px}
+.pane{background:var(--surface);border:1px solid #222836;border-radius:12px;padding:14px}
+.pane label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+textarea{width:100%;min-height:140px;background:#10131b;color:var(--parchment);border:1px solid #2a2f3d;border-radius:8px;padding:8px;font-family:inherit;font-size:13px;resize:vertical}
+.row{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.row input[type=number]{width:60px;background:#10131b;color:var(--parchment);border:1px solid #2a2f3d;border-radius:6px;padding:4px}
+.row input[type=range]{flex:1}
+.row button{background:transparent;color:var(--parchment);border:1px solid #2f3647;border-radius:6px;padding:6px 12px;cursor:pointer;transition:box-shadow .15s}
+.row button:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+.name{margin-top:12px;display:flex;gap:6px;align-items:center}
+.name span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.name input{flex:1;background:#10131b;color:var(--accent);border:1px solid #2a2f3d;border-radius:6px;padding:6px;font-family:inherit}
+.out{display:flex;flex-direction:column;gap:8px;align-items:center}
+#parchment{width:100%;aspect-ratio:1;max-width:460px;background:radial-gradient(circle,#20202c,#0f1117);border-radius:10px;border:1px solid #2a2f3d}
+#recipe{width:100%;background:#10131b;color:var(--silver);border:1px solid #2a2f3d;border-radius:6px;padding:10px;font-size:12px;margin:0;white-space:pre-wrap;max-height:140px;overflow:auto}
+.hist h3{margin:0 0 8px;font-size:11px;color:var(--silver);text-transform:uppercase;letter-spacing:.1em}
+#hist{list-style:none;margin:0;padding:0;max-height:520px;overflow:auto}
+#hist li{padding:8px;border-bottom:1px dashed #2a2f3d;cursor:pointer;font-size:12px;transition:box-shadow .15s}
+#hist li:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+#hist li .t{color:var(--muted);font-size:10px;display:block}
+#hist li .nm{color:var(--accent);font-weight:bold}
