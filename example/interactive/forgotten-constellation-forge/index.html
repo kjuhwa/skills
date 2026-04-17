@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Forgotten Constellation Forge</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <h1>Forgotten Constellation Forge</h1>
+  <div class="hint">seed + knobs → a cartographer's star chart</div>
+</header>
+<main>
+  <aside class="controls">
+    <label>seed phrase
+      <input id="seed" type="text" value="wandering cartographers chart forgotten constellations"/>
+    </label>
+    <label>stars <span id="starsVal">12</span>
+      <input id="stars" type="range" min="4" max="30" value="12"/>
+    </label>
+    <label>edges (connectivity) <span id="edgesVal">2</span>
+      <input id="edges" type="range" min="1" max="4" value="2"/>
+    </label>
+    <label>moss tint <span id="mossVal">0</span>
+      <input id="moss" type="range" min="-30" max="30" value="0"/>
+    </label>
+    <label>river murmur <span id="murmurVal">3</span>
+      <input id="murmur" type="range" min="0" max="6" value="3"/>
+    </label>
+    <label>ruin count <span id="ruinsVal">4</span>
+      <input id="ruins" type="range" min="0" max="10" value="4"/>
+    </label>
+    <div class="name">
+      <span class="label">forgotten name</span>
+      <output id="genName">…</output>
+    </div>
+    <div class="name">
+      <span class="label">cartographer</span>
+      <output id="genAuthor">…</output>
+    </div>
+    <div class="row">
+      <button id="reroll">reroll seed</button>
+      <button id="copy">copy SVG</button>
+      <button id="share">share link</button>
+    </div>
+    <pre id="stats"></pre>
+  </aside>
+  <section class="preview">
+    <svg id="out" viewBox="0 0 700 500" preserveAspectRatio="xMidYMid meet"></svg>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
