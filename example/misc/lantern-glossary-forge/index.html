@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Lantern Glossary Forge</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Lantern Glossary Forge</h1>
+  <div class="summary">
+    forged <b id="forgedN">0</b> · glossary <b id="termN">0</b>
+  </div>
+</header>
+<main>
+  <section class="forge">
+    <h2>Compose</h2>
+    <div class="grid">
+      <label>occasion
+        <select id="occasion">
+          <option>Spring Festival</option>
+          <option>Wedding Vow</option>
+          <option>Memorial</option>
+          <option>Harvest Gratitude</option>
+          <option>New Venture</option>
+          <option>Solstice</option>
+          <option>Homecoming</option>
+          <option>Farewell</option>
+        </select>
+      </label>
+      <label>element
+        <select id="element">
+          <option>fire</option><option>water</option><option>wood</option>
+          <option>metal</option><option>earth</option><option>wind</option>
+        </select>
+      </label>
+      <label>tone <span id="toneVal">solemn</span>
+        <input type="range" id="tone" min="0" max="3" value="1" />
+      </label>
+      <label>length <span id="lenVal">short</span>
+        <input type="range" id="length" min="0" max="2" value="1" />
+      </label>
+      <label>subject
+        <input type="text" id="subject" placeholder="e.g. grandmother, the river, a new road" />
+      </label>
+    </div>
+    <div class="preview" id="preview">...</div>
+    <div class="row">
+      <button id="forge">forge inscription (enter)</button>
+      <button id="copy">copy</button>
+      <button id="export">export json</button>
+      <button id="clear" class="ghost">clear ledger</button>
+    </div>
+  </section>
+  <section class="ledger">
+    <h2>Forged Ledger <span class="hint">last 8</span></h2>
+    <ol id="ledger"></ol>
+  </section>
+  <section class="glossary">
+    <h2>Ubiquitous Language <span class="hint">auto-distilled</span></h2>
+    <table id="glossary">
+      <thead><tr><th>term</th><th>canonical</th><th>uses</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

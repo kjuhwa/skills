@@ -1,0 +1,14 @@
+{
+  "slug": "lantern-glossary-forge",
+  "title": "Lantern Glossary Forge",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T01:34:41.340Z",
+  "source_project": "102-lantern-glossary-forge",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "lantern",
+  "cycle": 1
+}
