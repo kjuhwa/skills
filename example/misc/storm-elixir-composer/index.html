@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Storm Elixir Composer</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Storm Elixir Composer</h1>
+  <div class="hdr-ctrl">
+    <input id="seed" placeholder="seed phrase" value="jade serpent lullaby" />
+    <button id="brew">brew</button>
+    <button id="copy">copy recipe</button>
+  </div>
+</header>
+<main>
+  <section class="pane">
+    <h2>Reagents</h2>
+    <ul id="reagents"></ul>
+  </section>
+  <section class="pane stage">
+    <h2>Cauldron</h2>
+    <div id="cauldron"></div>
+    <canvas id="pot" width="420" height="120"></canvas>
+    <div class="stats">
+      <div><label>Potency</label><span id="potency">0</span></div>
+      <div><label>Yield</label><span id="yield">0 ml</span></div>
+      <div><label>Grade</label><span id="grade">—</span></div>
+      <div><label>Bucket</label><span id="bucket">0/8</span></div>
+    </div>
+  </section>
+  <section class="pane">
+    <h2>Recipe</h2>
+    <pre id="recipe">—</pre>
+    <h2>Brew log</h2>
+    <ol id="log"></ol>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
