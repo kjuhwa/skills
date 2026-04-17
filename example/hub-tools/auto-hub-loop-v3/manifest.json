@@ -1,0 +1,8 @@
+{
+  "slug": "auto-hub-loop-v3",
+  "title": "Hub Auto-Loop Dashboard (v3)",
+  "stack": ["node", "html", "css", "vanilla-js"],
+  "created_at": "2026-04-18T00:00:00Z",
+  "source_project": "auto-hub-loop",
+  "author": "kjuhwa@nkia.co.kr"
+}
