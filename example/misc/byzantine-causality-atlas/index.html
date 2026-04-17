@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Byzantine Causality Atlas</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="dot"></span>
+    <h1>Byzantine Causality Atlas</h1>
+    <span class="tag">vector clocks · lamport · quorum drift</span>
+  </div>
+  <nav class="tabs">
+    <button class="tab active" data-view="constellation">Constellation</button>
+    <button class="tab" data-view="timeline">Causality Timeline</button>
+    <button class="tab" data-view="quorum">Byzantine Quorum</button>
+    <button class="tab" data-view="conflict">Conflict Inspector</button>
+  </nav>
+  <div class="ctrl">
+    <button id="stepBtn">Step ▶</button>
+    <button id="playBtn">Auto</button>
+    <button id="partitionBtn">Partition</button>
+    <button id="healBtn">Heal</button>
+    <button id="forgeBtn">Forge Faulty</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+</header>
+<main>
+  <section id="constellation" class="view active">
+    <div class="canvas-wrap">
+      <canvas id="constellationCanvas" width="900" height="560"></canvas>
+      <svg id="constellationSvg" viewBox="0 0 900 560"></svg>
+    </div>
+    <aside class="side">
+      <h3>Replica State</h3>
+      <div id="replicaList"></div>
+      <h3>Lamport Counter</h3>
+      <div id="lamportReadout" class="readout"></div>
+      <h3>Vector Snapshot</h3>
+      <pre id="vectorSnapshot"></pre>
+    </aside>
+  </section>
+
+  <section id="timeline" class="view">
+    <div class="timeline-wrap">
+      <canvas id="timelineCanvas" width="900" height="520"></canvas>
+    </div>
+    <aside class="side">
+      <h3>Event Feed</h3>
+      <ul id="eventFeed"></ul>
+      <h3>Causal Edges</h3>
+      <div id="causalEdges" class="readout small"></div>
+    </aside>
+  </section>
+
+  <section id="quorum" class="view">
+    <div class="quorum-wrap">
+      <canvas id="quorumCanvas" width="900" height="520"></canvas>
+    </div>
+    <aside class="side">
+      <h3>Proposals</h3>
+      <div id="proposalList"></div>
+      <h3>f tolerance</h3>
+      <div id="faultBudget" class="readout"></div>
+      <h3>Signatures</h3>
+      <div id="sigLog" class="readout small"></div>
+    </aside>
+  </section>
+
+  <section id="conflict" class="view">
+    <div class="conflict-grid">
+      <div class="pane">
+        <h3>Replica A</h3>
+        <pre id="replicaA"></pre>
+      </div>
+      <div class="pane">
+        <h3>Replica B</h3>
+        <pre id="replicaB"></pre>
+      </div>
+      <div class="pane">
+        <h3>CRDT Merge</h3>
+        <pre id="mergeOut"></pre>
+      </div>
+      <div class="pane">
+        <h3>Causal Order</h3>
+        <pre id="causalOrder"></pre>
+      </div>
+    </div>
+    <aside class="side">
+      <h3>Resolution Strategy</h3>
+      <select id="strategy">
+        <option value="lww">Last-Writer-Wins</option>
+        <option value="orset">OR-Set Union</option>
+        <option value="gcounter">G-Counter Sum</option>
+        <option value="mvreg">MV-Register</option>
+      </select>
+      <button id="resolveBtn">Resolve</button>
+      <h3>Drift Metrics</h3>
+      <div id="driftMetrics" class="readout"></div>
+    </aside>
+  </section>
+</main>
+<footer>
+  <span id="tickReadout">tick 0</span>
+  <span id="seedReadout">seed —</span>
+  <span id="hintReadout">Space = step · P = partition · H = heal · F = forge faulty</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

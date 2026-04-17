@@ -1,0 +1,14 @@
+{
+  "slug": "byzantine-causality-atlas",
+  "title": "Byzantine Causality Atlas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T12:03:54.966Z",
+  "source_project": "17-byzantine-causality-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "byzantine fault tolerance vector clock lamport timestamp causality conflict resolution",
+  "cycle": 1
+}
