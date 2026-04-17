@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Thunderhead Loom Ritual</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header><h1>Thunderhead Loom Ritual</h1>
+  <div class="hud">
+    <span>turn <b id="turn">1</b></span>
+    <span>score <b id="score">0</b></span>
+    <span>pity <b id="pity">0/8</b></span>
+    <span>breaker <b id="brk">CLOSED</b></span>
+  </div>
+</header>
+<main>
+  <section class="stage">
+    <canvas id="sky"></canvas>
+    <div class="ring" id="ring"><div class="arc"></div><div class="needle" id="needle"></div></div>
+  </section>
+  <aside class="side">
+    <div class="card">
+      <h2>loom slots</h2>
+      <div id="slots" class="slots"></div>
+    </div>
+    <div class="card">
+      <h2>giants</h2>
+      <div id="giants" class="giants"></div>
+    </div>
+    <div class="card">
+      <h2>action log</h2>
+      <ul id="log"></ul>
+    </div>
+  </aside>
+</main>
+<footer>
+  <button id="weave">WEAVE [space]</button>
+  <button id="discharge">DISCHARGE [d]</button>
+  <button id="reset">reset [r]</button>
+  <span id="hint">hit the silver arc to weave silver thread — miss five times and pity guarantees a strand.</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
