@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Causality Oracle Console</title>
+<link rel="stylesheet" href="style.css"/>
+<script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+</head>
+<body>
+<div class="terminal">
+  <div class="scanlines"></div>
+  <header class="topbar">
+    <span class="brand">◉ causality-oracle 1.0.0</span>
+    <span class="blink">_</span>
+    <span class="muted">lamport · vector · hlc · crdt · quorum</span>
+    <span class="spacer"></span>
+    <span class="muted" id="clock">--:--:--</span>
+  </header>
+
+  <main class="grid">
+    <section class="panel" id="topology-panel">
+      <header><span class="dot"></span>TOPOLOGY :: d3-force</header>
+      <div class="panel-body">
+        <svg id="topology"></svg>
+        <div class="legend">
+          <span><i class="lg lg-local"></i>local</span>
+          <span><i class="lg lg-send"></i>send</span>
+          <span><i class="lg lg-recv"></i>recv</span>
+          <span><i class="lg lg-conflict"></i>concurrent</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="matrix-panel">
+      <header><span class="dot"></span>HAPPENS-BEFORE MATRIX</header>
+      <div class="panel-body">
+        <svg id="matrix"></svg>
+        <pre class="notes" id="matrix-notes"></pre>
+      </div>
+    </section>
+
+    <section class="panel" id="lamport-panel">
+      <header><span class="dot"></span>LAMPORT TIMELINE</header>
+      <div class="panel-body">
+        <svg id="lamport"></svg>
+      </div>
+    </section>
+
+    <section class="panel" id="hlc-panel">
+      <header><span class="dot"></span>HLC CALCULATOR</header>
+      <div class="panel-body">
+        <div class="hlc-inputs">
+          <label>local.l <input id="hlc-ll" value="17" type="number"/></label>
+          <label>local.c <input id="hlc-lc" value="3" type="number"/></label>
+          <label>inc.l   <input id="hlc-il" value="19" type="number"/></label>
+          <label>inc.c   <input id="hlc-ic" value="1" type="number"/></label>
+          <label>now     <input id="hlc-now" value="18" type="number"/></label>
+          <button id="hlc-run" class="cli-btn">merge ›</button>
+        </div>
+        <svg id="hlc-chart"></svg>
+        <pre class="notes" id="hlc-notes"></pre>
+      </div>
+    </section>
+
+    <section class="panel" id="quorum-panel">
+      <header><span class="dot"></span>QUORUM CALCULATOR</header>
+      <div class="panel-body">
+        <div class="hlc-inputs">
+          <label>replicas N <input id="q-n" value="7" type="number"/></label>
+          <label>byzantine  <input id="q-b" type="checkbox"/></label>
+          <button id="q-run" class="cli-btn">compute ›</button>
+        </div>
+        <svg id="quorum-chart"></svg>
+        <pre class="notes" id="quorum-notes"></pre>
+      </div>
+    </section>
+
+    <section class="panel cli-panel" id="cli-panel">
+      <header><span class="dot"></span>CONSOLE</header>
+      <div class="panel-body">
+        <div id="cli-history" class="cli-history"></div>
+        <form id="cli-form" class="cli-form">
+          <span class="prompt">oracle&gt;</span>
+          <input id="cli-input" autofocus autocomplete="off" spellcheck="false"/>
+        </form>
+        <pre class="hint">
+commands:
+  write r<i>                   local write on replica i
+  send r<i> r<j>               send message, deliver, merge vector clocks
+  concurrent r<i> r<j>         force concurrent edits on r<i> and r<j>
+  merge all                    gossip every replica pairwise
+  reset [n]                    rebuild topology with n replicas (default 5)
+  hlc <ll> <lc> <il> <ic> <now>  evaluate HLC merge
+  quorum <n> [byzantine]       print consensus quorum sizes
+  export                       dump event log as JSON
+  help                         show this hint
+shortcuts: ↑/↓ history · ctrl-l clear · ctrl-k focus
+        </pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="statusbar">
+    <span>▌ online</span>
+    <span id="stat-replicas">replicas=5</span>
+    <span id="stat-events">events=0</span>
+    <span id="stat-lamport">L=0</span>
+    <span id="stat-conc">concurrent=0</span>
+    <span class="spacer"></span>
+    <span>d3 v7 · force simulation · data-join</span>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
