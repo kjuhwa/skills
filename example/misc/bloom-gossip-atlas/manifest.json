@@ -1,0 +1,12 @@
+{
+  "slug": "bloom-gossip-atlas",
+  "title": "Bloom Gossip Atlas — Merkle Reconciliation Explorer",
+  "stack": [
+    "react"
+  ],
+  "created_at": "2026-04-17T13:37:03.123Z",
+  "source_project": "32-bloom-gossip-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "bloom filter merkle tree gossip protocol anti-entropy reconciliation vector diff",
+  "cycle": 6
+}
