@@ -1,9 +1,11 @@
 # skills-hub
 
-> **Skill & knowledge registry for Claude Code** — 277 reusable skills you can install into any project with a single slash command.
+> **Skill & knowledge registry for Claude Code** — 436 reusable skills + 312 knowledge entries + 28 example projects you can install into any project with a single slash command.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/skills-277-blue)](./index.json)
+[![Skills](https://img.shields.io/badge/skills-436-blue)](./index.json)
+[![Knowledge](https://img.shields.io/badge/knowledge-312-green)](./knowledge)
+[![Examples](https://img.shields.io/badge/examples-28-orange)](./example)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kjuhwa/skills-hub)
 ![GitHub stars](https://img.shields.io/github/stars/kjuhwa/skills-hub?style=social)
 
@@ -21,8 +23,9 @@ curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/in
 
 **Highlights**
 - 🔎 **Search before you code** — `/hub-search-skills "kafka retry"` finds prior-art from every project you've shipped.
-- 📦 **Category-separated registry** — 19 canonical categories (`apm`, `backend`, `ai`, `arch`, ...), one skill per folder, frontmatter-driven.
-- 🧠 **Two kinds of memory** — executable **skills** (recipes with triggers) + non-executable **knowledge** (facts, decisions, pitfalls).
+- 📦 **Category-separated registry** — 20 canonical skill categories (`apm`, `backend`, `ai`, `arch`, `frontend`, `devops`, `db`, `testing`, `security`, `data`, `cli`, `git`, `debug`, `refactor`, `docs`, `workflow`, `game-dev`, `design`, `mobile`, `misc`), one skill per folder, frontmatter-driven.
+- 🧠 **Two kinds of memory** — executable **skills** (recipes with triggers) + non-executable **knowledge** (facts, decisions, pitfalls) across 6 categories (`api`, `arch`, `decision`, `domain`, `pitfall`, `workflow`).
+- 🎨 **Example projects** — 28 ready-to-install reference builds under `example/` (dashboards, auth flows, resilience patterns, interactive toys).
 - 🔁 **Round-trip workflow** — extract drafts from a session or full project → review → publish via one PR.
 - 🌐 **Import from anywhere** — `/hub-import <git-url>` pulls skills from external repos (authored or extracted).
 - 🤝 **Claude Code + [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) compatible** — works with vanilla Claude Code; integrates deeper with OMC.
@@ -39,7 +42,8 @@ skills/                       # category-separated skill registry
       content.md              # main prompt / knowledge body (required)
       examples/               # optional
 bootstrap/
-  commands/                   # slash-command markdown files
+  commands/                   # slash-command markdown files (31 total)
+    hub-init.md               # NEW — one-time project setup
     hub-install.md
     hub-install-all.md
     hub-search-skills.md
@@ -59,6 +63,7 @@ bootstrap/
     hub-publish-example.md
     hub-finalize.md
     hub-cleanup.md
+    hub-condense.md           # NEW — corpus-level dedup/compress pass
     hub-remove.md
     hub-import.md
     hub-research.md
@@ -114,6 +119,12 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 
 ## Command Reference
 
+### Setup
+
+| Command | Purpose | Writes? |
+|---|---|---|
+| `/hub-init [--global/--force/--skip-clone]` | **One-time setup**: clones the remote cache, writes registry, draft dirs, gitignore. Run before any other `/hub-*` command. | local |
+
 ### Install & Search
 
 | Command | Purpose | Writes? |
@@ -157,6 +168,7 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/hub-merge <selector1> <selector2> [...]` | Combine 2+ remote skills/knowledge into one new draft | local drafts |
 | `/hub-split <selector> [--by=section\|step\|concern\|auto]` | Decompose one remote entry into N focused drafts | local drafts |
 | `/hub-refactor [--scope/--merge-threshold/...]` | Scan remote for merge + split candidates in one pass | local drafts |
+| `/hub-condense [--mode=dedup\|compress\|auto --scope=... --dry-run]` | Corpus-level tightening: finds duplicated chunks across entries + single-entry compression opportunities | local drafts |
 | `/hub-cleanup` | Remote maintenance: dedupe, re-index, stale review | remote branch (dry-run default) |
 | `/hub-doctor` | Diagnose and repair local skills hub installation issues | local |
 | `/hub-make [hint...]` | Creative build — inventories skills, checks prior art, builds, offers to publish | local + optional remote |
@@ -320,7 +332,7 @@ If you need a new category, edit `CATEGORIES.md` in the same PR that adds the fi
 
 ### Knowledge categories
 
-`api`, `arch`, `pitfall`, `decision`, `domain` — kept separate from skill categories so knowledge can be browsed independently.
+`api`, `arch`, `decision`, `domain`, `pitfall`, `workflow` — kept separate from skill categories so knowledge can be browsed independently.
 
 ### Knowledge file frontmatter
 
