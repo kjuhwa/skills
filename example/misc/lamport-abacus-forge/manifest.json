@@ -1,0 +1,14 @@
+{
+  "slug": "lamport-abacus-forge",
+  "title": "Lamport Abacus Forge",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T12:04:24.232Z",
+  "source_project": "19-lamport-abacus-forge",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "byzantine fault tolerance vector clock lamport timestamp causality conflict resolution",
+  "cycle": 1
+}
