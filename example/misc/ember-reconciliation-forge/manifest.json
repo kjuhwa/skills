@@ -1,0 +1,12 @@
+{
+  "slug": "ember-reconciliation-forge",
+  "title": "Ember Reconciliation Forge — Gossip Anti-Entropy Simulator",
+  "stack": [
+    "vue3"
+  ],
+  "created_at": "2026-04-17T13:37:18.421Z",
+  "source_project": "33-ember-reconciliation-forge",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "bloom filter merkle tree gossip protocol anti-entropy reconciliation vector diff",
+  "cycle": 6
+}
