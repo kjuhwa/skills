@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Abyssal Quorum Atlas</title>
+<!--
+  ## Skills applied
+  `service-discovery-replica-leader-tracking`, `raft-consensus-visualization-pattern`,
+  `raft-consensus-data-simulation`, `consistent-hashing-visualization-pattern`,
+  `consistent-hashing-data-simulation`, `health-check-visualization-pattern`,
+  `health-check-data-simulation`, `distributed-tracing-visualization-pattern`,
+  `distributed-tracing-data-simulation`, `hybrid-logical-clock-merge`,
+  `vector-clock-concurrency-matrix`, `replica-timeline-swimlane-with-causal-arrows`,
+  `lag-watermark-dual-axis-timeline`, `rebalance-partition-ownership-swimlane`,
+  `circuit-breaker-visualization-pattern`, `circuit-breaker-data-simulation`,
+  `read-replica-visualization-pattern`, `read-replica-data-simulation`,
+  `schema-registry-visualization-pattern`, `event-sourcing-visualization-pattern`,
+  `crdt-visualization-pattern`, `crdt-data-simulation`,
+  `concurrent-edit-merge-arbitration-table`, `watermark-aligned-window-emitter`,
+  `hexagonal-architecture-visualization-pattern`, `service-mesh-visualization-pattern`,
+  `bulkhead-visualization-pattern`, `cqrs-visualization-pattern`,
+  `pub-sub-visualization-pattern`, `feed-envelope-frame`,
+  `frozen-detection-consecutive-count`, `init-deadline-guard`,
+  `service-status-provider-actuator`, `service-readiness-event-listener-pattern`,
+  `k8s-health-via-getnodelist`, `spring-actuator-health-collector`.
+
+  ## Knowledge respected
+  `quorum-visualization-off-by-one` (⌊2N/3⌋+1 threshold),
+  `concurrent-edge-detection-without-full-clock-compare` (O(n²) pair compare),
+  `raft-consensus-implementation-pitfall` (term/commit safety),
+  `health-check-implementation-pitfall` (self-check blind spots),
+  `mongodb-changestream-resubscribe` (streams do not self-heal),
+  `span-hash-determinism` (stable dedup hashes),
+  `symlog-for-lag-metrics-near-zero` (symlog keeps healthy state visible),
+  `time-unit-consistency-us-ms-ns` (single canonical unit internally),
+  `wait-for-services-eureka-startup-init` (bounded backoff on readiness),
+  `actuator-metric-call-aggressive-timeout` (aggressive health-probe timeouts),
+  `canvas-event-coord-devicepixel-rescale` (rescale pointer coords).
+-->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="app.js"></script>
+</body>
+</html>

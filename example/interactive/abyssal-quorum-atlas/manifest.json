@@ -1,0 +1,12 @@
+{
+  "slug": "abyssal-quorum-atlas",
+  "title": "Abyssal Quorum Atlas",
+  "stack": [
+    "react"
+  ],
+  "created_at": "2026-04-17T13:27:36.002Z",
+  "source_project": "29-abyssal-quorum-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "service discovery registry health check heartbeat leader election split brain quorum",
+  "cycle": 5
+}
