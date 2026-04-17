@@ -49,9 +49,15 @@ function addUsage(u, costUsd) {
 // ── 5h Limit Calibration (runtime estimation from account % delta) ──
 function readUsageCache() {
   const home = process.env.HOME || process.env.USERPROFILE;
-  const p = path.join(home, '.claude', 'plugins', 'oh-my-claudecode', '.usage-cache-anthropic.json');
-  if (!fs.existsSync(p)) return null;
-  try { return JSON.parse(fs.readFileSync(p, 'utf8')).data || null; } catch { return null; }
+  const dir = path.join(home, '.claude', 'plugins', 'oh-my-claudecode');
+  // Try both filenames — varies by OMC plugin version
+  for (const name of ['.usage-cache.json', '.usage-cache-anthropic.json']) {
+    const p = path.join(dir, name);
+    if (fs.existsSync(p)) {
+      try { return JSON.parse(fs.readFileSync(p, 'utf8')).data || null; } catch { /* try next */ }
+    }
+  }
+  return null;
 }
 const calibration = { tokensPerPct: null, samples: [], lastPct: null, lastLoopTokens: null };
 function calibrationSnapshot() {
@@ -429,7 +435,8 @@ stack: html, css, vanilla-js
 Technical requirements:
 - Dark theme: --bg #0f1117, --surface #1a1d27, --accent #6ee7b7 (use CSS variables)
 - Zero dependencies, vanilla JS only, no external scripts
-- 200–450 lines total per app
+- MINIMUM 500 lines total per app (aim for 700–1000+ lines) — each app must be substantial, equivalent to at least 10 printed pages of code
+- Include multiple interactive sections, panels, or views per app — not a single-screen demo
 - Immediately interactive on load with meaningful simulated/mock data
 - Use canvas or SVG where visualization helps
 - Modern UX: hover states, transitions, keyboard shortcuts where natural
