@@ -1,0 +1,14 @@
+{
+  "slug": "copper-map-constellation-atlas",
+  "title": "Copper Map Constellation Atlas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T10:58:06.204Z",
+  "source_project": "20-copper-map-constellation-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "Desert nomads trace constellations on copper maps while sandstorms sculpt forgotten cities beneath twin moons rising slowly",
+  "cycle": 2
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Copper Map Constellation Atlas</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="topbar">
+  <h1>copper-map-constellation-atlas</h1>
+  <div class="legend">
+    <span class="dot moon-a"></span> first moon
+    <span class="dot moon-b"></span> second moon
+    <span class="dot caravan"></span> caravan trace
+    <span class="dot storm"></span> sandstorm cell
+  </div>
+  <div class="controls">
+    <label>seed <input id="seed" value="twin-moons-rising" /></label>
+    <label>storm <input id="storm" type="range" min="0" max="100" value="32"/></label>
+    <label>phase <input id="phase" type="range" min="0" max="360" value="72"/></label>
+    <button id="shuffle">re-weave</button>
+    <button id="toggle-drawer">observatory</button>
+  </div>
+</header>
+<main>
+  <section class="stage">
+    <canvas id="sky" width="1200" height="720"></canvas>
+    <svg id="overlay" viewBox="0 0 1200 720" preserveAspectRatio="none"></svg>
+  </section>
+  <aside id="drawer" class="drawer">
+    <h2>observatory drawer</h2>
+    <div class="kv"><span>active caravan</span><b id="k-caravan">—</b></div>
+    <div class="kv"><span>constellation</span><b id="k-constellation">—</b></div>
+    <div class="kv"><span>storm pressure</span><b id="k-storm">—</b></div>
+    <div class="kv"><span>moon phase Δ</span><b id="k-phase">—</b></div>
+    <div class="kv"><span>forgotten city</span><b id="k-city">—</b></div>
+    <div class="kv"><span>service-mesh lens</span><b id="k-mesh">—</b></div>
+    <p class="hint">hover dunes · click stars to bind a constellation · press <kbd>space</kbd> to freeze time</p>
+  </aside>
+</main>
+<footer class="status" id="status">charting · twin moons aligning · seed locked</footer>
+<script src="app.js" defer></script>
+</body>
+</html>
