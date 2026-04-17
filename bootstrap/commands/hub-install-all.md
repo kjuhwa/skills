@@ -27,15 +27,16 @@ For targeted installs (keyword / version pinning), use `/hub-install` instead.
 3. **Enumerate**
    - Skills: read `~/.claude/skills-hub/remote/index.json` → `skills[]`. Fallback to scanning `skills/**/SKILL.md` frontmatter if index missing.
    - Knowledge: read `index.json` → `knowledge[]`. Fallback to scanning `knowledge/**/*.md` frontmatter.
+   - **Filter out archived entries.** Skip any entry whose frontmatter (or `index.json` record) has `archived: true`. Report the count of skipped archived entries in the preview (step 4) so the user sees why totals may be lower than the raw inventory.
    - Apply `--category` filter when set.
    - Install from `main` HEAD (no version pinning in bulk mode — use `/hub-install name@version` for pinning).
 
 4. **Preview counts**
-   - Show totals grouped by category for both skills and knowledge, e.g.:
+   - Show totals grouped by category for both skills and knowledge. Archived entries were already filtered out in step 3; show the excluded counts on their own line so the user can see why totals are below the raw inventory:
      ```
-     SKILLS     (124 total)
+     SKILLS     (124 total, 3 archived excluded)
        arch/ 18   backend/ 42   workflow/ 9   ...
-     KNOWLEDGE  (87 total)
+     KNOWLEDGE  (87 total, 2 archived excluded)
        arch/ 31  api/ 5   pitfall/ 22  ...
      ```
    - Also show destination roots:
@@ -76,5 +77,6 @@ For targeted installs (keyword / version pinning), use `/hub-install` instead.
 - Never modify the remote clone cache's working tree (read-only usage).
 - Bulk mode always installs from `main` HEAD — use `/hub-install` for version-pinned installs.
 - Collisions are silently **skipped**, not overwritten — this is a bulk-install convenience, not a sync. For overwrites use `/hub-sync` or targeted `/hub-install <name>`.
+- **Archived entries** (`archived: true`) are always excluded — there is no `--include-archived` flag in bulk mode. To install an archived entry on purpose, use targeted `/hub-install <name> --include-archived`.
 - Registry writes must be atomic (write to temp file, rename) to avoid corruption on partial runs.
 - If `--category=<name>` matches zero skills AND zero knowledge, stop with a clear message.

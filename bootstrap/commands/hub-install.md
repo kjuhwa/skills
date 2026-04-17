@@ -1,6 +1,6 @@
 ---
 description: Search kjuhwa/skills.git by keyword/category and install matching skills locally, optionally pinning a version
-argument-hint: <keyword | name@version> [--global] [--category=<name>] [--version=<x.y.z>]
+argument-hint: <keyword | name@version> [--global] [--category=<name>] [--version=<x.y.z>] [--include-archived]
 ---
 
 # /hub-install $ARGUMENTS
@@ -22,6 +22,7 @@ Install skills from the central repository matching the keyword.
 
 3. **Search**
    - Read `~/.claude/skills-hub/remote/index.json` if present; else scan `**/SKILL.md` frontmatter.
+   - **Skip archived entries.** An entry is considered archived when its `SKILL.md` frontmatter (or `index.json` record) has `archived: true`. Archived entries remain in the repo for history but must never be surfaced to installers. If the user explicitly names an archived entry (`/hub-install <exact-name>` or `name@version` that resolves to an archived entry), show a single-line notice with the `archived_reason` and stop — do not install unless the user passes `--include-archived`.
    - Match keyword against: `name`, `description`, `tags`, `triggers`, `category` (case-insensitive).
    - If `--category=<name>` flag present, restrict to that category.
 
@@ -58,3 +59,4 @@ Install skills from the central repository matching the keyword.
 - Never install without explicit user selection unless `--yes` flag.
 - Never modify the remote clone cache's working tree (read-only usage).
 - If `$ARGUMENTS` is empty, list top-level categories from `CATEGORIES.md` and prompt.
+- **Archived entries** (`archived: true` in frontmatter or index) are excluded from search results and bulk installs. Install them only when the user explicitly names the entry AND passes `--include-archived`; then print the `archived_reason` before proceeding so the user has context.
