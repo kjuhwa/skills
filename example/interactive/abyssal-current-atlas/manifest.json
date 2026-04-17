@@ -1,0 +1,14 @@
+{
+  "slug": "abyssal-current-atlas",
+  "title": "Abyssal Current Atlas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T10:50:04.560Z",
+  "source_project": "17-abyssal-current-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "Deep-sea cartographers chart bioluminescent currents as whale songs ripple through drifting kelp forests and sunken temples",
+  "cycle": 1
+}
