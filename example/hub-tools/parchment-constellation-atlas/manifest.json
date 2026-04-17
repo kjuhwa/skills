@@ -1,0 +1,14 @@
+{
+  "slug": "parchment-constellation-atlas",
+  "title": "Parchment Constellation Atlas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T07:41:10.788Z",
+  "source_project": "20-parchment-constellation-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "Wandering cartographers stitch forgotten constellations into parchment maps while silver comets trace whispered secrets overhead",
+  "cycle": 1
+}
