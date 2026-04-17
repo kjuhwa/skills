@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Moss-Draped Cartographers Atlas</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="topbar">
+  <h1>Moss-Draped Cartographers Atlas</h1>
+  <div class="meta">
+    <span id="coords">—</span>
+    <button id="reseed">reseed sky</button>
+    <button id="toggleRivers">silver rivers</button>
+    <button id="toggleMoss">moss overlay</button>
+  </div>
+</header>
+<main>
+  <aside class="legend">
+    <h2>Forgotten Constellations</h2>
+    <ul id="conList"></ul>
+    <h3>Cartographer Lineage</h3>
+    <pre id="lineage">hover a constellation…</pre>
+  </aside>
+  <section class="stage">
+    <svg id="sky" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice"></svg>
+    <div class="parallax-hint">drift mouse · click stars · hover ruins</div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
