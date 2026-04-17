@@ -1,0 +1,50 @@
+:root{
+  --bg:#0a0a0a; --surface:#1a1a1a; --surface-2:#121212; --accent:#33ff33;
+  --accent-dim:#1b8a1b; --amber:#ffaa33; --red:#ff3355;
+  --ink:#c8ffc8; --ink-dim:#5ea85e;
+  --grid:#1f2a1f; --grid-2:#2a3a2a;
+  --font:'IBM Plex Mono','Courier New',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg); color:var(--ink); font-family:var(--font); font-size:13px;}
+#chrome{display:flex; flex-direction:column; height:100vh; background:var(--bg); padding:14px 18px; gap:6px; position:relative;}
+#chrome::before{content:''; position:absolute; inset:0; pointer-events:none; background:
+  repeating-linear-gradient(180deg, rgba(51,255,51,0.02) 0 1px, transparent 1px 3px),
+  radial-gradient(1000px 600px at 50% 50%, transparent 60%, rgba(0,0,0,0.35) 100%);
+  z-index:0;}
+header{display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--grid); padding-bottom:8px; z-index:1;}
+header .title{color:var(--accent); letter-spacing:0.08em;}
+header .flex{flex:1}
+header .blink{color:var(--accent); animation:blink 1s steps(2) infinite;}
+@keyframes blink{50%{opacity:0;}}
+.tty-dot{display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--red);}
+.tty-dot.amber{background:var(--amber);} .tty-dot.green{background:var(--accent);}
+nav.tabs{display:flex; gap:4px; border-bottom:1px solid var(--grid); padding-bottom:4px; z-index:1;}
+nav.tabs button{background:transparent; color:var(--ink-dim); border:1px solid var(--grid); border-bottom:none; padding:4px 12px; cursor:pointer; font-family:var(--font); font-size:12px; border-radius:3px 3px 0 0;}
+nav.tabs button.active{background:var(--surface); color:var(--accent); border-color:var(--accent-dim);}
+main{display:grid; grid-template-columns:280px 1fr 360px; grid-template-rows:1fr; gap:6px; flex:1; min-height:0; z-index:1;}
+section.controls, section.term{background:var(--surface); padding:12px 14px; border:1px solid var(--grid); border-radius:4px; overflow:auto;}
+section.canvas-pane{background:var(--surface); border:1px solid var(--grid); border-radius:4px; overflow:hidden; position:relative;}
+.view{position:absolute; inset:0; display:none;}
+.view.active{display:block;}
+h2{margin:0 0 8px; font-size:12px; letter-spacing:0.1em; color:var(--accent); text-transform:uppercase; border-bottom:1px dashed var(--grid-2); padding-bottom:4px;}
+.row{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; font-size:12px;}
+.row label{color:var(--ink-dim);}
+.row input,.row select{background:#0e0e0e; border:1px solid var(--grid); color:var(--accent); padding:3px 6px; width:110px; font-family:var(--font); font-size:12px;}
+.row input:focus,.row select:focus{outline:none; border-color:var(--accent);}
+button{background:transparent; border:1px solid var(--accent-dim); color:var(--accent); padding:6px 10px; cursor:pointer; font-family:var(--font); font-size:12px; display:block; width:100%; margin-top:8px; letter-spacing:0.05em; text-align:left;}
+button:hover{background:#0b1a0b; box-shadow:inset 0 0 12px #33ff3322;}
+.stat{display:flex; justify-content:space-between; font-size:11px; color:var(--ink-dim); padding:3px 0; border-bottom:1px dotted var(--grid);}
+.stat b{color:var(--accent); font-weight:normal;}
+#term{margin:0; color:var(--ink); font-size:11px; line-height:1.45; white-space:pre; overflow:auto;}
+.ring-svg, .range-svg, .calc-svg, .migrate-svg{width:100%; height:100%;}
+.node-circle{stroke:#0a0a0a; stroke-width:1.5;}
+.node-label{fill:var(--accent); font-size:10px; font-family:var(--font); text-anchor:middle; pointer-events:none;}
+.link{stroke:var(--accent-dim); stroke-opacity:0.45;}
+.arc-owner{stroke:none;}
+.bar-label{fill:var(--ink-dim); font-size:10px; font-family:var(--font);}
+.axis path,.axis line{stroke:var(--grid-2);} .axis text{fill:var(--ink-dim); font-family:var(--font); font-size:10px;}
+.grid line{stroke:var(--grid); stroke-dasharray:2,3;}
+.vn-tick{stroke:var(--accent); stroke-width:1;}
+.tooltip{position:absolute; background:#0e0e0e; border:1px solid var(--accent-dim); padding:6px 10px; pointer-events:none; font-size:11px; color:var(--accent); border-radius:3px;}
+.badge{display:inline-block; border:1px solid var(--accent-dim); padding:1px 6px; color:var(--accent); border-radius:2px; font-size:10px; margin-right:4px;}

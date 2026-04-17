@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Meridian Partition Oracle</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+</head>
+<body>
+<div id="chrome">
+<header>
+  <span class="tty-dot"></span><span class="tty-dot amber"></span><span class="tty-dot green"></span>
+  <span class="title">meridian :: partition-oracle :: ~/ring</span>
+  <span class="flex"></span>
+  <span class="blink">▌</span>
+</header>
+<nav class="tabs">
+  <button data-view="ring" class="active">ring.sim</button>
+  <button data-view="ranges">ranges.bar</button>
+  <button data-view="calc">calc.rf</button>
+  <button data-view="migrate">migrate.plan</button>
+</nav>
+<main>
+  <section class="controls">
+    <h2>input</h2>
+    <div class="row"><label>nodes_current</label><input id="nCurrent" type="number" value="5" min="2" max="40"/></div>
+    <div class="row"><label>nodes_target</label><input id="nTarget" type="number" value="8" min="2" max="40"/></div>
+    <div class="row"><label>vnodes_per_node</label><input id="vnodes" type="number" value="16" min="1" max="256"/></div>
+    <div class="row"><label>rf</label><input id="rf" type="number" value="3" min="1" max="7"/></div>
+    <div class="row"><label>dataset_gb</label><input id="dataGb" type="number" value="1024" min="1" max="1000000"/></div>
+    <div class="row"><label>xfer_mbps</label><input id="xfer" type="number" value="500" min="10" max="100000"/></div>
+    <div class="row"><label>read_consistency</label>
+      <select id="rConsistency"><option>ONE</option><option selected>QUORUM</option><option>ALL</option></select>
+    </div>
+    <div class="row"><label>seed</label><input id="seed" type="number" value="314"/></div>
+    <button id="run">$ run simulation</button>
+    <button id="rebalance">$ plan rebalance</button>
+    <button id="clear">$ clear</button>
+    <h2 style="margin-top:16px">derived</h2>
+    <div class="stat"><span>total_vnodes</span><b id="sTotalV">--</b></div>
+    <div class="stat"><span>range_stddev</span><b id="sStd">--</b></div>
+    <div class="stat"><span>quorum</span><b id="sQuorum">--</b></div>
+    <div class="stat"><span>eta_migrate</span><b id="sEta">--</b></div>
+    <div class="stat"><span>durability_9s</span><b id="sNines">--</b></div>
+  </section>
+
+  <section class="canvas-pane">
+    <div id="view-ring"  class="view active"></div>
+    <div id="view-ranges" class="view"></div>
+    <div id="view-calc" class="view"></div>
+    <div id="view-migrate" class="view"></div>
+  </section>
+
+  <section class="term">
+    <h2>oracle@meridian ~ $</h2>
+    <pre id="term"></pre>
+  </section>
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
