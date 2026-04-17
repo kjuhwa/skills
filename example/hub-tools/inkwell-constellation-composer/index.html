@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Inkwell Constellation Composer</title>
+<link rel="stylesheet" href="style.css"/>
+<!--
+## Skills applied
+`pluggable-sender-factory-pattern`, `strategy-spi-list-to-map-autoinject`, `resource-provider-registry`,
+`definition-registry-helper-cache`, `domain-category-endpoint-registry`, `git-tag-registry-versioning`,
+`menu-key-config-registry`, `period-mode-enum-config`, `polymorphic-command-entities`, `paired-flag-multi-instance-registration`,
+`byte-aware-sms-truncation-with-ellipsis`, `identifier-truncate-with-hash-suffix`, `ip-allowlist-cidr-validator`,
+`divide-by-zero-rate-guard`, `cache-variance-ttl-jitter`, `full-inventory-over-sampling-prompt`,
+`heuristic-scan-iterative-tuning`, `llm-json-extraction`, `ai-call-with-mock-fallback`,
+`character-sheet-multi-panel-consistency`, `compact-binary-wire-protocol-with-variable-length-encoding`,
+`mermaid-gitlab-mr-size-rules`, `nds-html-mockup-from-tokens`, `figma-token-to-tailwind-theme`,
+`figma-token-scss-style-dictionary-v3`, `plan-to-screen-spec-conversion`, `excel-export-enum-replacer`,
+`canvas-chromakey-bg-removal`, `hue-rotate-sprite-identity`, `css-sprite-sheet-phase-row-switch`,
+`layout-stable-hover-via-inset-shadow`, `click-to-inspect-corpus-from-dashboard`, `zustand-preset-manager`,
+`ubiquitous-language`, `obsidian-vault`, `recoil-domain-atom-store`, `folder-coloc-style-types`,
+`jwt-extraction-via-base-controller`, `slash-command-authoring`, `write-a-skill`,
+`adaptive-strategy-hot-swap`, `tiered-rebalance-schedule`, `shared-apis-endpoint-service-pattern`,
+`antd-wrapper-component-pattern`, `widget-grid-type-registration-checklist`,
+`frozen-detection-consecutive-count`, `layered-risk-gates`.
+
+## Knowledge respected
+`single-keyword-formulaic-llm-output` — composer demands MULTIPLE theme tokens before generating, and warns inline when input is one word;
+`arbitrary-display-caps-hide-signal` — star list is scrollable, never silently `slice(0,N)`;
+`flat-vs-categorized-folder-structure` — generator strategies grouped into 4 semantic categories once count crossed 15;
+`yaml-block-scalar-frontmatter-parsing` — export frontmatter quotes multi-line lore explicitly;
+`windows-python-utf8-explicit` — all downloads are explicit UTF-8 Blobs, never relying on platform default.
+-->
+</head>
+<body>
+<header>
+  <h1>Inkwell Constellation Composer</h1>
+  <div class="meta">velvet cartography · lantern-lit skies · forgotten stars</div>
+</header>
+<main>
+  <section class="inputs">
+    <label>theme tokens (space-separated, ≥ 2 recommended)
+      <input id="tokens" value="velvet forgotten inkwell lantern drifting paper whale"/>
+    </label>
+    <label>strategy
+      <select id="strategy">
+        <optgroup label="poetic"><option value="velvet">velvet</option><option value="inkwell">inkwell</option></optgroup>
+        <optgroup label="nautical"><option value="cartographer">cartographer</option><option value="tidal">tidal</option></optgroup>
+        <optgroup label="celestial"><option value="lantern">lantern</option><option value="nebular">nebular</option></optgroup>
+        <optgroup label="bestiary"><option value="whale">whale</option><option value="fleet">fleet</option></optgroup>
+      </select>
+    </label>
+    <label>stars <input id="stars" type="number" min="5" max="24" value="11"/></label>
+    <label>seed <input id="seed" type="number" value="1701"/></label>
+    <div class="row">
+      <button id="forge">forge constellation</button>
+      <button id="jitter">jitter (±TTL)</button>
+      <button id="savep">save preset</button>
+      <button id="export">export .md</button>
+    </div>
+    <div class="warn" id="warn" hidden></div>
+    <div class="presets"><h3>presets</h3><ul id="presets"></ul></div>
+  </section>
+  <section class="output">
+    <article class="card">
+      <h2 id="cname">—</h2>
+      <p id="clore">press forge to chart a constellation.</p>
+      <svg id="chart" viewBox="0 0 400 300"></svg>
+      <details><summary>stars (<span id="cn">0</span>)</summary><ol id="clist"></ol></details>
+      <details><summary>raw JSON</summary><pre id="cjson"></pre></details>
+    </article>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
