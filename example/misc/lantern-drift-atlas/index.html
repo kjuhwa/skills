@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Lantern Drift Atlas</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <h1>Lantern Drift Atlas</h1>
+  <div class="legend">
+    <span class="dot wish"></span>wish
+    <span class="dot memory"></span>memory
+    <span class="dot vow"></span>vow
+    <span class="dot prayer"></span>prayer
+  </div>
+</header>
+<main>
+  <section class="stage">
+    <canvas id="sky" width="900" height="560"></canvas>
+    <div class="hud">
+      <div>tracked: <b id="count">0</b></div>
+      <div>heat: <b id="heat">0</b></div>
+      <div>hover: <b id="hover">—</b></div>
+    </div>
+  </section>
+  <aside id="panel" class="panel">
+    <h2>Lineage</h2>
+    <p class="hint">Click a lantern to pin its drift trail and origin metadata.</p>
+    <dl id="meta"></dl>
+  </aside>
+</main>
+<footer class="controls">
+  <label>window
+    <input type="range" id="time" min="0" max="100" value="60" />
+  </label>
+  <label>density
+    <input type="range" id="density" min="20" max="160" value="80" />
+  </label>
+  <button id="regen">regenerate sky</button>
+  <span class="kbd">space = pause · r = regen · click = pin</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

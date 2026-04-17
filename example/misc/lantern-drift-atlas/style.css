@@ -1,0 +1,36 @@
+:root{
+  --bg:#0f1117;
+  --surface:#1a1d27;
+  --accent:#6ee7b7;
+  --muted:#6b7280;
+  --text:#e5e7eb;
+  --wish:#6ee7b7;
+  --memory:#f59e0b;
+  --vow:#a78bfa;
+  --prayer:#f472b6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:14px/1.4 system-ui,sans-serif}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid #23283a}
+.topbar h1{margin:0;font-weight:600;letter-spacing:.04em;font-size:16px}
+.legend{display:flex;gap:14px;color:var(--muted);font-size:12px;align-items:center}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.dot.wish{background:var(--wish)}.dot.memory{background:var(--memory)}
+.dot.vow{background:var(--vow)}.dot.prayer{background:var(--prayer)}
+main{display:grid;grid-template-columns:1fr 300px;gap:16px;padding:16px 22px}
+.stage{position:relative;background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid #23283a}
+canvas{display:block;width:100%;height:560px;cursor:crosshair}
+.hud{position:absolute;top:10px;left:14px;font-size:12px;color:var(--muted);display:flex;gap:18px}
+.hud b{color:var(--accent)}
+.panel{background:var(--surface);border:1px solid #23283a;border-radius:12px;padding:16px}
+.panel h2{margin:0 0 8px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.hint{color:var(--muted);font-size:12px}
+dl{display:grid;grid-template-columns:90px 1fr;gap:6px 10px;font-size:12px;margin:10px 0 0}
+dt{color:var(--muted)}
+dd{margin:0;color:var(--text)}
+.controls{display:flex;gap:16px;align-items:center;padding:10px 22px;border-top:1px solid #23283a}
+.controls label{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}
+input[type=range]{accent-color:var(--accent)}
+button{background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:6px 12px;cursor:pointer;transition:background .2s}
+button:hover{background:rgba(110,231,183,.12)}
+.kbd{margin-left:auto;color:var(--muted);font-size:11px;font-family:ui-monospace,monospace}

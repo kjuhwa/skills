@@ -1,0 +1,14 @@
+{
+  "slug": "lantern-drift-atlas",
+  "title": "Lantern Drift Atlas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T01:34:22.812Z",
+  "source_project": "100-lantern-drift-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "lantern",
+  "cycle": 1
+}
