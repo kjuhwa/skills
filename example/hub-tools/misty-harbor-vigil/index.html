@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Misty Harbor Lantern Vigil</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hud">
+  <div class="brand">
+    <span class="glyph">✦</span>
+    <span>Misty Harbor Vigil</span>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="k">Ascended</span><span id="ascended" class="v">0</span></div>
+    <div class="stat"><span class="k">Snuffed</span><span id="snuffed" class="v">0</span></div>
+    <div class="stat"><span class="k">Adrift</span><span id="adrift" class="v">0</span></div>
+    <div class="stat"><span class="k">Omen</span><span id="omen" class="v">serene</span></div>
+  </div>
+</div>
+
+<canvas id="scene"></canvas>
+
+<div class="controls">
+  <div class="ctl">
+    <label>Wind <span id="wind-v">0.0</span></label>
+    <input id="wind" type="range" min="-40" max="40" value="5" step="1">
+  </div>
+  <div class="ctl">
+    <label>Lantern heat <span id="heat-v">1.0</span></label>
+    <input id="heat" type="range" min="40" max="180" value="100" step="1">
+  </div>
+  <div class="ctl">
+    <label>Mist <span id="mist-v">40%</span></label>
+    <input id="mist" type="range" min="0" max="100" value="40" step="1">
+  </div>
+  <button id="gust" class="action">Gust (G)</button>
+  <button id="reset" class="action ghost">Reset (R)</button>
+</div>
+
+<div class="hint">Click the harbor to release a lantern &middot; ← → steer wind &middot; ↑ ↓ heat &middot; G gust &middot; R reset</div>
+<script src="app.js"></script>
+</body>
+</html>
