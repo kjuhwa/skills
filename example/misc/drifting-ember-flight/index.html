@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drifting Ember Flight</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hud">
+  <div class="stat"><label>Distance</label><span id="dist">0 m</span></div>
+  <div class="stat"><label>Best</label><span id="best">0 m</span></div>
+  <div class="stat"><label>Flame</label><div class="bar"><div id="flame" class="fill"></div></div></div>
+  <div class="stat"><label>Fuel</label><div class="bar"><div id="fuel" class="fill fuel"></div></div></div>
+</div>
+<canvas id="game"></canvas>
+<div class="overlay" id="overlay">
+  <div class="card">
+    <h1>Drifting Ember Flight</h1>
+    <p>Hold <kbd>Space</kbd> to feed the flame. Release to glide.<br>
+       Tap <kbd>←</kbd> / <kbd>→</kbd> to nudge against the wind.<br>
+       Avoid dark clouds — they douse your ember.</p>
+    <button id="start">Release the Lantern</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

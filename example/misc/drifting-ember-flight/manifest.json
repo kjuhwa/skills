@@ -1,0 +1,14 @@
+{
+  "slug": "drifting-ember-flight",
+  "title": "Drifting Ember Flight",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T01:22:17.470Z",
+  "source_project": "101-drifting-ember-flight",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "lantern",
+  "cycle": 1
+}
