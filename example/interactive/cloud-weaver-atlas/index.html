@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Cloud-Weaver Atlas</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="bar">
+  <h1>Cloud-Weaver Atlas</h1>
+  <div class="ctrls">
+    <label>seed <input id="seed" value="wildflower-thunderhead" /></label>
+    <label>layer
+      <select id="layer">
+        <option value="all">all strata</option>
+        <option value="storm">thunderhead loom</option>
+        <option value="giant">stone dream</option>
+        <option value="meadow">meadow chorus</option>
+        <option value="stars">starlight ring</option>
+      </select>
+    </label>
+    <button id="reseed">weave</button>
+    <button id="pause">pause</button>
+  </div>
+</header>
+<main>
+  <canvas id="stage"></canvas>
+  <aside id="panel" class="panel hidden">
+    <button class="close" id="closePanel">×</button>
+    <h2 id="panelTitle">—</h2>
+    <pre id="panelBody"></pre>
+  </aside>
+</main>
+<footer>
+  <span id="stat">weaving…</span>
+  <span class="legend"><i class="swatch storm"></i>storm <i class="swatch giant"></i>giant <i class="swatch meadow"></i>meadow <i class="swatch star"></i>star</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
