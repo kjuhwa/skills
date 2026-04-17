@@ -1,0 +1,14 @@
+{
+  "slug": "brass-hive-winder",
+  "title": "Brass Hive Winder",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T08:19:02.572Z",
+  "source_project": "27-brass-hive-winder",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "A clockwork beekeeper winds brass hives at dusk while luminous pollen drifts through copper wheat fields",
+  "cycle": 1
+}

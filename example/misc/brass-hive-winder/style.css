@@ -1,0 +1,32 @@
+:root{--bg:#0f1117;--surface:#1a1d27;--accent:#6ee7b7;--brass:#c9a14a;--amber:#f6c774;--copper:#b36a2e;--danger:#d26b6b;--ink:#e7ecf3;--muted:#8b94a7;--line:#252a38}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:radial-gradient(circle at 30% 10%,#1c1533,#0f1117 70%);color:var(--ink);font:14px/1.5 ui-sans-serif,system-ui,sans-serif}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line)}
+.bar h1{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0}
+.stats{display:flex;gap:18px;align-items:center;font-size:13px;color:var(--muted)}
+.stats b{color:var(--accent);margin-left:4px;font-variant-numeric:tabular-nums}
+button{background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:7px 14px;border-radius:6px;cursor:pointer}
+button:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+main{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px}
+.hives{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hive{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;min-height:170px;cursor:pointer;overflow:hidden;transition:box-shadow .15s,transform .08s}
+.hive:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+.hive.locked{opacity:.45;pointer-events:none}
+.hive.hit{transform:scale(.97)}
+.hive h3{margin:0 0 6px;font-size:12px;letter-spacing:.12em;color:var(--amber);text-transform:uppercase}
+.hive .role{font-size:11px;color:var(--muted);margin-bottom:10px}
+.hive .gauge{height:10px;background:#22263a;border-radius:6px;overflow:hidden;margin-top:6px}
+.hive .gauge span{display:block;height:100%;background:linear-gradient(90deg,var(--copper),var(--amber),var(--accent));transition:width .12s}
+.hive .window{position:absolute;top:0;bottom:0;background:linear-gradient(180deg,rgba(246,199,116,0.18),rgba(246,199,116,0));border-left:1px solid rgba(246,199,116,0.6);border-right:1px solid rgba(246,199,116,0.6);pointer-events:none;transition:left .2s,width .2s}
+.hive .circuit{position:absolute;top:8px;right:10px;font-size:10px;padding:2px 6px;border-radius:6px;border:1px solid var(--line);color:var(--muted)}
+.hive .circuit.open{color:var(--danger);border-color:var(--danger)}
+.hive .circuit.half{color:var(--amber);border-color:var(--amber)}
+.hive .yield{margin-top:8px;font-size:12px;color:var(--muted)}
+.hive .yield b{color:var(--accent);font-variant-numeric:tabular-nums}
+.telemetry{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+canvas{width:100%;height:160px;background:#0e1120;border-radius:8px}
+.log{list-style:none;margin:0;padding:0;max-height:240px;overflow:auto;font:12px/1.6 ui-monospace,monospace}
+.log li{padding:3px 6px;border-bottom:1px dashed var(--line);color:var(--muted)}
+.log li.good{color:var(--accent)}.log li.great{color:var(--amber)}.log li.miss{color:var(--danger)}
+.legend{padding:8px 22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+kbd{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:11px;color:var(--accent)}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Brass Hive Winder</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="bar">
+  <h1>Brass Hive Winder</h1>
+  <div class="stats">
+    <span>Pollen <b id="score">0</b></span>
+    <span>Combo <b id="combo">0</b>×</span>
+    <span>Tick <b id="tick">0</b></span>
+    <span>Pity <b id="pity">0</b>/12</span>
+    <button id="pause" type="button">Pause</button>
+    <button id="reset" type="button">Reset</button>
+  </div>
+</header>
+<main>
+  <section class="hives" id="hives"></section>
+  <section class="telemetry">
+    <canvas id="flow" width="820" height="160"></canvas>
+    <ul id="log" class="log" aria-live="polite"></ul>
+  </section>
+</main>
+<footer class="legend"><kbd>1</kbd>–<kbd>6</kbd> wind · <kbd>Space</kbd> pause · <kbd>R</kbd> reset</footer>
+<script src="app.js"></script>
+</body>
+</html>
