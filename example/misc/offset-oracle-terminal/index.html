@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Offset Oracle</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://unpkg.com/d3@7"></script>
+</head>
+<body>
+<div class="crt">
+<header class="term-head">
+  <div class="prompt">root@oracle:/walops# ./forecast --tombstone --snapshot</div>
+  <div class="status" id="status">booting…</div>
+</header>
+<main class="grid">
+  <section class="cell" id="panel-scenario">
+    <h2>[1] SCENARIO KNOBS</h2>
+    <div id="knobs"></div>
+  </section>
+  <section class="cell" id="panel-graph">
+    <h2>[2] SEGMENT ↔ SNAPSHOT GRAPH</h2>
+    <svg id="graph"></svg>
+  </section>
+  <section class="cell" id="panel-offsets">
+    <h2>[3] OFFSET INDEX BARS</h2>
+    <svg id="offsets"></svg>
+  </section>
+  <section class="cell" id="panel-roi">
+    <h2>[4] COMPACTION ROI</h2>
+    <svg id="roi"></svg>
+  </section>
+  <section class="cell" id="panel-ring">
+    <h2>[5] CONSISTENT RING</h2>
+    <svg id="ring"></svg>
+  </section>
+  <section class="cell" id="panel-ledger">
+    <h2>[6] RAFT LEDGER</h2>
+    <div id="ledger"></div>
+  </section>
+  <section class="cell" id="panel-dlq">
+    <h2>[7] TOMBSTONE DLQ</h2>
+    <div id="dlq"></div>
+  </section>
+  <section class="cell" id="panel-calc">
+    <h2>[8] RETENTION COST</h2>
+    <div id="calc"></div>
+  </section>
+</main>
+<footer>
+  <div class="foot-col">
+    <div class="foot-h">&gt;&gt; SKILLS APPLIED</div>
+    <div id="skills-list"></div>
+  </div>
+  <div class="foot-col">
+    <div class="foot-h">&gt;&gt; KNOWLEDGE RESPECTED</div>
+    <div id="know-list"></div>
+  </div>
+  <div class="foot-col">
+    <div class="foot-h">&gt;&gt; SYSTEM</div>
+    <div id="sysinfo"></div>
+  </div>
+</footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
