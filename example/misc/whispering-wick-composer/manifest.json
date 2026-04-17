@@ -1,0 +1,14 @@
+{
+  "slug": "whispering-wick-composer",
+  "title": "Whispering Wick Composer",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T01:22:27.647Z",
+  "source_project": "102-whispering-wick-composer",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "lantern",
+  "cycle": 1
+}

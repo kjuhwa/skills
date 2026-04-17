@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Whispering Wick Composer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="controls">
+    <h1>Whispering Wick</h1>
+    <p class="sub">Compose a lantern. Export its recipe.</p>
+
+    <section>
+      <label>Shape</label>
+      <div class="segmented" id="shape">
+        <button data-v="sphere" class="active">Sphere</button>
+        <button data-v="cylinder">Cylinder</button>
+        <button data-v="diamond">Diamond</button>
+        <button data-v="teardrop">Teardrop</button>
+      </div>
+    </section>
+
+    <section>
+      <label>Glow Color <span id="colorVal">#fbbf24</span></label>
+      <input type="color" id="color" value="#fbbf24">
+    </section>
+
+    <section>
+      <label>Height <span id="heightVal">30 cm</span></label>
+      <input type="range" id="height" min="15" max="80" value="30">
+    </section>
+
+    <section>
+      <label>Width <span id="widthVal">24 cm</span></label>
+      <input type="range" id="width" min="12" max="60" value="24">
+    </section>
+
+    <section>
+      <label>Pattern</label>
+      <div class="segmented" id="pattern">
+        <button data-v="solid" class="active">Solid</button>
+        <button data-v="lattice">Lattice</button>
+        <button data-v="blossom">Blossom</button>
+        <button data-v="glyphs">Glyphs</button>
+      </div>
+    </section>
+
+    <section>
+      <label>Flicker <span id="flickerVal">0.4</span></label>
+      <input type="range" id="flicker" min="0" max="100" value="40">
+    </section>
+
+    <section>
+      <label>Inscription</label>
+      <input type="text" id="inscription" maxlength="42" value="may the quiet find you">
+    </section>
+
+    <div class="actions">
+      <button id="shuffle" class="ghost">Shuffle</button>
+      <button id="copy">Copy Recipe</button>
+    </div>
+  </aside>
+
+  <main class="preview">
+    <svg id="stage" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="recipe" id="recipe"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
