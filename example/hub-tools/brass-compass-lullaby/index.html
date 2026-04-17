@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brass Compass Lullaby</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Brass Compass Lullaby</h1>
+  <p class="subtitle">Steer the weathered cartographer across silver dunes; hum sleeping constellations into slumber</p>
+</header>
+<main>
+  <section class="board">
+    <canvas id="map" width="560" height="560"></canvas>
+    <div class="hud">
+      <span>Turn <b id="turn">1</b></span>
+      <span>Dream-fuel <b id="fuel">25</b></span>
+      <span>Lulled <b id="lulled">0</b>/<b id="total">0</b></span>
+    </div>
+  </section>
+  <aside class="panel">
+    <h2>Brass Compass</h2>
+    <div class="compass">
+      <button class="dir" data-dir="NW" title="Q">↖</button>
+      <button class="dir" data-dir="N"  title="W">↑</button>
+      <button class="dir" data-dir="NE" title="E">↗</button>
+      <button class="dir" data-dir="W"  title="A">←</button>
+      <button class="dir hum" id="hum"  title="Space">hum</button>
+      <button class="dir" data-dir="E"  title="D">→</button>
+      <button class="dir" data-dir="SW" title="Z">↙</button>
+      <button class="dir" data-dir="S"  title="S">↓</button>
+      <button class="dir" data-dir="SE" title="C">↘</button>
+    </div>
+    <h2>Event Log <span class="count" id="logcount">0</span></h2>
+    <ol id="log"></ol>
+    <div class="buttons">
+      <button id="undo">Undo (U)</button>
+      <button id="reset">New Dune</button>
+    </div>
+  </aside>
+</main>
+<footer>Skills — stateless-turn-combat-engine · immutable-action-event-log · finite-state-machine-visualization-pattern</footer>
+<script src="app.js"></script>
+</body>
+</html>
