@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lantern Constellation Atlas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Lantern Constellation Atlas</h1>
+  <p class="sub">Drifting wishes across a festival sky</p>
+</header>
+<main>
+  <aside class="panel">
+    <h2>Regions</h2>
+    <div id="regions" class="regions"></div>
+    <h2>Selected Lantern</h2>
+    <div id="detail" class="detail">
+      <p class="muted">Click a lantern to read its wish.</p>
+    </div>
+    <h2>Legend</h2>
+    <ul class="legend">
+      <li><span class="dot r1"></span> Pingxi</li>
+      <li><span class="dot r2"></span> Hoi An</li>
+      <li><span class="dot r3"></span> Chiang Mai</li>
+      <li><span class="dot r4"></span> Kyoto</li>
+    </ul>
+    <p class="hint">Scroll to zoom · Drag to pan · R to reshuffle</p>
+  </aside>
+  <section class="stage">
+    <canvas id="sky"></canvas>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

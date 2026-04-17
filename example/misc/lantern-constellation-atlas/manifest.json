@@ -1,0 +1,14 @@
+{
+  "slug": "lantern-constellation-atlas",
+  "title": "Lantern Constellation Atlas",
+  "stack": [
+    "html",
+    "css",
+    "vanilla-js"
+  ],
+  "created_at": "2026-04-17T01:22:07.933Z",
+  "source_project": "100-lantern-constellation-atlas",
+  "author": "kjuhwa@nkia.co.kr",
+  "keyword": "lantern",
+  "cycle": 1
+}
