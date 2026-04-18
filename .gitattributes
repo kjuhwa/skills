@@ -1,0 +1,8 @@
+# Bootstrap command files and tools must stay LF — Claude Code's YAML
+# frontmatter parser fails on CRLF (description falls back to the H1 body,
+# and argument-hint stops rendering in the UI).
+bootstrap/commands/*.md text eol=lf
+bootstrap/tools/*.py    text eol=lf
+bootstrap/tools/*.sh    text eol=lf
+bootstrap/bin/*         text eol=lf
+bootstrap/install.sh    text eol=lf
