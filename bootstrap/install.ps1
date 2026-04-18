@@ -12,6 +12,7 @@ New-Item -ItemType Directory -Force -Path "$ClaudeDir\skills\skills-hub" | Out-N
 New-Item -ItemType Directory -Force -Path "$HubDir"                    | Out-Null
 New-Item -ItemType Directory -Force -Path "$HubDir\tools"              | Out-Null
 New-Item -ItemType Directory -Force -Path "$HubDir\bin"                | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\hooks"              | Out-Null
 New-Item -ItemType Directory -Force -Path "$HubDir\indexes"            | Out-Null
 New-Item -ItemType Directory -Force -Path "$HubDir\knowledge\api"      | Out-Null
 New-Item -ItemType Directory -Force -Path "$HubDir\knowledge\arch"     | Out-Null
@@ -40,6 +41,12 @@ if (Test-Path "$RepoDir\bootstrap\bin") {
     Get-ChildItem "$RepoDir\bootstrap\bin\" -File |
         Where-Object { $_.Name -like "hub-*" } |
         ForEach-Object { Copy-Item $_.FullName "$HubDir\bin\" -Force }
+}
+
+# v2.6.10+: UserPromptSubmit hook scripts
+if (Test-Path "$RepoDir\bootstrap\hooks") {
+    Write-Host "Installing hook scripts -> $HubDir\hooks\"
+    Copy-Item "$RepoDir\bootstrap\hooks\*.py" "$HubDir\hooks\" -Force -ErrorAction SilentlyContinue
 }
 
 # v2.6.4+: shell completion for hub-* bin wrappers
@@ -112,12 +119,14 @@ if ((Test-Path "$HubDir\remote\.git") -and (Test-Path "$HubDir\tools\install-hoo
     }
 }
 
+# Detect a Python interpreter once — used for index build and hook registration.
+$pyBin = $null
+if (Get-Command py -ErrorAction SilentlyContinue)          { $pyBin = @("py","-3") }
+elseif (Get-Command python3 -ErrorAction SilentlyContinue) { $pyBin = @("python3") }
+elseif (Get-Command python  -ErrorAction SilentlyContinue) { $pyBin = @("python") }
+
 # Build initial indexes so they exist before the first git hook fires
 if (Test-Path "$HubDir\tools\precheck.py") {
-    $pyBin = $null
-    if (Get-Command py -ErrorAction SilentlyContinue)      { $pyBin = @("py","-3") }
-    elseif (Get-Command python3 -ErrorAction SilentlyContinue) { $pyBin = @("python3") }
-    elseif (Get-Command python  -ErrorAction SilentlyContinue) { $pyBin = @("python") }
     if ($pyBin) {
         Write-Host "Building initial indexes"
         $env:PYTHONIOENCODING = "utf-8"
@@ -127,6 +136,33 @@ if (Test-Path "$HubDir\tools\precheck.py") {
         }
     } else {
         Write-Host "Note: no python found on PATH; skipping initial index build."
+    }
+}
+
+# v2.6.10+: register UserPromptSubmit hook in settings.json.
+# Opt out with $env:SKILLS_HUB_NO_AUTO_SUGGEST = "1".
+$settingsPath = Join-Path $ClaudeDir "settings.json"
+$hookScript = Join-Path $HubDir "hooks\hub-suggest-hint.py"
+$mergeScript = Join-Path $HubDir "tools\_merge_settings.py"
+if ($env:SKILLS_HUB_NO_AUTO_SUGGEST -eq "1") {
+    Write-Host "Skipping UserPromptSubmit hook registration (SKILLS_HUB_NO_AUTO_SUGGEST=1)."
+} elseif (-not (Test-Path $hookScript)) {
+    Write-Host "Note: hub-suggest-hint.py not present; skipping hook registration."
+} elseif (-not (Test-Path $mergeScript)) {
+    Write-Host "Note: _merge_settings.py not present; skipping hook registration."
+} elseif (-not $pyBin) {
+    Write-Host "Note: no python found on PATH; skipping UserPromptSubmit hook registration."
+    Write-Host "      Register manually: add a UserPromptSubmit hook running"
+    Write-Host "      '<python> $hookScript' in $settingsPath"
+} else {
+    $hookCmd = "$($pyBin -join ' ') `"$hookScript`""
+    Write-Host "Registering UserPromptSubmit hook in $settingsPath"
+    $env:PYTHONIOENCODING = "utf-8"
+    # Pipe the command via stdin — avoids PowerShell stripping embedded quotes
+    # from argv, which would corrupt any path containing spaces.
+    $hookCmd | & $pyBin[0] @($pyBin[1..($pyBin.Length-1)] + @($mergeScript,"install",$settingsPath))
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "  warn: hook registration failed; re-run install.ps1 or register manually"
     }
 }
 

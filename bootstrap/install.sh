@@ -8,7 +8,7 @@ REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 HUB_DIR="$CLAUDE_DIR/skills-hub"
 
 mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/skills/skills-hub" \
-         "$HUB_DIR" "$HUB_DIR/tools" "$HUB_DIR/bin" "$HUB_DIR/indexes" \
+         "$HUB_DIR" "$HUB_DIR/tools" "$HUB_DIR/bin" "$HUB_DIR/hooks" "$HUB_DIR/indexes" \
          "$HUB_DIR/knowledge/api" "$HUB_DIR/knowledge/arch" \
          "$HUB_DIR/knowledge/pitfall" "$HUB_DIR/knowledge/decision" \
          "$HUB_DIR/knowledge/domain" "$HUB_DIR/external"
@@ -33,6 +33,12 @@ if [ -d "$REPO_DIR/bootstrap/bin" ]; then
   echo "Installing CLI wrappers → $HUB_DIR/bin/"
   cp "$REPO_DIR/bootstrap/bin/"hub-* "$HUB_DIR/bin/" 2>/dev/null || true
   chmod +x "$HUB_DIR/bin/"hub-* 2>/dev/null || true
+fi
+
+# --- v2.6.10+: UserPromptSubmit hook that auto-suggests /hub-suggest ---
+if [ -d "$REPO_DIR/bootstrap/hooks" ]; then
+  echo "Installing hook scripts → $HUB_DIR/hooks/"
+  cp "$REPO_DIR/bootstrap/hooks/"*.py "$HUB_DIR/hooks/" 2>/dev/null || true
 fi
 
 # --- v2.6.4+: shell completion for hub-* bin wrappers ---
@@ -93,13 +99,15 @@ if [ -d "$HUB_DIR/remote/.git" ] && [ -f "$HUB_DIR/tools/install-hooks.sh" ]; th
   bash "$HUB_DIR/tools/install-hooks.sh" || echo "  warn: hook install failed; run manually later"
 fi
 
+# Detect a Python interpreter once — used for index build and hook registration.
+PYBIN=""
+if command -v py >/dev/null 2>&1; then PYBIN="py -3"
+elif command -v python3 >/dev/null 2>&1; then PYBIN="python3"
+elif command -v python >/dev/null 2>&1; then PYBIN="python"
+fi
+
 # Build initial indexes so they exist before the first git hook fires
 if [ -f "$HUB_DIR/tools/precheck.py" ]; then
-  PYBIN=""
-  if command -v py >/dev/null 2>&1; then PYBIN="py -3"
-  elif command -v python3 >/dev/null 2>&1; then PYBIN="python3"
-  elif command -v python >/dev/null 2>&1; then PYBIN="python"
-  fi
   if [ -n "$PYBIN" ]; then
     echo "Building initial indexes"
     PYTHONIOENCODING=utf-8 $PYBIN "$HUB_DIR/tools/precheck.py" --skip-lint >/dev/null 2>&1 \
@@ -107,6 +115,26 @@ if [ -f "$HUB_DIR/tools/precheck.py" ]; then
   else
     echo "Note: no python found on PATH; skipping initial index build."
   fi
+fi
+
+# --- v2.6.10+: register UserPromptSubmit hook in ~/.claude/settings.json ---
+# Opt out with SKILLS_HUB_NO_AUTO_SUGGEST=1.
+if [ "${SKILLS_HUB_NO_AUTO_SUGGEST:-0}" = "1" ]; then
+  echo "Skipping UserPromptSubmit hook registration (SKILLS_HUB_NO_AUTO_SUGGEST=1)."
+elif [ ! -f "$HUB_DIR/hooks/hub-suggest-hint.py" ]; then
+  echo "Note: hub-suggest-hint.py not present; skipping hook registration."
+elif [ ! -f "$HUB_DIR/tools/_merge_settings.py" ]; then
+  echo "Note: _merge_settings.py not present; skipping hook registration."
+elif [ -z "$PYBIN" ]; then
+  echo "Note: no python on PATH; skipping UserPromptSubmit hook registration."
+  echo "      Register manually: add a UserPromptSubmit hook running"
+  echo "      '<python> $HUB_DIR/hooks/hub-suggest-hint.py' in $CLAUDE_DIR/settings.json"
+else
+  HOOK_CMD="$PYBIN \"$HUB_DIR/hooks/hub-suggest-hint.py\""
+  echo "Registering UserPromptSubmit hook in $CLAUDE_DIR/settings.json"
+  printf '%s' "$HOOK_CMD" | PYTHONIOENCODING=utf-8 $PYBIN \
+    "$HUB_DIR/tools/_merge_settings.py" install "$CLAUDE_DIR/settings.json" \
+    || echo "  warn: hook registration failed; re-run install.sh or register manually"
 fi
 
 # --- v2.6.8+: pre-implementation auto-check block in ~/.claude/CLAUDE.md ---
