@@ -8,7 +8,10 @@ REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 HUB_DIR="$CLAUDE_DIR/skills-hub"
 
 mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/skills/skills-hub" \
-         "$HUB_DIR" "$HUB_DIR/tools" "$HUB_DIR/bin" "$HUB_DIR/indexes"
+         "$HUB_DIR" "$HUB_DIR/tools" "$HUB_DIR/bin" "$HUB_DIR/indexes" \
+         "$HUB_DIR/knowledge/api" "$HUB_DIR/knowledge/arch" \
+         "$HUB_DIR/knowledge/pitfall" "$HUB_DIR/knowledge/decision" \
+         "$HUB_DIR/knowledge/domain" "$HUB_DIR/external"
 
 echo "Installing slash commands → $CLAUDE_DIR/commands/"
 cp "$REPO_DIR/bootstrap/commands/"*.md "$CLAUDE_DIR/commands/"
@@ -48,15 +51,62 @@ if [ ! -d "$HUB_DIR/remote/.git" ]; then
   echo "      Either clone the repo there, or a /skills_* command will clone on first run."
 fi
 
-# Initialize empty registry if missing
+# Initialize / upgrade registry (v2 schema). Handle pre-existing files that
+# may carry a UTF-8 BOM from earlier PowerShell installs.
+NEED_SEED=0
 if [ ! -f "$HUB_DIR/registry.json" ]; then
-  echo "{}" > "$HUB_DIR/registry.json"
+  NEED_SEED=1
+else
+  RAW="$(cat "$HUB_DIR/registry.json")"
+  RAW="${RAW#$'\xEF\xBB\xBF'}"
+  STRIPPED="$(printf '%s' "$RAW" | tr -d '[:space:]')"
+  if [ -z "$STRIPPED" ] || [ "$STRIPPED" = "{}" ]; then
+    NEED_SEED=1
+  fi
 fi
+if [ "$NEED_SEED" = 1 ]; then
+  cat > "$HUB_DIR/registry.json" <<'JSON'
+{
+  "version": 2,
+  "skills": {},
+  "knowledge": {}
+}
+JSON
+fi
+
+# Record installed bootstrap version (strip the "bootstrap/" tag prefix).
+INSTALLED_VERSION="$(git -C "$REPO_DIR" describe --tags --exact-match --match 'bootstrap/v*' 2>/dev/null \
+  || git -C "$REPO_DIR" tag --list 'bootstrap/v*' --sort=-v:refname 2>/dev/null | head -1 \
+  || echo 'unknown')"
+INSTALLED_VERSION="${INSTALLED_VERSION#bootstrap/}"
+INSTALLED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+cat > "$HUB_DIR/bootstrap.json" <<JSON
+{
+  "installed_version": "${INSTALLED_VERSION:-unknown}",
+  "installed_at": "$INSTALLED_AT"
+}
+JSON
 
 # Install git hooks if remote is ready
 if [ -d "$HUB_DIR/remote/.git" ] && [ -f "$HUB_DIR/tools/install-hooks.sh" ]; then
   echo "Installing git hooks (auto re-index on merge / commit / checkout)"
   bash "$HUB_DIR/tools/install-hooks.sh" || echo "  warn: hook install failed; run manually later"
+fi
+
+# Build initial indexes so they exist before the first git hook fires
+if [ -f "$HUB_DIR/tools/precheck.py" ]; then
+  PYBIN=""
+  if command -v py >/dev/null 2>&1; then PYBIN="py -3"
+  elif command -v python3 >/dev/null 2>&1; then PYBIN="python3"
+  elif command -v python >/dev/null 2>&1; then PYBIN="python"
+  fi
+  if [ -n "$PYBIN" ]; then
+    echo "Building initial indexes"
+    PYTHONIOENCODING=utf-8 $PYBIN "$HUB_DIR/tools/precheck.py" --skip-lint >/dev/null 2>&1 \
+      || echo "  warn: initial index build failed; run '$PYBIN $HUB_DIR/tools/precheck.py --skip-lint' manually"
+  else
+    echo "Note: no python found on PATH; skipping initial index build."
+  fi
 fi
 
 # PATH hint

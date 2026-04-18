@@ -7,12 +7,18 @@ $ClaudeDir = if ($env:CLAUDE_DIR) { $env:CLAUDE_DIR } else { "$HOME\.claude" }
 $RepoDir = Split-Path -Parent $PSScriptRoot
 $HubDir = Join-Path $ClaudeDir "skills-hub"
 
-New-Item -ItemType Directory -Force -Path "$ClaudeDir\commands"      | Out-Null
+New-Item -ItemType Directory -Force -Path "$ClaudeDir\commands"        | Out-Null
 New-Item -ItemType Directory -Force -Path "$ClaudeDir\skills\skills-hub" | Out-Null
-New-Item -ItemType Directory -Force -Path "$HubDir"                  | Out-Null
-New-Item -ItemType Directory -Force -Path "$HubDir\tools"            | Out-Null
-New-Item -ItemType Directory -Force -Path "$HubDir\bin"              | Out-Null
-New-Item -ItemType Directory -Force -Path "$HubDir\indexes"          | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir"                    | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\tools"              | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\bin"                | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\indexes"            | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\knowledge\api"      | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\knowledge\arch"     | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\knowledge\pitfall"  | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\knowledge\decision" | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\knowledge\domain"   | Out-Null
+New-Item -ItemType Directory -Force -Path "$HubDir\external"           | Out-Null
 
 Write-Host "Installing slash commands -> $ClaudeDir\commands\"
 Copy-Item "$RepoDir\bootstrap\commands\*.md" "$ClaudeDir\commands\" -Force
@@ -51,9 +57,49 @@ if (-not (Test-Path "$HubDir\remote\.git")) {
     Write-Host "      Either clone the repo there, or a /skills_* command will clone on first run."
 }
 
+# Initialize / upgrade registry (v2 schema). Strip a possible UTF-8 BOM
+# written by earlier installs before deciding whether to re-seed.
+$needSeed = $false
 if (-not (Test-Path "$HubDir\registry.json")) {
-    "{}" | Out-File -FilePath "$HubDir\registry.json" -Encoding utf8 -NoNewline
+    $needSeed = $true
+} else {
+    $existing = Get-Content "$HubDir\registry.json" -Raw -ErrorAction SilentlyContinue
+    if ($null -eq $existing) { $existing = '' }
+    $existing = $existing.TrimStart([char]0xFEFF)
+    $existing = ($existing -replace '\s','')
+    if ([string]::IsNullOrEmpty($existing) -or $existing -eq '{}') { $needSeed = $true }
 }
+if ($needSeed) {
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText("$HubDir\registry.json", @'
+{
+  "version": 2,
+  "skills": {},
+  "knowledge": {}
+}
+'@, $utf8NoBom)
+}
+
+# Record installed bootstrap version (strip the "bootstrap/" tag prefix).
+$installedVersion = $null
+try {
+    $installedVersion = (& git -C "$RepoDir" describe --tags --exact-match --match 'bootstrap/v*' 2>$null).Trim()
+} catch {}
+if (-not $installedVersion) {
+    try {
+        $installedVersion = ((& git -C "$RepoDir" tag --list 'bootstrap/v*' --sort=-v:refname 2>$null) | Select-Object -First 1).Trim()
+    } catch {}
+}
+if (-not $installedVersion) { $installedVersion = "unknown" }
+$installedVersion = $installedVersion -replace '^bootstrap/',''
+$installedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText("$HubDir\bootstrap.json", @"
+{
+  "installed_version": "$installedVersion",
+  "installed_at": "$installedAt"
+}
+"@, $utf8NoBom)
 
 # Install git hooks if remote is ready and a POSIX bash exists.
 if ((Test-Path "$HubDir\remote\.git") -and (Test-Path "$HubDir\tools\install-hooks.sh")) {
@@ -63,6 +109,24 @@ if ((Test-Path "$HubDir\remote\.git") -and (Test-Path "$HubDir\tools\install-hoo
         & bash "$HubDir\tools\install-hooks.sh"
     } else {
         Write-Host "Note: bash not found; run 'bash $HubDir/tools/install-hooks.sh' manually to enable hooks."
+    }
+}
+
+# Build initial indexes so they exist before the first git hook fires
+if (Test-Path "$HubDir\tools\precheck.py") {
+    $pyBin = $null
+    if (Get-Command py -ErrorAction SilentlyContinue)      { $pyBin = @("py","-3") }
+    elseif (Get-Command python3 -ErrorAction SilentlyContinue) { $pyBin = @("python3") }
+    elseif (Get-Command python  -ErrorAction SilentlyContinue) { $pyBin = @("python") }
+    if ($pyBin) {
+        Write-Host "Building initial indexes"
+        $env:PYTHONIOENCODING = "utf-8"
+        & $pyBin[0] @($pyBin[1..($pyBin.Length-1)] + @("$HubDir\tools\precheck.py","--skip-lint")) *> $null
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "  warn: initial index build failed; run '$($pyBin -join ' ') $HubDir\tools\precheck.py --skip-lint' manually"
+        }
+    } else {
+        Write-Host "Note: no python found on PATH; skipping initial index build."
     }
 }
 
