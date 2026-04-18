@@ -66,6 +66,7 @@ Local environment health check and repair. While `/hub-cleanup` maintains the **
   - `post-merge`, `post-commit`, `post-checkout`
 - Each hook file is executable (Linux/macOS/WSL) or at least present (Windows Git Bash treats the `x` bit differently).
 - Each hook invokes `precheck.py --skip-lint` (or the current equivalent) — not the default sample hooks from git init.
+- **v2.6.11+**: `post-merge` additionally contains an auto-patch block that re-runs `bootstrap/install.sh` when `bootstrap/**` changes are pulled in. Verify the hook contains `SKILLS_HUB_NO_AUTO_PATCH` and a reference to `bootstrap/install.sh`. If absent on a v2.6.11+ install, auto-patch won't fire and users must re-run install.sh manually after `/hub-sync`.
 - **Fix**: run `bash ~/.claude/skills-hub/tools/install-hooks.sh` to reinstall (`--fix` required). If `tools/install-hooks.sh` is missing, escalate to check 7 first.
 
 ### 9. Indexes freshness (v2.5.0+)
