@@ -1,182 +1,181 @@
 # Demo Recording Guide
 
-How to re-record the README hero assets (Asciinema cast + short GIF). Follow this when releasing a major bootstrap version or when the demo drifts from current behaviour.
+How to re-record the README hero assets. Follow this when releasing a major bootstrap version or when the demo drifts from current behaviour.
+
+> **Note**: the original plan paired Asciinema + GIF, but `asciinema` has no Windows support (`ModuleNotFoundError: No module named 'fcntl'`). We switched to **two GIFs** — one short teaser and one longer walkthrough — which gives equivalent information with a single tool (ScreenToGif) and plays inline on GitHub without a click.
 
 The two assets tell complementary stories:
 
-| Asset | Length | Story | Where it plays |
+| Asset | Length | Story | Target viewer |
 |---|---|---|---|
-| **Asciinema cast** | ~90 s | "The Core 8 in 90 seconds" — a guided tour through `/hub-find`, `/hub-suggest`, `/hub-install`, `/hub-list`, `/hub-doctor`. Terminal-heavy, text-first. | README hero (desktop browsers) |
-| **GIF** | 20–25 s | "Discovery → Install" — the golden path from a user description to an installed skill. Silent, auto-loops. | README hero (mobile/GitHub preview) |
+| **Teaser GIF** — `docs/demo-hub-find.gif` | ~20 s | "Discovery → Install" — the golden path. Silent, auto-loops. | Skimmer / mobile viewer — sees what the tool does in one loop. |
+| **Full walkthrough GIF** — `docs/demo-core-8.gif` | ~60 s | "The Core 8 in 60 seconds" — guided tour through `/hub-find`, `/hub-suggest`, `/hub-install`, `/hub-list`, `/hub-doctor`. | Interested desktop viewer — reads the whole thing through once. |
 
 ---
 
 ## Prerequisites
 
-- A clean-ish Claude Code session so the screen isn't cluttered with unrelated commands.
-- `~/.claude/skills-hub/` already installed and `hub-search`, `hub-precheck`, `hub-doctor` on `PATH` (run `hub-doctor` first — all checks should pass).
-- Terminal font large enough to be readable at 640 px wide (smaller GitHub renders truncate). Suggested: **Consolas 14 pt**, window size **100×30**.
-- Dark theme for contrast.
+- Clean Claude Code session (no unrelated commands in scrollback).
+- `hub-doctor` passes all 11 checks first — nothing red in the demo.
+- Terminal font readable at 640 px wide: **Consolas 14 pt**, window **100×30**, dark theme.
+- Your shell prompt should be short or anonymised. `PS1='$ '` for the recording session hides your username.
 
 ---
 
-## Asset 1 — Asciinema cast (~90 s)
+## Recording tool — ScreenToGif
 
-### Setup
+1. Download: https://www.screentogif.com/ → portable zip, no install needed.
+2. Extract and run `ScreenToGif.exe`.
+3. Open **Recorder**.
+4. Position the capture frame over your terminal window only — no taskbar, no other windows.
+5. Settings:
+   - **Frame rate**: 12 fps (smooth enough, keeps file small).
+   - **Hotkeys**: default `F7` = start/pause, `F8` = stop.
 
-Windows (Git Bash / WSL):
-```bash
-pip install asciinema
-# Or via scoop: scoop install asciinema
-```
+After recording, ScreenToGif opens the **Editor**. Use it to:
+- Trim leading/trailing silence (first 0.5 s, last 0.5 s).
+- Delete any frame you fluffed.
+- **File → Save as → GIF** with **compression** on (keeps under 5 MB).
 
-Login once:
-```bash
-asciinema auth   # opens a browser, confirms with your GitHub account
-```
+---
+
+## Asset 1 — Teaser GIF (20 s, `docs/demo-hub-find.gif`)
+
+The golden path only. Silent, tight, auto-loops. This is what skimmers see. No title cards, no multiple scenes.
 
 ### Shooting script
 
-Record each command, wait for the output to fully render, pause ~1 second before typing the next one. Don't rush — the viewer needs time to read.
+Record one take. Target 18–22 s end-to-end so GitHub autoplay feels snappy.
+
+```
+[0.0 s]  clean prompt visible, cursor blinking
+[0.5 s]  type:  hub-search "카프카 컨슈머 튜닝"
+[3.5 s]  output renders — top match is kafka-batch-consumer-partition-tuning
+         (let the full result sit on screen for 1.5 s so viewer can read)
+
+[6.0 s]  type:  hub-install kafka-batch-consumer-partition-tuning
+[9.0 s]  output: "installed to ~/.claude/skills/..."
+
+[11.0 s] type:  hub-list --kind skills
+[13.0 s] output: list showing the just-installed skill
+
+[15.0 s] type:  hub-doctor
+[17.5 s] output: tail of report → "Summary: 11 passed"
+
+[19.5 s] hold last frame for 0.5 s so loop end is readable
+[20.0 s] END — loop
+```
+
+### Before recording
+
+If you don't have the skill installed yet, run the `hub-install` once in a non-recorded session so it's a real no-op install second time (fast). Or mock the install output:
 
 ```bash
-# Start recording
-asciinema rec --title "skills-hub — Core 8 in 90 seconds" \
-              --idle-time-limit 2 \
-              demo.cast
-```
-
-Inside the recording:
-
-```
-# Clear, title card
-clear
-echo "# skills-hub v2.6.2 — Core 8 commands in 90 seconds"
-echo ""
-
-# ── Act 1 (0:00–0:15)  Discovery ──────────────────────────────────────
-echo "# 1. Find — ranked search with KO↔EN synonyms"
-hub-search "스프링 카프카" -n 3
-# (show top 3: jwt-refresh-rotation-spring etc.)
-
-# ── Act 2 (0:15–0:30)  Auto-suggest in a real task ────────────────────
-echo ""
-echo "# 2. Suggest — AI picks a skill for an implementation task"
-# Simulate by running hub-search with task keywords
-hub-search "JWT refresh token implement" -n 1
-# (narrate: "when user says '구현해줘', AI auto-triggers this")
-
-# ── Act 3 (0:30–0:45)  Install ────────────────────────────────────────
-echo ""
-echo "# 3. Install — pin a specific version"
-# For the demo, just show the command without actually mutating state:
-echo "$ /hub-install jwt-refresh-rotation-spring@1.0.0"
-echo "  → installed to ~/.claude/skills/jwt-refresh-rotation-spring/"
-echo "  → pinned: true"
-
-# ── Act 4 (0:45–1:00)  List locally installed ─────────────────────────
-echo ""
-echo "# 4. List — see what you have"
-echo "$ /hub-list --kind skills"
-# Show real output if you have skills installed, or a mocked sample
-
-# ── Act 5 (1:00–1:15)  Precheck + diff ────────────────────────────────
-echo ""
-echo "# 5. Precheck — lint + regen indexes before publish"
-hub-precheck --skip-lint 2>&1 | tail -8
-
-# ── Act 6 (1:15–1:30)  Doctor ─────────────────────────────────────────
-echo ""
-echo "# 6. Doctor — health check (11 checks including git hooks, PATH, …)"
-echo "$ /hub-doctor"
-echo "  [PASS]  1. Remote cache integrity"
-echo "  [PASS]  7. Tools & bin installation (v2.5.0+)"
-echo "  [PASS]  8. Git hooks"
-echo "  [PASS]  9. Indexes freshness"
-echo "  [PASS] 10. Shell PATH"
-echo "  Summary: 11 passed"
-
-# Closing card
-echo ""
-echo "# Full install: curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/install.sh | bash"
-```
-
-Stop recording: `Ctrl-D` or `exit`.
-
-### Upload
-
-```bash
-asciinema upload demo.cast
-# → returns a URL like https://asciinema.org/a/XXXXXX
-# Copy the numeric ID (XXXXXX)
-```
-
-Hand the numeric ID back — it plugs into the README hero.
-
-### Common mistakes
-
-- Typing too fast: viewers skip content. Use `--idle-time-limit=2` so pauses compress automatically.
-- Terminal too small: text is truncated on GitHub mobile preview. Target 100 cols × 30 rows.
-- Colors missing: set `TERM=xterm-256color` before recording for ANSI colours to survive.
-
----
-
-## Asset 2 — GIF (20–25 s)
-
-### Tool
-
-Windows:
-- **[ScreenToGif](https://www.screentogif.com/)** (recommended — free, direct `.gif` export with good compression)
-- Alternative: **[cap.so](https://cap.so/)** (cloud-hosted, nicer UX)
-
-Settings:
-- Frame rate: **12 fps** (smooth but small file)
-- Capture area: **terminal window only** (~800×480 pixels, trim before export)
-- Duration cap: **25 s** (longer loses viewer attention in a README)
-
-### Shooting script (GIF)
-
-The GIF is the **golden path only** — silent, tight, loops cleanly. No titles, no multiple scenes.
-
-Sequence (aim for ~20 s end-to-end):
-
-```
-[0.0 s]  Clean terminal prompt visible
-[0.5 s]  Type:  hub-search "카프카 컨슈머 튜닝"
-[3.5 s]  Output renders — top result highlighted
-[6.0 s]  Type:  hub-install kafka-batch-consumer-partition-tuning
-[9.0 s]  Output: "installed to ~/.claude/skills/..."
-[11.0 s] Type:  hub-list --kind skills
-[13.0 s] Output: shows the just-installed skill
-[15.0 s] Type:  hub-doctor
-[18.0 s] Output: "Summary: 11 passed"
-[20.0 s] Pause 2 s so the last frame is readable
-[22.0 s] End — loop back
+echo '  → installed to ~/.claude/skills/kafka-batch-consumer-partition-tuning/'
+echo '  → registry updated'
 ```
 
 ### Export
 
-- Save as: `docs/demo-hub-find.gif`
-- Target size: ≤ 5 MB. If larger, drop framerate to 10 fps or crop tighter.
-- Test at GitHub scale (640 px wide) before committing.
+- Filename: `docs/demo-hub-find.gif`
+- Size target: **≤ 3 MB**. If larger: lower fps to 10, or crop window tighter.
 
 ---
 
-## Integration (I'll do this part)
+## Asset 2 — Full walkthrough GIF (60 s, `docs/demo-core-8.gif`)
 
-Once you have both assets ready:
+Longer tour showing more of the Core 8. Still silent, but with more beats. Can include `echo "# ..."` comment lines that appear in the terminal as captions.
 
-1. **Asciinema**: hand me the numeric ID (e.g. `723451`).
-2. **GIF**: commit the file to `docs/demo-hub-find.gif` (or tell me the path).
-3. I'll swap the `<!-- ASCIINEMA_ID -->` and `<!-- GIF_PATH -->` placeholders in the README hero block with the real values, open the PR, and merge.
+### Shooting script
+
+Six acts, ~10 s each. Each act shows one command + waits 1–2 s for output.
+
+```
+# ── Act 1 (0:00–0:10)  Title + Find ───────────────────────────────────
+clear
+echo "# skills-hub — Core 8 in 60 seconds"
+echo ""
+echo "# 1/6  Find — ranked search, KO↔EN synonyms"
+hub-search "스프링 카프카" -n 3
+# (pause 2s)
+
+# ── Act 2 (0:10–0:20)  Suggest ────────────────────────────────────────
+echo ""
+echo "# 2/6  Suggest — AI picks a skill for implementation tasks"
+echo "#      (auto-triggers when user says '구현해줘 / implement X')"
+hub-search "JWT refresh token implement" -n 1
+# (pause 2s)
+
+# ── Act 3 (0:20–0:30)  Install ────────────────────────────────────────
+echo ""
+echo "# 3/6  Install — pin a specific version"
+echo "$ /hub-install jwt-refresh-rotation-spring@1.0.0"
+echo "  → installed, pinned=true"
+# (pause 2s — this is a dry echo, no real install, for demo cleanliness)
+
+# ── Act 4 (0:30–0:40)  List ───────────────────────────────────────────
+echo ""
+echo "# 4/6  List — what's installed locally"
+echo "$ /hub-list --kind skills"
+echo "  skill  backend  kafka-batch-consumer-partition-tuning  v1.0.0  global"
+echo "  skill  security jwt-refresh-rotation-spring           v1.0.0  global"
+# (pause 2s)
+
+# ── Act 5 (0:40–0:50)  Precheck ───────────────────────────────────────
+echo ""
+echo "# 5/6  Precheck — validate + regenerate indexes"
+hub-precheck --skip-lint 2>&1 | tail -6
+# (pause 2s)
+
+# ── Act 6 (0:50–1:00)  Doctor ─────────────────────────────────────────
+echo ""
+echo "# 6/6  Doctor — 11-point local health check"
+echo "$ /hub-doctor"
+echo "  [PASS]  1. Remote cache integrity"
+echo "  [PASS]  7. Tools & bin installation"
+echo "  [PASS]  8. Git hooks"
+echo "  [PASS]  9. Indexes freshness"
+echo "  [PASS] 10. Shell PATH"
+echo "  Summary: 11 passed"
+# (pause 3s — final frame)
+```
+
+### Before recording
+
+- Pre-warm the shell (cd ~, clear) so nothing junk is in scrollback.
+- Dry-run once without recording to confirm every command outputs cleanly at your terminal width.
+
+### Export
+
+- Filename: `docs/demo-core-8.gif`
+- Size target: **≤ 8 MB**. If larger: 10 fps, tight crop, GIF compression on.
+- GitHub will still render it; upload will just take longer.
+
+---
+
+## Integration (I do this once you have files)
+
+Commit both GIFs:
+```bash
+cd ~/.claude/skills-hub/remote
+git checkout -b docs/demo-assets-gif-real
+git add docs/demo-hub-find.gif docs/demo-core-8.gif
+git commit -m "docs: add demo GIFs (teaser + full Core 8 walkthrough)"
+git push -u origin docs/demo-assets-gif-real
+```
+
+Tell me the branch name (or the exact file paths) and I'll:
+1. Uncomment the hero block in `README.md` and swap the placeholders to real paths.
+2. Open the PR, squash-merge.
+3. Verify the GIFs render at GitHub scale.
 
 ---
 
 ## Re-recording trigger
 
-Re-record the demo when:
-- Bootstrap version bumps **minor or major** (e.g. v2.6.x → v2.7.0). Patches don't justify a re-record.
-- A command shown in the demo changes flags or output format.
+Re-record when:
+- Bootstrap version bumps **minor or major** (e.g. v2.6.x → v2.7.0). Patches don't justify it.
+- A command shown in the demo changes flags or output.
 - The "Core N" mental model grows or shrinks (currently Core 8).
 
-Keep the old assets in `docs/archive/` rather than deleting — old GIFs in issue threads still link to them.
+Archive the old GIFs to `docs/archive/<old-version>/` rather than deleting — old issue threads may still link to them.
