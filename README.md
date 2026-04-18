@@ -3,6 +3,7 @@
 > **Skill & knowledge registry for Claude Code** — 436 reusable skills + 312 knowledge entries + 28 example projects you can install into any project with a single slash command.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Bootstrap](https://img.shields.io/github/v/tag/kjuhwa/skills-hub?filter=bootstrap/v*&label=bootstrap&color=purple)](https://github.com/kjuhwa/skills-hub/tags)
 [![Skills](https://img.shields.io/badge/skills-436-blue)](./index.json)
 [![Knowledge](https://img.shields.io/badge/knowledge-312-green)](./knowledge)
 [![Examples](https://img.shields.io/badge/examples-28-orange)](./example)
@@ -300,6 +301,18 @@ Both skill content and the bootstrap command files use git tags for immutable ve
 - **Bootstrap (command files)**: `bootstrap/v<semver>` — e.g. `bootstrap/v1.0.0`
 
 Tags are annotated and created automatically by `/hub-publish-skills` and `/hub-commands-publish`.
+
+### Recent bootstrap releases
+
+| Version | Highlights |
+|---|---|
+| [`v2.5.2`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.2) | `/hub-suggest` — pre-implementation discovery prompt |
+| [`v2.5.1`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.1) | `install.ps1` parity with `install.sh` (Windows/PowerShell) |
+| [`v2.5.0`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.0) | `bootstrap/tools/` + `bootstrap/bin/` + git hook installer; adds `/hub-find`, `/hub-precheck`, `/hub-index-diff` |
+| [`v2.4.4`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.4.4) | `/hub-sync` calls `hub-precheck` after `git reset --hard`; `/hub-search-*` cross-link to `/hub-find` |
+| [`v2.4.3`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.4.3) | Earlier maintenance release |
+
+Full history: `git tag -l "bootstrap/v*" | sort -V`. Your installed version is in `~/.claude/skills-hub/bootstrap.json`.
 
 ### Installing a specific skill version
 
