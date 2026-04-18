@@ -163,9 +163,40 @@ if (-not (Test-Path $claudeMd)) {
     }
 }
 
-Write-Host ""
-Write-Host "To use 'hub-search', 'hub-precheck', 'hub-index-diff' from any shell, add to your PowerShell profile:"
-Write-Host "  `$env:Path = `"`$HOME\.claude\skills-hub\bin;`" + `$env:Path"
+# v2.6.9+: auto-append bin dir to PowerShell $PROFILE (idempotent).
+# Opt out with $env:SKILLS_HUB_NO_PROFILE = "1".
+$marker = '# skills-hub:path'
+$binLine = '$env:Path = "$HOME\.claude\skills-hub\bin;" + $env:Path  ' + $marker
+
+if ($env:SKILLS_HUB_NO_PROFILE -eq '1') {
+    Write-Host ""
+    Write-Host "Skipping PowerShell `$PROFILE edit (SKILLS_HUB_NO_PROFILE=1)."
+    Write-Host "To enable 'hub-search', 'hub-precheck', 'hub-index-diff' outside Claude Code, add manually:"
+    Write-Host "  `$env:Path = `"`$HOME\.claude\skills-hub\bin;`" + `$env:Path"
+} else {
+    $profilePath = $PROFILE.CurrentUserAllHosts
+    $profileDir = Split-Path -Parent $profilePath
+    if ($profileDir -and -not (Test-Path $profileDir)) {
+        New-Item -ItemType Directory -Force -Path $profileDir | Out-Null
+    }
+    if (-not (Test-Path $profilePath)) {
+        New-Item -ItemType File -Force -Path $profilePath | Out-Null
+    }
+    $existingProfile = Get-Content $profilePath -Raw -ErrorAction SilentlyContinue
+    if ($null -eq $existingProfile) { $existingProfile = '' }
+    Write-Host ""
+    if ($existingProfile -match [regex]::Escape($marker)) {
+        Write-Host "PowerShell `$PROFILE already exports skills-hub bin (marker found): $profilePath"
+    } else {
+        $sep = if ($existingProfile.Length -eq 0 -or $existingProfile.EndsWith("`n")) { "" } else { "`n" }
+        Add-Content -Path $profilePath -Value ($sep + $binLine) -Encoding UTF8
+        Write-Host "Added skills-hub bin to PowerShell `$PROFILE: $profilePath"
+        Write-Host "  Reload with: . `$PROFILE"
+    }
+    if ($env:Path -notlike "*$HubDir\bin*") {
+        $env:Path = "$HubDir\bin;" + $env:Path
+    }
+}
 
 # v2.6.4+: completion hint
 if (Test-Path "$HubDir\completions") {

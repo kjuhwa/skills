@@ -152,10 +152,39 @@ else
 fi
 rm -f "$TMPBLOCK"
 
-# PATH hint
+# v2.6.9+: auto-append bin dir to shell rc files (idempotent).
+# Opt out with SKILLS_HUB_NO_PROFILE=1.
+MARKER='# skills-hub:path'
+LINE="export PATH=\"\$HOME/.claude/skills-hub/bin:\$PATH\"  $MARKER"
+
 echo ""
-echo "To use 'hub-search', 'hub-precheck', 'hub-index-diff' from any shell, add to ~/.bashrc:"
-echo "  export PATH=\"\$HOME/.claude/skills-hub/bin:\$PATH\""
+if [ "${SKILLS_HUB_NO_PROFILE:-0}" = "1" ]; then
+  echo "Skipping shell profile edit (SKILLS_HUB_NO_PROFILE=1)."
+  echo "To enable 'hub-search', 'hub-precheck', 'hub-index-diff' outside Claude Code, add manually:"
+  echo "  export PATH=\"\$HOME/.claude/skills-hub/bin:\$PATH\""
+else
+  touched=0
+  for rc in "$HOME/.bashrc" "$HOME/.zshrc"; do
+    [ -e "$rc" ] || continue
+    if grep -qF "$MARKER" "$rc" 2>/dev/null; then
+      echo "$rc already exports skills-hub bin (marker found)."
+      touched=1
+      continue
+    fi
+    [ -s "$rc" ] && printf '\n' >> "$rc"
+    printf '%s\n' "$LINE" >> "$rc"
+    echo "Added skills-hub bin to $rc"
+    touched=1
+  done
+  if [ "$touched" = 0 ]; then
+    printf '%s\n' "$LINE" > "$HOME/.bashrc"
+    echo "Created $HOME/.bashrc with skills-hub bin on PATH"
+  fi
+  case ":$PATH:" in
+    *":$HUB_DIR/bin:"*) ;;
+    *) export PATH="$HUB_DIR/bin:$PATH" ;;
+  esac
+fi
 
 # Completion hint (v2.6.4+)
 if [ -d "$HUB_DIR/completions" ]; then
