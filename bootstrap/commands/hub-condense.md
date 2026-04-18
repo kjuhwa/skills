@@ -14,6 +14,28 @@ Produces drafts under `.skills-draft/` (and a `_CONDENSE_PATCHES.yaml` aggregate
 
 Different axis from `/hub-cleanup` (which handles metadata hygiene: malformed frontmatter, orphan files, name collisions, index drift) and from `/hub-refactor` (which consolidates whole entries via merge / splits oversized entries / archives low-value ones). `/hub-condense` operates on the **text inside** entries.
 
+## Execution strategy (v2.6.1+)
+
+Bulk scanning MUST be delegated to an `Explore` subagent. The main thread only synthesises drafts from the returned candidate list.
+
+```
+Agent(
+  subagent_type="Explore",
+  description="<short task name>",
+  prompt="""
+Scan ~/.claude/skills-hub/remote/skills/** and knowledge/** for:
+  dedup_candidates: identical or near-identical chunks that appear in multiple entries (copy-paste patterns)
+  compress_candidates: single entries with redundant prose, verbose examples, or oversized sections that can shrink without losing meaning
+Include a diff-like snippet showing what would be removed for each.
+
+Return a ranked list (top N per `--max-*` flag or sensible default) with: name, kind (skill|knowledge), category, 1-line description, source path(s), confidence. Drop anything project-specific or non-generalizable.
+""",
+)
+```
+
+After the subagent returns, read **only** the few MDs needed to write final drafts. Do **not** iterate `Read` across dozens of files in the main thread — it burns tokens, fragments history, and produces no better result than delegation. (v2.6.1 added this rule after a `/hub-import` run did 73 tool calls to scan one repo.)
+
+
 ## Arguments
 
 - `--mode=dedup|compress|auto` — which pass(es) to run. Default `auto` (both).

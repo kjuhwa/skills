@@ -13,6 +13,25 @@ Analyze the project (or a git diff/commit range) and classify each generalizable
 Default mode scans the **full project**. Use `--from` to narrow the source.
 
 
+## Execution strategy (v2.6.1+)
+
+Bulk scanning MUST be delegated to an `Explore` subagent. The main thread only synthesises drafts from the returned candidate list.
+
+```
+Agent(
+  subagent_type="Explore",
+  description="<short task name>",
+  prompt="""
+Scan the current project working directory — git tree + uncommitted changes + recent commits (last 7 days or --from range). Identify reusable skill and knowledge candidates from source files, commit messages, and README/docs. Same generalisation bar as hub-import: drop one-off code, business names, credentials. Prioritize patterns mentioned in user corrections or debugging workarounds discovered in the session.
+
+Return a ranked list (top N per `--max-*` flag or sensible default) with: name, kind (skill|knowledge), category, 1-line description, source path(s), confidence. Drop anything project-specific or non-generalizable.
+""",
+)
+```
+
+After the subagent returns, read **only** the few MDs needed to write final drafts. Do **not** iterate `Read` across dozens of files in the main thread — it burns tokens, fragments history, and produces no better result than delegation. (v2.6.1 added this rule after a `/hub-import` run did 73 tool calls to scan one repo.)
+
+
 ## Dispatch (v2.6.0+)
 
 - `--session` → delegate to the `/hub-extract-session` flow (session-only scope)

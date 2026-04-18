@@ -11,6 +11,25 @@ Fetch skills and knowledge from an external git repository (not `kjuhwa/skills.g
 
 **Pipeline:** `clone → (authored SKILL.md / knowledge *.md found?) → stage as drafts` **OR** `(none found) → /hub-extract against the clone → stage drafts in this project`. The second path lets you turn arbitrary source repositories (application code, docs) into publishable drafts.
 
+## Execution strategy (v2.6.1+)
+
+Bulk scanning MUST be delegated to an `Explore` subagent. The main thread only synthesises drafts from the returned candidate list.
+
+```
+Agent(
+  subagent_type="Explore",
+  description="<short task name>",
+  prompt="""
+Scan the cloned external repository at ~/.claude/skills-hub/external/<slug>/. Identify reusable skill and knowledge candidates. Criteria: patterns that appear across multiple files, non-trivial setup/integration, documented decisions or pitfalls. Drop project-specific names, internal URLs, credentials, framework defaults. Read the repo's README, CONTRIBUTING, and top-level directory structure first to shape the scan.
+
+Return a ranked list (top N per `--max-*` flag or sensible default) with: name, kind (skill|knowledge), category, 1-line description, source path(s), confidence. Drop anything project-specific or non-generalizable.
+""",
+)
+```
+
+After the subagent returns, read **only** the few MDs needed to write final drafts. Do **not** iterate `Read` across dozens of files in the main thread — it burns tokens, fragments history, and produces no better result than delegation. (v2.6.1 added this rule after a `/hub-import` run did 73 tool calls to scan one repo.)
+
+
 ## Arguments
 
 - `<git-url>` (required) — HTTPS or SSH git URL (e.g. `https://github.com/acme/team-skills.git`).

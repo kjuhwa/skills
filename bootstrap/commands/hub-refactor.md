@@ -15,6 +15,28 @@ For merge/split candidates, produces a draft in `.skills-draft/` / `.knowledge-d
 
 Use this periodically (monthly, or after a burst of `/hub-publish-skills` activity) to keep the remote registry coherent. For targeted single-operation refactors, use `/hub-merge` or `/hub-split` directly.
 
+## Execution strategy (v2.6.1+)
+
+Bulk scanning MUST be delegated to an `Explore` subagent. The main thread only synthesises drafts from the returned candidate list.
+
+```
+Agent(
+  subagent_type="Explore",
+  description="<short task name>",
+  prompt="""
+Scan ~/.claude/skills-hub/remote/skills/** and knowledge/** for two lists:
+  merge_candidates: clusters of entries with high semantic overlap (title, description, tag overlap) suitable for consolidation
+  split_candidates: entries >= 400 body lines with >= 2 distinct topical clusters (content, tags, or section headers)
+For each: name, kind, category, reason, proposed action.
+
+Return a ranked list (top N per `--max-*` flag or sensible default) with: name, kind (skill|knowledge), category, 1-line description, source path(s), confidence. Drop anything project-specific or non-generalizable.
+""",
+)
+```
+
+After the subagent returns, read **only** the few MDs needed to write final drafts. Do **not** iterate `Read` across dozens of files in the main thread — it burns tokens, fragments history, and produces no better result than delegation. (v2.6.1 added this rule after a `/hub-import` run did 73 tool calls to scan one repo.)
+
+
 ## Arguments
 
 - `--scope=all|<category>` — restrict the scan. Default `all`.

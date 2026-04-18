@@ -14,6 +14,25 @@ Two modes:
 
 **No direct installs.** Nothing is written to `~/.claude/skills/`, `.claude/skills/`, `~/.claude/skills-hub/knowledge/`, `.claude/knowledge/`, or `registry.json`. Review drafts, then ship them with `/hub-publish-skills`, `/hub-publish-knowledge`, or `/hub-publish-all`.
 
+## Execution strategy (v2.6.1+)
+
+Bulk scanning MUST be delegated to an `Explore` subagent. The main thread only synthesises drafts from the returned candidate list.
+
+```
+Agent(
+  subagent_type="Explore",
+  description="<short task name>",
+  prompt="""
+Research the given keyword across authoritative sources (official docs, well-cited blog posts, vendor engineering blogs). Synthesize skill and knowledge candidates with evidence links. Prefer primary sources over aggregators. Mark confidence: high (official docs or multiple independent confirmations) / medium (single reputable source) / low (community forum).
+
+Return a ranked list (top N per `--max-*` flag or sensible default) with: name, kind (skill|knowledge), category, 1-line description, source path(s), confidence. Drop anything project-specific or non-generalizable.
+""",
+)
+```
+
+After the subagent returns, read **only** the few MDs needed to write final drafts. Do **not** iterate `Read` across dozens of files in the main thread — it burns tokens, fragments history, and produces no better result than delegation. (v2.6.1 added this rule after a `/hub-import` run did 73 tool calls to scan one repo.)
+
+
 ## Arguments
 
 - `<keyword>` (optional) — topic, library, pattern, or problem. If omitted, switch to trend mode.

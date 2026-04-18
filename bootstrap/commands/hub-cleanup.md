@@ -7,6 +7,30 @@ argument-hint: [--apply] [--dedupe] [--reindex] [--stale-days=<n>]
 
 Remote repository maintenance. **Dry-run is the default.**
 
+## Execution strategy (v2.6.1+)
+
+Bulk scanning MUST be delegated to an `Explore` subagent. The main thread only synthesises drafts from the returned candidate list.
+
+```
+Agent(
+  subagent_type="Explore",
+  description="<short task name>",
+  prompt="""
+Scan ~/.claude/skills-hub/remote/ for integrity issues:
+  stale: entries with no updates in 180+ days AND flagged as low-confidence
+  orphan_registry: registry.json entries with no matching file on disk
+  broken_links: linked_skills/linked_knowledge references to missing slugs
+  malformed_frontmatter: missing required fields (name, category, version)
+Return findings grouped by category with file paths.
+
+Return a ranked list (top N per `--max-*` flag or sensible default) with: name, kind (skill|knowledge), category, 1-line description, source path(s), confidence. Drop anything project-specific or non-generalizable.
+""",
+)
+```
+
+After the subagent returns, read **only** the few MDs needed to write final drafts. Do **not** iterate `Read` across dozens of files in the main thread — it burns tokens, fragments history, and produces no better result than delegation. (v2.6.1 added this rule after a `/hub-import` run did 73 tool calls to scan one repo.)
+
+
 ## Steps
 
 1. **Refresh cache** to latest `main`.
