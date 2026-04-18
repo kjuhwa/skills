@@ -12,17 +12,13 @@
 
 Stop re-deriving the same patterns in every Claude Code session. `skills-hub` is a curated, versioned catalog of battle-tested skills and domain knowledge — searchable, installable, and extractable — so your agent starts every project already knowing what worked last time.
 
-<!-- ════════ DEMO HERO — filled in after recording. See docs/DEMO_RECORDING.md ════════ -->
-<!-- Teaser GIF (20s, golden path — auto-loops, plays inline on mobile + desktop): -->
-<!-- ![hub-find → hub-install → hub-doctor](./docs/demo-hub-find.gif) -->
+![hub-find → hub-install → hub-list → hub-doctor](./docs/demo-hub-find.gif)
 
-<!-- Full walkthrough GIF (60s, Core 8 tour): -->
-<!-- <details><summary>▶ Full 60s walkthrough (Core 8)</summary> -->
-<!-- -->
-<!-- ![Core 8 walkthrough](./docs/demo-core-8.gif) -->
-<!-- -->
-<!-- </details> -->
-<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<details><summary>▶ <b>Full 60s walkthrough — Core 8 tour</b></summary>
+
+![Core 8 walkthrough](./docs/demo-core-8.gif)
+
+</details>
 
 ```bash
 # One-line install into ~/.claude
