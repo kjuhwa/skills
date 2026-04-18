@@ -1,11 +1,11 @@
 ---
+
 name: time-series-db-visualization-pattern
 description: Render time-series data as a scrolling multi-series canvas chart with downsampled LTTB buckets and a brushable overview band.
 category: design
 triggers:
   - time series db visualization pattern
-tags:
-  - auto-loop
+tags: [design, time, series, visualization, canvas]
 version: 1.0.0
 ---
 

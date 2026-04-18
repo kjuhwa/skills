@@ -1,11 +1,11 @@
 ---
+
 name: backpressure-visualization-pattern
 description: Visualize producer/consumer rate mismatch with buffer fill gauges, drop counters, and upstream signal arrows
 category: design
 triggers:
   - backpressure visualization pattern
-tags:
-  - auto-loop
+tags: [design, backpressure, visualization, visualize]
 version: 1.0.0
 ---
 

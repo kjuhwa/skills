@@ -1,11 +1,11 @@
 ---
+
 name: replica-timeline-swimlane-with-causal-arrows
 description: Render multi-replica event timelines as horizontal swimlanes with causal arrows drawn in a separate SVG layer above the event grid.
 category: frontend
 triggers:
   - replica timeline swimlane with causal arrows
-tags:
-  - auto-loop
+tags: [frontend, replica, timeline, swimlane, causal, arrows]
 version: 1.0.0
 ---
 

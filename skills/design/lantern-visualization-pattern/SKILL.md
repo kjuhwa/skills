@@ -1,11 +1,11 @@
 ---
+
 name: lantern-visualization-pattern
 description: Canvas-based lantern rendering with flicker, glow halos, and ember particle systems for atmospheric visualization
 category: design
 triggers:
   - lantern visualization pattern
-tags:
-  - auto-loop
+tags: [design, lantern, visualization, canvas]
 version: 1.0.0
 ---
 

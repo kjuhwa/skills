@@ -1,11 +1,11 @@
 ---
+
 name: crdt-data-simulation
 description: Simulating network partitions, concurrent edits, and message reordering to exercise CRDT merge logic
 category: workflow
 triggers:
   - crdt data simulation
-tags:
-  - auto-loop
+tags: [workflow, crdt, data, simulation]
 version: 1.0.0
 ---
 

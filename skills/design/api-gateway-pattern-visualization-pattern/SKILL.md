@@ -1,11 +1,11 @@
 ---
+
 name: api-gateway-pattern-visualization-pattern
 description: Single-pane visualization showing client traffic funneling through a gateway layer that fans out to backend services with per-hop status
 category: design
 triggers:
   - api gateway pattern visualization pattern
-tags:
-  - auto-loop
+tags: [design, api, gateway, visualization]
 version: 1.0.0
 ---
 

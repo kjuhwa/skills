@@ -1,11 +1,11 @@
 ---
+
 name: copper-patina-gradient-shader
 description: Simulate aged copper map surfaces using layered radial gradients and noise-perturbed hue shifts on canvas.
 category: frontend
 triggers:
   - copper patina gradient shader
-tags:
-  - auto-loop
+tags: [frontend, copper, patina, gradient, shader, canvas]
 version: 1.0.0
 ---
 

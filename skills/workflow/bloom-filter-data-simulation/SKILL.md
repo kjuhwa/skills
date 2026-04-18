@@ -1,11 +1,11 @@
 ---
+
 name: bloom-filter-data-simulation
 description: Generating realistic workloads (usernames, collisions, concurrent inserts) to exercise bloom filter behavior end-to-end
 category: workflow
 triggers:
   - bloom filter data simulation
-tags:
-  - auto-loop
+tags: [workflow, bloom, filter, data, simulation]
 version: 1.0.0
 ---
 

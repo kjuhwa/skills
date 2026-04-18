@@ -1,11 +1,11 @@
 ---
+
 name: cdc-data-simulation
 description: Generating realistic synthetic CDC event streams with proper transaction grouping, LSN monotonicity, and schema evolution
 category: workflow
 triggers:
   - cdc data simulation
-tags:
-  - auto-loop
+tags: [workflow, cdc, data, simulation, schema, transaction]
 version: 1.0.0
 ---
 

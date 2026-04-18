@@ -1,11 +1,11 @@
 ---
+
 name: backpressure-data-simulation
 description: Token-stepped discrete event loop driving producer/buffer/consumer with per-tick rate budgets
 category: workflow
 triggers:
   - backpressure data simulation
-tags:
-  - auto-loop
+tags: [workflow, backpressure, data, simulation]
 version: 1.0.0
 ---
 

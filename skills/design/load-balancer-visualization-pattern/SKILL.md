@@ -1,11 +1,11 @@
 ---
+
 name: load-balancer-visualization-pattern
 description: Canvas/SVG-based real-time visualization for load balancer request distribution across backend pools
 category: design
 triggers:
   - load balancer visualization pattern
-tags:
-  - auto-loop
+tags: [design, load, balancer, visualization, canvas, svg]
 version: 1.0.0
 ---
 

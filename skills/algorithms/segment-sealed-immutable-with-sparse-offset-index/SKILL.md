@@ -1,11 +1,11 @@
 ---
+
 name: segment-sealed-immutable-with-sparse-offset-index
 description: Append-only segments become immutable when sealed, with a sparse offset index built at seal time for O(log n) lookup without scanning.
 category: algorithms
 triggers:
   - segment sealed immutable with sparse offset index
-tags:
-  - auto-loop
+tags: [algorithms, segment, sealed, immutable, sparse, offset]
 version: 1.0.0
 ---
 

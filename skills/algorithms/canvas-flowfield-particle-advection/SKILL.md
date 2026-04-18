@@ -1,11 +1,11 @@
 ---
+
 name: canvas-flowfield-particle-advection
 description: Render drifting "currents" by advecting particles through a cached noise-based vector field with trail fade.
 category: algorithms
 triggers:
   - canvas flowfield particle advection
-tags:
-  - auto-loop
+tags: [algorithms, canvas, flowfield, particle, advection, cache]
 version: 1.0.0
 ---
 

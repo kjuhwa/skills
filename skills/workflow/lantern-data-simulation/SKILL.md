@@ -1,11 +1,11 @@
 ---
+
 name: lantern-data-simulation
 description: Generating plausible synthetic lantern fleet state (position, fuel, wick health, release events) for demo and test scenarios
 category: workflow
 triggers:
   - lantern data simulation
-tags:
-  - auto-loop
+tags: [workflow, lantern, data, simulation, test, release]
 version: 1.0.0
 ---
 

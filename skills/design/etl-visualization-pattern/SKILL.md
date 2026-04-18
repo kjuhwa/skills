@@ -1,11 +1,11 @@
 ---
+
 name: etl-visualization-pattern
 description: Canvas-based visual representations for ETL flow, rules, and lineage with node-edge topology
 category: design
 triggers:
   - etl visualization pattern
-tags:
-  - auto-loop
+tags: [design, etl, visualization, node, canvas]
 version: 1.0.0
 ---
 

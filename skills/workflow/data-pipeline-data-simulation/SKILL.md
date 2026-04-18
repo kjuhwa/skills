@@ -1,11 +1,11 @@
 ---
+
 name: data-pipeline-data-simulation
 description: Generating realistic synthetic pipeline telemetry with backpressure, lag, failure modes, and cascading effects
 category: workflow
 triggers:
   - data pipeline data simulation
-tags:
-  - auto-loop
+tags: [workflow, data, pipeline, simulation, synthetic]
 version: 1.0.0
 ---
 

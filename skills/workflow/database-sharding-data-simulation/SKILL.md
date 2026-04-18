@@ -1,11 +1,11 @@
 ---
+
 name: database-sharding-data-simulation
 description: Synthetic workload generator for sharding scenarios using skewed key distributions and configurable hash strategies
 category: workflow
 triggers:
   - database sharding data simulation
-tags:
-  - auto-loop
+tags: [workflow, database, sharding, data, simulation, synthetic]
 version: 1.0.0
 ---
 

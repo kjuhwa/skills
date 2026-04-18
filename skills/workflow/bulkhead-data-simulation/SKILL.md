@@ -1,11 +1,11 @@
 ---
+
 name: bulkhead-data-simulation
 description: Generating realistic traffic patterns that exercise bulkhead isolation and failure containment
 category: workflow
 triggers:
   - bulkhead data simulation
-tags:
-  - auto-loop
+tags: [workflow, bulkhead, data, simulation]
 version: 1.0.0
 ---
 

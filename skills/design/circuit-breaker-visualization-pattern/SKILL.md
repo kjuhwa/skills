@@ -1,11 +1,11 @@
 ---
+
 name: circuit-breaker-visualization-pattern
 description: Three-state circuit breaker visualization using color-coded state machine with real-time metrics dashboard
 category: design
 triggers:
   - circuit breaker visualization pattern
-tags:
-  - auto-loop
+tags: [design, circuit, breaker, visualization, metrics, dashboard]
 version: 1.0.0
 ---
 

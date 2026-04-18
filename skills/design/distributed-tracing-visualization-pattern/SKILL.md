@@ -1,11 +1,11 @@
 ---
+
 name: distributed-tracing-visualization-pattern
 description: Three complementary views (waterfall, service graph, latency heatmap) for reasoning about distributed traces
 category: design
 triggers:
   - distributed tracing visualization pattern
-tags:
-  - auto-loop
+tags: [design, distributed, tracing, visualization]
 version: 1.0.0
 ---
 

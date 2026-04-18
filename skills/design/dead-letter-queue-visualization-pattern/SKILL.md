@@ -1,11 +1,11 @@
 ---
+
 name: dead-letter-queue-visualization-pattern
 description: Visual patterns for surfacing DLQ message flow, failure reasons, and replay decisions in triage UIs
 category: design
 triggers:
   - dead letter queue visualization pattern
-tags:
-  - auto-loop
+tags: [design, dead, letter, queue, visualization]
 version: 1.0.0
 ---
 

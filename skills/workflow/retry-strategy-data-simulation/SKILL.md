@@ -1,11 +1,11 @@
 ---
+
 name: retry-strategy-data-simulation
 description: Generate synthetic failure streams and retry attempts to stress-test backoff, jitter, and budget policies
 category: workflow
 triggers:
   - retry strategy data simulation
-tags:
-  - auto-loop
+tags: [workflow, retry, strategy, data, simulation, test]
 version: 1.0.0
 ---
 

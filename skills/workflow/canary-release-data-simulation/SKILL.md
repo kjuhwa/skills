@@ -1,11 +1,11 @@
 ---
+
 name: canary-release-data-simulation
 description: Deterministic synthetic generator for canary traffic, SLO metrics, and bake-time gate evaluations
 category: workflow
 triggers:
   - canary release data simulation
-tags:
-  - auto-loop
+tags: [workflow, canary, release, data, simulation, metrics]
 version: 1.0.0
 ---
 

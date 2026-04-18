@@ -1,11 +1,11 @@
 ---
+
 name: dead-letter-queue-data-simulation
 description: Generating realistic DLQ fixtures with clustered failure signatures, retry metadata, and replay outcomes
 category: workflow
 triggers:
   - dead letter queue data simulation
-tags:
-  - auto-loop
+tags: [workflow, dead, letter, queue, data, simulation]
 version: 1.0.0
 ---
 

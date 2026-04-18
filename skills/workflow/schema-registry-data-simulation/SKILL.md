@@ -1,11 +1,11 @@
 ---
+
 name: schema-registry-data-simulation
 description: Generating realistic synthetic schema evolution histories for registry demos and tests
 category: workflow
 triggers:
   - schema registry data simulation
-tags:
-  - auto-loop
+tags: [workflow, schema, registry, data, simulation, test]
 version: 1.0.0
 ---
 

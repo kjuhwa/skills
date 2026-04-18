@@ -1,11 +1,11 @@
 ---
+
 name: minimal-key-movement-rebalance-diff
 description: Compute the set of keys that must move when a shard is added/removed by diffing ring ownership before and after.
 category: algorithms
 triggers:
   - minimal key movement rebalance diff
-tags:
-  - auto-loop
+tags: [algorithms, minimal, key, movement, rebalance, diff]
 version: 1.0.0
 ---
 

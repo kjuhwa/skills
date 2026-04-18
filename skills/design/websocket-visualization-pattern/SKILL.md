@@ -1,11 +1,11 @@
 ---
+
 name: websocket-visualization-pattern
 description: Canvas/SVG-based frame-level visualization for WebSocket protocol state, handshake phases, and message flow
 category: design
 triggers:
   - websocket visualization pattern
-tags:
-  - auto-loop
+tags: [design, websocket, visualization, canvas, svg]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: idempotency-data-simulation
 description: Generating realistic duplicate-request streams, key-collision scenarios, and retry storms to stress-test idempotency implementations.
 category: workflow
 triggers:
   - idempotency data simulation
-tags:
-  - auto-loop
+tags: [workflow, idempotency, data, simulation, test]
 version: 1.0.0
 ---
 

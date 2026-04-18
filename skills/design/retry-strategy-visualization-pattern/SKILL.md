@@ -1,11 +1,11 @@
 ---
+
 name: retry-strategy-visualization-pattern
 description: Visualize retry attempts as timeline tracks with backoff intervals, jitter bands, and terminal outcome markers
 category: design
 triggers:
   - retry strategy visualization pattern
-tags:
-  - auto-loop
+tags: [design, retry, strategy, visualization, visualize]
 version: 1.0.0
 ---
 

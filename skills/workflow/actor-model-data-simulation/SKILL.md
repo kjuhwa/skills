@@ -1,11 +1,11 @@
 ---
+
 name: actor-model-data-simulation
 description: Generate realistic actor workloads with crashes, backpressure, and supervision restarts for demos
 category: workflow
 triggers:
   - actor model data simulation
-tags:
-  - auto-loop
+tags: [workflow, actor, model, data, simulation, rest]
 version: 1.0.0
 ---
 

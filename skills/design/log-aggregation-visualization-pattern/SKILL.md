@@ -1,11 +1,11 @@
 ---
+
 name: log-aggregation-visualization-pattern
 description: Visual patterns for rendering streaming logs, heatmap density, and query-filtered timelines in log aggregation UIs
 category: design
 triggers:
   - log aggregation visualization pattern
-tags:
-  - auto-loop
+tags: [design, log, aggregation, visualization, streaming]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: message-queue-visualization-pattern
 description: Canvas-based rendering pattern for animating message flow through producers, queues, and consumers
 category: design
 triggers:
   - message queue visualization pattern
-tags:
-  - auto-loop
+tags: [design, message, queue, visualization, canvas]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: chaos-engineering-visualization-pattern
 description: Visualizing blast radius, failure propagation, and steady-state deviation in chaos experiments
 category: design
 triggers:
   - chaos engineering visualization pattern
-tags:
-  - auto-loop
+tags: [design, chaos, engineering, visualization]
 version: 1.0.0
 ---
 

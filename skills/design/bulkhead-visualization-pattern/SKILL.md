@@ -1,11 +1,11 @@
 ---
+
 name: bulkhead-visualization-pattern
 description: Visual layout conventions for rendering isolated resource pools side-by-side with saturation indicators
 category: design
 triggers:
   - bulkhead visualization pattern
-tags:
-  - auto-loop
+tags: [design, bulkhead, visualization]
 version: 1.0.0
 ---
 

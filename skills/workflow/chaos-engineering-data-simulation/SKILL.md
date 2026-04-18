@@ -1,11 +1,11 @@
 ---
+
 name: chaos-engineering-data-simulation
 description: Generating realistic fault-injection scenarios, blast radii, and recovery curves without a real cluster
 category: workflow
 triggers:
   - chaos engineering data simulation
-tags:
-  - auto-loop
+tags: [workflow, chaos, engineering, data, simulation]
 version: 1.0.0
 ---
 

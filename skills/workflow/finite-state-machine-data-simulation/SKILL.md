@@ -1,11 +1,11 @@
 ---
+
 name: finite-state-machine-data-simulation
 description: Drive FSM demos with a deterministic event queue plus auto-play timer so users can step, reset, and replay transitions reproducibly.
 category: workflow
 triggers:
   - finite state machine data simulation
-tags:
-  - auto-loop
+tags: [workflow, finite, state, machine, data, simulation]
 version: 1.0.0
 ---
 

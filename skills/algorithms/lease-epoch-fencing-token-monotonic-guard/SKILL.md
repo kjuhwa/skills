@@ -1,11 +1,11 @@
 ---
+
 name: lease-epoch-fencing-token-monotonic-guard
 description: Reject stale leader writes using a monotonic epoch/fencing token rather than just liveness checks
 category: algorithms
 triggers:
   - lease epoch fencing token monotonic guard
-tags:
-  - auto-loop
+tags: [algorithms, lease, epoch, fencing, token, monotonic]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: strangler-fig-data-simulation
 description: Synthetic endpoint/route inventory with migration-state machine and traffic-split fixtures for strangler-fig demos
 category: workflow
 triggers:
   - strangler fig data simulation
-tags:
-  - auto-loop
+tags: [workflow, strangler, fig, data, simulation, migration]
 version: 1.0.0
 ---
 

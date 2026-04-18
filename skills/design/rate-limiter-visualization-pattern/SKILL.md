@@ -1,11 +1,11 @@
 ---
+
 name: rate-limiter-visualization-pattern
 description: Visual patterns for rendering token buckets, sliding windows, and quota consumption in real-time dashboards
 category: design
 triggers:
   - rate limiter visualization pattern
-tags:
-  - auto-loop
+tags: [design, rate, limiter, visualization, dashboard]
 version: 1.0.0
 ---
 

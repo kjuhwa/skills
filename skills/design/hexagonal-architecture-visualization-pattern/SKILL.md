@@ -1,11 +1,11 @@
 ---
+
 name: hexagonal-architecture-visualization-pattern
 description: Render the hexagon with domain core centered and ports/adapters radiating outward through driving/driven lanes
 category: design
 triggers:
   - hexagonal architecture visualization pattern
-tags:
-  - auto-loop
+tags: [design, hexagonal, architecture, visualization]
 version: 1.0.0
 ---
 

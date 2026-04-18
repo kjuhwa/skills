@@ -1,11 +1,11 @@
 ---
+
 name: webaudio-burst-schedule-melody-with-raf-playhead
 description: Play a pre-computed note list by scheduling every oscillator upfront on the AudioContext clock, while JS only drives a requestAnimationFrame playhead.
 category: frontend
 triggers:
   - webaudio burst schedule melody with raf playhead
-tags:
-  - auto-loop
+tags: [frontend, webaudio, burst, schedule, melody, raf]
 version: 1.0.0
 ---
 

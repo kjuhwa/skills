@@ -1,11 +1,11 @@
 ---
+
 name: crdt-visualization-pattern
 description: Side-by-side replica panels with convergence indicators for visualizing CRDT state synchronization
 category: design
 triggers:
   - crdt visualization pattern
-tags:
-  - auto-loop
+tags: [design, crdt, visualization]
 version: 1.0.0
 ---
 

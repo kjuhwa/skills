@@ -1,11 +1,11 @@
 ---
+
 name: read-replica-visualization-pattern
 description: Canvas-based topology visualization for primary-replica clusters with lag indicators and routing flows
 category: design
 triggers:
   - read replica visualization pattern
-tags:
-  - auto-loop
+tags: [design, read, replica, visualization, canvas]
 version: 1.0.0
 ---
 

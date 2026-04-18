@@ -1,11 +1,11 @@
 ---
+
 name: idempotency-visualization-pattern
 description: Visual patterns for demonstrating idempotency guarantees through request replay, key-based deduplication, and state convergence animations.
 category: design
 triggers:
   - idempotency visualization pattern
-tags:
-  - auto-loop
+tags: [design, idempotency, visualization]
 version: 1.0.0
 ---
 

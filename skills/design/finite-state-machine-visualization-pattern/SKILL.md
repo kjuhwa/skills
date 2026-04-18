@@ -1,11 +1,11 @@
 ---
+
 name: finite-state-machine-visualization-pattern
 description: Render FSM states as a node graph with animated active-state highlighting and transition edge pulses driven by the current state variable.
 category: design
 triggers:
   - finite state machine visualization pattern
-tags:
-  - auto-loop
+tags: [design, finite, state, machine, visualization, node]
 version: 1.0.0
 ---
 

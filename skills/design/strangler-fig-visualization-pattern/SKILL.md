@@ -1,11 +1,11 @@
 ---
+
 name: strangler-fig-visualization-pattern
 description: Side-by-side legacy/new system visualization with traffic routing overlay for strangler-fig migration apps
 category: design
 triggers:
   - strangler fig visualization pattern
-tags:
-  - auto-loop
+tags: [design, strangler, fig, visualization, migration]
 version: 1.0.0
 ---
 

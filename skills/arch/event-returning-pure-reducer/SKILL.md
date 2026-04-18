@@ -1,11 +1,11 @@
 ---
+
 name: event-returning-pure-reducer
 description: State reducer that returns `{state, events, done}` so UI layer renders new state and appends to a log in one pass without the reducer touching DOM.
 category: arch
 triggers:
   - event returning pure reducer
-tags:
-  - auto-loop
+tags: [arch, event, returning, pure, reducer]
 version: 1.0.0
 ---
 

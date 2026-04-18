@@ -1,11 +1,11 @@
 ---
+
 name: blue-green-deploy-data-simulation
 description: Deterministic state-machine generator for blue-green cutover phases with realistic traffic drain and health-check dynamics
 category: workflow
 triggers:
   - blue green deploy data simulation
-tags:
-  - auto-loop
+tags: [workflow, blue, green, deploy, data, simulation]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: materialized-view-visualization-pattern
 description: Visual layout conventions for rendering materialized view lifecycle (base tables → MV → queries) with staleness indicators
 category: design
 triggers:
   - materialized view visualization pattern
-tags:
-  - auto-loop
+tags: [design, materialized, view, visualization]
 version: 1.0.0
 ---
 

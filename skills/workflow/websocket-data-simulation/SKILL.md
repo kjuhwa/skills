@@ -1,11 +1,11 @@
 ---
+
 name: websocket-data-simulation
 description: Deterministic fake WebSocket traffic generator with opcode/frame fidelity for offline demos
 category: workflow
 triggers:
   - websocket data simulation
-tags:
-  - auto-loop
+tags: [workflow, websocket, data, simulation]
 version: 1.0.0
 ---
 

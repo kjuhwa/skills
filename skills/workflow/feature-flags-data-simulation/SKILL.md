@@ -1,11 +1,11 @@
 ---
+
 name: feature-flags-data-simulation
 description: Synthetic data generation for feature-flag rollouts, dependencies, and experiments
 category: workflow
 triggers:
   - feature flags data simulation
-tags:
-  - auto-loop
+tags: [workflow, feature, flags, data, simulation, synthetic]
 version: 1.0.0
 ---
 

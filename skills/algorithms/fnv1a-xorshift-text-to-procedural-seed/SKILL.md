@@ -1,11 +1,11 @@
 ---
+
 name: fnv1a-xorshift-text-to-procedural-seed
 description: Deterministically turn any user text into repeatable procedural layouts using FNV-1a + xorshift32.
 category: algorithms
 triggers:
   - fnv1a xorshift text to procedural seed
-tags:
-  - auto-loop
+tags: [algorithms, fnv1a, xorshift, text, procedural, seed]
 version: 1.0.0
 ---
 

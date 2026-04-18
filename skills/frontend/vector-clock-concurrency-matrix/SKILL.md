@@ -1,11 +1,11 @@
 ---
+
 name: vector-clock-concurrency-matrix
 description: Render N×N pairwise happens-before/concurrent relation grid from a set of vector-clock-stamped events for instant causal inspection.
 category: frontend
 triggers:
   - vector clock concurrency matrix
-tags:
-  - auto-loop
+tags: [frontend, vector, clock, concurrency, matrix]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: barrier-alignment-buffer-spill
 description: Buffer post-barrier records from fast channels while waiting for slow channels, spilling to disk when buffer exceeds threshold.
 category: backend
 triggers:
   - barrier alignment buffer spill
-tags:
-  - auto-loop
+tags: [backend, barrier, alignment, buffer, spill]
 version: 1.0.0
 ---
 

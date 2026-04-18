@@ -1,11 +1,11 @@
 ---
+
 name: parallax-sine-silhouette-horizon
 description: Multi-layer animated horizon backdrop built from 3-N sine-displaced silhouette polygons with decreasing opacity and rising baselines for cheap parallax depth.
 category: design
 triggers:
   - parallax sine silhouette horizon
-tags:
-  - auto-loop
+tags: [design, parallax, sine, silhouette, horizon]
 version: 1.0.0
 ---
 

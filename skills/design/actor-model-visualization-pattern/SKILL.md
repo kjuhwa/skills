@@ -1,11 +1,11 @@
 ---
+
 name: actor-model-visualization-pattern
 description: Render actor mailboxes, supervision trees, and message flows as live, inspectable graphs
 category: design
 triggers:
   - actor model visualization pattern
-tags:
-  - auto-loop
+tags: [design, actor, model, visualization]
 version: 1.0.0
 ---
 

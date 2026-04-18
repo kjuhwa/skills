@@ -1,11 +1,11 @@
 ---
+
 name: database-sharding-visualization-pattern
 description: Canvas-based rendering pattern for visualizing shard topology, key distribution, and routing decisions in database sharding systems
 category: design
 triggers:
   - database sharding visualization pattern
-tags:
-  - auto-loop
+tags: [design, database, sharding, visualization, canvas]
 version: 1.0.0
 ---
 

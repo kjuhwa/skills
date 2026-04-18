@@ -1,11 +1,11 @@
 ---
+
 name: pub-sub-visualization-pattern
 description: Canvas-based visualization showing topic channels, publishers fanning out messages to multiple subscribers with animated message particles
 category: design
 triggers:
   - pub sub visualization pattern
-tags:
-  - auto-loop
+tags: [design, pub, sub, visualization, canvas]
 version: 1.0.0
 ---
 

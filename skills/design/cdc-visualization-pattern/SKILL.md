@@ -1,11 +1,11 @@
 ---
+
 name: cdc-visualization-pattern
 description: Visualizing CDC event flow from source database through log capture to downstream consumers with row-level change granularity
 category: design
 triggers:
   - cdc visualization pattern
-tags:
-  - auto-loop
+tags: [design, cdc, visualization]
 version: 1.0.0
 ---
 

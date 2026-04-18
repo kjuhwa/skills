@@ -1,11 +1,11 @@
 ---
+
 name: tombstone-horizon-with-snapshot-pinned-retention
 description: Tombstones can only be GC'd once no snapshot or reader lease still needs them, tracked via a monotonic horizon watermark.
 category: algorithms
 triggers:
   - tombstone horizon with snapshot pinned retention
-tags:
-  - auto-loop
+tags: [algorithms, tombstone, horizon, snapshot, pinned, retention]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: graphql-data-simulation
 description: Faking GraphQL responses, schemas, and subscription streams for offline demos without a live server
 category: workflow
 triggers:
   - graphql data simulation
-tags:
-  - auto-loop
+tags: [workflow, graphql, data, simulation, schema]
 version: 1.0.0
 ---
 

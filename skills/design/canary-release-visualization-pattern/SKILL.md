@@ -1,11 +1,11 @@
 ---
+
 name: canary-release-visualization-pattern
 description: Split-lane visualization showing stable vs canary traffic flow with weighted percentage bands and promotion gates
 category: design
 triggers:
   - canary release visualization pattern
-tags:
-  - auto-loop
+tags: [design, canary, release, visualization]
 version: 1.0.0
 ---
 

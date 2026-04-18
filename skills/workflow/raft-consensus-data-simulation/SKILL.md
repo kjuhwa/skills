@@ -1,11 +1,11 @@
 ---
+
 name: raft-consensus-data-simulation
 description: Deterministic event stream generation for Raft scenarios covering elections, replication, and term changes
 category: workflow
 triggers:
   - raft consensus data simulation
-tags:
-  - auto-loop
+tags: [workflow, raft, consensus, data, simulation, replication]
 version: 1.0.0
 ---
 

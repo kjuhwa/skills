@@ -1,11 +1,11 @@
 ---
+
 name: bff-pattern-data-simulation
 description: Generate realistic BFF traffic by simulating per-client request shapes, parallel backend fan-out with varied latency, and client-specific response trimming
 category: workflow
 triggers:
   - bff pattern data simulation
-tags:
-  - auto-loop
+tags: [workflow, bff, data, simulation, parallel]
 version: 1.0.0
 ---
 

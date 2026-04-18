@@ -1,11 +1,11 @@
 ---
+
 name: feature-flags-visualization-pattern
 description: Visualization pattern for feature-flag rollout, dependency, and A/B experiment dashboards
 category: design
 triggers:
   - feature flags visualization pattern
-tags:
-  - auto-loop
+tags: [design, feature, flags, visualization, dashboard]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: watermark-aligned-window-emitter
 description: Emit windowed aggregates only when the minimum watermark across all input partitions advances past the window close edge.
 category: algorithms
 triggers:
   - watermark aligned window emitter
-tags:
-  - auto-loop
+tags: [algorithms, watermark, aligned, window, emitter]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: blue-green-deploy-visualization-pattern
 description: Dual-environment (Blue/Active vs Green/Idle) side-by-side canvas with traffic-router arrow and version badges for blue-green deployment dashboards
 category: design
 triggers:
   - blue green deploy visualization pattern
-tags:
-  - auto-loop
+tags: [design, blue, green, deploy, visualization, deployment]
 version: 1.0.0
 ---
 

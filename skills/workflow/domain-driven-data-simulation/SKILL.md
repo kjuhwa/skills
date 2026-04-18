@@ -1,11 +1,11 @@
 ---
+
 name: domain-driven-data-simulation
 description: Generating synthetic bounded contexts, aggregates, and corpus text for DDD tooling demos
 category: workflow
 triggers:
   - domain driven data simulation
-tags:
-  - auto-loop
+tags: [workflow, domain, driven, data, simulation, synthetic]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: bloom-filter-visualization-pattern
 description: Visualizing bloom filter bit arrays, hash function mappings, and false-positive regions for interactive exploration
 category: design
 triggers:
   - bloom filter visualization pattern
-tags:
-  - auto-loop
+tags: [design, bloom, filter, visualization]
 version: 1.0.0
 ---
 

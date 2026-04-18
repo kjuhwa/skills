@@ -1,11 +1,11 @@
 ---
+
 name: oauth-data-simulation
 description: Generating realistic OAuth tokens, flow states, and scope sets for client-side simulators without a real auth server
 category: workflow
 triggers:
   - oauth data simulation
-tags:
-  - auto-loop
+tags: [workflow, oauth, data, simulation, auth]
 version: 1.0.0
 ---
 

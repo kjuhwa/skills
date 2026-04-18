@@ -1,11 +1,11 @@
 ---
+
 name: distributed-tracing-data-simulation
 description: Generating realistic synthetic trace data with parent-child causality, latency distributions, and injected faults
 category: workflow
 triggers:
   - distributed tracing data simulation
-tags:
-  - auto-loop
+tags: [workflow, distributed, tracing, data, simulation, synthetic]
 version: 1.0.0
 ---
 

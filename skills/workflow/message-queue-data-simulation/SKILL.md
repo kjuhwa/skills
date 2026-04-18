@@ -1,11 +1,11 @@
 ---
+
 name: message-queue-data-simulation
 description: Deterministic producer-consumer event generation for reproducible queue behavior demos
 category: workflow
 triggers:
   - message queue data simulation
-tags:
-  - auto-loop
+tags: [workflow, message, queue, data, simulation]
 version: 1.0.0
 ---
 

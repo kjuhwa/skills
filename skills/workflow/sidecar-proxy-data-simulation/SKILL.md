@@ -1,11 +1,11 @@
 ---
+
 name: sidecar-proxy-data-simulation
 description: Generate synthetic sidecar proxy traffic with realistic latency, retry, and mTLS handshake semantics.
 category: workflow
 triggers:
   - sidecar proxy data simulation
-tags:
-  - auto-loop
+tags: [workflow, sidecar, proxy, data, simulation, synthetic]
 version: 1.0.0
 ---
 

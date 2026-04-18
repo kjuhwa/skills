@@ -1,11 +1,11 @@
 ---
+
 name: api-versioning-data-simulation
 description: Generating realistic fixture data for API version timelines, diffs, and traffic migration curves
 category: workflow
 triggers:
   - api versioning data simulation
-tags:
-  - auto-loop
+tags: [workflow, api, versioning, data, simulation, migration]
 version: 1.0.0
 ---
 

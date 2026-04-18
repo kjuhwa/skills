@@ -1,11 +1,11 @@
 ---
+
 name: load-balancer-data-simulation
 description: Deterministic seeded traffic generator for exercising load balancer algorithms with reproducible scenarios
 category: workflow
 triggers:
   - load balancer data simulation
-tags:
-  - auto-loop
+tags: [workflow, load, balancer, data, simulation]
 version: 1.0.0
 ---
 

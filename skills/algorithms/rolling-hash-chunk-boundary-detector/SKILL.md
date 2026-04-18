@@ -1,11 +1,11 @@
 ---
+
 name: rolling-hash-chunk-boundary-detector
 description: Use content-defined chunking via rolling hash to produce stable segment boundaries across divergent replicas before diffing.
 category: algorithms
 triggers:
   - rolling hash chunk boundary detector
-tags:
-  - auto-loop
+tags: [algorithms, rolling, hash, chunk, boundary, detector]
 version: 1.0.0
 ---
 

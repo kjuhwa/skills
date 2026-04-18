@@ -1,11 +1,11 @@
 ---
+
 name: log-aggregation-data-simulation
 description: Generating realistic synthetic log streams with bursts, level distributions, and source correlation for demo UIs
 category: workflow
 triggers:
   - log aggregation data simulation
-tags:
-  - auto-loop
+tags: [workflow, log, aggregation, data, simulation, synthetic]
 version: 1.0.0
 ---
 

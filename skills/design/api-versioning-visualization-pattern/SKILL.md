@@ -1,11 +1,11 @@
 ---
+
 name: api-versioning-visualization-pattern
 description: Multi-view composition for rendering API version lifecycles, schema diffs, and traffic splits side-by-side
 category: design
 triggers:
   - api versioning visualization pattern
-tags:
-  - auto-loop
+tags: [design, api, versioning, visualization, schema]
 version: 1.0.0
 ---
 

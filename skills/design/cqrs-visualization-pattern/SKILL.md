@@ -1,11 +1,11 @@
 ---
+
 name: cqrs-visualization-pattern
 description: Split-panel visualization showing command-side writes and query-side reads as distinct, independently-scaling lanes with a projection bridge between them.
 category: design
 triggers:
   - cqrs visualization pattern
-tags:
-  - auto-loop
+tags: [design, cqrs, visualization]
 version: 1.0.0
 ---
 

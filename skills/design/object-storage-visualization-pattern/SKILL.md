@@ -1,11 +1,11 @@
 ---
+
 name: object-storage-visualization-pattern
 description: Canvas/SVG patterns for visualizing object storage buckets, objects, and replication topologies
 category: design
 triggers:
   - object storage visualization pattern
-tags:
-  - auto-loop
+tags: [design, object, storage, visualization, replication, canvas]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: graphql-visualization-pattern
 description: Visualizing GraphQL operations (queries, schemas, subscriptions) through interactive node-graph and live-feed UIs
 category: design
 triggers:
   - graphql visualization pattern
-tags:
-  - auto-loop
+tags: [design, graphql, visualization, node, schema]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: canvas-svg-dual-layer-hit-dispatch
 description: Composite scene from an animated `<canvas>` plus an overlaid `<svg>`, routing pointer events to the layer that owns each element class.
 category: frontend
 triggers:
   - canvas svg dual layer hit dispatch
-tags:
-  - auto-loop
+tags: [frontend, canvas, svg, dual, layer, hit]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: circuit-breaker-data-simulation
 description: Deterministic synthetic call stream generator for circuit breaker state machine demonstrations
 category: workflow
 triggers:
   - circuit breaker data simulation
-tags:
-  - auto-loop
+tags: [workflow, circuit, breaker, data, simulation, synthetic]
 version: 1.0.0
 ---
 

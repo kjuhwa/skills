@@ -1,11 +1,11 @@
 ---
+
 name: saga-pattern-data-simulation
 description: Generate realistic saga transaction data with failure injection, compensation chains, and participant latency
 category: workflow
 triggers:
   - saga pattern data simulation
-tags:
-  - auto-loop
+tags: [workflow, saga, data, simulation, transaction]
 version: 1.0.0
 ---
 

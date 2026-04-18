@@ -1,11 +1,11 @@
 ---
+
 name: read-replica-data-simulation
 description: Synthetic replication-log generator with configurable lag distributions and consistency violation injection
 category: workflow
 triggers:
   - read replica data simulation
-tags:
-  - auto-loop
+tags: [workflow, read, replica, data, simulation, replication]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: service-mesh-visualization-pattern
 description: Rendering sidecar proxies, control plane, and east-west traffic flows as an interactive topology graph
 category: design
 triggers:
   - service mesh visualization pattern
-tags:
-  - auto-loop
+tags: [design, service, mesh, visualization]
 version: 1.0.0
 ---
 

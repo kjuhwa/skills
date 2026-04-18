@@ -1,11 +1,11 @@
 ---
+
 name: cqrs-data-simulation
 description: Generate correlated command/event/projection streams with tunable skew so read-model lag and replay behavior are observable.
 category: workflow
 triggers:
   - cqrs data simulation
-tags:
-  - auto-loop
+tags: [workflow, cqrs, data, simulation]
 version: 1.0.0
 ---
 

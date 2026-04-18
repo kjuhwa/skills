@@ -1,11 +1,11 @@
 ---
+
 name: hexagonal-architecture-data-simulation
 description: Seed realistic port traffic with paired driving/driven adapter pairs and domain invariants that make violations visible
 category: workflow
 triggers:
   - hexagonal architecture data simulation
-tags:
-  - auto-loop
+tags: [workflow, hexagonal, architecture, data, simulation]
 version: 1.0.0
 ---
 

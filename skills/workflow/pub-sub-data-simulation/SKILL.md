@@ -1,11 +1,11 @@
 ---
+
 name: pub-sub-data-simulation
 description: Generate realistic pub-sub traffic with topic hierarchies, bursty publishers, and heterogeneous subscriber latencies
 category: workflow
 triggers:
   - pub sub data simulation
-tags:
-  - auto-loop
+tags: [workflow, pub, sub, data, simulation, pub-sub]
 version: 1.0.0
 ---
 

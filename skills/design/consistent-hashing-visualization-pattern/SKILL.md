@@ -1,11 +1,11 @@
 ---
+
 name: consistent-hashing-visualization-pattern
 description: Ring-based SVG/Canvas rendering pattern for visualizing consistent hashing node placement and key distribution
 category: design
 triggers:
   - consistent hashing visualization pattern
-tags:
-  - auto-loop
+tags: [design, consistent, hashing, visualization, node, canvas]
 version: 1.0.0
 ---
 

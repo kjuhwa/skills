@@ -1,11 +1,11 @@
 ---
+
 name: health-check-data-simulation
 description: Generate realistic health-check sample streams with correlated failures, flapping, and recovery curves for demos and tests
 category: workflow
 triggers:
   - health check data simulation
-tags:
-  - auto-loop
+tags: [workflow, health, check, data, simulation, test]
 version: 1.0.0
 ---
 

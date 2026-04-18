@@ -1,11 +1,11 @@
 ---
+
 name: schema-registry-visualization-pattern
 description: Visualization patterns for schema registry evolution, compatibility, and dependency graphs
 category: design
 triggers:
   - schema registry visualization pattern
-tags:
-  - auto-loop
+tags: [design, schema, registry, visualization]
 version: 1.0.0
 ---
 

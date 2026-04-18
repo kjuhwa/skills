@@ -1,11 +1,11 @@
 ---
+
 name: time-series-db-data-simulation
 description: Generate synthetic TSDB workloads using layered signal components (trend + seasonality + noise + anomalies) with back-dated timestamps.
 category: workflow
 triggers:
   - time series db data simulation
-tags:
-  - auto-loop
+tags: [workflow, time, series, data, simulation, synthetic]
 version: 1.0.0
 ---
 

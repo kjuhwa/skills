@@ -1,11 +1,11 @@
 ---
+
 name: changelog-compaction-tombstone-retention
 description: State-backend changelog topics need tombstone retention longer than compaction interval to survive consumer rebalance gaps.
 category: backend
 triggers:
   - changelog compaction tombstone retention
-tags:
-  - auto-loop
+tags: [backend, changelog, compaction, tombstone, retention]
 version: 1.0.0
 ---
 

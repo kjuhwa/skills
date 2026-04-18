@@ -1,11 +1,11 @@
 ---
+
 name: concurrent-edit-merge-arbitration-table
 description: Resolve concurrent replica writes via a deterministic tie-breaker table keyed on causal-compare results plus a stable replica priority.
 category: algorithms
 triggers:
   - concurrent edit merge arbitration table
-tags:
-  - auto-loop
+tags: [algorithms, concurrent, edit, merge, arbitration, table]
 version: 1.0.0
 ---
 

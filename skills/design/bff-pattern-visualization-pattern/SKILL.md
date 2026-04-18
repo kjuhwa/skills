@@ -1,11 +1,11 @@
 ---
+
 name: bff-pattern-visualization-pattern
 description: Visualize BFF fan-out by rendering per-client gateways as distinct swim lanes that aggregate multiple backend service calls into a single client response
 category: design
 triggers:
   - bff pattern visualization pattern
-tags:
-  - auto-loop
+tags: [design, bff, visualization, visualize]
 version: 1.0.0
 ---
 

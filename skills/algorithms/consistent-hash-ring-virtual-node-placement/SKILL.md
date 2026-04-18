@@ -1,11 +1,11 @@
 ---
+
 name: consistent-hash-ring-virtual-node-placement
 description: Place virtual nodes on a hash ring using salted hashes to smooth load distribution across physical shards.
 category: algorithms
 triggers:
   - consistent hash ring virtual node placement
-tags:
-  - auto-loop
+tags: [algorithms, consistent, hash, ring, virtual, node]
 version: 1.0.0
 ---
 

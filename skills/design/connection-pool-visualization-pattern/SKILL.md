@@ -1,11 +1,11 @@
 ---
+
 name: connection-pool-visualization-pattern
 description: Visual conventions for rendering connection pool state, connection lifecycles, and waiter queues in real-time dashboards
 category: design
 triggers:
   - connection pool visualization pattern
-tags:
-  - auto-loop
+tags: [design, connection, pool, visualization, dashboard]
 version: 1.0.0
 ---
 

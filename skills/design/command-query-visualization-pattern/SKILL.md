@@ -1,11 +1,11 @@
 ---
+
 name: command-query-visualization-pattern
 description: Split-pane UI that visually separates command write paths from query read paths in CQRS systems
 category: design
 triggers:
   - command query visualization pattern
-tags:
-  - auto-loop
+tags: [design, command, query, visualization, cqrs]
 version: 1.0.0
 ---
 

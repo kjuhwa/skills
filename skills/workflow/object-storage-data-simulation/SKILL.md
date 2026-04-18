@@ -1,11 +1,11 @@
 ---
+
 name: object-storage-data-simulation
 description: Generating realistic synthetic object storage datasets with proper size/access distributions
 category: workflow
 triggers:
   - object storage data simulation
-tags:
-  - auto-loop
+tags: [workflow, object, storage, data, simulation, rag]
 version: 1.0.0
 ---
 

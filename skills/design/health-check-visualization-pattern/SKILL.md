@@ -1,11 +1,11 @@
 ---
+
 name: health-check-visualization-pattern
 description: Dashboard layout pattern for rendering heterogeneous health-check signals into a single at-a-glance status surface
 category: design
 triggers:
   - health check visualization pattern
-tags:
-  - auto-loop
+tags: [design, health, check, visualization, dashboard]
 version: 1.0.0
 ---
 

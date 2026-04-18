@@ -1,11 +1,10 @@
 ---
+
 version: 0.1.0-draft
 name: divide-by-zero-rate-guard
 description: Rate/throughput computations over rolling windows silently explode when the window contains only one sample or zero elapsed time.
 category: pitfall
-tags:
-  - auto
-  - auto-loop
+tags: [pitfall, divide, zero, rate, guard]
 ---
 
 # divide-by-zero-rate-guard

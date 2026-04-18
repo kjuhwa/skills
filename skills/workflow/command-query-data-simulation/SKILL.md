@@ -1,11 +1,11 @@
 ---
+
 name: command-query-data-simulation
 description: Generate realistic command/query/event streams with controllable lag and conflict patterns for CQRS demos
 category: workflow
 triggers:
   - command query data simulation
-tags:
-  - auto-loop
+tags: [workflow, command, query, data, simulation, cqrs]
 version: 1.0.0
 ---
 

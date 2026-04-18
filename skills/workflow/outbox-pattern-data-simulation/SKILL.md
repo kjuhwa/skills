@@ -1,11 +1,11 @@
 ---
+
 name: outbox-pattern-data-simulation
 description: Generate deterministic outbox event streams with configurable failure and duplicate scenarios for demos
 category: workflow
 triggers:
   - outbox pattern data simulation
-tags:
-  - auto-loop
+tags: [workflow, outbox, data, simulation]
 version: 1.0.0
 ---
 

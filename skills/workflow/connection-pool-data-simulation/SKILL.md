@@ -1,11 +1,11 @@
 ---
+
 name: connection-pool-data-simulation
 description: Deterministic simulation model for generating realistic connection pool workloads across acquisition, validation, and eviction events
 category: workflow
 triggers:
   - connection pool data simulation
-tags:
-  - auto-loop
+tags: [workflow, connection, pool, data, simulation]
 version: 1.0.0
 ---
 

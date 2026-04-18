@@ -1,11 +1,11 @@
 ---
+
 name: rate-limiter-data-simulation
 description: Generating realistic request arrival patterns to stress-test rate limiter algorithms in demo apps
 category: workflow
 triggers:
   - rate limiter data simulation
-tags:
-  - auto-loop
+tags: [workflow, rate, limiter, data, simulation, test]
 version: 1.0.0
 ---
 

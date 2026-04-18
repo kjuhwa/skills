@@ -1,11 +1,11 @@
 ---
+
 name: domain-driven-visualization-pattern
 description: Rendering bounded contexts, aggregates, and ubiquitous language as navigable maps with relationship overlays
 category: design
 triggers:
   - domain driven visualization pattern
-tags:
-  - auto-loop
+tags: [design, domain, driven, visualization]
 version: 1.0.0
 ---
 

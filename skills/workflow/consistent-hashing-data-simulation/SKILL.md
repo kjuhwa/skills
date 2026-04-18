@@ -1,11 +1,11 @@
 ---
+
 name: consistent-hashing-data-simulation
 description: Workflow for generating reproducible node/key datasets and rebalance event streams for consistent-hashing demos
 category: workflow
 triggers:
   - consistent hashing data simulation
-tags:
-  - auto-loop
+tags: [workflow, consistent, hashing, data, simulation, node]
 version: 1.0.0
 ---
 

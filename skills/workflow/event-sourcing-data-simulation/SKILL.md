@@ -1,11 +1,11 @@
 ---
+
 name: event-sourcing-data-simulation
 description: Generate realistic causally-ordered event streams with aggregate lifecycles for replay demos
 category: workflow
 triggers:
   - event sourcing data simulation
-tags:
-  - auto-loop
+tags: [workflow, event, sourcing, data, simulation]
 version: 1.0.0
 ---
 

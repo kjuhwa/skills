@@ -1,11 +1,11 @@
 ---
+
 name: data-pipeline-visualization-pattern
 description: Visual patterns for rendering multi-stage data pipelines with flow direction, stage health, and throughput indicators
 category: design
 triggers:
   - data pipeline visualization pattern
-tags:
-  - auto-loop
+tags: [design, data, pipeline, visualization]
 version: 1.0.0
 ---
 

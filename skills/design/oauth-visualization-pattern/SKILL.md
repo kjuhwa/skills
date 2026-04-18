@@ -1,11 +1,11 @@
 ---
+
 name: oauth-visualization-pattern
 description: Visualizing OAuth flows, JWT structure, and scope relationships through staged, interactive diagrams
 category: design
 triggers:
   - oauth visualization pattern
-tags:
-  - auto-loop
+tags: [design, oauth, visualization, auth, jwt]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: etl-data-simulation
 description: Deterministic mock ETL data generation with realistic row counts, schemas, and job run histories
 category: workflow
 triggers:
   - etl data simulation
-tags:
-  - auto-loop
+tags: [workflow, etl, data, simulation, schema]
 version: 1.0.0
 ---
 

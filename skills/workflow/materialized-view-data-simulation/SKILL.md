@@ -1,11 +1,11 @@
 ---
+
 name: materialized-view-data-simulation
 description: Generating synthetic base-table writes and refresh cycles to exercise materialized-view behaviors without a real warehouse
 category: workflow
 triggers:
   - materialized view data simulation
-tags:
-  - auto-loop
+tags: [workflow, materialized, view, data, simulation, synthetic]
 version: 1.0.0
 ---
 

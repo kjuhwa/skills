@@ -1,11 +1,11 @@
 ---
+
 name: sidecar-proxy-visualization-pattern
 description: Visualize sidecar proxy topology as paired app+proxy nodes with intercepted traffic flows and policy overlays.
 category: design
 triggers:
   - sidecar proxy visualization pattern
-tags:
-  - auto-loop
+tags: [design, sidecar, proxy, visualization, node, visualize]
 version: 1.0.0
 ---
 

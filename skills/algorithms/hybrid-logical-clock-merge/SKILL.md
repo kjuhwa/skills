@@ -1,11 +1,11 @@
 ---
+
 name: hybrid-logical-clock-merge
 description: Merge wall-clock time with logical counter to get monotonic timestamps that survive clock skew and concurrent events.
 category: algorithms
 triggers:
   - hybrid logical clock merge
-tags:
-  - auto-loop
+tags: [algorithms, hybrid, logical, clock, merge]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: incommensurate-sine-organic-flicker
 description: Compose a natural-looking flicker/sway value by summing 2–3 sine waves whose frequencies are non-integer ratios so the pattern never visibly loops.
 category: frontend
 triggers:
   - incommensurate sine organic flicker
-tags:
-  - auto-loop
+tags: [frontend, incommensurate, sine, organic, flicker]
 version: 1.0.0
 ---
 

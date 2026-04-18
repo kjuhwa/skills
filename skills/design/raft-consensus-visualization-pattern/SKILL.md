@@ -1,11 +1,11 @@
 ---
+
 name: raft-consensus-visualization-pattern
 description: Multi-panel layout for visualizing Raft consensus state across leader election, log replication, and term progression
 category: design
 triggers:
   - raft consensus visualization pattern
-tags:
-  - auto-loop
+tags: [design, raft, consensus, visualization, replication]
 version: 1.0.0
 ---
 

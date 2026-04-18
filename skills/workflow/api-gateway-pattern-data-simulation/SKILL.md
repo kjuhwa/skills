@@ -1,11 +1,11 @@
 ---
+
 name: api-gateway-pattern-data-simulation
 description: Generate realistic gateway traffic with burst patterns, policy hits, and backend-selection skew driven by a seeded PRNG
 category: workflow
 triggers:
   - api gateway pattern data simulation
-tags:
-  - auto-loop
+tags: [workflow, api, gateway, data, simulation]
 version: 1.0.0
 ---
 

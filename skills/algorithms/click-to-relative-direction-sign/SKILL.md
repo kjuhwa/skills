@@ -1,11 +1,11 @@
 ---
+
 name: click-to-relative-direction-sign
 description: Derive a normalized movement vector from any clicked grid cell via `Math.sign(target-current)` on each axis — one click handler covers all 8 directions.
 category: algorithms
 triggers:
   - click to relative direction sign
-tags:
-  - auto-loop
+tags: [algorithms, click, relative, direction, sign]
 version: 1.0.0
 ---
 

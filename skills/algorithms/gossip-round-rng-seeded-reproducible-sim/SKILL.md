@@ -1,11 +1,11 @@
 ---
+
 name: gossip-round-rng-seeded-reproducible-sim
 description: Seed a PRNG per gossip round so randomized peer selection is reproducible across replays and snapshots.
 category: algorithms
 triggers:
   - gossip round rng seeded reproducible sim
-tags:
-  - auto-loop
+tags: [algorithms, gossip, round, rng, seeded, reproducible]
 version: 1.0.0
 ---
 

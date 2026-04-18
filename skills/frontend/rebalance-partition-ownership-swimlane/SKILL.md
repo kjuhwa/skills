@@ -1,11 +1,11 @@
 ---
+
 name: rebalance-partition-ownership-swimlane
 description: Render partition-to-consumer assignment as horizontal swimlanes with animated handoff arcs during rebalance events.
 category: frontend
 triggers:
   - rebalance partition ownership swimlane
-tags:
-  - auto-loop
+tags: [frontend, rebalance, partition, ownership, swimlane]
 version: 1.0.0
 ---
 

@@ -1,11 +1,11 @@
 ---
+
 name: phase-window-timing-grade-with-pity
 description: Rhythm-game timing mechanic that grades clicks by distance from a cyclic "golden window" center, with pity expansion after consecutive misses.
 category: frontend
 triggers:
   - phase window timing grade with pity
-tags:
-  - auto-loop
+tags: [frontend, phase, window, timing, grade, pity]
 version: 1.0.0
 ---
 

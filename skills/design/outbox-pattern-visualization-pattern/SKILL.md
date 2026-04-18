@@ -1,11 +1,11 @@
 ---
+
 name: outbox-pattern-visualization-pattern
 description: Three-lane visualization showing business transaction, outbox table, and relay publisher for outbox pattern demos
 category: design
 triggers:
   - outbox pattern visualization pattern
-tags:
-  - auto-loop
+tags: [design, outbox, visualization, transaction]
 version: 1.0.0
 ---
 

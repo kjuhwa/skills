@@ -1,11 +1,11 @@
 ---
+
 name: service-mesh-data-simulation
 description: Generating realistic synthetic traffic, policy, and telemetry data for service mesh demos without a live cluster
 category: workflow
 triggers:
   - service mesh data simulation
-tags:
-  - auto-loop
+tags: [workflow, service, mesh, data, simulation, synthetic]
 version: 1.0.0
 ---
 

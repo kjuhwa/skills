@@ -1,11 +1,11 @@
 ---
+
 name: webaudio-whalesong-fm-drone
 description: Synthesize whale-song-like drones via low-frequency FM with slow pitch glides and amplitude swells in WebAudio.
 category: algorithms
 triggers:
   - webaudio whalesong fm drone
-tags:
-  - auto-loop
+tags: [algorithms, webaudio, whalesong, drone]
 version: 1.0.0
 ---
 

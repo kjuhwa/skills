@@ -1,11 +1,11 @@
 ---
+
 name: lag-watermark-dual-axis-timeline
 description: Overlay consumer lag and watermark progression on a shared time axis with dual-scale Y to keep both readable during bursts.
 category: frontend
 triggers:
   - lag watermark dual axis timeline
-tags:
-  - auto-loop
+tags: [frontend, lag, watermark, dual, axis, timeline]
 version: 1.0.0
 ---
 

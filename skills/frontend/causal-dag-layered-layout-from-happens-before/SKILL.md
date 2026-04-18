@@ -1,11 +1,11 @@
 ---
+
 name: causal-dag-layered-layout-from-happens-before
 description: Layout a DAG of events by longest happens-before depth per actor lane for readable causal diagrams.
 category: frontend
 triggers:
   - causal dag layered layout from happens before
-tags:
-  - auto-loop
+tags: [frontend, causal, dag, layered, layout, happens]
 version: 1.0.0
 ---
 

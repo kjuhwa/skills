@@ -1,11 +1,11 @@
 ---
+
 name: saga-pattern-visualization-pattern
 description: Visualize saga transaction flows with step states, compensation paths, and forward/backward progress indicators
 category: design
 triggers:
   - saga pattern visualization pattern
-tags:
-  - auto-loop
+tags: [design, saga, visualization, transaction, visualize]
 version: 1.0.0
 ---
 

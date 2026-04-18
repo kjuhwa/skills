@@ -1,11 +1,11 @@
 ---
+
 name: event-sourcing-visualization-pattern
 description: Render append-only event logs alongside derived state projections with replay scrubber controls
 category: design
 triggers:
   - event sourcing visualization pattern
-tags:
-  - auto-loop
+tags: [design, event, sourcing, visualization]
 version: 1.0.0
 ---
 
