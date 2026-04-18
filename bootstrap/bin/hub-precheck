@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# precheck.py 래퍼. lint + master/lite/category 재생성.
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT="${SCRIPT_DIR%/bin}/tools/precheck.py"
+if [[ ! -f "$SCRIPT" ]]; then
+    echo "hub-precheck: cannot find $SCRIPT" >&2
+    exit 1
+fi
+PYTHONIOENCODING=utf-8 py -3 "$SCRIPT" "$@"
