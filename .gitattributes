@@ -4,6 +4,7 @@
 bootstrap/commands/*.md text eol=lf
 bootstrap/tools/*.py    text eol=lf
 bootstrap/tools/*.sh    text eol=lf
+bootstrap/hooks/*.py    text eol=lf
 bootstrap/bin/*         text eol=lf
 bootstrap/install.sh    text eol=lf
 

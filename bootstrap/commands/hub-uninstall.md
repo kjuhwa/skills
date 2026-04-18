@@ -1,6 +1,6 @@
 ---
 description: Completely uninstall the skills-hub bootstrap layer — remote cache, tools, bin, completions, indexes, registry, slash commands, and the seed skill. Dry-run by default. Creates a backup tarball unless --no-backup.
-argument-hint: [--apply] [--keep-installed|--purge-installed] [--keep-claude-md-block] [--no-backup] [--backup-path=<path>] [--force]
+argument-hint: [--apply] [--keep-installed|--purge-installed] [--keep-claude-md-block] [--keep-settings-hook] [--no-backup] [--backup-path=<path>] [--force]
 ---
 
 # /hub-uninstall $ARGUMENTS
@@ -16,6 +16,7 @@ Complete removal of the skills-hub infrastructure from `~/.claude/`. Inverse of 
 | `~/.claude/skills-hub/remote/` | Git clone cache (skills + knowledge + bootstrap source tree) |
 | `~/.claude/skills-hub/tools/` | Python helpers (precheck, indexers, linters) |
 | `~/.claude/skills-hub/bin/` | Shell wrappers (`hub-search`, `hub-precheck`, `hub-index-diff`) |
+| `~/.claude/skills-hub/hooks/` | UserPromptSubmit hook scripts (v2.6.10+) |
 | `~/.claude/skills-hub/completions/` | bash/zsh/ps1 completion scripts (v2.6.4+) |
 | `~/.claude/skills-hub/indexes/` | Generated L1/L2 markdown indexes |
 | `~/.claude/skills-hub/knowledge/` | Globally-installed knowledge entries (v2.6.5+) |
@@ -30,6 +31,7 @@ Complete removal of the skills-hub infrastructure from `~/.claude/`. Inverse of 
 - **Individually-installed skills** at `~/.claude/skills/<slug>/` (everything other than `skills-hub/`) — use `/hub-remove` per slug to drop them first, or pass `--purge-installed` to include them in this run.
 - **Project-scoped installs** under `<any-project>/.claude/skills/` and `<any-project>/.claude/knowledge/` — this command only touches `~/.claude/**`.
 - **`~/.claude/CLAUDE.md`** — the file is never deleted. If it contains a `<skills_hub>` … `</skills_hub>` block, only the block is removed. `--keep-claude-md-block` leaves even the block intact.
+- **`~/.claude/settings.json`** — the file is never deleted. Only the skills-hub UserPromptSubmit hook entry (tagged with `"_marker": "skills-hub:auto-suggest-hook"`) is removed; all other hooks and settings are preserved. `--keep-settings-hook` leaves even the hook entry intact.
 
 ## Steps
 
@@ -38,6 +40,7 @@ Complete removal of the skills-hub infrastructure from `~/.claude/`. Inverse of 
    - List `~/.claude/commands/hub-*.md`. Count.
    - Check `~/.claude/skills/skills-hub/` — exists or not.
    - Parse `~/.claude/CLAUDE.md`; locate `<skills_hub>` and `</skills_hub>` markers. Record line range.
+   - Parse `~/.claude/settings.json` (if present); count any hook entries carrying `"_marker": "skills-hub:auto-suggest-hook"` or whose `command` contains `hub-suggest-hint`.
    - Walk `~/.claude/skills/` (excluding `skills-hub/`) and cross-reference with `registry.json → skills.<slug>` to count individually-installed skills (these are **preserved** unless `--purge-installed`).
    - Print a clean summary:
 
@@ -77,16 +80,18 @@ Complete removal of the skills-hub infrastructure from `~/.claude/`. Inverse of 
 5. **Delete (ordered for fail-safety)**
 
    a. `~/.claude/commands/hub-*.md` first — stops the slash commands from being invokable mid-uninstall (prevents partial-state reinvocation).
-   b. `~/.claude/skills/skills-hub/` — the seed skill.
-   c. `~/.claude/skills-hub/` entire tree — remote cache + tools + bin + completions + indexes + knowledge + registry + bootstrap.json.
-   d. `<skills_hub>` block from `~/.claude/CLAUDE.md` — unless `--keep-claude-md-block`. Parse the file, remove the block and any surrounding blank lines that would be left stranded. Never delete or truncate the file itself.
-   e. If `--purge-installed`: also delete `~/.claude/skills/<slug>/` for every slug in `registry.json → skills`. Skip anything not on disk.
+   b. UserPromptSubmit hook entry from `~/.claude/settings.json` — unless `--keep-settings-hook`. Run `python ~/.claude/skills-hub/tools/_merge_settings.py uninstall ~/.claude/settings.json` **before** the tools dir is removed in step (d). Only entries matching the skills-hub marker or containing `hub-suggest-hint` are stripped; everything else is preserved. Fallback: parse + rewrite the JSON directly if the helper is missing.
+   c. `~/.claude/skills/skills-hub/` — the seed skill.
+   d. `~/.claude/skills-hub/` entire tree — remote cache + tools + bin + hooks + completions + indexes + knowledge + registry + bootstrap.json.
+   e. `<skills_hub>` block from `~/.claude/CLAUDE.md` — unless `--keep-claude-md-block`. Parse the file, remove the block and any surrounding blank lines that would be left stranded. Never delete or truncate the file itself.
+   f. If `--purge-installed`: also delete `~/.claude/skills/<slug>/` for every slug in `registry.json → skills`. Skip anything not on disk.
 
 6. **Post-uninstall verification**
    - `test ! -d ~/.claude/skills-hub/` — the directory should be gone.
    - `ls ~/.claude/commands/ | grep '^hub-'` — empty.
    - `test ! -d ~/.claude/skills/skills-hub/` — gone.
    - `grep -q '<skills_hub>' ~/.claude/CLAUDE.md` — should return non-zero (no match), unless `--keep-claude-md-block`.
+   - `grep -q 'skills-hub:auto-suggest-hook' ~/.claude/settings.json` — should return non-zero, unless `--keep-settings-hook`.
    - Print a summary with bytes freed and the backup path.
 
 ## Arguments
@@ -95,6 +100,7 @@ Complete removal of the skills-hub infrastructure from `~/.claude/`. Inverse of 
 - `--no-backup` — skip the tarball. **Not recommended.** Rollback becomes impossible.
 - `--backup-path=<path>` — override backup destination (default: `~/.claude/skills-hub.backup-<timestamp>.tar.gz`).
 - `--keep-claude-md-block` — leave the `<skills_hub>` block in `~/.claude/CLAUDE.md` untouched.
+- `--keep-settings-hook` — leave the UserPromptSubmit hook entry in `~/.claude/settings.json` untouched.
 - `--keep-installed` — **(default)** preserves individually-installed skills at `~/.claude/skills/<slug>/`. Kept as an explicit flag for script clarity.
 - `--purge-installed` — also delete every `~/.claude/skills/<slug>/` that `registry.json` tracks. Does NOT touch project-scoped installs. Extra caution.
 - `--force` — skip the `UNINSTALL` literal confirmation. Automation only; prints a warning banner.

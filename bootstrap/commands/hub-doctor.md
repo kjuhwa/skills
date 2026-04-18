@@ -89,6 +89,13 @@ Local environment health check and repair. While `/hub-cleanup` maintains the **
 - If present: verify the block references the canonical names (`/hub-find`, `/hub-install`, `/hub-list`, `/hub-publish`) rather than legacy ones (`/hub-search-skills`, `/hub-publish-all`).
 - **Fix**: report only — user CLAUDE.md edits are out of scope for auto-fix.
 
+### 12. UserPromptSubmit auto-suggest hook (v2.6.10+)
+- `~/.claude/skills-hub/hooks/hub-suggest-hint.py` exists and is readable.
+- `~/.claude/settings.json` exists and contains a `UserPromptSubmit` hook entry tagged with `"_marker": "skills-hub:auto-suggest-hook"` (fallback: a hook whose `command` references `hub-suggest-hint`).
+- The registered command's script path matches the installed hook path (not a stale path from a prior install in a different `CLAUDE_DIR`).
+- If the env var `SKILLS_HUB_NO_AUTO_SUGGEST=1` was set during install: INFO (user opted out).
+- **Fix**: run `python ~/.claude/skills-hub/tools/_merge_settings.py install ~/.claude/settings.json` with the correct command on stdin, or re-run `bash ~/.claude/skills-hub/remote/bootstrap/install.sh` to re-register (`--fix` required).
+
 ## Report format
 
 ```
@@ -105,9 +112,10 @@ hub-doctor results (2026-04-18 23:55):
   [WARN]  9. Indexes freshness — 00_MASTER_INDEX.md is 2h older than HEAD
   [PASS] 10. Shell PATH (hub-search resolves)
   [INFO] 11. <skills_hub> block not present in ~/.claude/CLAUDE.md
+  [FAIL] 12. UserPromptSubmit auto-suggest hook not registered in settings.json
 
-  Summary: 6 passed, 3 warnings, 2 failures, 1 info
-  Run /hub-doctor --fix to repair 3 issues automatically (registry, hooks, indexes).
+  Summary: 6 passed, 3 warnings, 3 failures, 1 info
+  Run /hub-doctor --fix to repair 4 issues automatically (registry, hooks, indexes, auto-suggest hook).
   3 issues require manual attention (CRLF, filesystem mismatch, CLAUDE.md block).
 ```
 
