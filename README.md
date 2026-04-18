@@ -25,6 +25,7 @@ curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/in
 
 **Highlights**
 - ✨ **Core 8 mental model (v2.6.0+)** — 35 commands reduced to 8 canonical entry points: `/hub-find`, `/hub-suggest`, `/hub-install`, `/hub-list`, `/hub-extract`, `/hub-publish`, `/hub-sync`, `/hub-doctor`. Legacy names still work as aliases.
+- ⚡ **Fast bulk scans via Explore subagent (v2.6.1+)** — scan-heavy commands (`/hub-import`, `/hub-extract`, `/hub-refactor`, `/hub-condense`, `/hub-cleanup`, `/hub-research`) delegate bulk file/web scanning to an isolated subagent. Typical run drops from ~70 tool calls to ~5.
 - 🔎 **Ranked search with KO↔EN synonyms** — `/hub-find "스프링 카프카"` scores `name`/`description`/`tags`/`triggers` and expands 180+ Korean/English synonyms (v2.5.0+).
 - 🤖 **Pre-implementation auto-check** — when the user asks "구현해줘 / implement X", Claude Code auto-searches the hub first and offers matching skills with an install/reference prompt (`/hub-suggest` is the manual entry point, v2.5.2+).
 - ♻️ **Self-healing index** — git hooks (post-merge / post-commit / post-checkout) regenerate the L1/L2 corpus index after every mutation so `/hub-find` never goes stale (v2.5.0+).
@@ -336,6 +337,7 @@ Tags are annotated and created automatically by `/hub-publish-skills` and `/hub-
 
 | Version | Highlights |
 |---|---|
+| [`v2.6.1`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.6.1) | **Bulk-scan delegation** — `/hub-import`, `/hub-extract`, `/hub-refactor`, `/hub-condense`, `/hub-cleanup`, `/hub-research` now delegate file/web scanning to an Explore subagent. ~70 tool calls → ~5 for typical runs. |
 | [`v2.6.0`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.6.0) | **Command consolidation** — 35 commands → Core 8 canonical entry points. `/hub-list`, `/hub-publish` added; dispatch flags on `/hub-extract`, `/hub-install`. Legacy names still work. |
 | [`v2.5.4`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.4) | `tools/_rebuild_index_json.py` + `/hub-publish-all` spec hardened (SHA-map for tagging, post-merge retag step). |
 | [`v2.5.3`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.3) | CRLF → LF normalization + `.gitattributes` (fixes slash-command description rendering on Windows). |
