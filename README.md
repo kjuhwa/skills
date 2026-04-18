@@ -131,6 +131,10 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 |---|---|---|
 | `/hub-install <keyword \| name@version>` | Search remote → interactive install; supports version pinning | local install |
 | `/hub-install-all [--global/--skills-only/--knowledge-only/--category=...]` | **Bulk install** every skill and every knowledge entry in one shot (from `main` HEAD; collisions skipped) | local install |
+| `/hub-find <query> [-n N] [--kind/--category/--html/--json]` | **Ranked corpus search** with 180+ KO↔EN synonyms; scores `name`/`description`/`tags`/`triggers` (v2.5.0+) | no |
+| `/hub-suggest <task description>` | **Pre-implementation discovery** — interprets a coding task and offers matching skill/knowledge with install/reference prompts (v2.5.2+) | no |
+| `/hub-precheck [--strict] [--skip-lint]` | Lint frontmatter + regenerate L1/L2 indexes at `~/.claude/skills-hub/indexes/` (v2.5.0+) | local indexes |
+| `/hub-index-diff [base-ref]` | Report entries added/modified/removed since a commit (v2.5.0+) | no |
 | `/hub-search-skills <keyword>` | Preview remote skill matches + available tagged versions, no install | no |
 | `/hub-search-knowledge <keyword> [--inject]` | Search knowledge; optionally inject top matches into current context | no (inject = context only) |
 | `/hub-list-skills` | Show installed skills with source, version, pin state | no |
@@ -141,6 +145,31 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/hub-status` | Show a compact summary of the skills hub (counts, staleness, health) | no |
 | `/hub-sync [--skill=.. --version=..]` | Refresh cache; bulk update, targeted rollback, or `--unpin` | local |
 | `/hub-remove <name>` | Uninstall a local skill | local |
+
+### AI Pre-implementation Auto-check (opt-in)
+
+When the user describes a coding task ("구현해줘", "implement X", "build Y"), Claude Code can *automatically* search the hub first and offer matching skills/knowledge before writing code. Add this block to your `~/.claude/CLAUDE.md` to enable:
+
+```markdown
+<skills_hub>
+Pre-implementation auto-check.
+When the user requests a concrete coding/implementation task with technical keywords,
+silently run `/hub-find "<task keywords>" -n 3` before starting work.
+
+If any result has a strong match (top score ≥ 10 AND name-token overlap with the task,
+OR tags contain ≥ 2 task keywords):
+  1. Present top 1-3 matches: `[kind/category] name · description · path`.
+  2. Ask the user to pick:
+       Skills    → ① 참조만 / ② 설치 (/hub-install <name>) / ③ 건너뛰기
+       Knowledge → ① 읽고 반영 / ② 건너뛰기
+  3. Wait for the choice before proceeding.
+
+Skip for: trivial edits, pure debugging, read-only questions, or when the user has
+already picked an approach and asked only for execution.
+</skills_hub>
+```
+
+The manual entry point `/hub-suggest <task>` runs the same flow on demand without the rule.
 
 ### Extract & Draft
 
