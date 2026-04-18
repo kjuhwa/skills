@@ -43,6 +43,11 @@ Bring local installs to latest — or pin/rollback a specific skill to an exact 
 6. **Local-modified detection**
    - If local SKILL.md/content.md differs from stored commit content, warn user — updating will lose local edits. Offer to save a `.bak` copy.
 
+7. **Refresh indexes**
+   - `git reset --hard` bypasses git hooks, so the L1/L2 index (`~/.claude/skills-hub/indexes/`) won't auto-regenerate after step 1.
+   - Run `hub-precheck --skip-lint` (or `py ~/.claude/skills-hub/tools/precheck.py --skip-lint`) to refresh `00_MASTER_INDEX*.md` and `category_indexes/`.
+   - Skip this step if `--dry-run` (nothing actually applied).
+
 ## Rules
 
 - Never `reset --hard` if the cache has uncommitted changes (shouldn't happen, but guard).

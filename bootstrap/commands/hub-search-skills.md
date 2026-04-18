@@ -7,6 +7,8 @@ argument-hint: <keyword> [--category=<name>]
 
 Read-only search of the remote skill repository.
 
+> **Tip:** For keyword-based, ranked search with 180+ Korean↔English synonyms (e.g. "스프링 카프카"), prefer `/hub-find` — it scores `name`/`description`/`tags`/`triggers` and returns top-N.
+
 ## Steps
 
 1. Ensure `~/.claude/skills-hub/remote/` exists and is fresh (see `/hub-install` step 1).

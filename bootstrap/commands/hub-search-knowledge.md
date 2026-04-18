@@ -7,6 +7,8 @@ argument-hint: <keyword> [--inject] [--top <N>] [--category <cat>] [--tag <tag>]
 
 Locate relevant knowledge entries before acting. Optionally inject the top matches into the current conversation so the next step benefits from prior lessons.
 
+> **Tip:** For a ranked cross-corpus search (skills + knowledge) with Korean synonym expansion, `/hub-find --kind knowledge` is often faster than this command's grep flow.
+
 ## Steps
 
 1. **Gather index**: enumerate all `~/.claude/skills-hub/knowledge/<cat>/*.md` (+ project `.claude/knowledge/` if present).
