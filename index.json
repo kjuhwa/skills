@@ -2250,6 +2250,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "squash-merge-orphans-release-branch-tags",
+    "slug": "squash-merge-orphans-release-branch-tags",
+    "category": "decision",
+    "description": "When a tag is created on a release branch and the PR is squash-merged to main, the tag points at a commit that is no longer reachable from main. Decision - re-tag at the squash commit on main (force-push) to keep tags discoverable.",
+    "tags": [
+      "git",
+      "tags",
+      "squash-merge",
+      "release",
+      "versioning",
+      "bootstrap"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/squash-merge-orphans-release-branch-tags.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "stub-in-service-unblocks-fe-parallelism",
     "slug": "stub-in-service-unblocks-fe-parallelism",
     "category": "decision",
@@ -2866,6 +2885,26 @@
   },
   {
     "kind": "knowledge",
+    "name": "claude-code-slash-command-crlf-breaks-yaml-parser",
+    "slug": "claude-code-slash-command-crlf-breaks-yaml-parser",
+    "category": "pitfall",
+    "description": "Claude Code's slash-command YAML frontmatter parser silently falls back to the H1 body when files have CRLF line endings, and also hides argument-hint completely.",
+    "tags": [
+      "claude-code",
+      "slash-command",
+      "yaml",
+      "crlf",
+      "windows",
+      "frontmatter",
+      "silent-failure"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/claude-code-slash-command-crlf-breaks-yaml-parser.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "claude-plugin-marketplace-owner-required",
     "slug": "claude-plugin-marketplace-owner-required",
     "category": "pitfall",
@@ -3228,6 +3267,26 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/pitfall/gh-pr-create-race-with-auto-merge.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "git-reset-hard-bypasses-all-hooks",
+    "slug": "git-reset-hard-bypasses-all-hooks",
+    "category": "pitfall",
+    "description": "`git reset --hard` does NOT trigger post-merge, post-commit, or post-checkout hooks — workflows that rely on hooks to regenerate derived artifacts become silently stale after a reset.",
+    "tags": [
+      "git",
+      "hooks",
+      "reset",
+      "post-merge",
+      "post-commit",
+      "post-checkout",
+      "invariant"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/git-reset-hard-bypasses-all-hooks.md",
     "has_content": true
   },
   {
@@ -4493,6 +4552,26 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/pitfall/windows-python-utf8-explicit.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-rm-rf-device-busy-retry-pattern",
+    "slug": "windows-rm-rf-device-busy-retry-pattern",
+    "category": "pitfall",
+    "description": "On Windows + Git Bash/MSYS, `rm -rf` on a directory containing git pack files or helper sidecar outputs often fails with \"Device or resource busy\" because background processes hold file handles. Mitigation - retry 2-3x with short sleeps, or ensure cwd and child processes are outside the target.",
+    "tags": [
+      "windows",
+      "msys",
+      "rm-rf",
+      "file-lock",
+      "retry",
+      "cleanup",
+      "claude-code"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/windows-rm-rf-device-busy-retry-pattern.md",
     "has_content": true
   },
   {
@@ -10829,6 +10908,32 @@
   },
   {
     "kind": "skill",
+    "name": "md-corpus-l1-l2-index-with-auto-regen",
+    "slug": "md-corpus-l1-l2-index-with-auto-regen",
+    "category": "workflow",
+    "description": "Build a two-tier markdown index over a large MD corpus (skills, notes, docs) so LLMs can discover entries without reading every file. L1 compact + L1 full + per-category L2, regenerated via git hooks after every mutation so the index never goes stale.",
+    "tags": [
+      "index",
+      "markdown",
+      "corpus",
+      "llm-context",
+      "git-hooks",
+      "auto-regen",
+      "portable"
+    ],
+    "triggers": [
+      "skill registry",
+      "knowledge base",
+      "MD index",
+      "search-before-you-code",
+      "corpus discovery"
+    ],
+    "version": "0.1.0",
+    "path": "skills/workflow/md-corpus-l1-l2-index-with-auto-regen",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "mermaid-gitlab-mr-size-rules",
     "slug": "mermaid-gitlab-mr-size-rules",
     "category": "workflow",
@@ -11135,6 +11240,33 @@
     "version": "1.0.0",
     "path": "skills/workflow/review",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "rollback-anchor-tag-before-destructive-op",
+    "slug": "rollback-anchor-tag-before-destructive-op",
+    "category": "workflow",
+    "description": "Before running any large or destructive operation on a shared git repo (bulk edit + merge, force-push, reset --hard on main), create and push an annotated tag at the pre-change state. Cheap insurance, immediate rollback path, no ambiguity about \"where was it before\".",
+    "tags": [
+      "git",
+      "tags",
+      "rollback",
+      "safety",
+      "destructive-ops",
+      "pr-flow"
+    ],
+    "triggers": [
+      "force-push",
+      "reset --hard",
+      "bulk edit",
+      "backfill",
+      "mass rewrite",
+      "before I",
+      "rollback to"
+    ],
+    "version": "0.1.0",
+    "path": "skills/workflow/rollback-anchor-tag-before-destructive-op",
+    "has_content": true
   },
   {
     "kind": "skill",
