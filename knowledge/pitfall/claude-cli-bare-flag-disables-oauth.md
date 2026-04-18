@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claude-cli-bare-flag-disables-oauth
 description: "`claude -p --bare` returns exit 1 with empty stderr when the user is OAuth-authenticated — `--bare` explicitly disables OAuth and keychain reads."
 category: pitfall

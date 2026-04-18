@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: symlog-for-lag-metrics-near-zero
 description: Use symlog (not log) for consumer lag axes so healthy near-zero state stays visible alongside million-message spikes.
 category: decision

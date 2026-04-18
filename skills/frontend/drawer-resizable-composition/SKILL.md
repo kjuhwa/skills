@@ -1,4 +1,5 @@
 ---
+tags: [frontend, drawer, resizable, composition]
 name: drawer-resizable-composition
 description: Drawer-as-primary-modal pattern with preset widths, resizable handles, and parent state composition for React apps
 triggers:

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: existing-code-patterns-over-standard-rules
 description: When generating into an established repo, mirror the repo's existing style first; apply the written standard only when the repo is empty or silent
 category: decision

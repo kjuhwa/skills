@@ -1,4 +1,7 @@
 ---
+name: admin-role-disabled-secretkey
+version: 0.1.0-draft
+tags: [decision, admin, role, disabled, secretkey]
 category: decision
 summary: Default `admins` role is disabled and the shared `SecretKey` was removed from `config.properties` — never re-enable without a per-install key
 source:

@@ -1,4 +1,5 @@
 ---
+tags: [devops, querydsl, class, exclusion, pattern]
 name: querydsl-q-class-exclusion-pattern
 description: One `exclusionPatterns` list drives Jacoco report + verification + Sonar exclusions; catches generated Querydsl Q-classes via `('A'..'Z').collect { "**/**/Q${it}*" }`.
 category: devops

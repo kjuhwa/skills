@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: sandstorm-erosion-accumulator-buffer
 description: Simulate progressive erosion/burial by accumulating wind deltas into a persistent height buffer sampled at render time.
 category: algorithms

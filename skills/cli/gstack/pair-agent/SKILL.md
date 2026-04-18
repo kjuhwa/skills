@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, pair, agent]
 name: pair-agent
 version: 0.1.0
 description: |

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: mongo-timeseries-view-pushdown-broken-8_2_3
 category: pitfall
 summary: "On MongoDB 8.2.3, aggregations run against a view whose source is a time-series collection lose the timestamp bucket-index push-down — hot queries must target the base collection directly. Retest after server upgrades."

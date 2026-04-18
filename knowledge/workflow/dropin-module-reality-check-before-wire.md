@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: dropin-module-reality-check-before-wire
 description: Before wiring a drop-in module into a target project, map every path/marker/regex in the module to what the target actually stores on disk — the module's README describes its author's assumed layout, not yours.
 category: workflow

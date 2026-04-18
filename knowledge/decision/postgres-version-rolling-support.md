@@ -1,4 +1,7 @@
 ---
+name: postgres-version-rolling-support
+version: 0.1.0-draft
+tags: [decision, postgres, version, rolling, support]
 category: decision
 summary: Roll PostgreSQL major-version support forward incrementally (9.x → 18) rather than pinning one LTS
 source:

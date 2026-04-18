@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bff-pattern-implementation-pitfall
 description: BFFs silently become distributed monoliths when teams share one BFF across clients or let it accumulate business logic
 category: pitfall

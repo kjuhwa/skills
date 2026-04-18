@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, push, local, removed, use, doc]
 name: push-local-removed-use-doc-update
 description: pushLocalChangesIntoRemote and its action-mapping helpers were removed; mutate Yorkie via doc.update directly
 type: decision

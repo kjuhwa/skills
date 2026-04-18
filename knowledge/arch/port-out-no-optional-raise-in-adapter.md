@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: port-out-no-optional-raise-in-adapter
 description: In hexagonal codegen, single-record lookups should raise a domain exception inside the Adapter rather than return `Optional<T>` from the Port-Out interface
 category: arch

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, page, map, returns, new, instance]
 name: page-map-returns-new-instance
 description: Spring Data Page는 불변 — Page.map()은 새 인스턴스를 반환하므로 호출 결과를 반드시 재할당해야 한다
 type: knowledge

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: god-controller-split-by-resource
 category: decision
 summary: "Split an oversized controller along URL sub-resource boundaries (one controller per sub-path like /page, /widget, /file) and keep the common @RequestMapping prefix — clearer per-class responsibility without breaking the external API surface."

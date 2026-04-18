@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: oh-my-claudecode-visual-verdict
 type: knowledge
 category: arch

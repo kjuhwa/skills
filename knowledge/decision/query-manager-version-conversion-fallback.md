@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, query, manager, version, conversion, fallback]
 name: query-manager-version-conversion-fallback
 description: Unknown target RDBMS versions fall back to a documented default bucket rather than erroring, keeping collection alive
 category: decision

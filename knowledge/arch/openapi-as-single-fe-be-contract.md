@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: openapi-as-single-fe-be-contract
 description: Use OpenAPI 3.0 as the only intermediate artifact between planning and codegen; both FE and BE generators consume the same file
 category: arch

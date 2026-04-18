@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: oh-my-claudecode-autopilot
 type: knowledge
 category: arch

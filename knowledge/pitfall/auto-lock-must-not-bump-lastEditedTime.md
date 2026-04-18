@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, auto, lock, must, not, bump]
 name: auto-lock-must-not-bump-lastEditedTime
 category: pitfall
 summary: |

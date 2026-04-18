@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: oauth-implementation-pitfall
 description: Common mistakes when building OAuth visualizers and educational tools that misrepresent the protocol
 category: pitfall

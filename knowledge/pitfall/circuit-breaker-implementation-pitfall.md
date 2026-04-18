@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: circuit-breaker-implementation-pitfall
 description: Common bugs when implementing the HALF_OPEN probe state and failure window accounting
 category: pitfall

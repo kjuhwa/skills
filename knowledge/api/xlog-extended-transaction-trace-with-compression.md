@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: xlog-extended-transaction-trace-with-compression
 summary: XLog is scouter's per-request transaction trace format — hierarchical typed steps stored as compressed binary, indexed by end-time, with flat metadata for server-side filtering
 category: api

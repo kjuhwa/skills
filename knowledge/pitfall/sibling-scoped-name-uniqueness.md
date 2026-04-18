@@ -1,4 +1,7 @@
 ---
+name: sibling-scoped-name-uniqueness
+version: 0.1.0-draft
+tags: [pitfall, sibling, scoped, name, uniqueness]
 title: Group name uniqueness must be scoped to parent, not global
 category: pitfall
 summary: A global unique index on group `name` was present and had to be dropped; uniqueness is correct only within the same parent.

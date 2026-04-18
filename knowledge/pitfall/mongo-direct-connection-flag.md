@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, mongo, direct, connection, flag]
 name: mongo-direct-connection-flag
 description: MongoDB datasource connectionString requires directConnection=true in this deployment
 type: pitfall

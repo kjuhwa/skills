@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: object-storage-implementation-pitfall
 description: Common mistakes when modeling object storage semantics in visualizations and simulators
 category: pitfall

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [domain, topresource, immediate, generation, invariant]
 name: topresource-immediate-generation-invariant
 description: In report immediate-generation, the topResource flag decides whether to query by resource-id (fast path) or the full conf-id set (slow path)
 type: domain

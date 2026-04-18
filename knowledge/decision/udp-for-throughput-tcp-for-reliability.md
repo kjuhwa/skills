@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: udp-for-throughput-tcp-for-reliability
 summary: Scouter streams periodic metrics over UDP (lossy but cheap) and reserves TCP for config fetch, agent registration, and XLog profile uploads that demand delivery guarantees
 category: decision

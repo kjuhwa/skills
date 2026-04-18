@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: assume-semantics-for-compiler-hints
 summary: Three-tier assertion strategy (Assert / CHECK_NONFATAL / Assume) separates fatal invariants from recoverable logic bugs and pure compiler hints.
 category: decision

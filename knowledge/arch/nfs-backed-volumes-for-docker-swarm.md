@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, nfs, backed, volumes, for, docker]
 name: nfs-backed-volumes-for-docker-swarm
 description: Cross-node Docker Swarm persistence via a single NFS share mounted at the same host path on every swarm node
 category: arch

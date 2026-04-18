@@ -1,4 +1,5 @@
 ---
+tags: [design, figma, token, tailwind, theme]
 name: figma-token-to-tailwind-theme
 description: Pipeline from Figma Token Studio JSON exports through Style Dictionary v5 to Tailwind v4 @theme CSS custom properties, with dark/light/contrast mode support and breaking change detection
 category: design

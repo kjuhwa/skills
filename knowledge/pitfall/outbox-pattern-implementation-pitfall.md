@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: outbox-pattern-implementation-pitfall
 description: Common outbox implementation failures around ordering, stuck rows, and at-least-once semantics
 category: pitfall

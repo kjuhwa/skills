@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, multi, layer, css, architecture]
 name: multi-layer-css-architecture
 category: arch
 summary: Four-layer CSS architecture — SCSS (sirius design system), LESS (Ant Design vars), Tailwind v4 (AI Portal with scope isolation), plain CSS — each with distinct webpack rules and toolchains

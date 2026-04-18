@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: single-keyword-formulaic-llm-output
 description: A single-word theme given to an LLM produces formulaic, generic output — evocative 10–20 word phrases unlock variety
 category: pitfall

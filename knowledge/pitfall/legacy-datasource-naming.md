@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, legacy, datasource, naming]
 name: legacy-datasource-naming
 description: "`dataSource` / `dataSourceFilter` in the codebase actually mean data-pipeline-select and data-pipeline-filter — not datasource"
 type: pitfall

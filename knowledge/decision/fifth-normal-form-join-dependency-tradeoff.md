@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, fifth, normal, form, join, dependency]
 name: fifth-normal-form-join-dependency-tradeoff
 category: decision
 summary: 5NF catches join dependencies that 4NF/BCNF miss, but in practice you rarely reason about it directly — design from business entities, recognize AB-BC-AC triangles vs ABC+D stars, and let 5NF fall out.

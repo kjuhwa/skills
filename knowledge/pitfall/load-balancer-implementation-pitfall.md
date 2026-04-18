@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: load-balancer-implementation-pitfall
 description: Common bugs when implementing load balancer algorithms in a simulation, especially consistent hashing and least-connections
 category: pitfall

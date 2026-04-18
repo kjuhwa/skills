@@ -1,4 +1,5 @@
 ---
+tags: [devops, gradle, shared, exclusions, jacoco, sonar]
 name: gradle-shared-exclusions-jacoco-sonar
 description: Keep Jacoco report, Jacoco coverage verification, and SonarQube exclusions in sync by defining one `exclusionPatterns` list in Gradle ext
 version: 1.0.0

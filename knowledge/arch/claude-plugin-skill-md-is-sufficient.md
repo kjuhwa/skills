@@ -1,4 +1,7 @@
 ---
+name: claude-plugin-skill-md-is-sufficient
+version: 0.1.0-draft
+tags: [arch, claude, plugin, skill, sufficient]
 title: Claude Code 스킬은 SKILL.md 1개로 완성된다
 category: arch
 summary: "스킬 = SKILL.md 하나. 코드, 빌드, 의존성, 스크립트 없이도 완전히 동작한다."

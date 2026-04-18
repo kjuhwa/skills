@@ -1,4 +1,5 @@
 ---
+tags: [design, nds, html, mockup, from, tokens]
 name: nds-html-mockup-from-tokens
 description: lucida-ui 디자인 토큰을 추출하여 실제 제품과 동일한 스타일의 static HTML 목업 생성
 version: 0.1.0-draft

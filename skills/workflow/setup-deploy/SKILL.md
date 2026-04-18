@@ -1,4 +1,5 @@
 ---
+tags: [workflow, setup, deploy]
 name: setup-deploy
 category: workflow
 preamble-tier: 2

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, license, apply, window, 15d]
 name: license-apply-window-15d
 category: decision
 summary: Issued licenses must be applied within 15 days; expired licenses are immutable.

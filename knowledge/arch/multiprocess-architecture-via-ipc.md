@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: multiprocess-architecture-via-ipc
 summary: Decompose a monolith into cooperating processes by defining interfaces in a neutral schema language (Cap'n Proto), then codegen client/server proxies that preserve the original C++ interface shape.
 category: arch

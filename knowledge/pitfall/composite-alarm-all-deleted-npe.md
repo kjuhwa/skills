@@ -1,4 +1,7 @@
 ---
+name: composite-alarm-all-deleted-npe
+version: 0.1.0-draft
+tags: [pitfall, composite, alarm, all, deleted, npe]
 category: pitfall
 summary: Composite/aggregated monitors must validate their child set before reducing — empty aggregation throws NPE
 source:

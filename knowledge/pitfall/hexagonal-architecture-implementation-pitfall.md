@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: hexagonal-architecture-implementation-pitfall
 description: Ports become leaky DTO pass-throughs and adapters accumulate domain logic, collapsing the hexagon into layered architecture
 category: pitfall

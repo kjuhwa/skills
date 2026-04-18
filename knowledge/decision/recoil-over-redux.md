@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, recoil, over, redux]
 name: recoil-over-redux
 description: Decision to use Recoil atoms (2697 usages, 53 store files) as sole state management instead of Redux in a 25-remote MFA monorepo
 category: decision

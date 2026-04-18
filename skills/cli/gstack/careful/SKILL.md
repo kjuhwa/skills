@@ -1,4 +1,5 @@
 ---
+category: cli
 name: careful
 version: 0.1.0
 description: |

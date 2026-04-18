@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: variable-length-integer-encoding-for-metrics-bandwidth
 summary: Scouter's DataOutputX uses 3-byte (INT3) and 5-byte (LONG5) integer encodings to shrink UDP metric packs by 20-40% when most values fit within 24 / 40 bits
 category: decision

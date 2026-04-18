@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, resource, mount, unmount, use, jar]
 name: resource-mount-unmount-use-jar-defaults
 description: Don't bind-mount i18n/exception/menu resource files into Spring Boot containers; let the jar ship its own defaults
 category: decision

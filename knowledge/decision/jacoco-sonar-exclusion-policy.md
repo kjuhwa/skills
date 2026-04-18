@@ -1,4 +1,7 @@
 ---
+name: jacoco-sonar-exclusion-policy
+version: 0.1.0-draft
+tags: [decision, jacoco, sonar, exclusion, policy]
 slug: jacoco-sonar-exclusion-policy
 category: decision
 summary: Single exclusion list drives Jacoco + Sonar + test excludes; generated/boilerplate code never counts toward coverage

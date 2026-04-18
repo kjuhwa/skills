@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: hub-scan-must-exclude-external-imports
 type: knowledge
 category: pitfall

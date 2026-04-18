@@ -1,4 +1,5 @@
 ---
+tags: [backend, eureka, service, discovery, wait, annotation]
 name: eureka-service-discovery-wait-annotation
 description: Declarative @WaitForServices annotation on @EventListener methods — blocks initialization until named Eureka services are healthy, with optional leader-only execution
 category: backend

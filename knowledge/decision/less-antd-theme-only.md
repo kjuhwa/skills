@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, less, antd, theme, only]
 name: less-antd-theme-only
 category: decision
 summary: LESS files (71 total) and less-loader exist solely for Ant Design modifyVars theming — LESS is not a general-purpose styling choice in this project

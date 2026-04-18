@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: base-offset-filename-as-ordering-source-of-truth
 description: Encode segment base offset in the filename so directory listing alone reconstructs ordering after crash.
 category: decision

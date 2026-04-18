@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, triple, styling, paradigm, coexistence]
 name: triple-styling-paradigm-coexistence
 category: decision
 description: Why Tailwind CSS, SCSS modules, and styled-components coexist in the same codebase — migration path, isolation needs, and legacy constraints

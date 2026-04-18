@@ -1,4 +1,7 @@
 ---
+name: tag-values-separate-collection
+version: 0.1.0-draft
+tags: [decision, tag, values, separate, collection]
 title: Tag value list split into its own collection (tag_value_detail)
 category: decision
 summary: TagValueInfo's `values` array was extracted from the parent tag document into a separate `tag_value_detail` collection to bound document size and index cost.

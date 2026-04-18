@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, duckdb, vectorized, analytical, execution]
 name: duckdb-vectorized-analytical-execution
 category: arch
 summary: DuckDB's design has five separable pillars — vectorized execution, pipelined operators, explicit memory + grouped aggregation, ART indexing, and a dedicated query rewriter — distinguishing it from row-at-a-time OLTP engines.

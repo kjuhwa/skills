@@ -1,4 +1,5 @@
 ---
+tags: [backend, divide, zero, rate, guard]
 name: divide-by-zero-rate-guard
 description: Guard rate/percentage calculations against zero denominators to prevent NaN from poisoning downstream metrics and serialization.
 trigger: Computing errorRate / successRate / cacheHitRatio / any num/den metric; seeing NaN in dashboards or JSON serialization errors.

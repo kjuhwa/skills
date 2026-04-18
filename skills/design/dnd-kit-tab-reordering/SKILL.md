@@ -1,4 +1,5 @@
 ---
+tags: [design, dnd, kit, tab, reordering]
 name: dnd-kit-tab-reordering
 description: Implement horizontal tab drag reordering using @dnd-kit/core + @dnd-kit/sortable with PointerSensor and CSS.Transform
 category: design

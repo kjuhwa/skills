@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, jar, task, disabled, bootjar, only]
 name: jar-task-disabled-bootjar-only
 category: arch
 summary: Gradle `jar` task is disabled so only `bootJar` produces an artifact — CI/Docker consumers never receive an ambiguous plain JAR

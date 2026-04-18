@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [api, kafka, organization, record, header]
 name: kafka-organization-id-record-header
 description: Place organizationId (tenant) in the Kafka record header, not only in the payload — downstream consumers route by header before deserializing.
 type: api

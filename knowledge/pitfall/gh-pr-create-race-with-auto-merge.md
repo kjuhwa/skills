@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: gh-pr-create-race-with-auto-merge
 type: knowledge
 category: pitfall

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: dashboard-decoration-vs-evidence
 description: When designing monitoring dashboards for automation pipelines, prioritize visible evidence of system behavior over decorative animations
 category: decision

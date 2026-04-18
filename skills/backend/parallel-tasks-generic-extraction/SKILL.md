@@ -1,4 +1,5 @@
 ---
+tags: [backend, parallel, tasks, generic, extraction]
 name: parallel-tasks-generic-extraction
 description: invokeAll + Callable 반복 패턴을 제네릭 executeParallelTasks + TaskFactory로 추출
 type: skill

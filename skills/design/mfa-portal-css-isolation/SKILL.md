@@ -1,4 +1,5 @@
 ---
+tags: [design, mfa, portal, css, isolation]
 name: mfa-portal-css-isolation
 description: Isolate Tailwind CSS in Module Federation portals using lazyStyleTag injection, postcss-prefix-selector with :where() specificity control, scoped root elements, and Headless UI PortalGroup
 category: design

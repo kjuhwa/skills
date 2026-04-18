@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: additive-registry-schema-versioning
 type: knowledge
 category: arch

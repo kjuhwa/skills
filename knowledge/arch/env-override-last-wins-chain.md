@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, env, override, last, wins, chain]
 name: env-override-last-wins-chain
 category: arch
 summary: Environment variables resolve across four sources with "last wins" precedence.

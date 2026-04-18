@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, actuator, endpoints, skip, auth, design]
 name: actuator-endpoints-skip-auth-by-design
 description: In a monitoring collector, target-level BASIC/BEARER auth is stored but intentionally NOT applied when calling /actuator/health and /actuator/metrics.
 type: decision

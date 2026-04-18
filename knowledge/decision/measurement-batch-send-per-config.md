@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, measurement, batch, send, per, config]
 name: measurement-batch-send-per-config
 description: Send one bundled Kafka message per target per tick containing all metrics, instead of one message per (target, metric).
 type: decision

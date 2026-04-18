@@ -1,4 +1,5 @@
 ---
+tags: [backend, measurement, grouping, combiner]
 name: measurement-grouping-combiner
 description: Group rows by `(resourceId, metricId, bucketTs)` into `Map<K, List<T>>`, then a per-granularity pure `combine…ByKey` merges each list into one composite record. One combiner per granularity (raw/1m/5m/hour/day).
 category: backend

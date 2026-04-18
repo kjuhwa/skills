@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, tomcat, request, timeout, for, report]
 name: tomcat-request-timeout-1h-for-oz-report
 description: Report-generation services should raise Tomcat connection/read timeout to ~1 hour because export of large OZ/Jasper reports is genuinely long-running
 type: decision

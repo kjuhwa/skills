@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, shared, singleton, config]
 name: mf-shared-singleton-config
 description: 227 shared dependencies configured as Webpack Module Federation singletons with strict versioning; react-router-dom intentionally excluded
 category: arch

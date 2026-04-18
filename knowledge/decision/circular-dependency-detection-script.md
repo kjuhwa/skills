@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: circular-dependency-detection-script
 summary: A small Python script that parses #include directives across the tree and reports the shortest cycle in the module graph — cheap CI gate against architectural decay.
 category: decision

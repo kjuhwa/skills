@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: sidecar-proxy-implementation-pitfall
 description: Common sidecar-proxy modeling mistakes that break the mental model and produce misleading metrics.
 category: pitfall

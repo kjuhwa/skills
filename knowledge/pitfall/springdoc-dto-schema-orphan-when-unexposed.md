@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: springdoc-dto-schema-orphan-when-unexposed
 description: springdoc는 컨트롤러 시그니처를 walk하므로 ApiResponseData<Object> 반환 DTO에 달린 @Schema·x-lookup은 스펙에 반영되지 않는다
 category: pitfall

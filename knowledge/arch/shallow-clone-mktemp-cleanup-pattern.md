@@ -1,4 +1,7 @@
 ---
+name: shallow-clone-mktemp-cleanup-pattern
+version: 0.1.0-draft
+tags: [arch, shallow, clone, mktemp, cleanup, pattern]
 title: 원격 repo 작업은 mktemp + shallow clone + 정리 패턴을 쓴다
 category: arch
 summary: "publish/install/원격 목록 조회처럼 원격 git repo를 만질 때는 `mktemp -d → git clone --depth 1 → 작업 → rm -rf`. 작업 디렉토리를 오염시키지 않는다."

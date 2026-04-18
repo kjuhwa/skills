@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: phi-accrual-failure-detector-over-binary-timeout
 description: Use phi-accrual suspicion score instead of binary alive/dead for heartbeat visualizations
 category: decision

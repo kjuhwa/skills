@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: auto-default-until-user-edit-dataset-flag
 description: Track whether a prefilled form field is still "auto" via a dataset flag so regeneration doesn't clobber user edits.
 category: pitfall

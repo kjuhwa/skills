@@ -1,4 +1,5 @@
 ---
+tags: [backend, dev, controller, tenant, wrapping, helper]
 name: dev-controller-tenant-wrapping-helper
 description: Dev/로컬 전용 컨트롤러의 테넌트+JWT 반복 래핑을 함수형 인터페이스 + 헬퍼 컴포넌트로 추출
 type: skill

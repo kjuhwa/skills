@@ -1,4 +1,5 @@
 ---
+tags: [backend, baseline, historical, comparison, threshold]
 name: baseline-historical-comparison-threshold
 description: Evaluate a current metric against a historical baseline (prev hour/day/week/month/year, with MIN/AVG/MAX aggregation) as a dynamic threshold; supports RATE or VALUE change modes and dampening.
 trigger: Fixed thresholds false-positive during normal daily/weekly cycles; alarms should fire only on deviation from historical norms.

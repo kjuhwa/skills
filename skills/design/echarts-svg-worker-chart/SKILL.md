@@ -1,4 +1,5 @@
 ---
+tags: [design, echarts, svg, worker, chart]
 name: echarts-svg-worker-chart
 description: High-performance chart component using ECharts with custom SVG overlays (markLine/markArea/markPoint), worker thread data processing, and brush selection interaction
 category: design

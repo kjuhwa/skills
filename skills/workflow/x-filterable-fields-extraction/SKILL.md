@@ -1,4 +1,5 @@
 ---
+tags: [workflow, filterable, fields, extraction]
 name: x-filterable-fields-extraction
 description: OpenAPI 스펙에 x-filterable-fields 확장을 자동 생성하는 파이프라인. lucida-ui gridColumnDefs + lucida-meta i18n properties를 조합하여 필드명/한국어 title/operators를 추출
 triggers:

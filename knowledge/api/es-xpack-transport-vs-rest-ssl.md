@@ -1,4 +1,7 @@
 ---
+name: es-xpack-transport-vs-rest-ssl
+version: 0.1.0-draft
+tags: [api, xpack, transport, rest, ssl]
 category: api
 summary: Elasticsearch transport SSL and REST SSL are independent X-Pack configs; enabling one does not enable the other
 source:

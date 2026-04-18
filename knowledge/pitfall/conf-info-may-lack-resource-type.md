@@ -1,4 +1,7 @@
 ---
+name: conf-info-may-lack-resource-type
+version: 0.1.0-draft
+tags: [pitfall, conf, info, may, lack, resource]
 category: pitfall
 summary: The `conf_info` collection is NOT guaranteed to carry `resourceType` for every metric; criteria builders must tolerate missing field
 source:

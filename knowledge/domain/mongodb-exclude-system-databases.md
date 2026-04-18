@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [domain, mongodb, exclude, system, databases]
 name: mongodb-exclude-system-databases
 category: domain
 summary: When enumerating tenant databases in a shared MongoDB cluster, filter out admin/config/local plus third-party DBs (yorkie-meta, migration) to avoid touching shared state

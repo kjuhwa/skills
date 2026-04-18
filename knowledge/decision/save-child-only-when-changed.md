@@ -1,4 +1,7 @@
 ---
+name: save-child-only-when-changed
+version: 0.1.0-draft
+tags: [decision, save, child, only, when, changed]
 title: Skip child-configuration save unless resourceName or tags actually changed
 category: decision
 summary: When reconciling parent→child configurations, persistence is conditional on "new" or "resourceName/tags changed". Unconditional save caused unnecessary write load and spurious change events.

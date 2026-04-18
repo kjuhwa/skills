@@ -1,4 +1,5 @@
 ---
+tags: [backend, availability, ttl, punctuate, processor]
 name: availability-ttl-punctuate-processor
 description: Kafka Streams processor schedules a wall-clock `punctuate` for TTL eviction of the state store, and emits downstream only on value change. Wall-clock (not stream-time) so idle inputs still trigger cleanup.
 category: backend

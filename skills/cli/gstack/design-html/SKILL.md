@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, design, html]
 name: design-html
 preamble-tier: 2
 version: 1.0.0

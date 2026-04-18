@@ -1,4 +1,7 @@
 ---
+name: data-patch-package-for-migrations
+version: 0.1.0-draft
+tags: [arch, data, patch, package, for, migrations]
 title: Data-migration code lives in a dedicated `patch` package, not alongside business services
 category: arch
 summary: One-off data patches (backfills, embedded→referenced splits, field additions) are grouped under a `patch` package so they're isolated from day-to-day service code and easy to audit/remove after a release.

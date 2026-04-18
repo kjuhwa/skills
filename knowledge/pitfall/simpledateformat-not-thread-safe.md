@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, simpledateformat, not, thread, safe]
 name: simpledateformat-not-thread-safe
 description: SimpleDateFormat은 스레드 안전하지 않아 공유 인스턴스 사용 시 포맷 깨짐/예외 발생 — java.time.DateTimeFormatter로 교체
 type: knowledge

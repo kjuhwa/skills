@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: child-claude-inherits-parent-hooks
 description: When spawning Claude CLI from a Node process, the child inherits OMC/session hooks that can hijack the output into side-channels — you only see a confirmation string
 category: pitfall

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, widget, frozen, group, snapshot]
 name: widget-is-frozen-group-snapshot
 description: Widgets are snapshots of a group at save time; later edits to the source group do not propagate
 type: arch

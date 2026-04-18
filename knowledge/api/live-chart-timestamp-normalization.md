@@ -1,4 +1,7 @@
 ---
+name: live-chart-timestamp-normalization
+version: 0.1.0-draft
+tags: [api, live, chart, timestamp, normalization]
 slug: live-chart-timestamp-normalization
 category: api
 summary: LIVE charts accept `normalizeTimestamp` + `normalizeIntervalMs` to align per-agent millisecond offsets into a single x-axis

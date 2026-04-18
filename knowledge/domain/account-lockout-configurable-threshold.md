@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [domain, account, lockout, configurable, threshold]
 name: account-lockout-configurable-threshold
 category: domain
 summary: Failed-login counter locks the account after a configurable threshold (ACCOUNT_LOCKOUT, default 10).

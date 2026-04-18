@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: mongodb-aggregated-stats-as-views
 description: Precomputed hour/day statistics exposed as MongoDB read-only views instead of physical collections to simplify reads and keep them consistent with source
 category: arch

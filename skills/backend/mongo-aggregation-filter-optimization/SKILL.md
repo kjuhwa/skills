@@ -1,4 +1,5 @@
 ---
+tags: [backend, mongo, aggregation, filter, optimization]
 name: mongo-aggregation-filter-optimization
 description: Replace `$unwind`+`$match` on array sub-documents with inline `$filter` so array elements are pruned before any downstream stage — avoids N× document explosion.
 category: backend

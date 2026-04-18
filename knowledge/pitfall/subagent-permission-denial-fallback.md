@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: subagent-permission-denial-fallback
 description: "Claude Code subagents (Agent tool) cannot obtain Write/Bash permissions independently — if user hasn't pre-granted them, all 3 agents fail and you must build directly"
 type: knowledge

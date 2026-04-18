@@ -1,4 +1,7 @@
 ---
+name: hibernate-date-format-lowercase
+version: 0.1.0-draft
+tags: [pitfall, hibernate, date, format, lowercase]
 category: pitfall
 summary: Use lowercase `yyyy` for calendar year — `YYYY` is ISO week-year and produces wrong values near Jan 1 / Dec 31
 source:

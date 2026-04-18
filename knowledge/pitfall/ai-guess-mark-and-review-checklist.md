@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ai-guess-mark-and-review-checklist
 description: When AI fills gaps the source doc doesn't specify, annotate the guess inline and output a review checklist alongside the artifact
 category: pitfall

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: mongodb-changestream-resubscribe
 description: MongoDB change streams do not self-heal after network hiccups or replica-set elections; must be explicitly stopped and restarted to resume receiving events
 category: pitfall

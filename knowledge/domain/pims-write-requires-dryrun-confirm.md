@@ -1,4 +1,7 @@
 ---
+name: pims-write-requires-dryrun-confirm
+version: 0.1.0-draft
+tags: [domain, pims, write, requires, dryrun, confirm]
 title: PIMS 쓰기 작업은 dry-run + 명시적 확인 + 재시도가 필수
 category: domain
 summary: "PIMS 시간 기록/제출/일괄 갱신 등 모든 쓰기 API는 미리보기 → 사용자 확인 → 재시도 가능한 실행 플로우를 반드시 거친다. `--dry-run`은 API 쓰기 호출 자체가 금지."

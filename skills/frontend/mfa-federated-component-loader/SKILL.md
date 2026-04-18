@@ -1,4 +1,5 @@
 ---
+tags: [frontend, mfa, federated, component, loader]
 name: mfa-federated-component-loader
 description: Three-layer dynamic component loading for Webpack 5 Module Federation with retry logic, script caching, and error boundaries
 triggers:

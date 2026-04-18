@@ -1,4 +1,5 @@
 ---
+category: cli
 name: autoplan
 preamble-tier: 3
 version: 1.0.0

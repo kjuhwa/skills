@@ -1,4 +1,5 @@
 ---
+tags: [backend, hibernate, multi, dialect, swap]
 name: hibernate-multi-dialect-swap
 description: Ship one WAR that connects to Oracle, PostgreSQL, MSSQL, Tibero, DB2, or MariaDB based on Spring profile — all JDBC drivers bundled, dialect and datasource resolved from externalized config
 version: 1.0.0

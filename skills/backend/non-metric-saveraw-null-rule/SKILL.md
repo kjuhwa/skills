@@ -1,4 +1,5 @@
 ---
+tags: [backend, non, metric, saveraw, null, rule]
 name: non-metric-saveraw-null-rule
 description: Treat `saveRaw` as tri-state `Boolean` — `null` for non-METRIC types (Availability/Trait), `true`/`false` only for METRIC. Re-apply the rule on every policy mutation path.
 category: backend

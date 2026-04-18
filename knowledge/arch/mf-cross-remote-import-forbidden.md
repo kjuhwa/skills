@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, cross, remote, import, forbidden]
 name: mf-cross-remote-import-forbidden
 description: In a Module Federation monorepo with per-remote webpack aliases, remotes must not import from sibling remotes directly — share code through `shared/` or through MF exposes.
 category: arch

@@ -1,4 +1,7 @@
 ---
+name: claude-plugin-marketplace-owner-required
+version: 0.1.0-draft
+tags: [pitfall, claude, plugin, marketplace, owner, required]
 title: Claude Code marketplace.json은 `owner` 필드가 필수
 category: pitfall
 summary: "플러그인 설치 스키마 오류: marketplace.json 최상위에 `owner` 객체 없으면 플러그인 설치가 실패."

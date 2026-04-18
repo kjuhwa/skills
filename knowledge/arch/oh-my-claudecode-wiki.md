@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: oh-my-claudecode-wiki
 type: knowledge
 category: arch

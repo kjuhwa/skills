@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: serial-pipeline-failure-compounding
 description: N-stage serial AI pipeline success = product of per-stage success rates; prefer developer-invoked skills at each boundary
 category: pitfall

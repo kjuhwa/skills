@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, time, unit, consistency]
 name: time-unit-consistency-us-ms-ns
 description: Mixed time units (ns/μs/ms) across OTLP ingestion, storage, filters, and UI are a recurring high-severity bug class — pick one canonical internal unit and convert only at edges.
 type: pitfall

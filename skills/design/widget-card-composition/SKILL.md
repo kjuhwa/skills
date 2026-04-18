@@ -1,4 +1,5 @@
 ---
+tags: [design, widget, card, composition]
 name: widget-card-composition
 description: Dashboard widget composition pattern using a CardWidget chrome wrapper with domain-specific Card* content components, resize tracking, and popover menus
 category: design

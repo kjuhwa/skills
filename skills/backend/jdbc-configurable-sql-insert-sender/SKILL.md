@@ -1,4 +1,5 @@
 ---
+tags: [backend, jdbc, configurable, sql, insert, sender]
 name: jdbc-configurable-sql-insert-sender
 description: Ship a notification/integration channel that writes to a user-configured external DB via user-supplied INSERT SQL with ${var} placeholders
 version: 1.0.0

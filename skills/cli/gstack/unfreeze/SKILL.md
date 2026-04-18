@@ -1,4 +1,5 @@
 ---
+category: cli
 name: unfreeze
 version: 0.1.0
 description: |

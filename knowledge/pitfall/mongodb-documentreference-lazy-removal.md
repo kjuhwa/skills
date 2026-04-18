@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: mongodb-documentreference-lazy-removal
 description: Spring Data MongoDB @DocumentReference (even with lazy=true) triggers N+1 queries on bulk reads; replace with explicit $lookup aggregation
 category: pitfall

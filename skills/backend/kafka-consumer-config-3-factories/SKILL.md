@@ -1,4 +1,5 @@
 ---
+tags: [backend, kafka, consumer, config, factories]
 name: kafka-consumer-config-3-factories
 description: Spring Kafka consumer setup with three ListenerContainerFactory variants (standard / batch / UUID-group) and autoStartup=false to allow topic bootstrap before listeners attach
 category: backend

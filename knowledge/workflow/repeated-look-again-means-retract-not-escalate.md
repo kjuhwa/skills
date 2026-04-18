@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: repeated-look-again-means-retract-not-escalate
 description: Repeated "look again" from the user after multiple findings is a signal to retract over-reaching claims, not to propose more findings.
 category: workflow

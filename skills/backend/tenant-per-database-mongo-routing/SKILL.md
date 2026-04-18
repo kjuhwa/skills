@@ -1,4 +1,5 @@
 ---
+tags: [backend, tenant, per, database, mongo, routing]
 name: tenant-per-database-mongo-routing
 description: Route Spring Data Mongo operations to per-tenant databases via a ThreadLocal tenant holder and two MongoTemplate beans (isolated vs shared collections).
 category: backend

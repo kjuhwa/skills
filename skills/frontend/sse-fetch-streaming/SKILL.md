@@ -1,4 +1,5 @@
 ---
+tags: [frontend, sse, fetch, streaming]
 name: sse-fetch-streaming
 description: Fetch-based Server-Sent Events streaming with pause/resume/close control for real-time chat and data feeds
 triggers:

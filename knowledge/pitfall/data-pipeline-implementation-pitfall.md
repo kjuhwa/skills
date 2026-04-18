@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: data-pipeline-implementation-pitfall
 description: Common mistakes that make pipeline visualizations look broken, lie about state, or degrade at scale
 category: pitfall

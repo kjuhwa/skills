@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bulkhead-implementation-pitfall
 description: Common mistakes that silently defeat bulkhead isolation in visualizations and real systems
 category: pitfall

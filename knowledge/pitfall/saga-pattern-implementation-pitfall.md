@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: saga-pattern-implementation-pitfall
 description: Common saga failures around non-compensatable pivot steps, lost compensations, and non-idempotent retries
 category: pitfall

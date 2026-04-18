@@ -1,4 +1,5 @@
 ---
+tags: [workflow, heuristic, scan, iterative, tuning]
 name: heuristic-scan-iterative-tuning
 description: When writing a new heuristic scanner over a corpus (dedup, archive, compress, lint), expect the first run to be wrong in predictable ways. Run → inspect false positives → add one guard → re-run. Tighten the spec and the scan script in lockstep so the shipped version reflects real-world calibration, not guessed thresholds.
 category: workflow

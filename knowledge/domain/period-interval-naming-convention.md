@@ -1,4 +1,7 @@
 ---
+name: period-interval-naming-convention
+version: 0.1.0-draft
+tags: [domain, period, interval, naming, convention]
 slug: period-interval-naming-convention
 category: domain
 summary: Period.Mode names encode both unit and multiplier (MIN_15, MONTH_2); monthly modes densify at 24h, not the unit itself

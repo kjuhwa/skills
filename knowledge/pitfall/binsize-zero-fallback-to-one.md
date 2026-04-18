@@ -1,4 +1,7 @@
 ---
+name: binsize-zero-fallback-to-one
+version: 0.1.0-draft
+tags: [pitfall, binsize, zero, fallback, one]
 category: pitfall
 summary: Substitute binSize=1 whenever the computed interval is 0 in MongoDB time-bucket aggregation
 source:

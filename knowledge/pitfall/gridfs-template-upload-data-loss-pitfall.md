@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, gridfs, template, upload, data, loss]
 name: gridfs-template-upload-data-loss-pitfall
 description: MongoDB GridFS uploads can silently drop file bytes if the bucket/db selection or stream flush is wrong — always verify metadata size equals input size
 type: pitfall

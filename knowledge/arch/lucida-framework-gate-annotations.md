@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, lucida, framework, gate, annotations]
 name: lucida-framework-gate-annotations
 description: Internal framework (lucida-framework-*) uses opt-in annotations (@EnabledMessage, @EnableDataExport, @EnableSchedule, @EnableCommand) on the Application class to gate auto-config; omitting one silently disables the feature.
 type: knowledge

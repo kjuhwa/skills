@@ -1,4 +1,5 @@
 ---
+tags: [testing, devex, review]
 name: devex-review
 category: testing
 preamble-tier: 3

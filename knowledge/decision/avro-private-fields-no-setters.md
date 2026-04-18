@@ -1,4 +1,7 @@
 ---
+name: avro-private-fields-no-setters
+version: 0.1.0-draft
+tags: [decision, avro, private, fields, setters]
 category: decision
 summary: Avro-generated classes are configured with `fieldVisibility=PRIVATE` and `createSetters=false` to enforce immutability on event payloads
 source:

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: strangler-fig-implementation-pitfall
 description: Common failure modes when building strangler-fig migration tooling: premature legacy retirement, shadow drift, dependency blindness
 category: pitfall

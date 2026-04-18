@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: scouter-three-tier-architecture
 summary: Scouter APM enforces strict agent → server → client separation, with an optional standalone HTTP webapp for horizontal scaling of query load
 category: arch

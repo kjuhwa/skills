@@ -1,4 +1,5 @@
 ---
+category: cli
 name: codex
 preamble-tier: 3
 version: 1.0.0

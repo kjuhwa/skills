@@ -1,4 +1,5 @@
 ---
+tags: [docs, document, release]
 name: document-release
 category: docs
 preamble-tier: 2

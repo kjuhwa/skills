@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, jacoco, sonar, exclusion, rationale]
 name: jacoco-sonar-exclusion-rationale
 description: Classes under config/, dto/, entity/, kafka/, avro/, exception/, advice/, schedule/, service/websocket/, and generated Q-classes are excluded from Jacoco coverage gates. Only business logic (routers, guards, services) is measured.
 category: decision

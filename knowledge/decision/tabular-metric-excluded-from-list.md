@@ -1,4 +1,7 @@
 ---
+name: tabular-metric-excluded-from-list
+version: 0.1.0-draft
+tags: [decision, tabular, metric, excluded, from, list]
 category: decision
 summary: TABULAR measurement type is intentionally excluded from searchable metric-definition list endpoints
 source:

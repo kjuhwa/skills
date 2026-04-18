@@ -1,4 +1,7 @@
 ---
+name: tenant-context-clear-after-completion
+version: 0.1.0-draft
+tags: [pitfall, tenant, context, clear, after, completion]
 category: pitfall
 summary: Multi-tenant thread-locals must be cleared in a HandlerInterceptor `afterCompletion`, regardless of request outcome
 source:

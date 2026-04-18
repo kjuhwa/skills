@@ -1,4 +1,5 @@
 ---
+tags: [backend, version, specific, sql, map, selection]
 name: version-specific-sql-map-selection
 description: Select MyBatis-style SQL maps at runtime by DBMS + version with graceful fallback to a default supported version
 category: backend

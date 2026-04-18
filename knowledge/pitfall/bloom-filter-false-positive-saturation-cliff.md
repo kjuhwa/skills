@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bloom-filter-false-positive-saturation-cliff
 description: Bloom filters silently degrade to ~100% false-positive rate once load exceeds design capacity, breaking set-diff reconciliation.
 category: pitfall

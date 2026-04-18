@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, typed, wikilinks, for, llm, knowledge]
 name: typed-wikilinks-for-llm-knowledge-base
 category: decision
 summary: Flat `[[wikilinks]]` carry one bit of information. For an LLM-facing knowledge base, tag every link with a relationship type (supersedes, contradicts, causes, supports) so the graph is queryable rather than just traversable.

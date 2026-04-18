@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, organization, soft, delete, grace, period]
 name: organization-soft-delete-grace-period
 category: decision
 summary: Organization deletion uses a 30-day grace period before permanent removal (DELETE_ORGANIZATION_INTERVAL_DAYS).

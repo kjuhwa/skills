@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, setup, browser, cookies]
 name: setup-browser-cookies
 preamble-tier: 1
 version: 1.0.0

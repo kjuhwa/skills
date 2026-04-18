@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, testcontainers, springboot, cache, conflict]
 name: testcontainers-springboot-cache-conflict
 description: @Testcontainers + @SpringBootTest 컨텍스트 캐싱 충돌 — @DynamicPropertySource + static start() 패턴으로 대체
 type: knowledge

@@ -1,4 +1,5 @@
 ---
+tags: [devops, gradle, jacoco, exclusion, strategy]
 name: gradle-jacoco-exclusion-strategy
 description: Curated Jacoco/Sonar exclusion patterns for Spring Boot projects — skips config/DAO/entity/generated layers and Querydsl Q-classes
 category: devops

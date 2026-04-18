@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: vector-clock-ui-dominance-tri-state-color
 description: Render vector-clock comparisons as a three-state (before/after/concurrent) badge, never a boolean.
 category: reference

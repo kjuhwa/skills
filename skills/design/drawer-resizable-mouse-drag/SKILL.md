@@ -1,4 +1,5 @@
 ---
+tags: [design, drawer, resizable, mouse, drag]
 name: drawer-resizable-mouse-drag
 description: Make Ant Design Drawer resizable via mouse drag with styled-components handle, min/max width constraints, and transition suppression during drag
 category: design

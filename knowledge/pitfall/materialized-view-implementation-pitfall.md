@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: materialized-view-implementation-pitfall
 description: Common mistakes when visualizing or simulating materialized-view refresh semantics
 category: pitfall

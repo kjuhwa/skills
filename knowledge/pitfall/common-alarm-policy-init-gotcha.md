@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: common-alarm-policy-init-gotcha
 description: Policy loader that "only runs on first boot if records exist" silently skips later-added policies for tenants that started empty
 category: pitfall

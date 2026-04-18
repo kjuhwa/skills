@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, archon, deterministic, coding, harness]
 name: archon-deterministic-ai-coding-harness
 category: arch
 summary: Archon enforces deterministic AI-assisted coding by encoding workflows as YAML DAGs — deterministic nodes (tests, git ops) bracket AI-driven nodes (plan, implement, review), each run isolated in its own git worktree. The pattern generalizes beyond Archon itself.

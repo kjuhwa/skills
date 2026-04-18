@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, mongodb, string, field, type, mapping]
 name: mongodb-string-id-field-type-mapping
 description: Spring Data MongoDB coerces 24-char-hex @Id String values to ObjectId unless @Field(targetType = FieldType.STRING) is set
 category: pitfall

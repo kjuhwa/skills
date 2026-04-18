@@ -1,4 +1,5 @@
 ---
+tags: [backend, multi, tenant, kafka, header, organization]
 name: multi-tenant-kafka-header-organization-context
 description: Propagate tenant/organization id from Kafka headers through async handler threads via a ThreadLocal context holder
 category: backend

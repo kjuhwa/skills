@@ -1,4 +1,5 @@
 ---
+tags: [cli, open, gstack, browser]
 name: open-gstack-browser
 category: cli
 version: 0.2.0

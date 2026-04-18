@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, sirius, component, taxonomy]
 name: sirius-component-taxonomy
 description: Sirius design system (@nkia/sirius) organizes 200+ components into 5 categories — data-display, data-entry, feedback, layout, navigation
 category: arch

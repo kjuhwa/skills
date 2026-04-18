@@ -1,4 +1,5 @@
 ---
+tags: [design, antd, wrapper, component, pattern]
 name: antd-wrapper-component-pattern
 description: Wrap Ant Design components with a custom design system layer (Sirius pattern) that extends props, enforces standards, and maintains upgrade compatibility
 category: design

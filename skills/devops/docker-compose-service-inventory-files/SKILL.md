@@ -1,4 +1,5 @@
 ---
+tags: [devops, docker, compose, service, inventory, files]
 name: docker-compose-service-inventory-files
 description: Manage large Docker Compose service fleets using flat inventory files with '#' as an EX (exclude) marker
 category: devops

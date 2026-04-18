@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, gstack, upgrade]
 name: gstack-upgrade
 version: 1.1.0
 description: |

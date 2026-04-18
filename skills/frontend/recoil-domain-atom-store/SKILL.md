@@ -1,4 +1,5 @@
 ---
+tags: [frontend, recoil, domain, atom, store]
 name: recoil-domain-atom-store
 description: Domain-scoped Recoil atom organization with typed hook wrappers for large-scale React state management
 triggers:

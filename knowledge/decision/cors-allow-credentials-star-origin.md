@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, cors, allow, credentials, star, origin]
 name: cors-allow-credentials-star-origin
 description: 서비스 레벨 allowCredentials=true + allowedOriginPatterns("*") 유지 — 엣지(Traefik/Istio)에서 CORS를 제어하는 아키텍처 전제
 type: knowledge

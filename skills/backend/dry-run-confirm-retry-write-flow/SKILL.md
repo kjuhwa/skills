@@ -1,4 +1,5 @@
 ---
+tags: [backend, dry, run, confirm, retry, write]
 name: dry-run-confirm-retry-write-flow
 description: "[Backend] 트래커/외부 API 쓰기 작업에 적용하는 공통 플로우: 미리보기 → 사용자 확인 → 쓰기 → 재시도."
 argument-hint: <context>

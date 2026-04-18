@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, actuator, metric, call, aggressive, timeout]
 name: actuator-metric-call-aggressive-timeout
 description: Use aggressive HTTP timeouts (100ms–1s) for /actuator/health and /actuator/metrics polling, but keep long timeouts for /actuator/threaddump and /actuator/heapdump — mixing them stalls the collector.
 type: pitfall

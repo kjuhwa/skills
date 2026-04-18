@@ -1,4 +1,5 @@
 ---
+tags: [backend, websocket, stomp, channel, pool, config]
 name: websocket-stomp-channel-pool-config
 description: Spring WebSocket STOMP config with separate inbound/outbound task executors and raised transport buffer limits, sized for burst notification fan-out to many role-filtered subscribers.
 trigger: STOMP endpoint fans out notifications to many subscribers (role-filtered); default shared channel pool stalls during burst broadcasts.

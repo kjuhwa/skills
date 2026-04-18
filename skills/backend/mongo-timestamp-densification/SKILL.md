@@ -1,4 +1,5 @@
 ---
+tags: [backend, mongo, timestamp, densification]
 name: mongo-timestamp-densification
 description: Fill sparse time-series gaps with `$dateTrunc` + `$densify` in Mongo, then a residual Java gap-fill loop for LIVE windows. Partition by series to keep multi-line charts aligned.
 category: backend

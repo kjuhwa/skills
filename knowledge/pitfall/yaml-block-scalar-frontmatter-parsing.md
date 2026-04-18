@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: yaml-block-scalar-frontmatter-parsing
 type: knowledge
 category: pitfall

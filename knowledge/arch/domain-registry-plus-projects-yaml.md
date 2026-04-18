@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: domain-registry-plus-projects-yaml
 description: Central domain registry + per-user path map for multi-repo codegen
 category: arch

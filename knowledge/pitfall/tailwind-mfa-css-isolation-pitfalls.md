@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, tailwind, mfa, css, isolation, pitfalls]
 name: tailwind-mfa-css-isolation-pitfalls
 category: pitfall
 description: CSS isolation failures when using Tailwind CSS in Module Federation — preflight leaks, portal scope loss, postcss-prefix-selector parse errors

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, drawer, over, modal]
 name: drawer-over-modal
 description: Decision to use side drawers (463 files) instead of centered modals (10 usages) as the primary overlay pattern
 category: decision

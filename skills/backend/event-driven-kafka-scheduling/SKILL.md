@@ -1,4 +1,5 @@
 ---
+tags: [backend, event, driven, kafka, scheduling]
 name: event-driven-kafka-scheduling
 description: Replace Spring @Scheduled with a Kafka-delivered JobExecuteNotice so a central scheduler service fans out tick events — with a skip-if-previous-still-running guard to prevent pile-up.
 category: backend

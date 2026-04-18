@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, cache, even, when, enable, false]
 name: cache-even-when-enable-false
 category: decision
 summary: Notification configs with `enable=false` are still loaded into the cache manager rather than skipped, so toggling enable on/off doesn't require a cache reload

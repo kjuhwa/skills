@@ -1,4 +1,7 @@
 ---
+name: jacoco-exclude-business-layers
+version: 0.1.0-draft
+tags: [decision, jacoco, exclude, business, layers]
 title: Jacoco excludes service/repository/dto/config/kafka layers from coverage
 category: decision
 summary: In this project's Jacoco config, nearly every layer (service, repository, dto, entity, kafka, config, constants, helper, exception, schedule, provider) is excluded from coverage measurement — only controllers/business orchestration code is measured.

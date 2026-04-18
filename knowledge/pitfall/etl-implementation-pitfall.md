@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: etl-implementation-pitfall
 description: Common failures when building ETL visualization UIs that feel wrong to data engineers
 category: pitfall

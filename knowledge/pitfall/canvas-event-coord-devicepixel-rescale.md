@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: canvas-event-coord-devicepixel-rescale
 description: Pointer coords on a responsive canvas must be rescaled by `canvas.width / rect.width` — using raw `clientX - rect.left` mis-hits whenever CSS size differs from the backing store size.
 category: pitfall

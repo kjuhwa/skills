@@ -1,4 +1,5 @@
 ---
+tags: [backend, freemarker, two, phase, expression, subst]
 name: freemarker-two-phase-expression-subst
 description: Render templates by first replacing raw ${var} placeholders via string-replace, then running FreeMarker for expression-object binding, avoiding double-evaluation and escape conflicts
 version: 1.0.0

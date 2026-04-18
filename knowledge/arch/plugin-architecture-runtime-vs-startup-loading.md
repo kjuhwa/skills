@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: plugin-architecture-runtime-vs-startup-loading
 summary: Scouter server loads hot-reloadable script plugins (.plug files) for alerts/filters and compiled JAR plugins for stateful data handlers (sinks, connection-pool-heavy integrations)
 category: arch

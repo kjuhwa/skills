@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [api, stomp, heartbeat, 10s, bidirectional]
 name: stomp-heartbeat-10s-bidirectional
 description: STOMP broker heartbeat set to 10s/10s (client↔server) is a reasonable default for detecting dead WebSocket sessions within ~20s
 category: api

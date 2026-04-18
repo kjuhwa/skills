@@ -1,4 +1,5 @@
 ---
+tags: [frontend, figma, code, connect, react]
 name: figma-code-connect-react
 description: Map Figma component variants to React props using @figma/code-connect with co-located *.figma.tsx files
 category: frontend

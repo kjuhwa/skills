@@ -1,4 +1,5 @@
 ---
+tags: [testing, spring, testcontainers, multitenant, base]
 name: spring-testcontainers-multitenant-base
 description: Base test class that boots Testcontainers (Mongo + Kafka), pre-sets tenant/auth context, and forces JVM halt in AfterAll to avoid leaked containers.
 trigger: Spring Boot + Testcontainers + multi-tenant code that reads TenantContextHolder / AuthContext in every service.

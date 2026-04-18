@@ -1,4 +1,5 @@
 ---
+tags: [workflow, plan, ceo, review]
 name: plan-ceo-review
 category: workflow
 preamble-tier: 3

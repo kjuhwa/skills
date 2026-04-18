@@ -1,4 +1,5 @@
 ---
+tags: [backend, second, aggregation, snapshot, merge]
 name: second-aggregation-snapshot-merge
 description: Per-second metric aggregation using in-memory counters + Flux.interval snapshot-and-reset + bounded parallel publish, to decouple request latency from downstream health.
 trigger: Need 1-second-resolution metrics (TPS, error counts, response-time histograms) without hitting Kafka/DB per event; counter registries with periodic drain.

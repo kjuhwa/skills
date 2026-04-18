@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, node, npm, pin, matches, jenkins]
 name: node-npm-pin-matches-jenkins
 description: UI build is pinned to Node 24.6.0 + npm 11.5.1 to match the Jenkins build environment
 type: decision

@@ -1,4 +1,5 @@
 ---
+tags: [backend, realtime, polling, fallback]
 name: realtime-vs-polling-fallback
 description: Let each resource type declare `supportsRealtime`; scheduler runs push-mode at the realtime interval and falls back to a safe polling interval (e.g., 60s) otherwise
 version: 1.0.0

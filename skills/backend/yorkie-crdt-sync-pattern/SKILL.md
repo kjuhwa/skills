@@ -1,4 +1,5 @@
 ---
+tags: [backend, yorkie, crdt, sync, pattern]
 name: yorkie-crdt-sync-pattern
 description: Apply a single doc.update callback for local mutations and pullRemoteChangesIntoLocal(WithNodeIds) for remote→local sync in Yorkie-backed apps
 source_project: lucida-builder-r3

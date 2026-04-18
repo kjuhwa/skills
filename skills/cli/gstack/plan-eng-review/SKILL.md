@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, plan, eng, review]
 name: plan-eng-review
 preamble-tier: 3
 version: 1.0.0

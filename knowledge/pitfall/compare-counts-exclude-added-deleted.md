@@ -1,4 +1,7 @@
 ---
+name: compare-counts-exclude-added-deleted
+version: 0.1.0-draft
+tags: [pitfall, compare, counts, exclude, added, deleted]
 title: Configuration-change counts must include newly-added resources, not just "latest" rows
 category: pitfall
 summary: An earlier query filtered change-count by `latest` / `added` / `deleted` flags, which silently dropped newly-added resources from the "number of changes between two points in time" metric.

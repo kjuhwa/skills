@@ -1,4 +1,7 @@
 ---
+name: hierarchical-agents-md-catalog
+version: 0.1.0-draft
+tags: [arch, hierarchical, agents, catalog]
 title: 계층형 AGENTS.md로 스킬 카탈로그를 관리한다
 category: arch
 summary: "루트 AGENTS.md(프로젝트 개요) + `skills/AGENTS.md`(스킬 카탈로그) 2계층 구조. 하위는 상위를 `<!-- Parent: ../AGENTS.md -->` 주석으로 가리킨다."

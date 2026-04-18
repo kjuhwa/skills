@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: message-queue-implementation-pitfall
 description: Common correctness bugs when implementing queue semantics in browser-based demos
 category: pitfall

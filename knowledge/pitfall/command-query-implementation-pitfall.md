@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: command-query-implementation-pitfall
 description: Common traps when building CQRS command-query separation apps — leaky reads, sync assumptions, and unbounded projections
 category: pitfall

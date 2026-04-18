@@ -1,4 +1,5 @@
 ---
+tags: [backend, concurrent, jdbc, pool, datasource, lifecycle]
 name: concurrent-jdbc-pool-datasource-lifecycle
 description: Manage a pool of short-lived JDBC targets for monitoring agents with dual maps (active vs all) and periodic revalidation
 category: backend

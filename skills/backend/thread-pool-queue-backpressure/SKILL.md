@@ -1,4 +1,5 @@
 ---
+tags: [backend, thread, pool, queue, backpressure]
 name: thread-pool-queue-backpressure
 description: Bounded in-memory queue between Kafka consumer and async thread pool, with hysteretic pause/resume thresholds driving Spring Kafka container pause()/resume() so bursts do not OOM the JVM.
 trigger: Kafka consumer hands off to an async worker pool; bursts overflow memory or stall GC without backpressure.

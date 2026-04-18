@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, land, and, deploy]
 name: land-and-deploy
 preamble-tier: 4
 version: 1.0.0

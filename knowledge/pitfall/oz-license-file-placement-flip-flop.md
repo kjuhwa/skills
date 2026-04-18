@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, license, file, placement, flip, flop]
 name: oz-license-file-placement-flip-flop
 description: Vendor engines (OZ Report, Crystal, Jasper-Pro) often hard-code license file search paths — pin the path in the image and document it, or you will ship it broken repeatedly
 type: pitfall

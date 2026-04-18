@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: feature-branch-install-stale-content
 description: Installing from example/* or skill/* feature branches delivers outdated content — always use main
 category: pitfall

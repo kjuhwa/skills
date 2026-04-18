@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: distributed-tracing-implementation-pitfall
 description: Clock skew, orphan spans, and sampling bias break tracing visualizations in ways that look like UI bugs
 category: pitfall

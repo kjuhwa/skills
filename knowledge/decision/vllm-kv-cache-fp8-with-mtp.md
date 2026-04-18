@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, vllm, cache, fp8, with, mtp]
 name: vllm-kv-cache-fp8-with-mtp
 description: vLLM serving chose fp8_e4m3 KV cache + prefix caching + MTP speculative decoding for Qwen3.5 throughput
 category: decision

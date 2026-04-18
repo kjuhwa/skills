@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [domain, root, span, error, propagation]
 name: root-span-error-propagation
 description: A trace's root-span isError flag must aggregate descendant span errors; otherwise scatter and list views disagree about which traces errored.
 type: domain

@@ -1,4 +1,5 @@
 ---
+tags: [backend, tenant, initialization, startup]
 name: tenant-db-initialization-on-startup
 description: On leader startup, fetch tenant/org list from metadata service and provision per-tenant MongoDB databases — idempotent, leader-only
 category: backend

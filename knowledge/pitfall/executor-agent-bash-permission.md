@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: executor-agent-bash-permission
 description: Executor sub-agents may not have Bash tool permissions, causing git/shell operations to fail silently
 category: pitfall

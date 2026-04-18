@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: raft-consensus-implementation-pitfall
 description: Common correctness bugs when modeling or implementing Raft, especially around term handling and commit safety
 category: pitfall

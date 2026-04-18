@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, traefik, 2.11, requires, explicit, idletimeout]
 name: traefik-2.11-requires-explicit-idletimeout
 description: Traefik 2.11 silently drops idle backend connections without an explicit idleTimeout on the entrypoint/serversTransport
 category: pitfall

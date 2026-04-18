@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, lean, verification, spec, coverage, gap]
 name: lean-verification-spec-coverage-gap
 category: pitfall
 summary: Formal proofs cover exactly what the spec formalizes — untrusted parsers and the language runtime, which are usually *not* in the spec, routinely contain the bugs a "proven correct" library claims to have eliminated.

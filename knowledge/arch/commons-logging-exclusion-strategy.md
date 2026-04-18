@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, commons, logging, exclusion, strategy]
 name: commons-logging-exclusion-strategy
 category: arch
 summary: Globally exclude commons-logging, log4j, and slf4j-log4j12 in Gradle so SLF4J+Logback is the only logging backend on the classpath

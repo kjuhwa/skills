@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, refresh, token, not, regenerate]
 name: refresh-token-do-not-regenerate
 category: pitfall
 summary: A refresh call must issue a new ACCESS token only, never a new refresh token.

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, spec, excluded, from, jest]
 name: spec-excluded-from-jest
 description: .spec.ts files are excluded from the Jest runner in this project — only .test.ts is discovered
 type: pitfall

@@ -1,4 +1,5 @@
 ---
+tags: [frontend, folder, coloc, style, types]
 name: folder-coloc-style-types
 description: Keep component, style, and types files at the same depth; never split into styles/ or types/ subfolders
 source_project: lucida-builder-r3

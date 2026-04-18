@@ -1,4 +1,5 @@
 ---
+tags: [backend, kafka, debounce, event, coalescing]
 name: kafka-debounce-event-coalescing
 description: Coalesce bursts of change events into one Kafka event per tenant per debounce window using Redis state (first/last change time + changed-tenant SET), with a MAX_WAIT fallback so a never-quiet stream still fires.
 trigger: Bursts of upstream change events (MongoDB change stream, bulk API mutations) would otherwise fan out into N downstream Kafka events per tenant.

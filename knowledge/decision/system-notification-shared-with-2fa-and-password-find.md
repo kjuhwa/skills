@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, system, notification, shared, with, 2fa]
 name: system-notification-shared-with-2fa-and-password-find
 category: decision
 summary: The `system_notification` config (SMTP/SMS credentials) is intentionally shared between 2FA and password-find flows rather than duplicated per flow

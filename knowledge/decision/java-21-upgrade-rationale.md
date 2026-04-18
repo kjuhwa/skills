@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, java, upgrade, rationale]
 name: java-21-upgrade-rationale
 category: decision
 summary: Java 17 → 21 + Spring Boot 3.5.x upgrade rationale and required Gradle/JVM flag adjustments

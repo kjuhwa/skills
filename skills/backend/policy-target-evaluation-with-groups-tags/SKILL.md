@@ -1,4 +1,5 @@
 ---
+tags: [backend, policy, target, evaluation, with, groups]
 name: policy-target-evaluation-with-groups-tags
 description: Evaluate whether a resource matches a policy via direct IDs + static/dynamic groups + tag filters, with explicit exclusion rules that take precedence over includes.
 trigger: Policy targeting must support direct IDs, static groups, dynamic (tag-filter) groups, and exclusions, and decide membership per resource.

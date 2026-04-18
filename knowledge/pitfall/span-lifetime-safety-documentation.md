@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: span-lifetime-safety-documentation
 summary: std::span is a non-owning view — common C++20 hazards (dangling temporaries, vector realloc, implicit construction from rvalues) and the safe usage patterns that avoid UB.
 category: pitfall

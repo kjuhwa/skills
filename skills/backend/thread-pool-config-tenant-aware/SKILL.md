@@ -1,4 +1,5 @@
 ---
+tags: [backend, thread, pool, config, tenant, aware]
 name: thread-pool-config-tenant-aware
 description: Property-driven ThreadPoolTaskExecutor + Scheduler config that extends TenantAsyncConfigurerSupport so @Async tasks inherit tenant context
 category: backend

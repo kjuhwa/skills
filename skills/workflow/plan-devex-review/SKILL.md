@@ -1,4 +1,5 @@
 ---
+tags: [workflow, plan, devex, review]
 name: plan-devex-review
 category: workflow
 preamble-tier: 3

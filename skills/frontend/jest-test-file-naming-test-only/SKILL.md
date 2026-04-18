@@ -1,4 +1,5 @@
 ---
+tags: [frontend, jest, test, file, naming, only]
 name: jest-test-file-naming-test-only
 description: Use .test.ts naming (not .spec.ts) and explicitly import jest globals; .spec.ts is excluded from the runner
 source_project: lucida-builder-r3

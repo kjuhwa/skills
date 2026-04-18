@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: unit-enum-silent-filter
 description: When metric rows are filtered out because their `unit` is not defined in a Java enum, the symptom is "items missing from the list UI" — no error, no log — and the root cause is upstream data adding units faster than the enum is updated
 category: pitfall

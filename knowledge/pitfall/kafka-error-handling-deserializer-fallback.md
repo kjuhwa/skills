@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, kafka, error, handling, deserializer, fallback]
 name: kafka-error-handling-deserializer-fallback
 category: pitfall
 summary: Wrap Avro/JSON deserializers in ErrorHandlingDeserializer so a single bad record doesn't poison the consumer and crash-loop the container

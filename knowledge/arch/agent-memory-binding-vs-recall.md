@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, agent, memory, binding, recall]
 name: agent-memory-binding-vs-recall
 category: arch
 summary: Agent memory systems that ace retrieval benchmarks still fail operationally because stored skills aren't *bound* to the episodes that validated them. Fix is a memory bundle — skill record + episode record + bidirectional link — returned together on recall.

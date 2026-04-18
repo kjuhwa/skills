@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, skip, schedule, previous, running]
 name: skip-schedule-if-previous-running
 description: When a periodic tick arrives and the previous execution for the same job is still running, skip the new tick — never queue it.
 type: pitfall

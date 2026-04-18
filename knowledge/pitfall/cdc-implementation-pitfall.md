@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: cdc-implementation-pitfall
 description: Common CDC mistakes: losing position state, mishandling tombstones, and breaking transaction boundaries
 category: pitfall

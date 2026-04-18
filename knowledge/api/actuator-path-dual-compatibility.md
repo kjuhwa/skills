@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [api, actuator, path, dual, compatibility]
 name: actuator-path-dual-compatibility
 category: api
 summary: Actuator endpoints must respond at both /actuator/** and /actuator/{appName}/** for deployment compatibility.

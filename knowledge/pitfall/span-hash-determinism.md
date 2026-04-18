@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, span, hash, determinism]
 name: span-hash-determinism
 description: Span-dedup hash must be deterministic and stable; changing the hash definition produces duplicate rows during rollout and poisons historical joins.
 type: pitfall

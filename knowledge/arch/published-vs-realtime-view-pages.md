@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, published, realtime, view, pages]
 name: published-vs-realtime-view-pages
 description: PublishedViewPage renders a frozen deploy snapshot; RealTimeViewPage renders the live editable dashboard
 type: arch

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, mongodb, field, name, underscore, dot]
 name: mongodb-field-name-underscore-to-dot
 category: pitfall
 summary: |

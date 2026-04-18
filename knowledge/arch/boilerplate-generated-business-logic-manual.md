@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: boilerplate-generated-business-logic-manual
 description: Split AI codegen scope along the boilerplate/business-logic line — AI produces skeletons, humans fill domain rules
 category: arch

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: k-git-tag-registry-versioning
 type: knowledge
 category: arch

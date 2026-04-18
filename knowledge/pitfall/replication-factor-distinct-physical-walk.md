@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: replication-factor-distinct-physical-walk
 description: Walking the ring for N replicas must skip virtual nodes belonging to already-selected physical nodes, not just take the next N vnodes.
 category: pitfall

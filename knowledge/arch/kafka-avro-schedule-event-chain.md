@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, kafka, avro, schedule, event, chain]
 name: kafka-avro-schedule-event-chain
 description: Collection scheduling decouples Kafka ingress from per-DBMS handlers via four typed BlockingQueues
 category: arch

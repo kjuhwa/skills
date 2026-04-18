@@ -1,4 +1,5 @@
 ---
+tags: [arch, optional, outbound, adapter, port]
 name: optional-outbound-adapter-no-op-port
 description: Register a No-Op implementation of an optional outbound port with @ConditionalOnMissingBean so services boot when the real adapter (Kafka audit, tracing, notifications) is absent.
 trigger: Hexagonal-architecture outbound port whose backing infrastructure is optional; service fails to boot in dev/test because an audit/tracing/notification adapter is missing.

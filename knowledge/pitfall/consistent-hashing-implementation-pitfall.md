@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: consistent-hashing-implementation-pitfall
 description: Common correctness and distribution pitfalls when implementing consistent hashing rings and virtual nodes
 category: pitfall

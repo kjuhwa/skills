@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: windows-crlf-git-show-extraction
 description: git show on Windows outputs LF while working tree has CRLF, causing false diffs on all extracted files
 category: pitfall

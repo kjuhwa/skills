@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: feature-flags-implementation-pitfall
 description: Common correctness traps when building feature-flag rollout, dependency, and A/B UIs
 category: pitfall

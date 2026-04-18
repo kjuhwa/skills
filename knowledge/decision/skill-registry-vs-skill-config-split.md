@@ -1,4 +1,7 @@
 ---
+name: skill-registry-vs-skill-config-split
+version: 0.1.0-draft
+tags: [decision, skill, registry, config, split]
 title: `skill-registry.yaml`과 `skill-config.yaml`을 분리한다
 category: decision
 summary: "원격 저장소 정보는 `.claude/skill-registry.yaml`, 스킬별 런타임 옵션(출력 경로 등)은 `.claude/skill-config.yaml`. 파일 단위로 관심사 분리."

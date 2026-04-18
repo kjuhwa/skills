@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: concurrent-edge-detection-without-full-clock-compare
 description: Rendering "concurrent" edges in a DAG viz requires comparing every pair, not just adjacent events — O(n²) is the correct cost.
 category: pitfall

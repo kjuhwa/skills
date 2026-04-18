@@ -1,4 +1,7 @@
 ---
+name: top-bottom-widest-collection-range
+version: 0.1.0-draft
+tags: [pitfall, top, bottom, widest, collection, range]
 category: pitfall
 summary: For Top/Bottom selection queries, pick the collection whose bin granularity covers the widest range, not the finest-grained one
 source:

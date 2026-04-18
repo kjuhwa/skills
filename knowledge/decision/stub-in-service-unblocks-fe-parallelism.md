@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: stub-in-service-unblocks-fe-parallelism
 description: Emit stub return values inside generated Service methods (tagged `// STUB:`) so FE can connect to a live BE without waiting on business logic
 category: decision

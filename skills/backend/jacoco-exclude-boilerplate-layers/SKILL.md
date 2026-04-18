@@ -1,4 +1,5 @@
 ---
+tags: [backend, jacoco, exclude, boilerplate, layers]
 name: jacoco-exclude-boilerplate-layers
 description: Configure JaCoCo + SonarQube to exclude generated/boilerplate layers (avro, config, dto, entity, kafka, *Dev) from coverage so coverage % reflects business logic only
 category: backend

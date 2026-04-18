@@ -1,4 +1,7 @@
 ---
+name: event-driven-init-wait-for-services
+version: 0.1.0-draft
+tags: [arch, event, driven, init, wait, for]
 category: arch
 summary: Initialization work is deferred until leader status and dependent-service readiness are confirmed via a `@WaitForServices` event listener
 source:

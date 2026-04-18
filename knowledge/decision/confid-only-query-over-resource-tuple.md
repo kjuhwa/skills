@@ -1,4 +1,7 @@
 ---
+name: confid-only-query-over-resource-tuple
+version: 0.1.0-draft
+tags: [decision, confid, only, query, over, resource]
 category: decision
 summary: Performance queries key off `confId` (config id) whenever available, falling back to (resourceType, resourceName) only when confId is absent
 source:

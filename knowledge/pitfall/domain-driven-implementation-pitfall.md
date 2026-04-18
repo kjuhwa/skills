@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: domain-driven-implementation-pitfall
 description: Common failure modes when building tools that model bounded contexts, aggregates, and ubiquitous language
 category: pitfall

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: shared-repo-sequential-branching
 description: Git operations on a shared repo clone must be sequential — parallel branch creation causes working tree conflicts
 category: pitfall

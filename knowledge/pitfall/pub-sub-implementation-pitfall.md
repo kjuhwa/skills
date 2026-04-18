@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: pub-sub-implementation-pitfall
 description: Synchronous in-loop dispatch causes slow subscribers to block publishers and starve fast ones
 category: pitfall

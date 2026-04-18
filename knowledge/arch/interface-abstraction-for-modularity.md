@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: interface-abstraction-for-modularity
 summary: Pure-virtual C++ interfaces in a dedicated src/interfaces/ directory decouple modules without symbol-level coupling, and enable IPC code generation later.
 category: arch

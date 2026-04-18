@@ -1,4 +1,7 @@
 ---
+name: csp-frame-ancestors-required
+version: 0.1.0-draft
+tags: [decision, csp, frame, ancestors, required]
 category: decision
 summary: Send a Content-Security-Policy header (including `frame-ancestors`) on every response to block clickjacking
 source:

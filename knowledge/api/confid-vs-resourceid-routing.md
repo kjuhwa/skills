@@ -1,4 +1,7 @@
 ---
+name: confid-vs-resourceid-routing
+version: 0.1.0-draft
+tags: [api, confid, resourceid, routing]
 slug: confid-vs-resourceid-routing
 category: api
 summary: Queries support both `configIds` (tenant/policy scope) and `resourceId` (agent scope); filter routes to different Mongo match fields

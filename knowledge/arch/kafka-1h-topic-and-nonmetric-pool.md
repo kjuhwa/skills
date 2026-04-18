@@ -1,4 +1,7 @@
 ---
+name: kafka-1h-topic-and-nonmetric-pool
+version: 0.1.0-draft
+tags: [arch, kafka, topic, and, nonmetric, pool]
 slug: kafka-1h-topic-and-nonmetric-pool
 category: arch
 summary: Raw alarm path uses a 1-hour-retention Kafka topic and a dedicated non-metric thread pool — isolates alarm latency from batch ingest

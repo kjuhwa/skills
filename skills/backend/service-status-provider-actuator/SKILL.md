@@ -1,4 +1,5 @@
 ---
+tags: [backend, service, status, provider, actuator]
 name: service-status-provider-actuator
 description: Spring Boot 3.5 ServiceStatusProvider that reports RUNNING vs READY based on MongoDB ping + Kafka listener container liveness
 category: backend

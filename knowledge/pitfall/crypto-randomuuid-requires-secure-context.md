@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, crypto, randomuuid, requires, secure, context]
 name: crypto-randomuuid-requires-secure-context
 description: "`crypto.randomUUID()` is only defined in secure contexts (HTTPS or localhost); plain-HTTP dev or intranet deployments need an explicit UUID fallback."
 category: pitfall

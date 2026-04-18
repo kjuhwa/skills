@@ -1,4 +1,5 @@
 ---
+tags: [backend, period, mode, enum, config]
 name: period-mode-enum-config
 description: One enum `Mode` holds all (intervalMs, isFullData, dateFormat, retention, chartFormat) tuples for every time-series granularity — single source of truth across repository/service/chart layers.
 category: backend

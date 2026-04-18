@@ -1,4 +1,7 @@
 ---
+name: policy-edit-saveraw-loss
+version: 0.1.0-draft
+tags: [pitfall, policy, edit, saveraw, loss]
 slug: policy-edit-saveraw-loss
 category: pitfall
 summary: Editing a common collection policy can silently drop individual `saveRaw`/interval settings if not re-applied

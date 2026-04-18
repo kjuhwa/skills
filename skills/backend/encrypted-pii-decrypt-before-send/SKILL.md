@@ -1,4 +1,5 @@
 ---
+tags: [backend, encrypted, pii, decrypt, before, send]
 name: encrypted-pii-decrypt-before-send
 description: Store user email/phone encrypted at rest; decrypt only inside the sender, never in cache/DTO/log boundaries
 version: 1.0.0

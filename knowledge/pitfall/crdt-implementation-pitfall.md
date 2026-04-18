@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: crdt-implementation-pitfall
 description: Common CRDT bugs: naive LWW tiebreaking, OR-Set tag reuse, and counter double-counting on replay
 category: pitfall

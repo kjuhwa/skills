@@ -1,4 +1,5 @@
 ---
+tags: [backend, redis, lock, recheck, flag, pattern]
 name: redis-lock-recheck-flag-pattern
 description: Distributed Redis lock with a "recheck" flag so concurrent events arriving while the lock is held force the holder to run a second pass, instead of being silently dropped.
 trigger: Multi-instance consumer must serialize work per-key (tenant/user/entity) but must not drop concurrent events arriving mid-processing.

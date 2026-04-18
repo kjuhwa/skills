@@ -1,4 +1,7 @@
 ---
+name: live-mode-aggregation-exceptions
+version: 0.1.0-draft
+tags: [arch, live, mode, aggregation, exceptions]
 slug: live-mode-aggregation-exceptions
 category: arch
 summary: LIVE mode reads raw data by default, but equalizer / multi-resource / TopN charts still aggregate raw at query time

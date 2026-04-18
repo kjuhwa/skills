@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, jest, coverage, threshold]
 name: jest-coverage-80-threshold
 description: Global Jest coverage threshold is 80% on branches, functions, lines, and statements
 type: decision

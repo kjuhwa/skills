@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: json-clone-reducer-state-constraint
 description: `JSON.parse(JSON.stringify(state))` is sufficient for pure-reducer immutability only when state is JSON-safe — it silently drops `Date`, `Map`, `Set`, `RegExp`, functions, and `undefined`.
 category: decision

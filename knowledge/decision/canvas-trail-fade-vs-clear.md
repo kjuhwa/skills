@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: canvas-trail-fade-vs-clear
 description: Use alpha-rect overpaint instead of clearRect for motion-trail visuals; faster and looks better.
 category: decision

@@ -1,4 +1,5 @@
 ---
+tags: [backend, multi, dbms, resource, provider, pattern]
 name: multi-dbms-resource-provider-pattern
 description: Structure a polyglot RDBMS monitoring agent with one ResourceProvider + entity/dto/service per DBMS, sharing a common base
 category: backend

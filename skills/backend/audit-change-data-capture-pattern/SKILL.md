@@ -1,4 +1,5 @@
 ---
+tags: [backend, audit, change, data, capture, pattern]
 name: audit-change-data-capture-pattern
 description: Compute before/after diffs for audit logs by comparing two BSON/JSON documents field-by-field — always iterate the BEFORE doc and read from AFTER to avoid prev/after swap bugs
 category: backend

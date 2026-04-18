@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: kafka-partition-topology-design
 description: Asymmetric Kafka partition counts per topic (high for hot-path, default for admin topics) match volume and concurrency needs without over-provisioning
 category: arch

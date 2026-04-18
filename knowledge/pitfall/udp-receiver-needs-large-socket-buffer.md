@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, udp, receiver, needs, large, socket]
 name: udp-receiver-needs-large-socket-buffer
 description: UDP collectors behind Traefik/containers must raise SO_RCVBUF well above the 8KB default or drop packets under burst load
 category: pitfall

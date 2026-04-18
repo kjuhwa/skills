@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, devex, review]
 name: devex-review
 preamble-tier: 3
 version: 1.0.0

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: single-file-html-for-file-protocol
 description: Generate single-file HTML apps (inline CSS+JS) to avoid CORS errors when opened via file:// protocol
 category: decision

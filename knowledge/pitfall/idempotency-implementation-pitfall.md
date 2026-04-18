@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: idempotency-implementation-pitfall
 description: Common failure modes when implementing idempotency keys — race conditions, improper scope, and caching the wrong response.
 category: pitfall

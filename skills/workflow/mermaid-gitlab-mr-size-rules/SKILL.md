@@ -1,4 +1,5 @@
 ---
+tags: [workflow, mermaid, gitlab, size, rules]
 name: mermaid-gitlab-mr-size-rules
 description: Keep Mermaid diagrams in GitLab MRs readable — cap nodes, avoid nested subgraphs, quote IDs with special chars, connect all subgraphs
 source_project: lucida-builder-r3

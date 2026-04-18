@@ -1,4 +1,5 @@
 ---
+tags: [backend, mongo, criteria, maker, elemmatch, and]
 name: mongo-criteria-maker-elemmatch-and-or
 description: Compose dynamic MongoDB Criteria with mixed AND/OR groups and elemMatch on tag-array fields using a stack-based builder
 version: 1.0.0

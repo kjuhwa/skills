@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, setup, deploy]
 name: setup-deploy
 preamble-tier: 2
 version: 1.0.0

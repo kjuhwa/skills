@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: assumeutxo-snapshot-chainstate-phases
 summary: (Blockchain-specific) Multi-chainstate snapshot validation — active chainstate syncs from a trusted-but-unverified UTXO snapshot while a background chainstate validates the snapshot's base, with a phased state machine for clean cutover.
 category: arch

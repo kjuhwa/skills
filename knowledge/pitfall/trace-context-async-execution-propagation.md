@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: trace-context-async-execution-propagation
 summary: Thread-local trace context is lost across executor.submit / reactor.flatMap boundaries; scouter injects bytecode wrappers around async entry points to capture and restore it
 category: pitfall

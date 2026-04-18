@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: multi-domain-split-via-domain-mapping
 description: Split multi-domain screens via a domain-mapping manifest — one OpenAPI file per owning domain
 category: arch

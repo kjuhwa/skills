@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: connection-pool-implementation-pitfall
 description: Common errors when modeling or implementing connection pool visualizers, simulators, and config labs
 category: pitfall

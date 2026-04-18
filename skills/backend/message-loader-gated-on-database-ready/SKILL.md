@@ -1,4 +1,5 @@
 ---
+tags: [backend, message, loader, gated, database, ready]
 name: message-loader-gated-on-database-ready
 description: Gate i18n/seed loading on database readiness + per-tenant distributed lock so the first instance wins initialization in a multi-replica rollout.
 trigger: Multiple replicas start simultaneously and race to seed shared tenant state (messages, roles, defaults).

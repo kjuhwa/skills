@@ -1,4 +1,5 @@
 ---
+tags: [backend, frozen, detection, consecutive, count]
 name: frozen-detection-consecutive-count
 description: Detect a stuck/frozen metric (identical value for N consecutive samples) by CONSECUTIVE-dampening equality check; catches sensor/collector failures that threshold alarms miss.
 trigger: Collector reports a valid-looking but unchanging value (flatline) that static thresholds never alert on.

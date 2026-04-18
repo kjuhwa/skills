@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: api-versioning-implementation-pitfall
 description: Common traps when building API version visualizations: off-by-one lifecycle states, diff semantic loss, and traffic share math
 category: pitfall

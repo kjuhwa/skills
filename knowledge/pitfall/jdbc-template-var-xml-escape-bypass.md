@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, jdbc, template, var, xml, escape]
 name: jdbc-template-var-xml-escape-bypass
 category: pitfall
 summary: When the template engine XML-escapes values but the downstream channel is raw SQL / plain text, the escaped `&amp; &lt; &gt;` leaks into stored data

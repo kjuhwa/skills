@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, sirius, wraps, antd, design, system]
 name: sirius-wraps-antd-design-system
 category: arch
 description: Sirius design system wraps Ant Design components instead of replacing them — rationale, extension pattern, and upgrade implications

@@ -1,4 +1,5 @@
 ---
+tags: [workflow, parallel, bulk, annotation]
 name: parallel-bulk-annotation
 description: 수십~수백 개 Java 파일에 어노테이션(@Schema, @Operation, @ApiResponse 등)을 대량 추가할 때 병렬 에이전트로 분산 실행하는 패턴
 triggers:

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, select, unstable, options, infinite, loop]
 name: mf-select-unstable-options-infinite-loop
 description: Custom Select/Dropdown components that accept an `options` array and diff it by reference can infinite-loop when consumed across a Module Federation boundary; prefer pure HTML selects or stabilize the array.
 category: pitfall

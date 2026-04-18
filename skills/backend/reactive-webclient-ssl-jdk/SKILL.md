@@ -1,4 +1,5 @@
 ---
+tags: [backend, reactive, webclient, ssl, jdk]
 name: reactive-webclient-ssl-jdk
 description: Force reactor-netty WebClient to SslProvider.JDK so SSL works in slim containers that lack netty-tcnative native libraries.
 trigger: Spring WebFlux WebClient SSL failures in container images; UnsatisfiedLinkError for netty-tcnative / OpenSSL; distroless or Alpine JRE images.

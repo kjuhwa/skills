@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: rate-limiter-implementation-pitfall
 description: Common correctness bugs in rate limiter algorithms that only surface under specific traffic patterns
 category: pitfall

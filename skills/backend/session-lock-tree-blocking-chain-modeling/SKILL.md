@@ -1,4 +1,5 @@
 ---
+tags: [backend, session, lock, tree, blocking, chain]
 name: session-lock-tree-blocking-chain-modeling
 description: Model RDBMS blocking sessions as a directed graph and persist the resolved lock tree alongside the session snapshot
 category: backend

@@ -1,4 +1,7 @@
 ---
+name: plugin-repo-scope-generic-skills-only
+version: 0.1.0-draft
+tags: [decision, plugin, repo, scope, generic, skills]
 title: 플러그인 repo에는 프로젝트 독립적 스킬만 담는다
 category: decision
 summary: "nkia-skills 같은 공용 플러그인에는 범용 스킬만. 프로젝트 특화 스킬은 각 프로젝트의 `.claude/skills/`에 둔다."

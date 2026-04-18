@@ -1,4 +1,5 @@
 ---
+tags: [devops, spring, bootrun, local, dev, env]
 name: spring-bootrun-local-dev-env-block
 description: Gradle `bootRun` env block that wires local Redis/Mongo/Kafka/Eureka/MQTT for zero-config `./gradlew bootRun` developer experience
 version: 1.0.0

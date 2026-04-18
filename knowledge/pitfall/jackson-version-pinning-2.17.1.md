@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, jackson, version, pinning, 2.17.1]
 name: jackson-version-pinning-2.17.1
 category: pitfall
 summary: Jackson must be pinned via Gradle resolutionStrategy across all com.fasterxml.jackson.* groups to avoid NoSuchMethodError from transitive version drift

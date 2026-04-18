@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, sql, hash, unsigned, integer]
 name: sql-hash-unsigned-integer
 description: MySQL/MariaDB SQL digest hashes fit in an unsigned 32-bit range but arrive as signed Java int — negatives are legal and must not be dropped
 category: pitfall

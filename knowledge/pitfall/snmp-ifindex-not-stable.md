@@ -1,4 +1,7 @@
 ---
+name: snmp-ifindex-not-stable
+version: 0.1.0-draft
+tags: [pitfall, snmp, ifindex, not, stable]
 category: pitfall
 summary: SNMP `ifIndex` can change across device reboot/reconfig — never use it as a stable identifier
 source:

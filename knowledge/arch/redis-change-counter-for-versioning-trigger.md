@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, redis, change, counter, for, versioning]
 name: redis-change-counter-for-versioning-trigger
 category: arch
 summary: |

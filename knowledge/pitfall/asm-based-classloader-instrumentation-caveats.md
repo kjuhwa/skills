@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: asm-based-classloader-instrumentation-caveats
 summary: ASM-based JVM agents miss Java 8+ lambda forms, annotation-processor classes, and Spring proxies unless explicitly handled; misses manifest as XLog gaps or skipped trace points
 category: pitfall

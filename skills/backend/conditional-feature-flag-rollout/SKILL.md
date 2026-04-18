@@ -1,4 +1,5 @@
 ---
+tags: [backend, conditional, feature, flag, rollout]
 name: conditional-feature-flag-rollout
 description: @ConditionalOnProperty로 구/신 구현을 공존시키고 런타임 속성 하나로 전환하는 점진적 롤아웃 패턴
 type: skill

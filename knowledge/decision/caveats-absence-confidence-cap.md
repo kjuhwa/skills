@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: caveats-absence-confidence-cap
 type: knowledge
 category: decision

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: log-aggregation-implementation-pitfall
 description: Common failure modes when building log aggregation visualizations: memory blowup, scroll jank, and meaningless heatmaps
 category: pitfall

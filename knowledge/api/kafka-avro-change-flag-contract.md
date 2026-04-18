@@ -1,4 +1,7 @@
 ---
+name: kafka-avro-change-flag-contract
+version: 0.1.0-draft
+tags: [api, kafka, avro, change, flag, contract]
 title: Kafka Avro event contract — actionType + per-section change flags
 category: api
 summary: Every Configuration-domain Avro event carries an `actionType` enum (INSERT/UPDATE/DELETE) plus boolean change flags per mutable section (e.g. `parentChanged`, `tagFiltersChanged`, `configurationsChanged`) rather than full before/after payloads.

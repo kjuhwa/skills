@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, tenant, flag, over, name, detection]
 name: tenant-flag-over-name-detection
 category: pitfall
 summary: Identify special/system tenants by a boolean flag on the entity, never by matching on name.

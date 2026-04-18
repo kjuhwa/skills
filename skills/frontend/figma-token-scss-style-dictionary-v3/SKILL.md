@@ -1,4 +1,5 @@
 ---
+tags: [frontend, figma, token, scss, style, dictionary]
 name: figma-token-scss-style-dictionary-v3
 description: Figma Tokens Studio JSON → split files → Style Dictionary v3 → SCSS variables, typography classes, and composition classes
 category: frontend

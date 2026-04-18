@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bilingual-user-facing-strings
 summary: A bilingual_str struct carrying both original and translated forms lets GUI show translated text while logs/stderr keep the original — no locale branching in business code.
 category: arch

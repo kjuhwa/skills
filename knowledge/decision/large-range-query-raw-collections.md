@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, large, range, query, raw, collections]
 name: large-range-query-raw-collections
 description: For long time-range analytics over day-partitioned data, query the daily raw collections directly rather than going through an aggregated view to avoid query timeouts.
 type: decision

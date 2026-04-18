@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, enum, notnull, comparison]
 name: enum-notnull-comparison-pitfall
 description: In Java, comparing an enum field with `==` without a null guard NPEs on the left operand; prefer constant-on-the-left or an explicit @NotNull contract
 category: pitfall

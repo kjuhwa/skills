@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: classifier-both-verdict-self-reference
 type: knowledge
 category: pitfall

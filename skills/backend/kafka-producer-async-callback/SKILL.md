@@ -1,4 +1,5 @@
 ---
+tags: [backend, kafka, producer, async, callback]
 name: kafka-producer-async-callback
 description: Fire-and-log Kafka send pattern using CompletableFuture.whenComplete() for audit/event topics where the caller should not block
 trigger: Service needs to emit audit or event messages to Kafka without blocking the user request, but still log delivery failures

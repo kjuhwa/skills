@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: wait-for-services-eureka-startup-init
 title: Gate startup initialization on dependent-service readiness via @WaitForServices
 description: Defer schema/index/data bootstrap until named services report ready in discovery, with bounded exponential backoff and leader election

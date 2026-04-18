@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, scatter, topic, 1min, retention]
 name: scatter-topic-1min-retention
 description: Per-tenant scatter-plot/summary topics use 60s retention; metric-history topics use the cluster default. Class-of-data drives retention, not tenant.
 category: decision

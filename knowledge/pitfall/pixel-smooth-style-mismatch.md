@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: pixel-smooth-style-mismatch
 description: Mixing pixel-art character with smooth vector illustration creates jarring visual mismatch — both layers need the same aesthetic
 category: pitfall

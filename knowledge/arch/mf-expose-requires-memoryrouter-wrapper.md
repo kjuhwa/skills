@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, expose, requires, memoryrouter, wrapper]
 name: mf-expose-requires-memoryrouter-wrapper
 description: Components exposed via Module Federation that use react-router hooks must be wrapped in MemoryRouter at the expose boundary, not BrowserRouter and not a full-app router wrapper.
 category: arch

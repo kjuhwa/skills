@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: arbitrary-display-caps-hide-signal
 description: Hardcoded `slice(0, N)` display limits in UI code silently cap counts below actual data, making users distrust the pipeline even when it works correctly
 category: pitfall

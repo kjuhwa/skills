@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, konva, center, coord, system]
 name: konva-center-coord-system
 description: Konva node coordinates can be center-based; when converting to top-left boxes subtract half width/height
 type: pitfall

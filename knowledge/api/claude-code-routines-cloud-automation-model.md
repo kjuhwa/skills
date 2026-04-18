@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [api, claude, code, routines, cloud, automation]
 name: claude-code-routines-cloud-automation-model
 category: api
 summary: Claude Code Routines (research preview) are saved cloud sessions — prompt + repos + connectors + environment — triggered by schedule, HTTP POST, or GitHub events. One routine can combine all three. Daily run cap per account; branch pushes restricted to `claude/*` by default.

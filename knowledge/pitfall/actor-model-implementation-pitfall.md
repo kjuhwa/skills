@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: actor-model-implementation-pitfall
 description: Shared mutable state and blocking calls silently break actor-model guarantees
 category: pitfall

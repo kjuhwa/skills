@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: hub-soft-delete-via-frontmatter-flag
 type: knowledge
 category: decision

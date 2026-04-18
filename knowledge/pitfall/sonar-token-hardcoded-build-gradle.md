@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, sonar, token, hardcoded, build, gradle]
 name: sonar-token-hardcoded-build-gradle
 title: build-gradle-secret-and-insecure-protocol
 description: Hardcoded SonarQube login token in build.gradle plus `allowInsecureProtocol = true` on an internal Nexus are two common DevSecOps anti-patterns to fix together

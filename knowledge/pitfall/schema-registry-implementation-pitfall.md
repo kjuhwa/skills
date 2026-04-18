@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: schema-registry-implementation-pitfall
 description: Common mistakes when modeling compatibility checks and version semantics in registry tools
 category: pitfall

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, injectmocks, generics, type, erasure]
 name: injectmocks-generics-type-erasure
 description: @InjectMocks가 제네릭 필드에 Mock을 주입할 때 타입 소거로 잘못된 후보를 고르는 flaky 원인
 type: knowledge

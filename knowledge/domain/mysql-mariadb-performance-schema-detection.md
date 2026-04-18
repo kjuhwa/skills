@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [domain, mysql, mariadb, performance, schema, detection]
 name: mysql-mariadb-performance-schema-detection
 description: MySQL/MariaDB metric availability depends on per-instance Performance Schema state; detect at runtime, don't assume
 category: domain

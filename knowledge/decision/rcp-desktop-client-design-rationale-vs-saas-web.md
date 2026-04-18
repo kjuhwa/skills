@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: rcp-desktop-client-design-rationale-vs-saas-web
 summary: Scouter chose an Eclipse RCP desktop client over a browser UI to enable high-throughput binary streams, local caching, and real-time drill-down without HTTP/JSON overhead
 category: decision

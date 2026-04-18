@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: split-llm-codegen-into-idea-plus-per-item
 description: Split large LLM code generation into lightweight idea call + per-item full code calls to maximize output per artifact
 category: workflow

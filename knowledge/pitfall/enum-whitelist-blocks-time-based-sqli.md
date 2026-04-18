@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: enum-whitelist-blocks-time-based-sqli
 description: Validate user-supplied identifiers (metric aliases, column names, value-type keys) against a known definition/enum before they reach any query builder — string-only sinks are still injectable
 category: pitfall

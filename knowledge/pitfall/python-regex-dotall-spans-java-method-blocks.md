@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: python-regex-dotall-spans-java-method-blocks
 description: Python re.sub에서 DOTALL + .*? 로 Java 메서드를 batch 편집하면 non-greedy여도 인접 메서드 블록을 건너뛰어 잘못된 위치에 annotation이 삽입된다
 category: pitfall

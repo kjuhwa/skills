@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: always-pr-branch-never-direct-push
 description: "Always create a feature branch and PR for shared repos — never push directly to main, even for 'obvious' additions"
 type: knowledge

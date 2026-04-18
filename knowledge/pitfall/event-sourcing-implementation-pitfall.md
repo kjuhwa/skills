@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: event-sourcing-implementation-pitfall
 description: Schema evolution and non-deterministic projections break replay guarantees
 category: pitfall

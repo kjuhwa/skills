@@ -1,4 +1,5 @@
 ---
+tags: [workflow, swagger, optimization]
 name: swagger-ai-optimization
 description: Spring Boot + springdoc 프로젝트의 Swagger/OpenAPI 스펙을 AI Agent용으로 최적화 (operationId, @Schema, @ApiResponse, x-filterable-fields 전수 적용)
 category: workflow

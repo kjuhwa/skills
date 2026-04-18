@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: canary-release-implementation-pitfall
 description: Common traps when modeling canary releases — low-volume gate noise, symmetric SLOs, and instant weight shifts
 category: pitfall

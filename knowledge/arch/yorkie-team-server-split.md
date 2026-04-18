@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, yorkie, team, server, split]
 name: yorkie-team-server-split
 description: Yorkie holds live canvas state; the team server holds metadata (projects, assets, datasources) — never mix
 type: arch

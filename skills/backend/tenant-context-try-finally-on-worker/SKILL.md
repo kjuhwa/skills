@@ -1,4 +1,5 @@
 ---
+tags: [backend, tenant, context, try, finally, worker]
 name: tenant-context-try-finally-on-worker
 description: Kafka/Queue Worker에서 멀티테넌트 ThreadLocal 컨텍스트를 try-finally로 안전하게 세팅/정리하는 패턴
 type: skill

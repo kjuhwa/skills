@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: database-sharding-implementation-pitfall
 description: Modulo sharding's rebalance cost trap and virtual node undersizing cause visualizers to mislead operators about real-world behavior
 category: pitfall

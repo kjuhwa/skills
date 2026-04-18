@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, widget, high, prop, count, debt]
 name: widget-high-prop-count-debt
 category: pitfall
 description: Dashboard CardChart components accumulate 100+ props making them hard to maintain, version, and test — known tech debt with no current mitigation

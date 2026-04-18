@@ -1,4 +1,5 @@
 ---
+tags: [backend, axios, token, refresh, queue]
 name: axios-token-refresh-queue
 description: Axios interceptor with window-scoped request queue during JWT token refresh to prevent concurrent refresh races
 triggers:

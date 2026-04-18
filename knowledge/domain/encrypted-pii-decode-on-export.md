@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [domain, encrypted, pii, decode, export]
 name: encrypted-pii-decode-on-export
 category: domain
 summary: PII fields (phone, email) are stored encrypted; only decrypted for explicit export/API response, never for logs.

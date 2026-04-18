@@ -1,4 +1,7 @@
 ---
+name: k8s-clusterrole-aggregation-npe
+version: 0.1.0-draft
+tags: [pitfall, k8s, clusterrole, aggregation, npe]
 category: pitfall
 summary: ClusterRole `aggregationRule` and its `clusterRoleSelectors` are both nullable — iterate only after null-check
 source:

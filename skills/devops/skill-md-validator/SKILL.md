@@ -1,4 +1,5 @@
 ---
+tags: [devops, skill, validator]
 name: skill-md-validator
 description: "[Tooling] SKILL.md frontmatter + 필수 섹션을 CRITICAL/WARNING 등급으로 검증하는 품질 게이트."
 argument-hint: "[skill-name]"

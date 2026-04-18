@@ -1,4 +1,7 @@
 ---
+name: topn-unwind-match-to-filter
+version: 0.1.0-draft
+tags: [pitfall, topn, unwind, match, filter]
 slug: topn-unwind-match-to-filter
 category: pitfall
 summary: TopN Mongo pipeline using `$unwind`+`$match` explodes documents; push predicate into `$filter` first

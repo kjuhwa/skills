@@ -1,4 +1,5 @@
 ---
+tags: [frontend, type, prefix, convention]
 name: ts-type-prefix-convention
 description: Prefix interfaces with I and type aliases with T; use type for unions/literals and interface for inheritable shapes
 source_project: lucida-builder-r3

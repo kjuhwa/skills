@@ -1,4 +1,5 @@
 ---
+tags: [vllm, nginx, tls, single, port, routing]
 name: vllm-nginx-tls-single-port-routing
 description: Serve multiple vLLM OpenAI-API backends behind one Nginx TLS proxy on 443 using path-based routing
 category: ai

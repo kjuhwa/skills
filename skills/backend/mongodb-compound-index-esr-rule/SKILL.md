@@ -1,4 +1,5 @@
 ---
+tags: [backend, mongodb, compound, index, esr, rule]
 name: mongodb-compound-index-esr-rule
 description: Order MongoDB compound-index fields as Equality → Sort → Range so the query planner keeps a tight IXSCAN and avoids in-memory sorts.
 trigger: Designing or reviewing MongoDB compound indexes; slow queries with COLLSCAN or in-memory sort; index field ordering disputes.

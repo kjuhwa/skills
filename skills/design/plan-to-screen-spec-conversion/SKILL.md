@@ -1,4 +1,5 @@
 ---
+tags: [design, plan, screen, spec, conversion]
 name: plan-to-screen-spec-conversion
 description: PLAN 작업지시서를 rules/fe/02-screen-spec-template.md 형식의 화면 스펙 문서로 변환
 version: 0.1.0-draft

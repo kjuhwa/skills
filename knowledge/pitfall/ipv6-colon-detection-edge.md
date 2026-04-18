@@ -1,4 +1,7 @@
 ---
+name: ipv6-colon-detection-edge
+version: 0.1.0-draft
+tags: [pitfall, ipv6, colon, detection, edge]
 category: pitfall
 summary: Detecting IPv6 by colon count breaks on compressed notation — use a regex character class
 source:

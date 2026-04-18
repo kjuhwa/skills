@@ -1,4 +1,5 @@
 ---
+tags: [workflow, office, hours]
 name: office-hours
 category: workflow
 preamble-tier: 3

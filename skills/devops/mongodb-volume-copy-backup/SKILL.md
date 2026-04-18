@@ -1,4 +1,5 @@
 ---
+tags: [devops, mongodb, volume, copy, backup]
 name: mongodb-volume-copy-backup
 description: Back up and restore MongoDB Docker volumes via rsync volume-copy instead of mongodump/tar.gz
 category: devops

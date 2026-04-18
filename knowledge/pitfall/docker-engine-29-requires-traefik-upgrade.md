@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, docker, engine, requires, traefik, upgrade]
 name: docker-engine-29-requires-traefik-upgrade
 description: Docker Engine 29.x raises the minimum client API to 1.44, breaking older Traefik versions that pin an older API
 category: pitfall

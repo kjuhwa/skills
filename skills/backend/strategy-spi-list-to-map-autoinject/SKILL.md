@@ -1,4 +1,5 @@
 ---
+tags: [backend, strategy, spi, list, map, autoinject]
 name: strategy-spi-list-to-map-autoinject
 description: Spring이 자동 주입하는 List<T>를 생성자에서 Map<Key,T>로 변환해 Strategy를 enum 키로 O(1) 디스패치하는 패턴
 type: skill

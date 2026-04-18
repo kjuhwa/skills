@@ -1,4 +1,5 @@
 ---
+tags: [backend, elasticsearch, xpack, ssl, transport]
 name: elasticsearch-xpack-ssl-transport
 description: Gate `PreBuiltXPackTransportClient` vs `PreBuiltTransportClient` on auth flag (not SSL flag) and configure keystore/truststore as independent ES X-Pack settings
 version: 1.0.0

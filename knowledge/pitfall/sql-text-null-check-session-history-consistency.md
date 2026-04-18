@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, sql, text, null, check, session]
 name: sql-text-null-check-session-history-consistency
 description: Session history rows must omit sqlHash and queryTime when SQL text is missing, else they orphan in downstream joins
 category: pitfall

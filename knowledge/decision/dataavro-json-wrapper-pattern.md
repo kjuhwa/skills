@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, dataavro, json, wrapper, pattern]
 name: dataavro-json-wrapper-pattern
 description: 여러 이벤트 타입마다 Avro 스키마를 만들지 않고 DataAvro{jsonData,jsonDataClass} 하나로 통일 — TCM 선례 채택
 type: knowledge

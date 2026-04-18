@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, gradle, avro, plugin, config]
 name: gradle-avro-plugin-config
 category: arch
 summary: davidmc24 avro-gradle-plugin config — createSetters=false + fieldVisibility=PRIVATE enforces immutable generated event schemas

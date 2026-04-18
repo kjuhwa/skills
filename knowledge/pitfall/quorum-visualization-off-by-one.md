@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: quorum-visualization-off-by-one
 description: Byzantine quorum threshold is ⌊2N/3⌋+1, not ⌈2N/3⌉ — the two diverge at N=3,6,9...
 category: pitfall

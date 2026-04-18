@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: api-gateway-pattern-implementation-pitfall
 description: Conflating gateway-added latency with backend latency and letting rate-limit state leak across gateway replicas
 category: pitfall

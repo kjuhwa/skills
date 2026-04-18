@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: graphql-implementation-pitfall
 description: Common failures when rendering schemas, building queries, and handling subscription streams in GraphQL UIs
 category: pitfall

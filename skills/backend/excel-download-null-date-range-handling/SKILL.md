@@ -1,4 +1,5 @@
 ---
+tags: [backend, excel, download, null, date, range]
 name: excel-download-null-date-range-handling
 description: Defensive pattern for grid/list excel-export endpoints — null-check every filter value and normalize field names before querying
 category: backend

@@ -1,4 +1,5 @@
 ---
+tags: [backend, custom, actuator, command, whitelist]
 name: custom-actuator-command-whitelist
 description: Expose safe remote OS command execution on a Spring Boot service via a custom Actuator endpoint, restricted by a command whitelist, an argument sanitizer, and an execution timeout.
 category: backend

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [api, endpoint, service, dual, pattern]
 name: endpoint-service-dual-pattern
 description: Two coexisting API service patterns — factory functions (apmServices) and direct functional exports (alarmService) — with centralized endpoint constants
 category: api

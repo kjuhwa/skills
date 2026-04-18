@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: do-not-ask-planners-for-api-design
 description: Product planners own screens and UX, not endpoint shapes — push API design to AI extraction + developer review instead of template-driven planner input
 category: decision

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, scss, css, variable, theme, system]
 name: scss-css-variable-theme-system
 description: Architecture decision — SCSS + CSS custom properties + data-theme attribute for dark/light theming in a large React monorepo
 category: arch

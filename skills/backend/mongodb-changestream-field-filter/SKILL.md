@@ -1,4 +1,5 @@
 ---
+tags: [backend, mongodb, changestream, field, filter]
 name: mongodb-changestream-field-filter
 description: Filter MongoDB change stream UPDATE events by inspecting updateDescription.updatedFields so irrelevant mutations do not trigger downstream work; INSERT/DELETE fall through as always-relevant.
 trigger: High-churn MongoDB collection drives a change stream but only a subset of field changes should cause downstream processing (policy re-eval, cache invalidation, re-index).

@@ -1,4 +1,7 @@
 ---
+name: timeselector-mode-interval-range-mapping
+version: 0.1.0-draft
+tags: [api, timeselector, mode, interval, range, mapping]
 category: api
 summary: Clients send a `mode` enum (RAW..YEAR); the server maps it to a (bin-interval, query-range) pair and picks the right pre-aggregated collection
 source:

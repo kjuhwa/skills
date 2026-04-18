@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, kafka, consumer, group, hostname, not]
 name: kafka-consumer-group-id-hostname-not-timezone
 description: Kafka consumer group-id must derive from a stable node identifier (hostname), never from a timezone/locale string — a silent typo will split consumers into unintended groups.
 type: knowledge

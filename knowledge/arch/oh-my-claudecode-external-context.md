@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: oh-my-claudecode-external-context
 type: knowledge
 category: arch

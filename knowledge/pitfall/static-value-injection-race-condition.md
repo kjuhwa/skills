@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, static, value, injection, race, condition]
 name: static-value-injection-race-condition
 description: static 필드에 @Value 주입은 setter 호출 타이밍과 멀티스레드 가시성으로 레이스 컨디션을 유발 — 인스턴스 필드로 직접 주입하라
 type: knowledge

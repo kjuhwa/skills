@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, mongodb, single, node, directconnection]
 name: mongodb-single-node-directconnection
 description: MongoDB clients must pass directConnection=true when connecting to a single-node replSet, otherwise they hang on primary discovery
 category: pitfall

@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, history, view, yearly, partition]
 name: history-view-yearly-partition-pitfall
 category: pitfall
 summary: A history/reporting view or materialized collection created with a year-bounded clause silently stops returning rows when the calendar year rolls over

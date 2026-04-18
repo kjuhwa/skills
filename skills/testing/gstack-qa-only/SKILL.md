@@ -1,4 +1,5 @@
 ---
+tags: [testing, gstack, only]
 name: gstack-qa-only
 category: testing
 preamble-tier: 4

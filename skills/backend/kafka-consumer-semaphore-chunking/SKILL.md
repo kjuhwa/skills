@@ -1,4 +1,5 @@
 ---
+tags: [backend, kafka, consumer, semaphore, chunking]
 name: kafka-consumer-semaphore-chunking
 description: Bound in-flight async work from a Kafka consumer with `Semaphore(poolSize + queueCapacity - 2)` plus fixed-size chunks; release in `whenComplete` on both success and failure.
 category: backend

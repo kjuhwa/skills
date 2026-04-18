@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, jwt, stateless, refresh, 24h, default]
 name: jwt-stateless-refresh-24h-default
 category: decision
 summary: JWT stateless auth with 1h access / 24h refresh token defaults, both env-tunable.

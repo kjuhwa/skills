@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, kafka, avro, schema, registry, env]
 name: kafka-avro-schema-registry-env-topology
 category: arch
 summary: Kafka uses Avro + Confluent Schema Registry; partition and replication counts are environment-driven.

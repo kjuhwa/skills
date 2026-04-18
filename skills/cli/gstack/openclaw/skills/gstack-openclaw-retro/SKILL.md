@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, gstack, openclaw, retro]
 name: gstack-openclaw-retro
 description: Weekly engineering retrospective. Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware with per-person contributions, praise, and growth areas. Use when asked for weekly retro, what shipped this week, or engineering retrospective.
 version: 1.0.0

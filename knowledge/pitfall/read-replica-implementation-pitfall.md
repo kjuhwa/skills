@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: read-replica-implementation-pitfall
 description: Common mistakes when modeling read-replica lag, routing, and consistency guarantees in a simulator
 category: pitfall

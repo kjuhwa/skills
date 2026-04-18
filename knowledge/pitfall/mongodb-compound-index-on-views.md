@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, mongodb, compound, index, views]
 name: mongodb-compound-index-on-views
 description: Spring Data @CompoundIndex annotations on a view-backed @Document class are silently ignored — the annotation must live on the collection-backed class or the collection stays unindexed.
 type: pitfall

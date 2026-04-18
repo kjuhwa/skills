@@ -1,4 +1,5 @@
 ---
+tags: [devops, docker, compose, auto, detect]
 name: docker-compose-v1-v2-auto-detect
 description: Shell helper that prefers `docker compose` (v2) over `docker-compose` (v1) with graceful fallback
 category: devops

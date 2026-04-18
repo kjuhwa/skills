@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [domain, one, default, template, per, type]
 name: one-default-template-per-type-rule
 category: domain
 summary: Exactly one default message template may exist per notification type; creating a second default is rejected, but editing the existing default is allowed

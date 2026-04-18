@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: twin-body-orbital-phase-offset
 description: Render two orbiting bodies convincingly by phase-offsetting a shared sine driver rather than independent timers.
 category: algorithms

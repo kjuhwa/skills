@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, kafka, sticky, partitioner, key, null]
 name: kafka-sticky-partitioner-key-null
 description: ProducerRecord key=null일 때 Sticky Partitioner가 batch.size 동안 한 파티션에 몰리는 성질 — 소규모 환경에서 Pod 분산 안 보이는 원인
 type: knowledge

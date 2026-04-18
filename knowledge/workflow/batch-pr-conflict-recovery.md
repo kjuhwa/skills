@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: batch-pr-conflict-recovery
 description: When N auto-generated PRs all touch the same catalog file and serially conflict, close them all and batch-cherry-pick the content into one PR
 category: workflow

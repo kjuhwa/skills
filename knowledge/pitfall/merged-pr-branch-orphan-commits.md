@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: merged-pr-branch-orphan-commits
 description: Commits pushed to a PR branch after merge do NOT reach main — they become orphaned
 category: pitfall

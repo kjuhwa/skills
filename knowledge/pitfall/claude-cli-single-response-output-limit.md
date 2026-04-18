@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claude-cli-single-response-output-limit
 description: Claude CLI practical output limit is ~500-800 lines per code artifact when generating multiple items in one call
 category: pitfall

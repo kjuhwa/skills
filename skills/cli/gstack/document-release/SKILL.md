@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, document, release]
 name: document-release
 preamble-tier: 2
 version: 1.0.0

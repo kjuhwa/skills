@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: cqrs-implementation-pitfall
 description: Treating CQRS as "just split read/write DBs" and ignoring projector idempotency, ordering, and rebuild cost.
 category: pitfall

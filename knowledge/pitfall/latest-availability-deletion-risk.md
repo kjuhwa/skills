@@ -1,4 +1,7 @@
 ---
+name: latest-availability-deletion-risk
+version: 0.1.0-draft
+tags: [pitfall, latest, availability, deletion, risk]
 slug: latest-availability-deletion-risk
 category: pitfall
 summary: Latest-availability collection can lose data when upstream source is stale but not actually missing

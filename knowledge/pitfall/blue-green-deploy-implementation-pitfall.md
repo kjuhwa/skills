@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: blue-green-deploy-implementation-pitfall
 description: Common modeling mistakes when visualizing blue-green cutovers — instant flip, color-coded active state, ignored drain phase
 category: pitfall

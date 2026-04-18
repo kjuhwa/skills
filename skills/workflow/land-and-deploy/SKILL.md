@@ -1,4 +1,5 @@
 ---
+tags: [workflow, land, and, deploy]
 name: land-and-deploy
 category: workflow
 preamble-tier: 4

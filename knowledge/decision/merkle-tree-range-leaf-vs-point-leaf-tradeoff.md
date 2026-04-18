@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: merkle-tree-range-leaf-vs-point-leaf-tradeoff
 description: Whether Merkle leaves should hash individual keys or key ranges determines whether divergence localization scales with dataset size or with divergence size.
 category: decision

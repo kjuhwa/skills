@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, catalina, urlencoder, internal, api]
 name: catalina-urlencoder-internal-api
 description: org.apache.catalina.util.URLEncoder는 톰캣 내부 API — 컨테이너 교체/버전업에 깨지기 쉽다. java.net.URLEncoder 또는 Spring UriUtils 사용
 type: knowledge

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bloom-filter-implementation-pitfall
 description: Hash independence, bit-array indexing, and removal semantics are the common breakage points
 category: pitfall

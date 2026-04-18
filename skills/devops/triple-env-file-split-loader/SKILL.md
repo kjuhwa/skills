@@ -1,4 +1,5 @@
 ---
+tags: [devops, triple, env, file, split, loader]
 name: triple-env-file-split-loader
 description: Split operator-facing env into three files (.env / .version / .memory) and load them in a fixed order
 category: devops

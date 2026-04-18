@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: quorum-visualization-phantom-partition-tick
 description: Simulated network partitions must gate heartbeat delivery at tick-boundary, not message-enqueue time
 category: pitfall

@@ -1,4 +1,5 @@
 ---
+tags: [design, grid, custom, filter, system]
 name: ag-grid-custom-filter-system
 description: ag-grid Enterprise wrapper with GridContext provider, custom filter components (Boolean, Number, DateRange, SelectMulti), and pagination state management
 category: design

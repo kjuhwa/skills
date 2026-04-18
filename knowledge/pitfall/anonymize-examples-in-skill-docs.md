@@ -1,4 +1,7 @@
 ---
+name: anonymize-examples-in-skill-docs
+version: 0.1.0-draft
+tags: [pitfall, anonymize, examples, skill, docs]
 title: SKILL.md 예시 데이터는 반드시 익명화한다
 category: pitfall
 summary: "실사 티켓 번호·실명·프로젝트명이 예시에 들어가면 보안 감사에서 지적됨. 공용 repo 기준 모든 예시는 익명 더미여야 한다."

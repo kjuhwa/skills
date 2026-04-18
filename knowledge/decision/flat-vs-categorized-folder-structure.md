@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: flat-vs-categorized-folder-structure
 description: When a content folder crosses ~100 entries, flat structure becomes unnavigable — categorize into ~15–30 semantic buckets even if the tool doesn't require it
 category: decision

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: health-check-implementation-pitfall
 description: Common failure modes when building health-check systems: self-check blind spots, probe-induced load, and stale-cache green lies
 category: pitfall

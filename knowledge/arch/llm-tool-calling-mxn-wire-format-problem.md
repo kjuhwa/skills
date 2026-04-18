@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, llm, tool, calling, mxn, wire]
 name: llm-tool-calling-mxn-wire-format-problem
 category: arch
 summary: Open-source LLMs each encode tool calls in a different wire format (special tokens, XML, channel notation, JSON blocks), so M inference apps × N models = M×N parsers. Fix is declarative tool-call specs shipped with the model and consumed by both grammar engines and parsers.

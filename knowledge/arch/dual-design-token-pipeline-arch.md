@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, dual, design, token, pipeline]
 name: dual-design-token-pipeline-arch
 category: arch
 summary: Project runs two parallel design token pipelines — legacy SD v3→SCSS for sirius/Ant Design and modern SD v5→CSS @theme for AI Portal/Tailwind v4

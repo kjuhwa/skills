@@ -1,4 +1,5 @@
 ---
+tags: [cli, setup, browser, cookies]
 name: setup-browser-cookies
 category: cli
 preamble-tier: 1

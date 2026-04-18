@@ -1,4 +1,6 @@
 ---
+category: cli
+tags: [cli, plan, ceo, review]
 name: plan-ceo-review
 preamble-tier: 3
 version: 1.0.0

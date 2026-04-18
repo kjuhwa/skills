@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: hyperloglog-for-unique-user-counting
 summary: Scouter uses HyperLogLog (Clearspring stream-lib) to estimate recent and daily unique user counts with ~100 bytes of memory and ~2% error, avoiding O(n) hash sets
 category: decision

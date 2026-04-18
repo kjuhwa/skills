@@ -1,4 +1,5 @@
 ---
+tags: [frontend, grid, cell, renderer, pattern]
 name: ag-grid-cell-renderer-pattern
 description: Structured AG-Grid custom cell renderer catalog with typed column definitions and category-based organization
 triggers:

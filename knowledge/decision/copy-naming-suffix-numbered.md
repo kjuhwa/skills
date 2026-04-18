@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [decision, copy, naming, suffix, numbered]
 name: copy-naming-suffix-numbered
 category: decision
 summary: |

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: time-series-db-implementation-pitfall
 description: TSDB tools frequently corrupt their own UX by misusing timestamp precision, time zones, and rollup boundaries.
 category: pitfall

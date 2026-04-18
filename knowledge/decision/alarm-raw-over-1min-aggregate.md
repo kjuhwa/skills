@@ -1,4 +1,7 @@
 ---
+name: alarm-raw-over-1min-aggregate
+version: 0.1.0-draft
+tags: [decision, alarm, raw, over, 1min, aggregate]
 slug: alarm-raw-over-1min-aggregate
 category: decision
 summary: Alarm judgement reads raw metrics, not 1-minute aggregates — accuracy over storage cost

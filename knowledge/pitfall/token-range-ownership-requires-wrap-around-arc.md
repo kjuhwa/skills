@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: token-range-ownership-requires-wrap-around-arc
 description: Token ranges on a hash ring are arcs, not intervals — the last vnode owns the arc that wraps past 2^32 back to the first.
 category: pitfall

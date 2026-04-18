@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: registry-json-dict-not-list
 description: "skills-hub registry.json stores skills and knowledge as dicts keyed by name, not arrays — list.append() fails silently or throws"
 type: knowledge

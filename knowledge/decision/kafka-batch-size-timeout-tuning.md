@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: kafka-batch-size-timeout-tuning
 description: Lowering Spring Kafka max-poll-records (e.g. 200→10) on heavy-processing consumers prevents max.poll.interval.ms timeouts and rebalance storms
 category: decision

@@ -1,4 +1,5 @@
 ---
+tags: [devops, claude, code, skill, scaffold]
 name: claude-code-skill-scaffold
 description: "[Tooling] Claude Code 스킬 표준 구조(SKILL.md + prompts/ + scripts/ + references/)를 자동 생성하는 스캐폴딩."
 argument-hint: <skill-name>

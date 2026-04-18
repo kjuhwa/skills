@@ -1,4 +1,5 @@
 ---
+tags: [backend, kafka, batch, consumer, partition, tuning]
 name: kafka-batch-consumer-partition-tuning
 description: Size Kafka partition count + max-poll-records per topic volume so heavy-processing batch consumers avoid max.poll.interval.ms breaches and maintain throughput via per-partition concurrency.
 trigger: Spring Kafka batch listener processes heavy records (DB writes, metric evaluation); consumers periodically rebalance due to max.poll.interval.ms timeout.

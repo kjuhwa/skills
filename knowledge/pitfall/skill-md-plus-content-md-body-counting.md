@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: skill-md-plus-content-md-body-counting
 type: knowledge
 category: pitfall

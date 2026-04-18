@@ -1,4 +1,5 @@
 ---
+tags: [design, plan, review]
 name: plan-design-review
 category: design
 preamble-tier: 3

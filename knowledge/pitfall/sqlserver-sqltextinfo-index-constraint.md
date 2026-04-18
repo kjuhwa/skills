@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, sqlserver, sqltextinfo, index, constraint]
 name: sqlserver-sqltextinfo-index-constraint
 description: Do not put a unique index on sqlHash for SQL Server text-info collection — duplicates are legitimate
 category: pitfall

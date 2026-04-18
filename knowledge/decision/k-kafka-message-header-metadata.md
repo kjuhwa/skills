@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: k-kafka-message-header-metadata
 type: knowledge
 category: decision

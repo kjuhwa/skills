@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: planning-doc-in-issue-description
 description: For AI pipelines that read planning docs from issue trackers, favor putting the full markdown in the issue description over wiki-link indirection
 category: decision

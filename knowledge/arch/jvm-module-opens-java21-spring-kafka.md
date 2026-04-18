@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [arch, jvm, module, opens, java21, spring]
 name: jvm-module-opens-java21-spring-kafka
 description: Java 21 runs Spring Boot + Kafka/MongoDB clients under strict module access; two --add-opens flags are required or reflective serializers fail at runtime.
 type: knowledge

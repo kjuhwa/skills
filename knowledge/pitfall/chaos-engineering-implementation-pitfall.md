@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: chaos-engineering-implementation-pitfall
 description: Common mistakes when building chaos-engineering tooling that make it unsafe or untrustworthy
 category: pitfall

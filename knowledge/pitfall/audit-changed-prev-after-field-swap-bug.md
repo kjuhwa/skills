@@ -1,4 +1,6 @@
 ---
+version: 0.1.0-draft
+tags: [pitfall, audit, changed, prev, after, field]
 name: audit-changed-prev-after-field-swap-bug
 category: pitfall
 summary: Audit diff logic had before/after swapped — iterating the wrong doc and putting the wrong value into changedPrev corrupted the audit trail silently

@@ -1,4 +1,5 @@
 ---
+tags: [devops, claude, plugin, catalog, publish]
 name: claude-plugin-catalog-publish
 description: "[Tooling] 로컬 스킬을 원격 Git repo에 배포하고 AGENTS.md 카탈로그를 자동 갱신하는 publish 플로우."
 argument-hint: <skill-name>

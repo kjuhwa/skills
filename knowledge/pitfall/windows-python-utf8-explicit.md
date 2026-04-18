@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: windows-python-utf8-explicit
 description: "On Windows, Python defaults to cp949/cp1252 locale encoding — all file I/O on UTF-8 content (JSON with em-dashes, CJK text) must specify encoding='utf-8' explicitly"
 type: knowledge

@@ -1,4 +1,5 @@
 ---
+tags: [backend, distributed, lock, mongodb]
 name: distributed-lock-mongodb
 description: MongoDB findAndModify-based distributed lock with TTL expiry, owner tagging, and retry loop for multi-instance Spring Boot services.
 trigger: Need mutual exclusion across JVM instances without Redis/Zookeeper; using MongoDB already.
