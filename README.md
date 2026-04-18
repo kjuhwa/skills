@@ -12,6 +12,14 @@
 
 Stop re-deriving the same patterns in every Claude Code session. `skills-hub` is a curated, versioned catalog of battle-tested skills and domain knowledge — searchable, installable, and extractable — so your agent starts every project already knowing what worked last time.
 
+<!-- ════════ DEMO HERO — filled in after recording. See docs/DEMO_RECORDING.md ════════ -->
+<!-- Asciinema (90s full walkthrough, plays inline on desktop browsers): -->
+<!-- [![asciicast](https://asciinema.org/a/ASCIINEMA_ID.svg)](https://asciinema.org/a/ASCIINEMA_ID) -->
+
+<!-- GIF (20s golden path, auto-loops, good on mobile): -->
+<!-- ![hub-find → hub-install → hub-doctor](./docs/demo-hub-find.gif) -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+
 ```bash
 # One-line install into ~/.claude
 curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/install.sh | bash
