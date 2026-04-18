@@ -42,21 +42,42 @@ Use when `/hub-extract` (or `/hub-extract`) produced drafts in **both** `.skills
      - Reason: skills can declare `linked_knowledge` in their SKILL.md; landing knowledge first means the skill commit can already reference the knowledge slug in the same branch.
    - Per-knowledge commit: same as `/hub-publish-knowledge` step 3.
    - Per-skill commit: same as `/hub-publish-skills` step 3 (version resolution, tag prep). If a skill's `linked_knowledge` names a slug published in this run, record the cross-link in registry.json (skills entry → `linked_knowledge: [<slug>]`, knowledge entry → `linked_skills: [<skill>]`).
+   - **Capture each skill's commit SHA immediately after the commit** via `git rev-parse HEAD` and store in a `{skill_name: sha}` map. Do **not** rely on `HEAD~N` indexing later — the index is fragile once more commits land (seen in the wild: reversed tag targets when iterating in the wrong order).
    - `registry.json` rebuilt once at the end of the commit sequence, not per-commit, to avoid churn — add a final `Rebuild registry.json` commit if any entries changed.
 
-4. **Push + tag + PR** (requires confirmation)
+4. **Rebuild `index.json`**
+   - Run `py -3 ~/.claude/skills-hub/tools/_rebuild_index_json.py --root ~/.claude/skills-hub/remote` to regenerate the flat catalog from the current filesystem.
+   - If the rebuild produces a larger catalog than the old one, surface the delta count before committing and let the user approve (some entries may be intentionally excluded elsewhere).
+   - If there are changes, commit as `chore: rebuild index.json`.
+   - **Why this matters**: without this, `/hub-find` and the L1/L2 indexes never see the new entries and appear to have lost them. Missed in early v2.5.x releases; filed as the root cause of PR #1028.
+
+5. **Push + tag + PR** (requires confirmation)
    - `git push -u origin <branch>`.
-   - For each **skill**, create annotated tag `skills/<name>/v<version>` (knowledge has no tags).
+   - For each **skill**, create the annotated tag `skills/<name>/v<version>` at the captured SHA from the map in step 3 (not at `HEAD`, because other commits have landed since).
    - Push tags: `git push origin --tags` restricted to this run's tags.
    - If `--pr` and `gh` available:
      - `gh pr create --title "Publish <N> skills + <M> knowledge entries" --body ...`
      - Body sections: `## Skills`, `## Knowledge`, `## Cross-links` (skill ↔ knowledge pairs created this run), `## Source` (project/session/commit refs).
+     - Add a `## Post-merge` block that tells the reviewer/merger to run step 7 after squash-merge.
    - Otherwise print branch name, tag list, and compare URL.
 
-5. **Cleanup drafts**
+6. **Cleanup drafts**
    - Move published skill drafts → `.skills-draft/_published/<date>/`.
    - Move published knowledge drafts → `.knowledge-draft/_published/<date>/`.
    - Leave unpublished drafts in place.
+
+7. **Post-merge: re-anchor skill tags** (run AFTER the PR is squash-merged)
+   - Squash merge orphans tags created on the release branch — they point at a commit that is no longer reachable from `main` (see knowledge entry `squash-merge-orphans-release-branch-tags`).
+   - Fetch: `git fetch origin && git checkout main && git pull --ff-only`.
+   - Read the squash-merge commit SHA from the merged PR (`gh pr view <N> --json mergeCommit --jq '.mergeCommit.oid'`).
+   - For every tag in this run's tag list:
+     ```bash
+     git tag -d <tag>
+     git tag -a <tag> <merge-commit-sha> -m "<original-message>"
+     git push --force origin <tag>
+     ```
+   - Verify: `git merge-base --is-ancestor <tag> main && echo ok`. All tags must be reachable from main.
+   - Skip this step if the PR used a merge commit (not squash) — then the original tag is already reachable.
 
 ## Rules
 

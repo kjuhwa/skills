@@ -6,3 +6,7 @@ bootstrap/tools/*.py    text eol=lf
 bootstrap/tools/*.sh    text eol=lf
 bootstrap/bin/*         text eol=lf
 bootstrap/install.sh    text eol=lf
+
+# Corpus markdown: same YAML frontmatter parser applies, keep LF.
+skills/**/*.md          text eol=lf
+knowledge/**/*.md       text eol=lf
