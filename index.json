@@ -2804,6 +2804,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "skip-implicit-fetch-on-hotpath",
+    "slug": "skip-implicit-fetch-on-hotpath",
+    "category": "decision",
+    "description": "\"Don't `git fetch` (or any network call) implicitly on every CLI invocation. Move staleness detection to an explicit `doctor`/`status` command, and expose `--refresh` as opt-in. Network on the hot path is the single biggest contributor to perceived CLI slowness.\"",
+    "tags": [
+      "cli-performance",
+      "network-hotpath",
+      "staleness-detection",
+      "git-fetch",
+      "architecture-decision"
+    ],
+    "triggers": [],
+    "version": "0.1.0-draft",
+    "path": "knowledge/decision/skip-implicit-fetch-on-hotpath.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "squash-merge-orphans-release-branch-tags",
     "slug": "squash-merge-orphans-release-branch-tags",
     "category": "decision",
@@ -3983,6 +4001,25 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/finite-state-machine-implementation-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "gh-pr-create-cwd-prefix-does-not-stick",
+    "slug": "gh-pr-create-cwd-prefix-does-not-stick",
+    "category": "pitfall",
+    "description": "\"`cd <repo> && gh pr create` from Claude Code's Bash tool can fail with 'must first push the current branch to a remote, or use the --head flag' because `gh` doesn't inherit the expected git context. Use explicit `--repo owner/name --head <branch> --base main` flags instead of relying on cwd.\"",
+    "tags": [
+      "gh-cli",
+      "pull-request",
+      "claude-code-bash-tool",
+      "cwd",
+      "git-context",
+      "automation"
+    ],
+    "triggers": [],
+    "version": "0.1.0-draft",
+    "path": "knowledge/pitfall/gh-pr-create-cwd-prefix-does-not-stick.md",
     "has_content": true
   },
   {
@@ -9066,6 +9103,24 @@
   },
   {
     "kind": "skill",
+    "name": "exact-name-fast-path-skip-interactive-prompt",
+    "slug": "exact-name-fast-path-skip-interactive-prompt",
+    "category": "cli",
+    "description": "When a search keyword matches exactly one catalog entry's `name` field, skip the numbered-list picker and resolve directly. A UX pattern for CLIs with a \"search + pick\" flow that saves a round-trip for the common script/demo/exact-slug case.",
+    "tags": [
+      "cli-ux",
+      "argparse",
+      "interactive-prompt",
+      "fast-path",
+      "catalog-search"
+    ],
+    "triggers": "",
+    "version": "0.1.0-draft",
+    "path": "skills/cli/exact-name-fast-path-skip-interactive-prompt",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "freeze",
     "slug": "freeze",
     "category": "cli",
@@ -9098,6 +9153,25 @@
     "version": "0.1.0-draft",
     "path": "skills/cli/git-guardrails-claude-code",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "graceful-version-fallback-tier-order",
+    "slug": "graceful-version-fallback-tier-order",
+    "category": "cli",
+    "description": "Four-tier resolution order when a CLI is asked to install `name@version` against a git-tag-based registry and the expected tag does not exist. Replaces \"tag-or-bust\" with tag → frontmatter match → no-tags-yet hint → other-tags list, plus an explicit `--force-main` escape hatch.",
+    "tags": [
+      "cli-design",
+      "versioning",
+      "git-tags",
+      "semver",
+      "pinned-install",
+      "graceful-degradation"
+    ],
+    "triggers": "",
+    "version": "0.1.0-draft",
+    "path": "skills/cli/graceful-version-fallback-tier-order",
+    "has_content": true
   },
   {
     "kind": "skill",
