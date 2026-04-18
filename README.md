@@ -17,12 +17,14 @@ Stop re-deriving the same patterns in every Claude Code session. `skills-hub` is
 curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/install.sh | bash
 
 # Then in any Claude Code session
-/hub-install react testing        # search + install matching skills
+/hub-find  "스프링 카프카"        # ranked search, KO↔EN synonyms
+/hub-install <name>               # install a specific skill
 /hub-extract                      # mine this repo for new skills
-/hub-publish-skills               # ship them back to the hub
+/hub-publish                      # ship drafts back (skills + knowledge in one PR)
 ```
 
 **Highlights**
+- ✨ **Core 8 mental model (v2.6.0+)** — 35 commands reduced to 8 canonical entry points: `/hub-find`, `/hub-suggest`, `/hub-install`, `/hub-list`, `/hub-extract`, `/hub-publish`, `/hub-sync`, `/hub-doctor`. Legacy names still work as aliases.
 - 🔎 **Ranked search with KO↔EN synonyms** — `/hub-find "스프링 카프카"` scores `name`/`description`/`tags`/`triggers` and expands 180+ Korean/English synonyms (v2.5.0+).
 - 🤖 **Pre-implementation auto-check** — when the user asks "구현해줘 / implement X", Claude Code auto-searches the hub first and offers matching skills with an install/reference prompt (`/hub-suggest` is the manual entry point, v2.5.2+).
 - ♻️ **Self-healing index** — git hooks (post-merge / post-commit / post-checkout) regenerate the L1/L2 corpus index after every mutation so `/hub-find` never goes stale (v2.5.0+).
@@ -45,42 +47,49 @@ skills/                       # category-separated skill registry
       content.md              # main prompt / knowledge body (required)
       examples/               # optional
 bootstrap/
-  commands/                   # slash-command markdown files (35 total)
+  commands/                   # slash-command markdown files (37 total)
+    # --- Core 8 (v2.6.0+) ---
+    hub-find.md               # ranked KO↔EN synonym search               [v2.5.0]
+    hub-suggest.md            # pre-implementation discovery              [v2.5.2]
+    hub-install.md            # install skill (+ --all, --example flags)
+    hub-list.md               # unified local list (skills/knowledge/…)   [v2.6.0]
+    hub-extract.md            # mine project for patterns (+ --session)
+    hub-publish.md            # unified publish (+ --only skills|…)       [v2.6.0]
+    hub-sync.md               # pull remote + refresh installs
+    hub-doctor.md             # diagnose & repair
+    # --- Bootstrap / setup ---
     hub-init.md               # one-time project setup
-    hub-install.md
-    hub-install-all.md
-    hub-find.md               # v2.5.0 — ranked KO↔EN synonym search
-    hub-suggest.md            # v2.5.2 — pre-implementation discovery
-    hub-precheck.md           # v2.5.0 — lint + regenerate L1/L2 indexes
-    hub-index-diff.md         # v2.5.0 — per-commit index change report
-    hub-search-skills.md
-    hub-search-knowledge.md
-    hub-list-skills.md
-    hub-list-knowledge.md
-    hub-list-examples.md
-    hub-install-example.md
-    hub-show.md
     hub-status.md
-    hub-sync.md
-    hub-extract.md
-    hub-extract-session.md
-    hub-publish-skills.md
-    hub-publish-knowledge.md
-    hub-publish-all.md
-    hub-publish-example.md
-    hub-finalize.md
-    hub-cleanup.md
-    hub-condense.md           # corpus-level dedup/compress pass
+    hub-commands-update.md
+    hub-commands-publish.md
+    # --- Support / infra ---
+    hub-precheck.md           # lint + regenerate L1/L2 indexes           [v2.5.0]
+    hub-index-diff.md         # per-commit index change report            [v2.5.0]
+    hub-show.md               # display an installed entry's content
     hub-remove.md
-    hub-import.md
-    hub-research.md
+    # --- Specialised maintenance ---
     hub-merge.md
     hub-split.md
     hub-refactor.md
+    hub-condense.md           # corpus-level dedup/compress
+    hub-cleanup.md            # remote maintenance (dedup, reindex, stale)
+    hub-finalize.md
     hub-make.md
-    hub-doctor.md
-    hub-commands-update.md
-    hub-commands-publish.md
+    hub-import.md
+    hub-research.md
+    # --- Legacy aliases (still work, prefer canonical) ---
+    hub-install-all.md        → /hub-install --all
+    hub-install-example.md    → /hub-install --example
+    hub-list-skills.md        → /hub-list --kind skills
+    hub-list-knowledge.md     → /hub-list --kind knowledge
+    hub-list-examples.md      → /hub-list --kind examples
+    hub-extract-session.md    → /hub-extract --session
+    hub-publish-all.md        → /hub-publish (default = all)
+    hub-publish-skills.md     → /hub-publish --only skills
+    hub-publish-knowledge.md  → /hub-publish --only knowledge
+    hub-publish-example.md    → /hub-publish --only example
+    hub-search-skills.md      → /hub-find --kind skill
+    hub-search-knowledge.md   → /hub-find --kind knowledge
   tools/                      # v2.5.0 — portable Python helpers
     _build_master_index.py        # L1 full index
     _build_master_index_lite.py   # L1 compact index (18 KB)
@@ -275,6 +284,7 @@ The manual entry point `/hub-suggest <task>` runs the same flow on demand withou
 # Project start
 /hub-install apm             → install observability skills for an APM project
 /hub-install backend         → grab useful backend patterns
+/hub-install --all           → bulk-install every skill + knowledge
 
 # Before a specific implementation
 /hub-find "kafka avro"       → ranked search, KO↔EN synonyms
@@ -285,22 +295,25 @@ The manual entry point `/hub-suggest <task>` runs the same flow on demand withou
 # During work — nothing needed, installed skills auto-activate via triggers
 
 # Browse & install example projects
-/hub-install-example dashboard → search + install matching examples
-/hub-install-example --list    → browse all available examples
+/hub-install --example dashboard → search + install matching examples
+/hub-list --kind examples        → browse all available examples
+
+# See what's installed locally
+/hub-list                    → everything (skills + knowledge)
+/hub-list --kind skills      → skills only
 
 # Extract what you learned
-/hub-extract-session          → drafts from just this session
-/hub-extract kafka            → keyword-focused: only kafka-related patterns
-# or
-/hub-extract                  → drafts from the whole project (no limit)
+/hub-extract --session       → drafts from just this session
+/hub-extract kafka           → keyword-focused: only kafka-related patterns
+/hub-extract                 → drafts from the whole project
 
 # Import from external repos
 /hub-import https://github.com/garrytan/gstack   → stage external skills as drafts
 
-# Review & publish
-/hub-publish-skills --pr     → creates branch, opens PR
-# or
-/hub-publish-all --pr        → publish both skills + knowledge in one PR
+# Review & publish (one command handles both skills + knowledge)
+/hub-publish --pr            → default: ships everything in .skills-draft/ + .knowledge-draft/
+/hub-publish --only skills --pr
+/hub-publish --only example <slug>
 
 # Project wrap-up (one-shot)
 /hub-finalize --scope=full --auto-pr
@@ -323,11 +336,13 @@ Tags are annotated and created automatically by `/hub-publish-skills` and `/hub-
 
 | Version | Highlights |
 |---|---|
-| [`v2.5.2`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.2) | `/hub-suggest` — pre-implementation discovery prompt |
-| [`v2.5.1`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.1) | `install.ps1` parity with `install.sh` (Windows/PowerShell) |
-| [`v2.5.0`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.0) | `bootstrap/tools/` + `bootstrap/bin/` + git hook installer; adds `/hub-find`, `/hub-precheck`, `/hub-index-diff` |
-| [`v2.4.4`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.4.4) | `/hub-sync` calls `hub-precheck` after `git reset --hard`; `/hub-search-*` cross-link to `/hub-find` |
-| [`v2.4.3`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.4.3) | Earlier maintenance release |
+| [`v2.6.0`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.6.0) | **Command consolidation** — 35 commands → Core 8 canonical entry points. `/hub-list`, `/hub-publish` added; dispatch flags on `/hub-extract`, `/hub-install`. Legacy names still work. |
+| [`v2.5.4`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.4) | `tools/_rebuild_index_json.py` + `/hub-publish-all` spec hardened (SHA-map for tagging, post-merge retag step). |
+| [`v2.5.3`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.3) | CRLF → LF normalization + `.gitattributes` (fixes slash-command description rendering on Windows). |
+| [`v2.5.2`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.2) | `/hub-suggest` — pre-implementation discovery prompt. |
+| [`v2.5.1`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.1) | `install.ps1` parity with `install.sh` (Windows/PowerShell). |
+| [`v2.5.0`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.5.0) | `bootstrap/tools/` + `bootstrap/bin/` + git hook installer; adds `/hub-find`, `/hub-precheck`, `/hub-index-diff`. |
+| [`v2.4.4`](https://github.com/kjuhwa/skills-hub/releases/tag/bootstrap/v2.4.4) | `/hub-sync` calls `hub-precheck` after `git reset --hard`; `/hub-search-*` cross-link to `/hub-find`. |
 
 Full history: `git tag -l "bootstrap/v*" | sort -V`. Your installed version is in `~/.claude/skills-hub/bootstrap.json`.
 
