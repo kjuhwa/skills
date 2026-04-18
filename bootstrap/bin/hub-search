@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# hub_search.py 래퍼. 스크립트는 이 파일의 상위 tools/ 에 위치한다.
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT="${SCRIPT_DIR%/bin}/tools/hub_search.py"
+if [[ ! -f "$SCRIPT" ]]; then
+    echo "hub-search: cannot find $SCRIPT" >&2
+    exit 1
+fi
+PYTHONIOENCODING=utf-8 py -3 "$SCRIPT" "$@"
