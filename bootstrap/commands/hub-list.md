@@ -1,6 +1,6 @@
 ---
-description: Unified local-state list (skills + knowledge + examples). Supersedes /hub-list-skills, /hub-list-knowledge, /hub-list-examples.
-argument-hint: [--kind skills|knowledge|examples|all] [--category <cat>] [--tag <tag>]
+description: Unified local-state list (skills + knowledge + techniques + examples). Supersedes /hub-list-skills, /hub-list-knowledge, /hub-list-examples.
+argument-hint: [--kind skills|knowledge|techniques|examples|all] [--category <cat>] [--tag <tag>]
 ---
 
 # /hub-list $ARGUMENTS
@@ -11,9 +11,10 @@ One entry point for "what's installed locally?". Delegates to the specialised fl
 
 | `--kind` | Delegates to |
 |---|---|
-| `all` *(default)* | Run `/hub-list-skills` and `/hub-list-knowledge` flows, render a combined table with a `KIND` column. Examples are NOT included by default (they're remote-only previews — see below). |
+| `all` *(default)* | Run `/hub-list-skills`, `/hub-list-knowledge`, and `/hub-technique-list` flows, render a combined table with a `KIND` column. Examples are NOT included by default (they're remote-only previews — see below). |
 | `skills` | `/hub-list-skills` flow. |
 | `knowledge` | `/hub-list-knowledge` flow (filters `--tag`, `--linked-to`, `--orphans` all apply). |
+| `techniques` | `/hub-technique-list` flow (middle-layer composition recipes — scans `~/.claude/techniques/**/TECHNIQUE.md` and project-local `./.technique-draft/`). |
 | `examples` | `/hub-list-examples` flow (remote example projects — not local installs). |
 
 ## Steps
@@ -26,7 +27,7 @@ One entry point for "what's installed locally?". Delegates to the specialised fl
    skill      | backend  | kafka-avro-producer-gzip   | v1.2.0       | global
    knowledge  | pitfall  | kafka-consumer-hostname... | high         | (n/a)
    ```
-4. End-of-output summary: `<N> skills, <M> knowledge entries installed` (and examples count if included).
+4. End-of-output summary: `<N> skills, <M> knowledge, <T> techniques installed` (and examples count if included).
 
 ## Why exists
 

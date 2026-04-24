@@ -17,9 +17,10 @@ Quick health check — one screen, no side effects. The `git status` equivalent 
 
 ### 2. Installed
 - Read `~/.claude/skills-hub/registry.json`.
-- Show: `<N> skills, <M> knowledge` with breakdowns:
+- Show: `<N> skills, <M> knowledge, <T> techniques` with breakdowns:
   - `global: <n>  project: <m>`
-  - `pinned: <p>  outdated: <o>` (outdated = `source_commit` differs from remote HEAD for that skill's path).
+  - `pinned: <p>  outdated: <o>` (outdated = `source_commit` differs from remote HEAD for that entry's path).
+  - Techniques are read from the optional `techniques` key in `registry.json` — absence means zero, not an error.
 - If registry missing: `[NOT INITIALIZED] — run /hub-init`.
 
 ### 3. Drafts
@@ -46,7 +47,7 @@ Quick health check — one screen, no side effects. The `git status` equivalent 
 ```
 Skills Hub Status
   Remote:     cached (2h ago) — main @ abc1234
-  Installed:  124 skills, 87 knowledge (global: 120/85, project: 4/2, pinned: 3, outdated: 2)
+  Installed:  124 skills, 87 knowledge, 2 techniques (global: 120/85/2, project: 4/2/0, pinned: 3, outdated: 2)
   Drafts:     2 skill drafts, 1 knowledge draft (3 published archives)
   Bootstrap:  v1.2.0 (installed 2026-04-15) — update available: v1.3.0
 
