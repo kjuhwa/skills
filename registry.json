@@ -2409,6 +2409,151 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "registeropenapiroute-wrapper": {
+      "category": "zod",
+      "path": "skills/zod/registeropenapiroute-wrapper/SKILL.md",
+      "version": "1.0.0"
+    },
+    "regression-suite": {
+      "category": "qa",
+      "path": "skills/qa/regression-suite/SKILL.md",
+      "version": "1.0.0"
+    },
+    "reject-insecure-bind-without-tls": {
+      "category": "security",
+      "path": "skills/security/reject-insecure-bind-without-tls/SKILL.md",
+      "version": "1.0.0"
+    },
+    "relative-mouse-mode-state-machine": {
+      "category": "input",
+      "path": "skills/input/relative-mouse-mode-state-machine/SKILL.md",
+      "version": "1.0.0"
+    },
+    "release-checklist": {
+      "category": "production",
+      "path": "skills/production/release-checklist/SKILL.md",
+      "version": "1.0.0"
+    },
+    "repackage-electron-asar-with-patterns": {
+      "category": "electron-packaging",
+      "path": "skills/electron-packaging/repackage-electron-asar-with-patterns/SKILL.md",
+      "version": "1.0.0"
+    },
+    "requesting-code-review": {
+      "category": "engineering",
+      "path": "skills/engineering/requesting-code-review/SKILL.md",
+      "version": "1.0.0"
+    },
+    "reserved-slugs-coordinated-list": {
+      "category": "architecture",
+      "path": "skills/architecture/reserved-slugs-coordinated-list/SKILL.md",
+      "version": "1.0.0"
+    },
+    "resolve-cloudflare-protected-download-url": {
+      "category": "automation",
+      "path": "skills/automation/resolve-cloudflare-protected-download-url/SKILL.md",
+      "version": "1.0.0"
+    },
+    "response-pagination-with-metadata": {
+      "category": "mcp",
+      "path": "skills/mcp/response-pagination-with-metadata/SKILL.md",
+      "version": "1.0.0"
+    },
+    "retrofit-okhttp-api-endpoint-extraction": {
+      "category": "reverse-engineering",
+      "path": "skills/reverse-engineering/retrofit-okhttp-api-endpoint-extraction/SKILL.md",
+      "version": "1.0.0"
+    },
+    "retrospective": {
+      "category": "production",
+      "path": "skills/production/retrospective/SKILL.md",
+      "version": "1.0.0"
+    },
+    "reverse-document": {
+      "category": "design",
+      "path": "skills/design/reverse-document/SKILL.md",
+      "version": "1.0.0"
+    },
+    "reversible-pii-masking-context": {
+      "category": "safety",
+      "path": "skills/safety/reversible-pii-masking-context/SKILL.md",
+      "version": "1.0.0"
+    },
+    "review-all-gdds": {
+      "category": "design",
+      "path": "skills/design/review-all-gdds/SKILL.md",
+      "version": "1.0.0"
+    },
+    "rope-dynamic-ntk-scaling": {
+      "category": "model-architecture",
+      "path": "skills/model-architecture/rope-dynamic-ntk-scaling/SKILL.md",
+      "version": "1.0.0"
+    },
+    "rpm-package-from-electron-no-hyphens": {
+      "category": "rpm",
+      "path": "skills/rpm/rpm-package-from-electron-no-hyphens/SKILL.md",
+      "version": "1.0.0"
+    },
+    "run-config-global-settings": {
+      "category": "agents",
+      "path": "skills/agents/run-config-global-settings/SKILL.md",
+      "version": "1.0.0"
+    },
+    "run-context-shared-state": {
+      "category": "agents",
+      "path": "skills/agents/run-context-shared-state/SKILL.md",
+      "version": "1.0.0"
+    },
+    "run-messages-incremental-polling": {
+      "category": "workflow",
+      "path": "skills/workflow/run-messages-incremental-polling/SKILL.md",
+      "version": "1.0.0"
+    },
+    "rust-flutter-ffi-bridge-async-pattern": {
+      "category": "ffi",
+      "path": "skills/ffi/rust-flutter-ffi-bridge-async-pattern/SKILL.md",
+      "version": "1.0.0"
+    },
+    "safe-content-disposition-rfc5987": {
+      "category": "fastapi",
+      "path": "skills/fastapi/safe-content-disposition-rfc5987/SKILL.md",
+      "version": "1.0.0"
+    },
+    "safe-remove-all-for-distributed-filesystems": {
+      "category": "jit-compilation",
+      "path": "skills/jit-compilation/safe-remove-all-for-distributed-filesystems/SKILL.md",
+      "version": "1.0.0"
+    },
+    "sample-count-parallel-path-averaging": {
+      "category": "inference",
+      "path": "skills/inference/sample-count-parallel-path-averaging/SKILL.md",
+      "version": "1.0.0"
+    },
+    "sandbox-agent-workspace": {
+      "category": "agents",
+      "path": "skills/agents/sandbox-agent-workspace/SKILL.md",
+      "version": "1.0.0"
+    },
+    "sandbox-backend-pluggable-architecture": {
+      "category": "linux-sandbox",
+      "path": "skills/linux-sandbox/sandbox-backend-pluggable-architecture/SKILL.md",
+      "version": "1.0.0"
+    },
+    "sanitize-tool-params-for-metrics": {
+      "category": "telemetry",
+      "path": "skills/telemetry/sanitize-tool-params-for-metrics/SKILL.md",
+      "version": "1.0.0"
+    },
+    "scope-check": {
+      "category": "production",
+      "path": "skills/production/scope-check/SKILL.md",
+      "version": "1.0.0"
+    },
+    "security-audit": {
+      "category": "engineering",
+      "path": "skills/engineering/security-audit/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4572,90 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "relative-mouse-mode-flutter-only": {
+      "category": "input",
+      "path": "knowledge/input/relative-mouse-mode-flutter-only.md"
+    },
+    "release-auto-update-publish-url": {
+      "category": "devops",
+      "path": "knowledge/devops/release-auto-update-publish-url.md"
+    },
+    "repository-identity-vs-project-vs-thread": {
+      "category": "domain",
+      "path": "knowledge/domain/repository-identity-vs-project-vs-thread.md"
+    },
+    "reproduce-bug-with-failing-test-first": {
+      "category": "engineering",
+      "path": "knowledge/engineering/reproduce-bug-with-failing-test-first.md"
+    },
+    "research-paper-published-icse-2025": {
+      "category": "domain",
+      "path": "knowledge/domain/research-paper-published-icse-2025.md"
+    },
+    "retry-badcase-token-ratio-heuristic": {
+      "category": "inference",
+      "path": "knowledge/inference/retry-badcase-token-ratio-heuristic.md"
+    },
+    "reverse-document-workflow-example": {
+      "category": "workflow",
+      "path": "knowledge/workflow/reverse-document-workflow-example.md"
+    },
+    "rlhf-ppo-trl": {
+      "category": "llm-fundamentals",
+      "path": "knowledge/llm-fundamentals/rlhf-ppo-trl.md"
+    },
+    "rollback-strategy-git-based-three-modes": {
+      "category": "safety",
+      "path": "knowledge/safety/rollback-strategy-git-based-three-modes.md"
+    },
+    "root-cause-tracing": {
+      "category": "engineering",
+      "path": "knowledge/engineering/root-cause-tracing.md"
+    },
+    "rpc-channel-namespaces": {
+      "category": "reference",
+      "path": "knowledge/reference/rpc-channel-namespaces.md"
+    },
+    "rpm-version-field-hyphen-constraint": {
+      "category": "rpm",
+      "path": "knowledge/rpm/rpm-version-field-hyphen-constraint.md"
+    },
+    "run-context-and-shared-state": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/run-context-and-shared-state.md"
+    },
+    "runtime-mode-approval-policy-and-sandbox-mode": {
+      "category": "api",
+      "path": "knowledge/api/runtime-mode-approval-policy-and-sandbox-mode.md"
+    },
+    "safetensors-pth-fallback": {
+      "category": "model-loading",
+      "path": "knowledge/model-loading/safetensors-pth-fallback.md"
+    },
+    "sandbox-soft-vs-hard-trade-off": {
+      "category": "safety",
+      "path": "knowledge/safety/sandbox-soft-vs-hard-trade-off.md"
+    },
+    "sanitized-environment-fingerprint-for-auto-report": {
+      "category": "security",
+      "path": "knowledge/security/sanitized-environment-fingerprint-for-auto-report.md"
+    },
+    "scheduler-and-cron-task-execution-model": {
+      "category": "automation",
+      "path": "knowledge/automation/scheduler-and-cron-task-execution-model.md"
+    },
+    "sciter-ui-deprecation-path": {
+      "category": "flutter",
+      "path": "knowledge/flutter/sciter-ui-deprecation-path.md"
+    },
+    "screen-capture-api-evolution-macos": {
+      "category": "codecs",
+      "path": "knowledge/codecs/screen-capture-api-evolution-macos.md"
+    },
+    "seekable-abstraction-for-io": {
+      "category": "arch",
+      "path": "knowledge/arch/seekable-abstraction-for-io.md"
     }
   }
 }
