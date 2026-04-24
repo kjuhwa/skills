@@ -1,13 +1,13 @@
 # skills-hub
 
-> **Skill & knowledge registry for Claude Code** — 467 reusable skills + 352 knowledge entries + 2 composition techniques + 2 hypothesis-driven papers + 28 example projects you can install into any project with a single slash command.
+> **Skill & knowledge registry for Claude Code** — 467 reusable skills + 352 knowledge entries + 4 composition techniques + 4 hypothesis-driven papers + 28 example projects you can install into any project with a single slash command.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Bootstrap](https://img.shields.io/github/v/tag/kjuhwa/skills-hub?filter=bootstrap/v*&label=bootstrap&color=purple)](https://github.com/kjuhwa/skills-hub/tags)
 [![Skills](https://img.shields.io/badge/skills-467-blue)](./index.json)
 [![Knowledge](https://img.shields.io/badge/knowledge-352-green)](./knowledge)
-[![Techniques](https://img.shields.io/badge/techniques-2-teal)](./technique)
-[![Papers](https://img.shields.io/badge/papers-2-indigo)](./paper)
+[![Techniques](https://img.shields.io/badge/techniques-4-teal)](./technique)
+[![Papers](https://img.shields.io/badge/papers-4-indigo)](./paper)
 [![Examples](https://img.shields.io/badge/examples-28-orange)](./example)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kjuhwa/skills-hub)
 ![GitHub stars](https://img.shields.io/github/stars/kjuhwa/skills-hub?style=social)
