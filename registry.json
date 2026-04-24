@@ -2409,6 +2409,146 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "mcp-multi-transport-config-pydantic": {
+      "category": "integration",
+      "path": "skills/integration/mcp-multi-transport-config-pydantic/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mcp-pool-http-proxy-for-subprocess-sdks": {
+      "category": "mcp-integration",
+      "path": "skills/mcp-integration/mcp-pool-http-proxy-for-subprocess-sdks/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mcp-sse-streamable-http": {
+      "category": "mcp-integration",
+      "path": "skills/mcp-integration/mcp-sse-streamable-http/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mcp-stdio-server": {
+      "category": "mcp-integration",
+      "path": "skills/mcp-integration/mcp-stdio-server/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mcp-streamable-http-detached-httpx-client": {
+      "category": "integration",
+      "path": "skills/integration/mcp-streamable-http-detached-httpx-client/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mcp-subprocess-env-filtering": {
+      "category": "security",
+      "path": "skills/security/mcp-subprocess-env-filtering/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mcp-tool-intent-metadata-injection": {
+      "category": "mcp-integration",
+      "path": "skills/mcp-integration/mcp-tool-intent-metadata-injection/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mega-moe-fusion-with-symmetric-memory": {
+      "category": "moe-optimization",
+      "path": "skills/moe-optimization/mega-moe-fusion-with-symmetric-memory/SKILL.md",
+      "version": "1.0.0"
+    },
+    "memory-fragment-sizing-for-llm-input": {
+      "category": "data-pipeline",
+      "path": "skills/data-pipeline/memory-fragment-sizing-for-llm-input/SKILL.md",
+      "version": "1.0.0"
+    },
+    "milestone-review": {
+      "category": "production",
+      "path": "skills/production/milestone-review/SKILL.md",
+      "version": "1.0.0"
+    },
+    "minified-js-variable-extraction-dynamic": {
+      "category": "electron-packaging",
+      "path": "skills/electron-packaging/minified-js-variable-extraction-dynamic/SKILL.md",
+      "version": "1.0.0"
+    },
+    "minimal-ddp-amp-accelerator-wrapper": {
+      "category": "training",
+      "path": "skills/training/minimal-ddp-amp-accelerator-wrapper/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ml-model-config-registry-dispatch": {
+      "category": "architecture",
+      "path": "skills/architecture/ml-model-config-registry-dispatch/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mlx-kv-cache-rollback-on-reject": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/mlx-kv-cache-rollback-on-reject/SKILL.md",
+      "version": "1.0.0"
+    },
+    "modal-navigation-stack-with-back": {
+      "category": "frontend",
+      "path": "skills/frontend/modal-navigation-stack-with-back/SKILL.md",
+      "version": "1.0.0"
+    },
+    "model-config-min-json-compact-format": {
+      "category": "data",
+      "path": "skills/data/model-config-min-json-compact-format/SKILL.md",
+      "version": "1.0.0"
+    },
+    "model-config-versioning-and-backwards-compat": {
+      "category": "versioning",
+      "path": "skills/versioning/model-config-versioning-and-backwards-compat/SKILL.md",
+      "version": "1.0.0"
+    },
+    "model-onnx-file-versioning-and-staging": {
+      "category": "versioning",
+      "path": "skills/versioning/model-onnx-file-versioning-and-staging/SKILL.md",
+      "version": "1.0.0"
+    },
+    "model-regression-test-with-csv-fixture": {
+      "category": "testing",
+      "path": "skills/testing/model-regression-test-with-csv-fixture/SKILL.md",
+      "version": "1.0.0"
+    },
+    "model-retry-settings": {
+      "category": "agents",
+      "path": "skills/agents/model-retry-settings/SKILL.md",
+      "version": "1.0.0"
+    },
+    "mouse-button-enum-dispatch": {
+      "category": "input",
+      "path": "skills/input/mouse-button-enum-dispatch/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-backend-argparse-dispatcher": {
+      "category": "cli",
+      "path": "skills/cli/multi-backend-argparse-dispatcher/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-format-native-package-orchestrator": {
+      "category": "packaging",
+      "path": "skills/packaging/multi-format-native-package-orchestrator/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-instance-electron-dev": {
+      "category": "electron",
+      "path": "skills/electron/multi-instance-electron-dev/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-kernel-dispatch-with-shape-driven-selection": {
+      "category": "gpu-kernels",
+      "path": "skills/gpu-kernels/multi-kernel-dispatch-with-shape-driven-selection/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-language-onnx-model-binding": {
+      "category": "bindings",
+      "path": "skills/bindings/multi-language-onnx-model-binding/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-llm-provider-router-by-env": {
+      "category": "configuration",
+      "path": "skills/configuration/multi-llm-provider-router-by-env/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-platform-desktop-release-workflow-github-actions": {
+      "category": "ci",
+      "path": "skills/ci/multi-platform-desktop-release-workflow-github-actions/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4567,94 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "mcp-integration-guide": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/mcp-integration-guide.md"
+    },
+    "mcp-localhost-bind-default-warn-on-expose": {
+      "category": "security",
+      "path": "knowledge/security/mcp-localhost-bind-default-warn-on-expose.md"
+    },
+    "mcp-pool-vs-direct-connections": {
+      "category": "architecture",
+      "path": "knowledge/architecture/mcp-pool-vs-direct-connections.md"
+    },
+    "mcp-stdio-child-of-daemon-topology": {
+      "category": "arch",
+      "path": "knowledge/arch/mcp-stdio-child-of-daemon-topology.md"
+    },
+    "mega-moe-imbalance-factor-for-uneven-routing": {
+      "category": "moe-optimization",
+      "path": "knowledge/moe-optimization/mega-moe-imbalance-factor-for-uneven-routing.md"
+    },
+    "memory-graph-adaptive-query-with-recency": {
+      "category": "data-pipeline",
+      "path": "knowledge/data-pipeline/memory-graph-adaptive-query-with-recency.md"
+    },
+    "menu-bar-visibility-modes-linux-workaround": {
+      "category": "electron-packaging",
+      "path": "knowledge/electron-packaging/menu-bar-visibility-modes-linux-workaround.md"
+    },
+    "minified-electron-regex-patching-gotchas": {
+      "category": "electron-packaging",
+      "path": "knowledge/electron-packaging/minified-electron-regex-patching-gotchas.md"
+    },
+    "minified-js-ast-anchor-extraction": {
+      "category": "electron-packaging",
+      "path": "knowledge/electron-packaging/minified-js-ast-anchor-extraction.md"
+    },
+    "mlx-kv-cache-trimmability": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/mlx-kv-cache-trimmability.md"
+    },
+    "model-api-contract-sync-and-async": {
+      "category": "arch",
+      "path": "knowledge/arch/model-api-contract-sync-and-async.md"
+    },
+    "model-generation-tooling-in-rust-gen": {
+      "category": "arch",
+      "path": "knowledge/arch/model-generation-tooling-in-rust-gen.md"
+    },
+    "model-not-used-for-edge-cases": {
+      "category": "arch",
+      "path": "knowledge/arch/model-not-used-for-edge-cases.md"
+    },
+    "model-output-space-vs-tool-output-space": {
+      "category": "domain",
+      "path": "knowledge/domain/model-output-space-vs-tool-output-space.md"
+    },
+    "model-trained-on-100m-samples": {
+      "category": "domain",
+      "path": "knowledge/domain/model-trained-on-100m-samples.md"
+    },
+    "model-variants-standard-fast-begonly": {
+      "category": "arch",
+      "path": "knowledge/arch/model-variants-standard-fast-begonly.md"
+    },
+    "model-version-compatibility-major-version": {
+      "category": "version-quirk",
+      "path": "knowledge/version-quirk/model-version-compatibility-major-version.md"
+    },
+    "monorepo-subpath-exports-over-barrel-index": {
+      "category": "decision",
+      "path": "knowledge/decision/monorepo-subpath-exports-over-barrel-index.md"
+    },
+    "multi-agent-orchestration-patterns": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/multi-agent-orchestration-patterns.md"
+    },
+    "multi-audio-resampling-backends": {
+      "category": "codecs",
+      "path": "knowledge/codecs/multi-audio-resampling-backends.md"
+    },
+    "multi-language-i18n-compile-time-generation": {
+      "category": "i18n",
+      "path": "knowledge/i18n/multi-language-i18n-compile-time-generation.md"
+    },
+    "multi-llm-provider-trade-offs": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/multi-llm-provider-trade-offs.md"
     }
   }
 }
