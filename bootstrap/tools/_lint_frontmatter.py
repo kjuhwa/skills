@@ -23,6 +23,7 @@ from pathlib import Path
 HUB_ROOT = Path.home() / ".claude" / "skills-hub" / "remote"
 SKILL_DIR = HUB_ROOT / "skills"
 KNOWLEDGE_DIR = HUB_ROOT / "knowledge"
+TECHNIQUE_DIR = HUB_ROOT / "technique"
 
 REQUIRED = ["name", "description", "category", "tags", "version"]
 # knowledge files often use `summary` instead of `description`.
@@ -96,6 +97,8 @@ def iter_md_files() -> list[Path]:
         files.extend(SKILL_DIR.rglob("SKILL.md"))
     if KNOWLEDGE_DIR.exists():
         files.extend(KNOWLEDGE_DIR.rglob("*.md"))
+    if TECHNIQUE_DIR.exists():
+        files.extend(TECHNIQUE_DIR.rglob("TECHNIQUE.md"))
     return files
 
 
