@@ -2410,6 +2410,13 @@
       "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
       "linked_skills": []
     },
+    "cm-maintenance-job-target-snapshot": {
+      "category": "pitfall",
+      "installed_at": "2026-04-24T02:33:42Z",
+      "linked_skills": [],
+      "scope": "project",
+      "source_commit": "c9dc78441f1fd29b0ac27f6495ca87d5b73f5432"
+    },
     "common-alarm-policy-init-gotcha": {
       "category": "pitfall",
       "scope": "user",
