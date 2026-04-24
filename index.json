@@ -14213,5 +14213,82 @@
     ],
     "triggers": "identifier field pattern 전수 부여, resourceId agentId 공통 확장, @Schema 없이 property enrichment, openapi customizer post-process",
     "version": "1.0.0"
+  },
+  {
+    "kind": "knowledge",
+    "name": "cmm-namespace-reuse-before-new-key",
+    "slug": "cmm-namespace-reuse-before-new-key",
+    "category": "decision",
+    "description": "lucida-ui i18n 신규 키를 만들기 전에 cmm.* 공용 네임스페이스의 기존 키를 grep 으로 먼저 재사용한다",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/decision/cmm-namespace-reuse-before-new-key.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ag-grid-maintain-column-order-blocks-reorder",
+    "slug": "ag-grid-maintain-column-order-blocks-reorder",
+    "category": "pitfall",
+    "description": "AG-Grid maintainColumnOrder=true 는 setColumnDefs/applyColumnState 로 주입한 순서 변경을 무시한다 — 뷰 기반 persist 화면에서는 false 로 전환 필수",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/ag-grid-maintain-column-order-blocks-reorder.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "sirius-grid-events-top-level-not-gridoptions",
+    "slug": "sirius-grid-events-top-level-not-gridoptions",
+    "category": "pitfall",
+    "description": "Sirius Grid 는 이벤트 핸들러를 top-level prop 으로 노출한다 — gridOptions 에 넣으면 호출되지 않는다",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/sirius-grid-events-top-level-not-gridoptions.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ag-grid-displayed-columns-include-action-columns",
+    "slug": "ag-grid-displayed-columns-include-action-columns",
+    "category": "pitfall",
+    "description": "AG-Grid getAllDisplayedColumns() 는 checkbox·action 컬럼까지 반환한다 — 서버 카탈로그 key 로 화이트리스트 필터 필수",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/ag-grid-displayed-columns-include-action-columns.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "claude-code-subagent-write-permission-scope",
+    "slug": "claude-code-subagent-write-permission-scope",
+    "category": "pitfall",
+    "description": "Claude Code 서브에이전트의 Edit/Write 권한은 현재 세션 CWD 의 settings.local.json 만 따라간다",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/claude-code-subagent-write-permission-scope.md",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "bun-windows-copyfile-backend",
+    "slug": "bun-windows-copyfile-backend",
+    "category": "cli",
+    "description": "Bun on Windows 에서 bun install 이 Failed to link ... EUNKNOWN 으로 실패할 때, --backend=copyfile 로 symlink 경로를 파일 복사로 우회한다.",
+    "tags": "bun,windows,symlink,node_modules,install",
+    "triggers": [
+      "bun install windows",
+      "Failed to link EUNKNOWN",
+      "bun symlink error",
+      "bun windows node_modules"
+    ],
+    "version": "1.0.0",
+    "path": "skills/cli/bun-windows-copyfile-backend/SKILL.md",
+    "has_content": true
   }
 ]
