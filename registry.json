@@ -2409,6 +2409,81 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "workspace-directory-convention": {
+      "category": "architecture",
+      "path": "skills/architecture/workspace-directory-convention/SKILL.md",
+      "version": "1.0.0"
+    },
+    "workspace-scoped-query-keys": {
+      "category": "architecture",
+      "path": "skills/architecture/workspace-scoped-query-keys/SKILL.md",
+      "version": "1.0.0"
+    },
+    "workspace-slug-url-refactor": {
+      "category": "architecture",
+      "path": "skills/architecture/workspace-slug-url-refactor/SKILL.md",
+      "version": "1.0.0"
+    },
+    "worktree-env-file-isolation": {
+      "category": "devops",
+      "path": "skills/devops/worktree-env-file-isolation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "worktree-isolation-resolver": {
+      "category": "workflow",
+      "path": "skills/workflow/worktree-isolation-resolver/SKILL.md",
+      "version": "1.0.0"
+    },
+    "writing-plans": {
+      "category": "process",
+      "path": "skills/process/writing-plans/SKILL.md",
+      "version": "1.0.0"
+    },
+    "writing-skills": {
+      "category": "meta",
+      "path": "skills/meta/writing-skills/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ws-cookie-or-first-message-auth": {
+      "category": "websocket",
+      "path": "skills/websocket/ws-cookie-or-first-message-auth/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ws-query-invalidation-bridge": {
+      "category": "websocket",
+      "path": "skills/websocket/ws-query-invalidation-bridge/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ws-rpc-heartbeat-event-buffer": {
+      "category": "build",
+      "path": "skills/build/ws-rpc-heartbeat-event-buffer/SKILL.md",
+      "version": "1.0.0"
+    },
+    "x11-xrandr-display-enumeration": {
+      "category": "linux",
+      "path": "skills/linux/x11-xrandr-display-enumeration/SKILL.md",
+      "version": "1.0.0"
+    },
+    "yaml-config-with-templated-dynamic-paths": {
+      "category": "configuration",
+      "path": "skills/configuration/yaml-config-with-templated-dynamic-paths/SKILL.md",
+      "version": "1.0.0"
+    },
+    "zip-recursive-subdocument-conversion": {
+      "category": "data-pipeline",
+      "path": "skills/data-pipeline/zip-recursive-subdocument-conversion/SKILL.md",
+      "version": "1.0.0"
+    },
+    "zod-defined-tool-factory": {
+      "category": "mcp",
+      "path": "skills/mcp/zod-defined-tool-factory/SKILL.md",
+      "version": "1.0.0"
+    },
+    "zustand-store-mock-hoisted": {
+      "category": "testing",
+      "path": "skills/testing/zustand-store-mock-hoisted/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4502,54 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "workspace-identity-not-cleared-on-unmount": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/workspace-identity-not-cleared-on-unmount.md"
+    },
+    "workspace-repo-cache": {
+      "category": "domain",
+      "path": "knowledge/domain/workspace-repo-cache.md"
+    },
+    "workspace-slug-in-url-refactor": {
+      "category": "decision",
+      "path": "knowledge/decision/workspace-slug-in-url-refactor.md"
+    },
+    "worktree-cross-clone-adoption-pitfall": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/worktree-cross-clone-adoption-pitfall.md"
+    },
+    "ws-heartbeat-ratio-ping-period": {
+      "category": "decision",
+      "path": "knowledge/decision/ws-heartbeat-ratio-ping-period.md"
+    },
+    "ws-invalidation-not-store-writes": {
+      "category": "arch",
+      "path": "knowledge/arch/ws-invalidation-not-store-writes.md"
+    },
+    "ws-token-never-in-url": {
+      "category": "api",
+      "path": "knowledge/api/ws-token-never-in-url.md"
+    },
+    "wsrpcserver-push-target-model": {
+      "category": "architecture",
+      "path": "knowledge/architecture/wsrpcserver-push-target-model.md"
+    },
+    "zero-length-byte-handling": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/zero-length-byte-handling.md"
+    },
+    "zero-value-sentinel-alertmanager-startsat": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/zero-value-sentinel-alertmanager-startsat.md"
+    },
+    "zod-openapi-schema-conventions": {
+      "category": "api",
+      "path": "knowledge/api/zod-openapi-schema-conventions.md"
+    },
+    "zustand-selector-stable-references": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/zustand-selector-stable-references.md"
     }
   }
 }
