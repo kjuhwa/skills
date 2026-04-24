@@ -81,6 +81,60 @@
   },
   {
     "kind": "knowledge",
+    "name": "claude-session-resume-semantics",
+    "slug": "claude-session-resume-semantics",
+    "category": "api",
+    "description": "If claude --resume <id> doesn't find the session, Claude silently generates a fresh session and exits. Treat emitted_id != requested_id AND failed status as \"resume didn't land\".",
+    "tags": [
+      "claude-code",
+      "session",
+      "resume",
+      "pitfall",
+      "llm"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/claude-session-resume-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "claude-stream-json-protocol",
+    "slug": "claude-stream-json-protocol",
+    "category": "api",
+    "description": "Claude Code CLI's stream-json mode emits typed JSON events (assistant, user, system, result, log) that wrap content blocks like text/thinking/tool_use/tool_result.",
+    "tags": [
+      "claude-code",
+      "streaming",
+      "json-protocol",
+      "llm",
+      "agent"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/claude-stream-json-protocol.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "cli-release-via-git-tag",
+    "slug": "cli-release-via-git-tag",
+    "category": "api",
+    "description": "CLI releases are cut from semver tags on main — push a tag, GitHub Actions runs tests, GoReleaser builds multi-platform binaries and updates the Homebrew tap.",
+    "tags": [
+      "release",
+      "cli",
+      "git-tag",
+      "goreleaser",
+      "github-actions"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/cli-release-via-git-tag.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "confid-vs-resourceid-routing",
     "slug": "confid-vs-resourceid-routing",
     "category": "api",
@@ -424,6 +478,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "cli-implemented-in-rust-for-speed",
+    "slug": "cli-implemented-in-rust-for-speed",
+    "category": "arch",
+    "description": "The Magika CLI is Rust, not Python, to eliminate interpreter startup overhead.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/cli-implemented-in-rust-for-speed.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "commons-logging-exclusion-strategy",
     "slug": "commons-logging-exclusion-strategy",
     "category": "arch",
@@ -438,6 +507,36 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/arch/commons-logging-exclusion-strategy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "config-minimization-min-json",
+    "slug": "config-minimization-min-json",
+    "category": "arch",
+    "description": "Model configs ship as config.min.json (minified) to shrink package size — especially important for browser deployment.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/config-minimization-min-json.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "content-types-knowledge-base-minified",
+    "slug": "content-types-knowledge-base-minified",
+    "category": "arch",
+    "description": "The full content-types KB ships as content_types_kb.min.json so APIs can offer rich metadata without a large overhead.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/content-types-knowledge-base-minified.md",
     "has_content": true
   },
   {
@@ -1945,6 +2044,80 @@
   },
   {
     "kind": "knowledge",
+    "name": "ci-gpg-signing-batch-mode-non-interactive",
+    "slug": "ci-gpg-signing-batch-mode-non-interactive",
+    "category": "ci-cd",
+    "description": "GPG signing in CI requires `--batch --yes` flags, a pre-imported key, and `git config user.signingKey` set; without a TTY, pinentry will fail and the signing step hangs or errors unless all interactive prompts are bypassed.",
+    "tags": [
+      "gpg",
+      "signing",
+      "ci-cd",
+      "github-actions",
+      "non-interactive",
+      "batch",
+      "pinentry"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/ci-cd/ci-gpg-signing-batch-mode-non-interactive.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ci-push-race-condition-retry-rebase-loop",
+    "slug": "ci-push-race-condition-retry-rebase-loop",
+    "category": "ci-cd",
+    "description": "Parallel CI jobs pushing to the same branch (e.g., `gh-pages`) race; solve with a `git pull --rebase` + retry loop with exponential backoff, or serialize jobs with `needs:` dependencies to avoid the race entirely.",
+    "tags": [
+      "ci-cd",
+      "git-push",
+      "race-condition",
+      "gh-pages",
+      "retry",
+      "rebase",
+      "github-actions",
+      "concurrency"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/ci-cd/ci-push-race-condition-retry-rebase-loop.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "clipboard-context-lazy-initialization",
+    "slug": "clipboard-context-lazy-initialization",
+    "category": "clipboard",
+    "description": "Clipboard context is lazy-init on first check_clipboard(); one context per side.",
+    "tags": [
+      "clipboard",
+      "context",
+      "initialization",
+      "lazy"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/clipboard/clipboard-context-lazy-initialization.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "clipboard-ownership-protocol",
+    "slug": "clipboard-ownership-protocol",
+    "category": "clipboard",
+    "description": "Clipboard-ownership detection uses a custom format flag (dyn.com.rustdesk.owner) to prevent copy-paste loops between host and guest.",
+    "tags": [
+      "clipboard",
+      "ownership",
+      "protocol"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/clipboard/clipboard-ownership-protocol.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "agent-director-art-director",
     "slug": "agent-director-art-director",
     "category": "collaboration",
@@ -2233,6 +2406,42 @@
   },
   {
     "kind": "knowledge",
+    "name": "collaborative-design-principles",
+    "slug": "collaborative-design-principles",
+    "category": "collaboration",
+    "description": "Collaborative design principles for multi-agent game development workflows",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "collaboration",
+      "design-principles",
+      "multi-agent"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/collaborative-design-principles.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "config-system-four-tiers",
+    "slug": "config-system-four-tiers",
+    "category": "configuration",
+    "description": "Four config tiers: Settings (persistent), Local (user), Display (per-display), Built-in (defaults).",
+    "tags": [
+      "config",
+      "configuration",
+      "four",
+      "system",
+      "tiers"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/configuration/config-system-four-tiers.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "actuator-endpoints-skip-auth-by-design",
     "slug": "actuator-endpoints-skip-auth-by-design",
     "category": "decision",
@@ -2434,6 +2643,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/circular-dependency-detection-script.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "cli-release-accompanies-prod-deploy",
+    "slug": "cli-release-accompanies-prod-deploy",
+    "category": "decision",
+    "description": "Every production deployment of the server must be accompanied by a matching CLI release, so server-CLI protocol changes never ship skewed.",
+    "tags": [
+      "release",
+      "versioning",
+      "cli",
+      "server",
+      "protocol"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/cli-release-accompanies-prod-deploy.md",
     "has_content": true
   },
   {
@@ -3511,6 +3738,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "content-types-knowledge-base-vs-model-outputs",
+    "slug": "content-types-knowledge-base-vs-model-outputs",
+    "category": "domain",
+    "description": "content_types_kb.min.json is a research superset — distinct from any single model's actual output space.",
+    "tags": [
+      "magika",
+      "domain"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/content-types-knowledge-base-vs-model-outputs.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "encrypted-pii-decode-on-export",
     "slug": "encrypted-pii-decode-on-export",
     "category": "domain",
@@ -3658,6 +3900,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "condition-based-waiting",
+    "slug": "condition-based-waiting",
+    "category": "engineering",
+    "description": "Replace arbitrary sleep/timeouts in tests with explicit condition polling to eliminate flaky timing-dependent failures",
+    "tags": [
+      "superpowers",
+      "engineering"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engineering/condition-based-waiting.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a2a-protocol-agent-to-agent-knowledge-exchange",
     "slug": "a2a-protocol-agent-to-agent-knowledge-exchange",
     "category": "integration",
@@ -3672,6 +3929,28 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/integration/a2a-protocol-agent-to-agent-knowledge-exchange.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "cowork-backend-auto-detection-priority",
+    "slug": "cowork-backend-auto-detection-priority",
+    "category": "linux-sandbox",
+    "description": "Sandbox backend selection should prefer the most-isolated available option (bwrap > kvm > host) using functional tests, not just binary presence; expose the active backend via a `--doctor` diagnostic command and allow override via an environment variable.",
+    "tags": [
+      "sandbox",
+      "bubblewrap",
+      "kvm",
+      "qemu",
+      "detection",
+      "backend",
+      "isolation",
+      "cowork",
+      "linux"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/linux-sandbox/cowork-backend-auto-detection-priority.md",
     "has_content": true
   },
   {
@@ -3709,6 +3988,24 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/llm-agents/agent-runner-loop-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "connection-type-enum-design",
+    "slug": "connection-type-enum-design",
+    "category": "networking",
+    "description": "ConnType enum: RDP (over relay), Direct TCP, Direct UDP, LAN discovery — drives fallback logic.",
+    "tags": [
+      "connection",
+      "design",
+      "enum",
+      "networking",
+      "type"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/networking/connection-type-enum-design.md",
     "has_content": true
   },
   {
@@ -4196,6 +4493,41 @@
   },
   {
     "kind": "knowledge",
+    "name": "claudecode-env-breaks-nested-spawn",
+    "slug": "claudecode-env-breaks-nested-spawn",
+    "category": "pitfall",
+    "description": "Claude Agent SDK's nesting guard sees CLAUDECODE=1 in a child process env and refuses to run — must strip before spawn when your CLI runs inside another Claude session.",
+    "tags": [
+      "claude-agent-sdk",
+      "env-vars",
+      "nesting",
+      "subprocess"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/claudecode-env-breaks-nested-spawn.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "claudecode-env-var-leakage",
+    "slug": "claudecode-env-var-leakage",
+    "category": "pitfall",
+    "description": "When spawning Claude Code from a parent Claude Code session, strip CLAUDECODE*, CLAUDE_CODE_* env vars so the child doesn't inherit the parent's session state.",
+    "tags": [
+      "claude-code",
+      "environment",
+      "subprocess",
+      "session",
+      "leakage"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/claudecode-env-var-leakage.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "cm-maintenance-job-target-snapshot",
     "slug": "cm-maintenance-job-target-snapshot",
     "category": "pitfall",
@@ -4204,6 +4536,42 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/cm-maintenance-job-target-snapshot.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "codex-oauth-strips-vars-at-spawn",
+    "slug": "codex-oauth-strips-vars-at-spawn",
+    "category": "pitfall",
+    "description": "Codex (ChatGPT Plus OAuth via Pi SDK) looks at specific env vars at subprocess spawn; leaving CODEX_SESSION_ID / OPENAI_API_KEY from an earlier run can misroute the current session to the wrong account.",
+    "tags": [
+      "codex",
+      "oauth",
+      "env-pollution",
+      "pi-sdk"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/codex-oauth-strips-vars-at-spawn.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "codex-seatbelt-ignores-network-access",
+    "slug": "codex-seatbelt-ignores-network-access",
+    "category": "pitfall",
+    "description": "On macOS, Codex CLI's Seatbelt sandbox in workspace-write mode silently ignores network_access=true, causing \"no such host\" errors inside agent sessions.",
+    "tags": [
+      "codex",
+      "macos",
+      "sandbox",
+      "seatbelt",
+      "dns",
+      "network"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/codex-seatbelt-ignores-network-access.md",
     "has_content": true
   },
   {
@@ -4276,6 +4644,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "compute-sanitizer-needs-temp-cublaslt-workspace",
+    "slug": "compute-sanitizer-needs-temp-cublaslt-workspace",
+    "category": "pitfall",
+    "description": "",
+    "tags": [
+      "compute-sanitizer",
+      "cublaslt",
+      "teardown",
+      "cuda-runtime",
+      "destructor",
+      "workspace"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pytorch-integration/compute-sanitizer-needs-temp-cublaslt-workspace.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "concurrent-edge-detection-without-full-clock-compare",
     "slug": "concurrent-edge-detection-without-full-clock-compare",
     "category": "pitfall",
@@ -4303,6 +4690,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/conf-info-may-lack-resource-type.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "connect-via-devtools-active-port-file",
+    "slug": "connect-via-devtools-active-port-file",
+    "category": "pitfall",
+    "description": "When Chrome is launched with `--user-data-dir` and remote debugging but the port is auto-chosen, connect by reading the `DevToolsActivePort` file in the user-data-dir — line 1 is the port, line 2 is the browser-target path — to construct `ws://127.0.0.1:<port><path>`.",
+    "tags": [
+      "chrome",
+      "cdp",
+      "devtools-active-port",
+      "connection",
+      "puppeteer"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/connect-via-devtools-active-port-file.md",
     "has_content": true
   },
   {
@@ -6317,6 +6722,77 @@
   },
   {
     "kind": "knowledge",
+    "name": "claude-cli-hook-bypass-envs",
+    "slug": "claude-cli-hook-bypass-envs",
+    "category": "reference",
+    "description": "Three environment variables — `DISABLE_OMC=1`, `OMC_SKIP_HOOKS=*`, `CLAUDE_DISABLE_SESSION_HOOKS=1` — neutralize the oh-my-claudecode harness and Claude's own SessionStart/Stop hooks so a spawned `claude -p` child can run unattended without a parent-side hook printing to stdout or hijacking stdin.",
+    "tags": [
+      "claude-code",
+      "oh-my-claudecode",
+      "omc",
+      "hooks",
+      "env-vars",
+      "unattended",
+      "spawn",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/claude-cli-hook-bypass-envs.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "clearcut-source-and-client-type-constants",
+    "slug": "clearcut-source-and-client-type-constants",
+    "category": "reference",
+    "description": "Shipping events to Google Clearcut requires two well-known numeric constants in every LogRequest: `log_source` (assigned per project — chrome-devtools-mcp uses 2839) and `client_info.client_type` (47 for CLI-like tools), wrapped around a `source_extension_json` stringified event.",
+    "tags": [
+      "clearcut",
+      "google-telemetry",
+      "constants",
+      "batch-format"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/clearcut-source-and-client-type-constants.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "config-dir-layout",
+    "slug": "config-dir-layout",
+    "category": "reference",
+    "description": "Full layout of ~/.craft-agent/ including app-level config/credentials/preferences/themes and per-workspace subdirs for sessions, sources, skills, statuses, automations.",
+    "tags": [
+      "filesystem",
+      "config",
+      "workspaces",
+      "layout"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/config-dir-layout.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "craft-cli-command-surface",
+    "slug": "craft-cli-command-surface",
+    "category": "reference",
+    "description": "One-page reference for the craft-cli command taxonomy: info/health, resource listing, session ops, streaming send, power-user invoke/listen, self-contained run, and the 21-step --validate-server.",
+    "tags": [
+      "cli",
+      "rpc",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/craft-cli-command-surface.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6452,6 +6928,42 @@
   },
   {
     "kind": "skill",
+    "name": "code-review",
+    "slug": "code-review",
+    "category": "",
+    "description": "\"Performs an architectural and quality code review on a specified file or set of files. Checks for coding standard compliance, architectural pattern adherence, SOLID principles, testability, and performance concerns.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/code-review",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "consistency-check",
+    "slug": "consistency-check",
+    "category": "",
+    "description": "\"Scan all GDDs against the entity registry to detect cross-document inconsistencies: same entity with different stats, same item with different values, same formula with different variables. Grep-first approach — reads registry then targets only conflicting GDD sections rather than full document reads.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/qa/consistency-check",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "content-audit",
+    "slug": "content-audit",
+    "category": "",
+    "description": "\"Audit GDD-specified content counts against implemented content. Identifies what's planned vs built.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/qa/content-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "alert-time-window-with-buffer",
     "slug": "alert-time-window-with-buffer",
     "category": "agent-sdk",
@@ -6465,6 +6977,23 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agent-sdk/alert-time-window-with-buffer",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "claude-agent-sdk-multi-provider-bridge",
+    "slug": "claude-agent-sdk-multi-provider-bridge",
+    "category": "agent-sdk",
+    "description": "Drive non-Anthropic providers (OpenRouter, Ollama, Vercel AI Gateway, any Anthropic-compatible endpoint) through the Claude Agent SDK by swapping base URL + auth env, and route Google/OpenAI/Copilot through a parallel Pi SDK backend with a shared AgentBackend interface.",
+    "tags": [
+      "claude-agent-sdk",
+      "multi-provider",
+      "pi-sdk",
+      "backend-abstraction"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/claude-agent-sdk-multi-provider-bridge",
     "has_content": false
   },
   {
@@ -6517,6 +7046,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/agent-structured-output",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "claude-code-stream-json-driver",
+    "slug": "claude-code-stream-json-driver",
+    "category": "agents",
+    "description": "Drive the Claude Code CLI non-interactively via stream-json — build input on stdin, parse typed events on stdout, handle session resume and token usage.",
+    "tags": [
+      "claude-code",
+      "stream-json",
+      "cli",
+      "llm",
+      "streaming"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/claude-code-stream-json-driver",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "coding-agent-cli-backend-interface",
+    "slug": "coding-agent-cli-backend-interface",
+    "category": "agents",
+    "description": "Unified Go/TS interface for invoking any coding-agent CLI (Claude, Codex, OpenCode, Gemini, Cursor, etc.) behind one streaming Execute/Session/Result contract.",
+    "tags": [
+      "agents",
+      "cli",
+      "abstraction",
+      "streaming",
+      "llm"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/coding-agent-cli-backend-interface",
     "has_content": false
   },
   {
@@ -9691,6 +10256,42 @@
   },
   {
     "kind": "skill",
+    "name": "coverage-data-file-under-pytest-cache",
+    "slug": "coverage-data-file-under-pytest-cache",
+    "category": "build",
+    "description": "Move coverage data files into .pytest_cache/.coverage so pytest-xdist worker fragments (.coverage.<host>.<pid>.<random>) end up inside the already-gitignored cache dir instead of polluting the repo root.",
+    "tags": [
+      "coverage",
+      "pytest-xdist",
+      "gitignore",
+      "dx"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/coverage-data-file-under-pytest-cache",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cmake-cuda-extension-with-git-submodule-vendoring",
+    "slug": "cmake-cuda-extension-with-git-submodule-vendoring",
+    "category": "build-system",
+    "description": "Build a PyTorch CUDA extension with CMake, vendoring CUTLASS and fmt as git submodules, plus a pre-built-wheel fast path for CI via GitHub releases.",
+    "tags": [
+      "cmake",
+      "pytorch-extension",
+      "git-submodule",
+      "cuda-build",
+      "wheel",
+      "ci"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-system/cmake-cuda-extension-with-git-submodule-vendoring",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "autoplan",
     "slug": "autoplan",
     "category": "cli",
@@ -9807,6 +10408,39 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/cli/gstack/checkpoint",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cli-output-format-dispatch-with-template",
+    "slug": "cli-output-format-dispatch-with-template",
+    "category": "cli",
+    "description": "CLI accepts --format=json|jsonl|text and an optional --format-str with printf-style placeholders (%p path, %l label, %s score, %i mime, %g group, %b overwrite_reason).",
+    "tags": [
+      "magika",
+      "cli"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/cli-output-format-dispatch-with-template",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "cli-serve-blocking-exit",
+    "slug": "cli-serve-blocking-exit",
+    "category": "cli",
+    "description": "In a CLI that wraps a long-running server, block on SIGINT/SIGTERM with a Promise instead of `process.exit(0)` so the underlying Bun.serve/Hono event loop keeps running.",
+    "tags": [
+      "cli",
+      "signal-handling",
+      "bun",
+      "server",
+      "lifecycle"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/cli-serve-blocking-exit",
     "has_content": false
   },
   {
@@ -10554,6 +11188,21 @@
     "version": "1.0.0",
     "path": "skills/codecs/android-mediacodec-jni-wrapper",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "content-type-info-metadata-embedding",
+    "slug": "content-type-info-metadata-embedding",
+    "category": "data",
+    "description": "Embed structured metadata per content type (mime_type, group, description, extensions, is_text) at codegen time so callers can convert predictions to human output or filter by group without lookup tables.",
+    "tags": [
+      "magika",
+      "data"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/data/content-type-info-metadata-embedding",
+    "has_content": true
   },
   {
     "kind": "skill",
@@ -12945,6 +13594,53 @@
   },
   {
     "kind": "skill",
+    "name": "claude-cli-grace-kill-after-success-result",
+    "slug": "claude-cli-grace-kill-after-success-result",
+    "category": "integration",
+    "description": "When driving `claude -p --output-format stream-json`, treat a `result:success` event as completion even if the child doesn't self-exit; arm a 15s grace timer to kill, and return ok=true regardless of exit code.",
+    "tags": "",
+    "triggers": "",
+    "version": "1.0.0",
+    "path": "skills/integration/claude-cli-grace-kill-after-success-result",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "computer-use-agent",
+    "slug": "computer-use-agent",
+    "category": "integration",
+    "description": "Build an agent that controls a computer (screenshots, clicks, keyboard) using ComputerTool.",
+    "tags": [
+      "openai-agents",
+      "computer-use",
+      "automation",
+      "computer-tool",
+      "rpa"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/integration/computer-use-agent",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "confidence-lowering-by-source-factor",
+    "slug": "confidence-lowering-by-source-factor",
+    "category": "integration",
+    "description": "Lower external asset confidence by a configurable factor to reflect source reliability",
+    "tags": [
+      "evolver",
+      "integration",
+      "trust",
+      "confidence"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/integration/confidence-lowering-by-source-factor",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13030,6 +13726,24 @@
   },
   {
     "kind": "skill",
+    "name": "chunked-tts-with-crossfade",
+    "slug": "chunked-tts-with-crossfade",
+    "category": "ml-ops",
+    "description": "Generate long TTS outputs by sentence-splitting the input, generating each chunk independently, and concatenating with a short crossfade.",
+    "tags": [
+      "tts",
+      "audio",
+      "chunking",
+      "crossfade",
+      "long-form"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ml-ops/chunked-tts-with-crossfade",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "react-native-android-emulator-localhost",
     "slug": "react-native-android-emulator-localhost",
     "category": "mobile",
@@ -13055,6 +13769,24 @@
     "version": "0.1.0-draft",
     "path": "skills/mobile/react-native-android-emulator-localhost",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "config-json-architecture-dispatch",
+    "slug": "config-json-architecture-dispatch",
+    "category": "model-loading",
+    "description": "Auto-detect model version from config.json architecture field and dispatch to the correct model class",
+    "tags": [
+      "model-loading",
+      "config",
+      "dispatch",
+      "versioning",
+      "pytorch"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/model-loading/config-json-architecture-dispatch",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -13090,6 +13822,27 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/observability/anonymous-posthog-telemetry",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "claude-cli-unattended-wrapper",
+    "slug": "claude-cli-unattended-wrapper",
+    "category": "operations",
+    "description": "Spawn `claude -p` non-interactively from a Node parent process so a long-running loop can drive slash commands without any human at the keyboard. Layers a prompt tempfile, a piped \"y\\n\" stream, hook-bypass env vars, and a stream-json consumer to keep the child from ever blocking.",
+    "tags": [
+      "claude-code",
+      "cli",
+      "unattended",
+      "automation",
+      "spawn",
+      "stdin",
+      "stream-json",
+      "loop"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/operations/claude-cli-unattended-wrapper",
     "has_content": false
   },
   {
@@ -13197,6 +13950,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/reverse-engineering/androidmanifest-to-network-call-flow-tracing",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "contextual-identifier-detectors-overlap-resolution",
+    "slug": "contextual-identifier-detectors-overlap-resolution",
+    "category": "safety",
+    "description": "Detect sensitive identifiers (pods, namespaces, IPs, emails, accounts) using context-anchored regex (e.g. preceded by \"namespace=\") and resolve overlapping matches by keeping the longest earliest one to avoid corrupting splice replacements.",
+    "tags": [
+      "regex",
+      "masking",
+      "identifiers",
+      "kubernetes",
+      "infrastructure"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/contextual-identifier-detectors-overlap-resolution",
     "has_content": false
   },
   {
@@ -13366,6 +14137,24 @@
     "version": "1.0.0",
     "path": "skills/security/openssl-4-migration-checklist",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "clearcut-batch-flush-with-retry",
+    "slug": "clearcut-batch-flush-with-retry",
+    "category": "telemetry",
+    "description": "Buffer telemetry events in-memory with drop-oldest overflow, flush on a timer, optimistically remove events before send, requeue on transient errors, honor server-provided `next_request_wait_millis`, and race a final flush with a shutdown deadline.",
+    "tags": [
+      "telemetry",
+      "batching",
+      "retry",
+      "clearcut",
+      "shutdown"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/telemetry/clearcut-batch-flush-with-retry",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -13576,6 +14365,62 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/testing/tdd",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "comprehensive-gpu-kernel-testing-harness",
+    "slug": "comprehensive-gpu-kernel-testing-harness",
+    "category": "testing-gpu",
+    "description": "Test GPU kernels by running random-shape sweeps against a FP32 reference, using tolerance-aware diff metrics that account for quantization noise, plus TFLOPS/bandwidth bench.",
+    "tags": [
+      "testing",
+      "gpu-kernels",
+      "quantization",
+      "benchmarking",
+      "numerical-validation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing-gpu/comprehensive-gpu-kernel-testing-harness",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cosine-similarity-diff-for-fp8-numerics",
+    "slug": "cosine-similarity-diff-for-fp8-numerics",
+    "category": "testing-gpu",
+    "description": "Compare two tensors with `1 - 2*sum(x*y)/sum(x^2 + y^2)` instead of absolute max-diff — scale-insensitive, handles all-zero tensors, and gives an interpretable \"fraction of disagreement\" for FP8/FP4 reference-testing.",
+    "tags": [
+      "numeric-testing",
+      "fp8",
+      "fp4",
+      "cosine-similarity",
+      "tolerance",
+      "gpu-testing"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing-gpu/cosine-similarity-diff-for-fp8-numerics",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "content-disposition-filename-fallback",
+    "slug": "content-disposition-filename-fallback",
+    "category": "web",
+    "description": "Derive a best-guess filename + extension from an HTTP response by checking Content-Disposition header first, then the URL's basename, then falling back to nothing — with quote stripping and robust extraction.",
+    "tags": [
+      "web",
+      "http",
+      "content-disposition",
+      "filename",
+      "ingestion",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/web/content-disposition-filename-fallback",
     "has_content": false
   },
   {
@@ -13948,6 +14793,24 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/command-query-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "completion-signal-detector",
+    "slug": "completion-signal-detector",
+    "category": "workflow",
+    "description": "Detect AI \"I'm done\" signals in loop prompts using `<promise>SIGNAL</promise>` tags as primary, with a restrictive end-of-output / own-line plain match as legacy fallback.",
+    "tags": [
+      "workflow",
+      "loop",
+      "completion",
+      "signal",
+      "regex"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/completion-signal-detector",
     "has_content": false
   },
   {
