@@ -2044,6 +2044,60 @@
   },
   {
     "kind": "knowledge",
+    "name": "traceability-registry",
+    "slug": "traceability-registry",
+    "category": "architecture",
+    "description": "Traceability registry YAML mapping technical requirements to architecture decisions",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "traceability",
+      "requirements",
+      "architecture-registry"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/traceability-registry.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unified-entry-dispatch-by-uri-scheme",
+    "slug": "unified-entry-dispatch-by-uri-scheme",
+    "category": "architecture",
+    "description": "One public convert() entry point that branches on URI scheme (file:/data:/http[s]:) and input type (Path, bytes, BinaryIO, requests.Response) into specialized convert_local / convert_uri / convert_stream / convert_response methods.",
+    "tags": [
+      "architecture",
+      "api-design",
+      "polymorphism",
+      "uri-scheme",
+      "python"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/unified-entry-dispatch-by-uri-scheme.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "vad-silence-trim-optional",
+    "slug": "vad-silence-trim-optional",
+    "category": "audio",
+    "description": "VoxCPM optionally trims leading/trailing silence from reference audio using librosa frame-wise RMS below a top_db threshold",
+    "tags": [
+      "audio",
+      "vad",
+      "silence",
+      "preprocessing",
+      "reference-audio"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/audio/vad-silence-trim-optional.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "ci-gpg-signing-batch-mode-non-interactive",
     "slug": "ci-gpg-signing-batch-mode-non-interactive",
     "category": "ci-cd",
@@ -3592,6 +3646,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "transpile-packages-over-publish",
+    "slug": "transpile-packages-over-publish",
+    "category": "decision",
+    "description": "Use transpilePackages in Next.js (and equivalent in Vite) to consume raw-source monorepo packages directly — no build step, no publish step, no dist.",
+    "tags": [
+      "nextjs",
+      "transpile",
+      "monorepo",
+      "build",
+      "packages"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/transpile-packages-over-publish.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "triple-styling-paradigm-coexistence",
     "slug": "triple-styling-paradigm-coexistence",
     "category": "decision",
@@ -3643,6 +3715,38 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/udp-for-throughput-tcp-for-reliability.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ui-chrome-vs-platform-chrome-split",
+    "slug": "ui-chrome-vs-platform-chrome-split",
+    "category": "decision",
+    "description": "UX affordances live in shared views (web + desktop render identical content); platform chrome (drag strip, immersive mode, tab system) lives in desktop-only code. Violating this split always produces platform divergence.",
+    "tags": [
+      "cross-platform",
+      "ui-architecture",
+      "electron",
+      "nextjs"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/ui-chrome-vs-platform-chrome-split.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "use-label-not-mime-type-in-workflows",
+    "slug": "use-label-not-mime-type-in-workflows",
+    "category": "decision",
+    "description": "Use Magika's stable label field (not MIME type or human description) for automation.",
+    "tags": [
+      "magika",
+      "decision"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/use-label-not-mime-type-in-workflows.md",
     "has_content": true
   },
   {
@@ -3900,6 +4004,131 @@
   },
   {
     "kind": "knowledge",
+    "name": "turn-quiesced-meaning-follow-up-work-settled",
+    "slug": "turn-quiesced-meaning-follow-up-work-settled",
+    "category": "domain",
+    "description": "A turn is quiesced when initial request completes AND all async work (checkpointing, diffing, reactions) is done",
+    "tags": [
+      "domain",
+      "terminology",
+      "async",
+      "completeness"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/turn-quiesced-meaning-follow-up-work-settled.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unity-best-practices",
+    "slug": "unity-best-practices",
+    "category": "engine",
+    "description": "Current Unity best practices for CCGS projects",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "unity",
+      "best-practices",
+      "engine-reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/unity-best-practices.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unity-plugins",
+    "slug": "unity-plugins",
+    "category": "engine",
+    "description": "Recommended Unity plugins and their integration guidance for CCGS projects",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "unity",
+      "plugins",
+      "engine-reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/unity-plugins.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unity-version",
+    "slug": "unity-version",
+    "category": "engine",
+    "description": "Unity pinned version reference and knowledge gap registry for CCGS",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "unity",
+      "versioning",
+      "engine-reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/unity-version.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unreal-best-practices",
+    "slug": "unreal-best-practices",
+    "category": "engine",
+    "description": "Current Unreal Engine best practices for CCGS projects",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "unreal",
+      "best-practices",
+      "engine-reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/unreal-best-practices.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unreal-plugins",
+    "slug": "unreal-plugins",
+    "category": "engine",
+    "description": "Recommended Unreal Engine plugins and integration guidance for CCGS projects",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "unreal",
+      "plugins",
+      "engine-reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/unreal-plugins.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unreal-version",
+    "slug": "unreal-version",
+    "category": "engine",
+    "description": "Unreal Engine pinned version reference and knowledge gap registry for CCGS",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "unreal",
+      "versioning",
+      "engine-reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/unreal-version.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "condition-based-waiting",
     "slug": "condition-based-waiting",
     "category": "engineering",
@@ -3911,6 +4140,40 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/engineering/condition-based-waiting.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "transform-imperative-tasks-to-verifiable-goals",
+    "slug": "transform-imperative-tasks-to-verifiable-goals",
+    "category": "engineering",
+    "description": "Restate imperative user requests (\"add validation\", \"fix the bug\", \"refactor X\") as declarative goals with explicit verification criteria. Strong criteria let an agent loop to completion without repeated clarification.",
+    "tags": [
+      "task-framing",
+      "verification",
+      "agent-loops",
+      "goal-setting"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engineering/transform-imperative-tasks-to-verifiable-goals.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "transparent-window-class-flutter",
+    "slug": "transparent-window-class-flutter",
+    "category": "flutter",
+    "description": "Flutter window class FLUTTER_RUNNER_WIN32_WINDOW needs special handling for taskbar / install flows.",
+    "tags": [
+      "class",
+      "flutter",
+      "transparent",
+      "window"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/flutter/transparent-window-class-flutter.md",
     "has_content": true
   },
   {
@@ -3929,6 +4192,27 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/integration/a2a-protocol-agent-to-agent-knowledge-exchange.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unix-socket-json-rpc-length-prefixed-framing",
+    "slug": "unix-socket-json-rpc-length-prefixed-framing",
+    "category": "ipc",
+    "description": "Length-prefixed JSON over a Unix domain socket (4-byte big-endian length header + JSON body) provides portable, framing-safe RPC: one-shot connections for synchronous request/response and a persistent connection for server-pushed events.",
+    "tags": [
+      "unix-socket",
+      "json-rpc",
+      "ipc",
+      "framing",
+      "length-prefix",
+      "node.js",
+      "daemon",
+      "protocol"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/ipc/unix-socket-json-rpc-length-prefixed-framing.md",
     "has_content": true
   },
   {
@@ -3992,6 +4276,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "tool-types-catalog",
+    "slug": "tool-types-catalog",
+    "category": "llm-agents",
+    "description": "Catalog of all tool types in the OpenAI Agents SDK — when to use each, what executes where, and key limitations.",
+    "tags": [
+      "openai-agents",
+      "tools",
+      "function-tool",
+      "hosted-tools",
+      "mcp",
+      "computer-use"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/tool-types-catalog.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "connection-type-enum-design",
     "slug": "connection-type-enum-design",
     "category": "networking",
@@ -4006,6 +4309,25 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/networking/connection-type-enum-design.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "udp-kcp-protocol-choice-justification",
+    "slug": "udp-kcp-protocol-choice-justification",
+    "category": "networking",
+    "description": "KCP-over-UDP is preferred for WAN: better than pure TCP on lossy/high-latency links; faster RPC than QUIC in this app's domain.",
+    "tags": [
+      "choice",
+      "justification",
+      "kcp",
+      "networking",
+      "protocol",
+      "udp"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/networking/udp-kcp-protocol-choice-justification.md",
     "has_content": true
   },
   {
@@ -6436,6 +6758,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "toml-managed-block-dotted-keys",
+    "slug": "toml-managed-block-dotted-keys",
+    "category": "pitfall",
+    "description": "When injecting a managed block into a user-owned TOML file, use top-level dotted-key syntax (a.b.c = x), never [section] headers — otherwise the block reparents or gets reparented by neighboring tables.",
+    "tags": [
+      "toml",
+      "config",
+      "managed-block",
+      "parsing"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/toml-managed-block-dotted-keys.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "top-bottom-widest-collection-range",
     "slug": "top-bottom-widest-collection-range",
     "category": "pitfall",
@@ -6469,6 +6808,42 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/topn-unwind-match-to-filter.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "torch-cpp-extension-cuda-home-init-fork-issue",
+    "slug": "torch-cpp-extension-cuda-home-init-fork-issue",
+    "category": "pitfall",
+    "description": "",
+    "tags": [
+      "pytorch",
+      "cuda-home",
+      "fork",
+      "multiprocessing",
+      "import-time"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pytorch-integration/torch-cpp-extension-cuda-home-init-fork-issue.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "torchaudio-load-needs-torchcodec",
+    "slug": "torchaudio-load-needs-torchcodec",
+    "category": "pitfall",
+    "description": "torchaudio.load in recent versions routes through torchcodec/ffmpeg, which is not automatically bundled by PyInstaller.",
+    "tags": [
+      "torchaudio",
+      "pyinstaller",
+      "ffmpeg",
+      "dependencies",
+      "freezing"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/torchaudio-load-needs-torchcodec.md",
     "has_content": true
   },
   {
@@ -6510,6 +6885,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "turbo-task-deps-typecheck-before-test",
+    "slug": "turbo-task-deps-typecheck-before-test",
+    "category": "pitfall",
+    "description": "Configure Turbo so test depends on ^typecheck — running tests against unchecked code masks type errors as mysterious runtime failures.",
+    "tags": [
+      "turbo",
+      "typecheck",
+      "testing",
+      "monorepo",
+      "ci"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/turbo-task-deps-typecheck-before-test.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "udp-receiver-needs-large-socket-buffer",
     "slug": "udp-receiver-needs-large-socket-buffer",
     "category": "pitfall",
@@ -6525,6 +6918,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/udp-receiver-needs-large-socket-buffer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "unhandled-rejection-crashes-bun",
+    "slug": "unhandled-rejection-crashes-bun",
+    "category": "pitfall",
+    "description": "Bun (unlike Node) terminates the process on unhandled promise rejections by default — SDK subprocess abort can propagate unhandled rejections, so the server installs process.on('unhandledRejection') to log and swallow them.",
+    "tags": [
+      "bun",
+      "unhandled-rejection",
+      "process-exit",
+      "promise"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/unhandled-rejection-crashes-bun.md",
     "has_content": true
   },
   {
@@ -6793,6 +7203,59 @@
   },
   {
     "kind": "knowledge",
+    "name": "tool-categories-for-mcp-browser-server",
+    "slug": "tool-categories-for-mcp-browser-server",
+    "category": "reference",
+    "description": "Chrome DevTools MCP partitions its tool surface into nine ordered categories — input, navigation, emulation, performance, network, debugging, extensions, in-page, memory — used for filtering, doc ordering, and runtime gating.",
+    "tags": [
+      "mcp",
+      "tool-categories",
+      "taxonomy",
+      "browser-automation"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/tool-categories-for-mcp-browser-server.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "tool-metadata-as-classvars-init-subclass",
+    "slug": "tool-metadata-as-classvars-init-subclass",
+    "category": "reference",
+    "description": "BaseTool uses __init_subclass__ to validate ClassVars (name, description, input_schema, source, use_cases, requires, outputs) through a Pydantic ToolMetadata model at class-creation time — so misconfigured tools fail at import, not at runtime.",
+    "tags": [
+      "init-subclass",
+      "classvars",
+      "pydantic",
+      "fail-fast"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/tool-metadata-as-classvars-init-subclass.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "uuid-v7-node-crypto",
+    "slug": "uuid-v7-node-crypto",
+    "category": "reference",
+    "description": "Generate RFC 9562 UUID v7s in Node without a dependency — top 48 bits are `Date.now()` (big-endian ms), version/variant nibbles are patched into `crypto.randomBytes(10)`, output is the standard `8-4-4-4-12` hex form. IDs sort by creation time, which makes them ideal keys for append-only JSONL.",
+    "tags": [
+      "uuid",
+      "uuid-v7",
+      "rfc-9562",
+      "node",
+      "crypto",
+      "time-ordered-id"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/uuid-v7-node-crypto.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6964,6 +7427,30 @@
   },
   {
     "kind": "skill",
+    "name": "ux-design",
+    "slug": "ux-design",
+    "category": "",
+    "description": "\"Guided, section-by-section UX spec authoring for a screen, flow, or HUD. Reads game concept, player journey, and relevant GDDs to provide context-aware design guidance. Produces ux-spec.md (per screen/flow) or hud-design.md using the studio templates.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/ux-design",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "ux-review",
+    "slug": "ux-review",
+    "category": "",
+    "description": "\"Validates a UX spec, HUD design, or interaction pattern library for completeness, accessibility compliance, GDD alignment, and implementation readiness. Produces APPROVED / NEEDS REVISION / MAJOR REVISION NEEDED verdict with specific gaps.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/ux-review",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "alert-time-window-with-buffer",
     "slug": "alert-time-window-with-buffer",
     "category": "agent-sdk",
@@ -6994,6 +7481,58 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agent-sdk/claude-agent-sdk-multi-provider-bridge",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "tool-decorator-overload-trio",
+    "slug": "tool-decorator-overload-trio",
+    "category": "agent-sdk",
+    "description": "A `@tool` decorator that handles three calling conventions — bare on a function, parameterized on a function, and as a no-op on a BaseTool — using three @overload stubs so type checkers infer correctly in every case.",
+    "tags": [
+      "decorator",
+      "typing",
+      "overload",
+      "agent-tools"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/tool-decorator-overload-trio",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "tool-params-extract-and-availability-pattern",
+    "slug": "tool-params-extract-and-availability-pattern",
+    "category": "agent-sdk",
+    "description": "Tools implement is_available(sources) and extract_params(sources) so the agent can decide at plan time whether to include the tool AND automatically bind its inputs from the detected source dict — no per-tool glue code in the planner.",
+    "tags": [
+      "tools",
+      "extract-params",
+      "is-available",
+      "planner"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/tool-params-extract-and-availability-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "tool-registry-discovery-from-modules",
+    "slug": "tool-registry-discovery-from-modules",
+    "category": "agent-sdk",
+    "description": "Auto-discover all agent tools by walking a package, importing each module, and collecting any object marked with a registration attribute or any BaseTool subclass — with skip lists, deduping, and surface filtering (\"investigation\" vs \"chat\").",
+    "tags": [
+      "tools",
+      "registry",
+      "discovery",
+      "plugin",
+      "agent"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/tool-registry-discovery-from-modules",
     "has_content": false
   },
   {
@@ -8111,6 +8650,41 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "uuid-v7-rfc-9562-generation",
+    "slug": "uuid-v7-rfc-9562-generation",
+    "category": "architecture",
+    "description": "Generate RFC 9562 compliant UUIDv7 with millisecond timestamp prefix for sortability",
+    "tags": [
+      "evolver",
+      "architecture",
+      "uuid",
+      "identifiers"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/uuid-v7-rfc-9562-generation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "tokio-select-multiplexing-pattern",
+    "slug": "tokio-select-multiplexing-pattern",
+    "category": "async",
+    "description": "tokio::select! for concurrent stream/event handling across multiple async tasks and cancellation.",
+    "tags": [
+      "async",
+      "multiplexing",
+      "pattern",
+      "select",
+      "tokio"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/async/tokio-select-multiplexing-pattern",
     "has_content": false
   },
   {
@@ -10256,6 +10830,21 @@
   },
   {
     "kind": "skill",
+    "name": "typescript-dual-export-cjs-mjs",
+    "slug": "typescript-dual-export-cjs-mjs",
+    "category": "bindings",
+    "description": "TypeScript package builds dual CJS + ESM outputs (dist/cjs, dist/mjs) and uses the package.json `exports` field to route imports/requires correctly.",
+    "tags": [
+      "magika",
+      "bindings"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/bindings/typescript-dual-export-cjs-mjs",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "coverage-data-file-under-pytest-cache",
     "slug": "coverage-data-file-under-pytest-cache",
     "category": "build",
@@ -11173,6 +11762,23 @@
   },
   {
     "kind": "skill",
+    "name": "validate-server-21-step-harness",
+    "slug": "validate-server-21-step-harness",
+    "category": "cli",
+    "description": "A 21-step sequential integration test that walks the whole RPC surface (connect, health, CRUD, send+stream, tool use, source create, skill create, cleanup) and keeps going past failures to print a single summary at the end.",
+    "tags": [
+      "integration-test",
+      "cli",
+      "smoke-test",
+      "rpc"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/validate-server-21-step-harness",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "android-mediacodec-jni-wrapper",
     "slug": "android-mediacodec-jni-wrapper",
     "category": "codecs",
@@ -11188,6 +11794,21 @@
     "version": "1.0.0",
     "path": "skills/codecs/android-mediacodec-jni-wrapper",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "type-safe-enum-generation-per-language",
+    "slug": "type-safe-enum-generation-per-language",
+    "category": "codegen",
+    "description": "Generate per-language enums from a single content_types JSON: Rust enum, Python StrEnum, TypeScript union literal, Go const iota — with from_string, to_string, and SIZE constants.",
+    "tags": [
+      "magika",
+      "codegen"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codegen/type-safe-enum-generation-per-language",
+    "has_content": true
   },
   {
     "kind": "skill",
@@ -12872,6 +13493,18 @@
   },
   {
     "kind": "skill",
+    "name": "using-git-worktrees",
+    "slug": "using-git-worktrees",
+    "category": "devops",
+    "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/devops/using-git-worktrees",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "document-release",
     "slug": "document-release",
     "category": "docs",
@@ -13641,6 +14274,44 @@
   },
   {
     "kind": "skill",
+    "name": "unix-socket-length-prefixed-json-rpc",
+    "slug": "unix-socket-length-prefixed-json-rpc",
+    "category": "ipc",
+    "description": "Implement length-prefixed JSON RPC over a Unix domain socket at XDG_RUNTIME_DIR. Uses 4-byte big-endian length prefix framing, handles partial reads via buffer accumulation, and supports persistent connections with multiple request/response cycles.",
+    "tags": [
+      "ipc",
+      "unix-socket",
+      "json-rpc",
+      "framing",
+      "nodejs",
+      "daemon",
+      "xdg-runtime-dir"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ipc/unix-socket-length-prefixed-json-rpc",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "unix-socket-permission-attributes",
+    "slug": "unix-socket-permission-attributes",
+    "category": "ipc",
+    "description": "parity-tokio-ipc SecurityAttributes for Unix socket permissions (Windows equivalent: DACLs).",
+    "tags": [
+      "attributes",
+      "ipc",
+      "permission",
+      "socket",
+      "unix"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ipc/unix-socket-permission-attributes",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13672,6 +14343,35 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "transformers-finetune-text-classification",
+    "slug": "transformers-finetune-text-classification",
+    "category": "llm-agents",
+    "description": "Fine-tune a HuggingFace Transformers model for text classification using the fake-news detection example.",
+    "tags": [
+      "huggingface",
+      "transformers",
+      "finetune",
+      "classification"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/transformers-finetune-text-classification",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "using-superpowers",
+    "slug": "using-superpowers",
+    "category": "meta",
+    "description": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/meta/using-superpowers",
     "has_content": false
   },
   {
@@ -13744,6 +14444,80 @@
   },
   {
     "kind": "skill",
+    "name": "torchrun-ddp-training-scaffold",
+    "slug": "torchrun-ddp-training-scaffold",
+    "category": "ml-ops",
+    "description": "Minimal torchrun + DDP scaffold with init/cleanup, per-rank seeding, model-size print, all_reduce aggregation, and rank-0-only logging and checkpointing.",
+    "tags": [
+      "pytorch",
+      "ddp",
+      "torchrun",
+      "distributed-training",
+      "multi-gpu",
+      "training-loop"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ml-ops/torchrun-ddp-training-scaffold",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "torchrun-distributed-gather-on-main",
+    "slug": "torchrun-distributed-gather-on-main",
+    "category": "ml-ops",
+    "description": "Minimal torchrun distributed helpers — init from RANK env, shard work by rank across all indices, gather Python objects onto rank 0 for final aggregation / print.",
+    "tags": [
+      "pytorch",
+      "distributed",
+      "torchrun",
+      "rank",
+      "gather"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ml-ops/torchrun-distributed-gather-on-main",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "tts-trailing-silence-and-hallucination-trim",
+    "slug": "tts-trailing-silence-and-hallucination-trim",
+    "category": "ml-ops",
+    "description": "Post-process TTS output to cut long internal silences plus any trailing hallucinated noise with a cosine fade-out.",
+    "tags": [
+      "tts",
+      "audio",
+      "silence-detection",
+      "post-processing",
+      "quality"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ml-ops/tts-trailing-silence-and-hallucination-trim",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "two-stage-tokenizer-then-autoregressive-transformer",
+    "slug": "two-stage-tokenizer-then-autoregressive-transformer",
+    "category": "ml-ops",
+    "description": "Quantize continuous multi-variate time series into discrete tokens first, then train an autoregressive transformer over those tokens.",
+    "tags": [
+      "foundation-model",
+      "time-series",
+      "tokenizer",
+      "autoregressive",
+      "transformer",
+      "two-stage"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ml-ops/two-stage-tokenizer-then-autoregressive-transformer",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "react-native-android-emulator-localhost",
     "slug": "react-native-android-emulator-localhost",
     "category": "mobile",
@@ -13786,6 +14560,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/model-loading/config-json-architecture-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "udp-kcp-stream-wrapper",
+    "slug": "udp-kcp-stream-wrapper",
+    "category": "networking",
+    "description": "KCP-over-UDP stream wrapper with tokio::select! for bi-directional packet routing.",
+    "tags": [
+      "kcp",
+      "networking",
+      "stream",
+      "udp",
+      "wrapper"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/networking/udp-kcp-stream-wrapper",
     "has_content": false
   },
   {
@@ -13972,6 +14764,24 @@
   },
   {
     "kind": "skill",
+    "name": "tool-guardrails",
+    "slug": "tool-guardrails",
+    "category": "safety",
+    "description": "Validate or block function tool inputs and outputs with @tool_input_guardrail and @tool_output_guardrail.",
+    "tags": [
+      "openai-agents",
+      "tool-guardrails",
+      "function-tools",
+      "input-validation",
+      "output-validation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/tool-guardrails",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "aes256gcm-machineid-credential-store",
     "slug": "aes256gcm-machineid-credential-store",
     "category": "security",
@@ -14137,6 +14947,44 @@
     "version": "1.0.0",
     "path": "skills/security/openssl-4-migration-checklist",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "validation-command-allowlist-gate",
+    "slug": "validation-command-allowlist-gate",
+    "category": "security",
+    "description": "Before executing an \"arbitrary\" validation command supplied by data (plugin config, ingested asset, user rule), pass it through a layered allowlist that rejects anything outside a known-prefix whitelist, substitution syntax, or shell operators, and then run it scoped and time-bound.",
+    "tags": [
+      "security",
+      "shell",
+      "command-injection",
+      "allowlist",
+      "validation",
+      "sandbox"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/validation-command-allowlist-gate",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "validation-command-whitelist-gate",
+    "slug": "validation-command-whitelist-gate",
+    "category": "security",
+    "description": "Before executing any user-supplied \"validation\" shell command, filter it through a binary prefix whitelist, reject all command-substitution forms, reject shell operators after stripping quoted regions, and enforce a hard per-command timeout and fixed cwd — so that even a fully attacker-controlled config string cannot escape to arbitrary command execution.",
+    "tags": [
+      "safety",
+      "shell",
+      "command-injection",
+      "whitelist",
+      "sandbox",
+      "config-driven-exec"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/validation-command-whitelist-gate",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -14421,6 +15269,23 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/web/content-disposition-filename-fallback",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "typed-websocket-rpc-boundary-validation",
+    "slug": "typed-websocket-rpc-boundary-validation",
+    "category": "websocket",
+    "description": "Enforce strict schema validation at the WebSocket transport layer to catch contract breakages early",
+    "tags": [
+      "websocket",
+      "rpc",
+      "validation",
+      "types"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/websocket/typed-websocket-rpc-boundary-validation",
     "has_content": false
   },
   {
