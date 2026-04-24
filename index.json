@@ -1772,6 +1772,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "polymorphic-assignees-member-or-agent",
+    "slug": "polymorphic-assignees-member-or-agent",
+    "category": "arch",
+    "description": "An issue's assignee can be a human member OR an AI agent; stored as (assignee_type, assignee_id) tuple and rendered with distinct styling.",
+    "tags": [
+      "domain",
+      "assignees",
+      "polymorphism",
+      "agents",
+      "issue-tracker"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/polymorphic-assignees-member-or-agent.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "polymorphic-metadata-via-enum-switch",
     "slug": "polymorphic-metadata-via-enum-switch",
     "category": "arch",
@@ -2040,6 +2058,44 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/architecture/agent-native-software-philosophy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "priority-lower-is-higher-stable-sort",
+    "slug": "priority-lower-is-higher-stable-sort",
+    "category": "architecture",
+    "description": "Common registry pitfall — priority numbers where 0 = highest (tried first), 10 = lowest. Pick one convention, document it loudly, and combine with stable sort so insertion order breaks ties.",
+    "tags": [
+      "architecture",
+      "registry",
+      "priority",
+      "stable-sort",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/priority-lower-is-higher-stable-sort.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "playwright-stealth-cloudflare-bypass",
+    "slug": "playwright-stealth-cloudflare-bypass",
+    "category": "automation",
+    "description": "Playwright can bypass Cloudflare JS challenges by injecting init scripts that hide the `webdriver` property and fake `navigator.platform`/`navigator.vendor`; use `wait_for_timeout` instead of navigation timeout to capture download redirect URLs.",
+    "tags": [
+      "playwright",
+      "cloudflare",
+      "stealth",
+      "automation",
+      "download-url",
+      "headless",
+      "browser"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/automation/playwright-stealth-cloudflare-bypass.md",
     "has_content": true
   },
   {
@@ -3274,6 +3330,41 @@
   },
   {
     "kind": "knowledge",
+    "name": "powersync-backend-minimal-indexes",
+    "slug": "powersync-backend-minimal-indexes",
+    "category": "decision",
+    "description": "",
+    "tags": [
+      "powersync",
+      "postgresql",
+      "indexing",
+      "e2e-encryption",
+      "architecture"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/powersync/powersync-backend-minimal-indexes.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "powersync-deploy-order-two-pr-invariant",
+    "slug": "powersync-deploy-order-two-pr-invariant",
+    "category": "decision",
+    "description": "",
+    "tags": [
+      "powersync",
+      "deployment",
+      "sync-rules",
+      "invariants"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/powersync/powersync-deploy-order-two-pr-invariant.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "prefer-static-import-over-constant-inheritance",
     "slug": "prefer-static-import-over-constant-inheritance",
     "category": "decision",
@@ -3287,6 +3378,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/prefer-static-import-over-constant-inheritance.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "process-title-for-debug-visibility",
+    "slug": "process-title-for-debug-visibility",
+    "category": "decision",
+    "description": "Setting `process.title` early in each process (CLI, daemon, MCP server, watchdog) gives `ps`/`top`/Task Manager immediately-recognizable names — critical when a single install spawns four cooperating node processes.",
+    "tags": [
+      "debugging",
+      "process-title",
+      "multi-process",
+      "ops"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/process-title-for-debug-visibility.md",
     "has_content": true
   },
   {
@@ -3680,6 +3788,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/vllm-kv-cache-fp8-with-mtp.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pgvector-pg17-for-ai-native-apps",
+    "slug": "pgvector-pg17-for-ai-native-apps",
+    "category": "devops",
+    "description": "For AI-native apps that need both relational data and semantic search, use the pgvector/pgvector:pg17 image — one database, no extra infra.",
+    "tags": [
+      "postgres",
+      "pgvector",
+      "ai",
+      "vector-search",
+      "docker"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/devops/pgvector-pg17-for-ai-native-apps.md",
     "has_content": true
   },
   {
@@ -5757,6 +5883,42 @@
   },
   {
     "kind": "knowledge",
+    "name": "posix-socket-path-length-limit",
+    "slug": "posix-socket-path-length-limit",
+    "category": "pitfall",
+    "description": "POSIX Unix domain socket paths are capped at around 104 characters on macOS (108 on Linux), so daemons that naively drop a socket under `~/Library/Application Support/...` silently fail to bind. Use `XDG_RUNTIME_DIR` or `/tmp` with uid-suffixed names instead.",
+    "tags": [
+      "unix-socket",
+      "macos",
+      "path-length",
+      "daemon",
+      "ipc"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/posix-socket-path-length-limit.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "powersync-sharedworker-multi-tab-constraint",
+    "slug": "powersync-sharedworker-multi-tab-constraint",
+    "category": "pitfall",
+    "description": "",
+    "tags": [
+      "powersync",
+      "sharedworker",
+      "sqlite",
+      "comlink",
+      "vite"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/powersync/powersync-sharedworker-multi-tab-constraint.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "pub-sub-implementation-pitfall",
     "slug": "pub-sub-implementation-pitfall",
     "category": "pitfall",
@@ -6662,6 +6824,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "portable-app-detection-env-var",
+    "slug": "portable-app-detection-env-var",
+    "category": "platform",
+    "description": "Portable mode detection: check RUSTDESK_APPNAME env var; changes temp dir and config paths.",
+    "tags": [
+      "app",
+      "detection",
+      "env",
+      "platform",
+      "portable",
+      "var"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/platform/portable-app-detection-env-var.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "android-ios-feature-parity-gap",
     "slug": "android-ios-feature-parity-gap",
     "category": "platform/mobile",
@@ -6677,6 +6858,60 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/mobile/android-ios-feature-parity-gap.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "privacy-mode-implementation-choices",
+    "slug": "privacy-mode-implementation-choices",
+    "category": "platform/windows",
+    "description": "Three privacy-mode strategies coexist: MAG (fast but limited), exclude-from-capture (Win10 2004+), virtual-display (fullscreen gaming).",
+    "tags": [
+      "choices",
+      "implementation",
+      "mode",
+      "platform",
+      "privacy",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/windows/privacy-mode-implementation-choices.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "plugin-framework-feature-conditional",
+    "slug": "plugin-framework-feature-conditional",
+    "category": "plugin",
+    "description": "Plugin framework gated by feature='plugin_framework' and non-mobile; dynamic .dll/.so loading.",
+    "tags": [
+      "conditional",
+      "feature",
+      "framework",
+      "plugin"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/plugin/plugin-framework-feature-conditional.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "plugin-interface-version-convention",
+    "slug": "plugin-interface-version-convention",
+    "category": "plugin-architecture",
+    "description": "Plugin packages expose a module-level __plugin_interface_version__ = 1 constant so the host can detect ABI-incompatible plugins at load time and either refuse them or invoke a compatibility shim.",
+    "tags": [
+      "plugin-architecture",
+      "versioning",
+      "abi",
+      "contract",
+      "python"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/plugin-architecture/plugin-interface-version-convention.md",
     "has_content": true
   },
   {
@@ -6793,6 +7028,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "posthog-cli-telemetry-conventions",
+    "slug": "posthog-cli-telemetry-conventions",
+    "category": "reference",
+    "description": "OpenSRE's CLI telemetry uses PostHog with a public anon key embedded in the binary, anonymous_id stored in ~/.config, no-PII guarantee, opt-out via DO_NOT_TRACK or app-specific env, and StrEnum-based event naming.",
+    "tags": [
+      "posthog",
+      "telemetry",
+      "cli",
+      "conventions",
+      "opt-out"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/posthog-cli-telemetry-conventions.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6801,6 +7054,42 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "policy-check-sandboxing-evolution",
+    "slug": "policy-check-sandboxing-evolution",
+    "category": "safety",
+    "description": "Enforce evolution policies — no self-modification, no external network, no file deletions",
+    "tags": [
+      "evolver",
+      "safety",
+      "policy",
+      "sandbox",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/safety/policy-check-sandboxing-evolution.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "privacy-client-secure-credential-handling",
+    "slug": "privacy-client-secure-credential-handling",
+    "category": "safety",
+    "description": "Client for secure credential handling, secrets caching with TTL, encryption at rest",
+    "tags": [
+      "evolver",
+      "safety",
+      "credentials",
+      "secrets",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/safety/privacy-client-secure-credential-handling.md",
     "has_content": true
   },
   {
@@ -6820,6 +7109,26 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/schema-design/identifier-regex-loose-when-legacy-coexists.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pre-broadcast-log-sanitization",
+    "slug": "pre-broadcast-log-sanitization",
+    "category": "security",
+    "description": "Before any autonomous process ships logs or error context to an upstream target (issue tracker, hub API, telemetry), it must redact secrets, absolute paths, emails, and host fingerprints at the entry point — not on the way out.",
+    "tags": [
+      "security",
+      "sanitization",
+      "redaction",
+      "secrets",
+      "pii",
+      "autonomous-agent",
+      "log-broadcast"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/pre-broadcast-log-sanitization.md",
     "has_content": true
   },
   {
@@ -6857,6 +7166,24 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/testing/agent-test-spec-template.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pinecone-metadata-filtering-rag",
+    "slug": "pinecone-metadata-filtering-rag",
+    "category": "vector-search-rag",
+    "description": "Structured Pinecone RAG query with $and/$or metadata filters across people/topics/entities/dates, plus a graceful retry-without-filters fallback when the filtered set is empty.",
+    "tags": [
+      "pinecone",
+      "rag",
+      "vector-search",
+      "metadata-filtering",
+      "openai-embeddings"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/vector-search-rag/pinecone-metadata-filtering-rag.md",
     "has_content": true
   },
   {
@@ -6900,6 +7227,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/workflow/dropin-module-reality-check-before-wire.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pre-push-discipline-test-lint-typecheck",
+    "slug": "pre-push-discipline-test-lint-typecheck",
+    "category": "workflow",
+    "description": "OpenSRE's CLAUDE.md / AGENTS.md mandate \"before push\" gates — clean working tree, then test-cov, lint, typecheck — and a self-improvement loop that captures lessons in tasks/lessons.md after every correction. Useful guardrail pattern for AI-assisted dev workflows.",
+    "tags": [
+      "pre-push",
+      "discipline",
+      "ai-workflow",
+      "self-improvement"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/workflow/pre-push-discipline-test-lint-typecheck.md",
     "has_content": true
   },
   {
@@ -6964,6 +7308,30 @@
   },
   {
     "kind": "skill",
+    "name": "playtest-report",
+    "slug": "playtest-report",
+    "category": "",
+    "description": "\"Generates a structured playtest report template or analyzes existing playtest notes into a structured format. Use this to standardize playtest feedback collection and analysis.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/qa/playtest-report",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "project-stage-detect",
+    "slug": "project-stage-detect",
+    "category": "",
+    "description": "\"Automatically analyze project state, detect stage, identify gaps, and recommend next steps based on existing artifacts. Use when user asks 'where are we in development', 'what stage are we in', 'full project audit'.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/project-stage-detect",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "alert-time-window-with-buffer",
     "slug": "alert-time-window-with-buffer",
     "category": "agent-sdk",
@@ -6994,6 +7362,23 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agent-sdk/claude-agent-sdk-multi-provider-bridge",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "plan-audit-entry-per-step",
+    "slug": "plan-audit-entry-per-step",
+    "category": "agent-sdk",
+    "description": "Emit a structured audit dict on every planning iteration (loop count, tool budget, planned action count, rerouted flag, rerouted reason) and stash it in state so post-mortem analysis can replay every planner decision.",
+    "tags": [
+      "audit",
+      "planner",
+      "observability",
+      "langgraph"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/plan-audit-entry-per-step",
     "has_content": false
   },
   {
@@ -7082,6 +7467,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/coding-agent-cli-backend-interface",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pre-release-pr-triage-worktree",
+    "slug": "pre-release-pr-triage-worktree",
+    "category": "agents",
+    "description": "Triage open PRs for a release in a dedicated git worktree, classify each into merge/candidate/supersede/defer, and work the loop end-to-end.",
+    "tags": [
+      "release-management",
+      "git-worktree",
+      "gh-cli",
+      "triage",
+      "open-source"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/pre-release-pr-triage-worktree",
     "has_content": false
   },
   {
@@ -8111,6 +8514,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "platform-bridge-core-provider",
+    "slug": "platform-bridge-core-provider",
+    "category": "architecture",
+    "description": "Single CoreProvider in the shared packages layer initializes API client, auth/workspace stores, WS connection, and QueryClient — each app wraps its root and injects platform adapters.",
+    "tags": [
+      "react",
+      "provider",
+      "cross-platform",
+      "bootstrap",
+      "monorepo"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/platform-bridge-core-provider",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "polymorphic-assignee-rendering",
+    "slug": "polymorphic-assignee-rendering",
+    "category": "architecture",
+    "description": "Model an assignee that may be a human member OR an AI agent with (assignee_type, assignee_id) columns and render-time dispatch to distinct visual styling.",
+    "tags": [
+      "domain-model",
+      "polymorphism",
+      "agents",
+      "issue-tracker",
+      "ui"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/polymorphic-assignee-rendering",
     "has_content": false
   },
   {
@@ -11002,6 +11441,42 @@
   },
   {
     "kind": "skill",
+    "name": "posthog-analytics-with-opt-out-and-thread-queue",
+    "slug": "posthog-analytics-with-opt-out-and-thread-queue",
+    "category": "cli",
+    "description": "Background-thread CLI analytics that respects DO_NOT_TRACK + custom opt-out env, persists an anonymous UUID in ~/.config, queues events with bounded size, and flushes on atexit with a timeout.",
+    "tags": [
+      "analytics",
+      "posthog",
+      "opt-out",
+      "background-thread",
+      "cli"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/posthog-analytics-with-opt-out-and-thread-queue",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "profile-scoped-config-dir",
+    "slug": "profile-scoped-config-dir",
+    "category": "cli",
+    "description": "Per-profile CLI config directories (~/.myapp/profiles/<name>/) so users can run multiple environments (prod, staging, worktrees) side-by-side without collisions.",
+    "tags": [
+      "cli",
+      "config",
+      "profiles",
+      "daemon",
+      "isolation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/profile-scoped-config-dir",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "qa",
     "slug": "qa",
     "category": "cli",
@@ -11191,6 +11666,42 @@
   },
   {
     "kind": "skill",
+    "name": "platform-screen-capture-abstraction",
+    "slug": "platform-screen-capture-abstraction",
+    "category": "codecs",
+    "description": "Pluggable screen-capture backends: Windows DXGI, macOS Quartz, Linux X11/Wayland behind one Capturer trait.",
+    "tags": [
+      "abstraction",
+      "capture",
+      "codecs",
+      "platform",
+      "screen"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codecs/platform-screen-capture-abstraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "platform-specific-code-organization",
+    "slug": "platform-specific-code-organization",
+    "category": "cross-platform",
+    "description": "Use cfg-gated modules to split Windows/macOS/Linux/Android/iOS implementations behind one trait facade.",
+    "tags": [
+      "code",
+      "cross",
+      "organization",
+      "platform",
+      "specific"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cross-platform/platform-specific-code-organization",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "content-type-info-metadata-embedding",
     "slug": "content-type-info-metadata-embedding",
     "category": "data",
@@ -11203,6 +11714,24 @@
     "version": "1.0.0",
     "path": "skills/data/content-type-info-metadata-embedding",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "presampled-sliding-window-index",
+    "slug": "presampled-sliding-window-index",
+    "category": "data-pipeline",
+    "description": "Pre-compute every valid (series, start_idx) pair once at dataset init and random-sample from that list, instead of recomputing windows per __getitem__.",
+    "tags": [
+      "pytorch-dataset",
+      "sliding-window",
+      "time-series",
+      "dataloader",
+      "preindexing"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/data-pipeline/presampled-sliding-window-index",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -13577,6 +14106,54 @@
   },
   {
     "kind": "skill",
+    "name": "programmatic-dependent-launch-attribute-toggle",
+    "slug": "programmatic-dependent-launch-attribute-toggle",
+    "category": "gpu-kernels",
+    "description": "Enable CUDA Programmatic Dependent Launch (PDL) per-call via `cudaLaunchAttributeProgrammaticStreamSerialization`, allowing a downstream kernel to start before the upstream completes — exposed as a runtime-tunable flag, not a compile flag.",
+    "tags": [
+      "pdl",
+      "programmatic-dependent-launch",
+      "cuda-12",
+      "launch-attributes",
+      "kernel-overlap"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/gpu-kernels/programmatic-dependent-launch-attribute-toggle",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "platform-agnostic-file-input-abstraction",
+    "slug": "platform-agnostic-file-input-abstraction",
+    "category": "inference",
+    "description": "Trait-based input abstraction (SyncInput / AsyncInput) so a single inference codebase accepts file paths, byte slices, BytesIO, and tokio::File without conditional compilation.",
+    "tags": [
+      "magika",
+      "inference"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/platform-agnostic-file-input-abstraction",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "predict-mode-dispatch-with-fallback-heuristics",
+    "slug": "predict-mode-dispatch-with-fallback-heuristics",
+    "category": "inference",
+    "description": "Cascade inference through model output → ruled heuristics (UTF-8 validity for tiny files) → generic fallback (txt / unknown), each emitting a distinct overwrite_reason.",
+    "tags": [
+      "magika",
+      "inference"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/predict-mode-dispatch-with-fallback-heuristics",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13641,6 +14218,43 @@
   },
   {
     "kind": "skill",
+    "name": "platform-adapter-interface",
+    "slug": "platform-adapter-interface",
+    "category": "integration",
+    "description": "Unify Slack/Telegram/Discord/GitHub/Web behind one `IPlatformAdapter` interface with sendMessage/ensureThread/getStreamingMode/getPlatformType/start/stop, plus an optional structured-event hook for web-only rich UI.",
+    "tags": [
+      "adapter",
+      "plugin",
+      "multi-platform",
+      "interface",
+      "chat-bot"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/integration/platform-adapter-interface",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pid-aware-temp-dir-uuid-generator",
+    "slug": "pid-aware-temp-dir-uuid-generator",
+    "category": "jit-compilation",
+    "description": "Generate unique temporary directory names with `pid + steady_clock + mt19937(xor-seeded)` — survives fork, co-exists across multiple processes on the same filesystem, no crypto deps.",
+    "tags": [
+      "uuid",
+      "temp-files",
+      "pid",
+      "random",
+      "fork-safe",
+      "filesystem"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/jit-compilation/pid-aware-temp-dir-uuid-generator",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13672,6 +14286,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "plan-based-multi-step-task-decomposition",
+    "slug": "plan-based-multi-step-task-decomposition",
+    "category": "llm-agents",
+    "description": "Plan mode for multi-step agent tasks — exploration via subagent, gated planning with user confirmation, strict execution loop, and adversarial verification.",
+    "tags": [
+      "llm-agents",
+      "planning",
+      "subagents",
+      "verification",
+      "orchestration"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/plan-based-multi-step-task-decomposition",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "ppo-rlhf-trl-gpt2-sentiment",
+    "slug": "ppo-rlhf-trl-gpt2-sentiment",
+    "category": "llm-agents",
+    "description": "Fine-tune GPT-2 with PPO RLHF using TRL to generate positive IMDB reviews, with DistilBERT as the sentiment reward model.",
+    "tags": [
+      "rlhf",
+      "ppo",
+      "trl",
+      "gpt-2",
+      "sentiment"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/ppo-rlhf-trl-gpt2-sentiment",
     "has_content": false
   },
   {
@@ -13790,6 +14440,42 @@
   },
   {
     "kind": "skill",
+    "name": "pnpm-catalog-version-pinning",
+    "slug": "pnpm-catalog-version-pinning",
+    "category": "monorepo",
+    "description": "Use pnpm's catalog: references in pnpm-workspace.yaml to guarantee a single version of shared deps across all monorepo packages.",
+    "tags": [
+      "pnpm",
+      "monorepo",
+      "versioning",
+      "workspace",
+      "react"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/monorepo/pnpm-catalog-version-pinning",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "port-forwarding-tunnel-multiplexer",
+    "slug": "port-forwarding-tunnel-multiplexer",
+    "category": "networking",
+    "description": "TCP tunnel multiplexing for port forwarding with Framed codec and login handshake.",
+    "tags": [
+      "forwarding",
+      "multiplexer",
+      "networking",
+      "port",
+      "tunnel"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/networking/port-forwarding-tunnel-multiplexer",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-tracing-spans",
     "slug": "agent-tracing-spans",
     "category": "observability",
@@ -13826,6 +14512,23 @@
   },
   {
     "kind": "skill",
+    "name": "personality-state-tracking-with-aggregation",
+    "slug": "personality-state-tracking-with-aggregation",
+    "category": "observability",
+    "description": "Aggregate agent evolution metrics into personality state (success rate, velocity, trait vectors)",
+    "tags": [
+      "evolver",
+      "observability",
+      "personality",
+      "metrics"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/personality-state-tracking-with-aggregation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "claude-cli-unattended-wrapper",
     "slug": "claude-cli-unattended-wrapper",
     "category": "operations",
@@ -13844,6 +14547,114 @@
     "version": "1.0.0",
     "path": "skills/operations/claude-cli-unattended-wrapper",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "privacy-mode-trait-abstraction",
+    "slug": "privacy-mode-trait-abstraction",
+    "category": "platform",
+    "description": "Pluggable privacy-mode implementations: Windows MAG, exclude-from-capture, virtual-display drivers.",
+    "tags": [
+      "abstraction",
+      "mode",
+      "platform",
+      "privacy",
+      "trait"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/platform/privacy-mode-trait-abstraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "powersync-add-synced-table-two-pr-flow",
+    "slug": "powersync-add-synced-table-two-pr-flow",
+    "category": "powersync",
+    "description": "Add a new PowerSync-synced table across frontend SQLite, backend Postgres, shared table registry, and sync-rules YAML using a strict two-PR process so the frontend never ships before the PowerSync Cloud dashboard rules exist.",
+    "tags": [
+      "powersync",
+      "postgresql",
+      "drizzle",
+      "deployment",
+      "sync-rules"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/powersync/powersync-add-synced-table-two-pr-flow",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "powersync-composite-primary-key-seed",
+    "slug": "powersync-composite-primary-key-seed",
+    "category": "powersync",
+    "description": "Design default-data tables (settings, models, modes, tasks) so each user can hold the same default IDs by using composite primary keys (id, user_id) or (key, user_id) on the backend and reconciling with a default-hash column on the frontend.",
+    "tags": [
+      "powersync",
+      "postgresql",
+      "drizzle",
+      "default-data",
+      "seeding"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/powersync/powersync-composite-primary-key-seed",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "powersync-custom-sharedworker-override",
+    "slug": "powersync-custom-sharedworker-override",
+    "category": "powersync",
+    "description": "Ship a custom SharedWorker that extends PowerSync's internal SharedSyncImplementation so you can inject a custom BucketStorageAdapter (e.g. a TransformableBucketStorage) without giving up multi-tab sync efficiency.",
+    "tags": [
+      "powersync",
+      "sharedworker",
+      "vite",
+      "sqlite",
+      "e2e-encryption"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/powersync/powersync-custom-sharedworker-override",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "powersync-no-foreign-keys-on-sync-backend",
+    "slug": "powersync-no-foreign-keys-on-sync-backend",
+    "category": "powersync",
+    "description": "Skip composite foreign-key constraints on a PowerSync-style backend schema and use plain text columns for cross-table references, so partial syncs don't fail and encrypted columns don't block writes.",
+    "tags": [
+      "powersync",
+      "postgresql",
+      "drizzle",
+      "foreign-keys",
+      "sync"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/powersync/powersync-no-foreign-keys-on-sync-backend",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "powersync-transformable-bucket-storage",
+    "slug": "powersync-transformable-bucket-storage",
+    "category": "powersync",
+    "description": "Intercept PowerSync sync data before it hits SQLite by subclassing SqliteBucketStorage and running a middleware pipeline on PROCESS_TEXT_LINE payloads, so you can decrypt, decompress, or normalize rows before they are written.",
+    "tags": [
+      "powersync",
+      "sqlite",
+      "middleware",
+      "sync",
+      "e2e-encryption"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/powersync/powersync-transformable-bucket-storage",
+    "has_content": true
   },
   {
     "kind": "skill",
@@ -13910,6 +14721,39 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pre-release-version-validation-script",
+    "slug": "pre-release-version-validation-script",
+    "category": "release",
+    "description": "Pre-release script validates: tag matches pyproject version, copyright headers exist on all source files, package metadata fields complete, type checker passes.",
+    "tags": [
+      "magika",
+      "release"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/release/pre-release-version-validation-script",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "process-singleton-guard-with-lockfile",
+    "slug": "process-singleton-guard-with-lockfile",
+    "category": "resilience",
+    "description": "Prevent multiple daemon instances using exclusive lockfile creation and PID validation",
+    "tags": [
+      "evolver",
+      "resilience",
+      "singleton",
+      "daemon",
+      "lockfile"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/resilience/process-singleton-guard-with-lockfile",
     "has_content": false
   },
   {
@@ -14140,6 +14984,24 @@
   },
   {
     "kind": "skill",
+    "name": "pid-watchdog-sidecar-survival",
+    "slug": "pid-watchdog-sidecar-survival",
+    "category": "tauri",
+    "description": "Make a Tauri sidecar self-terminate when the parent app exits (or optionally survive it) using parent-PID monitoring plus a filesystem sentinel.",
+    "tags": [
+      "tauri",
+      "sidecar",
+      "process-management",
+      "watchdog",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/tauri/pid-watchdog-sidecar-survival",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "clearcut-batch-flush-with-retry",
     "slug": "clearcut-batch-flush-with-retry",
     "category": "telemetry",
@@ -14317,6 +15179,24 @@
     "version": "1.0.0",
     "path": "skills/testing/llm-integration-test-failure-diagnosis",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "playwright-api-fixtures-cleanup",
+    "slug": "playwright-api-fixtures-cleanup",
+    "category": "testing",
+    "description": "Self-contained Playwright E2E tests using a TestApiClient fixture that creates entities over HTTP and tears them down in afterEach — no shared DB seed, no cross-test pollution.",
+    "tags": [
+      "playwright",
+      "e2e",
+      "fixtures",
+      "testing",
+      "cleanup"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/playwright-api-fixtures-cleanup",
+    "has_content": false
   },
   {
     "kind": "skill",
