@@ -1,6 +1,6 @@
 ---
 description: 스킬 허브 전체 코퍼스에서 키워드 기반 top-N 검색 (한/영 동의어 포함)
-argument-hint: <query> [-n N] [--kind skill|knowledge] [--category CAT] [--html --out FILE]
+argument-hint: <query> [-n N] [--kind skill|knowledge|technique] [--category CAT] [--html --out FILE]
 ---
 
 # /hub-find $ARGUMENTS
@@ -24,6 +24,7 @@ PYTHONIOENCODING=utf-8 py -3 ~/.claude/skills-hub/tools/hub_search.py $ARGUMENTS
 - `/hub-find 카프카 이벤트`
 - `/hub-find websocket -n 20 --kind skill`
 - `/hub-find rate-limit --category decision`
+- `/hub-find "pr publish" --kind technique`
 - `/hub-find 보안 --json`
 - `/hub-find 인증 --html --out /tmp/auth.html`
 

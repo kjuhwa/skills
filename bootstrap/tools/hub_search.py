@@ -23,6 +23,7 @@ v2 변경점:
     py hub_search.py "스프링 세션"                    # 한글 쿼리 OK
     py hub_search.py -n 20 "websocket"
     py hub_search.py --kind skill "lock"
+    py hub_search.py --kind technique "pr publish"
     py hub_search.py --category pitfall "mongo"
     py hub_search.py --json "rate limit"
     py hub_search.py --synonyms "카프카"              # 확장 경로 점검
@@ -390,7 +391,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("query", nargs="+", help="키워드 (여러 개 가능)")
     ap.add_argument("-n", "--top", type=int, default=10)
-    ap.add_argument("--kind", choices=("skill", "knowledge"), default=None)
+    ap.add_argument("--kind", choices=("skill", "knowledge", "technique"), default=None)
     ap.add_argument("--category", default=None)
     ap.add_argument("--json", dest="as_json", action="store_true")
     ap.add_argument("--html", dest="as_html", action="store_true",

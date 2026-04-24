@@ -1,4 +1,4 @@
-"""Rebuild `index.json` from filesystem (skills/**/SKILL.md + knowledge/**/*.md).
+"""Rebuild `index.json` from filesystem (skills/**/SKILL.md + knowledge/**/*.md + technique/**/TECHNIQUE.md).
 
 Deterministic flat catalog regeneration for the corpus. Called by
 `/hub-publish-all` before push so newly added skills/knowledge become
@@ -107,6 +107,29 @@ def entry_from_knowledge(root: Path, md: Path) -> dict | None:
     }
 
 
+def entry_from_technique(root: Path, tech_md: Path) -> dict | None:
+    fm = parse_frontmatter(tech_md.read_text(encoding="utf-8", errors="replace"))
+    if _is_archived(fm):
+        return None
+    rel = tech_md.relative_to(root).as_posix()
+    path_dir = "/".join(rel.split("/")[:-1])
+    composes = fm.get("composes") or []
+    return {
+        "kind": "technique",
+        "name": fm.get("name", ""),
+        "slug": fm.get("name", ""),
+        "category": fm.get("category", ""),
+        "description": fm.get("description", ""),
+        "tags": fm.get("tags", []),
+        "triggers": fm.get("triggers", []),
+        "version": fm.get("version", ""),
+        "path": path_dir,
+        "has_content": True,
+        "composes_count": len(composes) if isinstance(composes, list) else 0,
+        "binding": fm.get("binding", "loose"),
+    }
+
+
 def preserve_extras(existing_entries: list[dict], key: str) -> dict:
     """Keep non-standard keys (like source_project, installed_at) from old index."""
     out: dict = {}
@@ -154,6 +177,18 @@ def main() -> int:
     if kn_root.exists():
         for p in sorted(kn_root.rglob("*.md")):
             e = entry_from_knowledge(root, p)
+            if e is None:  # archived
+                continue
+            key = (e["kind"], e["path"])
+            if key in extras:
+                e.update(extras[key])
+            entries.append(e)
+
+    # Techniques: one folder per technique with TECHNIQUE.md inside.
+    tech_root = root / "technique"
+    if tech_root.exists():
+        for p in sorted(tech_root.rglob("TECHNIQUE.md")):
+            e = entry_from_technique(root, p)
             if e is None:  # archived
                 continue
             key = (e["kind"], e["path"])
