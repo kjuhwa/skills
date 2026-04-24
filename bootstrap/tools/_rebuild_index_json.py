@@ -108,12 +108,23 @@ def entry_from_knowledge(root: Path, md: Path) -> dict | None:
 
 
 def entry_from_technique(root: Path, tech_md: Path) -> dict | None:
-    fm = parse_frontmatter(tech_md.read_text(encoding="utf-8", errors="replace"))
+    raw_text = tech_md.read_text(encoding="utf-8", errors="replace")
+    fm = parse_frontmatter(raw_text)
     if _is_archived(fm):
         return None
     rel = tech_md.relative_to(root).as_posix()
     path_dir = "/".join(rel.split("/")[:-1])
-    composes = fm.get("composes") or []
+    # parse_frontmatter is flat-key-only and returns an empty string for the
+    # list-of-dict-shaped composes. Count list items directly from the raw
+    # frontmatter body so the index reflects reality.
+    if raw_text.startswith("---"):
+        end = raw_text.find("\n---", 3)
+        fm_body = raw_text[3:end] if end != -1 else ""
+    else:
+        fm_body = ""
+    composes_count = sum(
+        1 for line in fm_body.splitlines() if line.lstrip().startswith("- kind:")
+    )
     return {
         "kind": "technique",
         "name": fm.get("name", ""),
@@ -125,7 +136,7 @@ def entry_from_technique(root: Path, tech_md: Path) -> dict | None:
         "version": fm.get("version", ""),
         "path": path_dir,
         "has_content": True,
-        "composes_count": len(composes) if isinstance(composes, list) else 0,
+        "composes_count": composes_count,
         "binding": fm.get("binding", "loose"),
     }
 
