@@ -62,6 +62,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "batch-processing-vs-single-file",
+    "slug": "batch-processing-vs-single-file",
+    "category": "api",
+    "description": "Python API has both identify_path() (single file) and identify_paths() (batch) — batch is optimized for throughput.",
+    "tags": [
+      "magika",
+      "api"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/batch-processing-vs-single-file.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "claude-code-routines-cloud-automation-model",
     "slug": "claude-code-routines-cloud-automation-model",
     "category": "api",
@@ -240,6 +255,45 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/api/xlog-extended-transaction-trace-with-compression.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "appimage-fuse-chrome-sandbox-incompatibility",
+    "slug": "appimage-fuse-chrome-sandbox-incompatibility",
+    "category": "appimage",
+    "description": "Electron's `chrome-sandbox` requires the setuid-root bit (permissions 4755) to create unprivileged user namespaces; AppImages mount via FUSE as a non-root user, which prevents the sandbox from functioning — the workaround is `--no-sandbox` in the AppImage launcher.",
+    "tags": [
+      "appimage",
+      "electron",
+      "chrome-sandbox",
+      "fuse",
+      "sandbox",
+      "namespace",
+      "linux-security"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/appimage/appimage-fuse-chrome-sandbox-incompatibility.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "appimage-zsync-delta-update-metadata",
+    "slug": "appimage-zsync-delta-update-metadata",
+    "category": "appimage",
+    "description": "Locally-built AppImages lack the `.zsync` metadata file required for binary delta updates; only AppImages published via GitHub Releases with the correct metadata (embedded `update` field) get efficient delta updates through tools like AppImageUpdate.",
+    "tags": [
+      "appimage",
+      "zsync",
+      "delta-update",
+      "AppImageUpdate",
+      "github-releases",
+      "self-update"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/appimage/appimage-zsync-delta-update-metadata.md",
     "has_content": true
   },
   {
@@ -1875,6 +1929,77 @@
   },
   {
     "kind": "knowledge",
+    "name": "audiovae-v2-asymmetric-rationale",
+    "slug": "audiovae-v2-asymmetric-rationale",
+    "category": "audio",
+    "description": "AudioVAE V2 encodes at 16kHz for compute efficiency but decodes to 48kHz via learned upsampling, eliminating external resamplers",
+    "tags": [
+      "audiovae",
+      "super-resolution",
+      "architecture",
+      "48khz",
+      "codec"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/audio/audiovae-v2-asymmetric-rationale.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "async-clipboard-race-condition",
+    "slug": "async-clipboard-race-condition",
+    "category": "clipboard",
+    "description": "Clipboard access retries (3x at 33ms intervals) to handle concurrent-access conflicts on Windows.",
+    "tags": [
+      "async",
+      "clipboard",
+      "condition",
+      "race"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/clipboard/async-clipboard-race-condition.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "audio-device-enumeration-platform-divergence",
+    "slug": "audio-device-enumeration-platform-divergence",
+    "category": "codecs",
+    "description": "Audio device enumeration: CPAL (Win/Mac), PulseAudio (Linux non-headless), default fallback.",
+    "tags": [
+      "audio",
+      "codecs",
+      "device",
+      "divergence",
+      "enumeration",
+      "platform"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/codecs/audio-device-enumeration-platform-divergence.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "bitrate-calculation-formula",
+    "slug": "bitrate-calculation-formula",
+    "category": "codecs",
+    "description": "base_bitrate = (width × height × fps × 0.07-0.1) / quality_factor; capped per codec.",
+    "tags": [
+      "bitrate",
+      "calculation",
+      "codecs",
+      "formula"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/codecs/bitrate-calculation-formula.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "actuator-endpoints-skip-auth-by-design",
     "slug": "actuator-endpoints-skip-auth-by-design",
     "category": "decision",
@@ -3081,6 +3206,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "binary-spherical-quantization-bsq-overview",
+    "slug": "binary-spherical-quantization-bsq-overview",
+    "category": "design",
+    "description": "BSQ replaces a learned VQ-VAE codebook with sign-quantization on a unit sphere — no codebook parameters, straight-through gradients, and a differentiable entropy regularizer.",
+    "tags": [
+      "bsq",
+      "quantization",
+      "vq-vae",
+      "codebook-free",
+      "straight-through-estimator",
+      "entropy-regularization"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/design/binary-spherical-quantization-bsq-overview.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "account-lockout-configurable-threshold",
     "slug": "account-lockout-configurable-threshold",
     "category": "domain",
@@ -3095,6 +3239,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/account-lockout-configurable-threshold.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "autopilots-and-triggers-model",
+    "slug": "autopilots-and-triggers-model",
+    "category": "domain",
+    "description": "Autopilots are scheduled automations that dispatch agent tasks (create an issue or run an agent directly); triggers are the scheduling layer (cron now, webhook/api future).",
+    "tags": [
+      "autopilot",
+      "scheduling",
+      "triggers",
+      "cron",
+      "agents"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/autopilots-and-triggers-model.md",
     "has_content": true
   },
   {
@@ -3242,6 +3404,43 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/topresource-immediate-generation-invariant.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "azure-document-intelligence-opt-in-converter",
+    "slug": "azure-document-intelligence-opt-in-converter",
+    "category": "integration",
+    "description": "Markitdown integrates Azure AI Document Intelligence as an opt-in, top-priority converter when the user supplies docintel_endpoint — upgrades PDF/DOCX/PPTX/XLSX/HTML/images from local parsers to server-side OCR + layout-aware markdown.",
+    "tags": [
+      "integration",
+      "azure",
+      "ocr",
+      "document-intelligence",
+      "optional",
+      "opt-in"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/integration/azure-document-intelligence-opt-in-converter.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "autonomous-operation-principles-for-unattended-agents",
+    "slug": "autonomous-operation-principles-for-unattended-agents",
+    "category": "llm-agents",
+    "description": "Principles for unattended agent self-operation — task selection by reusability×future-value, bounded experimentation, three-piece completion ritual, and permission boundaries.",
+    "tags": [
+      "llm-agents",
+      "autonomous",
+      "unattended",
+      "governance",
+      "self-improvement"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/autonomous-operation-principles-for-unattended-agents.md",
     "has_content": true
   },
   {
@@ -5775,6 +5974,56 @@
   },
   {
     "kind": "knowledge",
+    "name": "anthropic-skill-authoring-best-practices",
+    "slug": "anthropic-skill-authoring-best-practices",
+    "category": "reference",
+    "description": "Anthropic's official guidance on writing discoverable, well-structured skills that Claude uses successfully",
+    "tags": [
+      "superpowers",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/anthropic-skill-authoring-best-practices.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "automation-event-catalog",
+    "slug": "automation-event-catalog",
+    "category": "reference",
+    "description": "Complete list of events fired on the per-workspace automation bus — LabelAdd/Remove, PermissionModeChange, FlagChange, SessionStatusChange, SchedulerTick, PreToolUse, PostToolUse, SessionStart/End.",
+    "tags": [
+      "automations",
+      "events",
+      "event-bus"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/automation-event-catalog.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "bash-lc-single-quote-cron-keepalive",
+    "slug": "bash-lc-single-quote-cron-keepalive",
+    "category": "reference",
+    "description": "When scheduling a long-running node loop from cron, pm2, or any other runner that serialises the command string through several escape layers, wrap the whole payload as `bash -lc 'node index.js --loop'` — one set of single quotes, no composition, no `; echo EXIT:$?` tails, to avoid nested-quote breakage.",
+    "tags": [
+      "cron",
+      "pm2",
+      "shell-quoting",
+      "keepalive",
+      "daemon",
+      "gotcha"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/bash-lc-single-quote-cron-keepalive.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -5783,6 +6032,42 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "architecture-registry",
+    "slug": "architecture-registry",
+    "category": "registry",
+    "description": "Architecture registry YAML defining system modules and their relationships",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "architecture",
+      "registry",
+      "systems"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/registry/architecture-registry.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "blast-radius-calculation-git-diff-stat",
+    "slug": "blast-radius-calculation-git-diff-stat",
+    "category": "safety",
+    "description": "Estimate evolution impact by computing git diff stats and change scope",
+    "tags": [
+      "evolver",
+      "safety",
+      "blast-radius",
+      "diff-stat",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/safety/blast-radius-calculation-git-diff-stat.md",
     "has_content": true
   },
   {
@@ -5841,80 +6126,129 @@
     "has_content": true
   },
   {
-    "kind": "paper",
-    "name": "llm-fallback-cost-displacement",
-    "slug": "llm-fallback-cost-displacement",
-    "category": "ai",
-    "description": "Do LLM fallback ladders save cost or displace it — into tail latency, schema drift, and silent degradations?",
-    "tags": "",
+    "kind": "skill",
+    "name": "architecture-decision",
+    "slug": "architecture-decision",
+    "category": "",
+    "description": "\"Creates an Architecture Decision Record (ADR) documenting a significant technical decision, its context, alternatives considered, and consequences. Every major technical choice should have an ADR.\"",
+    "tags": [],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/ai/llm-fallback-cost-displacement",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 1,
-    "outcomes_count": 0,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "version": "1.0.0",
+    "path": "skills/engineering/architecture-decision",
+    "has_content": false
   },
   {
-    "kind": "paper",
-    "name": "llm-ci-triage-boundary-conditions",
-    "slug": "llm-ci-triage-boundary-conditions",
-    "category": "testing",
-    "description": "Where does LLM-based CI failure triage help vs silently hurt? Mapping the boundary conditions for adoption.",
-    "tags": "",
+    "kind": "skill",
+    "name": "architecture-review",
+    "slug": "architecture-review",
+    "category": "",
+    "description": "\"Validates completeness and consistency of the project architecture against all GDDs. Builds a traceability matrix mapping every GDD technical requirement to ADRs, identifies coverage gaps, detects cross-ADR conflicts, verifies engine compatibility consistency across all decisions, and produces a PASS/CONCERNS/FAIL verdict. The architecture equivalent of /design-review.\"",
+    "tags": [],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/testing/llm-ci-triage-boundary-conditions",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 1,
-    "outcomes_count": 0,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "version": "1.0.0",
+    "path": "skills/engineering/architecture-review",
+    "has_content": false
   },
   {
-    "kind": "paper",
-    "name": "parallel-dispatch-breakeven-point",
-    "slug": "parallel-dispatch-breakeven-point",
-    "category": "workflow",
-    "description": "When does parallel subagent dispatch stop paying off, and what pre-flight probe catches it before tokens are wasted?",
-    "tags": "",
+    "kind": "skill",
+    "name": "art-bible",
+    "slug": "art-bible",
+    "category": "",
+    "description": "\"Guided, section-by-section Art Bible authoring. Creates the visual identity specification that gates all asset production. Run after /brainstorm is approved and before /map-systems or any GDD authoring begins.\"",
+    "tags": [],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/workflow/parallel-dispatch-breakeven-point",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 1,
-    "outcomes_count": 2,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "implemented"
+    "version": "1.0.0",
+    "path": "skills/design/art-bible",
+    "has_content": false
   },
   {
-    "kind": "paper",
-    "name": "technique-layer-composition-value",
-    "slug": "technique-layer-composition-value",
-    "category": "workflow",
-    "description": "Does a technique/ middle layer in a skills hub produce composition value beyond what hub-merge already provides?",
-    "tags": "",
+    "kind": "skill",
+    "name": "asset-audit",
+    "slug": "asset-audit",
+    "category": "",
+    "description": "\"Audits game assets for compliance with naming conventions, file size budgets, format standards, and pipeline requirements. Identifies orphaned assets, missing references, and standard violations.\"",
+    "tags": [],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/workflow/technique-layer-composition-value",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 0,
-    "outcomes_count": 2,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "version": "1.0.0",
+    "path": "skills/qa/asset-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "asset-spec",
+    "slug": "asset-spec",
+    "category": "",
+    "description": "\"Generate per-asset visual specifications and AI generation prompts from GDDs, level docs, or character profiles. Produces structured spec files and updates the master asset manifest. Run after art bible and GDD/level design are approved, before production begins.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/asset-spec",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "balance-check",
+    "slug": "balance-check",
+    "category": "",
+    "description": "\"Analyzes game balance data files, formulas, and configuration to identify outliers, broken progressions, degenerate strategies, and economy imbalances. Use after modifying any balance-related data or design. Use when user says 'balance report', 'check game balance', 'run a balance check'.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/qa/balance-check",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "anthropic-compatible-endpoint-swap",
+    "slug": "anthropic-compatible-endpoint-swap",
+    "category": "agent-sdk",
+    "description": "Point the Claude Agent SDK at any Anthropic-compatible endpoint (OpenRouter, Vercel AI Gateway, Ollama, custom) by setting ANTHROPIC_BASE_URL + ANTHROPIC_AUTH_TOKEN before instantiating — no SDK changes, no adapter layer.",
+    "tags": [
+      "claude-agent-sdk",
+      "openrouter",
+      "ollama",
+      "base-url",
+      "byoc"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/anthropic-compatible-endpoint-swap",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bash-ast-permission-validator",
+    "slug": "bash-ast-permission-validator",
+    "category": "agent-sdk",
+    "description": "Validate agent bash commands by parsing them into an AST (bash-parser) and evaluating each subcommand of a pipeline/&&/|| chain against an allowlist, instead of regex-matching strings.",
+    "tags": [
+      "bash",
+      "ast",
+      "permissions",
+      "safe-mode",
+      "bash-parser"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/bash-ast-permission-validator",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "basic-agent-runner",
+    "slug": "basic-agent-runner",
+    "category": "agents",
+    "description": "Define an Agent and run it synchronously or asynchronously with Runner.",
+    "tags": [
+      "openai-agents",
+      "runner",
+      "async",
+      "agent-definition"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/basic-agent-runner",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -6503,6 +6837,26 @@
   },
   {
     "kind": "skill",
+    "name": "appimage-apprun-launcher-shim",
+    "slug": "appimage-apprun-launcher-shim",
+    "category": "appimage",
+    "description": "Generate an AppRun script that resolves APPDIR from $0 using readlink -f, sources a common launcher library, handles --doctor flag, and forwards Electron args. Includes display detection, stale lock cleanup, and exec with logging.",
+    "tags": [
+      "appimage",
+      "apprun",
+      "launcher",
+      "electron",
+      "bash",
+      "appdir",
+      "display-detection"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/appimage/appimage-apprun-launcher-shim",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "adaptive-strategy-hot-swap",
     "slug": "adaptive-strategy-hot-swap",
     "category": "arch",
@@ -6925,6 +7279,73 @@
     "version": "0.1.0-draft",
     "path": "skills/arch/tiered-rebalance-schedule",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "async-service-trait-template",
+    "slug": "async-service-trait-template",
+    "category": "async",
+    "description": "Trait-based async service with Arc<Mutex<>> for connection state and per-session isolation.",
+    "tags": [
+      "async",
+      "service",
+      "template",
+      "trait"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/async/async-service-trait-template",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "async-sync-inference-bridge-with-tokio-blocking",
+    "slug": "async-sync-inference-bridge-with-tokio-blocking",
+    "category": "async",
+    "description": "Provide both async and sync APIs for inference by writing the core as async and using tokio::task::block_in_place for the sync wrappers.",
+    "tags": [
+      "magika",
+      "async"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/async/async-sync-inference-bridge-with-tokio-blocking",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "async-task-spawning-pattern",
+    "slug": "async-task-spawning-pattern",
+    "category": "async",
+    "description": "tokio::spawn for concurrent background tasks with UnboundedChannel for coordination.",
+    "tags": [
+      "async",
+      "pattern",
+      "spawning",
+      "task"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/async/async-task-spawning-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "asymmetric-audio-vae-encode-decode",
+    "slug": "asymmetric-audio-vae-encode-decode",
+    "category": "audio",
+    "description": "Build an AudioVAE with a 16kHz encoder and 48kHz decoder for built-in super-resolution",
+    "tags": [
+      "audio",
+      "vae",
+      "super-resolution",
+      "codec",
+      "pytorch"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/audio/asymmetric-audio-vae-encode-decode",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -9069,6 +9490,43 @@
   },
   {
     "kind": "skill",
+    "name": "ble-device-header-stripping",
+    "slug": "ble-device-header-stripping",
+    "category": "ble-audio-streaming",
+    "description": "Strip fixed firmware headers from BLE audio packets, emit headerless payloads downstream, and reuse the header bytes as a sync key for write-ahead-log frame alignment.",
+    "tags": [
+      "ble",
+      "audio-source",
+      "opus",
+      "wal",
+      "wearable",
+      "flutter"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ble-audio-streaming/ble-device-header-stripping",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "argparse-subcommand-validator-chain",
+    "slug": "argparse-subcommand-validator-chain",
+    "category": "cli",
+    "description": "Structure multi-mode CLI with nested subcommands and a composable chain of pure-function validators",
+    "tags": [
+      "argparse",
+      "subcommands",
+      "validation",
+      "cli",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/argparse-subcommand-validator-chain",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "autoplan",
     "slug": "autoplan",
     "category": "cli",
@@ -9913,6 +10371,24 @@
     "triggers": [],
     "version": "0.1.0",
     "path": "skills/cli/gstack/unfreeze",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "audio-codec-selection-strategy",
+    "slug": "audio-codec-selection-strategy",
+    "category": "codecs",
+    "description": "Audio codec selection (Opus) with Dasp/Rubato/SampleRate resampling backends chosen by feature flag.",
+    "tags": [
+      "audio",
+      "codec",
+      "codecs",
+      "selection",
+      "strategy"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codecs/audio-codec-selection-strategy",
     "has_content": false
   },
   {
@@ -11251,6 +11727,25 @@
   },
   {
     "kind": "skill",
+    "name": "atomic-origin-whitelist-hot-swap",
+    "slug": "atomic-origin-whitelist-hot-swap",
+    "category": "devops",
+    "description": "Go WebSocket (or CORS) origin whitelist stored in an atomic.Value so it can be reloaded without locks or restart; sensible env-driven defaults.",
+    "tags": [
+      "go",
+      "cors",
+      "websocket",
+      "atomic",
+      "config",
+      "hot-reload"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/devops/atomic-origin-whitelist-hot-swap",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "clang-tidy-integration-workflow",
     "slug": "clang-tidy-integration-workflow",
     "category": "devops",
@@ -11679,6 +12174,45 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/docs/ubiquitous-language",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "asar-directory-patching-workflow",
+    "slug": "asar-directory-patching-workflow",
+    "category": "electron-packaging",
+    "description": "Extract an Electron .asar to a directory, surgically edit files, skip .asar.unpacked (it travels separately), and repack. Includes safe working directory management and staging conventions for multi-file edits.",
+    "tags": [
+      "electron",
+      "asar",
+      "patching",
+      "extract",
+      "repack",
+      "build",
+      "packaging"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron-packaging/asar-directory-patching-workflow",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "block-scaled-fp8-with-granular-recipes",
+    "slug": "block-scaled-fp8-with-granular-recipes",
+    "category": "fp8-quantization",
+    "description": "Store FP8 block scales separately at a configurable (gran_m, gran_n, gran_k) granularity, then transform into MN-major TMA-aligned layout before kernel dispatch.",
+    "tags": [
+      "fp8",
+      "block-scaling",
+      "quantization",
+      "tma",
+      "layout-transform",
+      "mxfp8"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/fp8-quantization/block-scaled-fp8-with-granular-recipes",
     "has_content": false
   },
   {
@@ -12288,6 +12822,80 @@
   },
   {
     "kind": "skill",
+    "name": "autoregressive-rolling-context-buffer",
+    "slug": "autoregressive-rolling-context-buffer",
+    "category": "inference",
+    "description": "Generate beyond max_context by maintaining a fixed-size token ring buffer and rolling in each newly sampled token during autoregressive decoding.",
+    "tags": [
+      "autoregressive",
+      "generation",
+      "ring-buffer",
+      "max-context",
+      "sliding-window",
+      "transformer"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/autoregressive-rolling-context-buffer",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "batch-predict-per-series-normalize-denormalize",
+    "slug": "batch-predict-per-series-normalize-denormalize",
+    "category": "inference",
+    "description": "Stack per-series inputs into a GPU batch with per-series mean/std, predict in parallel, then denormalize back to each series' original scale.",
+    "tags": [
+      "batch-inference",
+      "normalization",
+      "gpu",
+      "parallel-prediction",
+      "multivariate-time-series"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/batch-predict-per-series-normalize-denormalize",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "arch-spec-static-polymorphism-for-codegen",
+    "slug": "arch-spec-static-polymorphism-for-codegen",
+    "category": "jit-compilation",
+    "description": "Use a templated `get_best_config<ArchSpec>(desc)` where each architecture (SM90, SM100, etc.) is a plain struct full of `static` methods, so the compiler inlines the arch-specific heuristic with zero virtual-call overhead.",
+    "tags": [
+      "static-polymorphism",
+      "templates",
+      "code-generation",
+      "architecture-dispatch",
+      "cuda"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/jit-compilation/arch-spec-static-polymorphism-for-codegen",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "atomic-file-write-with-fsync",
+    "slug": "atomic-file-write-with-fsync",
+    "category": "jit-compilation",
+    "description": "Wrap every cache write with a `put(path, data)` helper that calls `ofstream.write`, closes, then `fsync(open(path))` so other processes on distributed filesystems see the full file before it's read.",
+    "tags": [
+      "fsync",
+      "atomic-write",
+      "nfs",
+      "distributed",
+      "posix",
+      "cache"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/jit-compilation/atomic-file-write-with-fsync",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "design-an-interface",
     "slug": "design-an-interface",
     "category": "misc",
@@ -12366,6 +12974,78 @@
   },
   {
     "kind": "skill",
+    "name": "artifact-delta-snapshot-counter",
+    "slug": "artifact-delta-snapshot-counter",
+    "category": "observability",
+    "description": "Attribute \"how many outputs did this one run produce?\" by taking a filesystem snapshot of the target draft tree before the run, another one after, and diffing the counts. Zero coordination with the child agent — it just writes files; the parent measures.",
+    "tags": [
+      "observability",
+      "attribution",
+      "snapshot",
+      "filesystem",
+      "pipeline",
+      "metrics"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/artifact-delta-snapshot-counter",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "auto-issue-reporter-streak-cooldown",
+    "slug": "auto-issue-reporter-streak-cooldown",
+    "category": "observability",
+    "description": "Let a long-running autonomous process auto-file GitHub issues on its own persistent failures, gated by a consecutive-streak threshold and a per-signature cooldown so a single flaky resource cannot spam the tracker.",
+    "tags": [
+      "github",
+      "issues",
+      "auto-report",
+      "cooldown",
+      "streak",
+      "observability",
+      "autonomous-agent"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/auto-issue-reporter-streak-cooldown",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "beg-mid-end-file-sampling-with-padding",
+    "slug": "beg-mid-end-file-sampling-with-padding",
+    "category": "preprocessing",
+    "description": "Sample beginning, middle, and end blocks of a file (with padding token = 256) to feed a fixed-size feature vector to a neural net in constant time.",
+    "tags": [
+      "magika",
+      "preprocessing"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/preprocessing/beg-mid-end-file-sampling-with-padding",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "atomic-audio-save-temp-rename",
+    "slug": "atomic-audio-save-temp-rename",
+    "category": "python",
+    "description": "Write audio (or any binary) atomically by staging to a sibling .tmp file and os.replace-ing it into place on success.",
+    "tags": [
+      "python",
+      "atomic-writes",
+      "filesystem",
+      "soundfile",
+      "reliability"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/python/atomic-audio-save-temp-rename",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "improve-codebase-architecture",
     "slug": "improve-codebase-architecture",
     "category": "refactor",
@@ -12411,6 +13091,41 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "asset-eligibility-with-broadcast-gates",
+    "slug": "asset-eligibility-with-broadcast-gates",
+    "category": "safety",
+    "description": "Multi-gate eligibility checks before exporting assets — content hash, success streak, confidence",
+    "tags": [
+      "evolver",
+      "safety",
+      "publish-gate",
+      "integrity"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/asset-eligibility-with-broadcast-gates",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "async-jwt-jwks-cache-with-lock",
+    "slug": "async-jwt-jwks-cache-with-lock",
+    "category": "security",
+    "description": "Async JWKS cache that uses one asyncio.Lock per JWKS URL to prevent thundering-herd refetch, with double-checked locking and TTL-based expiry; signature + issuer verified, kid-matched key extraction.",
+    "tags": [
+      "jwt",
+      "jwks",
+      "async",
+      "httpx",
+      "clerk"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/async-jwt-jwks-cache-with-lock",
     "has_content": false
   },
   {
@@ -12562,6 +13277,27 @@
     "version": "1.0.0",
     "path": "skills/security/openssl-4-migration-checklist",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "artifact-integration-test-framework-bats",
+    "slug": "artifact-integration-test-framework-bats",
+    "category": "testing",
+    "description": "Validate .deb, .rpm, and AppImage artifacts after build using BATS. Test file existence, permissions, desktop entry syntax, and module-level Node.js behavior (load a script via node -e with an inline preamble that imports the module under test).",
+    "tags": [
+      "bats",
+      "testing",
+      "integration-test",
+      "deb",
+      "rpm",
+      "appimage",
+      "artifact-validation",
+      "node"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/artifact-integration-test-framework-bats",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -12776,6 +13512,42 @@
   },
   {
     "kind": "skill",
+    "name": "argbind-function-signature-cli-binding",
+    "slug": "argbind-function-signature-cli-binding",
+    "category": "training",
+    "description": "Use argbind to auto-generate CLI flags and YAML config from annotated function signatures",
+    "tags": [
+      "argbind",
+      "cli",
+      "config",
+      "training",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/training/argbind-function-signature-cli-binding",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "audio-text-packing-with-loss-masks",
+    "slug": "audio-text-packing-with-loss-masks",
+    "category": "training",
+    "description": "Pack text and audio tokens with per-region loss masks for multimodal sequence training",
+    "tags": [
+      "training",
+      "multimodal",
+      "packing",
+      "loss-mask",
+      "tts"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/training/audio-text-packing-with-loss-masks",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "actor-model-data-simulation",
     "slug": "actor-model-data-simulation",
     "category": "workflow",
@@ -12828,6 +13600,24 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/api-versioning-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "async-generator-idle-timeout",
+    "slug": "async-generator-idle-timeout",
+    "category": "workflow",
+    "description": "Wrap a streaming `AsyncGenerator` with an idle-reset timeout so subprocess hangs turn into clean returns instead of indefinite blocks.",
+    "tags": [
+      "async-generator",
+      "timeout",
+      "deadlock",
+      "streaming",
+      "subprocess"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/async-generator-idle-timeout",
     "has_content": false
   },
   {
@@ -14458,61 +15248,5 @@
     "version": "1.0.0",
     "path": "skills/workflow/x-filterable-fields-extraction",
     "has_content": false
-  },
-  {
-    "kind": "technique",
-    "name": "agent-fallback-ladder",
-    "slug": "agent-fallback-ladder",
-    "category": "ai",
-    "description": "\"Hierarchical fallback ladder for LLM calls: per-tier circuit state, strict tier order, pitfalls guarded at entry\"",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/ai/agent-fallback-ladder",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
-  },
-  {
-    "kind": "technique",
-    "name": "root-cause-to-tdd-plan",
-    "slug": "root-cause-to-tdd-plan",
-    "category": "debug",
-    "description": "Bug report → systematic root-cause investigation → classified fix path → GitHub issue with TDD test plan",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/debug/root-cause-to-tdd-plan",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
-  },
-  {
-    "kind": "technique",
-    "name": "fuzz-crash-to-fix-loop",
-    "slug": "fuzz-crash-to-fix-loop",
-    "category": "testing",
-    "description": "\"Iterative loop turning fuzz crashes into TDD'd fixes: investigate → triage → implement → return crash to seed corpus\"",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/testing/fuzz-crash-to-fix-loop",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
-  },
-  {
-    "kind": "technique",
-    "name": "safe-bulk-pr-publishing",
-    "slug": "safe-bulk-pr-publishing",
-    "category": "workflow",
-    "description": "Build N projects in parallel then publish them as many PRs safely — rollback anchor, race-aware PR creation, batch conflict recovery",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/workflow/safe-bulk-pr-publishing",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
   }
 ]
