@@ -1,6 +1,25 @@
 [
   {
     "kind": "knowledge",
+    "name": "",
+    "slug": "",
+    "category": "agent-orchestration / workflow",
+    "description": "",
+    "tags": [
+      "claude-code",
+      "subagent",
+      "parallel-dispatch",
+      "pre-check",
+      "pitfall",
+      "efficiency"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "sandstorm-erosion-accumulator-buffer",
     "slug": "sandstorm-erosion-accumulator-buffer",
     "category": "algorithms",
@@ -2043,6 +2062,18 @@
   },
   {
     "kind": "knowledge",
+    "name": "cmm-namespace-reuse-before-new-key",
+    "slug": "cmm-namespace-reuse-before-new-key",
+    "category": "decision",
+    "description": "lucida-ui i18n 신규 키를 만들기 전에 `cmm.*` 공용 네임스페이스의 기존 키를 grep 으로 먼저 재사용한다",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/decision/cmm-namespace-reuse-before-new-key.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "confid-only-query-over-resource-tuple",
     "slug": "confid-only-query-over-resource-tuple",
     "category": "decision",
@@ -3203,6 +3234,18 @@
   },
   {
     "kind": "knowledge",
+    "name": "",
+    "slug": "",
+    "category": "pitfall",
+    "description": "ResourceMaintenanceJob flattens targetGroupIds / targetTagFilters / targetResourceIds into confInfoIds at only two moments — create/modify and trigger start — so resources joining a targeted group during a RUNNING window get no maintenance flag, no alarm auto-delete, and no end-of-window recovery.",
+    "tags": "",
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/cm-maintenance-job-target-snapshot.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "actor-model-implementation-pitfall",
     "slug": "actor-model-implementation-pitfall",
     "category": "pitfall",
@@ -3230,6 +3273,30 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/actuator-metric-call-aggressive-timeout.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ag-grid-displayed-columns-include-action-columns",
+    "slug": "ag-grid-displayed-columns-include-action-columns",
+    "category": "pitfall",
+    "description": "AG-Grid `getAllDisplayedColumns()` 는 checkbox·action 컬럼까지 반환한다 — 서버 카탈로그 key 로 화이트리스트 필터 필수",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/ag-grid-displayed-columns-include-action-columns.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ag-grid-maintain-column-order-blocks-reorder",
+    "slug": "ag-grid-maintain-column-order-blocks-reorder",
+    "category": "pitfall",
+    "description": "AG-Grid `maintainColumnOrder={true}` 는 setColumnDefs/applyColumnState 로 주입한 순서 변경을 무시한다 — 뷰 기반 persist 화면에서는 false 로 전환 필수",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/ag-grid-maintain-column-order-blocks-reorder.md",
     "has_content": true
   },
   {
@@ -3612,6 +3679,18 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/pitfall/claude-code-slash-command-crlf-breaks-yaml-parser.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "claude-code-subagent-write-permission-scope",
+    "slug": "claude-code-subagent-write-permission-scope",
+    "category": "pitfall",
+    "description": "Claude Code 서브에이전트의 Edit/Write 권한은 현재 세션 CWD 의 settings.local.json 만 따라간다 — 타 프로젝트 경로는 현 세션의 allow-list 에 추가해야 함",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/claude-code-subagent-write-permission-scope.md",
     "has_content": true
   },
   {
@@ -5068,6 +5147,18 @@
   },
   {
     "kind": "knowledge",
+    "name": "sirius-grid-events-top-level-not-gridoptions",
+    "slug": "sirius-grid-events-top-level-not-gridoptions",
+    "category": "pitfall",
+    "description": "Sirius `<Grid>` 는 이벤트 핸들러를 top-level prop 으로 노출한다 — gridOptions 에 넣으면 호출되지 않는다",
+    "tags": "",
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "knowledge/pitfall/sirius-grid-events-top-level-not-gridoptions.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "skill-md-plus-content-md-body-counting",
     "slug": "skill-md-plus-content-md-body-counting",
     "category": "pitfall",
@@ -5680,6 +5771,25 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "",
+    "slug": "",
+    "category": "schema-design / validation / openapi",
+    "description": "",
+    "tags": [
+      "regex",
+      "identifier-pattern",
+      "schema-validation",
+      "openapi",
+      "legacy-data",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/schema-design/identifier-regex-loose-when-legacy-coexists.md",
     "has_content": true
   },
   {
@@ -8922,6 +9032,24 @@
   },
   {
     "kind": "skill",
+    "name": "bun-windows-copyfile-backend",
+    "slug": "bun-windows-copyfile-backend",
+    "category": "cli",
+    "description": "Bun on Windows 에서 `bun install` 이 `Failed to link ... EUNKNOWN` 으로 실패할 때, `--backend=copyfile` 로 symlink 경로를 파일 복사로 우회한다.",
+    "tags": [
+      "bun",
+      "windows",
+      "symlink",
+      "node_modules",
+      "install"
+    ],
+    "triggers": "",
+    "version": "1.0.0",
+    "path": "skills/cli/bun-windows-copyfile-backend",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "canary",
     "slug": "canary",
     "category": "cli",
@@ -10893,6 +11021,25 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/design/schema-registry-visualization-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "selfcontained-nds-design-doc-html",
+    "slug": "selfcontained-nds-design-doc-html",
+    "category": "design",
+    "description": "외부 CSS/JS 의존 없이 단일 .html로 완성되는 Lucida/NDS 톤 디자인 문서 템플릿. As-Is/To-Be, 페이지 맥락 목업, 다이얼로그, 인터랙션, API 테이블, MoSCoW Phase 카드 등 10개 섹션 카드로 구성. 메일/Slack/PR에 첨부해도 깨지지 않는 self-contained 아티팩트가 필요할 때 사용.",
+    "tags": [
+      "html",
+      "mockup",
+      "nds",
+      "lucida",
+      "self-contained",
+      "design-doc"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "skills/design/selfcontained-nds-design-doc-html",
     "has_content": false
   },
   {
@@ -13410,6 +13557,24 @@
   },
   {
     "kind": "skill",
+    "name": "lucida-work-order-to-paired-spec",
+    "slug": "lucida-work-order-to-paired-spec",
+    "category": "workflow",
+    "description": "한 개의 작업지시서(.md)에서 specs/{domain}/planning/*.md 기획서와 specs/{domain}/design/*.html 디자인 목업을 함께 생성하는 워크플로우. 기존 specs/kcm/planning 등의 헤더·메타 관례를 먼저 스캔해 일관성을 맞춘다.",
+    "tags": [
+      "lucida",
+      "planning",
+      "design-doc",
+      "specs",
+      "polestar"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "skills/workflow/lucida-work-order-to-paired-spec",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "materialized-view-data-simulation",
     "slug": "materialized-view-data-simulation",
     "category": "workflow",
@@ -13544,6 +13709,26 @@
   },
   {
     "kind": "skill",
+    "name": "openapi-customizer-property-name-enricher",
+    "slug": "openapi-customizer-property-name-enricher",
+    "category": "workflow",
+    "description": "Spring Boot springdoc 에서 DTO 코드를 수정하지 않고, OpenApiCustomizer 로 components.schemas 를 walk 하면서 property name 이 특정 패턴(resourceId, agentId 등)인 필드에 pattern + example + x-discovery-* 확장을 후처리 주입한다.",
+    "tags": [
+      "spring-boot",
+      "springdoc",
+      "openapi",
+      "customizer",
+      "cross-cutting",
+      "identifier",
+      "dto-zero-touch"
+    ],
+    "triggers": "",
+    "version": "0.1.0-draft",
+    "path": "skills/workflow/openapi-customizer-property-name-enricher",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "outbox-pattern-data-simulation",
     "slug": "outbox-pattern-data-simulation",
     "category": "workflow",
@@ -13568,7 +13753,7 @@
     "tags": "",
     "triggers": "",
     "version": "1.0.0",
-    "path": "skills/parallel-build-sequential-publish",
+    "path": "skills/workflow/parallel-build-sequential-publish",
     "has_content": false
   },
   {
@@ -14075,15 +14260,8 @@
     "slug": "swagger-ai-optimization",
     "category": "workflow",
     "description": "Spring Boot + springdoc 프로젝트의 Swagger/OpenAPI 스펙을 AI Agent용으로 최적화 (operationId, @Schema, @ApiResponse, x-filterable-fields, canonical enum + identifier DTO + typed response wrapper + 5 sidecar 파일 전수 적용)",
-    "tags": [
-      "lucida",
-      "openapi",
-      "optimization",
-      "polestar",
-      "swagger",
-      "workflow"
-    ],
-    "triggers": "swagger ai 최적화, openapi ai optimization, MCP 연동 준비, swagger operationId 전수 부여, AI 이해도 테스트, lucida 5 파일 전달물, polestar-per-endpoint, canonical enum x-label-ko, identifier DTO pattern",
+    "tags": [],
+    "triggers": "",
     "version": "1.3.0",
     "path": "skills/workflow/swagger-ai-optimization",
     "has_content": false
@@ -14194,101 +14372,31 @@
     "has_content": false
   },
   {
+    "kind": "technique",
+    "name": "root-cause-to-tdd-plan",
+    "slug": "root-cause-to-tdd-plan",
+    "category": "debug",
+    "description": "Bug report → systematic root-cause investigation → classified fix path → GitHub issue with TDD test plan",
+    "tags": "",
+    "triggers": [],
+    "version": "0.1.0-draft",
+    "path": "technique/debug/root-cause-to-tdd-plan",
+    "has_content": true,
+    "composes_count": 0,
+    "binding": "loose"
+  },
+  {
+    "kind": "technique",
+    "name": "safe-bulk-pr-publishing",
+    "slug": "safe-bulk-pr-publishing",
     "category": "workflow",
-    "description": "Spring Boot springdoc 에서 DTO 코드를 수정하지 않고, OpenApiCustomizer 로 components.schemas 를 walk 하면서 property name 이 특정 패턴(resourceId, agentId 등)인 필드에 pattern + example + x-discovery-* 확장을 후처리 주입한다.",
-    "has_content": false,
-    "kind": "skill",
-    "name": "openapi-customizer-property-name-enricher",
-    "path": "skills/workflow/openapi-customizer-property-name-enricher",
-    "slug": "openapi-customizer-property-name-enricher",
-    "tags": [
-      "cross-cutting",
-      "customizer",
-      "dto-zero-touch",
-      "identifier",
-      "openapi",
-      "spring-boot",
-      "springdoc",
-      "workflow"
-    ],
-    "triggers": "identifier field pattern 전수 부여, resourceId agentId 공통 확장, @Schema 없이 property enrichment, openapi customizer post-process",
-    "version": "1.0.0"
-  },
-  {
-    "kind": "knowledge",
-    "name": "cmm-namespace-reuse-before-new-key",
-    "slug": "cmm-namespace-reuse-before-new-key",
-    "category": "decision",
-    "description": "lucida-ui i18n 신규 키를 만들기 전에 cmm.* 공용 네임스페이스의 기존 키를 grep 으로 먼저 재사용한다",
+    "description": "Build N projects in parallel then publish them as many PRs safely — rollback anchor, race-aware PR creation, batch conflict recovery",
     "tags": "",
     "triggers": [],
-    "version": "1.0.0",
-    "path": "knowledge/decision/cmm-namespace-reuse-before-new-key.md",
-    "has_content": true
-  },
-  {
-    "kind": "knowledge",
-    "name": "ag-grid-maintain-column-order-blocks-reorder",
-    "slug": "ag-grid-maintain-column-order-blocks-reorder",
-    "category": "pitfall",
-    "description": "AG-Grid maintainColumnOrder=true 는 setColumnDefs/applyColumnState 로 주입한 순서 변경을 무시한다 — 뷰 기반 persist 화면에서는 false 로 전환 필수",
-    "tags": "",
-    "triggers": [],
-    "version": "1.0.0",
-    "path": "knowledge/pitfall/ag-grid-maintain-column-order-blocks-reorder.md",
-    "has_content": true
-  },
-  {
-    "kind": "knowledge",
-    "name": "sirius-grid-events-top-level-not-gridoptions",
-    "slug": "sirius-grid-events-top-level-not-gridoptions",
-    "category": "pitfall",
-    "description": "Sirius Grid 는 이벤트 핸들러를 top-level prop 으로 노출한다 — gridOptions 에 넣으면 호출되지 않는다",
-    "tags": "",
-    "triggers": [],
-    "version": "1.0.0",
-    "path": "knowledge/pitfall/sirius-grid-events-top-level-not-gridoptions.md",
-    "has_content": true
-  },
-  {
-    "kind": "knowledge",
-    "name": "ag-grid-displayed-columns-include-action-columns",
-    "slug": "ag-grid-displayed-columns-include-action-columns",
-    "category": "pitfall",
-    "description": "AG-Grid getAllDisplayedColumns() 는 checkbox·action 컬럼까지 반환한다 — 서버 카탈로그 key 로 화이트리스트 필터 필수",
-    "tags": "",
-    "triggers": [],
-    "version": "1.0.0",
-    "path": "knowledge/pitfall/ag-grid-displayed-columns-include-action-columns.md",
-    "has_content": true
-  },
-  {
-    "kind": "knowledge",
-    "name": "claude-code-subagent-write-permission-scope",
-    "slug": "claude-code-subagent-write-permission-scope",
-    "category": "pitfall",
-    "description": "Claude Code 서브에이전트의 Edit/Write 권한은 현재 세션 CWD 의 settings.local.json 만 따라간다",
-    "tags": "",
-    "triggers": [],
-    "version": "1.0.0",
-    "path": "knowledge/pitfall/claude-code-subagent-write-permission-scope.md",
-    "has_content": true
-  },
-  {
-    "kind": "skill",
-    "name": "bun-windows-copyfile-backend",
-    "slug": "bun-windows-copyfile-backend",
-    "category": "cli",
-    "description": "Bun on Windows 에서 bun install 이 Failed to link ... EUNKNOWN 으로 실패할 때, --backend=copyfile 로 symlink 경로를 파일 복사로 우회한다.",
-    "tags": "bun,windows,symlink,node_modules,install",
-    "triggers": [
-      "bun install windows",
-      "Failed to link EUNKNOWN",
-      "bun symlink error",
-      "bun windows node_modules"
-    ],
-    "version": "1.0.0",
-    "path": "skills/cli/bun-windows-copyfile-backend/SKILL.md",
-    "has_content": true
+    "version": "0.1.0-draft",
+    "path": "technique/workflow/safe-bulk-pr-publishing",
+    "has_content": true,
+    "composes_count": 0,
+    "binding": "loose"
   }
 ]
