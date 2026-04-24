@@ -122,7 +122,11 @@ experiments:                # NEW in v0.2: backward-looking — what was actuall
 outcomes:                   # NEW in v0.2: what the corpus learned from this paper
   - kind: produced_skill | produced_knowledge | produced_technique
          | updated_skill  | updated_knowledge  | updated_technique
-         | produced_pitfall
+         | produced_pitfall | produced_example        # produced_example added
+                                                      # in v0.2.1 after paper
+                                                      # workflow/parallel-dispatch-breakeven-point
+                                                      # shipped an example/
+                                                      # artifact as an outcome.
     ref: <kind-root-relative path>
     note: <1 line — how this paper caused the corpus change>
 

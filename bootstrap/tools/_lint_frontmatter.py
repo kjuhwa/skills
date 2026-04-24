@@ -159,6 +159,32 @@ def lint_technique_composes(raw_fm: str) -> list[str]:
     return errors
 
 
+def find_duplicate_top_level_keys(raw_fm: str) -> list[str]:
+    """Return list of top-level keys that appear more than once in the frontmatter.
+
+    Duplicate keys cause silent last-wins overwrites in YAML consumers
+    (including the lint itself via parse_flat_keys). In the #1075 incident
+    a stacked-PR merge produced two `status:` keys — one 'implemented' and
+    one 'draft' — and the stale 'draft' value silently won on parse. This
+    check surfaces that class of merge damage at lint time.
+    """
+    seen: set[str] = set()
+    dups: set[str] = set()
+    for line in raw_fm.splitlines():
+        if not line or line[0].isspace() or line.startswith("#"):
+            continue
+        if ":" not in line:
+            continue
+        key = line.split(":", 1)[0].strip()
+        if not key:
+            continue
+        if key in seen:
+            dups.add(key)
+        else:
+            seen.add(key)
+    return sorted(dups)
+
+
 def scan_file(path: Path) -> dict:
     try:
         text = path.read_text(encoding="utf-8")
@@ -174,6 +200,12 @@ def scan_file(path: Path) -> dict:
         if not any(c in fields and not value_is_empty(fields[c]) for c in candidates):
             missing.append(required)
     errors: list[str] = []
+    dup_keys = find_duplicate_top_level_keys(raw)
+    if dup_keys:
+        errors.append(
+            f"duplicate top-level frontmatter keys: {', '.join(dup_keys)} "
+            f"(likely stacked-PR merge residue; YAML silently takes the last value)"
+        )
     category_val = fields.get("category", "").strip()
     if category_val and not CATEGORY_RE.match(category_val):
         errors.append(
