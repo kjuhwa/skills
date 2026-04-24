@@ -280,6 +280,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "ws-token-never-in-url",
+    "slug": "ws-token-never-in-url",
+    "category": "api",
+    "description": "Never put auth tokens in WebSocket URL query params — proxies, CDNs, and browser history will log them. Use cookies or first-message auth instead.",
+    "tags": [
+      "websocket",
+      "auth",
+      "security",
+      "token",
+      "cookie"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/ws-token-never-in-url.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "xlog-extended-transaction-trace-with-compression",
     "slug": "xlog-extended-transaction-trace-with-compression",
     "category": "api",
@@ -294,6 +312,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/api/xlog-extended-transaction-trace-with-compression.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "zod-openapi-schema-conventions",
+    "slug": "zod-openapi-schema-conventions",
+    "category": "api",
+    "description": "Use `@hono/zod-openapi`'s `z` (not `zod` directly), derive types with `z.infer<typeof X>`, co-locate route schemas per domain, and derive enum constants from `schema.options` instead of duplicating arrays.",
+    "tags": [
+      "zod",
+      "openapi",
+      "hono",
+      "schema",
+      "conventions"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/zod-openapi-schema-conventions.md",
     "has_content": true
   },
   {
@@ -1992,6 +2028,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "ws-invalidation-not-store-writes",
+    "slug": "ws-invalidation-not-store-writes",
+    "category": "arch",
+    "description": "WebSocket event handlers invalidate React Query cache keys — they never write directly to Zustand stores or the cache.",
+    "tags": [
+      "websocket",
+      "react-query",
+      "invalidation",
+      "realtime",
+      "state"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/ws-invalidation-not-store-writes.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "yorkie-team-server-split",
     "slug": "yorkie-team-server-split",
     "category": "arch",
@@ -2040,6 +2094,23 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/architecture/agent-native-software-philosophy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "wsrpcserver-push-target-model",
+    "slug": "wsrpcserver-push-target-model",
+    "category": "architecture",
+    "description": "pushTyped(wsServer, channel, target, workspaceId, payload) uses a PushTarget union ({ to: 'workspace' } | { to: 'client'; clientId } | { to: 'broadcast' }) so the server can efficiently unicast, workspace-broadcast, or global-broadcast a single serialized envelope.",
+    "tags": [
+      "websocket",
+      "push",
+      "broadcast",
+      "targeting"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/wsrpcserver-push-target-model.md",
     "has_content": true
   },
   {
@@ -3684,6 +3755,41 @@
   },
   {
     "kind": "knowledge",
+    "name": "workspace-slug-in-url-refactor",
+    "slug": "workspace-slug-in-url-refactor",
+    "category": "decision",
+    "description": "Make the URL the single source of truth for multi-tenant workspace context — not a header, not a store, not localStorage.",
+    "tags": [
+      "multi-tenancy",
+      "url",
+      "routing",
+      "workspace",
+      "architecture"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/workspace-slug-in-url-refactor.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ws-heartbeat-ratio-ping-period",
+    "slug": "ws-heartbeat-ratio-ping-period",
+    "category": "decision",
+    "description": "WebSocket server ping period should be 90% of pong-wait so a missing pong is detected before the next ping is due (e.g. 54s ping / 60s pongWait).",
+    "tags": [
+      "websocket",
+      "heartbeat",
+      "ping-pong",
+      "liveness"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/ws-heartbeat-ratio-ping-period.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3896,6 +4002,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/topresource-immediate-generation-invariant.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "workspace-repo-cache",
+    "slug": "workspace-repo-cache",
+    "category": "domain",
+    "description": "Daemon maintains a per-host repo cache so multiple tasks on the same workspace share a warm clone; new tasks create git worktrees off the cache instead of re-cloning.",
+    "tags": [
+      "git",
+      "cache",
+      "worktree",
+      "daemon",
+      "performance"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/workspace-repo-cache.md",
     "has_content": true
   },
   {
@@ -6644,6 +6768,41 @@
   },
   {
     "kind": "knowledge",
+    "name": "workspace-identity-not-cleared-on-unmount",
+    "slug": "workspace-identity-not-cleared-on-unmount",
+    "category": "pitfall",
+    "description": "A global \"current workspace\" singleton set on route mount must be explicitly cleared before leaving workspace context; unmount does not clear it.",
+    "tags": [
+      "state-management",
+      "workspace",
+      "race-condition",
+      "realtime"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/workspace-identity-not-cleared-on-unmount.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "worktree-cross-clone-adoption-pitfall",
+    "slug": "worktree-cross-clone-adoption-pitfall",
+    "category": "pitfall",
+    "description": "If a user has two clones of the same remote, a naive \"find worktree by branch\" lookup can adopt the wrong clone's worktree into the DB row, silently corrupting state.",
+    "tags": [
+      "git",
+      "worktree",
+      "cross-clone",
+      "adoption",
+      "isolation"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/worktree-cross-clone-adoption-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "yaml-block-scalar-frontmatter-parsing",
     "slug": "yaml-block-scalar-frontmatter-parsing",
     "category": "pitfall",
@@ -6658,6 +6817,56 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/yaml-block-scalar-frontmatter-parsing.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "zero-length-byte-handling",
+    "slug": "zero-length-byte-handling",
+    "category": "pitfall",
+    "description": "Files smaller than min_file_size_for_dl (~8 bytes) bypass the model and use heuristics — they may return generic labels.",
+    "tags": [
+      "magika",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/zero-length-byte-handling.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "zero-value-sentinel-alertmanager-startsat",
+    "slug": "zero-value-sentinel-alertmanager-startsat",
+    "category": "pitfall",
+    "description": "Alertmanager fills the alerts[].startsAt field with \"0001-01-01T00:00:00Z\" (the Go time.Time zero value) when not populated by the upstream alert source — guard with year < 2000 to detect this and fall back to a sensible default.",
+    "tags": [
+      "alertmanager",
+      "time-parsing",
+      "sentinel",
+      "golang"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/zero-value-sentinel-alertmanager-startsat.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "zustand-selector-stable-references",
+    "slug": "zustand-selector-stable-references",
+    "category": "pitfall",
+    "description": "Zustand selectors must return stable references — returning a freshly built object/array on every call triggers infinite re-renders.",
+    "tags": [
+      "zustand",
+      "react",
+      "selector",
+      "infinite-loop",
+      "performance"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/zustand-selector-stable-references.md",
     "has_content": true
   },
   {
@@ -8111,6 +8320,58 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "workspace-directory-convention",
+    "slug": "workspace-directory-convention",
+    "category": "architecture",
+    "description": "Workspace-as-a-directory: a single ~/.craft-agent/workspaces/{id}/ folder holds config.json, automations.json, sessions/, sources/, skills/, statuses/ — every feature reads/writes its own subtree so the workspace is portable in one zip.",
+    "tags": [
+      "config",
+      "workspaces",
+      "directory-layout",
+      "portability"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/workspace-directory-convention",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "workspace-scoped-query-keys",
+    "slug": "workspace-scoped-query-keys",
+    "category": "architecture",
+    "description": "Derive React Query keys from a wsId parameter so switching workspace automatically swaps the cache — no manual invalidation, no cross-tenant leakage.",
+    "tags": [
+      "react-query",
+      "multi-tenancy",
+      "query-keys",
+      "workspace"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/workspace-scoped-query-keys",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "workspace-slug-url-refactor",
+    "slug": "workspace-slug-url-refactor",
+    "category": "architecture",
+    "description": "Migrate a multi-tenant SPA from header-based workspace identity to URL-based (/{slug}/...) to fix shareable links, mobile switching, multi-tab leakage, and mutation side-effect races.",
+    "tags": [
+      "multi-tenancy",
+      "url",
+      "refactor",
+      "routing",
+      "workspace"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/workspace-slug-url-refactor",
     "has_content": false
   },
   {
@@ -10273,6 +10534,24 @@
   },
   {
     "kind": "skill",
+    "name": "ws-rpc-heartbeat-event-buffer",
+    "slug": "ws-rpc-heartbeat-event-buffer",
+    "category": "build",
+    "description": "WebSocket RPC server with per-client heartbeat (ping/pong + missed-count kill) and a ring buffer of recent events per client so a brief disconnect + reconnect can replay pushes instead of dropping them.",
+    "tags": [
+      "websocket",
+      "rpc",
+      "heartbeat",
+      "resumption",
+      "event-buffer"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/ws-rpc-heartbeat-event-buffer",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "cmake-cuda-extension-with-git-submodule-vendoring",
     "slug": "cmake-cuda-extension-with-git-submodule-vendoring",
     "category": "build-system",
@@ -11191,6 +11470,24 @@
   },
   {
     "kind": "skill",
+    "name": "yaml-config-with-templated-dynamic-paths",
+    "slug": "yaml-config-with-templated-dynamic-paths",
+    "category": "configuration",
+    "description": "Load experiment config from YAML, then auto-resolve dependent paths via templates like \"{base}/{exp_name}/tokenizer/best_model\" unless the user overrides.",
+    "tags": [
+      "yaml",
+      "config-loader",
+      "templating",
+      "ml-experiments",
+      "path-resolution"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/configuration/yaml-config-with-templated-dynamic-paths",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "content-type-info-metadata-embedding",
     "slug": "content-type-info-metadata-embedding",
     "category": "data",
@@ -11203,6 +11500,24 @@
     "version": "1.0.0",
     "path": "skills/data/content-type-info-metadata-embedding",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "zip-recursive-subdocument-conversion",
+    "slug": "zip-recursive-subdocument-conversion",
+    "category": "data-pipeline",
+    "description": "Convert a ZIP archive to a single combined markdown document by iterating entries, constructing per-entry StreamInfo from filename+extension, and recursing through the same converter registry for each entry.",
+    "tags": [
+      "data-pipeline",
+      "zip",
+      "recursion",
+      "converter-registry",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/data-pipeline/zip-recursive-subdocument-conversion",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -12872,6 +13187,24 @@
   },
   {
     "kind": "skill",
+    "name": "worktree-env-file-isolation",
+    "slug": "worktree-env-file-isolation",
+    "category": "devops",
+    "description": "Per-git-worktree environment files (.env.worktree) with deterministically derived unique database names and ports, sharing one Postgres container.",
+    "tags": [
+      "git-worktree",
+      "env",
+      "dev-setup",
+      "postgres",
+      "makefile"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/devops/worktree-env-file-isolation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "document-release",
     "slug": "document-release",
     "category": "docs",
@@ -13676,6 +14009,36 @@
   },
   {
     "kind": "skill",
+    "name": "zod-defined-tool-factory",
+    "slug": "zod-defined-tool-factory",
+    "category": "mcp",
+    "description": "Wrap MCP tool definitions in a typed `defineTool` helper so zod schemas drive both runtime validation and the handler's TypeScript param types, with a separate `definePageTool` variant for tools that need a pre-resolved page context.",
+    "tags": [
+      "mcp",
+      "zod",
+      "typescript",
+      "tool-definition",
+      "dx"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/zod-defined-tool-factory",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "writing-skills",
+    "slug": "writing-skills",
+    "category": "meta",
+    "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/meta/writing-skills",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "design-an-interface",
     "slug": "design-an-interface",
     "category": "misc",
@@ -13843,6 +14206,37 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/operations/claude-cli-unattended-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "x11-xrandr-display-enumeration",
+    "slug": "x11-xrandr-display-enumeration",
+    "category": "platform/linux",
+    "description": "X11 XRandR integration for multi-display detection and resolution queries.",
+    "tags": [
+      "display",
+      "enumeration",
+      "linux",
+      "platform",
+      "x11",
+      "xrandr"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/linux/x11-xrandr-display-enumeration",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "writing-plans",
+    "slug": "writing-plans",
+    "category": "process",
+    "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/process/writing-plans",
     "has_content": false
   },
   {
@@ -14369,6 +14763,23 @@
   },
   {
     "kind": "skill",
+    "name": "zustand-store-mock-hoisted",
+    "slug": "zustand-store-mock-hoisted",
+    "category": "testing",
+    "description": "Mock Zustand stores in Vitest using vi.hoisted() + Object.assign so the mock is both callable as a selector hook AND has .getState() static access.",
+    "tags": [
+      "vitest",
+      "zustand",
+      "mocking",
+      "hoisted"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/zustand-store-mock-hoisted",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "comprehensive-gpu-kernel-testing-harness",
     "slug": "comprehensive-gpu-kernel-testing-harness",
     "category": "testing-gpu",
@@ -14421,6 +14832,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/web/content-disposition-filename-fallback",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "ws-cookie-or-first-message-auth",
+    "slug": "ws-cookie-or-first-message-auth",
+    "category": "websocket",
+    "description": "Dual-path WebSocket auth — HttpOnly cookie for browsers, first-message JSON frame for headless clients — with no tokens in the URL.",
+    "tags": [
+      "websocket",
+      "auth",
+      "cookie",
+      "token",
+      "security"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/websocket/ws-cookie-or-first-message-auth",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "ws-query-invalidation-bridge",
+    "slug": "ws-query-invalidation-bridge",
+    "category": "websocket",
+    "description": "Convert WebSocket events into TanStack Query cache invalidations via a per-event-prefix map, so realtime updates never touch stores directly.",
+    "tags": [
+      "websocket",
+      "react-query",
+      "invalidation",
+      "realtime",
+      "pattern"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/websocket/ws-query-invalidation-bridge",
     "has_content": false
   },
   {
@@ -16108,6 +16555,24 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/websocket-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "worktree-isolation-resolver",
+    "slug": "worktree-isolation-resolver",
+    "category": "workflow",
+    "description": "Resolve which git worktree a workflow should run in using an ordered chain (existing ref → same-workflow reuse → linked-issue share → PR branch adoption → create new), each step guarded by worktree-ownership verification against the canonical repo path.",
+    "tags": [
+      "workflow",
+      "worktree",
+      "isolation",
+      "resolver",
+      "cross-clone"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/worktree-isolation-resolver",
     "has_content": false
   },
   {
