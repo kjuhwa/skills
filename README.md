@@ -1,11 +1,12 @@
 # skills-hub
 
-> **Skill & knowledge registry for Claude Code** — 436 reusable skills + 312 knowledge entries + 28 example projects you can install into any project with a single slash command.
+> **Skill & knowledge registry for Claude Code** — 467 reusable skills + 351 knowledge entries + 2 composition techniques + 28 example projects you can install into any project with a single slash command.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Bootstrap](https://img.shields.io/github/v/tag/kjuhwa/skills-hub?filter=bootstrap/v*&label=bootstrap&color=purple)](https://github.com/kjuhwa/skills-hub/tags)
-[![Skills](https://img.shields.io/badge/skills-436-blue)](./index.json)
-[![Knowledge](https://img.shields.io/badge/knowledge-312-green)](./knowledge)
+[![Skills](https://img.shields.io/badge/skills-467-blue)](./index.json)
+[![Knowledge](https://img.shields.io/badge/knowledge-351-green)](./knowledge)
+[![Techniques](https://img.shields.io/badge/techniques-2-teal)](./technique)
 [![Examples](https://img.shields.io/badge/examples-28-orange)](./example)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kjuhwa/skills-hub)
 ![GitHub stars](https://img.shields.io/github/stars/kjuhwa/skills-hub?style=social)
@@ -39,7 +40,8 @@ curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/in
 - 🧰 **Zero-friction installer (v2.6.7–v2.6.11)** — `install.{sh,ps1}` seeds `registry.json` v2 schema, writes `bootstrap.json` from the latest `bootstrap/v*` tag, mkdirs knowledge subcategories + `external/`, inserts the `<skills_hub>` block into `CLAUDE.md`, appends `bin/` to PATH via shell profile, registers the `UserPromptSubmit`/`PreToolUse`/`PostToolUse` hooks in `~/.claude/settings.json`, and runs `precheck.py` once so `/hub-doctor`'s 12 checks all pass on a fresh install. After v2.6.11, `git pull` alone is enough to upgrade — post-merge re-runs `install.sh` whenever `bootstrap/` files change.
 - ♻️ **Self-healing index** — git hooks (post-merge / post-commit / post-checkout) regenerate the L1/L2 corpus index after every mutation so `/hub-find` never goes stale (v2.5.0+).
 - 📦 **Category-separated registry** — 20 canonical skill categories (`apm`, `backend`, `ai`, `arch`, `frontend`, `devops`, `db`, `testing`, `security`, `data`, `cli`, `git`, `debug`, `refactor`, `docs`, `workflow`, `game-dev`, `design`, `mobile`, `misc`), one skill per folder, frontmatter-driven.
-- 🧠 **Two kinds of memory** — executable **skills** (recipes with triggers) + non-executable **knowledge** (facts, decisions, pitfalls) across 6 categories (`api`, `arch`, `decision`, `domain`, `pitfall`, `workflow`).
+- 🧠 **Three kinds of memory** — executable **skills** (recipes with triggers), non-executable **knowledge** (facts, decisions, pitfalls), and composition **techniques** (reusable recipes that reference 2-N atoms without copying them).
+- 🔗 **Technique middle layer (v2.6.14+)** — `technique/<category>/<slug>/TECHNIQUE.md` composes existing skills/knowledge by reference. `composes[]` preserves atom independence (unlike `hub-merge` which absorbs), `loose` semver binding by default, v0 forbids technique-to-technique nesting. Lint rule guards `composes[]` (ref resolution, kind whitelist) at publish time.
 - 🎨 **Example projects** — 28 ready-to-install reference builds under `example/` (dashboards, auth flows, resilience patterns, interactive toys).
 - 🔁 **Round-trip workflow** — extract drafts from a session or full project → review → publish via one PR.
 - 🌐 **Import from anywhere** — `/hub-import <git-url>` pulls skills from external repos (authored or extracted).
@@ -56,6 +58,15 @@ skills/                       # category-separated skill registry
       SKILL.md                # frontmatter + overview (required)
       content.md              # main prompt / knowledge body (required)
       examples/               # optional
+knowledge/                    # non-executable facts, decisions, pitfalls
+  <category>/                 # api, arch, decision, domain, pitfall, schema-design, workflow
+    <slug>.md                 # single file per entry
+technique/                    # v2.6.14+ — composition recipes (references, not copies)
+  <category>/
+    <slug>/
+      TECHNIQUE.md            # frontmatter with composes[] list + body (required)
+      verify.sh               # optional sanity check for composed refs
+      resources/              # optional aux assets
 bootstrap/
   commands/                   # slash-command markdown files (37 total)
     # --- Core 8 (v2.6.0+) ---
@@ -239,6 +250,19 @@ Should report "no skills installed yet" plus the empty registry — proves the h
 | `/hub-status` | Show a compact summary of the skills hub (counts, staleness, health) | no |
 | `/hub-sync [--skill=.. --version=..]` | Refresh cache; bulk update, targeted rollback, or `--unpin` | local |
 | `/hub-remove <name>` | Uninstall a local skill | local |
+
+### Technique Layer (v2.6.14+)
+
+Composition recipes that reference 2-N skills/knowledge without copying them. See `technique/` directory and [the schema draft](./docs/rfc/technique-schema-draft.md).
+
+| Command | Purpose | Writes? |
+|---|---|---|
+| `/hub-technique-compose <slug>` | Interactive authoring — pick atoms, assign roles, generate `TECHNIQUE.md` draft, auto-verify | local drafts |
+| `/hub-technique-verify <slug>\|--all` | Schema §9 gate — composes refs exist, no technique nesting, frontmatter well-formed | no |
+| `/hub-technique-list [--drafts-only\|--installed-only] [--category <cat>]` | List local drafts and installed techniques | no |
+| `/hub-technique-show <slug> [--raw]` | Print body + expand `composes[]` with inline atom descriptions | no |
+| `/hub-find --kind technique <query>` | Search techniques via the main `/hub-find` flow (v2.6.14+) | no |
+| `/hub-find-techniques <query>` | *(deprecated)* Compatibility shim — migrate to `/hub-find --kind technique` | no |
 
 ### AI Pre-implementation Auto-check (opt-in)
 
