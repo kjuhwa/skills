@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: squash-merge-orphans-release-branch-tags
 type: knowledge
 category: decision

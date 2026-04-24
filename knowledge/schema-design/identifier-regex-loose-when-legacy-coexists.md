@@ -1,4 +1,7 @@
 ---
+name: identifier-regex-loose-when-legacy-coexists
+version: 0.1.0-draft
+description: "When legacy and new identifier formats coexist in production data, use loose regex (^MA_.+$) over tight (^MA_.+_\\d{14}$) so OpenAPI spec and runtime reality don't diverge"
 title: "식별자 regex 는 legacy + 신규 포맷이 공존하면 tight 패턴(^MA_.+_\\d{14}$) 대신 loose 패턴(^MA_.+$) 을 써라"
 category: schema-design / validation / openapi
 tags: [regex, identifier-pattern, schema-validation, openapi, legacy-data, pitfall]

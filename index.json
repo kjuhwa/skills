@@ -1,10 +1,10 @@
 [
   {
     "kind": "knowledge",
-    "name": "",
-    "slug": "",
+    "name": "grep-existing-annotations-before-parallel-subagent-dispatch",
+    "slug": "grep-existing-annotations-before-parallel-subagent-dispatch",
     "category": "agent-orchestration / workflow",
-    "description": "",
+    "description": "\"Before parallel-subagent dispatch for bulk annotation work, grep for existing markers so agents don't waste cycles re-verifying already-applied annotations\"",
     "tags": [
       "claude-code",
       "subagent",
@@ -14,7 +14,7 @@
       "efficiency"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch.md",
     "has_content": true
   },
@@ -2866,7 +2866,7 @@
       "bootstrap"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/decision/squash-merge-orphans-release-branch-tags.md",
     "has_content": true
   },
@@ -3230,18 +3230,6 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/topresource-immediate-generation-invariant.md",
-    "has_content": true
-  },
-  {
-    "kind": "knowledge",
-    "name": "",
-    "slug": "",
-    "category": "pitfall",
-    "description": "ResourceMaintenanceJob flattens targetGroupIds / targetTagFilters / targetResourceIds into confInfoIds at only two moments — create/modify and trigger start — so resources joining a targeted group during a RUNNING window get no maintenance flag, no alarm auto-delete, and no end-of-window recovery.",
-    "tags": "",
-    "triggers": [],
-    "version": "",
-    "path": "knowledge/pitfall/cm-maintenance-job-target-snapshot.md",
     "has_content": true
   },
   {
@@ -3677,7 +3665,7 @@
       "silent-failure"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/pitfall/claude-code-slash-command-crlf-breaks-yaml-parser.md",
     "has_content": true
   },
@@ -3710,6 +3698,18 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/claude-plugin-marketplace-owner-required.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "cm-maintenance-job-target-snapshot",
+    "slug": "cm-maintenance-job-target-snapshot",
+    "category": "pitfall",
+    "description": "ResourceMaintenanceJob flattens targetGroupIds / targetTagFilters / targetResourceIds into confInfoIds at only two moments — create/modify and trigger start — so resources joining a targeted group during a RUNNING window get no maintenance flag, no alarm auto-delete, and no end-of-window recovery.",
+    "tags": "",
+    "triggers": [],
+    "version": "0.1.0-draft",
+    "path": "knowledge/pitfall/cm-maintenance-job-target-snapshot.md",
     "has_content": true
   },
   {
@@ -4135,7 +4135,7 @@
       "invariant"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/pitfall/git-reset-hard-bypasses-all-hooks.md",
     "has_content": true
   },
@@ -4884,7 +4884,7 @@
       "silent-failure"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/pitfall/publish-pipelines-must-rebuild-derived-artifacts.md",
     "has_content": true
   },
@@ -5415,7 +5415,7 @@
       "heuristic"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/pitfall/subagent-scan-results-need-sanity-check.md",
     "has_content": true
   },
@@ -5739,7 +5739,7 @@
       "claude-code"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/pitfall/windows-rm-rf-device-busy-retry-pattern.md",
     "has_content": true
   },
@@ -5775,10 +5775,10 @@
   },
   {
     "kind": "knowledge",
-    "name": "",
-    "slug": "",
+    "name": "identifier-regex-loose-when-legacy-coexists",
+    "slug": "identifier-regex-loose-when-legacy-coexists",
     "category": "schema-design / validation / openapi",
-    "description": "",
+    "description": "\"When legacy and new identifier formats coexist in production data, use loose regex (^MA_.+$) over tight (^MA_.+_\\\\d{14}$) so OpenAPI spec and runtime reality don't diverge\"",
     "tags": [
       "regex",
       "identifier-pattern",
@@ -5788,7 +5788,7 @@
       "pitfall"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "knowledge/schema-design/identifier-regex-loose-when-legacy-coexists.md",
     "has_content": true
   },
@@ -11038,7 +11038,7 @@
       "design-doc"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "skills/design/selfcontained-nds-design-doc-html",
     "has_content": false
   },
@@ -13569,7 +13569,7 @@
       "polestar"
     ],
     "triggers": [],
-    "version": "",
+    "version": "0.1.0-draft",
     "path": "skills/workflow/lucida-work-order-to-paired-spec",
     "has_content": false
   },

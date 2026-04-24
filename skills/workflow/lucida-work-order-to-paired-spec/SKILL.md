@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: lucida-work-order-to-paired-spec
 description: 한 개의 작업지시서(.md)에서 specs/{domain}/planning/*.md 기획서와 specs/{domain}/design/*.html 디자인 목업을 함께 생성하는 워크플로우. 기존 specs/kcm/planning 등의 헤더·메타 관례를 먼저 스캔해 일관성을 맞춘다.
 category: workflow

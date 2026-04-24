@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: publish-pipelines-must-rebuild-derived-artifacts
 type: knowledge
 category: pitfall

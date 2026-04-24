@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: git-reset-hard-bypasses-all-hooks
 type: knowledge
 category: pitfall

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: subagent-scan-results-need-sanity-check
 type: knowledge
 category: pitfall

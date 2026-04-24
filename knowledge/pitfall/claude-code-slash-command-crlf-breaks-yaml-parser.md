@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claude-code-slash-command-crlf-breaks-yaml-parser
 type: knowledge
 category: pitfall

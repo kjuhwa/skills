@@ -1,4 +1,7 @@
 ---
+name: grep-existing-annotations-before-parallel-subagent-dispatch
+version: 0.1.0-draft
+description: "Before parallel-subagent dispatch for bulk annotation work, grep for existing markers so agents don't waste cycles re-verifying already-applied annotations"
 title: "병렬 subagent 디스패치 전에 grep 으로 선행 작업 흔적을 확인하라 — 이미 적용된 annotation 을 다시 '검증'하느라 시간 낭비"
 category: agent-orchestration / workflow
 tags: [claude-code, subagent, parallel-dispatch, pre-check, pitfall, efficiency]

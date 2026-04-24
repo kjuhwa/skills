@@ -1,4 +1,6 @@
 ---
+name: cm-maintenance-job-target-snapshot
+version: 0.1.0-draft
 title: Maintenance job target set is a snapshot — resources added to the group mid-run are NOT covered
 category: pitfall
 summary: ResourceMaintenanceJob flattens targetGroupIds / targetTagFilters / targetResourceIds into confInfoIds at only two moments — create/modify and trigger start — so resources joining a targeted group during a RUNNING window get no maintenance flag, no alarm auto-delete, and no end-of-window recovery.
