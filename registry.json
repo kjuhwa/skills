@@ -2409,6 +2409,106 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "variable-substitution-word-boundary": {
+      "category": "workflow",
+      "path": "skills/workflow/variable-substitution-word-boundary/SKILL.md",
+      "version": "1.0.0"
+    },
+    "verification-before-completion": {
+      "category": "engineering",
+      "path": "skills/engineering/verification-before-completion/SKILL.md",
+      "version": "1.0.0"
+    },
+    "version-aware-lora-config-selection": {
+      "category": "training",
+      "path": "skills/training/version-aware-lora-config-selection/SKILL.md",
+      "version": "1.0.0"
+    },
+    "version-bump-inference-from-commit-subjects": {
+      "category": "release",
+      "path": "skills/release/version-bump-inference-from-commit-subjects/SKILL.md",
+      "version": "1.0.0"
+    },
+    "video-codec-enum-trait-dispatch": {
+      "category": "codecs",
+      "path": "skills/codecs/video-codec-enum-trait-dispatch/SKILL.md",
+      "version": "1.0.0"
+    },
+    "video-qos-bitrate-adaptation": {
+      "category": "codecs",
+      "path": "skills/codecs/video-qos-bitrate-adaptation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "virtual-display-driver-dlopen-wrapper": {
+      "category": "platform",
+      "path": "skills/platform/virtual-display-driver-dlopen-wrapper/SKILL.md",
+      "version": "1.0.0"
+    },
+    "visibility-change-cache-refresh": {
+      "category": "workflow",
+      "path": "skills/workflow/visibility-change-cache-refresh/SKILL.md",
+      "version": "1.0.0"
+    },
+    "vision-api-cost-optimization-with-fallback": {
+      "category": "computer-vision",
+      "path": "skills/computer-vision/vision-api-cost-optimization-with-fallback/SKILL.md",
+      "version": "1.0.0"
+    },
+    "vitest-per-package-environments": {
+      "category": "testing",
+      "path": "skills/testing/vitest-per-package-environments/SKILL.md",
+      "version": "1.0.0"
+    },
+    "voice-prompt-md5-two-tier-cache": {
+      "category": "architecture",
+      "path": "skills/architecture/voice-prompt-md5-two-tier-cache/SKILL.md",
+      "version": "1.0.0"
+    },
+    "wait-for-stable-dom-after-action": {
+      "category": "puppeteer",
+      "path": "skills/puppeteer/wait-for-stable-dom-after-action/SKILL.md",
+      "version": "1.0.0"
+    },
+    "wayland-ime-input-method-flags": {
+      "category": "launcher",
+      "path": "skills/launcher/wayland-ime-input-method-flags/SKILL.md",
+      "version": "1.0.0"
+    },
+    "wayland-pipewire-portal-abstraction": {
+      "category": "linux",
+      "path": "skills/linux/wayland-pipewire-portal-abstraction/SKILL.md",
+      "version": "1.0.0"
+    },
+    "wheel-url-download-with-source-fallback": {
+      "category": "build-system",
+      "path": "skills/build-system/wheel-url-download-with-source-fallback/SKILL.md",
+      "version": "1.0.0"
+    },
+    "windows-registry-config-storage": {
+      "category": "windows",
+      "path": "skills/windows/windows-registry-config-storage/SKILL.md",
+      "version": "1.0.0"
+    },
+    "windows-service-control-handler": {
+      "category": "windows",
+      "path": "skills/windows/windows-service-control-handler/SKILL.md",
+      "version": "1.0.0"
+    },
+    "wizard-named-remotes-with-active-pointer": {
+      "category": "cli",
+      "path": "skills/cli/wizard-named-remotes-with-active-pointer/SKILL.md",
+      "version": "1.0.0"
+    },
+    "workflow-condition-evaluator": {
+      "category": "workflow",
+      "path": "skills/workflow/workflow-condition-evaluator/SKILL.md",
+      "version": "1.0.0"
+    },
+    "workspace-aware-zustand-persist": {
+      "category": "architecture",
+      "path": "skills/architecture/workspace-aware-zustand-persist/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4527,126 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "validation-report-format": {
+      "category": "data-pipeline",
+      "path": "knowledge/data-pipeline/validation-report-format.md"
+    },
+    "vcpkg-dependency-management": {
+      "category": "build-system",
+      "path": "knowledge/build-system/vcpkg-dependency-management.md"
+    },
+    "verification-checklist-for-agent-outputs": {
+      "category": "testing",
+      "path": "knowledge/testing/verification-checklist-for-agent-outputs.md"
+    },
+    "verification-code-attempts-rate-limit": {
+      "category": "api",
+      "path": "knowledge/api/verification-code-attempts-rate-limit.md"
+    },
+    "verification-code-dev-master-888888": {
+      "category": "decision",
+      "path": "knowledge/decision/verification-code-dev-master-888888.md"
+    },
+    "video-frame-texture-rendering-plugin": {
+      "category": "flutter",
+      "path": "knowledge/flutter/video-frame-texture-rendering-plugin.md"
+    },
+    "vineflower-fernflower-cli-options-reference": {
+      "category": "reference",
+      "path": "knowledge/reference/vineflower-fernflower-cli-options-reference.md"
+    },
+    "virtual-display-driver-architecture": {
+      "category": "windows",
+      "path": "knowledge/windows/virtual-display-driver-architecture.md"
+    },
+    "virustotal-abuse-ch-integration": {
+      "category": "domain",
+      "path": "knowledge/domain/virustotal-abuse-ch-integration.md"
+    },
+    "voxcpm-lora-target-module-configuration": {
+      "category": "lora",
+      "path": "knowledge/lora/voxcpm-lora-target-module-configuration.md"
+    },
+    "voxcpm-version-evolution": {
+      "category": "config-versioning",
+      "path": "knowledge/config-versioning/voxcpm-version-evolution.md"
+    },
+    "voxcpm2-four-stage-pipeline": {
+      "category": "model-architecture",
+      "path": "knowledge/model-architecture/voxcpm2-four-stage-pipeline.md"
+    },
+    "wal-based-sync-provider": {
+      "category": "mobile-offline-sync",
+      "path": "knowledge/mobile-offline-sync/wal-based-sync-provider.md"
+    },
+    "wayland-compositor-autodetection-limits": {
+      "category": "wayland",
+      "path": "knowledge/wayland/wayland-compositor-autodetection-limits.md"
+    },
+    "wayland-xwayland-compatibility-quirks": {
+      "category": "linux",
+      "path": "knowledge/linux/wayland-xwayland-compatibility-quirks.md"
+    },
+    "websocket-as-execution-boundary-in-desktop-and-web": {
+      "category": "architecture",
+      "path": "knowledge/architecture/websocket-as-execution-boundary-in-desktop-and-web.md"
+    },
+    "websocket-half-open-stale-cache": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/websocket-half-open-stale-cache.md"
+    },
+    "webui-http-handler-composed-with-ws": {
+      "category": "architecture",
+      "path": "knowledge/architecture/webui-http-handler-composed-with-ws.md"
+    },
+    "why-bun-not-node": {
+      "category": "architecture",
+      "path": "knowledge/architecture/why-bun-not-node.md"
+    },
+    "windows-bun-subprocess-program-files": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/windows-bun-subprocess-program-files.md"
+    },
+    "windows-dxgi-memory-leak-mitigation": {
+      "category": "windows",
+      "path": "knowledge/windows/windows-dxgi-memory-leak-mitigation.md"
+    },
+    "windows-enumerateprinters-api-limitation": {
+      "category": "windows",
+      "path": "knowledge/windows/windows-enumerateprinters-api-limitation.md"
+    },
+    "windows-imm32-keyboard-layout-caching": {
+      "category": "input",
+      "path": "knowledge/input/windows-imm32-keyboard-layout-caching.md"
+    },
+    "windows-npx-needs-cmd-c-wrapper": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/windows-npx-needs-cmd-c-wrapper.md"
+    },
+    "windows-onnxruntime-pin-workaround": {
+      "category": "version-quirk",
+      "path": "knowledge/version-quirk/windows-onnxruntime-pin-workaround.md"
+    },
+    "windows-polyglot-claude-code-hooks": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/windows-polyglot-claude-code-hooks.md"
+    },
+    "windows-service-elevation-patterns": {
+      "category": "windows",
+      "path": "knowledge/windows/windows-service-elevation-patterns.md"
+    },
+    "workdir-preserved-for-retry": {
+      "category": "arch",
+      "path": "knowledge/arch/workdir-preserved-for-retry.md"
+    },
+    "worker-pool-two-sided-enable": {
+      "category": "reference",
+      "path": "knowledge/reference/worker-pool-two-sided-enable.md"
+    },
+    "workflow-guide": {
+      "category": "workflow",
+      "path": "knowledge/workflow/workflow-guide.md"
     }
   }
 }
