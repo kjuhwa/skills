@@ -2044,6 +2044,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "hermes-agent-project-structure",
+    "slug": "hermes-agent-project-structure",
+    "category": "architecture",
+    "description": "Reference layout for a tool-heavy LLM agent framework with CLI, gateway, TUI, ACP, and RL environments.",
+    "tags": [
+      "llm-agents",
+      "project-structure",
+      "reference",
+      "python"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/hermes-agent-project-structure.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "ci-gpg-signing-batch-mode-non-interactive",
     "slug": "ci-gpg-signing-batch-mode-non-interactive",
     "category": "ci-cd",
@@ -2114,6 +2131,42 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/clipboard/clipboard-ownership-protocol.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "gop-keyframe-interval-strategy",
+    "slug": "gop-keyframe-interval-strategy",
+    "category": "codecs",
+    "description": "GOP defaults to MAX_GOP (~2-4s) for latency; per-peer config can override.",
+    "tags": [
+      "codecs",
+      "gop",
+      "interval",
+      "keyframe",
+      "strategy"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/codecs/gop-keyframe-interval-strategy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hardware-codec-feature-matrix",
+    "slug": "hardware-codec-feature-matrix",
+    "category": "codecs",
+    "description": "hwcodec backend coverage: Intel QSV (Windows/Linux), NVIDIA NVENC (all platforms), AMD AVC/HEVC (Windows), Android MediaCodec.",
+    "tags": [
+      "codec",
+      "codecs",
+      "feature",
+      "hardware",
+      "matrix"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/codecs/hardware-codec-feature-matrix.md",
     "has_content": true
   },
   {
@@ -2878,6 +2931,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/god-controller-split-by-resource.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-prompt-caching-invariants",
+    "slug": "hermes-prompt-caching-invariants",
+    "category": "decision",
+    "description": "What must not change mid-conversation to keep Anthropic prompt caching valid.",
+    "tags": [
+      "anthropic",
+      "prompt-caching",
+      "invariants",
+      "llm-agents"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/hermes-prompt-caching-invariants.md",
     "has_content": true
   },
   {
@@ -3771,6 +3841,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "google-production-scale-hundreds-billions",
+    "slug": "google-production-scale-hundreds-billions",
+    "category": "domain",
+    "description": "Magika runs at Google scale, processing hundreds of billions of files weekly across Gmail, Drive, and Safe Browsing.",
+    "tags": [
+      "magika",
+      "domain"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/google-production-scale-hundreds-billions.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "mongodb-exclude-system-databases",
     "slug": "mongodb-exclude-system-databases",
     "category": "domain",
@@ -3900,6 +3985,96 @@
   },
   {
     "kind": "knowledge",
+    "name": "godot-networking",
+    "slug": "godot-networking",
+    "category": "engine",
+    "description": "Godot engine reference for the networking module — APIs, patterns, and best practices",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "godot",
+      "engine-reference",
+      "networking"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/godot-networking.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "godot-physics",
+    "slug": "godot-physics",
+    "category": "engine",
+    "description": "Godot engine reference for the physics module — APIs, patterns, and best practices",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "godot",
+      "engine-reference",
+      "physics"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/godot-physics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "godot-rendering",
+    "slug": "godot-rendering",
+    "category": "engine",
+    "description": "Godot engine reference for the rendering module — APIs, patterns, and best practices",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "godot",
+      "engine-reference",
+      "rendering"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/godot-rendering.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "godot-ui",
+    "slug": "godot-ui",
+    "category": "engine",
+    "description": "Godot engine reference for the ui module — APIs, patterns, and best practices",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "godot",
+      "engine-reference",
+      "ui"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/godot-ui.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "godot-version",
+    "slug": "godot-version",
+    "category": "engine",
+    "description": "Godot pinned version reference and knowledge gap registry for CCGS",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "godot",
+      "versioning",
+      "engine-reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/godot-version.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "condition-based-waiting",
     "slug": "condition-based-waiting",
     "category": "engineering",
@@ -3911,6 +4086,42 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/engineering/condition-based-waiting.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-atomic-json-checkpoint",
+    "slug": "hermes-atomic-json-checkpoint",
+    "category": "engineering",
+    "description": "Atomic JSON write pattern for crash-safe checkpoint files — write to .tmp, rename.",
+    "tags": [
+      "json",
+      "atomic-write",
+      "crash-safety",
+      "checkpointing",
+      "python"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engineering/hermes-atomic-json-checkpoint.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-cross-platform-file-lock",
+    "slug": "hermes-cross-platform-file-lock",
+    "category": "engineering",
+    "description": "Cross-platform file locking pattern — fcntl on Unix, msvcrt on Windows, with non-blocking exclusive acquire.",
+    "tags": [
+      "file-lock",
+      "fcntl",
+      "msvcrt",
+      "cross-platform",
+      "concurrency"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engineering/hermes-cross-platform-file-lock.md",
     "has_content": true
   },
   {
@@ -3988,6 +4199,60 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/llm-agents/agent-runner-loop-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "guardrail-execution-model",
+    "slug": "guardrail-execution-model",
+    "category": "llm-agents",
+    "description": "How input, output, and tool guardrails execute — when they run, parallel vs. blocking modes, tripwire semantics, and workflow boundaries.",
+    "tags": [
+      "openai-agents",
+      "guardrails",
+      "safety",
+      "tripwire",
+      "execution-model"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/guardrail-execution-model.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "gui-agent-os-kairos",
+    "slug": "gui-agent-os-kairos",
+    "category": "llm-agents",
+    "description": "OS-Kairos is a GUI agent framework that extends standard action prediction with a confidence scoring mechanism (1-5).",
+    "tags": [
+      "gui-agent",
+      "os-kairos",
+      "qwen2-vl",
+      "human-in-the-loop",
+      "confidence-scoring"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/gui-agent-os-kairos.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "handoff-vs-agent-as-tool",
+    "slug": "handoff-vs-agent-as-tool",
+    "category": "llm-agents",
+    "description": "Decision guide for choosing between handoffs (agent takes over) and agents-as-tools (orchestrator retains control).",
+    "tags": [
+      "openai-agents",
+      "handoffs",
+      "agents-as-tools",
+      "orchestration",
+      "design-decision"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/handoff-vs-agent-as-tool.md",
     "has_content": true
   },
   {
@@ -5079,6 +5344,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/health-check-implementation-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-agent-known-pitfalls",
+    "slug": "hermes-agent-known-pitfalls",
+    "category": "pitfall",
+    "description": "Catalog of real bugs encountered building an LLM agent — each with the pattern that prevents recurrence.",
+    "tags": [
+      "llm-agents",
+      "pitfalls",
+      "bugs",
+      "lessons-learned"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/hermes-agent-known-pitfalls.md",
     "has_content": true
   },
   {
@@ -6793,6 +7075,131 @@
   },
   {
     "kind": "knowledge",
+    "name": "hermes-acp-session-capabilities",
+    "slug": "hermes-acp-session-capabilities",
+    "category": "reference",
+    "description": "ACP (Agent Client Protocol) capability set an agent must support for editor integration — fork, list, resume, models.",
+    "tags": [
+      "acp",
+      "ide-integration",
+      "vs-code",
+      "zed",
+      "protocol"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/hermes-acp-session-capabilities.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-context-engine-plugin-api",
+    "slug": "hermes-context-engine-plugin-api",
+    "category": "reference",
+    "description": "Pluggable context engine interface — swap compression strategies via config.context.engine without touching the agent.",
+    "tags": [
+      "context-engine",
+      "plugin",
+      "llm-agents",
+      "abstraction"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/hermes-context-engine-plugin-api.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-contextvars-session-identity",
+    "slug": "hermes-contextvars-session-identity",
+    "category": "reference",
+    "description": "Use ContextVars (not os.environ) for session identity when agent turns run concurrently in threads.",
+    "tags": [
+      "contextvars",
+      "concurrency",
+      "session",
+      "python",
+      "thread-safety"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/hermes-contextvars-session-identity.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-cron-job-schema",
+    "slug": "hermes-cron-job-schema",
+    "category": "reference",
+    "description": "JSON schema for agent-scheduled jobs — recurrence, delivery, pre-run scripts, skill invocation.",
+    "tags": [
+      "cron",
+      "schema",
+      "scheduling",
+      "llm-agents",
+      "delivery"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/hermes-cron-job-schema.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-hook-system-yaml-handler",
+    "slug": "hermes-hook-system-yaml-handler",
+    "category": "reference",
+    "description": "Lifecycle event hook system — discover HOOK.yaml + handler.py dirs, fire events, errors don't block.",
+    "tags": [
+      "hooks",
+      "events",
+      "lifecycle",
+      "plugins",
+      "python"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/hermes-hook-system-yaml-handler.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-profile-isolation-hermes-home",
+    "slug": "hermes-profile-isolation-hermes-home",
+    "category": "reference",
+    "description": "Multi-instance isolation pattern — one HERMES_HOME env var scopes all state, credentials, and sessions.",
+    "tags": [
+      "profiles",
+      "multi-tenant",
+      "environment-variables",
+      "isolation",
+      "python"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/hermes-profile-isolation-hermes-home.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "hermes-skin-engine-cli-theming",
+    "slug": "hermes-skin-engine-cli-theming",
+    "category": "reference",
+    "description": "Data-driven CLI theming — banner colors, spinner faces, branding labels, all via drop-in YAML.",
+    "tags": [
+      "cli",
+      "theming",
+      "yaml",
+      "ux",
+      "rich"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/hermes-skin-engine-cli-theming.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6964,6 +7371,18 @@
   },
   {
     "kind": "skill",
+    "name": "help",
+    "slug": "help",
+    "category": "",
+    "description": "\"Analyzes what is done and the users query and offers advice on what to do next. Use if user says what should I do next or what do I do now or I'm stuck or I don't know what to do\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/meta/help",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "alert-time-window-with-buffer",
     "slug": "alert-time-window-with-buffer",
     "category": "agent-sdk",
@@ -6994,6 +7413,23 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agent-sdk/claude-agent-sdk-multi-provider-bridge",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "healthy-short-circuit-skip-llm",
+    "slug": "healthy-short-circuit-skip-llm",
+    "category": "agent-sdk",
+    "description": "Bypass an expensive LLM diagnosis when an alert is provably healthy (resolved/info severity, no error annotations, evidence-investigated-and-empty), guarded behind an env-var kill switch in case the heuristic misfires.",
+    "tags": [
+      "optimization",
+      "short-circuit",
+      "llm-cost",
+      "healthy-finding"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/healthy-short-circuit-skip-llm",
     "has_content": false
   },
   {
@@ -8111,6 +8547,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "handler-dispatch-pattern-with-tool-callbacks",
+    "slug": "handler-dispatch-pattern-with-tool-callbacks",
+    "category": "architecture",
+    "description": "Minimal agent tool-dispatch pattern with before/after hooks, turn-end callback, and generator-based streaming outcomes.",
+    "tags": [
+      "llm-agents",
+      "architecture",
+      "middleware",
+      "dispatch",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/handler-dispatch-pattern-with-tool-callbacks",
     "has_content": false
   },
   {
@@ -10292,6 +10746,24 @@
   },
   {
     "kind": "skill",
+    "name": "hash-based-worktree-port",
+    "slug": "hash-based-worktree-port",
+    "category": "bun",
+    "description": "Deterministically pick a unique TCP port per git-worktree path by hashing the path to a fixed offset range, so parallel dev servers don't collide.",
+    "tags": [
+      "bun",
+      "worktree",
+      "port-allocation",
+      "dev-server",
+      "determinism"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/bun/hash-based-worktree-port",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "autoplan",
     "slug": "autoplan",
     "category": "cli",
@@ -11191,6 +11663,24 @@
   },
   {
     "kind": "skill",
+    "name": "hardware-codec-fallback-strategy",
+    "slug": "hardware-codec-fallback-strategy",
+    "category": "codecs",
+    "description": "Graceful fallback from hwcodec (NVENC/QSV) to software codecs (VP9/AOM) gated by feature flags + runtime probe.",
+    "tags": [
+      "codec",
+      "codecs",
+      "fallback",
+      "hardware",
+      "strategy"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codecs/hardware-codec-fallback-strategy",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "content-type-info-metadata-embedding",
     "slug": "content-type-info-metadata-embedding",
     "category": "data",
@@ -11203,6 +11693,23 @@
     "version": "1.0.0",
     "path": "skills/data/content-type-info-metadata-embedding",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "graceful-jsonl-parsing-with-error-skip",
+    "slug": "graceful-jsonl-parsing-with-error-skip",
+    "category": "data-pipeline",
+    "description": "Parse JSONL files gracefully, skipping corrupt lines without failing the whole read",
+    "tags": [
+      "evolver",
+      "data-pipeline",
+      "jsonl",
+      "resilience"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/data-pipeline/graceful-jsonl-parsing-with-error-skip",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -12668,6 +13175,25 @@
   },
   {
     "kind": "skill",
+    "name": "goreleaser-cli-homebrew-pipeline",
+    "slug": "goreleaser-cli-homebrew-pipeline",
+    "category": "devops",
+    "description": "Tag-triggered GitHub Actions workflow that runs Go tests, uses GoReleaser to build multi-platform CLI binaries, then publishes to GitHub Releases and a Homebrew tap.",
+    "tags": [
+      "go",
+      "goreleaser",
+      "homebrew",
+      "cli",
+      "github-actions",
+      "release"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/devops/goreleaser-cli-homebrew-pipeline",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "gradle-bootrun-local-dev-env",
     "slug": "gradle-bootrun-local-dev-env",
     "category": "devops",
@@ -12721,6 +13247,24 @@
     "version": "1.0.0",
     "path": "skills/devops/gradle-shared-exclusions-jacoco-sonar",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-docker-user-remap-volume",
+    "slug": "hermes-docker-user-remap-volume",
+    "category": "devops",
+    "description": "Docker entrypoint that remaps non-root UID/GID to match host volume ownership and bootstraps config files.",
+    "tags": [
+      "docker",
+      "uid-gid",
+      "entrypoint",
+      "gosu",
+      "rootless"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/devops/hermes-docker-user-remap-volume",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -13676,6 +14220,271 @@
   },
   {
     "kind": "skill",
+    "name": "gradio-spaces-demo-deploy",
+    "slug": "gradio-spaces-demo-deploy",
+    "category": "llm-agents",
+    "description": "Deploy a fine-tuned Transformers model as a Gradio web interface and push it to HuggingFace Spaces.",
+    "tags": [
+      "gradio",
+      "huggingface-spaces",
+      "demo"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/gradio-spaces-demo-deploy",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "gui-agent-sft-qwen2vl-os-kairos",
+    "slug": "gui-agent-sft-qwen2vl-os-kairos",
+    "category": "llm-agents",
+    "description": "SFT Qwen2-VL-7B on the OS-Kairos GUI dataset using LLaMA-Factory, converting data to ShareGPT format, and running inference.",
+    "tags": [
+      "gui-agent",
+      "qwen2-vl",
+      "sft",
+      "llamafactory",
+      "os-kairos"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/gui-agent-sft-qwen2vl-os-kairos",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "handoff-input-filter",
+    "slug": "handoff-input-filter",
+    "category": "llm-agents",
+    "description": "Filter or transform the conversation history passed to a specialist agent on handoff.",
+    "tags": [
+      "openai-agents",
+      "handoffs",
+      "input-filter",
+      "history",
+      "context-pruning"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/handoff-input-filter",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "handoff-with-typed-input",
+    "slug": "handoff-with-typed-input",
+    "category": "llm-agents",
+    "description": "Provide structured data from the LLM to an on_handoff callback via input_type on handoff().",
+    "tags": [
+      "openai-agents",
+      "handoffs",
+      "typed-input",
+      "pydantic",
+      "on-handoff"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/handoff-with-typed-input",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-acp-agent-server",
+    "slug": "hermes-acp-agent-server",
+    "category": "llm-agents",
+    "description": "Expose an LLM agent via the Agent Client Protocol (VS Code / Zed / JetBrains) with per-session state and MCP injection.",
+    "tags": [
+      "llm-agents",
+      "acp",
+      "ide-integration",
+      "mcp",
+      "session"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-acp-agent-server",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-anthropic-prompt-cache-system-and-3",
+    "slug": "hermes-anthropic-prompt-cache-system-and-3",
+    "category": "llm-agents",
+    "description": "Place Anthropic 4 cache_control breakpoints as system + last 3 messages so multi-turn chats keep a hot cache.",
+    "tags": [
+      "llm-agents",
+      "anthropic",
+      "prompt-caching",
+      "cost-optimization"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-anthropic-prompt-cache-system-and-3",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-background-process-registry",
+    "slug": "hermes-background-process-registry",
+    "category": "llm-agents",
+    "description": "Track LLM-spawned background processes with rolling output buffers, watch patterns, PTY support, and crash recovery.",
+    "tags": [
+      "llm-agents",
+      "background-process",
+      "terminal",
+      "pty",
+      "checkpoint"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-background-process-registry",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-central-command-registry",
+    "slug": "hermes-central-command-registry",
+    "category": "llm-agents",
+    "description": "One CommandDef list feeding CLI dispatch, gateway help, Telegram menu, Slack subcommands, autocomplete.",
+    "tags": [
+      "llm-agents",
+      "cli",
+      "slash-commands",
+      "single-source-of-truth",
+      "registry"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-central-command-registry",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-context-compression-handoff",
+    "slug": "hermes-context-compression-handoff",
+    "category": "llm-agents",
+    "description": "Compress long agent conversations with a handoff-framed summary that prevents re-answering resolved turns.",
+    "tags": [
+      "llm-agents",
+      "context-compression",
+      "summarization",
+      "long-context"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-context-compression-handoff",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-credential-pool-failover",
+    "slug": "hermes-credential-pool-failover",
+    "category": "llm-agents",
+    "description": "Persistent multi-credential pool for same-provider failover with 429/402 cooldowns and strategy selection.",
+    "tags": [
+      "llm-agents",
+      "credentials",
+      "rate-limit",
+      "failover",
+      "providers"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-credential-pool-failover",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-cron-agent-scheduler",
+    "slug": "hermes-cron-agent-scheduler",
+    "category": "llm-agents",
+    "description": "Run an LLM agent on a cron schedule with inactivity timeout, silent marker, and cross-platform delivery.",
+    "tags": [
+      "llm-agents",
+      "cron",
+      "scheduling",
+      "delivery",
+      "timeout"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-cron-agent-scheduler",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-delegate-subagent",
+    "slug": "hermes-delegate-subagent",
+    "category": "llm-agents",
+    "description": "Spawn child LLM agents with restricted toolsets, isolated context, and summary-only parent feedback.",
+    "tags": [
+      "llm-agents",
+      "subagent",
+      "delegation",
+      "parallelism",
+      "context-isolation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-delegate-subagent",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-self-registering-tool-registry",
+    "slug": "hermes-self-registering-tool-registry",
+    "category": "llm-agents",
+    "description": "Build an LLM tool registry where each tool file calls registry.register() at import so discovery is automatic.",
+    "tags": [
+      "llm-agents",
+      "tool-use",
+      "registry",
+      "python",
+      "plugins"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-self-registering-tool-registry",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-skill-manifest-sync",
+    "slug": "hermes-skill-manifest-sync",
+    "category": "llm-agents",
+    "description": "Sync bundled skill files to user dir while preserving customizations via origin-hash manifest.",
+    "tags": [
+      "llm-agents",
+      "skills",
+      "manifest",
+      "sync",
+      "idempotent"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-skill-manifest-sync",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-smart-model-routing",
+    "slug": "hermes-smart-model-routing",
+    "category": "llm-agents",
+    "description": "Route simple user messages to a cheap model with conservative keyword/length heuristics.",
+    "tags": [
+      "llm-agents",
+      "model-routing",
+      "cost-optimization",
+      "heuristics"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/hermes-smart-model-routing",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "design-an-interface",
     "slug": "design-an-interface",
     "category": "misc",
@@ -13972,6 +14781,24 @@
   },
   {
     "kind": "skill",
+    "name": "guardrail-engine-redact-block-audit",
+    "slug": "guardrail-engine-redact-block-audit",
+    "category": "safety",
+    "description": "Scan LLM-bound text against a YAML rule set with three actions (redact, block, audit), splice replacements in reverse so earlier positions stay valid, raise a typed error on block, and append a JSONL audit entry for every match.",
+    "tags": [
+      "guardrails",
+      "redaction",
+      "audit",
+      "yaml-rules",
+      "llm-safety"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/guardrail-engine-redact-block-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "aes256gcm-machineid-credential-store",
     "slug": "aes256gcm-machineid-credential-store",
     "category": "security",
@@ -14023,6 +14850,23 @@
   },
   {
     "kind": "skill",
+    "name": "gpt2-text-steganography-huffman-flc",
+    "slug": "gpt2-text-steganography-huffman-flc",
+    "category": "security",
+    "description": "Embed secret bits into GPT-2 generated text using Huffman or Fixed-Length Coding steganography.",
+    "tags": [
+      "steganography",
+      "gpt-2",
+      "huffman",
+      "flc"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/gpt2-text-steganography-huffman-flc",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "guard",
     "slug": "guard",
     "category": "security",
@@ -14036,6 +14880,24 @@
     "triggers": [],
     "version": "0.1.0",
     "path": "skills/security/guard",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "hermes-dangerous-command-approval-patterns",
+    "slug": "hermes-dangerous-command-approval-patterns",
+    "category": "security",
+    "description": "Regex patterns and approval flow for blocking agent-issued destructive shell commands.",
+    "tags": [
+      "security",
+      "shell-safety",
+      "approval",
+      "agent-terminal",
+      "guardrails"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/hermes-dangerous-command-approval-patterns",
     "has_content": false
   },
   {
@@ -14421,6 +15283,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/web/content-disposition-filename-fallback",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "gorilla-websocket-hub-rooms",
+    "slug": "gorilla-websocket-hub-rooms",
+    "category": "websocket",
+    "description": "Go WebSocket hub organizing clients by room (workspace/channel) with ping/pong heartbeat, slow-client ejection, and origin check.",
+    "tags": [
+      "go",
+      "websocket",
+      "gorilla",
+      "hub",
+      "realtime"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/websocket/gorilla-websocket-hub-rooms",
     "has_content": false
   },
   {
