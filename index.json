@@ -3,7 +3,7 @@
     "kind": "knowledge",
     "name": "grep-existing-annotations-before-parallel-subagent-dispatch",
     "slug": "grep-existing-annotations-before-parallel-subagent-dispatch",
-    "category": "agent-orchestration / workflow",
+    "category": "agent-orchestration",
     "description": "\"Before parallel-subagent dispatch for bulk annotation work, grep for existing markers so agents don't waste cycles re-verifying already-applied annotations\"",
     "tags": [
       "claude-code",
@@ -5777,7 +5777,7 @@
     "kind": "knowledge",
     "name": "identifier-regex-loose-when-legacy-coexists",
     "slug": "identifier-regex-loose-when-legacy-coexists",
-    "category": "schema-design / validation / openapi",
+    "category": "schema-design",
     "description": "\"When legacy and new identifier formats coexist in production data, use loose regex (^MA_.+$) over tight (^MA_.+_\\\\d{14}$) so OpenAPI spec and runtime reality don't diverge\"",
     "tags": [
       "regex",
