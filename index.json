@@ -929,6 +929,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "mcp-stdio-child-of-daemon-topology",
+    "slug": "mcp-stdio-child-of-daemon-topology",
+    "category": "arch",
+    "description": "The chrome-devtools-mcp daemon architecture is a 3-process chain — CLI client talks to a daemon over a socket, and the daemon spawns the real MCP stdio server as a child and connects to it with an MCP Client. This keeps \"MCP stdio transport\" as the only server protocol while adding CLI-level persistence.",
+    "tags": [
+      "daemon",
+      "mcp",
+      "stdio",
+      "architecture",
+      "ipc"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/mcp-stdio-child-of-daemon-topology.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "mf-cross-remote-import-forbidden",
     "slug": "mf-cross-remote-import-forbidden",
     "category": "arch",
@@ -978,6 +996,66 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/arch/mf-shared-singleton-config.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "model-api-contract-sync-and-async",
+    "slug": "model-api-contract-sync-and-async",
+    "category": "arch",
+    "description": "Rust API exposes both SyncInput and AsyncInput traits so callers can pick blocking or async without two libraries.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/model-api-contract-sync-and-async.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "model-generation-tooling-in-rust-gen",
+    "slug": "model-generation-tooling-in-rust-gen",
+    "category": "arch",
+    "description": "rust/gen/ contains code generators for new model versions — sync.sh and publish.sh automate the propagation.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/model-generation-tooling-in-rust-gen.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "model-not-used-for-edge-cases",
+    "slug": "model-not-used-for-edge-cases",
+    "category": "arch",
+    "description": "The deep learning model is intentionally bypassed for empty files, directories, symlinks, and very small files (<8 bytes).",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/model-not-used-for-edge-cases.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "model-variants-standard-fast-begonly",
+    "slug": "model-variants-standard-fast-begonly",
+    "category": "arch",
+    "description": "Magika ships standard / fast / begonly model variants with different speed-vs-accuracy tradeoffs.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/model-variants-standard-fast-begonly.md",
     "has_content": true
   },
   {
@@ -2044,6 +2122,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "mcp-pool-vs-direct-connections",
+    "slug": "mcp-pool-vs-direct-connections",
+    "category": "architecture",
+    "description": "Why Craft Agents centralizes MCP source connections in a McpClientPool exposed as a single Streamable-HTTP endpoint to SDK subprocesses, instead of letting each subprocess connect independently.",
+    "tags": [
+      "mcp",
+      "pool",
+      "subprocess",
+      "streamable-http"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/mcp-pool-vs-direct-connections.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "ci-gpg-signing-batch-mode-non-interactive",
     "slug": "ci-gpg-signing-batch-mode-non-interactive",
     "category": "ci-cd",
@@ -2114,6 +2209,24 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/clipboard/clipboard-ownership-protocol.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "multi-audio-resampling-backends",
+    "slug": "multi-audio-resampling-backends",
+    "category": "codecs",
+    "description": "Resampling backends: Dasp (pure Rust, slow), Rubato (FFT, faster), SampleRate (libsamplerate, fastest).",
+    "tags": [
+      "audio",
+      "backends",
+      "codecs",
+      "multi",
+      "resampling"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/codecs/multi-audio-resampling-backends.md",
     "has_content": true
   },
   {
@@ -2438,6 +2551,24 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/configuration/config-system-four-tiers.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "memory-graph-adaptive-query-with-recency",
+    "slug": "memory-graph-adaptive-query-with-recency",
+    "category": "data-pipeline",
+    "description": "Query agent memory as a DAG, prioritize recency, cap nodes, merge related events",
+    "tags": [
+      "evolver",
+      "data-pipeline",
+      "memory-graph",
+      "llm-context",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/data-pipeline/memory-graph-adaptive-query-with-recency.md",
     "has_content": true
   },
   {
@@ -3157,6 +3288,22 @@
   },
   {
     "kind": "knowledge",
+    "name": "monorepo-subpath-exports-over-barrel-index",
+    "slug": "monorepo-subpath-exports-over-barrel-index",
+    "category": "decision",
+    "description": "T3Code uses explicit subpath exports (e.g., `@t3tools/shared/git`) instead of a single `index.ts` to reduce bundle size and improve tree-shaking",
+    "tags": [
+      "monorepo",
+      "design",
+      "exports"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/monorepo-subpath-exports-over-barrel-index.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "node-npm-pin-matches-jenkins",
     "slug": "node-npm-pin-matches-jenkins",
     "category": "decision",
@@ -3771,6 +3918,36 @@
   },
   {
     "kind": "knowledge",
+    "name": "model-output-space-vs-tool-output-space",
+    "slug": "model-output-space-vs-tool-output-space",
+    "category": "domain",
+    "description": "The 'model output space' (216 NN labels in standard_v3_3) is a strict subset of the 'tool output space' (model outputs + 5 generic labels).",
+    "tags": [
+      "magika",
+      "domain"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/model-output-space-vs-tool-output-space.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "model-trained-on-100m-samples",
+    "slug": "model-trained-on-100m-samples",
+    "category": "domain",
+    "description": "Magika's standard models are trained on ~100M files spanning 200+ content types.",
+    "tags": [
+      "magika",
+      "domain"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/model-trained-on-100m-samples.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "mongodb-exclude-system-databases",
     "slug": "mongodb-exclude-system-databases",
     "category": "domain",
@@ -3900,6 +4077,66 @@
   },
   {
     "kind": "knowledge",
+    "name": "menu-bar-visibility-modes-linux-workaround",
+    "slug": "menu-bar-visibility-modes-linux-workaround",
+    "category": "electron-packaging",
+    "description": "Electron's `autoHideMenuBar` on Linux causes layout shifts on Alt keypress in DEs like KDE Plasma; a three-mode env var (`auto`/`visible`/`hidden`) with boolean aliases gives users control, and `hidden` mode suppresses the Alt toggle by re-hiding on every `show` event.",
+    "tags": [
+      "electron",
+      "menu-bar",
+      "linux",
+      "kde",
+      "wayland",
+      "autoHideMenuBar",
+      "ux",
+      "env-var"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/electron-packaging/menu-bar-visibility-modes-linux-workaround.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "minified-electron-regex-patching-gotchas",
+    "slug": "minified-electron-regex-patching-gotchas",
+    "category": "electron-packaging",
+    "description": "Minified variable names in Electron bundles change with every release; patches must use optional-whitespace regexes with the `-E` flag and test against both minified and beautified spacing to remain stable across updates.",
+    "tags": [
+      "electron",
+      "minification",
+      "regex",
+      "sed",
+      "patching",
+      "build"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/electron-packaging/minified-electron-regex-patching-gotchas.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "minified-js-ast-anchor-extraction",
+    "slug": "minified-js-ast-anchor-extraction",
+    "category": "electron-packaging",
+    "description": "When patching minified JavaScript you cannot rely on line numbers or variable names; instead anchor on stable string literals (error messages, log strings, property names) and extract surrounding minified variable names via regex capture groups.",
+    "tags": [
+      "minification",
+      "javascript",
+      "regex",
+      "patching",
+      "anchors",
+      "variable-extraction",
+      "build"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/electron-packaging/minified-js-ast-anchor-extraction.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "condition-based-waiting",
     "slug": "condition-based-waiting",
     "category": "engineering",
@@ -3911,6 +4148,25 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/engineering/condition-based-waiting.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "multi-language-i18n-compile-time-generation",
+    "slug": "multi-language-i18n-compile-time-generation",
+    "category": "i18n",
+    "description": "i18n via compile-time code generation for 47 languages under src/lang/{ar,be,bg,...}.rs.",
+    "tags": [
+      "compile",
+      "generation",
+      "i18n",
+      "language",
+      "multi",
+      "time"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/i18n/multi-language-i18n-compile-time-generation.md",
     "has_content": true
   },
   {
@@ -3988,6 +4244,99 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/llm-agents/agent-runner-loop-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "mcp-integration-guide",
+    "slug": "mcp-integration-guide",
+    "category": "llm-agents",
+    "description": "How to integrate MCP servers with OpenAI Agents SDK — transport options, tool filtering, caching, and hosted vs. local execution.",
+    "tags": [
+      "openai-agents",
+      "mcp",
+      "model-context-protocol",
+      "transport",
+      "hosted",
+      "stdio",
+      "sse"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/mcp-integration-guide.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "mlx-kv-cache-trimmability",
+    "slug": "mlx-kv-cache-trimmability",
+    "category": "llm-agents",
+    "description": "Which MLX KV caches support trim() and which don't — attention-based caches are trimmable by slicing; GatedDeltaNet state is not, and speculative decoding on Qwen3.5 MoE has to replay accepted inputs to roll back.",
+    "tags": [
+      "mlx",
+      "kv-cache",
+      "gated-delta",
+      "speculative-decoding",
+      "qwen3"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/mlx-kv-cache-trimmability.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "multi-agent-orchestration-patterns",
+    "slug": "multi-agent-orchestration-patterns",
+    "category": "llm-agents",
+    "description": "Taxonomy of orchestration patterns in the OpenAI Agents SDK — LLM-driven vs. code-driven, with tradeoffs.",
+    "tags": [
+      "openai-agents",
+      "orchestration",
+      "patterns",
+      "multi-agent",
+      "design"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/multi-agent-orchestration-patterns.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "multi-llm-provider-trade-offs",
+    "slug": "multi-llm-provider-trade-offs",
+    "category": "llm-model-routing",
+    "description": "OpenSRE supports 8 LLM providers (Anthropic native, OpenAI, OpenRouter, Gemini, NVIDIA NIM, Minimax, Ollama, Bedrock) by routing through one of three client classes (Anthropic, OpenAI-compatible, Bedrock-via-Anthropic-SDK) — a useful pattern for cross-provider portability with provider-specific quirks contained.",
+    "tags": [
+      "llm",
+      "providers",
+      "anthropic",
+      "openai",
+      "ollama",
+      "bedrock"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/multi-llm-provider-trade-offs.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "mega-moe-imbalance-factor-for-uneven-routing",
+    "slug": "mega-moe-imbalance-factor-for-uneven-routing",
+    "category": "moe-optimization",
+    "description": "Mega MoE sizes per-expert work assuming a 2x token-imbalance factor. If actual routing skew exceeds that, users must override mk_alignment_for_contiguous_layout.",
+    "tags": [
+      "moe",
+      "load-balancing",
+      "kernel-tuning",
+      "top-k",
+      "distributed-systems"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/moe-optimization/mega-moe-imbalance-factor-for-uneven-routing.md",
     "has_content": true
   },
   {
@@ -6824,6 +7173,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "mcp-localhost-bind-default-warn-on-expose",
+    "slug": "mcp-localhost-bind-default-warn-on-expose",
+    "category": "security",
+    "description": "MCP HTTP servers should default to 127.0.0.1, fail fast if --host/--port are used without --http, and emit a loud stderr warning when the operator explicitly binds to a non-localhost interface.",
+    "tags": [
+      "mcp",
+      "security",
+      "network-binding",
+      "unauthenticated",
+      "defaults"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/mcp-localhost-bind-default-warn-on-expose.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "agent-qa-tester",
     "slug": "agent-qa-tester",
     "category": "testing",
@@ -6857,6 +7224,21 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/testing/agent-test-spec-template.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "model-version-compatibility-major-version",
+    "slug": "model-version-compatibility-major-version",
+    "category": "version-quirk",
+    "description": "Major model version bumps (v1 → v2 → v3) change the output space and are not transparently backwards-compatible.",
+    "tags": [
+      "magika",
+      "version-quirk"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/version-quirk/model-version-compatibility-major-version.md",
     "has_content": true
   },
   {
@@ -6960,6 +7342,18 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/qa/content-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "milestone-review",
+    "slug": "milestone-review",
+    "category": "",
+    "description": "\"Generates a comprehensive milestone progress review including feature completeness, quality metrics, risk assessment, and go/no-go recommendation. Use at milestone checkpoints or when evaluating readiness for a milestone deadline.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/milestone-review",
     "has_content": false
   },
   {
@@ -7082,6 +7476,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/coding-agent-cli-backend-interface",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "model-retry-settings",
+    "slug": "model-retry-settings",
+    "category": "agents",
+    "description": "Configure exponential backoff and retry policy for transient model API errors.",
+    "tags": [
+      "openai-agents",
+      "retry",
+      "backoff",
+      "resilience",
+      "model-settings"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/model-retry-settings",
     "has_content": false
   },
   {
@@ -8111,6 +8523,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "ml-model-config-registry-dispatch",
+    "slug": "ml-model-config-registry-dispatch",
+    "category": "architecture",
+    "description": "Centralize per-engine ML model configuration in a declarative registry so route, service, and backend layers stay free of if/elif chains.",
+    "tags": [
+      "architecture",
+      "registry",
+      "ml-models",
+      "dispatch",
+      "configuration"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/ml-model-config-registry-dispatch",
     "has_content": false
   },
   {
@@ -10256,6 +10686,21 @@
   },
   {
     "kind": "skill",
+    "name": "multi-language-onnx-model-binding",
+    "slug": "multi-language-onnx-model-binding",
+    "category": "bindings",
+    "description": "Expose one ONNX model across Rust (ort), Python (onnxruntime+maturin), JS (TensorFlow.js), and Go (CGO) bindings.",
+    "tags": [
+      "magika",
+      "bindings"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/bindings/multi-language-onnx-model-binding",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "coverage-data-file-under-pytest-cache",
     "slug": "coverage-data-file-under-pytest-cache",
     "category": "build",
@@ -10288,6 +10733,23 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/build-system/cmake-cuda-extension-with-git-submodule-vendoring",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multi-platform-desktop-release-workflow-github-actions",
+    "slug": "multi-platform-desktop-release-workflow-github-actions",
+    "category": "ci",
+    "description": "Build and sign desktop apps (macOS, Windows, Linux) from a single CI workflow with conditional code-signing",
+    "tags": [
+      "ci",
+      "release",
+      "desktop",
+      "github-actions"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ci/multi-platform-desktop-release-workflow-github-actions",
     "has_content": false
   },
   {
@@ -10851,6 +11313,24 @@
   },
   {
     "kind": "skill",
+    "name": "multi-backend-argparse-dispatcher",
+    "slug": "multi-backend-argparse-dispatcher",
+    "category": "cli",
+    "description": "Single argparse CLI that dispatches to per-backend implementations (transformers / sglang / vllm / mlx) by required --backend choice, with post-parse cross-flag validation.",
+    "tags": [
+      "argparse",
+      "cli",
+      "dispatch",
+      "multi-backend",
+      "validation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/multi-backend-argparse-dispatcher",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "office-hours",
     "slug": "office-hours",
     "category": "cli",
@@ -11191,6 +11671,25 @@
   },
   {
     "kind": "skill",
+    "name": "multi-llm-provider-router-by-env",
+    "slug": "multi-llm-provider-router-by-env",
+    "category": "configuration",
+    "description": "One factory function dispatches to the right LLM client based on a single LLM_PROVIDER env var, picking provider-specific base URL, env-var name for the API key, model id, and parameter quirks (e.g. max_completion_tokens for o1/gpt-5).",
+    "tags": [
+      "llm",
+      "provider-routing",
+      "anthropic",
+      "openai",
+      "ollama",
+      "bedrock"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/configuration/multi-llm-provider-router-by-env",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "content-type-info-metadata-embedding",
     "slug": "content-type-info-metadata-embedding",
     "category": "data",
@@ -11203,6 +11702,38 @@
     "version": "1.0.0",
     "path": "skills/data/content-type-info-metadata-embedding",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "model-config-min-json-compact-format",
+    "slug": "model-config-min-json-compact-format",
+    "category": "data",
+    "description": "Distribute model config as compact JSON (config.min.json) alongside the .onnx file so package size stays small and parsing is universal.",
+    "tags": [
+      "magika",
+      "data"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/data/model-config-min-json-compact-format",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "memory-fragment-sizing-for-llm-input",
+    "slug": "memory-fragment-sizing-for-llm-input",
+    "category": "data-pipeline",
+    "description": "Chunk memory into fragments respecting LLM token budget, per-file and per-session limits",
+    "tags": [
+      "evolver",
+      "data-pipeline",
+      "llm",
+      "context-budget"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/data-pipeline/memory-fragment-sizing-for-llm-input",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -12972,6 +13503,43 @@
   },
   {
     "kind": "skill",
+    "name": "multi-instance-electron-dev",
+    "slug": "multi-instance-electron-dev",
+    "category": "electron",
+    "description": "Run multiple independent dev instances of the same Electron app on one machine by deriving port, config dir, app name, and deep-link scheme from a numeric suffix on the project folder name.",
+    "tags": [
+      "electron",
+      "dev",
+      "multi-instance",
+      "deep-links"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron/multi-instance-electron-dev",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "minified-js-variable-extraction-dynamic",
+    "slug": "minified-js-variable-extraction-dynamic",
+    "category": "electron-packaging",
+    "description": "Extract minified variable or function names from bundled JavaScript via regex capture groups anchored on stable string literals. Compose per-release sed patches using the extracted names. Handles $ prefixes from minifiers and optional whitespace in both minified and beautified forms.",
+    "tags": [
+      "minified-js",
+      "variable-extraction",
+      "regex",
+      "sed",
+      "electron",
+      "patching",
+      "build"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron-packaging/minified-js-variable-extraction-dynamic",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "ag-grid-cell-renderer-pattern",
     "slug": "ag-grid-cell-renderer-pattern",
     "category": "frontend",
@@ -13280,6 +13848,18 @@
   },
   {
     "kind": "skill",
+    "name": "modal-navigation-stack-with-back",
+    "slug": "modal-navigation-stack-with-back",
+    "category": "frontend",
+    "description": "For drill-down UIs reusing a single modal surface, snapshot head/path/body before each open and push to a stack; a Back button / Backspace pops the stack, Esc clears it.",
+    "tags": "",
+    "triggers": "",
+    "version": "1.0.0",
+    "path": "skills/frontend/modal-navigation-stack-with-back",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "module-federation-expose-react-component",
     "slug": "module-federation-expose-react-component",
     "category": "frontend",
@@ -13577,6 +14157,41 @@
   },
   {
     "kind": "skill",
+    "name": "multi-kernel-dispatch-with-shape-driven-selection",
+    "slug": "multi-kernel-dispatch-with-shape-driven-selection",
+    "category": "gpu-kernels",
+    "description": "Hide multiple kernel variants (1D1D vs 1D2D, SM90 vs SM100, packed-vs-unpacked SF) behind a single public API by inspecting tensor metadata to pick the right dispatcher.",
+    "tags": [
+      "kernel-dispatch",
+      "shape-analysis",
+      "polymorphism",
+      "api-design"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/gpu-kernels/multi-kernel-dispatch-with-shape-driven-selection",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "mouse-button-enum-dispatch",
+    "slug": "mouse-button-enum-dispatch",
+    "category": "input",
+    "description": "Enum-based mouse event handling (left, right, wheel, back) with callback routing.",
+    "tags": [
+      "button",
+      "dispatch",
+      "enum",
+      "input",
+      "mouse"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/input/mouse-button-enum-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13641,6 +14256,40 @@
   },
   {
     "kind": "skill",
+    "name": "mcp-multi-transport-config-pydantic",
+    "slug": "mcp-multi-transport-config-pydantic",
+    "category": "integration",
+    "description": "Single Pydantic config that supports three MCP transports (stdio, sse, streamable-http) with per-transport required-field validation in a model_validator(after) so users get a clear error when the wrong combination is set.",
+    "tags": [
+      "mcp",
+      "pydantic",
+      "multi-transport",
+      "validation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/integration/mcp-multi-transport-config-pydantic",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "mcp-streamable-http-detached-httpx-client",
+    "slug": "mcp-streamable-http-detached-httpx-client",
+    "category": "integration",
+    "description": "Inject a caller-owned httpx.AsyncClient into the official MCP streamable_http transport via httpx_client_factory, using a no-op async-context-manager so the transport never closes the underlying client on exit.",
+    "tags": [
+      "mcp",
+      "streamable-http",
+      "httpx",
+      "sdk-shim"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/integration/mcp-streamable-http-detached-httpx-client",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13672,6 +14321,94 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "mlx-kv-cache-rollback-on-reject",
+    "slug": "mlx-kv-cache-rollback-on-reject",
+    "category": "llm-agents",
+    "description": "Roll back target-model KV cache after rejected speculative tokens, including GatedDeltaNet (non-trimmable) layers, by capturing per-layer inputs and replaying only the accepted prefix.",
+    "tags": [
+      "speculative-decoding",
+      "kv-cache",
+      "mlx",
+      "gated-delta",
+      "state-rollback"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/mlx-kv-cache-rollback-on-reject",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "mcp-pool-http-proxy-for-subprocess-sdks",
+    "slug": "mcp-pool-http-proxy-for-subprocess-sdks",
+    "category": "mcp-integration",
+    "description": "Expose a pool of MCP sources (Linear, GitHub, Notion, ...) to Codex/Copilot SDK subprocesses through a single Streamable-HTTP MCP endpoint, instead of having each subprocess open independent connections.",
+    "tags": [
+      "mcp",
+      "streamable-http",
+      "subprocess",
+      "connection-pool"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp-integration/mcp-pool-http-proxy-for-subprocess-sdks",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "mcp-sse-streamable-http",
+    "slug": "mcp-sse-streamable-http",
+    "category": "mcp-integration",
+    "description": "Connect an agent to a remote MCP server via HTTP+SSE or Streamable HTTP transport.",
+    "tags": [
+      "openai-agents",
+      "mcp",
+      "sse",
+      "streamable-http",
+      "remote-server"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp-integration/mcp-sse-streamable-http",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "mcp-stdio-server",
+    "slug": "mcp-stdio-server",
+    "category": "mcp-integration",
+    "description": "Connect an agent to a local MCP server running as a subprocess over stdio.",
+    "tags": [
+      "openai-agents",
+      "mcp",
+      "stdio",
+      "subprocess",
+      "local-tools"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp-integration/mcp-stdio-server",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "mcp-tool-intent-metadata-injection",
+    "slug": "mcp-tool-intent-metadata-injection",
+    "category": "mcp-integration",
+    "description": "Inject a hidden _intent / _displayName field into every MCP tool schema via a fetch interceptor so large-response summarization and UI rendering have context that the LLM never sees.",
+    "tags": [
+      "mcp",
+      "interceptor",
+      "metadata",
+      "summarization"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp-integration/mcp-tool-intent-metadata-injection",
     "has_content": false
   },
   {
@@ -13790,6 +14527,24 @@
   },
   {
     "kind": "skill",
+    "name": "mega-moe-fusion-with-symmetric-memory",
+    "slug": "mega-moe-fusion-with-symmetric-memory",
+    "category": "moe-optimization",
+    "description": "Fuse EP dispatch, FP8×FP4 GEMM×2, SwiGLU, and EP combine into a single kernel that reads across ranks via symmetric-memory (same VA on every rank) to overlap NVLink collectives with compute.",
+    "tags": [
+      "moe",
+      "kernel-fusion",
+      "symmetric-memory",
+      "nvlink",
+      "communication-compute-overlap"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/moe-optimization/mega-moe-fusion-with-symmetric-memory",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-tracing-spans",
     "slug": "agent-tracing-spans",
     "category": "observability",
@@ -13843,6 +14598,27 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/operations/claude-cli-unattended-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multi-format-native-package-orchestrator",
+    "slug": "multi-format-native-package-orchestrator",
+    "category": "packaging",
+    "description": "Orchestrate building a single Electron app source into .deb, .rpm, AppImage, and Nix outputs from one script. Handles architecture detection, distro-family detection, format-specific build dispatch, and shared staging.",
+    "tags": [
+      "electron",
+      "packaging",
+      "deb",
+      "rpm",
+      "appimage",
+      "nix",
+      "build-orchestration",
+      "linux"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/packaging/multi-format-native-package-orchestrator",
     "has_content": false
   },
   {
@@ -14083,6 +14859,23 @@
   },
   {
     "kind": "skill",
+    "name": "mcp-subprocess-env-filtering",
+    "slug": "mcp-subprocess-env-filtering",
+    "category": "security",
+    "description": "When spawning a stdio MCP server (or any untrusted subprocess), allowlist/denylist environment variables so app-level auth tokens and third-party API keys don't leak into the child process.",
+    "tags": [
+      "mcp",
+      "subprocess",
+      "env-vars",
+      "credential-leakage"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/mcp-subprocess-env-filtering",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "oauth-token-env-persistence",
     "slug": "oauth-token-env-persistence",
     "category": "security",
@@ -14320,6 +15113,25 @@
   },
   {
     "kind": "skill",
+    "name": "model-regression-test-with-csv-fixture",
+    "slug": "model-regression-test-with-csv-fixture",
+    "category": "testing",
+    "description": "Lock down a model's deterministic output by committing input+expected-output CSVs and re-running with a generator script when intentionally changing behavior.",
+    "tags": [
+      "regression-test",
+      "pytest",
+      "ml-model-testing",
+      "determinism",
+      "fixtures",
+      "golden-file"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/model-regression-test-with-csv-fixture",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "qa",
     "slug": "qa",
     "category": "testing",
@@ -14403,6 +15215,54 @@
     "version": "1.0.0",
     "path": "skills/testing-gpu/cosine-similarity-diff-for-fp8-numerics",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "minimal-ddp-amp-accelerator-wrapper",
+    "slug": "minimal-ddp-amp-accelerator-wrapper",
+    "category": "training",
+    "description": "Minimal DDP + AMP training wrapper without HuggingFace Accelerate dependency",
+    "tags": [
+      "ddp",
+      "amp",
+      "training",
+      "pytorch",
+      "distributed"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/training/minimal-ddp-amp-accelerator-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "model-config-versioning-and-backwards-compat",
+    "slug": "model-config-versioning-and-backwards-compat",
+    "category": "versioning",
+    "description": "Embed major/minor version in model config.min.json; validate at load time; ship multiple model versions side-by-side under assets/models/<version>/ with a CHANGELOG.",
+    "tags": [
+      "magika",
+      "versioning"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/versioning/model-config-versioning-and-backwards-compat",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "model-onnx-file-versioning-and-staging",
+    "slug": "model-onnx-file-versioning-and-staging",
+    "category": "versioning",
+    "description": "Version model assets under assets/models/<name>_v<major>_<minor>/ with per-version README and a top-level CHANGELOG.md, and a 'default' pointer (file or symlink).",
+    "tags": [
+      "magika",
+      "versioning"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/versioning/model-onnx-file-versioning-and-staging",
+    "has_content": true
   },
   {
     "kind": "skill",
