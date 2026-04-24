@@ -2409,6 +2409,111 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "multi-platform-input-dispatch-abstraction": {
+      "category": "input",
+      "path": "skills/input/multi-platform-input-dispatch-abstraction/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-signal-mime-detection-stream-info": {
+      "category": "preprocessing",
+      "path": "skills/preprocessing/multi-signal-mime-detection-stream-info/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-source-browser-connection": {
+      "category": "puppeteer",
+      "path": "skills/puppeteer/multi-source-browser-connection/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-stage-heuristic-selection-with-comparators": {
+      "category": "kernel-heuristics",
+      "path": "skills/kernel-heuristics/multi-stage-heuristic-selection-with-comparators/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-tenant-session-isolation": {
+      "category": "patterns",
+      "path": "skills/patterns/multi-tenant-session-isolation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-turn-conversation-history": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/multi-turn-conversation-history/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-turn-repl-chatbot": {
+      "category": "workflow",
+      "path": "skills/workflow/multi-turn-repl-chatbot/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multi-window-parameter-passing": {
+      "category": "flutter",
+      "path": "skills/flutter/multi-window-parameter-passing/SKILL.md",
+      "version": "1.0.0"
+    },
+    "multilingual-tts-text-normalize-and-split": {
+      "category": "text-normalization",
+      "path": "skills/text-normalization/multilingual-tts-text-normalize-and-split/SKILL.md",
+      "version": "1.0.0"
+    },
+    "native-module-stub-with-electron-fallback": {
+      "category": "native-modules",
+      "path": "skills/native-modules/native-module-stub-with-electron-fallback/SKILL.md",
+      "version": "1.0.0"
+    },
+    "navigation-adapter-cross-platform": {
+      "category": "architecture",
+      "path": "skills/architecture/navigation-adapter-cross-platform/SKILL.md",
+      "version": "1.0.0"
+    },
+    "navigation-aware-event-collector": {
+      "category": "puppeteer",
+      "path": "skills/puppeteer/navigation-aware-event-collector/SKILL.md",
+      "version": "1.0.0"
+    },
+    "new-ml-backend-dependency-audit": {
+      "category": "agents",
+      "path": "skills/agents/new-ml-backend-dependency-audit/SKILL.md",
+      "version": "1.0.0"
+    },
+    "nextjs-docker-standalone-build": {
+      "category": "devops",
+      "path": "skills/devops/nextjs-docker-standalone-build/SKILL.md",
+      "version": "1.0.0"
+    },
+    "nix-electron-resource-path-copy": {
+      "category": "nix",
+      "path": "skills/nix/nix-electron-resource-path-copy/SKILL.md",
+      "version": "1.0.0"
+    },
+    "node-pty-native-module-rebuild-nix": {
+      "category": "nix",
+      "path": "skills/nix/node-pty-native-module-rebuild-nix/SKILL.md",
+      "version": "1.0.0"
+    },
+    "num-experts-per-wave-by-sm-occupancy": {
+      "category": "moe-optimization",
+      "path": "skills/moe-optimization/num-experts-per-wave-by-sm-occupancy/SKILL.md",
+      "version": "1.0.0"
+    },
+    "oauth-define-at-buildtime": {
+      "category": "electron",
+      "path": "skills/electron/oauth-define-at-buildtime/SKILL.md",
+      "version": "1.0.0"
+    },
+    "obfuscated-jvm-string-anchor-navigation": {
+      "category": "reverse-engineering",
+      "path": "skills/reverse-engineering/obfuscated-jvm-string-anchor-navigation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "onboard": {
+      "category": "meta",
+      "path": "skills/meta/onboard/SKILL.md",
+      "version": "1.0.0"
+    },
+    "one-command-setup-flow": {
+      "category": "cli",
+      "path": "skills/cli/one-command-setup-flow/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4532,122 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "multi-provider-llm-client-config": {
+      "category": "llm-model-routing",
+      "path": "knowledge/llm-model-routing/multi-provider-llm-client-config.md"
+    },
+    "multi-source-alert-routing-rationale": {
+      "category": "integration",
+      "path": "knowledge/integration/multi-source-alert-routing-rationale.md"
+    },
+    "multimodal-llm-architectures": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/multimodal-llm-architectures.md"
+    },
+    "multimodal-loss-mask-strategy": {
+      "category": "training",
+      "path": "knowledge/training/multimodal-loss-mask-strategy.md"
+    },
+    "mutation-onsuccess-side-effect-races": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/mutation-onsuccess-side-effect-races.md"
+    },
+    "narrative-memory-event-storytelling": {
+      "category": "observability",
+      "path": "knowledge/observability/narrative-memory-event-storytelling.md"
+    },
+    "nat-type-detection-stun-pattern": {
+      "category": "networking",
+      "path": "knowledge/networking/nat-type-detection-stun-pattern.md"
+    },
+    "native-module-stub-layered-fallback": {
+      "category": "native-modules",
+      "path": "knowledge/native-modules/native-module-stub-layered-fallback.md"
+    },
+    "navigate-about-blank-before-trace-start": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/navigate-about-blank-before-trace-start.md"
+    },
+    "nested-claude-code-session-deadlock": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/nested-claude-code-session-deadlock.md"
+    },
+    "network-collector-preserves-navigation-request": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/network-collector-preserves-navigation-request.md"
+    },
+    "next-cross-component-state-update": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/next-cross-component-state-update.md"
+    },
+    "nix-npm-lock-fsevents-macos-exclusion": {
+      "category": "nix",
+      "path": "knowledge/nix/nix-npm-lock-fsevents-macos-exclusion.md"
+    },
+    "nix-stock-electron-wrapper-reuse": {
+      "category": "nix",
+      "path": "knowledge/nix/nix-stock-electron-wrapper-reuse.md"
+    },
+    "nix-store-resource-path-immutability": {
+      "category": "nix",
+      "path": "knowledge/nix/nix-store-resource-path-immutability.md"
+    },
+    "no-autonomous-lifecycle-mutation": {
+      "category": "arch",
+      "path": "knowledge/arch/no-autonomous-lifecycle-mutation.md"
+    },
+    "no-backwards-compat-pre-launch": {
+      "category": "decision",
+      "path": "knowledge/decision/no-backwards-compat-pre-launch.md"
+    },
+    "no-dereference-option-symlinks": {
+      "category": "api",
+      "path": "knowledge/api/no-dereference-option-symlinks.md"
+    },
+    "no-finer-grained-metadata": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/no-finer-grained-metadata.md"
+    },
+    "no-formatting-only-changes-rule": {
+      "category": "development",
+      "path": "knowledge/development/no-formatting-only-changes-rule.md"
+    },
+    "node-modules-auto-exclude-electron-builder": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/node-modules-auto-exclude-electron-builder.md"
+    },
+    "non-destructive-curation-for-llm-drafts": {
+      "category": "decision",
+      "path": "knowledge/decision/non-destructive-curation-for-llm-drafts.md"
+    },
+    "not-polyglot-detection-capable": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/not-polyglot-detection-capable.md"
+    },
+    "num-waves-1-is-multicast-veto": {
+      "category": "gpu-kernels",
+      "path": "knowledge/gpu-kernels/num-waves-1-is-multicast-veto.md"
+    },
+    "numpy-unpinned-no-workaround": {
+      "category": "decision",
+      "path": "knowledge/decision/numpy-unpinned-no-workaround.md"
+    },
+    "nvcc-12-9-auto-ffma-interleaving": {
+      "category": "performance-modeling",
+      "path": "knowledge/performance-modeling/nvcc-12-9-auto-ffma-interleaving.md"
+    },
+    "nvcc-vs-nvrtc-compilation-tradeoff": {
+      "category": "jit-compilation",
+      "path": "knowledge/jit-compilation/nvcc-vs-nvrtc-compilation-tradeoff.md"
+    },
+    "nvrtc-pch-requires-cuda-12-8": {
+      "category": "jit-compilation",
+      "path": "knowledge/jit-compilation/nvrtc-pch-requires-cuda-12-8.md"
+    },
+    "oauth-token-cache-corruption-workaround": {
+      "category": "troubleshooting",
+      "path": "knowledge/troubleshooting/oauth-token-cache-corruption-workaround.md"
     }
   }
 }
