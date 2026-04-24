@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -28,6 +29,10 @@ TECHNIQUE_DIR = HUB_ROOT / "technique"
 REQUIRED = ["name", "description", "category", "tags", "version"]
 # knowledge files often use `summary` instead of `description`.
 ALIASES = {"description": ("description", "summary")}
+# category must be a single kebab-case token (matching CATEGORIES.md entries).
+# Prevents compound values like "agent-orchestration / workflow" that break
+# downstream index builders that use category as a path segment.
+CATEGORY_RE = re.compile(r"^[a-z][a-z0-9-]*$")
 
 
 def extract_frontmatter(text: str) -> tuple[str | None, str | None]:
@@ -88,7 +93,14 @@ def scan_file(path: Path) -> dict:
         candidates = ALIASES.get(required, (required,))
         if not any(c in fields and not value_is_empty(fields[c]) for c in candidates):
             missing.append(required)
-    return {"path": str(path), "errors": [], "missing": missing, "fields": list(fields)}
+    errors: list[str] = []
+    category_val = fields.get("category", "").strip()
+    if category_val and not CATEGORY_RE.match(category_val):
+        errors.append(
+            f"invalid category format: {category_val!r} (must be single "
+            f"kebab-case token — no '/', '\\\\', or spaces)"
+        )
+    return {"path": str(path), "errors": errors, "missing": missing, "fields": list(fields)}
 
 
 def iter_md_files() -> list[Path]:
