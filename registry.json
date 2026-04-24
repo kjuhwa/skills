@@ -1092,6 +1092,14 @@
       "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
       "pinned": false
     },
+    "lucida-work-order-to-paired-spec": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-24T02:43:25Z",
+      "version": "1.0.0",
+      "source_commit": "b0f1c9d819df1a38441daf1a89bfe24e10390982",
+      "pinned": false
+    },
     "mcp-capability-negotiated-initialize": {
       "category": "backend",
       "scope": "user",
@@ -1647,6 +1655,14 @@
       "installed_at": "2026-04-16T00:40:04Z",
       "version": "1.0.0",
       "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
+      "pinned": false
+    },
+    "selfcontained-nds-design-doc-html": {
+      "category": "design",
+      "scope": "user",
+      "installed_at": "2026-04-24T02:43:25Z",
+      "version": "1.0.0",
+      "source_commit": "b0f1c9d819df1a38441daf1a89bfe24e10390982",
       "pinned": false
     },
     "server-plugin-scripting-and-builtin-extensibility": {
