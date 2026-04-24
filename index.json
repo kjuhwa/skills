@@ -243,6 +243,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "no-dereference-option-symlinks",
+    "slug": "no-dereference-option-symlinks",
+    "category": "api",
+    "description": "no_dereference=True (--no-dereference in CLI) treats symlinks as type 'symlink' instead of following them.",
+    "tags": [
+      "magika",
+      "api"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/no-dereference-option-symlinks.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "stomp-heartbeat-10s-bidirectional",
     "slug": "stomp-heartbeat-10s-bidirectional",
     "category": "api",
@@ -1068,6 +1083,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/arch/nfs-backed-volumes-for-docker-swarm.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "no-autonomous-lifecycle-mutation",
+    "slug": "no-autonomous-lifecycle-mutation",
+    "category": "arch",
+    "description": "A process that cannot reliably distinguish \"actively running elsewhere\" from \"orphaned by a crash\" must not autonomously mark work as failed/cancelled/abandoned based on a timer or staleness guess.",
+    "tags": [
+      "architecture",
+      "lifecycle",
+      "cross-process",
+      "principle",
+      "concurrency"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/no-autonomous-lifecycle-mutation.md",
     "has_content": true
   },
   {
@@ -3157,6 +3190,22 @@
   },
   {
     "kind": "knowledge",
+    "name": "no-backwards-compat-pre-launch",
+    "slug": "no-backwards-compat-pre-launch",
+    "category": "decision",
+    "description": "Before a product is live, prefer removing old code paths over preserving old-plus-new behavior — avoid compat layers, dual-write logic, legacy adapters, and temporary shims.",
+    "tags": [
+      "coding-rules",
+      "refactor",
+      "tech-debt"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/no-backwards-compat-pre-launch.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "node-npm-pin-matches-jenkins",
     "slug": "node-npm-pin-matches-jenkins",
     "category": "decision",
@@ -3172,6 +3221,69 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/node-npm-pin-matches-jenkins.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "non-destructive-curation-for-llm-drafts",
+    "slug": "non-destructive-curation-for-llm-drafts",
+    "category": "decision",
+    "description": "For pipelines that auto-generate hundreds of LLM drafts, prefer reversible ratings (👍/⭐/👎) with persistent state over immediate deletion; expose a single explicit \"Delete 👎\" batch action for destructive cleanup.",
+    "tags": "",
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/non-destructive-curation-for-llm-drafts.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "num-waves-1-is-multicast-veto",
+    "slug": "num-waves-1-is-multicast-veto",
+    "category": "decision",
+    "description": "",
+    "tags": [
+      "multicast",
+      "waves",
+      "cluster",
+      "heuristic",
+      "amortization"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/gpu-kernels/num-waves-1-is-multicast-veto.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "numpy-unpinned-no-workaround",
+    "slug": "numpy-unpinned-no-workaround",
+    "category": "decision",
+    "description": "Magika unpinned numpy because pip's resolver already handles Python-version compatibility automatically.",
+    "tags": [
+      "magika",
+      "decision"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/numpy-unpinned-no-workaround.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nvcc-12-9-auto-ffma-interleaving",
+    "slug": "nvcc-12-9-auto-ffma-interleaving",
+    "category": "decision",
+    "description": "",
+    "tags": [
+      "nvcc",
+      "ffma",
+      "post-optimization",
+      "compiler-version",
+      "sass"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/performance-modeling/nvcc-12-9-auto-ffma-interleaving.md",
     "has_content": true
   },
   {
@@ -3684,6 +3796,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "no-formatting-only-changes-rule",
+    "slug": "no-formatting-only-changes-rule",
+    "category": "development",
+    "description": "No automatic code formatters on merge; keep diffs semantic-only unless explicit reformat is requested.",
+    "tags": [
+      "changes",
+      "development",
+      "formatting",
+      "only",
+      "rule"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/development/no-formatting-only-changes-rule.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3933,6 +4063,42 @@
   },
   {
     "kind": "knowledge",
+    "name": "multi-source-alert-routing-rationale",
+    "slug": "multi-source-alert-routing-rationale",
+    "category": "integration",
+    "description": "OpenSRE's detect_sources() function illustrates a robust pattern for routing alerts across heterogeneous observability backends — accept many alias spellings, gate each backend on alert-source provenance, and merge nested-vs-top-level annotations so LLM-extracted enrichments fill gaps.",
+    "tags": [
+      "alert-routing",
+      "observability",
+      "multi-source",
+      "normalization"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/integration/multi-source-alert-routing-rationale.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nvcc-vs-nvrtc-compilation-tradeoff",
+    "slug": "nvcc-vs-nvrtc-compilation-tradeoff",
+    "category": "jit-compilation",
+    "description": "NVRTC compiles 10x faster in-process but loses 5-10% perf on some kernels vs NVCC's offline optimization; use NVRTC for iteration (DG_JIT_USE_NVRTC=1), NVCC for production.",
+    "tags": [
+      "nvcc",
+      "nvrtc",
+      "jit",
+      "cuda-compiler",
+      "performance",
+      "build-system"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/jit-compilation/nvcc-vs-nvrtc-compilation-tradeoff.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "cowork-backend-auto-detection-priority",
     "slug": "cowork-backend-auto-detection-priority",
     "category": "linux-sandbox",
@@ -3992,6 +4158,63 @@
   },
   {
     "kind": "knowledge",
+    "name": "multimodal-llm-architectures",
+    "slug": "multimodal-llm-architectures",
+    "category": "llm-agents",
+    "description": "Multimodal LLMs (MLLMs) integrate vision, audio, and text modalities.",
+    "tags": [
+      "mllm",
+      "multimodal",
+      "vision-language",
+      "architecture"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/multimodal-llm-architectures.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "multi-provider-llm-client-config",
+    "slug": "multi-provider-llm-client-config",
+    "category": "llm-model-routing",
+    "description": "Tiered LLM client registry (mini / medium / high / large / persona / gemini) across OpenAI + Anthropic + OpenRouter, with prompt-cache retention and a shared usage-tracking callback for cost accounting.",
+    "tags": [
+      "langchain",
+      "llm-routing",
+      "prompt-caching",
+      "openai",
+      "anthropic",
+      "openrouter",
+      "usage-tracking"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-model-routing/multi-provider-llm-client-config.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "native-module-stub-layered-fallback",
+    "slug": "native-module-stub-layered-fallback",
+    "category": "native-modules",
+    "description": "When stubbing a missing native module for a different OS, use a layered fallback strategy: route to the framework equivalent where one exists (e.g., `BrowserWindow.isMaximized()`), no-op for OS-specific features with no equivalent, and an explicit stub for auth flows that signals unavailability without crashing.",
+    "tags": [
+      "native-modules",
+      "stub",
+      "electron",
+      "linux",
+      "platform-compatibility",
+      "node-gyp",
+      "fallback"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/native-modules/native-module-stub-layered-fallback.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "connection-type-enum-design",
     "slug": "connection-type-enum-design",
     "category": "networking",
@@ -4006,6 +4229,105 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/networking/connection-type-enum-design.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nat-type-detection-stun-pattern",
+    "slug": "nat-type-detection-stun-pattern",
+    "category": "networking",
+    "description": "NAT type detected via stunclient; drives relay-vs-direct decision at session setup.",
+    "tags": [
+      "detection",
+      "nat",
+      "networking",
+      "pattern",
+      "stun",
+      "type"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/networking/nat-type-detection-stun-pattern.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nix-npm-lock-fsevents-macos-exclusion",
+    "slug": "nix-npm-lock-fsevents-macos-exclusion",
+    "category": "nix",
+    "description": "Nix's `buildNpmPackage` npm-lock fetcher is stricter than `npm ci` and rejects macOS-only `optionalDependencies` like `fsevents` because it attempts to hash them on Linux; strip the reference from `package-lock.json` in `postPatch` to restore determinism.",
+    "tags": [
+      "nix",
+      "npm",
+      "buildNpmPackage",
+      "fsevents",
+      "macos",
+      "optionalDependencies",
+      "package-lock",
+      "postPatch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/nix/nix-npm-lock-fsevents-macos-exclusion.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nix-stock-electron-wrapper-reuse",
+    "slug": "nix-stock-electron-wrapper-reuse",
+    "category": "nix",
+    "description": "The nixpkgs `electron` package is a `makeWrapper` bash script that sets `GIO_EXTRA_MODULES`, `GDK_PIXBUF_MODULE_FILE`, `XDG_DATA_DIRS`, and `CHROME_DEVEL_SANDBOX`; when building a custom Electron tree, reuse its env setup by copying all but the final `exec` line and appending your own exec.",
+    "tags": [
+      "nix",
+      "nixos",
+      "electron",
+      "wrapper",
+      "makeWrapper",
+      "GIO",
+      "GDK_PIXBUF",
+      "environment"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/nix/nix-stock-electron-wrapper-reuse.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nix-store-resource-path-immutability",
+    "slug": "nix-store-resource-path-immutability",
+    "category": "nix",
+    "description": "The Nix store is read-only and `/proc/self/exe` resolves through symlinks to the real binary location, so Electron's `process.resourcesPath` points at the wrong tree when the binary and application resources live in different store paths.",
+    "tags": [
+      "nix",
+      "nixos",
+      "electron",
+      "resource-path",
+      "proc-self-exe",
+      "symlink",
+      "store"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/nix/nix-store-resource-path-immutability.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "narrative-memory-event-storytelling",
+    "slug": "narrative-memory-event-storytelling",
+    "category": "observability",
+    "description": "Build narrative memory by linking events into causal stories for better recall and reflection",
+    "tags": [
+      "evolver",
+      "observability",
+      "narrative",
+      "memory",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/observability/narrative-memory-event-storytelling.md",
     "has_content": true
   },
   {
@@ -5653,6 +5975,140 @@
   },
   {
     "kind": "knowledge",
+    "name": "mutation-onsuccess-side-effect-races",
+    "slug": "mutation-onsuccess-side-effect-races",
+    "category": "pitfall",
+    "description": "Putting both state-switch and navigate() in a mutation's onSuccess causes flash-and-jump races; let the UI layer own the side-effect sequence in one microtask.",
+    "tags": [
+      "react-query",
+      "mutations",
+      "side-effects",
+      "race-condition",
+      "ux"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/mutation-onsuccess-side-effect-races.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "navigate-about-blank-before-trace-start",
+    "slug": "navigate-about-blank-before-trace-start",
+    "category": "pitfall",
+    "description": "Before starting a reload-based performance trace, first navigate the page to `about:blank` with `waitUntil: 'networkidle0'` to flush previous-page state; otherwise the trace captures residual activity from the outgoing page and pollutes the insights.",
+    "tags": [
+      "performance",
+      "tracing",
+      "about-blank",
+      "puppeteer"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/navigate-about-blank-before-trace-start.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nested-claude-code-session-deadlock",
+    "slug": "nested-claude-code-session-deadlock",
+    "category": "pitfall",
+    "description": "Spawning a Claude Code subprocess from inside a Claude Code session deadlocks silently because the Agent SDK leaks `process.env` into the child regardless of the `env` option, so `CLAUDECODE=1` and `CLAUDE_CODE_*` markers propagate.",
+    "tags": [
+      "claude-code",
+      "subprocess",
+      "deadlock",
+      "env-leak",
+      "agent-sdk"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/nested-claude-code-session-deadlock.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "network-collector-preserves-navigation-request",
+    "slug": "network-collector-preserves-navigation-request",
+    "category": "pitfall",
+    "description": "A network-request collector that splits storage at `framenavigated` must migrate the tail of in-flight requests (from the navigation request forward) into the new navigation's bucket; otherwise the nav request and early same-nav requests get orphaned in the previous bucket.",
+    "tags": [
+      "puppeteer",
+      "network",
+      "navigation",
+      "event-collection"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/network-collector-preserves-navigation-request.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "next-cross-component-state-update",
+    "slug": "next-cross-component-state-update",
+    "category": "pitfall",
+    "description": "React 19 forbids setState during render of a different component; defer zustand persist rehydrate calls and cross-component notifications to queueMicrotask.",
+    "tags": [
+      "react-19",
+      "zustand",
+      "setstate",
+      "render",
+      "microtask"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/next-cross-component-state-update.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "no-finer-grained-metadata",
+    "slug": "no-finer-grained-metadata",
+    "category": "pitfall",
+    "description": "Magika returns broad content-type labels — no finer-grained metadata (e.g. ELF static-vs-dynamic, PDF version).",
+    "tags": [
+      "magika",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/no-finer-grained-metadata.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "node-modules-auto-exclude-electron-builder",
+    "slug": "node-modules-auto-exclude-electron-builder",
+    "category": "pitfall",
+    "description": "electron-builder v20.15.2+ auto-excludes directories named \"node_modules\" from the package — work around with explicit extraResources from/to paths to ship your SDK.",
+    "tags": [
+      "electron-builder",
+      "node_modules",
+      "packaging"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/node-modules-auto-exclude-electron-builder.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "not-polyglot-detection-capable",
+    "slug": "not-polyglot-detection-capable",
+    "category": "pitfall",
+    "description": "Magika does NOT detect polyglot files (files valid as multiple types simultaneously, e.g. ZIP-in-JPEG).",
+    "tags": [
+      "magika",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/not-polyglot-detection-capable.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "oauth-implementation-pitfall",
     "slug": "oauth-implementation-pitfall",
     "category": "pitfall",
@@ -6861,6 +7317,62 @@
   },
   {
     "kind": "knowledge",
+    "name": "multimodal-loss-mask-strategy",
+    "slug": "multimodal-loss-mask-strategy",
+    "category": "training",
+    "description": "VoxCPM training masks out loss on text and reference audio regions; only target audio patches contribute to the gradient",
+    "tags": [
+      "training",
+      "loss-mask",
+      "multimodal",
+      "tts",
+      "fine-tuning"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/training/multimodal-loss-mask-strategy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "oauth-token-cache-corruption-workaround",
+    "slug": "oauth-token-cache-corruption-workaround",
+    "category": "troubleshooting",
+    "description": "Some OAuth implementations leave a corrupted `oauth:tokenCache` key in the app's JSON config after periods of inactivity, causing persistent 401 errors; the workaround is to remove the offending key from the config file and re-authenticate.",
+    "tags": [
+      "oauth",
+      "token-cache",
+      "401",
+      "authentication",
+      "config-corruption",
+      "json",
+      "workaround"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/troubleshooting/oauth-token-cache-corruption-workaround.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "nvrtc-pch-requires-cuda-12-8",
+    "slug": "nvrtc-pch-requires-cuda-12-8",
+    "category": "version-quirk",
+    "description": "",
+    "tags": [
+      "nvrtc",
+      "pch",
+      "precompiled-headers",
+      "cuda-version",
+      "compile-speed"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/jit-compilation/nvrtc-pch-requires-cuda-12-8.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "accept-header-prefer-markdown-over-html",
     "slug": "accept-header-prefer-markdown-over-html",
     "category": "web",
@@ -6960,6 +7472,18 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/qa/content-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "onboard",
+    "slug": "onboard",
+    "category": "",
+    "description": "\"Generates a contextual onboarding document for a new contributor or agent joining the project. Summarizes project state, architecture, conventions, and current priorities relevant to the specified role or area.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/meta/onboard",
     "has_content": false
   },
   {
@@ -7082,6 +7606,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/coding-agent-cli-backend-interface",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "new-ml-backend-dependency-audit",
+    "slug": "new-ml-backend-dependency-audit",
+    "category": "agents",
+    "description": "Run a Phase-0 dependency audit on a candidate ML library before writing any integration code, so PyInstaller and runtime surprises are caught early.",
+    "tags": [
+      "ml-ops",
+      "dependencies",
+      "pyinstaller",
+      "audit",
+      "integration"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/new-ml-backend-dependency-audit",
     "has_content": false
   },
   {
@@ -8111,6 +8653,25 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "navigation-adapter-cross-platform",
+    "slug": "navigation-adapter-cross-platform",
+    "category": "architecture",
+    "description": "NavigationAdapter in each app's platform layer lets shared view code call useNavigation().push() without importing next/navigation or react-router-dom.",
+    "tags": [
+      "routing",
+      "navigation",
+      "cross-platform",
+      "nextjs",
+      "react-router",
+      "electron"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/navigation-adapter-cross-platform",
     "has_content": false
   },
   {
@@ -10867,6 +11428,24 @@
   },
   {
     "kind": "skill",
+    "name": "one-command-setup-flow",
+    "slug": "one-command-setup-flow",
+    "category": "cli",
+    "description": "Bundle CLI configure + authenticate + daemon start into one `cli setup` command, with per-environment profiles (cloud vs self-host) and custom-port overrides.",
+    "tags": [
+      "cli",
+      "setup",
+      "onboarding",
+      "profiles",
+      "cobra"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/one-command-setup-flow",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "open-gstack-browser",
     "slug": "open-gstack-browser",
     "category": "cli",
@@ -12761,6 +13340,24 @@
   },
   {
     "kind": "skill",
+    "name": "nextjs-docker-standalone-build",
+    "slug": "nextjs-docker-standalone-build",
+    "category": "devops",
+    "description": "Three-stage Docker build for a Next.js app with pnpm workspaces — deps / builder / runner stages, standalone output for a minimal production image.",
+    "tags": [
+      "docker",
+      "nextjs",
+      "pnpm",
+      "monorepo",
+      "standalone"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/devops/nextjs-docker-standalone-build",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "playwright-java-dockerfile",
     "slug": "playwright-java-dockerfile",
     "category": "devops",
@@ -12968,6 +13565,42 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/docs/ubiquitous-language",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "oauth-define-at-buildtime",
+    "slug": "oauth-define-at-buildtime",
+    "category": "electron",
+    "description": "Bake OAuth client IDs/secrets into the main-process bundle at build time via esbuild --define:process.env.X=... so they ship with the app, while user-provided secrets (Google) stay out of the build.",
+    "tags": [
+      "electron",
+      "oauth",
+      "esbuild",
+      "buildtime",
+      "secrets"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron/oauth-define-at-buildtime",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multi-window-parameter-passing",
+    "slug": "multi-window-parameter-passing",
+    "category": "flutter",
+    "description": "Window parameter serialization via Map<String, dynamic> for multi-window session state.",
+    "tags": [
+      "flutter",
+      "multi",
+      "parameter",
+      "passing",
+      "window"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/flutter/multi-window-parameter-passing",
     "has_content": false
   },
   {
@@ -13577,6 +14210,24 @@
   },
   {
     "kind": "skill",
+    "name": "multi-platform-input-dispatch-abstraction",
+    "slug": "multi-platform-input-dispatch-abstraction",
+    "category": "input",
+    "description": "Unified keyboard/mouse input via Windows SendInput, macOS CGEvent, Linux xdo/uinput under one trait.",
+    "tags": [
+      "abstraction",
+      "dispatch",
+      "input",
+      "multi",
+      "platform"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/input/multi-platform-input-dispatch-abstraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13641,6 +14292,24 @@
   },
   {
     "kind": "skill",
+    "name": "multi-stage-heuristic-selection-with-comparators",
+    "slug": "multi-stage-heuristic-selection-with-comparators",
+    "category": "kernel-heuristics",
+    "description": "Enumerate all legal kernel configs under hardware constraints, score each with an arch-specific cost model (cycles / wave efficiency), and pick the winner via a comparator.",
+    "tags": [
+      "heuristics",
+      "gpu-optimization",
+      "config-search",
+      "performance-modeling",
+      "comparator"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/kernel-heuristics/multi-stage-heuristic-selection-with-comparators",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13672,6 +14341,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multi-turn-conversation-history",
+    "slug": "multi-turn-conversation-history",
+    "category": "llm-agents",
+    "description": "Chain multiple agent turns by converting run results to input lists for the next call.",
+    "tags": [
+      "openai-agents",
+      "conversation",
+      "multi-turn",
+      "to-input-list",
+      "history"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/multi-turn-conversation-history",
     "has_content": false
   },
   {
@@ -13790,6 +14477,84 @@
   },
   {
     "kind": "skill",
+    "name": "num-experts-per-wave-by-sm-occupancy",
+    "slug": "num-experts-per-wave-by-sm-occupancy",
+    "category": "moe-optimization",
+    "description": "Pick the number of experts processed per persistent-kernel wave so that total blocks (discounted by a 2x imbalance factor) just saturate all SMs, rounded to a divisor of the expert count.",
+    "tags": [
+      "moe",
+      "persistent-kernel",
+      "occupancy",
+      "sm-utilization",
+      "waves",
+      "scheduler"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/moe-optimization/num-experts-per-wave-by-sm-occupancy",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "native-module-stub-with-electron-fallback",
+    "slug": "native-module-stub-with-electron-fallback",
+    "category": "native-modules",
+    "description": "Stub a missing platform-specific native addon by routing supported methods to Electron equivalents (flashFrame, setProgressBar) and providing safe no-ops for unsupported ones. Enables a Windows-targeted Electron app to run on Linux without the native binary.",
+    "tags": [
+      "electron",
+      "native-module",
+      "stub",
+      "linux",
+      "node-addon",
+      "compatibility"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/native-modules/native-module-stub-with-electron-fallback",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "nix-electron-resource-path-copy",
+    "slug": "nix-electron-resource-path-copy",
+    "category": "nix",
+    "description": "Copy the Electron ELF binary (not symlink) into a custom derivation tree so /proc/self/exe resolves to your tree. Merge app resources and Electron resources into one resources/ directory. Preserve the stock Electron wrapper for environment setup.",
+    "tags": [
+      "nix",
+      "nixos",
+      "electron",
+      "resourcesPath",
+      "proc-self-exe",
+      "packaging",
+      "flake"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/nix/nix-electron-resource-path-copy",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "node-pty-native-module-rebuild-nix",
+    "slug": "node-pty-native-module-rebuild-nix",
+    "category": "nix",
+    "description": "Rebuild a node-gyp native addon (e.g., node-pty) in a Nix derivation using buildNpmPackage. Handle the fsevents macOS-only optional dep by stripping it from package-lock.json in postPatch. Explicitly copy the native build/ directory in postInstall since npmInstallHook skips it.",
+    "tags": [
+      "nix",
+      "node-gyp",
+      "native-addon",
+      "node-pty",
+      "npm",
+      "fsevents",
+      "nixos"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/nix/node-pty-native-module-rebuild-nix",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-tracing-spans",
     "slug": "agent-tracing-spans",
     "category": "observability",
@@ -13847,6 +14612,44 @@
   },
   {
     "kind": "skill",
+    "name": "multi-tenant-session-isolation",
+    "slug": "multi-tenant-session-isolation",
+    "category": "patterns",
+    "description": "Per-peer state isolation using HashMap<SessionKey, Session> with Mutex synchronization.",
+    "tags": [
+      "isolation",
+      "multi",
+      "patterns",
+      "session",
+      "tenant"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/patterns/multi-tenant-session-isolation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multi-signal-mime-detection-stream-info",
+    "slug": "multi-signal-mime-detection-stream-info",
+    "category": "preprocessing",
+    "description": "Combine extension, HTTP headers, content-disposition, mimetypes.guess_type(), magika content sniffing, and charset_normalizer into an ordered list of StreamInfo guesses that converters try in turn.",
+    "tags": [
+      "preprocessing",
+      "mime",
+      "file-type",
+      "detection",
+      "magika",
+      "charset",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/preprocessing/multi-signal-mime-detection-stream-info",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a11y-tree-snapshot-with-uids",
     "slug": "a11y-tree-snapshot-with-uids",
     "category": "puppeteer",
@@ -13861,6 +14664,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/puppeteer/a11y-tree-snapshot-with-uids",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multi-source-browser-connection",
+    "slug": "multi-source-browser-connection",
+    "category": "puppeteer",
+    "description": "Build one `ensureBrowserConnected` entry point that accepts any of browserURL, wsEndpoint, release channel, or userDataDir and resolves the right Puppeteer connect options, so callers never branch on \"how do I connect\".",
+    "tags": [
+      "puppeteer",
+      "cdp",
+      "browser-connection",
+      "configuration",
+      "api-design"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/puppeteer/multi-source-browser-connection",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "navigation-aware-event-collector",
+    "slug": "navigation-aware-event-collector",
+    "category": "puppeteer",
+    "description": "Store browser events (network requests, console messages, issues) in per-page WeakMaps split by main-frame navigation so tools can ask for \"requests since the last navigation\" vs. \"requests across the last N navigations\" without leaking memory.",
+    "tags": [
+      "puppeteer",
+      "cdp",
+      "weakmap",
+      "event-collection",
+      "navigation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/puppeteer/navigation-aware-event-collector",
     "has_content": false
   },
   {
@@ -13950,6 +14789,25 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/reverse-engineering/androidmanifest-to-network-call-flow-tracing",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "obfuscated-jvm-string-anchor-navigation",
+    "slug": "obfuscated-jvm-string-anchor-navigation",
+    "category": "reverse-engineering",
+    "description": "Navigate ProGuard/R8-obfuscated JVM bytecode by anchoring on artifacts that the obfuscator cannot rename — string literals, Android framework classes, library public APIs, and manifest entries — then walking outward through call-site greps to recover logical class names one hop at a time.",
+    "tags": [
+      "android",
+      "reverse-engineering",
+      "obfuscation",
+      "proguard",
+      "r8",
+      "deobfuscation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/reverse-engineering/obfuscated-jvm-string-anchor-navigation",
     "has_content": false
   },
   {
@@ -14402,6 +15260,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/testing-gpu/cosine-similarity-diff-for-fp8-numerics",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multilingual-tts-text-normalize-and-split",
+    "slug": "multilingual-tts-text-normalize-and-split",
+    "category": "text-normalization",
+    "description": "Multilingual TTS text normalization via wetext + inflect with budget-aware paragraph splitting",
+    "tags": [
+      "text-normalization",
+      "tts",
+      "multilingual",
+      "chinese",
+      "nlp"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/text-normalization/multilingual-tts-text-normalize-and-split",
     "has_content": false
   },
   {
@@ -15425,6 +16301,25 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/message-queue-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "multi-turn-repl-chatbot",
+    "slug": "multi-turn-repl-chatbot",
+    "category": "workflow",
+    "description": "Build an interactive CLI chatbot with a while loop that preserves conversation history across turns.",
+    "tags": [
+      "openai-agents",
+      "chatbot",
+      "repl",
+      "cli",
+      "conversation",
+      "multi-turn"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/multi-turn-repl-chatbot",
     "has_content": false
   },
   {
