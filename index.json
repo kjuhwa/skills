@@ -1809,6 +1809,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "provider-contract-layer-zero-sdk-deps",
+    "slug": "provider-contract-layer-zero-sdk-deps",
+    "category": "arch",
+    "description": "The interfaces that a workflow engine uses to talk to AI providers must live in a file with zero SDK imports and zero runtime side effects, so downstream packages don't inherit SDK deps.",
+    "tags": [
+      "architecture",
+      "layering",
+      "providers",
+      "contract",
+      "sdk-deps"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/provider-contract-layer-zero-sdk-deps.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "published-vs-realtime-view-pages",
     "slug": "published-vs-realtime-view-pages",
     "category": "arch",
@@ -1823,6 +1841,21 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/arch/published-vs-realtime-view-pages.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "random-snippet-selection-augmentation",
+    "slug": "random-snippet-selection-augmentation",
+    "category": "arch",
+    "description": "Random Snippet Selection (RSS) augmentation extracts variable-length snippets from training samples — important for textual content types.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/random-snippet-selection-augmentation.md",
     "has_content": true
   },
   {
@@ -2040,6 +2073,77 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/architecture/agent-native-software-philosophy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "protocol-version-backward-compat",
+    "slug": "protocol-version-backward-compat",
+    "category": "architecture",
+    "description": "Client/server handshake exchanges PROTOCOL_VERSION from shared/protocol; version mismatches produce a dedicated PROTOCOL_VERSION_UNSUPPORTED error rather than generic connection failure.",
+    "tags": [
+      "protocol",
+      "versioning",
+      "handshake",
+      "compatibility"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/protocol-version-backward-compat.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "proxy-lifecycle-with-authentication",
+    "slug": "proxy-lifecycle-with-authentication",
+    "category": "architecture",
+    "description": "Local Proxy lifecycle — startup, authentication, sync loop, graceful shutdown",
+    "tags": [
+      "evolver",
+      "architecture",
+      "proxy",
+      "lifecycle",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/proxy-lifecycle-with-authentication.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "protobuf-code-generation-build-rs",
+    "slug": "protobuf-code-generation-build-rs",
+    "category": "build-system",
+    "description": "Protobuf codegen runs in build.rs via prost; generated types auto-derive Serialize/Deserialize for FFI reuse.",
+    "tags": [
+      "build",
+      "code",
+      "generation",
+      "protobuf",
+      "system"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/build-system/protobuf-code-generation-build-rs.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "python-build-script-usage",
+    "slug": "python-build-script-usage",
+    "category": "build-system",
+    "description": "build.py wraps cross-platform builds with --flutter, --hwcodec, --vram, --release flags.",
+    "tags": [
+      "build",
+      "python",
+      "script",
+      "system",
+      "usage"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/build-system/python-build-script-usage.md",
     "has_content": true
   },
   {
@@ -3364,6 +3468,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "redact-network-headers-by-default",
+    "slug": "redact-network-headers-by-default",
+    "category": "decision",
+    "description": "Network request formatters default to redacting headers (`redactNetworkHeaders: true`) because cookies, Authorization, API keys live there; users opt into raw headers explicitly for debugging auth flows.",
+    "tags": [
+      "privacy",
+      "network",
+      "redaction",
+      "headers",
+      "security"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/redact-network-headers-by-default.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "resource-mount-unmount-use-jar-defaults",
     "slug": "resource-mount-unmount-use-jar-defaults",
     "category": "decision",
@@ -3684,6 +3806,22 @@
   },
   {
     "kind": "knowledge",
+    "name": "provider-adapter-contract-abstraction-over-codex",
+    "slug": "provider-adapter-contract-abstraction-over-codex",
+    "category": "design",
+    "description": "T3 Code defines a ProviderAdapter interface so multiple agent backends (Codex, Claude, OpenCode) can be swapped",
+    "tags": [
+      "design",
+      "provider",
+      "abstraction"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/design/provider-adapter-contract-abstraction-over-codex.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3933,6 +4071,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "register-spill-vs-block-size-tradeoff",
+    "slug": "register-spill-vs-block-size-tradeoff",
+    "category": "kernel-heuristics",
+    "description": "On Hopper/Blackwell (256KB reg file shared by 128 threads) both block_m and block_n cannot exceed 128 simultaneously without spilling to local memory, which is 100-1000x slower.",
+    "tags": [
+      "register-allocation",
+      "spills",
+      "gpu-optimization",
+      "hopper",
+      "blackwell"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/kernel-heuristics/register-spill-vs-block-size-tradeoff.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "cowork-backend-auto-detection-priority",
     "slug": "cowork-backend-auto-detection-priority",
     "category": "linux-sandbox",
@@ -3992,6 +4148,42 @@
   },
   {
     "kind": "knowledge",
+    "name": "qwen3-transformers-internals-reuse",
+    "slug": "qwen3-transformers-internals-reuse",
+    "category": "llm-agents",
+    "description": "DFlash reuses Qwen3's attention primitives directly from transformers.models.qwen3.modeling_qwen3 (RMSNorm, RotaryEmbedding, MLP, rotate_half, eager_attention_forward) rather than reimplementing them — trades a transformers version pin for feature parity.",
+    "tags": [
+      "transformers",
+      "qwen3",
+      "huggingface",
+      "internal-api",
+      "version-pin"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/qwen3-transformers-internals-reuse.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "prompt-learning-techniques",
+    "slug": "prompt-learning-techniques",
+    "category": "llm-fundamentals",
+    "description": "Prompt learning uses carefully designed input text to guide LLM behavior without updating model weights.",
+    "tags": [
+      "prompting",
+      "zero-shot",
+      "few-shot",
+      "chain-of-thought",
+      "self-consistency"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-fundamentals/prompt-learning-techniques.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "connection-type-enum-design",
     "slug": "connection-type-enum-design",
     "category": "networking",
@@ -4006,6 +4198,23 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/networking/connection-type-enum-design.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "rca-validity-score-design",
+    "slug": "rca-validity-score-design",
+    "category": "observability",
+    "description": "OpenSRE assigns a validity_score in [0..1] to each diagnosis by weighting claims — 1.0 for validated-with-real-sources, 0.8 for validated-with-generic-sources, 0.5 for failed-validation, 0.0 for non-validated — plus a 0.1 bonus if any claim has non-generic sources. Drives loop-vs-publish decisions.",
+    "tags": [
+      "scoring",
+      "confidence",
+      "llm-validation",
+      "rca"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/observability/rca-validity-score-design.md",
     "has_content": true
   },
   {
@@ -5757,6 +5966,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "provider-session-loss-on-client-reconnect",
+    "slug": "provider-session-loss-on-client-reconnect",
+    "category": "pitfall",
+    "description": "If client disconnects and reconnects, server may kill provider session if not re-claimed; requires session binding and recovery logic",
+    "tags": [
+      "pitfall",
+      "provider",
+      "session",
+      "resilience"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/provider-session-loss-on-client-reconnect.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "pub-sub-implementation-pitfall",
     "slug": "pub-sub-implementation-pitfall",
     "category": "pitfall",
@@ -5785,6 +6011,43 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/publish-pipelines-must-rebuild-derived-artifacts.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "puppeteer-chrome-sandbox-vs-mcp-client-sandbox",
+    "slug": "puppeteer-chrome-sandbox-vs-mcp-client-sandbox",
+    "category": "pitfall",
+    "description": "When an MCP server runs inside a macOS Seatbelt or Linux container sandbox imposed by the MCP client, Puppeteer's launched Chrome can't create its own sandboxes and fails to start; the documented workaround is to launch Chrome manually outside the sandbox and connect via `--browser-url`.",
+    "tags": [
+      "macos",
+      "seatbelt",
+      "linux-container",
+      "chrome",
+      "sandbox",
+      "puppeteer"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/puppeteer-chrome-sandbox-vs-mcp-client-sandbox.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pyinstaller-inspect-getsource-pitfall",
+    "slug": "pyinstaller-inspect-getsource-pitfall",
+    "category": "pitfall",
+    "description": "PyInstaller's default `.pyc`-only bundling breaks any package that calls `inspect.getsource()` at import or runtime.",
+    "tags": [
+      "pyinstaller",
+      "inspect",
+      "typechecked",
+      "torchscript",
+      "freezing"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/pyinstaller-inspect-getsource-pitfall.md",
     "has_content": true
   },
   {
@@ -5849,6 +6112,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "raw-forecast-signals-need-portfolio-optimization",
+    "slug": "raw-forecast-signals-need-portfolio-optimization",
+    "category": "pitfall",
+    "description": "Raw predicted returns from a forecasting model are not \"pure alpha\" — they carry market-beta and style-factor exposure; treat them as inputs to a portfolio optimizer, not a strategy.",
+    "tags": [
+      "finance",
+      "alpha",
+      "portfolio-optimization",
+      "risk-factors",
+      "backtest",
+      "production-ml"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/raw-forecast-signals-need-portfolio-optimization.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "read-replica-implementation-pitfall",
     "slug": "read-replica-implementation-pitfall",
     "category": "pitfall",
@@ -5857,6 +6139,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/read-replica-implementation-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "redos-in-dns-detector-character-class",
+    "slug": "redos-in-dns-detector-character-class",
+    "category": "pitfall",
+    "description": "DNS-style hostname detectors with patterns like (.label)+ are vulnerable to catastrophic backtracking (ReDoS) flagged by CodeQL. Fix: exclude '.' from the inner character class so the outer alternation cannot ambiguously match the same characters.",
+    "tags": [
+      "regex",
+      "redos",
+      "security",
+      "codeql",
+      "hostname-detector"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/redos-in-dns-detector-character-class.md",
     "has_content": true
   },
   {
@@ -6793,6 +7093,59 @@
   },
   {
     "kind": "knowledge",
+    "name": "puppeteer-network-condition-timeout-multipliers",
+    "slug": "puppeteer-network-condition-timeout-multipliers",
+    "category": "reference",
+    "description": "When emulating Puppeteer's predefined network conditions (Fast 4G / Slow 4G / Fast 3G / Slow 3G), scale navigation and wait timeouts by 1x / 2.5x / 5x / 10x respectively to avoid flaky test failures on slower presets.",
+    "tags": [
+      "puppeteer",
+      "network-emulation",
+      "timeouts",
+      "throttling"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/puppeteer-network-condition-timeout-multipliers.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pydantic-strict-config-pattern-rationale",
+    "slug": "pydantic-strict-config-pattern-rationale",
+    "category": "reference",
+    "description": "OpenSRE inherits every config model from a StrictConfigModel base that forbids extra fields and surfaces \"did you mean ...\" suggestions for typos — preventing silent ignored fields and YAML key drift across many integrations.",
+    "tags": [
+      "pydantic",
+      "config",
+      "validation",
+      "dx"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/pydantic-strict-config-pattern-rationale.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "qlib-data-pipeline-for-cn-a-share",
+    "slug": "qlib-data-pipeline-for-cn-a-share",
+    "category": "reference",
+    "description": "Microsoft Qlib provides calendar-aware data loading, feature engineering, TopkDropout strategy, and a backtest executor for CN A-share markets — how Kronos wires it in.",
+    "tags": [
+      "qlib",
+      "finance-data",
+      "cn-a-share",
+      "backtest",
+      "csi300",
+      "data-pipeline"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/qlib-data-pipeline-for-cn-a-share.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6904,6 +7257,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "query-generation-for-reflection-loops",
+    "slug": "query-generation-for-reflection-loops",
+    "category": "workflow",
+    "description": "Generate targeted questions for agents to reflect on evolution performance and blind spots",
+    "tags": [
+      "evolver",
+      "workflow",
+      "reflection",
+      "metacognition",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/workflow/query-generation-for-reflection-loops.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "repeated-look-again-means-retract-not-escalate",
     "slug": "repeated-look-again-means-retract-not-escalate",
     "category": "workflow",
@@ -6960,6 +7331,54 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/qa/content-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "propagate-design-change",
+    "slug": "propagate-design-change",
+    "category": "",
+    "description": "\"When a GDD is revised, scans all ADRs and the traceability index to identify which architectural decisions are now potentially stale. Produces a change impact report and guides the user through resolution.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/propagate-design-change",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "prototype",
+    "slug": "prototype",
+    "category": "",
+    "description": "\"Rapid prototyping workflow. Skips normal standards to quickly validate a game concept or mechanic. Produces throwaway code and a structured prototype report.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/prototype",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "qa-plan",
+    "slug": "qa-plan",
+    "category": "",
+    "description": "\"Generate a QA test plan for a sprint or feature. Reads GDDs and story files, classifies stories by test type (Logic/Integration/Visual/UI), and produces a structured test plan covering automated tests required, manual test cases, smoke test scope, and playtest sign-off requirements. Run before sprint begins or when starting a major feature.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/qa/qa-plan",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "quick-design",
+    "slug": "quick-design",
+    "category": "",
+    "description": "\"Lightweight design spec for small changes — tuning adjustments, minor mechanics, balance tweaks. Skips full GDD authoring when a system GDD already exists or the change is too small to warrant one. Produces a Quick Design Spec that embeds directly into story files.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/quick-design",
     "has_content": false
   },
   {
@@ -8111,6 +8530,44 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "proxy-mailbox-jsonl-ipc-pattern",
+    "slug": "proxy-mailbox-jsonl-ipc-pattern",
+    "category": "architecture",
+    "description": "Decouple an agent process from remote-hub auth/retry concerns by routing every network call through a local HTTP proxy that persists an append-only JSONL mailbox, so the agent only does local reads/writes and the proxy owns registration, heartbeats, retries, and sync.",
+    "tags": [
+      "ipc",
+      "daemon",
+      "jsonl",
+      "local-proxy",
+      "agent-architecture",
+      "offline-first"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/proxy-mailbox-jsonl-ipc-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "proxy-mailbox-jsonl-pattern",
+    "slug": "proxy-mailbox-jsonl-pattern",
+    "category": "architecture",
+    "description": "Decouple a local agent from a remote hub by routing every interaction through a local HTTP proxy backed by an append-only JSONL mailbox. Agent only talks localhost; proxy handles auth, retries, background sync.",
+    "tags": [
+      "proxy",
+      "mailbox",
+      "jsonl",
+      "ipc",
+      "async",
+      "hub-sync"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/proxy-mailbox-jsonl-pattern",
     "has_content": false
   },
   {
@@ -10256,6 +10713,21 @@
   },
   {
     "kind": "skill",
+    "name": "python-rust-client-fallback-with-warning",
+    "slug": "python-rust-client-fallback-with-warning",
+    "category": "bindings",
+    "description": "Python package ships both a maturin-built Rust CLI and a pure-Python fallback CLI; runtime detects the Rust binary and falls back with a stderr warning if it's missing.",
+    "tags": [
+      "magika",
+      "bindings"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/bindings/python-rust-client-fallback-with-warning",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "coverage-data-file-under-pytest-cache",
     "slug": "coverage-data-file-under-pytest-cache",
     "category": "build",
@@ -10269,6 +10741,23 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/build/coverage-data-file-under-pytest-cache",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pyproject-strict-ruff-with-per-file-ignores",
+    "slug": "pyproject-strict-ruff-with-per-file-ignores",
+    "category": "build",
+    "description": "Strict ruff config (E, F, I, S = pycodestyle errors, pyflakes, isort, security) plus targeted per-file-ignores for assert-in-tests, vendored upstream code, and infra helpers that legitimately use subprocess.",
+    "tags": [
+      "ruff",
+      "lint",
+      "config",
+      "security"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/pyproject-strict-ruff-with-per-file-ignores",
     "has_content": false
   },
   {
@@ -10288,6 +10777,78 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/build-system/cmake-cuda-extension-with-git-submodule-vendoring",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pyinstaller-cuda-onedir-split-archive",
+    "slug": "pyinstaller-cuda-onedir-split-archive",
+    "category": "build-tooling",
+    "description": "Ship a PyInstaller --onedir CUDA build as two archives so the ~2 GB NVIDIA runtime layer can be cached across app updates.",
+    "tags": [
+      "pyinstaller",
+      "cuda",
+      "packaging",
+      "desktop-ml",
+      "release-artifacts"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-tooling/pyinstaller-cuda-onedir-split-archive",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pyinstaller-ml-hidden-imports-playbook",
+    "slug": "pyinstaller-ml-hidden-imports-playbook",
+    "category": "build-tooling",
+    "description": "Repeatable recipe of --collect-all / --copy-metadata / --hidden-import flags for freezing ML stacks that break PyInstaller's default static analysis.",
+    "tags": [
+      "pyinstaller",
+      "ml",
+      "freezing",
+      "hidden-imports",
+      "metadata"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-tooling/pyinstaller-ml-hidden-imports-playbook",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pyinstaller-shim-fake-module",
+    "slug": "pyinstaller-shim-fake-module",
+    "category": "build-tooling",
+    "description": "Register a tiny in-process shim for a heavy transitive dependency so a frozen build avoids an entire unwanted toolchain.",
+    "tags": [
+      "pyinstaller",
+      "dependencies",
+      "shim",
+      "import-system",
+      "ml"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-tooling/pyinstaller-shim-fake-module",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "readme-auto-toc-with-markers",
+    "slug": "readme-auto-toc-with-markers",
+    "category": "build-tooling",
+    "description": "Use HTML comment markers (`<!-- BEGIN AUTO GENERATED X -->`/`<!-- END AUTO GENERATED X -->`) to carve mutable regions inside README.md and regenerate them idempotently from source of truth.",
+    "tags": [
+      "docs",
+      "readme",
+      "codegen",
+      "markers",
+      "idempotent"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-tooling/readme-auto-toc-with-markers",
     "has_content": false
   },
   {
@@ -11037,6 +11598,21 @@
   },
   {
     "kind": "skill",
+    "name": "recursive-directory-traversal-cli-option",
+    "slug": "recursive-directory-traversal-cli-option",
+    "category": "cli",
+    "description": "CLI --recursive (-r) flag walks directory trees, batches files for inference, and handles symlink loops + permission errors gracefully.",
+    "tags": [
+      "magika",
+      "cli"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/recursive-directory-traversal-cli-option",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "retro",
     "slug": "retro",
     "category": "cli",
@@ -11187,6 +11763,60 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/codecs/android-mediacodec-jni-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "quartz-metal-gpu-display-capture",
+    "slug": "quartz-metal-gpu-display-capture",
+    "category": "codecs",
+    "description": "macOS Quartz/CoreGraphics display capture with frame rotation and adapter descriptor caching.",
+    "tags": [
+      "capture",
+      "codecs",
+      "display",
+      "gpu",
+      "metal",
+      "quartz"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codecs/quartz-metal-gpu-display-capture",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pydantic-basemodel-deep-copy-versioning",
+    "slug": "pydantic-basemodel-deep-copy-versioning",
+    "category": "config",
+    "description": "Clone nested Pydantic configs via model_copy(deep=True) for safe per-component field overrides",
+    "tags": [
+      "pydantic",
+      "config",
+      "deep-copy",
+      "model-architecture",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/config/pydantic-basemodel-deep-copy-versioning",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pydantic-settings-multi-provider-model-envs",
+    "slug": "pydantic-settings-multi-provider-model-envs",
+    "category": "configuration",
+    "description": "Pattern for pydantic-settings declaration of per-provider per-tier LLM model env vars (e.g. ANTHROPIC_REASONING_MODEL vs ANTHROPIC_TOOLCALL_MODEL) so users can independently tune cost/quality tiers without code changes.",
+    "tags": [
+      "pydantic-settings",
+      "llm",
+      "env",
+      "tiering"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/configuration/pydantic-settings-multi-provider-model-envs",
     "has_content": false
   },
   {
@@ -12972,6 +13602,36 @@
   },
   {
     "kind": "skill",
+    "name": "receiving-code-review",
+    "slug": "receiving-code-review",
+    "category": "engineering",
+    "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/receiving-code-review",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "provider-state-management-pattern",
+    "slug": "provider-state-management-pattern",
+    "category": "flutter",
+    "description": "Flutter Provider package for reactive state management in desktop/mobile UI.",
+    "tags": [
+      "flutter",
+      "management",
+      "pattern",
+      "provider",
+      "state"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/flutter/provider-state-management-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "ag-grid-cell-renderer-pattern",
     "slug": "ag-grid-cell-renderer-pattern",
     "category": "frontend",
@@ -13577,6 +14237,23 @@
   },
   {
     "kind": "skill",
+    "name": "rdev-global-input-hook",
+    "slug": "rdev-global-input-hook",
+    "category": "input",
+    "description": "rdev crate for global keyboard/mouse event hooking and input simulation.",
+    "tags": [
+      "global",
+      "hook",
+      "input",
+      "rdev"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/input/rdev-global-input-hook",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13641,6 +14318,43 @@
   },
   {
     "kind": "skill",
+    "name": "provider-agnostic-model",
+    "slug": "provider-agnostic-model",
+    "category": "integration",
+    "description": "Use a non-OpenAI LLM provider (LiteLLM, Ollama, Anthropic) with the OpenAI Agents SDK via OpenAIChatCompletionsModel.",
+    "tags": [
+      "openai-agents",
+      "litellm",
+      "ollama",
+      "provider-agnostic",
+      "chat-completions"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/integration/provider-agnostic-model",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "recursive-include-hash-with-circular-detection",
+    "slug": "recursive-include-hash-with-circular-detection",
+    "category": "jit-compilation",
+    "description": "Build a content-addressable hash over a CUDA/C++ source's entire transitive include graph so the JIT cache invalidates automatically when any header changes, detecting circular includes with a std::nullopt sentinel.",
+    "tags": [
+      "jit",
+      "cache-invalidation",
+      "include-graph",
+      "hashing",
+      "cuda",
+      "circular-include"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/jit-compilation/recursive-include-hash-with-circular-detection",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13672,6 +14386,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "provider-registry-plugin-pattern",
+    "slug": "provider-registry-plugin-pattern",
+    "category": "llm-agents",
+    "description": "Structure AI-agent providers as a typed registry of `{id, displayName, factory, capabilities, isModelCompatible, builtIn}` records, with a separate idempotent aggregator function for community providers.",
+    "tags": [
+      "providers",
+      "plugin",
+      "registry",
+      "ai-agent",
+      "extensibility"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/provider-registry-plugin-pattern",
     "has_content": false
   },
   {
@@ -13847,6 +14579,24 @@
   },
   {
     "kind": "skill",
+    "name": "python-entrypoint-plugin-loader",
+    "slug": "python-entrypoint-plugin-loader",
+    "category": "plugin-architecture",
+    "description": "Lazy plugin loader built on importlib.metadata entry_points — discovers installed plugins by entry-point group, per-plugin try/except so one broken plugin can't kill the host, and a conventional register_converters(host, **kwargs) entry function.",
+    "tags": [
+      "plugin-architecture",
+      "python",
+      "importlib",
+      "entry-points",
+      "packaging"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/plugin-architecture/python-entrypoint-plugin-loader",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a11y-tree-snapshot-with-uids",
     "slug": "a11y-tree-snapshot-with-uids",
     "category": "puppeteer",
@@ -13861,6 +14611,25 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/puppeteer/a11y-tree-snapshot-with-uids",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pybind11-auto-pyi-stub-generator",
+    "slug": "pybind11-auto-pyi-stub-generator",
+    "category": "pytorch-integration",
+    "description": "Auto-generate typed `.pyi` stubs for a pybind11 extension by scraping `m.def(...)` call sites and matching the C++ function signature across the repo — no manual stub maintenance.",
+    "tags": [
+      "pybind11",
+      "pyi",
+      "type-stubs",
+      "build-system",
+      "python",
+      "code-generation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/pytorch-integration/pybind11-auto-pyi-stub-generator",
     "has_content": false
   },
   {
@@ -13911,6 +14680,21 @@
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pypi-testpypi-release-coordination",
+    "slug": "pypi-testpypi-release-coordination",
+    "category": "release",
+    "description": "Release pipeline tags python-test-v* for TestPyPI dry runs and python-v* for PyPI; the workflow validates tag-vs-pyproject version, builds wheels, smoke-tests on TestPyPI, then promotes to PyPI.",
+    "tags": [
+      "magika",
+      "release"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/release/pypi-testpypi-release-coordination",
+    "has_content": true
   },
   {
     "kind": "skill",
@@ -13968,6 +14752,40 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/safety/contextual-identifier-detectors-overlap-resolution",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "python-sandbox-block-network-and-subprocess",
+    "slug": "python-sandbox-block-network-and-subprocess",
+    "category": "safety",
+    "description": "Run untrusted Python code in a subprocess with a preamble that monkeypatches socket, subprocess, os.system, and builtins.open to block network, shell, and writes outside /tmp; capture stdout/stderr with a hard timeout.",
+    "tags": [
+      "sandbox",
+      "untrusted-code",
+      "subprocess",
+      "security"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/python-sandbox-block-network-and-subprocess",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "r-judge-agent-safety-evaluation",
+    "slug": "r-judge-agent-safety-evaluation",
+    "category": "safety",
+    "description": "Use R-Judge to evaluate an LLM agent risk awareness over multi-turn ReAct records, producing a risk description and safe/unsafe label.",
+    "tags": [
+      "agent-safety",
+      "r-judge",
+      "react",
+      "evaluation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/r-judge-agent-safety-evaluation",
     "has_content": false
   },
   {
@@ -14137,6 +14955,44 @@
     "version": "1.0.0",
     "path": "skills/security/openssl-4-migration-checklist",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "protobuf-message-enum-serde-pattern",
+    "slug": "protobuf-message-enum-serde-pattern",
+    "category": "serialization",
+    "description": "Protobuf codegen with serde tag-based enum variants for FFI serialization.",
+    "tags": [
+      "enum",
+      "message",
+      "pattern",
+      "protobuf",
+      "serde",
+      "serialization"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/serialization/protobuf-message-enum-serde-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "pyannote-speaker-identification",
+    "slug": "pyannote-speaker-identification",
+    "category": "speaker-embedding-identification",
+    "description": "Extract speaker embeddings with pyannote (v1 + v2 wespeaker) on GPU, enforce a minimum audio duration to avoid fbank crashes, and compare embeddings against a threshold.",
+    "tags": [
+      "pyannote",
+      "speaker-diarization",
+      "speaker-id",
+      "embeddings",
+      "torch",
+      "fastapi"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/speaker-embedding-identification/pyannote-speaker-identification",
+    "has_content": false
   },
   {
     "kind": "skill",
