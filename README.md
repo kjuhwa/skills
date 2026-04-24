@@ -1,12 +1,13 @@
 # skills-hub
 
-> **Skill & knowledge registry for Claude Code** — 467 reusable skills + 351 knowledge entries + 2 composition techniques + 28 example projects you can install into any project with a single slash command.
+> **Skill & knowledge registry for Claude Code** — 467 reusable skills + 352 knowledge entries + 2 composition techniques + 2 hypothesis-driven papers + 28 example projects you can install into any project with a single slash command.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Bootstrap](https://img.shields.io/github/v/tag/kjuhwa/skills-hub?filter=bootstrap/v*&label=bootstrap&color=purple)](https://github.com/kjuhwa/skills-hub/tags)
 [![Skills](https://img.shields.io/badge/skills-467-blue)](./index.json)
-[![Knowledge](https://img.shields.io/badge/knowledge-351-green)](./knowledge)
+[![Knowledge](https://img.shields.io/badge/knowledge-352-green)](./knowledge)
 [![Techniques](https://img.shields.io/badge/techniques-2-teal)](./technique)
+[![Papers](https://img.shields.io/badge/papers-2-indigo)](./paper)
 [![Examples](https://img.shields.io/badge/examples-28-orange)](./example)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kjuhwa/skills-hub)
 ![GitHub stars](https://img.shields.io/github/stars/kjuhwa/skills-hub?style=social)
@@ -40,8 +41,9 @@ curl -fsSL https://raw.githubusercontent.com/kjuhwa/skills-hub/main/bootstrap/in
 - 🧰 **Zero-friction installer (v2.6.7–v2.6.11)** — `install.{sh,ps1}` seeds `registry.json` v2 schema, writes `bootstrap.json` from the latest `bootstrap/v*` tag, mkdirs knowledge subcategories + `external/`, inserts the `<skills_hub>` block into `CLAUDE.md`, appends `bin/` to PATH via shell profile, registers the `UserPromptSubmit`/`PreToolUse`/`PostToolUse` hooks in `~/.claude/settings.json`, and runs `precheck.py` once so `/hub-doctor`'s 12 checks all pass on a fresh install. After v2.6.11, `git pull` alone is enough to upgrade — post-merge re-runs `install.sh` whenever `bootstrap/` files change.
 - ♻️ **Self-healing index** — git hooks (post-merge / post-commit / post-checkout) regenerate the L1/L2 corpus index after every mutation so `/hub-find` never goes stale (v2.5.0+).
 - 📦 **Category-separated registry** — 20 canonical skill categories (`apm`, `backend`, `ai`, `arch`, `frontend`, `devops`, `db`, `testing`, `security`, `data`, `cli`, `git`, `debug`, `refactor`, `docs`, `workflow`, `game-dev`, `design`, `mobile`, `misc`), one skill per folder, frontmatter-driven.
-- 🧠 **Three kinds of memory** — executable **skills** (recipes with triggers), non-executable **knowledge** (facts, decisions, pitfalls), and composition **techniques** (reusable recipes that reference 2-N atoms without copying them).
+- 🧠 **Four kinds of memory** — executable **skills** (recipes with triggers), non-executable **knowledge** (facts, decisions, pitfalls), composition **techniques** (reusable recipes that reference 2-N atoms without copying them), and hypothesis-driven **papers** (premise + experiments + outcomes; the exploration axis).
 - 🔗 **Technique middle layer (v2.6.14+)** — `technique/<category>/<slug>/TECHNIQUE.md` composes existing skills/knowledge by reference. `composes[]` preserves atom independence (unlike `hub-merge` which absorbs), `loose` semver binding by default, v0 forbids technique-to-technique nesting. Lint rule guards `composes[]` (ref resolution, kind whitelist) at publish time.
+- 📄 **Paper exploration layer (v2.7.0+)** — `paper/<category>/<slug>/PAPER.md` holds hypothesis-driven arguments on the **exploration axis** (technique is the enforcement axis). Required fields: `premise.if/then`, `examines[]`, `perspectives[]` (≥2). v0.2 adds `experiments[]` with status transitions (`planned` → `completed`) to close the loop; `hypothesis`-type papers must complete at least one experiment to reach `status: implemented`. Non-triviality gate via `proposed_builds[].requires[]`. Verification is **structure only** — claim correctness is a reviewer judgment, never a lint check.
 - 🎨 **Example projects** — 28 ready-to-install reference builds under `example/` (dashboards, auth flows, resilience patterns, interactive toys).
 - 🔁 **Round-trip workflow** — extract drafts from a session or full project → review → publish via one PR.
 - 🌐 **Import from anywhere** — `/hub-import <git-url>` pulls skills from external repos (authored or extracted).
@@ -67,6 +69,13 @@ technique/                    # v2.6.14+ — composition recipes (references, no
       TECHNIQUE.md            # frontmatter with composes[] list + body (required)
       verify.sh               # optional sanity check for composed refs
       resources/              # optional aux assets
+paper/                        # v2.7.0+ — hypothesis-driven analyses (exploration axis)
+  <category>/
+    <slug>/
+      PAPER.md                # frontmatter (premise/examines/perspectives/
+                              # experiments/outcomes/proposed_builds) + body (required)
+      resources/              # optional figures, citation excerpts
+      notes/                  # optional author notes, discarded drafts
 bootstrap/
   commands/                   # slash-command markdown files (37 total)
     # --- Core 8 (v2.6.0+) ---
@@ -263,6 +272,20 @@ Composition recipes that reference 2-N skills/knowledge without copying them. Se
 | `/hub-technique-show <slug> [--raw]` | Print body + expand `composes[]` with inline atom descriptions | no |
 | `/hub-find --kind technique <query>` | Search techniques via the main `/hub-find` flow (v2.6.14+) | no |
 | `/hub-find-techniques <query>` | *(deprecated)* Compatibility shim — migrate to `/hub-find --kind technique` | no |
+
+### Paper Layer (v2.7.0+)
+
+Hypothesis-driven analyses on the **exploration axis**. A paper carries `premise.if/then`, cites existing corpus entries via `examines[]`, applies ≥2 `perspectives[]`, proposes downstream builds with `requires[]` (non-triviality gate), and — for `type: hypothesis` — runs `experiments[]` to close the loop. See the `paper/` directory and [`docs/rfc/paper-layer.md`](./docs/rfc/paper-layer.md) + [`docs/rfc/paper-schema-draft.md`](./docs/rfc/paper-schema-draft.md).
+
+| Command | Purpose | Writes? |
+|---|---|---|
+| `/hub-paper-compose <slug>` | Interactive authoring — premise-first prompt flow, covers type, examines, perspectives, proposed_builds with `requires[]`, planned `experiments[]`; auto-verifies on write | local drafts |
+| `/hub-paper-verify <slug>\|--all` | Schema §6 gate — structure only (premise, examines resolve, perspectives ≥ 2, type enum, experiments completion consistency, requires resolution, retraction_reason). Never validates claim substance. | no |
+| `/hub-paper-list [--status/--type/--category]` | Grouped-by-status table; shows experiments (completed/planned) + outcomes count. Emits the schema §11 retraction signal when ≥ 5 papers with ≥ 60 % empty experiments AND outcomes | no |
+| `/hub-paper-show <slug> [--raw]` | Prints body + inline-expanded `examines[]`/`requires[]`/`outcomes[]`, renders `experiments[]` as a status table | no |
+| `/hub-find --kind paper <query>` | Search papers via the main `/hub-find` flow (v2.7.0+) | no |
+
+**v0.2 loop mechanics**: a `hypothesis` paper transitions `draft` → `implemented` only after at least one `experiments[]` entry completes with a non-null `result` and `supports_premise`. If the experiment refines or refutes the original premise, the paper rewrites its own `premise.then` and records the refined insight as a new `knowledge/` or `example/` entry via `outcomes[]`. This closes the cycle: premise → test → refine → corpus change. Papers that accumulate empty `experiments[]` and empty `outcomes[]` across ≥ 5 entries at ≥ 60 % trigger **layer retraction** per schema §11.
 
 ### AI Pre-implementation Auto-check (opt-in)
 
