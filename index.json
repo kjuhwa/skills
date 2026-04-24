@@ -280,6 +280,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "verification-code-attempts-rate-limit",
+    "slug": "verification-code-attempts-rate-limit",
+    "category": "api",
+    "description": "Track verification-code attempts per-code and lock out after N tries; protect against brute-force of 6-digit codes.",
+    "tags": [
+      "auth",
+      "rate-limit",
+      "verification-code",
+      "brute-force",
+      "security"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/verification-code-attempts-rate-limit.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "xlog-extended-transaction-trace-with-compression",
     "slug": "xlog-extended-transaction-trace-with-compression",
     "category": "api",
@@ -1992,6 +2010,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "workdir-preserved-for-retry",
+    "slug": "workdir-preserved-for-retry",
+    "category": "arch",
+    "description": "Per-task agent workdirs are intentionally NOT deleted after task completion — they enable faster retries (cached repo state, warmed caches) and post-mortem inspection.",
+    "tags": [
+      "daemon",
+      "workdir",
+      "retries",
+      "gc",
+      "agents"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/workdir-preserved-for-retry.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "yorkie-team-server-split",
     "slug": "yorkie-team-server-split",
     "category": "arch",
@@ -2040,6 +2076,76 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/architecture/agent-native-software-philosophy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "websocket-as-execution-boundary-in-desktop-and-web",
+    "slug": "websocket-as-execution-boundary-in-desktop-and-web",
+    "category": "architecture",
+    "description": "T3 Code uses WebSocket as the clean architectural boundary between browser/desktop UI and server runtime (git, providers, terminals)",
+    "tags": [
+      "architecture",
+      "websocket",
+      "boundary",
+      "separation-of-concerns"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/websocket-as-execution-boundary-in-desktop-and-web.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "webui-http-handler-composed-with-ws",
+    "slug": "webui-http-handler-composed-with-ws",
+    "category": "architecture",
+    "description": "The WsRpcServer accepts an optional httpHandler that serves the web UI + /api/auth on the SAME port as the WebSocket upgrades — one binding, one certificate, two client kinds authenticated with the same token.",
+    "tags": [
+      "webui",
+      "websocket",
+      "http",
+      "same-port",
+      "jwt"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/webui-http-handler-composed-with-ws.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "why-bun-not-node",
+    "slug": "why-bun-not-node",
+    "category": "architecture",
+    "description": "Why Craft Agents standardized on Bun for the server + CLI but keeps Electron on Node — startup speed, single-file bundling for subprocesses, TypeScript without build step, but Electron can't swap its renderer runtime.",
+    "tags": [
+      "bun",
+      "node",
+      "runtime-choice",
+      "electron"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/why-bun-not-node.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "vcpkg-dependency-management",
+    "slug": "vcpkg-dependency-management",
+    "category": "build-system",
+    "description": "C++ deps (libvpx, libyuv, opus, aom) via vcpkg; set VCPKG_ROOT; custom Sciter library download.",
+    "tags": [
+      "build",
+      "dependency",
+      "management",
+      "system",
+      "vcpkg"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/build-system/vcpkg-dependency-management.md",
     "has_content": true
   },
   {
@@ -2424,6 +2530,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "voxcpm-version-evolution",
+    "slug": "voxcpm-version-evolution",
+    "category": "config-versioning",
+    "description": "VoxCPM evolved from 0.5B (2-language) → 1.5 (multilingual) → 2 (2B, 30 languages, voice design, 48kHz); versions are not backward-compatible",
+    "tags": [
+      "versioning",
+      "voxcpm",
+      "architecture",
+      "compatibility",
+      "changelog"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/config-versioning/voxcpm-version-evolution.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "config-system-four-tiers",
     "slug": "config-system-four-tiers",
     "category": "configuration",
@@ -2438,6 +2562,24 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/configuration/config-system-four-tiers.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "validation-report-format",
+    "slug": "validation-report-format",
+    "category": "data-pipeline",
+    "description": "Structured validation report — test results, failure analysis, performance metrics, recommendations",
+    "tags": [
+      "evolver",
+      "data-pipeline",
+      "validation",
+      "report",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/data-pipeline/validation-report-format.md",
     "has_content": true
   },
   {
@@ -3665,6 +3807,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "verification-code-dev-master-888888",
+    "slug": "verification-code-dev-master-888888",
+    "category": "decision",
+    "description": "Dev/self-host stacks may enable a fixed master verification code for evaluation, but this MUST be disabled on public deployments — anyone who knows an email can log in.",
+    "tags": [
+      "auth",
+      "self-hosting",
+      "dev-mode",
+      "security",
+      "verification"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/verification-code-dev-master-888888.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vllm-kv-cache-fp8-with-mtp",
     "slug": "vllm-kv-cache-fp8-with-mtp",
     "category": "decision",
@@ -3900,6 +4060,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "virustotal-abuse-ch-integration",
+    "slug": "virustotal-abuse-ch-integration",
+    "category": "domain",
+    "description": "Magika is integrated with VirusTotal and abuse.ch for file-type detection in malware analysis workflows.",
+    "tags": [
+      "magika",
+      "domain"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/virustotal-abuse-ch-integration.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "condition-based-waiting",
     "slug": "condition-based-waiting",
     "category": "engineering",
@@ -3911,6 +4086,44 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/engineering/condition-based-waiting.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "video-frame-texture-rendering-plugin",
+    "slug": "video-frame-texture-rendering-plugin",
+    "category": "flutter",
+    "description": "Windows/Linux/macOS load DLL-based texture-renderer plugins at runtime for GPU rendering.",
+    "tags": [
+      "flutter",
+      "frame",
+      "plugin",
+      "rendering",
+      "texture",
+      "video"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/flutter/video-frame-texture-rendering-plugin.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-imm32-keyboard-layout-caching",
+    "slug": "windows-imm32-keyboard-layout-caching",
+    "category": "input",
+    "description": "Cache keyboard layout via GetKeyboardLayout(); use MapVirtualKeyExW for VK↔scan mapping.",
+    "tags": [
+      "caching",
+      "imm32",
+      "input",
+      "keyboard",
+      "layout",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/input/windows-imm32-keyboard-layout-caching.md",
     "has_content": true
   },
   {
@@ -3988,6 +4201,61 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/llm-agents/agent-runner-loop-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "voxcpm-lora-target-module-configuration",
+    "slug": "voxcpm-lora-target-module-configuration",
+    "category": "lora",
+    "description": "VoxCPM2 LoRA targets q/k/v/o projections on both the LM and DiT components; enable_proj is rarely needed and slows training",
+    "tags": [
+      "lora",
+      "fine-tuning",
+      "configuration",
+      "tts",
+      "voxcpm"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/lora/voxcpm-lora-target-module-configuration.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "wal-based-sync-provider",
+    "slug": "wal-based-sync-provider",
+    "category": "mobile-offline-sync",
+    "description": "Offline-first mobile sync using a Write-Ahead Log with per-frame status (pending / synced / miss / corrupted), storage-origin filtering (SD card / flash / phone), and a server-side job state machine for chunked merge.",
+    "tags": [
+      "offline-first",
+      "wal",
+      "flutter",
+      "sync-provider",
+      "fastapi",
+      "multi-storage"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/mobile-offline-sync/wal-based-sync-provider.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "voxcpm2-four-stage-pipeline",
+    "slug": "voxcpm2-four-stage-pipeline",
+    "category": "model-architecture",
+    "description": "VoxCPM2 generates speech via a four-stage pipeline: LocEnc → TSLM → RALM → LocDiT diffusion",
+    "tags": [
+      "voxcpm",
+      "architecture",
+      "tts",
+      "diffusion",
+      "pipeline"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/model-architecture/voxcpm2-four-stage-pipeline.md",
     "has_content": true
   },
   {
@@ -6563,6 +6831,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "websocket-half-open-stale-cache",
+    "slug": "websocket-half-open-stale-cache",
+    "category": "pitfall",
+    "description": "Browser WebSocket has no ping/pong API, so half-open TCP connections leave readyState=OPEN while events are silently dropped, causing stale query caches.",
+    "tags": [
+      "websocket",
+      "react-query",
+      "stale-cache",
+      "heartbeat",
+      "browser"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/websocket-half-open-stale-cache.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "websocket-implementation-pitfall",
     "slug": "websocket-implementation-pitfall",
     "category": "pitfall",
@@ -6594,6 +6880,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "windows-bun-subprocess-program-files",
+    "slug": "windows-bun-subprocess-program-files",
+    "category": "pitfall",
+    "description": "Bun subprocess spawned by an Electron app installed in Program Files can't read/write because of Windows permissions — solved by NSIS oneClick+perMachine:false to install per-user to LOCALAPPDATA.",
+    "tags": [
+      "windows",
+      "electron",
+      "bun",
+      "nsis",
+      "permissions"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/windows-bun-subprocess-program-files.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "windows-crlf-git-show-extraction",
     "slug": "windows-crlf-git-show-extraction",
     "category": "pitfall",
@@ -6602,6 +6906,39 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/windows-crlf-git-show-extraction.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-npx-needs-cmd-c-wrapper",
+    "slug": "windows-npx-needs-cmd-c-wrapper",
+    "category": "pitfall",
+    "description": "On Windows, spawning `npx` directly from an MCP host (VS Code extension host, Claude Desktop) often fails with \"Connection closed\" / error -32000 because npx is a PowerShell/CMD script, not a Node executable; wrap it as `cmd /c npx ...` or resolve the absolute `.cmd`/`.ps1`/`.bat` path.",
+    "tags": [
+      "windows",
+      "npx",
+      "mcp",
+      "subprocess",
+      "vscode"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/windows-npx-needs-cmd-c-wrapper.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-polyglot-claude-code-hooks",
+    "slug": "windows-polyglot-claude-code-hooks",
+    "category": "pitfall",
+    "description": "Cross-platform polyglot wrapper technique for Claude Code plugin hooks that must run on Windows, macOS, and Linux without shebangs",
+    "tags": [
+      "superpowers",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/windows-polyglot-claude-code-hooks.md",
     "has_content": true
   },
   {
@@ -6662,6 +6999,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "wayland-xwayland-compatibility-quirks",
+    "slug": "wayland-xwayland-compatibility-quirks",
+    "category": "platform/linux",
+    "description": "Use hbb_common::platform::linux::is_x11_or_headless() to branch between X11 and Wayland paths; headless server needs its own fallback.",
+    "tags": [
+      "compatibility",
+      "linux",
+      "platform",
+      "quirks",
+      "wayland",
+      "xwayland"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/linux/wayland-xwayland-compatibility-quirks.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "android-ios-feature-parity-gap",
     "slug": "android-ios-feature-parity-gap",
     "category": "platform/mobile",
@@ -6677,6 +7033,80 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/mobile/android-ios-feature-parity-gap.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "virtual-display-driver-architecture",
+    "slug": "virtual-display-driver-architecture",
+    "category": "platform/windows",
+    "description": "Virtual-display driver ships a separate dylib; host process does dynamic symbol loading and monitor hotplug emulation.",
+    "tags": [
+      "architecture",
+      "display",
+      "driver",
+      "platform",
+      "virtual",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/windows/virtual-display-driver-architecture.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-dxgi-memory-leak-mitigation",
+    "slug": "windows-dxgi-memory-leak-mitigation",
+    "category": "platform/windows",
+    "description": "DXGI AcquireNextFrame has a known memory-leak pattern — mitigate via rate-limited acquisition and explicit texture reuse.",
+    "tags": [
+      "dxgi",
+      "leak",
+      "memory",
+      "mitigation",
+      "platform",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/windows/windows-dxgi-memory-leak-mitigation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-enumerateprinters-api-limitation",
+    "slug": "windows-enumerateprinters-api-limitation",
+    "category": "platform/windows",
+    "description": "EnumPrintersW filters by PRINTER_ENUM_LOCAL/CONNECTIONS; doesn't discover remote-only printers.",
+    "tags": [
+      "api",
+      "enumerateprinters",
+      "limitation",
+      "platform",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/windows/windows-enumerateprinters-api-limitation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-service-elevation-patterns",
+    "slug": "windows-service-elevation-patterns",
+    "category": "platform/windows",
+    "description": "Service elevation via OpenProcessToken + TokenElevation; runs as SYSTEM or user via securitybaseapi.",
+    "tags": [
+      "elevation",
+      "patterns",
+      "platform",
+      "service",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/windows/windows-service-elevation-patterns.md",
     "has_content": true
   },
   {
@@ -6805,6 +7235,45 @@
   },
   {
     "kind": "knowledge",
+    "name": "vineflower-fernflower-cli-options-reference",
+    "slug": "vineflower-fernflower-cli-options-reference",
+    "category": "reference",
+    "description": "Fernflower / Vineflower JVM decompiler CLI flag reference (shared interface), recommended presets for general/obfuscated/max-detail output, APK-via-dex2jar pipeline, and when to prefer Fernflower/Vineflower over jadx.",
+    "tags": [
+      "android",
+      "jvm",
+      "fernflower",
+      "vineflower",
+      "decompiler",
+      "cli",
+      "reverse-engineering",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/vineflower-fernflower-cli-options-reference.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "worker-pool-two-sided-enable",
+    "slug": "worker-pool-two-sided-enable",
+    "category": "reference",
+    "description": "In a hub-dispatch worker pool, work is only sent to a node when *both* the local daemon advertises worker capability via heartbeat *and* a hub-side toggle allows dispatch. Either side off = no work. This two-key model prevents accidental enrollment and accidental mass-drop.",
+    "tags": [
+      "worker-pool",
+      "heartbeat",
+      "distributed",
+      "capability-advertisement",
+      "hub-dispatch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/worker-pool-two-sided-enable.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "identifier-regex-loose-when-legacy-coexists",
     "slug": "identifier-regex-loose-when-legacy-coexists",
     "category": "schema-design",
@@ -6861,6 +7330,59 @@
   },
   {
     "kind": "knowledge",
+    "name": "verification-checklist-for-agent-outputs",
+    "slug": "verification-checklist-for-agent-outputs",
+    "category": "testing",
+    "description": "Adversarial verification checklist for LLM-agent deliverables — must-run actions per product type, required adversarial probes, and strict VERDICT output format.",
+    "tags": [
+      "testing",
+      "verification",
+      "llm-agents",
+      "adversarial",
+      "quality-gates"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/verification-checklist-for-agent-outputs.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "windows-onnxruntime-pin-workaround",
+    "slug": "windows-onnxruntime-pin-workaround",
+    "category": "version-quirk",
+    "description": "Windows builds temporarily pinned onnxruntime to work around build issues — later resolved as ONNX Runtime stabilized.",
+    "tags": [
+      "magika",
+      "version-quirk"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/version-quirk/windows-onnxruntime-pin-workaround.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "wayland-compositor-autodetection-limits",
+    "slug": "wayland-compositor-autodetection-limits",
+    "category": "wayland",
+    "description": "Detecting Wayland presence via `WAYLAND_DISPLAY` is insufficient for feature gating — compositors vary widely in XWayland support; reliable detection must check `XDG_CURRENT_DESKTOP` for known edge cases (e.g., Niri has no XWayland) to decide whether to force native Wayland or fall back to X11.",
+    "tags": [
+      "wayland",
+      "xwayland",
+      "compositor",
+      "detection",
+      "global-hotkeys",
+      "linux",
+      "electron"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/wayland/wayland-compositor-autodetection-limits.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "accept-header-prefer-markdown-over-html",
     "slug": "accept-header-prefer-markdown-over-html",
     "category": "web",
@@ -6912,6 +7434,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/workflow/repeated-look-again-means-retract-not-escalate.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "workflow-guide",
+    "slug": "workflow-guide",
+    "category": "workflow",
+    "description": "End-to-end CCGS development workflow guide covering all phases from concept to release",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "workflow",
+      "phases",
+      "development-process"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/workflow/workflow-guide.md",
     "has_content": true
   },
   {
@@ -8111,6 +8651,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "voice-prompt-md5-two-tier-cache",
+    "slug": "voice-prompt-md5-two-tier-cache",
+    "category": "architecture",
+    "description": "Cache expensive voice-cloning prompts by content-hashing the reference audio plus text, with RAM + disk tiers.",
+    "tags": [
+      "caching",
+      "tts",
+      "voice-cloning",
+      "two-tier-cache",
+      "md5"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/voice-prompt-md5-two-tier-cache",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "workspace-aware-zustand-persist",
+    "slug": "workspace-aware-zustand-persist",
+    "category": "architecture",
+    "description": "Zustand persist storage that auto-namespaces keys by workspace slug, with microtask-deferred rehydration on workspace switch.",
+    "tags": [
+      "zustand",
+      "persist",
+      "workspace",
+      "multi-tenancy",
+      "storage"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/workspace-aware-zustand-persist",
     "has_content": false
   },
   {
@@ -10292,6 +10868,26 @@
   },
   {
     "kind": "skill",
+    "name": "wheel-url-download-with-source-fallback",
+    "slug": "wheel-url-download-with-source-fallback",
+    "category": "build-system",
+    "description": "Override `bdist_wheel` to first attempt downloading a pre-built wheel from a GitHub Release URL (composed from CUDA/torch/Python versions) and fall back to local source build only on HTTP failure.",
+    "tags": [
+      "wheel",
+      "bdist-wheel",
+      "github-releases",
+      "cuda",
+      "setup-py",
+      "prebuilt",
+      "fallback"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-system/wheel-url-download-with-source-fallback",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "autoplan",
     "slug": "autoplan",
     "category": "cli",
@@ -11173,6 +11769,23 @@
   },
   {
     "kind": "skill",
+    "name": "wizard-named-remotes-with-active-pointer",
+    "slug": "wizard-named-remotes-with-active-pointer",
+    "category": "cli",
+    "description": "CLI config store that holds many named remote endpoints plus an \"active\" pointer, persisted as JSON, so users can opensre-style register/list/switch between deployments and have subsequent commands target the active one by default.",
+    "tags": [
+      "config-store",
+      "cli",
+      "named-remotes",
+      "json"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/wizard-named-remotes-with-active-pointer",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "android-mediacodec-jni-wrapper",
     "slug": "android-mediacodec-jni-wrapper",
     "category": "codecs",
@@ -11187,6 +11800,61 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/codecs/android-mediacodec-jni-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "video-codec-enum-trait-dispatch",
+    "slug": "video-codec-enum-trait-dispatch",
+    "category": "codecs",
+    "description": "Trait-based encoder dispatch with EncoderCfg enum variants for VP9, AOM, HWRAM, VRAM codecs.",
+    "tags": [
+      "codec",
+      "codecs",
+      "dispatch",
+      "enum",
+      "trait",
+      "video"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codecs/video-codec-enum-trait-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "video-qos-bitrate-adaptation",
+    "slug": "video-qos-bitrate-adaptation",
+    "category": "codecs",
+    "description": "VideoQoS frame-rate/bitrate adaptation based on network feedback.",
+    "tags": [
+      "adaptation",
+      "bitrate",
+      "codecs",
+      "qos",
+      "video"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codecs/video-qos-bitrate-adaptation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "vision-api-cost-optimization-with-fallback",
+    "slug": "vision-api-cost-optimization-with-fallback",
+    "category": "computer-vision",
+    "description": "Cascade of cheaper-to-more-expensive techniques for extracting info from GUIs — window titles first, local OCR second, scoped screenshots only when nothing else works.",
+    "tags": [
+      "computer-vision",
+      "cost-optimization",
+      "gui-automation",
+      "ocr",
+      "screenshots"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/computer-vision/vision-api-cost-optimization-with-fallback",
     "has_content": false
   },
   {
@@ -12972,6 +13640,18 @@
   },
   {
     "kind": "skill",
+    "name": "verification-before-completion",
+    "slug": "verification-before-completion",
+    "category": "engineering",
+    "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/verification-before-completion",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "ag-grid-cell-renderer-pattern",
     "slug": "ag-grid-cell-renderer-pattern",
     "category": "frontend",
@@ -13641,6 +14321,27 @@
   },
   {
     "kind": "skill",
+    "name": "wayland-ime-input-method-flags",
+    "slug": "wayland-ime-input-method-flags",
+    "category": "launcher",
+    "description": "Enable native Wayland input method support (IBus/Fcitx5/etc.) in Electron apps by adding --enable-wayland-ime and --wayland-text-input-version=3 flags when running in native Wayland mode. Explains why these are only safe in native Wayland, not XWayland.",
+    "tags": [
+      "wayland",
+      "ime",
+      "input-method",
+      "ibus",
+      "fcitx5",
+      "electron",
+      "launcher",
+      "i18n"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/launcher/wayland-ime-input-method-flags",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13847,6 +14548,80 @@
   },
   {
     "kind": "skill",
+    "name": "virtual-display-driver-dlopen-wrapper",
+    "slug": "virtual-display-driver-dlopen-wrapper",
+    "category": "platform",
+    "description": "Dynamic dylib symbol loading for virtual-display driver with type-safe function pointers.",
+    "tags": [
+      "display",
+      "dlopen",
+      "driver",
+      "platform",
+      "virtual",
+      "wrapper"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/platform/virtual-display-driver-dlopen-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "wayland-pipewire-portal-abstraction",
+    "slug": "wayland-pipewire-portal-abstraction",
+    "category": "platform/linux",
+    "description": "Wayland desktop-portal protocol for screen capture via screencast_portal and request_portal.",
+    "tags": [
+      "abstraction",
+      "linux",
+      "pipewire",
+      "platform",
+      "portal",
+      "wayland"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/linux/wayland-pipewire-portal-abstraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "windows-registry-config-storage",
+    "slug": "windows-registry-config-storage",
+    "category": "platform/windows",
+    "description": "WinReg integration for app config storage (desktop shortcuts, printer settings).",
+    "tags": [
+      "config",
+      "platform",
+      "registry",
+      "storage",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/windows/windows-registry-config-storage",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "windows-service-control-handler",
+    "slug": "windows-service-control-handler",
+    "category": "platform/windows",
+    "description": "Windows service integration with ServiceControl/ServiceControlHandler trait and graceful stop.",
+    "tags": [
+      "control",
+      "handler",
+      "platform",
+      "service",
+      "windows"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/windows/windows-service-control-handler",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a11y-tree-snapshot-with-uids",
     "slug": "a11y-tree-snapshot-with-uids",
     "category": "puppeteer",
@@ -13861,6 +14636,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/puppeteer/a11y-tree-snapshot-with-uids",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "wait-for-stable-dom-after-action",
+    "slug": "wait-for-stable-dom-after-action",
+    "category": "puppeteer",
+    "description": "After an action like click or fill, wait for a potential navigation and then a debounced MutationObserver quiet period, so subsequent tool calls run against a settled DOM rather than an animating one.",
+    "tags": [
+      "puppeteer",
+      "mutation-observer",
+      "dom-stability",
+      "navigation",
+      "waiting"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/puppeteer/wait-for-stable-dom-after-action",
     "has_content": false
   },
   {
@@ -13910,6 +14703,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "version-bump-inference-from-commit-subjects",
+    "slug": "version-bump-inference-from-commit-subjects",
+    "category": "release",
+    "description": "Infer semantic version bump (major/minor/patch) from commit subjects since last release",
+    "tags": [
+      "evolver",
+      "release",
+      "semver",
+      "conventional-commits"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/release/version-bump-inference-from-commit-subjects",
     "has_content": false
   },
   {
@@ -14369,6 +15179,24 @@
   },
   {
     "kind": "skill",
+    "name": "vitest-per-package-environments",
+    "slug": "vitest-per-package-environments",
+    "category": "testing",
+    "description": "Per-package Vitest configs in a monorepo — node env for logic packages, jsdom env for UI packages, framework-specific mocks only in app packages.",
+    "tags": [
+      "vitest",
+      "monorepo",
+      "jsdom",
+      "testing",
+      "test-organization"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/vitest-per-package-environments",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "comprehensive-gpu-kernel-testing-harness",
     "slug": "comprehensive-gpu-kernel-testing-harness",
     "category": "testing-gpu",
@@ -14402,6 +15230,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/testing-gpu/cosine-similarity-diff-for-fp8-numerics",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "version-aware-lora-config-selection",
+    "slug": "version-aware-lora-config-selection",
+    "category": "training",
+    "description": "Select the correct LoRAConfig class based on detected model architecture version at runtime",
+    "tags": [
+      "lora",
+      "training",
+      "versioning",
+      "config",
+      "fine-tuning"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/training/version-aware-lora-config-selection",
     "has_content": false
   },
   {
@@ -16095,6 +16941,41 @@
   },
   {
     "kind": "skill",
+    "name": "variable-substitution-word-boundary",
+    "slug": "variable-substitution-word-boundary",
+    "category": "workflow",
+    "description": "Protect `$CONTEXT`/`$BASE_BRANCH`/`$ARGUMENTS` template variables from consuming their prefix inside longer identifiers using `(?![A-Za-z0-9_])` negative-lookahead.",
+    "tags": [
+      "workflow",
+      "templating",
+      "regex",
+      "variable-substitution"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/variable-substitution-word-boundary",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "visibility-change-cache-refresh",
+    "slug": "visibility-change-cache-refresh",
+    "category": "workflow",
+    "description": "Listen for document.visibilitychange and force-invalidate critical React Query keys when the tab becomes visible — a 10-line safety net against silent WebSocket drop-outs.",
+    "tags": [
+      "react-query",
+      "websocket",
+      "visibilitychange",
+      "cache",
+      "freshness"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/visibility-change-cache-refresh",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "websocket-data-simulation",
     "slug": "websocket-data-simulation",
     "category": "workflow",
@@ -16108,6 +16989,24 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/websocket-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "workflow-condition-evaluator",
+    "slug": "workflow-condition-evaluator",
+    "category": "workflow",
+    "description": "Fail-closed evaluator for DAG `when:` expressions supporting `==`/`!=`/`<`/`<=`/`>`/`>=`/`&&`/`||` against prior node outputs with dot-path JSON access.",
+    "tags": [
+      "workflow",
+      "dag",
+      "condition",
+      "when",
+      "fail-closed"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/workflow-condition-evaluator",
     "has_content": false
   },
   {
