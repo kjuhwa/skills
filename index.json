@@ -633,6 +633,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "engineering-principles-archon",
+    "slug": "engineering-principles-archon",
+    "category": "arch",
+    "description": "Six-principle engineering charter — KISS / YAGNI / DRY+Rule-of-Three / SRP+ISP / Fail-Fast / No-Autonomous-Lifecycle-Mutation / Determinism / Reversibility — applied as implementation constraints, not slogans.",
+    "tags": [
+      "architecture",
+      "principles",
+      "engineering",
+      "charter"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/engineering-principles-archon.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "env-override-last-wins-chain",
     "slug": "env-override-last-wins-chain",
     "category": "arch",
@@ -667,6 +684,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/arch/event-driven-init-wait-for-services.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "fail-fast-explicit-errors-ai-runtime",
+    "slug": "fail-fast-explicit-errors-ai-runtime",
+    "category": "arch",
+    "description": "In an AI-agent runtime, silent fallback and swallowed errors are extra-dangerous — they can broaden permissions, retry forever, or charge the user without warning. Prefer throwing early with a clear message.",
+    "tags": [
+      "architecture",
+      "fail-fast",
+      "ai-runtime",
+      "error-handling",
+      "safety"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/fail-fast-explicit-errors-ai-runtime.md",
     "has_content": true
   },
   {
@@ -2118,6 +2153,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "excel-xml-clipboard-format-special-case",
+    "slug": "excel-xml-clipboard-format-special-case",
+    "category": "clipboard",
+    "description": "Excel exports as XML Spreadsheet format (not standard MIME); clipboard bridges need a branch to preserve Excel fidelity.",
+    "tags": [
+      "case",
+      "clipboard",
+      "excel",
+      "format",
+      "special",
+      "xml"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/clipboard/excel-xml-clipboard-format-special-case.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "agent-director-art-director",
     "slug": "agent-director-art-director",
     "category": "collaboration",
@@ -2816,6 +2870,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "english-only-comments",
+    "slug": "english-only-comments",
+    "category": "decision",
+    "description": "All code comments in English only — keeps the codebase accessible to contributors regardless of native language and plays well with LLM-assisted review.",
+    "tags": [
+      "coding-rules",
+      "comments",
+      "internationalization",
+      "style"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/english-only-comments.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "existing-code-patterns-over-standard-rules",
     "slug": "existing-code-patterns-over-standard-rules",
     "category": "decision",
@@ -2830,6 +2901,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/existing-code-patterns-over-standard-rules.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "experimental-structured-content-flag",
+    "slug": "experimental-structured-content-flag",
+    "category": "decision",
+    "description": "MCP structured-content support is gated behind an `experimentalStructuredContent` flag because not all MCP clients parse the field and including it unconditionally can crash older clients; ship it as opt-in during the rollout window.",
+    "tags": [
+      "mcp",
+      "backwards-compat",
+      "feature-flags",
+      "structured-content"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/experimental-structured-content-flag.md",
     "has_content": true
   },
   {
@@ -3684,6 +3772,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "electron-builder-per-platform-filtering",
+    "slug": "electron-builder-per-platform-filtering",
+    "category": "devops",
+    "description": "electron-builder.yml uses per-platform extraResources + files: exclusions to ship only the target's Bun/Codex/Copilot binaries and the matching ripgrep vendor — trimming installer size by 60-80%.",
+    "tags": [
+      "electron-builder",
+      "packaging",
+      "per-platform",
+      "installer-size"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/devops/electron-builder-per-platform-filtering.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3900,6 +4005,84 @@
   },
   {
     "kind": "knowledge",
+    "name": "electron-app-resource-path-resolution",
+    "slug": "electron-app-resource-path-resolution",
+    "category": "electron-packaging",
+    "description": "Electron derives `process.resourcesPath` from `/proc/self/exe`; when the binary and app resources live in separate directories (Nix, custom installs), it points at the wrong tree. A preload wrapper that overrides it using `__dirname` corrects this before any app code runs.",
+    "tags": [
+      "electron",
+      "resource-path",
+      "preload",
+      "wrapper",
+      "linux",
+      "nix",
+      "__dirname"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/electron-packaging/electron-app-resource-path-resolution.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "electron-preload-wrapper-proxy-interception",
+    "slug": "electron-preload-wrapper-proxy-interception",
+    "category": "electron-packaging",
+    "description": "Electron's module exports use non-configurable property descriptors, so you cannot directly reassign `module.BrowserWindow`; instead, intercept `require('electron')` and return a `Proxy` that overrides only the properties you need.",
+    "tags": [
+      "electron",
+      "proxy",
+      "monkey-patching",
+      "require",
+      "browserwindow",
+      "module-interception"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/electron-packaging/electron-preload-wrapper-proxy-interception.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "electron-singleton-lock-race-condition",
+    "slug": "electron-singleton-lock-race-condition",
+    "category": "electron-packaging",
+    "description": "Electron's `requestSingleInstanceLock` uses a LevelDB-backed symlink with a PID target; if the previous process exited uncleanly, the symlink remains pointing at a dead PID, causing subsequent launches to silently quit without any error message.",
+    "tags": [
+      "electron",
+      "singleton-lock",
+      "leveldb",
+      "race-condition",
+      "stale-lock",
+      "linux",
+      "launcher"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/electron-packaging/electron-singleton-lock-race-condition.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "engine-reference-readme",
+    "slug": "engine-reference-readme",
+    "category": "engine",
+    "description": "Overview of the CCGS engine reference library covering Godot, Unity, and Unreal",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "engine-reference",
+      "godot",
+      "unity",
+      "unreal"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engine/engine-reference-readme.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "condition-based-waiting",
     "slug": "condition-based-waiting",
     "category": "engineering",
@@ -3992,6 +4175,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "exec-plan-format",
+    "slug": "exec-plan-format",
+    "category": "llm-agents",
+    "description": "The ExecPlan format used in the openai-agents-python repo — a self-contained living spec for multi-step code changes.",
+    "tags": [
+      "openai-agents",
+      "planning",
+      "execplan",
+      "codex",
+      "process"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/exec-plan-format.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "connection-type-enum-design",
     "slug": "connection-type-enum-design",
     "category": "networking",
@@ -4006,6 +4207,40 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/networking/connection-type-enum-design.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "evidence-compaction-multi-phase-strategy",
+    "slug": "evidence-compaction-multi-phase-strategy",
+    "category": "observability",
+    "description": "OpenSRE applies three layers of log/evidence compaction (deduplication by normalized signature, structured error taxonomy, raw truncation with totals) to keep noisy production logs within LLM context budgets without losing distinct error types.",
+    "tags": [
+      "logs",
+      "compaction",
+      "llm-context",
+      "taxonomy"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/observability/evidence-compaction-multi-phase-strategy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "env-configurable-short-circuit-kill-switches",
+    "slug": "env-configurable-short-circuit-kill-switches",
+    "category": "ops",
+    "description": "Ship optimizations (healthy short-circuit, masking, guardrails, keyring) with env-var kill switches so ops can disable a bad heuristic without a deploy. Defaults favor safety (ENABLED for protection, DISABLED for speculative optimizations).",
+    "tags": [
+      "kill-switch",
+      "env-config",
+      "ops",
+      "safety"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/env-configurable-short-circuit-kill-switches.md",
     "has_content": true
   },
   {
@@ -4876,6 +5111,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "effect-ts-scope-lifecycle-and-early-termination",
+    "slug": "effect-ts-scope-lifecycle-and-early-termination",
+    "category": "pitfall",
+    "description": "Effect.ts scopes guarantee finalizers run when scope closes, but exceptions can cause parent scopes to close unexpectedly",
+    "tags": [
+      "effect-ts",
+      "pitfall",
+      "resource-management",
+      "scope"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/effect-ts-scope-lifecycle-and-early-termination.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "enum-notnull-comparison-pitfall",
     "slug": "enum-notnull-comparison-pitfall",
     "category": "pitfall",
@@ -4907,6 +5159,42 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/enum-whitelist-blocks-time-based-sqli.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "env-file-prefer-main-over-worktree",
+    "slug": "env-file-prefer-main-over-worktree",
+    "category": "pitfall",
+    "description": "Makefile env-file selection must prefer .env over .env.worktree so a stray .env in a worktree does not silently point it at the main DB.",
+    "tags": [
+      "makefile",
+      "worktree",
+      "env-file",
+      "dev-setup",
+      "gotcha"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/env-file-prefer-main-over-worktree.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "esm-only-pi-sdk-build-constraint",
+    "slug": "esm-only-pi-sdk-build-constraint",
+    "category": "pitfall",
+    "description": "The Pi SDK (@mariozechner/pi-coding-agent) is ESM-only; bundling it with esbuild packages:external leaves require() calls that fail at runtime — the fix is bun build --target=bun --format=esm.",
+    "tags": [
+      "esm",
+      "cjs",
+      "bundler",
+      "pi-sdk",
+      "bun-build"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/esm-only-pi-sdk-build-constraint.md",
     "has_content": true
   },
   {
@@ -6681,6 +6969,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "fastapi-plugin-router-system",
+    "slug": "fastapi-plugin-router-system",
+    "category": "plugin-architecture",
+    "description": "Realtime-conversation plugin architecture over FastAPI routers, where each plugin consumes TranscriptSegment lists, returns structured EndpointResponse, and is registered via a simple per-conversation-app allowlist.",
+    "tags": [
+      "fastapi",
+      "plugins",
+      "transcript-segment",
+      "langchain",
+      "pydantic-v1",
+      "realtime-hooks"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/plugin-architecture/fastapi-plugin-router-system.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "alert-extraction-single-llm-call-pattern",
     "slug": "alert-extraction-single-llm-call-pattern",
     "category": "reference",
@@ -6793,6 +7100,59 @@
   },
   {
     "kind": "knowledge",
+    "name": "env-vars-for-debug-and-opt-outs",
+    "slug": "env-vars-for-debug-and-opt-outs",
+    "category": "reference",
+    "description": "chrome-devtools-mcp uses a small set of environment variables for debugging and opt-outs — `DEBUG=*` for verbose logs, `CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS=1` to skip npm version checks, `CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS=true` to suppress telemetry — all checked before resource allocation.",
+    "tags": [
+      "env-vars",
+      "debug",
+      "opt-out",
+      "cli",
+      "configuration"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/env-vars-for-debug-and-opt-outs.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "env-vars-for-headless-server",
+    "slug": "env-vars-for-headless-server",
+    "category": "reference",
+    "description": "Complete environment-variable contract for the craft-agents headless server binary (CRAFT_SERVER_TOKEN, RPC host/port, TLS triple, web UI toggles, debug).",
+    "tags": [
+      "server",
+      "env-vars",
+      "configuration",
+      "headless"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/env-vars-for-headless-server.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "examples-readme",
+    "slug": "examples-readme",
+    "category": "reference",
+    "description": "Overview of CCGS workflow examples and how to use them as references",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "examples",
+      "reference",
+      "workflow"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/examples-readme.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6801,6 +7161,25 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "feature-flag-rust-unwrap-policy",
+    "slug": "feature-flag-rust-unwrap-policy",
+    "category": "rust-rules",
+    "description": "Policy: no unwrap()/expect() except in tests (readability) and lock acquisition (poison only).",
+    "tags": [
+      "feature",
+      "flag",
+      "policy",
+      "rules",
+      "rust",
+      "unwrap"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/rust-rules/feature-flag-rust-unwrap-policy.md",
     "has_content": true
   },
   {
@@ -6904,6 +7283,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "evolution-strategy-selector",
+    "slug": "evolution-strategy-selector",
+    "category": "workflow",
+    "description": "Select evolution strategy (balanced, innovate, harden, repair-only, early-stabilize) by context",
+    "tags": [
+      "evolver",
+      "workflow",
+      "strategy",
+      "mode-selection",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/workflow/evolution-strategy-selector.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "repeated-look-again-means-retract-not-escalate",
     "slug": "repeated-look-again-means-retract-not-escalate",
     "category": "workflow",
@@ -6964,6 +7361,18 @@
   },
   {
     "kind": "skill",
+    "name": "estimate",
+    "slug": "estimate",
+    "category": "",
+    "description": "\"Estimates task effort by analyzing complexity, dependencies, historical velocity, and risk factors. Produces a structured estimate with confidence levels.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/estimate",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "alert-time-window-with-buffer",
     "slug": "alert-time-window-with-buffer",
     "category": "agent-sdk",
@@ -6994,6 +7403,41 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agent-sdk/claude-agent-sdk-multi-provider-bridge",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "evidence-driven-claim-validator",
+    "slug": "evidence-driven-claim-validator",
+    "category": "agent-sdk",
+    "description": "Reject LLM-generated root-cause claims that aren't supported by the actual evidence dict — claim mentions \"memory\" but no host_metrics? mark not-validated. Uses a per-keyword evidence requirement table and outputs a confidence score.",
+    "tags": [
+      "hallucination-defense",
+      "claim-validation",
+      "evidence",
+      "scoring"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/evidence-driven-claim-validator",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "fetch-interceptor-via-require-preload",
+    "slug": "fetch-interceptor-via-require-preload",
+    "category": "agent-sdk",
+    "description": "Patch globalThis.fetch in SDK subprocesses BEFORE the SDK captures it, by shipping a CJS interceptor bundle and loading it with node --require / bun --preload at spawn time.",
+    "tags": [
+      "interceptor",
+      "fetch",
+      "node-require",
+      "bun-preload",
+      "observability"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/fetch-interceptor-via-require-preload",
     "has_content": false
   },
   {
@@ -7671,6 +8115,26 @@
   },
   {
     "kind": "skill",
+    "name": "electron-windows-exe-to-linux-appimage",
+    "slug": "electron-windows-exe-to-linux-appimage",
+    "category": "appimage",
+    "description": "Download a Windows Electron installer (.exe / Squirrel NUPKG), extract the app.asar and icons, repack into a Linux AppImage with launcher script, desktop entry, AppStream metadata, and optional update info for zsync delta updates.",
+    "tags": [
+      "appimage",
+      "electron",
+      "packaging",
+      "linux",
+      "appdir",
+      "appimagetool",
+      "squirrel"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/appimage/electron-windows-exe-to-linux-appimage",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "adaptive-strategy-hot-swap",
     "slug": "adaptive-strategy-hot-swap",
     "category": "arch",
@@ -8111,6 +8575,40 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "event-sourced-orchestration-with-decider-projector",
+    "slug": "event-sourced-orchestration-with-decider-projector",
+    "category": "architecture",
+    "description": "Use event sourcing for domain state with pure decider (commands->events) and projector (events->read model) functions",
+    "tags": [
+      "event-sourcing",
+      "ddd",
+      "architecture"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/event-sourced-orchestration-with-decider-projector",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "event-bus-automation-system",
+    "slug": "event-bus-automation-system",
+    "category": "automation",
+    "description": "Per-workspace event bus + handler registry (prompt / webhook / event-log) that turns typed events (LabelAdd, SchedulerTick, SessionStatusChange, PreToolUse) into config-driven actions defined in automations.json.",
+    "tags": [
+      "event-bus",
+      "automations",
+      "workflow",
+      "webhook",
+      "cron"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/automation/event-bus-automation-system",
     "has_content": false
   },
   {
@@ -10292,6 +10790,44 @@
   },
   {
     "kind": "skill",
+    "name": "env-driven-debug-flag-matrix-for-jit",
+    "slug": "env-driven-debug-flag-matrix-for-jit",
+    "category": "build-system",
+    "description": "Use a consistently-prefixed family of environment variables (DG_JIT_DEBUG, DG_JIT_DUMP_PTX, DG_JIT_PTXAS_CHECK, ...) to toggle JIT compilation/loading/profiling diagnostics without rebuilding or changing config files.",
+    "tags": [
+      "environment-variables",
+      "debug-flags",
+      "jit",
+      "observability",
+      "cuda",
+      "diagnostics"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-system/env-driven-debug-flag-matrix-for-jit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "feature-flag-conditional-compilation",
+    "slug": "feature-flag-conditional-compilation",
+    "category": "build-system",
+    "description": "Nested feature gates (hwcodec, vram, mediacodec, flutter, unix-file-copy-paste) in Cargo.toml.",
+    "tags": [
+      "build",
+      "compilation",
+      "conditional",
+      "feature",
+      "flag",
+      "system"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-system/feature-flag-conditional-compilation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "autoplan",
     "slug": "autoplan",
     "category": "cli",
@@ -11173,6 +11709,23 @@
   },
   {
     "kind": "skill",
+    "name": "file-clipboard-transfer-protocol",
+    "slug": "file-clipboard-transfer-protocol",
+    "category": "clipboard",
+    "description": "RDP-style file transfer via clipboard with CLIPRDR context abstraction and platform backends.",
+    "tags": [
+      "clipboard",
+      "file",
+      "protocol",
+      "transfer"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/clipboard/file-clipboard-transfer-protocol",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "android-mediacodec-jni-wrapper",
     "slug": "android-mediacodec-jni-wrapper",
     "category": "codecs",
@@ -11187,6 +11740,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/codecs/android-mediacodec-jni-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "env-driven-strategy-preset",
+    "slug": "env-driven-strategy-preset",
+    "category": "configuration",
+    "description": "Expose one env var that selects a named preset, where each preset is a tuple of behavior weights (innovate / optimize / repair). Default preset is \"balanced\"; operators swap presets for incident response without touching code.",
+    "tags": [
+      "configuration",
+      "strategy",
+      "env-var",
+      "presets",
+      "feature-weights"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/configuration/env-driven-strategy-preset",
     "has_content": false
   },
   {
@@ -12972,6 +13543,80 @@
   },
   {
     "kind": "skill",
+    "name": "electron-bun-dev-orchestrator",
+    "slug": "electron-bun-dev-orchestrator",
+    "category": "electron",
+    "description": "Cross-platform Electron dev launcher that parallel-builds main/preload/MCP subprocess bundles, waits for file stability, watches with esbuild's JS API, and spawns Vite + Electron - replaces a fragile tree of npm scripts.",
+    "tags": [
+      "electron",
+      "bun",
+      "esbuild",
+      "vite",
+      "dev-tooling"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron/electron-bun-dev-orchestrator",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "electron-platform-services-injection",
+    "slug": "electron-platform-services-injection",
+    "category": "electron",
+    "description": "Inject a PlatformServices facade (image processing, shell env, keychain, badge updates, error capture) into shared server-core code so the SAME RPC handler file runs unchanged in Electron main AND a headless Bun server.",
+    "tags": [
+      "electron",
+      "platform-abstraction",
+      "dependency-injection",
+      "headless"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron/electron-platform-services-injection",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "electron-frame-interception-wrapper",
+    "slug": "electron-frame-interception-wrapper",
+    "category": "electron-packaging",
+    "description": "Pre-load wrapper that intercepts require('electron') via Module.prototype.require and returns a Proxy patching BrowserWindow and Menu. Enables injecting frame mode, menu-bar behavior, and CSS without modifying minified app code.",
+    "tags": [
+      "electron",
+      "proxy",
+      "browserwindow",
+      "menu",
+      "preload",
+      "patching",
+      "linux"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron-packaging/electron-frame-interception-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "fastapi-sse-mcp-protocol",
+    "slug": "fastapi-sse-mcp-protocol",
+    "category": "fastapi-streaming-endpoints",
+    "description": "Host a hosted MCP (Model Context Protocol) server over FastAPI's StreamingResponse using API-key auth, a session dict, and a tool registry surfaced via the 2025-03-26 Streamable HTTP spec.",
+    "tags": [
+      "fastapi",
+      "mcp",
+      "sse",
+      "streaming-response",
+      "llm-tools",
+      "model-context-protocol"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/fastapi-streaming-endpoints/fastapi-sse-mcp-protocol",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "ag-grid-cell-renderer-pattern",
     "slug": "ag-grid-cell-renderer-pattern",
     "category": "frontend",
@@ -13577,6 +14222,24 @@
   },
   {
     "kind": "skill",
+    "name": "enigo-dsl-keyboard-sequence",
+    "slug": "enigo-dsl-keyboard-sequence",
+    "category": "input",
+    "description": "Enigo keyboard DSL for unicode text entry and modifier key combinations.",
+    "tags": [
+      "dsl",
+      "enigo",
+      "input",
+      "keyboard",
+      "sequence"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/input/enigo-dsl-keyboard-sequence",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13672,6 +14335,62 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "fastmcp-stdio-http-dual-transport",
+    "slug": "fastmcp-stdio-http-dual-transport",
+    "category": "mcp",
+    "description": "Single MCP server entry point that supports both STDIO (default) and Streamable HTTP / SSE transports via a --http flag, using FastMCP + Starlette + uvicorn, with localhost-binding-by-default and a warning banner on non-localhost binds.",
+    "tags": [
+      "mcp",
+      "fastmcp",
+      "sse",
+      "streamable-http",
+      "stdio",
+      "uvicorn",
+      "starlette",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/fastmcp-stdio-http-dual-transport",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "feature-flag-gated-tool-registration",
+    "slug": "feature-flag-gated-tool-registration",
+    "category": "mcp",
+    "description": "Gate MCP tool registration on CLI/category/experimental flags so one code base serves many tool-surface configurations (slim vs full, experimental on/off, category-disabled) without branching inside handlers.",
+    "tags": [
+      "mcp",
+      "feature-flags",
+      "tool-registration",
+      "configuration"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/feature-flag-gated-tool-registration",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "fifo-mutex-for-serialized-tool-calls",
+    "slug": "fifo-mutex-for-serialized-tool-calls",
+    "category": "mcp",
+    "description": "Use a simple FIFO async mutex with a disposable guard so that concurrent MCP tool invocations against a single shared browser/session run one-at-a-time in the order received.",
+    "tags": [
+      "async",
+      "mutex",
+      "concurrency",
+      "mcp",
+      "single-session"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/fifo-mutex-for-serialized-tool-calls",
     "has_content": false
   },
   {
@@ -13790,6 +14509,43 @@
   },
   {
     "kind": "skill",
+    "name": "effect-ts-monorepo-with-turbo-and-subpath-exports",
+    "slug": "effect-ts-monorepo-with-turbo-and-subpath-exports",
+    "category": "monorepo",
+    "description": "Organize effect-based services in a monorepo using Turbo task pipelines and explicit subpath exports instead of barrel indexes",
+    "tags": [
+      "monorepo",
+      "effect-ts",
+      "turbo",
+      "typescript"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/monorepo/effect-ts-monorepo-with-turbo-and-subpath-exports",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "fhs-wrapper-mcp-server-support",
+    "slug": "fhs-wrapper-mcp-server-support",
+    "category": "nix",
+    "description": "Wrap a NixOS application derivation in buildFHSEnv to provide a FHS-compliant filesystem view. Enables subprocess execution of dynamically linked native binaries (like MCP servers) that expect /usr, /lib, /bin at standard paths.",
+    "tags": [
+      "nix",
+      "nixos",
+      "fhs",
+      "buildFHSEnv",
+      "mcp",
+      "subprocess",
+      "native-binaries"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/nix/fhs-wrapper-mcp-server-support",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-tracing-spans",
     "slug": "agent-tracing-spans",
     "category": "observability",
@@ -13826,6 +14582,59 @@
   },
   {
     "kind": "skill",
+    "name": "effect-ts-rpc-metrics-and-instrumentation",
+    "slug": "effect-ts-rpc-metrics-and-instrumentation",
+    "category": "observability",
+    "description": "Add observability to RPC handlers with duration, error rates, and distributed tracing using effect/Metric",
+    "tags": [
+      "observability",
+      "metrics",
+      "effect-ts",
+      "rpc"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/effect-ts-rpc-metrics-and-instrumentation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "evidence-truncation-with-totals",
+    "slug": "evidence-truncation-with-totals",
+    "category": "observability",
+    "description": "Cap LLM-bound evidence (logs, traces, metrics) by truncating list length AND each message length, attaching count_total fields when truncation occurs so the model knows it's seeing a sample.",
+    "tags": [
+      "llm-context",
+      "truncation",
+      "evidence",
+      "compaction"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/evidence-truncation-with-totals",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "failure-streak-cooldown-auto-issue-report",
+    "slug": "failure-streak-cooldown-auto-issue-report",
+    "category": "observability",
+    "description": "When a long-running agent hits a repeating failure, file one GitHub issue — not ten — by combining a minimum-streak threshold, a per-error-signature cooldown, an open-issue search for de-duplication, and sanitized logs, then persist the decision in a local state file so the next run resumes the throttle.",
+    "tags": [
+      "error-reporting",
+      "throttle",
+      "cooldown",
+      "github-api",
+      "sanitization",
+      "daemon"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/failure-streak-cooldown-auto-issue-report",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "claude-cli-unattended-wrapper",
     "slug": "claude-cli-unattended-wrapper",
     "category": "operations",
@@ -13843,6 +14652,36 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/operations/claude-cli-unattended-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "error-conversion-anyhow-wrapper",
+    "slug": "error-conversion-anyhow-wrapper",
+    "category": "patterns",
+    "description": "anyhow::bail! and .context() for error propagation with a project-wide ResultType<T> alias.",
+    "tags": [
+      "anyhow",
+      "conversion",
+      "error",
+      "patterns",
+      "wrapper"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/patterns/error-conversion-anyhow-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "executing-plans",
+    "slug": "executing-plans",
+    "category": "process",
+    "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/process/executing-plans",
     "has_content": false
   },
   {
@@ -13910,6 +14749,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "evolver-loop-recovery-with-wait-and-respawn",
+    "slug": "evolver-loop-recovery-with-wait-and-respawn",
+    "category": "resilience",
+    "description": "Detect dead evolution loop and respawn with configurable wait interval",
+    "tags": [
+      "evolver",
+      "resilience",
+      "supervisor",
+      "respawn"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/resilience/evolver-loop-recovery-with-wait-and-respawn",
     "has_content": false
   },
   {
@@ -14222,6 +15078,22 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/testing/devex-review",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "effect-ts-test-integration-with-vitest",
+    "slug": "effect-ts-test-integration-with-vitest",
+    "category": "testing",
+    "description": "Test effect-based services by composing layers with Vitest, using drain() instead of sleep for deterministic async",
+    "tags": [
+      "effect-ts",
+      "testing",
+      "vitest"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/effect-ts-test-integration-with-vitest",
     "has_content": false
   },
   {
@@ -15041,6 +15913,25 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/event-sourcing-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "fatal-vs-transient-error-classifier",
+    "slug": "fatal-vs-transient-error-classifier",
+    "category": "workflow",
+    "description": "Classify workflow-execution errors as FATAL / TRANSIENT / UNKNOWN using pattern lists, with FATAL priority to prevent retrying auth failures, plus a separate detector for credit-exhaustion strings in streamed assistant output.",
+    "tags": [
+      "workflow",
+      "error-classification",
+      "retry",
+      "fatal",
+      "transient",
+      "ai-streaming"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/fatal-vs-transient-error-classifier",
     "has_content": false
   },
   {
