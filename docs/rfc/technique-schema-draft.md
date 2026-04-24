@@ -5,13 +5,13 @@ author: kjuhwa@nkia.co.kr
 date: 2026-04-24
 ---
 
-# `technique/` — 스킬 허브 중간 계층 설계 초안
+# `technique/` — Middle-Layer Schema Draft (v0.1)
 
-## 1. 왜 필요한가
+## 1. Why
 
-현재 허브는 **원자 단위(skill, knowledge)** 와 **완성 산출물(example)** 두 극단만 존재한다. 실전에서는 보통 2~N개 스킬·지식을 특정 순서·조건으로 조합해야 하나의 결과가 나온다. 이 조합 자체를 재사용 가능한 단위로 고정할 수 있는 저장소가 없어, 사용자는 매번 스킬·지식을 수동으로 골라 맞춰야 한다.
+Today the hub has **atomic units** (`skills/`, `knowledge/`) and **finished artifacts** (`example/`). In practice, most real work requires combining 2–N atoms in a specific order or with specific conditions to produce a result. The combination itself cannot be stored as a reusable unit anywhere, so users hand-assemble the same sets over and over.
 
-`technique/`는 이 **중간 레이어**를 담당한다:
+`technique/` is the missing **middle layer**:
 
 ```
 knowledge  ─┐
@@ -19,103 +19,103 @@ skill      ─┼──►  technique  ──►  example (instance)
 research   ─┘
 ```
 
-- technique은 skill/knowledge를 **재배치하지 않고 참조만** 한다 (중복 저장 금지).
-- 부족분은 `hub-research`로 외부 자료를 당겨 technique 본문에 녹인다.
-- example은 technique을 실행해 만든 **1회성 결과물**이며, technique은 **재현 가능한 레시피**다.
+- A technique **references** skills/knowledge without duplicating them (no content copy).
+- Gaps in coverage are filled by `hub-research` and folded into the technique body.
+- An `example` is a one-off artifact produced by executing a technique; the technique is the **reproducible recipe**.
 
-## 2. 기존 개념과의 경계
+## 2. Boundary with existing concepts
 
-| 개념 | 위치 | 단위 | 재사용성 | 구성 |
+| Concept | Location | Unit | Reusability | Composition |
 |---|---|---|---|---|
-| skill | `skills/{cat}/{slug}/SKILL.md` | 원자 절차 | 높음 | 단일 |
-| knowledge | `knowledge/{cat}/{slug}.md` | 원자 사실/교훈 | 높음 | 단일 |
-| **technique** | `technique/{cat}/{slug}/TECHNIQUE.md` | **조합 레시피** | **높음** | **복수 참조** |
-| example | `example/{cat}/{slug}/` | 완성 산출물 | 낮음 (데모) | 산출물만 |
-| hub-merge | 커맨드 | 병합 (복사·흡수) | — | 1회성 |
+| skill | `skills/{cat}/{slug}/SKILL.md` | atomic procedure | high | single |
+| knowledge | `knowledge/{cat}/{slug}.md` | atomic fact/lesson | high | single |
+| **technique** | `technique/{cat}/{slug}/TECHNIQUE.md` | **composition recipe** | **high** | **multiple references** |
+| example | `example/{cat}/{slug}/` | finished artifact | low (demo) | artifact only |
+| hub-merge | command | merge (copy/absorb) | — | one-time |
 
-`hub-merge`와의 차이: merge는 원본 스킬을 **흡수·소멸**시키지만, technique은 원본을 **살려둔 채 참조**한다. 원자 단위의 독립성이 유지되므로 다른 technique에서 재사용할 수 있다.
+Difference from `hub-merge`: merge **absorbs and destroys** the source skills; a technique leaves the atoms intact and only **references** them. That preserves atom independence so other techniques can reuse the same atoms.
 
-## 3. 디렉토리 & 파일 레이아웃
+## 3. Directory and file layout
 
 ```
 technique/
   <category>/
     <slug>/
-      TECHNIQUE.md         ← 메타 + 본문 (필수)
-      verify.sh            ← 합성 검증 스크립트 (선택)
-      resources/           ← 보조 자산 (선택, 이미지·샘플 등)
+      TECHNIQUE.md         ← frontmatter + body (required)
+      verify.sh            ← composition check script (optional)
+      resources/           ← auxiliary assets (optional: images, samples)
 ```
 
-카테고리는 `CATEGORIES.md`의 기존 목록을 재사용. technique 전용 신규 카테고리는 만들지 않는다 (tag로 해결).
+Categories reuse the existing `CATEGORIES.md`. No new categories are introduced for techniques (use tags for fine-grained attributes).
 
-## 4. Frontmatter 스키마
+## 4. Frontmatter schema
 
 ```yaml
 ---
-version: 0.1.0                  # semver, draft-0 허용
-name: <slug>                    # 디렉토리명과 동일
-description: <한 줄, ≤120자>    # 언제 써야 하는지 1문장
-category: <CATEGORIES.md 값>
+version: 0.1.0                  # semver, draft-0 allowed
+name: <slug>                    # must match the directory name
+description: <single line, ≤120 chars>   # when to use it, 1 sentence
+category: <one of CATEGORIES.md>
 tags: [<string>, ...]
 
-composes:                       # 핵심: 어떤 원자 단위를 묶는가
+composes:                       # the core field: which atomic units are combined
   - kind: skill                 # skill | knowledge
-    ref: workflow/autoplan      # kind 루트 기준 실제 디스크 경로 (폴더 슬러그)
-                                # ※ frontmatter category와 불일치할 수 있으므로
-                                #   '실제 경로'를 쓴다 (파일럿에서 발견)
-    version: "^1.0.0"           # semver range (loose) 또는 정확값 (pinned)
-    role: orchestrator          # 이 조합 내 역할 (자유 문자열)
+    ref: workflow/autoplan      # kind-root-relative physical path
+                                # ※ can diverge from frontmatter category,
+                                #   so use the actual path (pilot finding)
+    version: "^1.0.0"           # semver range (loose) or exact value (pinned)
+    role: orchestrator          # this atom's job in the composition (free text)
   - kind: knowledge
     ref: workflow/batch-pr-conflict-recovery
-    version: "*"                # 최신 허용
+    version: "*"                # any version allowed
     role: failure-mode
 
-requires_research:              # 외부 보강 필요 시 (선택)
+requires_research:              # optional: external research gaps
   - topic: "GitHub GraphQL rate limit"
-    rationale: "hub-research로 최신 한도 확인 필요"
+    rationale: "hub-research needed to confirm current quota"
 
-binding: loose                  # loose (기본) | pinned
-                                #   loose: version range 만족하면 재사용
-                                #   pinned: 정확히 그 커밋/버전만 유효
+binding: loose                  # loose (default) | pinned
+                                #   loose: passes as long as the version range is satisfied
+                                #   pinned: exactly that version/commit only
 
-verify:                         # 사용 시점 건전성 체크 (선택)
-  - "모든 composes.ref 가 현재 설치되어 있는가"
-  - "composes[].version range 가 설치본과 교차하는가"
-  - cmd: "./verify.sh"          # 커스텀 검증
+verify:                         # optional runtime sanity checks
+  - "every composes.ref is currently installed"
+  - "every composes[].version range intersects the installed version"
+  - cmd: "./verify.sh"          # custom verification
 ---
 ```
 
-## 5. 바인딩 모드 (핵심 트레이드오프)
+## 5. Binding mode (the key tradeoff)
 
-| 모드 | 동작 | 장점 | 단점 |
+| Mode | Behaviour | Pros | Cons |
 |---|---|---|---|
-| `loose` (기본) | semver range로 참조, 사용 시점에 설치본 재검증 | 하위 스킬 업데이트를 자동 흡수 | 하위 breaking 시 technique 재검증 필요 |
-| `pinned` | 특정 버전(또는 commit SHA)에 고정 | 재현성 100% | 하위 스킬 오래되면 유지비 증가 |
+| `loose` (default) | references by semver range, re-validates installed version at use time | absorbs downstream skill updates automatically | downstream breaking changes require technique re-verification |
+| `pinned` | locked to a specific version (or commit SHA) | 100 % reproducibility | grows stale as downstream skills evolve |
 
-**권장**: 초기 모든 technique은 `loose`로 시작. 프로덕션/감사 경로에만 `pinned`. `hub-precheck`이 `pinned` technique의 참조 버전이 허브에서 사라졌을 때 경고.
+**Recommendation**: start every technique at `loose`. Reserve `pinned` for production/audit paths. `hub-precheck` should warn when a `pinned` technique references a version that no longer exists in the hub.
 
-## 6. 라이프사이클
+## 6. Lifecycle
 
 ```
-draft (.technique-draft/)   ──►  publish (technique/)   ──►  outdated (자동 플래그)
+draft (.technique-draft/)   ──►  publish (technique/)   ──►  outdated (auto-flagged)
      ▲                                                              │
      └─── hub-refactor, hub-split ────────────────────────────────┘
 ```
 
-- `.technique-draft/`: `.skills-draft/`·`.knowledge-draft/`와 동일한 로컬 준비 영역.
-- publish 시 `technique/{cat}/{slug}/` 로 이동.
-- **outdated 판정**: 참조하는 skill/knowledge의 major 버전이 올라가면 `index.json`에 `outdated: true` 마킹. `hub-precheck`이 리포트.
+- `.technique-draft/`: local staging area, mirroring `.skills-draft/`/`.knowledge-draft/`.
+- Publish promotes to `technique/{cat}/{slug}/`.
+- **Outdated detection**: when a referenced skill/knowledge has a new major version, the technique is tagged `outdated: true` in `index.json`. `hub-precheck` surfaces the report.
 
-## 7. Registry 통합
+## 7. Registry integration
 
-`~/.claude/skills-hub/registry.json` 확장:
+`~/.claude/skills-hub/registry.json` extension:
 
 ```json
 {
-  "version": 3,                 // 2 → 3 (스키마 bump)
+  "version": 3,                 // bump 2 → 3
   "skills": { ... },
   "knowledge": { ... },
-  "techniques": {               // 신규 섹션
+  "techniques": {               // new section
     "<cat>/<slug>": {
       "category": "workflow",
       "scope": "global",
@@ -124,7 +124,7 @@ draft (.technique-draft/)   ──►  publish (technique/)   ──►  outdate
       "version": "0.1.0",
       "source_commit": "<sha>",
       "pinned": false,
-      "composes_snapshot": [    // 설치 시점의 실제 해석 결과
+      "composes_snapshot": [    // resolved versions at install time
         {"kind":"skill","ref":"workflow/autoplan","resolved_version":"1.2.3"},
         {"kind":"knowledge","ref":"workflow/batch-pr-conflict-recovery","resolved_version":"0.1.0"}
       ]
@@ -133,51 +133,51 @@ draft (.technique-draft/)   ──►  publish (technique/)   ──►  outdate
 }
 ```
 
-`composes_snapshot`이 있어야 설치 이후 `loose` 모드에서도 "무엇이 깨졌는지" 사후 추적 가능.
+`composes_snapshot` provides post-hoc traceability — in `loose` mode it is the single source of truth for "what resolved to what at install time" when debugging a broken technique.
 
-## 8. index.json 통합
+## 8. index.json integration
 
-master / lite / category 인덱스에 `technique` 섹션 추가. 검색(`hub-find`)은 skill·knowledge·technique을 **동등하게** 매칭하되 결과 행에 `kind: technique` 배지를 붙여 구분.
+Add a `technique` kind to the master/lite/category indexes. Search (`hub-find`) matches skills/knowledge/techniques uniformly but renders a `kind: technique` badge on result rows for differentiation.
 
-## 9. 검증 규칙 (publish 및 precheck)
+## 9. Verification rules (publish and precheck)
 
-1. `composes[]` 의 모든 `ref`가 허브에 **실제 파일로** 존재 (frontmatter category와 무관, 디스크 경로로 확인).
-2. 각 `version` range가 허브의 해당 항목 semver와 **공집합 아님**.
-3. 순환 참조 금지: technique은 다른 technique을 참조하지 **않는다** (v0에서는 flat 1-depth만 허용. 중첩은 v0.2 이후 검토).
-4. `description` 필수 + ≤120자.
-5. `name`과 폴더명 일치.
-6. `verify.sh`가 있으면 exit code 0.
-7. `ref`는 kind 루트 기준 실제 경로 (예: `parallel-build-sequential-publish` 또는 `workflow/autoplan`).
+1. Every `composes[].ref` resolves to an **actual file** in the hub (checked against the filesystem, independent of declared category).
+2. Every `version` range has a **non-empty intersection** with the installed version.
+3. No circular references: a technique **must not** reference another technique (v0 permits flat 1-depth only; nesting is deferred to v0.2).
+4. `description` is required and ≤120 chars.
+5. `name` equals the containing directory name.
+6. If `verify.sh` exists it must exit 0.
+7. `ref` is kind-root-relative physical path (e.g. `parallel-build-sequential-publish` or `workflow/autoplan`).
 
-## 10. 슬래시 커맨드 (3단계에서 구현, 지금은 목록만)
+## 10. Slash commands (implemented in step 3, listed here for reference)
 
-- `/hub-technique-compose <slug>` — 드래프트 작성 워크플로 (skill/knowledge 선택 → frontmatter 생성)
-- `/hub-technique-list` — 설치된 technique 목록
-- `/hub-technique-show <slug>` — 본문 + 구성 해설
-- `/hub-technique-install <ref>` — 리모트에서 설치
-- `/hub-technique-verify <slug>` — composes 상태 점검
-- 기존 `/hub-find`, `/hub-status`, `/hub-precheck`는 technique 섹션만 추가로 읽도록 **확장**
+- `/hub-technique-compose <slug>` — draft authoring workflow (skill/knowledge selection → frontmatter generation)
+- `/hub-technique-list` — installed technique list
+- `/hub-technique-show <slug>` — body + composition expansion
+- `/hub-technique-install <ref>` — install from remote
+- `/hub-technique-verify <slug>` — validate `composes[]` state
+- Existing `/hub-find`, `/hub-status`, `/hub-precheck` are **extended** to read the new section
 
-## 11. 오픈 이슈
+## 11. Open issues
 
-- **Q1.** technique이 technique을 참조 허용할 것인가? → v0 금지. 과도한 결합과 순환 위험. v0.2에서 재검토.
-- **Q2.** `loose` 모드에서 lockfile 두는가? → `composes_snapshot`으로 충분하다는 판단. 별도 lockfile 없음.
-- **Q3.** example ↔ technique 연결? → example frontmatter에 `produced_by_technique: <ref>` 선택 필드 추가 제안 (본 초안 범위 밖, 별도 PR).
-- **Q4.** 카테고리 추가? → 불필요. 기존 카테고리 + tag로 수용.
-- **Q5.** (파일럿 2에서 발견) `composes[]`는 현재 **순서 없는 집합**. 선형 파이프라인은 `role`에 "phase-0-anchor" 같은 문자열로 우회 가능, 분기 결정트리는 본문 산문으로만 표현됨. v0에서는 수용 (role 자유문자열이 충분히 흡수). v0.2에서 정형 phase/branch DSL 도입 여부 재검토.
+- **Q1.** Should technique-to-technique composition be allowed? → No in v0. Risk of coupling and cycles. Revisit in v0.2.
+- **Q2.** Should `loose` mode carry a lockfile? → `composes_snapshot` is judged sufficient. No separate lockfile.
+- **Q3.** Link examples to techniques? → Proposal: add optional `produced_by_technique: <ref>` field to `example/` frontmatter. Separate PR, outside this doc's scope.
+- **Q4.** Add a category? → Not needed. Existing categories + tags cover the space.
+- **Q5.** (Found in pilot #2) `composes[]` is currently an **unordered set**. A linear pipeline can be expressed via role labels like "phase-0-anchor"; a branching decision tree is expressed only in prose. v0 accepts this (free-text `role` is sufficient). A formal phase/branch DSL is deferred to v0.2 pending more pilots.
 
-## 12. 파일럿 후보 (2단계 입력)
+## 12. Pilot candidates (input to step 2)
 
-이 초안이 승인되면 다음 조합 중 하나로 첫 technique을 시작 제안:
+Once this schema is approved, the first technique comes from one of these pairings:
 
-- `workflow/autoplan` + `workflow/batch-pr-conflict-recovery` → **"대량 PR 자동 생성 안전 패턴"**
-- 기타: 현재 설치된 `swagger-ai-optimization` 단독 → technique화 여부 자체가 테스트 케이스 (단일 스킬은 technique이 아님을 확인)
+- `workflow/autoplan` + `workflow/batch-pr-conflict-recovery` → **"Safe bulk PR automation"**
+- Alternative: the already-installed `swagger-ai-optimization` alone — useful as a negative test case (a single skill is **not** a technique, which itself verifies the schema)
 
 ---
 
-**다음 단계.** 이 초안에서 다음 3가지만 먼저 확정:
-1. 바인딩 기본값 (`loose` 제안)
-2. 중첩 금지 여부 (v0에서 금지 제안)
-3. 파일럿 후보 선택
+**Next step.** Confirm the following three points from this draft:
+1. Default binding (`loose` proposed)
+2. v0 nesting ban (proposed)
+3. Pilot-candidate selection
 
-확정되면 2단계(파일럿 technique 1건 작성)로 진행.
+Once confirmed, proceed to step 2 (author the first pilot technique).
