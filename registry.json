@@ -2294,6 +2294,156 @@
       "category": "observability",
       "path": "skills/observability/anonymous-posthog-telemetry/SKILL.md",
       "version": "1.0.0"
+    },
+    "block-size-constrained-enumeration-with-register-pressure": {
+      "category": "gpu-kernels",
+      "path": "skills/gpu-kernels/block-size-constrained-enumeration-with-register-pressure/SKILL.md",
+      "version": "1.0.0"
+    },
+    "block-speculative-decoding-loop": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/block-speculative-decoding-loop/SKILL.md",
+      "version": "1.0.0"
+    },
+    "brainstorm": {
+      "category": "design",
+      "path": "skills/design/brainstorm/SKILL.md",
+      "version": "1.0.0"
+    },
+    "brainstorming": {
+      "category": "process",
+      "path": "skills/process/brainstorming/SKILL.md",
+      "version": "1.0.0"
+    },
+    "branded-git-path-types": {
+      "category": "typescript",
+      "path": "skills/typescript/branded-git-path-types/SKILL.md",
+      "version": "1.0.0"
+    },
+    "brute-force-format-detection-peek": {
+      "category": "preprocessing",
+      "path": "skills/preprocessing/brute-force-format-detection-peek/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bubblewrap-namespace-sandbox-config": {
+      "category": "linux-sandbox",
+      "path": "skills/linux-sandbox/bubblewrap-namespace-sandbox-config/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bug-report": {
+      "category": "production",
+      "path": "skills/production/bug-report/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bug-triage": {
+      "category": "production",
+      "path": "skills/production/bug-triage/SKILL.md",
+      "version": "1.0.0"
+    },
+    "build-sh-test-sh-shell-script-stdlib": {
+      "category": "build",
+      "path": "skills/build/build-sh-test-sh-shell-script-stdlib/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bumpversion-changelog-stamp-release": {
+      "category": "agents",
+      "path": "skills/agents/bumpversion-changelog-stamp-release/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bun-compile-binary-resolve": {
+      "category": "bun",
+      "path": "skills/bun/bun-compile-binary-resolve/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bun-hoisted-linker-web-build": {
+      "category": "docker",
+      "path": "skills/docker/bun-hoisted-linker-web-build/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bun-mock-module-isolation": {
+      "category": "testing",
+      "path": "skills/testing/bun-mock-module-isolation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bun-multi-platform-server-packager": {
+      "category": "build",
+      "path": "skills/build/bun-multi-platform-server-packager/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bun-workspaces-export-map": {
+      "category": "tooling",
+      "path": "skills/tooling/bun-workspaces-export-map/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bundle-ts-as-cjs-for-node-require": {
+      "category": "build",
+      "path": "skills/build/bundle-ts-as-cjs-for-node-require/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bundled-defaults-generator": {
+      "category": "bun",
+      "path": "skills/bun/bundled-defaults-generator/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bundled-uv-python-toolchain": {
+      "category": "build",
+      "path": "skills/build/bundled-uv-python-toolchain/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cached-heap-snapshot-worker": {
+      "category": "heap-snapshot",
+      "path": "skills/heap-snapshot/cached-heap-snapshot-worker/SKILL.md",
+      "version": "1.0.0"
+    },
+    "calendar-time-feature-encoding": {
+      "category": "preprocessing",
+      "path": "skills/preprocessing/calendar-time-feature-encoding/SKILL.md",
+      "version": "1.0.0"
+    },
+    "candidate-elevation-with-success-streak": {
+      "category": "workflow",
+      "path": "skills/workflow/candidate-elevation-with-success-streak/SKILL.md",
+      "version": "1.0.0"
+    },
+    "canvas-coordinate-transformation-model": {
+      "category": "flutter",
+      "path": "skills/flutter/canvas-coordinate-transformation-model/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cargo-dist-multi-platform-rust-cli-release": {
+      "category": "release",
+      "path": "skills/release/cargo-dist-multi-platform-rust-cli-release/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cdp-host-page-tool-discovery": {
+      "category": "mcp",
+      "path": "skills/mcp/cdp-host-page-tool-discovery/SKILL.md",
+      "version": "1.0.0"
+    },
+    "centralized-config-with-env-override": {
+      "category": "cli",
+      "path": "skills/cli/centralized-config-with-env-override/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cfg-zero-star-guidance": {
+      "category": "diffusion",
+      "path": "skills/diffusion/cfg-zero-star-guidance/SKILL.md",
+      "version": "1.0.0"
+    },
+    "chain-of-thought-prompting": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/chain-of-thought-prompting/SKILL.md",
+      "version": "1.0.0"
+    },
+    "changelog": {
+      "category": "production",
+      "path": "skills/production/changelog/SKILL.md",
+      "version": "1.0.0"
+    },
+    "chunked-rpc-for-large-websocket-payloads": {
+      "category": "build",
+      "path": "skills/build/chunked-rpc-for-large-websocket-payloads/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4204,6 +4354,86 @@
     "android-ios-feature-parity-gap": {
       "category": "mobile",
       "path": "knowledge/mobile/android-ios-feature-parity-gap.md"
+    },
+    "block-size-stream-re-read-limit": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/block-size-stream-re-read-limit.md"
+    },
+    "blocked-env-vars-for-mcp-subprocess": {
+      "category": "security",
+      "path": "knowledge/security/blocked-env-vars-for-mcp-subprocess.md"
+    },
+    "bubblewrap-virtual-root-tmpfs-isolation": {
+      "category": "linux-sandbox",
+      "path": "knowledge/linux-sandbox/bubblewrap-virtual-root-tmpfs-isolation.md"
+    },
+    "built-in-session-tools-parity": {
+      "category": "architecture",
+      "path": "knowledge/architecture/built-in-session-tools-parity.md"
+    },
+    "bun-auto-loads-cwd-env": {
+      "category": "bun",
+      "path": "knowledge/bun/bun-auto-loads-cwd-env.md"
+    },
+    "bun-compile-freezes-import-meta": {
+      "category": "bun",
+      "path": "knowledge/bun/bun-compile-freezes-import-meta.md"
+    },
+    "bun-mock-module-process-global": {
+      "category": "testing",
+      "path": "knowledge/testing/bun-mock-module-process-global.md"
+    },
+    "categories-array-for-performance-tracing": {
+      "category": "decision",
+      "path": "knowledge/decision/categories-array-for-performance-tracing.md"
+    },
+    "ccgs-claude-project-instructions": {
+      "category": "workflow",
+      "path": "knowledge/workflow/ccgs-claude-project-instructions.md"
+    },
+    "ccgs-quality-rubric": {
+      "category": "testing",
+      "path": "knowledge/testing/ccgs-quality-rubric.md"
+    },
+    "ccgs-readme": {
+      "category": "reference",
+      "path": "knowledge/reference/ccgs-readme.md"
+    },
+    "ccgs-testing-catalog": {
+      "category": "testing",
+      "path": "knowledge/testing/ccgs-testing-catalog.md"
+    },
+    "ccgs-testing-claude-context": {
+      "category": "testing",
+      "path": "knowledge/testing/ccgs-testing-claude-context.md"
+    },
+    "ccgs-testing-framework-readme": {
+      "category": "testing",
+      "path": "knowledge/testing/ccgs-testing-framework-readme.md"
+    },
+    "ccgs-upgrading": {
+      "category": "process",
+      "path": "knowledge/process/ccgs-upgrading.md"
+    },
+    "cfg-and-timesteps-tradeoffs": {
+      "category": "inference",
+      "path": "knowledge/inference/cfg-and-timesteps-tradeoffs.md"
+    },
+    "checkpoint-capture-race-concurrent-turns-same-thread": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/checkpoint-capture-race-concurrent-turns-same-thread.md"
+    },
+    "chi-router-for-go-apis": {
+      "category": "arch",
+      "path": "knowledge/arch/chi-router-for-go-apis.md"
+    },
+    "chinese-multichar-token-char-splitter": {
+      "category": "tokenizer",
+      "path": "knowledge/tokenizer/chinese-multichar-token-char-splitter.md"
+    },
+    "chrome-extension-based-web-automation-via-cdp": {
+      "category": "automation",
+      "path": "knowledge/automation/chrome-extension-based-web-automation-via-cdp.md"
     }
   }
 }
