@@ -2295,6 +2295,291 @@
       "path": "skills/observability/anonymous-posthog-telemetry/SKILL.md",
       "version": "1.0.0"
     },
+    "chunked-tts-with-crossfade": {
+      "category": "ml-ops",
+      "path": "skills/ml-ops/chunked-tts-with-crossfade/SKILL.md",
+      "version": "1.0.0"
+    },
+    "claude-agent-sdk-multi-provider-bridge": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/claude-agent-sdk-multi-provider-bridge/SKILL.md",
+      "version": "1.0.0"
+    },
+    "claude-cli-grace-kill-after-success-result": {
+      "category": "integration",
+      "path": "skills/integration/claude-cli-grace-kill-after-success-result/SKILL.md",
+      "version": "1.0.0"
+    },
+    "claude-cli-unattended-wrapper": {
+      "category": "operations",
+      "path": "skills/operations/claude-cli-unattended-wrapper/SKILL.md",
+      "version": "1.0.0"
+    },
+    "claude-code-stream-json-driver": {
+      "category": "agents",
+      "path": "skills/agents/claude-code-stream-json-driver/SKILL.md",
+      "version": "1.0.0"
+    },
+    "clearcut-batch-flush-with-retry": {
+      "category": "telemetry",
+      "path": "skills/telemetry/clearcut-batch-flush-with-retry/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cli-output-format-dispatch-with-template": {
+      "category": "cli",
+      "path": "skills/cli/cli-output-format-dispatch-with-template/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cli-serve-blocking-exit": {
+      "category": "cli",
+      "path": "skills/cli/cli-serve-blocking-exit/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cmake-cuda-extension-with-git-submodule-vendoring": {
+      "category": "build-system",
+      "path": "skills/build-system/cmake-cuda-extension-with-git-submodule-vendoring/SKILL.md",
+      "version": "1.0.0"
+    },
+    "code-review": {
+      "category": "engineering",
+      "path": "skills/engineering/code-review/SKILL.md",
+      "version": "1.0.0"
+    },
+    "coding-agent-cli-backend-interface": {
+      "category": "agents",
+      "path": "skills/agents/coding-agent-cli-backend-interface/SKILL.md",
+      "version": "1.0.0"
+    },
+    "completion-signal-detector": {
+      "category": "workflow",
+      "path": "skills/workflow/completion-signal-detector/SKILL.md",
+      "version": "1.0.0"
+    },
+    "comprehensive-gpu-kernel-testing-harness": {
+      "category": "testing-gpu",
+      "path": "skills/testing-gpu/comprehensive-gpu-kernel-testing-harness/SKILL.md",
+      "version": "1.0.0"
+    },
+    "computer-use-agent": {
+      "category": "integration",
+      "path": "skills/integration/computer-use-agent/SKILL.md",
+      "version": "1.0.0"
+    },
+    "confidence-lowering-by-source-factor": {
+      "category": "integration",
+      "path": "skills/integration/confidence-lowering-by-source-factor/SKILL.md",
+      "version": "1.0.0"
+    },
+    "config-json-architecture-dispatch": {
+      "category": "model-loading",
+      "path": "skills/model-loading/config-json-architecture-dispatch/SKILL.md",
+      "version": "1.0.0"
+    },
+    "consistency-check": {
+      "category": "qa",
+      "path": "skills/qa/consistency-check/SKILL.md",
+      "version": "1.0.0"
+    },
+    "content-audit": {
+      "category": "qa",
+      "path": "skills/qa/content-audit/SKILL.md",
+      "version": "1.0.0"
+    },
+    "content-disposition-filename-fallback": {
+      "category": "web",
+      "path": "skills/web/content-disposition-filename-fallback/SKILL.md",
+      "version": "1.0.0"
+    },
+    "content-type-info-metadata-embedding": {
+      "category": "data",
+      "path": "skills/data/content-type-info-metadata-embedding/SKILL.md",
+      "version": "1.0.0"
+    },
+    "contextual-identifier-detectors-overlap-resolution": {
+      "category": "safety",
+      "path": "skills/safety/contextual-identifier-detectors-overlap-resolution/SKILL.md",
+      "version": "1.0.0"
+    },
+    "cosine-similarity-diff-for-fp8-numerics": {
+      "category": "testing-gpu",
+      "path": "skills/testing-gpu/cosine-similarity-diff-for-fp8-numerics/SKILL.md",
+      "version": "1.0.0"
+    },
+    "coverage-data-file-under-pytest-cache": {
+      "category": "build",
+      "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
+      "version": "1.0.0"
+    },
+    "anthropic-compatible-endpoint-swap": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/anthropic-compatible-endpoint-swap/SKILL.md",
+      "version": "1.0.0"
+    },
+    "appimage-apprun-launcher-shim": {
+      "category": "appimage",
+      "path": "skills/appimage/appimage-apprun-launcher-shim/SKILL.md",
+      "version": "1.0.0"
+    },
+    "arch-spec-static-polymorphism-for-codegen": {
+      "category": "jit-compilation",
+      "path": "skills/jit-compilation/arch-spec-static-polymorphism-for-codegen/SKILL.md",
+      "version": "1.0.0"
+    },
+    "architecture-decision": {
+      "category": "engineering",
+      "path": "skills/engineering/architecture-decision/SKILL.md",
+      "version": "1.0.0"
+    },
+    "architecture-review": {
+      "category": "engineering",
+      "path": "skills/engineering/architecture-review/SKILL.md",
+      "version": "1.0.0"
+    },
+    "argbind-function-signature-cli-binding": {
+      "category": "training",
+      "path": "skills/training/argbind-function-signature-cli-binding/SKILL.md",
+      "version": "1.0.0"
+    },
+    "argparse-subcommand-validator-chain": {
+      "category": "cli",
+      "path": "skills/cli/argparse-subcommand-validator-chain/SKILL.md",
+      "version": "1.0.0"
+    },
+    "art-bible": {
+      "category": "design",
+      "path": "skills/design/art-bible/SKILL.md",
+      "version": "1.0.0"
+    },
+    "artifact-delta-snapshot-counter": {
+      "category": "observability",
+      "path": "skills/observability/artifact-delta-snapshot-counter/SKILL.md",
+      "version": "1.0.0"
+    },
+    "artifact-integration-test-framework-bats": {
+      "category": "testing",
+      "path": "skills/testing/artifact-integration-test-framework-bats/SKILL.md",
+      "version": "1.0.0"
+    },
+    "asar-directory-patching-workflow": {
+      "category": "electron-packaging",
+      "path": "skills/electron-packaging/asar-directory-patching-workflow/SKILL.md",
+      "version": "1.0.0"
+    },
+    "asset-audit": {
+      "category": "qa",
+      "path": "skills/qa/asset-audit/SKILL.md",
+      "version": "1.0.0"
+    },
+    "asset-eligibility-with-broadcast-gates": {
+      "category": "safety",
+      "path": "skills/safety/asset-eligibility-with-broadcast-gates/SKILL.md",
+      "version": "1.0.0"
+    },
+    "asset-spec": {
+      "category": "design",
+      "path": "skills/design/asset-spec/SKILL.md",
+      "version": "1.0.0"
+    },
+    "asymmetric-audio-vae-encode-decode": {
+      "category": "audio",
+      "path": "skills/audio/asymmetric-audio-vae-encode-decode/SKILL.md",
+      "version": "1.0.0"
+    },
+    "async-generator-idle-timeout": {
+      "category": "workflow",
+      "path": "skills/workflow/async-generator-idle-timeout/SKILL.md",
+      "version": "1.0.0"
+    },
+    "async-jwt-jwks-cache-with-lock": {
+      "category": "security",
+      "path": "skills/security/async-jwt-jwks-cache-with-lock/SKILL.md",
+      "version": "1.0.0"
+    },
+    "async-service-trait-template": {
+      "category": "async",
+      "path": "skills/async/async-service-trait-template/SKILL.md",
+      "version": "1.0.0"
+    },
+    "async-sync-inference-bridge-with-tokio-blocking": {
+      "category": "async",
+      "path": "skills/async/async-sync-inference-bridge-with-tokio-blocking/SKILL.md",
+      "version": "1.0.0"
+    },
+    "async-task-spawning-pattern": {
+      "category": "async",
+      "path": "skills/async/async-task-spawning-pattern/SKILL.md",
+      "version": "1.0.0"
+    },
+    "atomic-audio-save-temp-rename": {
+      "category": "python",
+      "path": "skills/python/atomic-audio-save-temp-rename/SKILL.md",
+      "version": "1.0.0"
+    },
+    "atomic-file-write-with-fsync": {
+      "category": "jit-compilation",
+      "path": "skills/jit-compilation/atomic-file-write-with-fsync/SKILL.md",
+      "version": "1.0.0"
+    },
+    "atomic-origin-whitelist-hot-swap": {
+      "category": "devops",
+      "path": "skills/devops/atomic-origin-whitelist-hot-swap/SKILL.md",
+      "version": "1.0.0"
+    },
+    "audio-codec-selection-strategy": {
+      "category": "codecs",
+      "path": "skills/codecs/audio-codec-selection-strategy/SKILL.md",
+      "version": "1.0.0"
+    },
+    "audio-text-packing-with-loss-masks": {
+      "category": "training",
+      "path": "skills/training/audio-text-packing-with-loss-masks/SKILL.md",
+      "version": "1.0.0"
+    },
+    "auto-issue-reporter-streak-cooldown": {
+      "category": "observability",
+      "path": "skills/observability/auto-issue-reporter-streak-cooldown/SKILL.md",
+      "version": "1.0.0"
+    },
+    "autoregressive-rolling-context-buffer": {
+      "category": "inference",
+      "path": "skills/inference/autoregressive-rolling-context-buffer/SKILL.md",
+      "version": "1.0.0"
+    },
+    "balance-check": {
+      "category": "qa",
+      "path": "skills/qa/balance-check/SKILL.md",
+      "version": "1.0.0"
+    },
+    "bash-ast-permission-validator": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/bash-ast-permission-validator/SKILL.md",
+      "version": "1.0.0"
+    },
+    "basic-agent-runner": {
+      "category": "agents",
+      "path": "skills/agents/basic-agent-runner/SKILL.md",
+      "version": "1.0.0"
+    },
+    "batch-predict-per-series-normalize-denormalize": {
+      "category": "inference",
+      "path": "skills/inference/batch-predict-per-series-normalize-denormalize/SKILL.md",
+      "version": "1.0.0"
+    },
+    "beg-mid-end-file-sampling-with-padding": {
+      "category": "preprocessing",
+      "path": "skills/preprocessing/beg-mid-end-file-sampling-with-padding/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ble-device-header-stripping": {
+      "category": "ble-audio-streaming",
+      "path": "skills/ble-audio-streaming/ble-device-header-stripping/SKILL.md",
+      "version": "1.0.0"
+    },
+    "block-scaled-fp8-with-granular-recipes": {
+      "category": "fp8-quantization",
+      "path": "skills/fp8-quantization/block-scaled-fp8-with-granular-recipes/SKILL.md",
+      "version": "1.0.0"
+    },
     "block-size-constrained-enumeration-with-register-pressure": {
       "category": "gpu-kernels",
       "path": "skills/gpu-kernels/block-size-constrained-enumeration-with-register-pressure/SKILL.md",
@@ -4354,6 +4639,178 @@
     "android-ios-feature-parity-gap": {
       "category": "mobile",
       "path": "knowledge/mobile/android-ios-feature-parity-gap.md"
+    },
+    "ci-gpg-signing-batch-mode-non-interactive": {
+      "category": "ci-cd",
+      "path": "knowledge/ci-cd/ci-gpg-signing-batch-mode-non-interactive.md"
+    },
+    "ci-push-race-condition-retry-rebase-loop": {
+      "category": "ci-cd",
+      "path": "knowledge/ci-cd/ci-push-race-condition-retry-rebase-loop.md"
+    },
+    "claude-cli-hook-bypass-envs": {
+      "category": "reference",
+      "path": "knowledge/reference/claude-cli-hook-bypass-envs.md"
+    },
+    "claude-session-resume-semantics": {
+      "category": "api",
+      "path": "knowledge/api/claude-session-resume-semantics.md"
+    },
+    "claude-stream-json-protocol": {
+      "category": "api",
+      "path": "knowledge/api/claude-stream-json-protocol.md"
+    },
+    "claudecode-env-breaks-nested-spawn": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/claudecode-env-breaks-nested-spawn.md"
+    },
+    "claudecode-env-var-leakage": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/claudecode-env-var-leakage.md"
+    },
+    "clearcut-source-and-client-type-constants": {
+      "category": "reference",
+      "path": "knowledge/reference/clearcut-source-and-client-type-constants.md"
+    },
+    "cli-implemented-in-rust-for-speed": {
+      "category": "arch",
+      "path": "knowledge/arch/cli-implemented-in-rust-for-speed.md"
+    },
+    "cli-release-accompanies-prod-deploy": {
+      "category": "decision",
+      "path": "knowledge/decision/cli-release-accompanies-prod-deploy.md"
+    },
+    "cli-release-via-git-tag": {
+      "category": "api",
+      "path": "knowledge/api/cli-release-via-git-tag.md"
+    },
+    "clipboard-context-lazy-initialization": {
+      "category": "clipboard",
+      "path": "knowledge/clipboard/clipboard-context-lazy-initialization.md"
+    },
+    "clipboard-ownership-protocol": {
+      "category": "clipboard",
+      "path": "knowledge/clipboard/clipboard-ownership-protocol.md"
+    },
+    "codex-oauth-strips-vars-at-spawn": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/codex-oauth-strips-vars-at-spawn.md"
+    },
+    "codex-seatbelt-ignores-network-access": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/codex-seatbelt-ignores-network-access.md"
+    },
+    "collaborative-design-principles": {
+      "category": "collaboration",
+      "path": "knowledge/collaboration/collaborative-design-principles.md"
+    },
+    "compute-sanitizer-needs-temp-cublaslt-workspace": {
+      "category": "pytorch-integration",
+      "path": "knowledge/pytorch-integration/compute-sanitizer-needs-temp-cublaslt-workspace.md"
+    },
+    "condition-based-waiting": {
+      "category": "engineering",
+      "path": "knowledge/engineering/condition-based-waiting.md"
+    },
+    "config-dir-layout": {
+      "category": "reference",
+      "path": "knowledge/reference/config-dir-layout.md"
+    },
+    "config-minimization-min-json": {
+      "category": "arch",
+      "path": "knowledge/arch/config-minimization-min-json.md"
+    },
+    "config-system-four-tiers": {
+      "category": "configuration",
+      "path": "knowledge/configuration/config-system-four-tiers.md"
+    },
+    "connect-via-devtools-active-port-file": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/connect-via-devtools-active-port-file.md"
+    },
+    "connection-type-enum-design": {
+      "category": "networking",
+      "path": "knowledge/networking/connection-type-enum-design.md"
+    },
+    "content-types-knowledge-base-minified": {
+      "category": "arch",
+      "path": "knowledge/arch/content-types-knowledge-base-minified.md"
+    },
+    "content-types-knowledge-base-vs-model-outputs": {
+      "category": "domain",
+      "path": "knowledge/domain/content-types-knowledge-base-vs-model-outputs.md"
+    },
+    "cowork-backend-auto-detection-priority": {
+      "category": "linux-sandbox",
+      "path": "knowledge/linux-sandbox/cowork-backend-auto-detection-priority.md"
+    },
+    "craft-cli-command-surface": {
+      "category": "reference",
+      "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "anthropic-skill-authoring-best-practices": {
+      "category": "reference",
+      "path": "knowledge/reference/anthropic-skill-authoring-best-practices.md"
+    },
+    "appimage-fuse-chrome-sandbox-incompatibility": {
+      "category": "appimage",
+      "path": "knowledge/appimage/appimage-fuse-chrome-sandbox-incompatibility.md"
+    },
+    "appimage-zsync-delta-update-metadata": {
+      "category": "appimage",
+      "path": "knowledge/appimage/appimage-zsync-delta-update-metadata.md"
+    },
+    "architecture-registry": {
+      "category": "registry",
+      "path": "knowledge/registry/architecture-registry.md"
+    },
+    "async-clipboard-race-condition": {
+      "category": "clipboard",
+      "path": "knowledge/clipboard/async-clipboard-race-condition.md"
+    },
+    "audio-device-enumeration-platform-divergence": {
+      "category": "codecs",
+      "path": "knowledge/codecs/audio-device-enumeration-platform-divergence.md"
+    },
+    "audiovae-v2-asymmetric-rationale": {
+      "category": "audio",
+      "path": "knowledge/audio/audiovae-v2-asymmetric-rationale.md"
+    },
+    "automation-event-catalog": {
+      "category": "reference",
+      "path": "knowledge/reference/automation-event-catalog.md"
+    },
+    "autonomous-operation-principles-for-unattended-agents": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/autonomous-operation-principles-for-unattended-agents.md"
+    },
+    "autopilots-and-triggers-model": {
+      "category": "domain",
+      "path": "knowledge/domain/autopilots-and-triggers-model.md"
+    },
+    "azure-document-intelligence-opt-in-converter": {
+      "category": "integration",
+      "path": "knowledge/integration/azure-document-intelligence-opt-in-converter.md"
+    },
+    "bash-lc-single-quote-cron-keepalive": {
+      "category": "reference",
+      "path": "knowledge/reference/bash-lc-single-quote-cron-keepalive.md"
+    },
+    "batch-processing-vs-single-file": {
+      "category": "api",
+      "path": "knowledge/api/batch-processing-vs-single-file.md"
+    },
+    "binary-spherical-quantization-bsq-overview": {
+      "category": "design",
+      "path": "knowledge/design/binary-spherical-quantization-bsq-overview.md"
+    },
+    "bitrate-calculation-formula": {
+      "category": "codecs",
+      "path": "knowledge/codecs/bitrate-calculation-formula.md"
+    },
+    "blast-radius-calculation-git-diff-stat": {
+      "category": "safety",
+      "path": "knowledge/safety/blast-radius-calculation-git-diff-stat.md"
     },
     "block-size-stream-re-read-limit": {
       "category": "pitfall",
