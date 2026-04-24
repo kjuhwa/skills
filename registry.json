@@ -2409,6 +2409,116 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "hf-mirror-cli-download": {
+      "category": "automation",
+      "path": "skills/automation/hf-mirror-cli-download/SKILL.md",
+      "version": "1.0.0"
+    },
+    "hidden-state-capture-layer-hook": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/hidden-state-capture-layer-hook/SKILL.md",
+      "version": "1.0.0"
+    },
+    "hierarchical-bsq-codebook-quantization": {
+      "category": "ml-ops",
+      "path": "skills/ml-ops/hierarchical-bsq-codebook-quantization/SKILL.md",
+      "version": "1.0.0"
+    },
+    "hierarchical-dual-head-conditional-decoder": {
+      "category": "ml-ops",
+      "path": "skills/ml-ops/hierarchical-dual-head-conditional-decoder/SKILL.md",
+      "version": "1.0.0"
+    },
+    "hopper-tma-multicast-with-2d-cluster": {
+      "category": "gpu-kernels",
+      "path": "skills/gpu-kernels/hopper-tma-multicast-with-2d-cluster/SKILL.md",
+      "version": "1.0.0"
+    },
+    "hosted-mcp-tool": {
+      "category": "mcp-integration",
+      "path": "skills/mcp-integration/hosted-mcp-tool/SKILL.md",
+      "version": "1.0.0"
+    },
+    "hosted-tools-web-search": {
+      "category": "integration",
+      "path": "skills/integration/hosted-tools-web-search/SKILL.md",
+      "version": "1.0.0"
+    },
+    "hotfix": {
+      "category": "production",
+      "path": "skills/production/hotfix/SKILL.md",
+      "version": "1.0.0"
+    },
+    "html-to-markdown-markdownify-subclass": {
+      "category": "preprocessing",
+      "path": "skills/preprocessing/html-to-markdown-markdownify-subclass/SKILL.md",
+      "version": "1.0.0"
+    },
+    "huggingface-dataset-jsonl-cache": {
+      "category": "data-pipeline",
+      "path": "skills/data-pipeline/huggingface-dataset-jsonl-cache/SKILL.md",
+      "version": "1.0.0"
+    },
+    "huggingface-hub-mixin-for-custom-torch-model": {
+      "category": "ml-ops",
+      "path": "skills/ml-ops/huggingface-hub-mixin-for-custom-torch-model/SKILL.md",
+      "version": "1.0.0"
+    },
+    "huggingface-snapshot-selective-patterns": {
+      "category": "ml-ops",
+      "path": "skills/ml-ops/huggingface-snapshot-selective-patterns/SKILL.md",
+      "version": "1.0.0"
+    },
+    "huggingface-tqdm-progress-monkey-patch": {
+      "category": "ml-ops",
+      "path": "skills/ml-ops/huggingface-tqdm-progress-monkey-patch/SKILL.md",
+      "version": "1.0.0"
+    },
+    "human-in-the-loop-approval": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/human-in-the-loop-approval/SKILL.md",
+      "version": "1.0.0"
+    },
+    "i18n-module-registry-pattern": {
+      "category": "i18n",
+      "path": "skills/i18n/i18n-module-registry-pattern/SKILL.md",
+      "version": "1.0.0"
+    },
+    "image-as-data-uri-chat-completion": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/image-as-data-uri-chat-completion/SKILL.md",
+      "version": "1.0.0"
+    },
+    "inline-i18n-dictionary-with-dropdown": {
+      "category": "gradio",
+      "path": "skills/gradio/inline-i18n-dictionary-with-dropdown/SKILL.md",
+      "version": "1.0.0"
+    },
+    "input-guardrail-agent": {
+      "category": "safety",
+      "path": "skills/safety/input-guardrail-agent/SKILL.md",
+      "version": "1.0.0"
+    },
+    "interface-contract-validation": {
+      "category": "safety",
+      "path": "skills/safety/interface-contract-validation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "internal-raw-source-packages": {
+      "category": "monorepo",
+      "path": "skills/monorepo/internal-raw-source-packages/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ipc-message-framing-codec": {
+      "category": "ipc",
+      "path": "skills/ipc/ipc-message-framing-codec/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ipynb-cells-to-markdown": {
+      "category": "data-pipeline",
+      "path": "skills/data-pipeline/ipynb-cells-to-markdown/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4537,118 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "hermes-sqlite-session-db-fts5": {
+      "category": "reference",
+      "path": "knowledge/reference/hermes-sqlite-session-db-fts5.md"
+    },
+    "hermes-terminal-backends-catalog": {
+      "category": "domain",
+      "path": "knowledge/domain/hermes-terminal-backends-catalog.md"
+    },
+    "hermes-testing-wrapper-ci-parity": {
+      "category": "decision",
+      "path": "knowledge/decision/hermes-testing-wrapper-ci-parity.md"
+    },
+    "hermes-tool-schema-no-cross-toolset-references": {
+      "category": "decision",
+      "path": "knowledge/decision/hermes-tool-schema-no-cross-toolset-references.md"
+    },
+    "hermes-trajectory-sharegpt-format": {
+      "category": "reference",
+      "path": "knowledge/reference/hermes-trajectory-sharegpt-format.md"
+    },
+    "hierarchical-token-split-s1-s2-high-low-bits": {
+      "category": "design",
+      "path": "knowledge/design/hierarchical-token-split-s1-s2-high-low-bits.md"
+    },
+    "high-confidence-mode-default": {
+      "category": "decision",
+      "path": "knowledge/decision/high-confidence-mode-default.md"
+    },
+    "hopper-wgmma-store-pattern-in-1d1d-kernels": {
+      "category": "gpu-kernels",
+      "path": "knowledge/gpu-kernels/hopper-wgmma-store-pattern-in-1d1d-kernels.md"
+    },
+    "http-api-grep-patterns-android": {
+      "category": "reference",
+      "path": "knowledge/reference/http-api-grep-patterns-android.md"
+    },
+    "http-health-check-binary-takeover": {
+      "category": "devops",
+      "path": "knowledge/devops/http-health-check-binary-takeover.md"
+    },
+    "hub-review-workflow": {
+      "category": "workflow",
+      "path": "knowledge/workflow/hub-review-workflow.md"
+    },
+    "huggingface-transformers-text-classification-pipeline": {
+      "category": "llm-fundamentals",
+      "path": "knowledge/llm-fundamentals/huggingface-transformers-text-classification-pipeline.md"
+    },
+    "human-in-the-loop-design": {
+      "category": "llm-agents",
+      "path": "knowledge/llm-agents/human-in-the-loop-design.md"
+    },
+    "human-report-generation": {
+      "category": "observability",
+      "path": "knowledge/observability/human-report-generation.md"
+    },
+    "hyphenated-root-routes-avoid": {
+      "category": "decision",
+      "path": "knowledge/decision/hyphenated-root-routes-avoid.md"
+    },
+    "idle-scheduler-background-tasks": {
+      "category": "workflow",
+      "path": "knowledge/workflow/idle-scheduler-background-tasks.md"
+    },
+    "in-page-tool-bridge-via-custom-event": {
+      "category": "arch",
+      "path": "knowledge/arch/in-page-tool-bridge-via-custom-event.md"
+    },
+    "incremental-verification-plan-multi-step": {
+      "category": "engineering",
+      "path": "knowledge/engineering/incremental-verification-plan-multi-step.md"
+    },
+    "input-event-queue-semantics": {
+      "category": "input",
+      "path": "knowledge/input/input-event-queue-semantics.md"
+    },
+    "input-mode-keyboard-layout-dependency": {
+      "category": "input",
+      "path": "knowledge/input/input-mode-keyboard-layout-dependency.md"
+    },
+    "intent-rich-tool-metadata-fields": {
+      "category": "reference",
+      "path": "knowledge/reference/intent-rich-tool-metadata-fields.md"
+    },
+    "interceptor-cjs-preload-pattern": {
+      "category": "architecture",
+      "path": "knowledge/architecture/interceptor-cjs-preload-pattern.md"
+    },
+    "internal-packages-raw-source-pattern": {
+      "category": "arch",
+      "path": "knowledge/arch/internal-packages-raw-source-pattern.md"
+    },
+    "investigation-state-shape": {
+      "category": "architecture",
+      "path": "knowledge/architecture/investigation-state-shape.md"
+    },
+    "issue-reporter-auto-github": {
+      "category": "workflow",
+      "path": "knowledge/workflow/issue-reporter-auto-github.md"
+    },
+    "issue-task-run-hierarchy": {
+      "category": "domain",
+      "path": "knowledge/domain/issue-task-run-hierarchy.md"
+    },
+    "jadx-cli-options-reference": {
+      "category": "reference",
+      "path": "knowledge/reference/jadx-cli-options-reference.md"
+    },
+    "javascript-typescript-balance-v3-3": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/javascript-typescript-balance-v3-3.md"
     }
   }
 }
