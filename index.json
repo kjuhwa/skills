@@ -929,6 +929,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "magika-sampling-strategy",
+    "slug": "magika-sampling-strategy",
+    "category": "arch",
+    "description": "Magika samples beginning, middle, and end blocks of a file rather than processing all bytes.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/magika-sampling-strategy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "mf-cross-remote-import-forbidden",
     "slug": "mf-cross-remote-import-forbidden",
     "category": "arch",
@@ -2044,6 +2059,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "local-proxy-auth-isolation",
+    "slug": "local-proxy-auth-isolation",
+    "category": "architecture",
+    "description": "A local-HTTP proxy process owns all hub credentials and sync state; the business agent only speaks to `127.0.0.1`. Credential rotation, retries, and offline mode become the proxy's problem, not the agent's.",
+    "tags": [
+      "proxy",
+      "auth",
+      "isolation",
+      "hub-sync",
+      "local-ipc"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/local-proxy-auth-isolation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "ci-gpg-signing-batch-mode-non-interactive",
     "slug": "ci-gpg-signing-batch-mode-non-interactive",
     "category": "ci-cd",
@@ -2114,6 +2147,24 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/clipboard/clipboard-ownership-protocol.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "linux-file-clipboard-unix-only",
+    "slug": "linux-file-clipboard-unix-only",
+    "category": "clipboard",
+    "description": "Unix file copy-paste requires X11Clipboard + a local file server; not reachable on Windows by default.",
+    "tags": [
+      "clipboard",
+      "file",
+      "linux",
+      "only",
+      "unix"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/clipboard/linux-file-clipboard-unix-only.md",
     "has_content": true
   },
   {
@@ -3126,6 +3177,41 @@
   },
   {
     "kind": "knowledge",
+    "name": "lighthouse-audit-scope-excludes-performance",
+    "slug": "lighthouse-audit-scope-excludes-performance",
+    "category": "decision",
+    "description": "The project's `lighthouse_audit` tool explicitly runs only the `accessibility`, `seo`, and `best-practices` categories; Lighthouse performance is delegated to `performance_start_trace` because the DevTools TraceEngine gives better Core Web Vitals insights for an agent workflow.",
+    "tags": [
+      "lighthouse",
+      "performance",
+      "core-web-vitals",
+      "trace-engine"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/lighthouse-audit-scope-excludes-performance.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "mcp-design-principles-for-agent-tools",
+    "slug": "mcp-design-principles-for-agent-tools",
+    "category": "decision",
+    "description": "Seven design principles that make MCP tool servers usable by LLM agents: agent-agnostic protocol, token-optimized returns, small deterministic primitives, self-healing errors, dual human+machine output, progressive complexity, and reference-over-value for heavy assets.",
+    "tags": [
+      "mcp",
+      "design-principles",
+      "agent-ux",
+      "token-budget",
+      "api-design"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/mcp-design-principles-for-agent-tools.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "measurement-batch-send-per-config",
     "slug": "measurement-batch-send-per-config",
     "category": "decision",
@@ -3684,6 +3770,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "make-ts-go-verification-pipeline",
+    "slug": "make-ts-go-verification-pipeline",
+    "category": "devops",
+    "description": "Single make check that runs TypeScript typecheck + unit tests + Go tests + Playwright E2E, starting services only if they're not already running.",
+    "tags": [
+      "makefile",
+      "verification",
+      "ci",
+      "typescript",
+      "go",
+      "playwright"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/devops/make-ts-go-verification-pipeline.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3767,6 +3872,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/encrypted-pii-decode-on-export.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "mcp-client-name-detection-for-telemetry",
+    "slug": "mcp-client-name-detection-for-telemetry",
+    "category": "domain",
+    "description": "Detect which MCP client connected (Claude Code, Gemini CLI, Codex, Antigravity, OpenClaw, your own CLI) by lowercasing `server.getClientVersion().name` and matching substrings on `oninitialized`, then tag telemetry with that enum for per-client analytics.",
+    "tags": [
+      "mcp",
+      "client-detection",
+      "telemetry",
+      "oninitialized"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/mcp-client-name-detection-for-telemetry.md",
     "has_content": true
   },
   {
@@ -3992,6 +4114,60 @@
   },
   {
     "kind": "knowledge",
+    "name": "llamafactory-sft-training",
+    "slug": "llamafactory-sft-training",
+    "category": "llm-agents",
+    "description": "LLaMA-Factory is an open-source training framework supporting SFT, DPO, PPO, and other fine-tuning methods for LLMs and MLLMs.",
+    "tags": [
+      "llamafactory",
+      "sft",
+      "fine-tuning",
+      "qwen",
+      "training-infrastructure"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/llamafactory-sft-training.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "llm-knowledge-editing-overview",
+    "slug": "llm-knowledge-editing-overview",
+    "category": "llm-fundamentals",
+    "description": "Knowledge editing modifies specific factual beliefs in a pretrained LLM without full retraining.",
+    "tags": [
+      "knowledge-editing",
+      "rome",
+      "memit",
+      "easyedit",
+      "model-editing"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-fundamentals/llm-knowledge-editing-overview.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "llm-math-reasoning-distillation",
+    "slug": "llm-math-reasoning-distillation",
+    "category": "llm-fundamentals",
+    "description": "Small math models (e.g.",
+    "tags": [
+      "math-reasoning",
+      "sft",
+      "distillation",
+      "deepseek-r1",
+      "qwen2.5-math"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-fundamentals/llm-math-reasoning-distillation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "connection-type-enum-design",
     "slug": "connection-type-enum-design",
     "category": "networking",
@@ -4006,6 +4182,45 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/networking/connection-type-enum-design.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "local-state-awareness-environment-detection",
+    "slug": "local-state-awareness-environment-detection",
+    "category": "observability",
+    "description": "Detect local environment state (workspace changes, git branch, filesystem) for evolution safety",
+    "tags": [
+      "evolver",
+      "observability",
+      "env-detection",
+      "safety",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/observability/local-state-awareness-environment-detection.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "manifest-json-real-entry-extraction",
+    "slug": "manifest-json-real-entry-extraction",
+    "category": "packaging",
+    "description": "When building a derived package format that needs a manifest of upstream assets (with checksums), extract entries from the upstream manifest at build time using a regex anchor rather than hardcoding them; fall back to empty arrays if extraction fails to avoid breaking the build on format changes.",
+    "tags": [
+      "manifest",
+      "checksums",
+      "build",
+      "electron",
+      "json",
+      "extraction",
+      "upstream",
+      "packaging"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/packaging/manifest-json-real-entry-extraction.md",
     "has_content": true
   },
   {
@@ -5393,6 +5608,40 @@
   },
   {
     "kind": "knowledge",
+    "name": "llm-silent-assumption-on-export-scope",
+    "slug": "llm-silent-assumption-on-export-scope",
+    "category": "pitfall",
+    "description": "LLMs given \"export user data\" silently decide scope (all users), format (json/csv), file location, and fields — all of which have privacy and UX implications that should be surfaced first.",
+    "tags": [
+      "llm-behavior",
+      "assumptions",
+      "scope-ambiguity",
+      "privacy"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/llm-silent-assumption-on-export-scope.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "llm-silently-picks-one-interpretation",
+    "slug": "llm-silently-picks-one-interpretation",
+    "category": "pitfall",
+    "description": "When a verb has multiple valid readings (\"make search faster\" → latency vs throughput vs perceived speed), LLMs often pick one silently and implement 200 lines of the wrong optimization. Enumerate interpretations instead.",
+    "tags": [
+      "ambiguity",
+      "performance",
+      "premature-optimization",
+      "clarification"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/llm-silently-picks-one-interpretation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "load-balancer-implementation-pitfall",
     "slug": "load-balancer-implementation-pitfall",
     "category": "pitfall",
@@ -5413,6 +5662,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/log-aggregation-implementation-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "main-frame-filter-on-framenavigated",
+    "slug": "main-frame-filter-on-framenavigated",
+    "category": "pitfall",
+    "description": "Puppeteer's `framenavigated` event fires for every frame including iframes, not just the top-level page; if your event-collector splits storage on each `framenavigated` without filtering to `frame === page.mainFrame()`, every iframe navigation rotates your buckets and loses the current request list.",
+    "tags": [
+      "puppeteer",
+      "framenavigated",
+      "iframe",
+      "event-collection"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/main-frame-filter-on-framenavigated.md",
     "has_content": true
   },
   {
@@ -6662,6 +6928,81 @@
   },
   {
     "kind": "knowledge",
+    "name": "linux-desktop-manager-detection-heuristics",
+    "slug": "linux-desktop-manager-detection-heuristics",
+    "category": "platform/linux",
+    "description": "DE detection: check $XDG_CURRENT_DESKTOP, parse .desktop files, fallback to sysinfo.",
+    "tags": [
+      "desktop",
+      "detection",
+      "heuristics",
+      "linux",
+      "manager",
+      "platform"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/linux/linux-desktop-manager-detection-heuristics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "linux-sudo-e-env-preservation-quirk",
+    "slug": "linux-sudo-e-env-preservation-quirk",
+    "category": "platform/linux",
+    "description": "Ubuntu 25.10+ changed sudo -E behavior so it no longer preserves env cleanly; probe via sentinel env var.",
+    "tags": [
+      "env",
+      "linux",
+      "platform",
+      "preservation",
+      "quirk",
+      "sudo"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/linux/linux-sudo-e-env-preservation-quirk.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "macos-ax-trusted-check-prompt",
+    "slug": "macos-ax-trusted-check-prompt",
+    "category": "platform/macos",
+    "description": "macOS accessibility check: use kAXTrustedCheckOptionPrompt to auto-prompt the user for consent.",
+    "tags": [
+      "check",
+      "macos",
+      "platform",
+      "prompt",
+      "trusted"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/macos/macos-ax-trusted-check-prompt.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "macos-notarization-and-signature-requirements",
+    "slug": "macos-notarization-and-signature-requirements",
+    "category": "platform/macos",
+    "description": "macOS distribution requires code signing + notarization; helper scripts must be embedded (include_dir!) to stay inside the signed bundle.",
+    "tags": [
+      "and",
+      "macos",
+      "notarization",
+      "platform",
+      "requirements",
+      "signature"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/macos/macos-notarization-and-signature-requirements.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "android-ios-feature-parity-gap",
     "slug": "android-ios-feature-parity-gap",
     "category": "platform/mobile",
@@ -6793,6 +7134,44 @@
   },
   {
     "kind": "knowledge",
+    "name": "magika-content-type-classifier",
+    "slug": "magika-content-type-classifier",
+    "category": "reference",
+    "description": "Google's magika is a small on-device ML model (1MB, ~5ms per file) that classifies file content type from raw bytes — use it in ingestion pipelines where extensions lie, HTTP Content-Type is wrong, or files have no metadata.",
+    "tags": [
+      "reference",
+      "magika",
+      "file-type",
+      "classification",
+      "content-sniffing",
+      "ml"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/magika-content-type-classifier.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "markitdown-converter-architecture",
+    "slug": "markitdown-converter-architecture",
+    "category": "reference",
+    "description": "Reference overview of how Microsoft's markitdown library orchestrates document-to-markdown conversion — StreamInfo guesses, priority-based converter registry, accepts()/convert() contract, plugin loader, and format-specific converters.",
+    "tags": [
+      "reference",
+      "markitdown",
+      "architecture",
+      "converters",
+      "pipeline",
+      "microsoft"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/markitdown-converter-architecture.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6801,6 +7180,41 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "llm-agent-safety-r-judge",
+    "slug": "llm-agent-safety-r-judge",
+    "category": "safety",
+    "description": "R-Judge is a benchmark for evaluating LLM agent safety across multi-turn ReAct-style interaction records.",
+    "tags": [
+      "agent-safety",
+      "r-judge",
+      "react",
+      "risk-identification",
+      "evaluation"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/safety/llm-agent-safety-r-judge.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "masking-vs-guardrails-two-layer-defense",
+    "slug": "masking-vs-guardrails-two-layer-defense",
+    "category": "safety",
+    "description": "OpenSRE protects LLM payloads with two independent layers — masking (reversible placeholders for infrastructure identifiers) and guardrails (regex/keyword rules with redact/block/audit actions). They serve different purposes and compose.",
+    "tags": [
+      "masking",
+      "guardrails",
+      "llm-safety",
+      "layered-defense"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/safety/masking-vs-guardrails-two-layer-defense.md",
     "has_content": true
   },
   {
@@ -6820,6 +7234,62 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/schema-design/identifier-regex-loose-when-legacy-coexists.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "llm-jailbreak-attacks-easyjailbreak",
+    "slug": "llm-jailbreak-attacks-easyjailbreak",
+    "category": "security",
+    "description": "EasyJailbreak is a unified framework for evaluating LLM safety via automated jailbreak attacks.",
+    "tags": [
+      "jailbreak",
+      "easyjailbreak",
+      "pair",
+      "ica",
+      "gcg",
+      "red-team"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/llm-jailbreak-attacks-easyjailbreak.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "llm-text-steganography",
+    "slug": "llm-text-steganography",
+    "category": "security",
+    "description": "LLM text steganography hides secret binary information in the token-by-token generation process.",
+    "tags": [
+      "steganography",
+      "huffman",
+      "flc",
+      "gpt-2",
+      "information-hiding"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/llm-text-steganography.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "llm-text-watermarking-kgw",
+    "slug": "llm-text-watermarking-kgw",
+    "category": "security",
+    "description": "LLM text watermarking embeds an imperceptible signal into LLM-generated text detectable via z-score statistical testing.",
+    "tags": [
+      "watermark",
+      "kgw",
+      "x-sir",
+      "z-score",
+      "greenlist",
+      "redlist"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/llm-text-watermarking-kgw.md",
     "has_content": true
   },
   {
@@ -6964,6 +7434,30 @@
   },
   {
     "kind": "skill",
+    "name": "localize",
+    "slug": "localize",
+    "category": "",
+    "description": "\"Full localization pipeline: scan for hardcoded strings, extract and manage string tables, validate translations, generate translator briefings, run cultural/sensitivity review, manage VO localization, test RTL/platform requirements, enforce string freeze, and report coverage.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/meta/localize",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "map-systems",
+    "slug": "map-systems",
+    "category": "",
+    "description": "\"Decompose a game concept into individual systems, map dependencies, prioritize design order, and create the systems index.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/map-systems",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "alert-time-window-with-buffer",
     "slug": "alert-time-window-with-buffer",
     "category": "agent-sdk",
@@ -6994,6 +7488,59 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agent-sdk/claude-agent-sdk-multi-provider-bridge",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "llm-empty-plan-controller-fallback",
+    "slug": "llm-empty-plan-controller-fallback",
+    "category": "agent-sdk",
+    "description": "When a planning LLM returns an empty action list, force a deterministic verification action from a priority-ordered fallback list so the agent never spins on \"no actions chosen\".",
+    "tags": [
+      "planning",
+      "fallback",
+      "llm-defense",
+      "agent-loop"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/llm-empty-plan-controller-fallback",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "llm-retry-with-typed-error-formatting",
+    "slug": "llm-retry-with-typed-error-formatting",
+    "category": "agent-sdk",
+    "description": "Wrap LLM calls in a 3-attempt exponential-backoff retry that re-raises auth errors immediately (don't retry 401/403), and on final failure formats a user-actionable message based on error type and HTTP status (529 overload, APIConnectionError, etc).",
+    "tags": [
+      "llm",
+      "retry",
+      "backoff",
+      "error-handling",
+      "anthropic"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/llm-retry-with-typed-error-formatting",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "llm-text-section-parser-claims-causal-chain",
+    "slug": "llm-text-section-parser-claims-causal-chain",
+    "category": "agent-sdk",
+    "description": "Parse a free-form LLM response into structured fields (root cause, category, validated/non-validated claims, causal chain) by splitting on uppercase section headers and stripping bullet markers, with a category whitelist to defend against hallucinated values.",
+    "tags": [
+      "llm",
+      "parsing",
+      "structured-output",
+      "sections",
+      "fallback"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/llm-text-section-parser-claims-causal-chain",
     "has_content": false
   },
   {
@@ -7082,6 +7629,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/coding-agent-cli-backend-interface",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "managed-toml-block-idempotent",
+    "slug": "managed-toml-block-idempotent",
+    "category": "agents",
+    "description": "Inject a daemon-managed block into a user-owned TOML file with BEGIN/END markers, top-level dotted-key syntax, and idempotent rewrite at the top of the file.",
+    "tags": [
+      "toml",
+      "config",
+      "managed-block",
+      "idempotent",
+      "rewrite"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/managed-toml-block-idempotent",
     "has_content": false
   },
   {
@@ -10851,6 +11416,23 @@
   },
   {
     "kind": "skill",
+    "name": "local-vs-remote-reachability-probes",
+    "slug": "local-vs-remote-reachability-probes",
+    "category": "cli",
+    "description": "Lightweight probe dataclass that checks both local-target writability (dir + parent walk) and remote-target HTTP reachability with a 3-second timeout, returning a typed result the wizard can render uniformly.",
+    "tags": [
+      "cli",
+      "probes",
+      "reachability",
+      "dataclass"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/local-vs-remote-reachability-probes",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "office-hours",
     "slug": "office-hours",
     "category": "cli",
@@ -11191,6 +11773,42 @@
   },
   {
     "kind": "skill",
+    "name": "masking-policy-from-env-no-singleton",
+    "slug": "masking-policy-from-env-no-singleton",
+    "category": "configuration",
+    "description": "Build a fresh policy object from environment variables on every investigation (no module-level singleton) so toggling env vars between runs takes effect without restarting the process.",
+    "tags": [
+      "config",
+      "env-vars",
+      "no-singleton",
+      "policy"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/configuration/masking-policy-from-env-no-singleton",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "long-lived-mcp-daemon-over-unix-socket",
+    "slug": "long-lived-mcp-daemon-over-unix-socket",
+    "category": "daemon",
+    "description": "Front an MCP stdio server with a long-lived local daemon so a CLI can invoke tools across many short-lived commands while preserving browser/session state, using a Unix socket on POSIX and a named pipe on Windows.",
+    "tags": [
+      "daemon",
+      "unix-socket",
+      "named-pipe",
+      "mcp-client",
+      "ipc",
+      "lifecycle"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/daemon/long-lived-mcp-daemon-over-unix-socket",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "content-type-info-metadata-embedding",
     "slug": "content-type-info-metadata-embedding",
     "category": "data",
@@ -11203,6 +11821,24 @@
     "version": "1.0.0",
     "path": "skills/data/content-type-info-metadata-embedding",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "mailbox-store-jsonl-with-in-memory-index",
+    "slug": "mailbox-store-jsonl-with-in-memory-index",
+    "category": "data-pipeline",
+    "description": "Append-only JSONL persistence with in-memory index for fast message lookup and ordering",
+    "tags": [
+      "evolver",
+      "data-pipeline",
+      "jsonl",
+      "mailbox",
+      "indexing"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/data-pipeline/mailbox-store-jsonl-with-in-memory-index",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -12743,6 +13379,24 @@
   },
   {
     "kind": "skill",
+    "name": "make-check-verification-loop",
+    "slug": "make-check-verification-loop",
+    "category": "devops",
+    "description": "Single make check command that runs typecheck + TS tests + Go tests + Playwright E2E for agents and CI, only starting services that aren't already running.",
+    "tags": [
+      "makefile",
+      "verification",
+      "ci",
+      "agent-workflow",
+      "playwright"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/devops/make-check-verification-loop",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "mongodb-volume-copy-backup",
     "slug": "mongodb-volume-copy-backup",
     "category": "devops",
@@ -13577,6 +14231,24 @@
   },
   {
     "kind": "skill",
+    "name": "lm-prompt-kv-cache-reuse",
+    "slug": "lm-prompt-kv-cache-reuse",
+    "category": "inference",
+    "description": "Pre-compute and cache LM KV state for a fixed prompt, then reuse across multiple target generations",
+    "tags": [
+      "inference",
+      "kv-cache",
+      "tts",
+      "optimization",
+      "transformer"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/lm-prompt-kv-cache-reuse",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13641,6 +14313,26 @@
   },
   {
     "kind": "skill",
+    "name": "linux-display-backend-detector-wayland-x11",
+    "slug": "linux-display-backend-detector-wayland-x11",
+    "category": "launcher",
+    "description": "Detect whether the current session is Wayland or X11, auto-route to XWayland for global hotkey support, and handle compositor-specific overrides (e.g. Niri which has no XWayland). Exports an Electron args array ready for exec.",
+    "tags": [
+      "wayland",
+      "x11",
+      "electron",
+      "launcher",
+      "display-server",
+      "xwayland",
+      "compositor"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/launcher/linux-display-backend-detector-wayland-x11",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13672,6 +14364,59 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "linear-interpolation-target-layer-ids",
+    "slug": "linear-interpolation-target-layer-ids",
+    "category": "llm-agents",
+    "description": "Pick N evenly-spaced target-transformer layer indices to feed into a smaller draft model when you do not have a hand-picked layer map.",
+    "tags": [
+      "speculative-decoding",
+      "layer-selection",
+      "draft-model",
+      "hyperparameters"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/linear-interpolation-target-layer-ids",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "llm-api-zero-few-shot-prompting",
+    "slug": "llm-api-zero-few-shot-prompting",
+    "category": "llm-agents",
+    "description": "Call Qwen (DashScope) or OpenAI APIs for zero-shot and few-shot prompting, including streaming responses.",
+    "tags": [
+      "prompting",
+      "llm-api",
+      "qwen",
+      "zero-shot",
+      "few-shot"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/llm-api-zero-few-shot-prompting",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "llm-as-judge-loop",
+    "slug": "llm-as-judge-loop",
+    "category": "llm-agents",
+    "description": "Run an agent in a loop with an evaluator agent that provides feedback until the output meets a quality threshold.",
+    "tags": [
+      "openai-agents",
+      "llm-as-judge",
+      "eval-loop",
+      "quality-control",
+      "feedback"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/llm-as-judge-loop",
     "has_content": false
   },
   {
@@ -13826,6 +14571,24 @@
   },
   {
     "kind": "skill",
+    "name": "log-deduplication-and-error-taxonomy",
+    "slug": "log-deduplication-and-error-taxonomy",
+    "category": "observability",
+    "description": "Deduplicate noisy log lines by collapsing variable tokens (UUIDs, timestamps, IPs, hex addresses) into a normalized signature, then group remaining errors into a taxonomy of types (ConnectionTimeout, OOM, AuthError, ...) with affected components extracted.",
+    "tags": [
+      "logs",
+      "deduplication",
+      "taxonomy",
+      "llm-context",
+      "error-classification"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/log-deduplication-and-error-taxonomy",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "claude-cli-unattended-wrapper",
     "slug": "claude-cli-unattended-wrapper",
     "category": "operations",
@@ -13843,6 +14606,114 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/operations/claude-cli-unattended-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "linux-desktop-manager-abstraction",
+    "slug": "linux-desktop-manager-abstraction",
+    "category": "platform/linux",
+    "description": "Pluggable desktop-environment detection (GNOME/KDE/…) behind a platform::linux_desktop_manager module.",
+    "tags": [
+      "abstraction",
+      "desktop",
+      "linux",
+      "manager",
+      "platform"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/linux/linux-desktop-manager-abstraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "linux-terminfo-capability-detection",
+    "slug": "linux-terminfo-capability-detection",
+    "category": "platform/linux",
+    "description": "Terminfo database querying for terminal capability detection (xterm-256color, screen-256color).",
+    "tags": [
+      "capability",
+      "detection",
+      "linux",
+      "platform",
+      "terminfo"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/linux/linux-terminfo-capability-detection",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "macos-cocoa-objc-messaging",
+    "slug": "macos-cocoa-objc-messaging",
+    "category": "platform/macos",
+    "description": "objc message-based API calls for macOS (NSApp, NSApplication, CGEvent) via cocoa crate.",
+    "tags": [
+      "cocoa",
+      "macos",
+      "messaging",
+      "objc",
+      "platform"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/macos/macos-cocoa-objc-messaging",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "macos-cursor-seed-tracking",
+    "slug": "macos-cursor-seed-tracking",
+    "category": "platform/macos",
+    "description": "macOS cursor visibility tracking via CGSCurrentCursorSeed() with global mutex.",
+    "tags": [
+      "cursor",
+      "macos",
+      "platform",
+      "seed",
+      "tracking"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/macos/macos-cursor-seed-tracking",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "macos-privilege-scripts-embedding",
+    "slug": "macos-privilege-scripts-embedding",
+    "category": "platform/macos",
+    "description": "Embed shell scripts via include_dir!() for privilege elevation + system operations.",
+    "tags": [
+      "embedding",
+      "macos",
+      "platform",
+      "privilege",
+      "scripts"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/macos/macos-privilege-scripts-embedding",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "lookback-only-normalization-no-leakage",
+    "slug": "lookback-only-normalization-no-leakage",
+    "category": "preprocessing",
+    "description": "Compute mean and std only on the lookback window (past), then apply to the full sequence, to avoid leaking future statistics into training or evaluation.",
+    "tags": [
+      "normalization",
+      "time-series",
+      "data-leakage",
+      "train-test-split",
+      "forecasting"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/preprocessing/lookback-only-normalization-no-leakage",
     "has_content": false
   },
   {
@@ -13911,6 +14782,21 @@
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "maturin-cross-platform-python-wheel-build",
+    "slug": "maturin-cross-platform-python-wheel-build",
+    "category": "release",
+    "description": "Build native Python wheels with maturin (PyO3) embedding a Rust binary + ONNX Runtime static library, across manylinux, macOS universal2, and Windows MSVC.",
+    "tags": [
+      "magika",
+      "release"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/release/maturin-cross-platform-python-wheel-build",
+    "has_content": true
   },
   {
     "kind": "skill",
