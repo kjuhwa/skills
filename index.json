@@ -442,6 +442,57 @@
   },
   {
     "kind": "knowledge",
+    "name": "cutmix-augmentation-v1-to-v3",
+    "slug": "cutmix-augmentation-v1-to-v3",
+    "category": "arch",
+    "description": "CutMix data augmentation was used in v1, removed in v2_1, and reintroduced in v3_1.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/cutmix-augmentation-v1-to-v3.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "daemon-per-profile-isolation",
+    "slug": "daemon-per-profile-isolation",
+    "category": "arch",
+    "description": "Multiple daemon profiles on one host — production, staging, dev worktrees — each with its own config dir, PID, health port, and workspace root.",
+    "tags": [
+      "cli",
+      "daemon",
+      "profiles",
+      "isolation",
+      "multi-env"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/daemon-per-profile-isolation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "daemon-task-polling-architecture",
+    "slug": "daemon-task-polling-architecture",
+    "category": "arch",
+    "description": "Local agent daemon registers runtimes per workspace, polls server for claimed tasks, spawns agent CLI in an isolated workspace dir, streams results back.",
+    "tags": [
+      "daemon",
+      "agent",
+      "runtime",
+      "polling",
+      "architecture"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/daemon-task-polling-architecture.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "data-patch-package-for-migrations",
     "slug": "data-patch-package-for-migrations",
     "category": "arch",
@@ -1945,6 +1996,43 @@
   },
   {
     "kind": "knowledge",
+    "name": "debug-vs-release-build-differences",
+    "slug": "debug-vs-release-build-differences",
+    "category": "build-system",
+    "description": "Release: optimized codecs + LTO. Debug: flexi_logger on desktop, android_logger on Android.",
+    "tags": [
+      "build",
+      "debug",
+      "differences",
+      "release",
+      "system"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/build-system/debug-vs-release-build-differences.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "cross-platform-codec-initialization-order",
+    "slug": "cross-platform-codec-initialization-order",
+    "category": "codecs",
+    "description": "Codec precedence at runtime: hwcodec > vram > software, chosen by probing device capability and user config.",
+    "tags": [
+      "codec",
+      "codecs",
+      "cross",
+      "initialization",
+      "order",
+      "platform"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/codecs/cross-platform-codec-initialization-order.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "agent-director-art-director",
     "slug": "agent-director-art-director",
     "category": "collaboration",
@@ -2229,6 +2317,28 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/collaboration/agent-specialist-ux-designer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "deb-icon-size-windows-exe-index-mapping",
+    "slug": "deb-icon-size-windows-exe-index-mapping",
+    "category": "deb",
+    "description": "Windows `.exe` files pack multiple icon sizes by embedded index; to produce FDO hicolor icons for a Linux package, map each target size (16, 24, 32, 48, 64, 256) to its corresponding image index in the exe using `icoutils` (`wrestool`/`icotool`).",
+    "tags": [
+      "deb",
+      "icons",
+      "icoutils",
+      "wrestool",
+      "icotool",
+      "hicolor",
+      "fdo",
+      "windows-exe",
+      "imagemagick"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/deb/deb-icon-size-windows-exe-index-mapping.md",
     "has_content": true
   },
   {
@@ -3457,6 +3567,22 @@
   },
   {
     "kind": "knowledge",
+    "name": "delivery-mode-streaming-vs-buffered-affects-ui-responsiveness",
+    "slug": "delivery-mode-streaming-vs-buffered-affects-ui-responsiveness",
+    "category": "design",
+    "description": "Providers can deliver assistant text incrementally (streaming) or all at once (buffered); affects message timeline UX",
+    "tags": [
+      "design",
+      "api",
+      "ux"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/design/delivery-mode-streaming-vs-buffered-affects-ui-responsiveness.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3658,6 +3784,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "defense-in-depth-validation",
+    "slug": "defense-in-depth-validation",
+    "category": "engineering",
+    "description": "Apply validation at every boundary (input, transform, output) instead of a single choke point so refactors and mocks cannot bypass it",
+    "tags": [
+      "superpowers",
+      "engineering"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engineering/defense-in-depth-validation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a2a-protocol-agent-to-agent-knowledge-exchange",
     "slug": "a2a-protocol-agent-to-agent-knowledge-exchange",
     "category": "integration",
@@ -3709,6 +3850,42 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/llm-agents/agent-runner-loop-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "cross-attention-draft-target-hidden",
+    "slug": "cross-attention-draft-target-hidden",
+    "category": "llm-agents",
+    "description": "DFlash's draft attention concatenates K/V from the target's hidden states (\"context\") with K/V from the draft's own noise embeddings — so each draft query attends to the full target prefix plus the noisy block positions.",
+    "tags": [
+      "speculative-decoding",
+      "attention",
+      "cross-attention",
+      "dflash",
+      "draft-model"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/cross-attention-draft-target-hidden.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "deepseek-r1-architecture-training",
+    "slug": "deepseek-r1-architecture-training",
+    "category": "llm-fundamentals",
+    "description": "DeepSeek-R1 is a large reasoning model that generates explicit chain-of-thought traces before producing a final answer.",
+    "tags": [
+      "deepseek-r1",
+      "reasoning",
+      "rl",
+      "moe",
+      "chain-of-thought"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-fundamentals/deepseek-r1-architecture-training.md",
     "has_content": true
   },
   {
@@ -4374,6 +4551,39 @@
   },
   {
     "kind": "knowledge",
+    "name": "csv-regression-v3-2-dataset-balance",
+    "slug": "csv-regression-v3-2-dataset-balance",
+    "category": "pitfall",
+    "description": "standard_v3_2 fixed a CSV-detection regression by adding synthetic CSV training data and switching the model-selection criterion to minimal test loss.",
+    "tags": [
+      "magika",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/csv-regression-v3-2-dataset-balance.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "daemon-pid-stored-in-runtime-not-config",
+    "slug": "daemon-pid-stored-in-runtime-not-config",
+    "category": "pitfall",
+    "description": "Daemon PID files belong in runtime-scratch directories (`$XDG_RUNTIME_DIR`, `/tmp/<app>-<uid>`, `%TMPDIR%/app`), not in user config dirs, because the file must be cleared on reboot but most config dirs persist.",
+    "tags": [
+      "daemon",
+      "pid-file",
+      "runtime-dir",
+      "xdg",
+      "macos"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/daemon-pid-stored-in-runtime-not-config.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "data-pipeline-implementation-pitfall",
     "slug": "data-pipeline-implementation-pitfall",
     "category": "pitfall",
@@ -4406,6 +4616,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/dead-letter-queue-implementation-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "desktop-drag-region-flex-not-absolute",
+    "slug": "desktop-drag-region-flex-not-absolute",
+    "category": "pitfall",
+    "description": "Electron macOS drag strips must be real flex children at the top of the window, not absolute-positioned overlays with z-index — the webkit-app-region hit test is unreliable with stacking contexts.",
+    "tags": [
+      "electron",
+      "macos",
+      "window-move",
+      "css",
+      "drag-region"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/desktop-drag-region-flex-not-absolute.md",
     "has_content": true
   },
   {
@@ -6317,6 +6545,22 @@
   },
   {
     "kind": "knowledge",
+    "name": "deep-link-scheme-routes",
+    "slug": "deep-link-scheme-routes",
+    "category": "reference",
+    "description": "craftagents:// URL routes — allSessions, allSessions/session/:id, settings, sources/source/:slug, action/new-chat — with an env override CRAFT_DEEPLINK_SCHEME for multi-instance dev.",
+    "tags": [
+      "deep-link",
+      "url-scheme",
+      "routing"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/deep-link-scheme-routes.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6325,6 +6569,25 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "design-entities-registry",
+    "slug": "design-entities-registry",
+    "category": "registry",
+    "description": "Entity registry YAML defining shared game entities, their properties and cross-GDD references",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "entities",
+      "registry",
+      "game-design",
+      "gdd"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/registry/design-entities-registry.md",
     "has_content": true
   },
   {
@@ -6344,6 +6607,62 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/schema-design/identifier-regex-loose-when-legacy-coexists.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "credential-storage-threat-model",
+    "slug": "credential-storage-threat-model",
+    "category": "security",
+    "description": "Craft Agents stores secrets in ~/.craft-agent/credentials.enc with AES-256-GCM keyed from a machine-stable hardware UUID — protecting against file exfiltration, not against local root.",
+    "tags": [
+      "credentials",
+      "threat-model",
+      "aes-gcm",
+      "machine-id"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/credential-storage-threat-model.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "dangerously-skip-permissions-for-unattended-loops",
+    "slug": "dangerously-skip-permissions-for-unattended-loops",
+    "category": "security",
+    "description": "`claude -p --dangerously-skip-permissions` is the only realistic way to run the CLI unattended in a loop, because every tool-use permission prompt would otherwise deadlock the child. The flag is safe *only* when the parent has already fenced the child's blast radius (scoped cwd, no prod creds in env, outbound network constrained).",
+    "tags": [
+      "claude-code",
+      "permissions",
+      "unattended",
+      "security",
+      "sandboxing",
+      "trust-boundary",
+      "dangerous-flags"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/dangerously-skip-permissions-for-unattended-loops.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "defusedxml-for-untrusted-xml",
+    "slug": "defusedxml-for-untrusted-xml",
+    "category": "security",
+    "description": "Always use defusedxml (not xml.etree.ElementTree / xml.dom.minidom) when parsing XML from untrusted sources — defuses XXE, billion-laughs, quadratic-blowup, and external-entity attacks that stdlib parsers accept by default.",
+    "tags": [
+      "security",
+      "xml",
+      "defusedxml",
+      "xxe",
+      "billion-laughs",
+      "ingestion"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/defusedxml-for-untrusted-xml.md",
     "has_content": true
   },
   {
@@ -6385,6 +6704,42 @@
   },
   {
     "kind": "knowledge",
+    "name": "ddp-no-sync-gradient-accumulation",
+    "slug": "ddp-no-sync-gradient-accumulation",
+    "category": "training",
+    "description": "Use DDP no_sync context manager on gradient accumulation steps to avoid redundant all-reduce syncs on intermediate micro-batches",
+    "tags": [
+      "ddp",
+      "gradient-accumulation",
+      "distributed",
+      "pytorch",
+      "performance"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/training/ddp-no-sync-gradient-accumulation.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "culibraryenumerate-needs-cuda-12-4",
+    "slug": "culibraryenumerate-needs-cuda-12-4",
+    "category": "version-quirk",
+    "description": "",
+    "tags": [
+      "cuda-version",
+      "culibrary",
+      "driver-api",
+      "kernel-loading",
+      "cuobjdump"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/jit-compilation/culibraryenumerate-needs-cuda-12-4.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "accept-header-prefer-markdown-over-html",
     "slug": "accept-header-prefer-markdown-over-html",
     "category": "web",
@@ -6412,6 +6767,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/workflow/batch-pr-conflict-recovery.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "design-claude-context",
+    "slug": "design-claude-context",
+    "category": "workflow",
+    "description": "Claude context file for design directory — conventions for GDD authoring and design docs",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "claude-md",
+      "design",
+      "gdd"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/workflow/design-claude-context.md",
     "has_content": true
   },
   {
@@ -6452,6 +6825,78 @@
   },
   {
     "kind": "skill",
+    "name": "create-architecture",
+    "slug": "create-architecture",
+    "category": "",
+    "description": "\"Guided, section-by-section authoring of the master architecture document for the game. Reads all GDDs, the systems index, existing ADRs, and the engine reference library to produce a complete architecture blueprint before any code is written. Engine-version-aware: flags knowledge gaps and validates decisions against the pinned engine version.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/create-architecture",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "create-control-manifest",
+    "slug": "create-control-manifest",
+    "category": "",
+    "description": "\"After architecture is complete, produces a flat actionable rules sheet for programmers — what you must do, what you must never do, per system and per layer. Extracted from all Accepted ADRs, technical preferences, and engine reference docs. More immediately actionable than ADRs (which explain why).\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/create-control-manifest",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "create-epics",
+    "slug": "create-epics",
+    "category": "",
+    "description": "\"Translate approved GDDs + architecture into epics — one epic per architectural module. Defines scope, governing ADRs, engine risk, and untraced requirements. Does NOT break into stories — run /create-stories [epic-slug] after each epic is created.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/create-epics",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "create-stories",
+    "slug": "create-stories",
+    "category": "",
+    "description": "\"Break a single epic into implementable story files. Reads the epic, its GDD, governing ADRs, and control manifest. Each story embeds its GDD requirement TR-ID, ADR guidance, acceptance criteria, story type, and test evidence path. Run after /create-epics for each epic.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/create-stories",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "day-one-patch",
+    "slug": "day-one-patch",
+    "category": "",
+    "description": "\"Prepare a day-one patch for a game launch. Scopes, prioritises, implements, and QA-gates a focused patch addressing known issues discovered after gold master but before or immediately after public launch. Treats the patch as a mini-sprint with its own QA gate and rollback plan.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/day-one-patch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "design-system",
+    "slug": "design-system",
+    "category": "",
+    "description": "\"Guided, section-by-section GDD authoring for a single game system. Gathers context from existing docs, walks through each required section collaboratively, cross-references dependencies, and writes incrementally to file.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/design-system",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "alert-time-window-with-buffer",
     "slug": "alert-time-window-with-buffer",
     "category": "agent-sdk",
@@ -6465,6 +6910,23 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agent-sdk/alert-time-window-with-buffer",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "credential-cache-file-for-mcp-subprocess",
+    "slug": "credential-cache-file-for-mcp-subprocess",
+    "category": "agent-sdk",
+    "description": "Write decrypted per-source credentials to a session-scoped .credential-cache.json on disk so MCP stdio subprocesses can read them without the parent passing secrets via env (which shows up in ps).",
+    "tags": [
+      "credentials",
+      "mcp",
+      "subprocess",
+      "filesystem-ipc"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/credential-cache-file-for-mcp-subprocess",
     "has_content": false
   },
   {
@@ -6517,6 +6979,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/agent-structured-output",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "daemon-claimed-task-poll-loop",
+    "slug": "daemon-claimed-task-poll-loop",
+    "category": "agents",
+    "description": "Local daemon polls server for claimed tasks, spawns isolated workdirs, executes the agent backend, streams events, reports completion — with bounded concurrency and heartbeat.",
+    "tags": [
+      "daemon",
+      "polling",
+      "agents",
+      "task-queue",
+      "orchestration"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/daemon-claimed-task-poll-loop",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "deferred-tool-loading",
+    "slug": "deferred-tool-loading",
+    "category": "agents",
+    "description": "Defer large tool surfaces until runtime with defer_loading=True and ToolSearchTool to reduce upfront token usage.",
+    "tags": [
+      "openai-agents",
+      "tool-search",
+      "deferred-loading",
+      "token-efficiency",
+      "tool-namespace"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/deferred-tool-loading",
     "has_content": false
   },
   {
@@ -7546,6 +8044,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cron-matcher-with-croner-nextrun",
+    "slug": "cron-matcher-with-croner-nextrun",
+    "category": "automation",
+    "description": "Implement minute-granularity cron matching by asking croner for the next run from 1 second before the current minute and checking if it falls inside the current minute.",
+    "tags": [
+      "cron",
+      "scheduling",
+      "croner",
+      "timezone"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/automation/cron-matcher-with-croner-nextrun",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "dependency-check-install-precondition-gate",
+    "slug": "dependency-check-install-precondition-gate",
+    "category": "automation",
+    "description": "Gate a multi-step workflow behind a scripted dependency probe that emits machine-readable `INSTALL_REQUIRED:<dep>` / `INSTALL_OPTIONAL:<dep>` lines, paired with an install script that detects OS/package manager and prefers user-local (no-sudo) installs, falling back to sudo-or-manual-instructions on exit code 2.",
+    "tags": [
+      "automation",
+      "shell",
+      "dependency-check",
+      "bootstrap",
+      "idempotent",
+      "cross-platform"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/automation/dependency-check-install-precondition-gate",
     "has_content": false
   },
   {
@@ -10539,6 +11073,23 @@
   },
   {
     "kind": "skill",
+    "name": "cross-platform-clipboard-abstraction",
+    "slug": "cross-platform-clipboard-abstraction",
+    "category": "clipboard",
+    "description": "Multi-format clipboard (text, HTML, RTF, images, files) across Windows/macOS/Linux behind one API.",
+    "tags": [
+      "abstraction",
+      "clipboard",
+      "cross",
+      "platform"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/clipboard/cross-platform-clipboard-abstraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "android-mediacodec-jni-wrapper",
     "slug": "android-mediacodec-jni-wrapper",
     "category": "codecs",
@@ -10553,6 +11104,27 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/codecs/android-mediacodec-jni-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "deb-package-from-electron-with-icons",
+    "slug": "deb-package-from-electron-with-icons",
+    "category": "deb",
+    "description": "Build a .deb package for a Linux Electron app with a full hicolor icon tree (16/24/32/48/64/256), a sourced launcher script, .desktop entry with MIME handler, and a postinst that sets chrome-sandbox setuid permissions.",
+    "tags": [
+      "deb",
+      "debian",
+      "packaging",
+      "electron",
+      "icons",
+      "hicolor",
+      "desktop-entry",
+      "postinst"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/deb/deb-package-from-electron-with-icons",
     "has_content": false
   },
   {
@@ -11891,6 +12463,26 @@
   },
   {
     "kind": "skill",
+    "name": "desktop-entry-custom-scheme-handler",
+    "slug": "desktop-entry-custom-scheme-handler",
+    "category": "desktop-integration",
+    "description": "Create a .desktop entry that registers an application as the x-scheme-handler/myscheme MIME type handler for deep linking (e.g., myapp:// URLs). Includes required fields, correct MimeType syntax, and post-install MIME database update.",
+    "tags": [
+      "desktop-entry",
+      "xdg",
+      "mime-type",
+      "scheme-handler",
+      "deep-link",
+      "linux",
+      "freedesktop"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/desktop-integration/desktop-entry-custom-scheme-handler",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "clang-tidy-integration-workflow",
     "slug": "clang-tidy-integration-workflow",
     "category": "devops",
@@ -12319,6 +12911,43 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/docs/ubiquitous-language",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "custom-paint-canvas-rendering",
+    "slug": "custom-paint-canvas-rendering",
+    "category": "flutter",
+    "description": "Custom Canvas painter for remote desktop viewport with gesture detection.",
+    "tags": [
+      "canvas",
+      "custom",
+      "flutter",
+      "paint",
+      "rendering"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/flutter/custom-paint-canvas-rendering",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "desktop-multi-window-tab-management",
+    "slug": "desktop-multi-window-tab-management",
+    "category": "flutter",
+    "description": "Flutter desktop_multi_window + DesktopTabController for tabbed multi-session UIs.",
+    "tags": [
+      "desktop",
+      "flutter",
+      "management",
+      "multi",
+      "tab",
+      "window"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/flutter/desktop-multi-window-tab-management",
     "has_content": false
   },
   {
@@ -12980,6 +13609,24 @@
   },
   {
     "kind": "skill",
+    "name": "define-tool-response-builder",
+    "slug": "define-tool-response-builder",
+    "category": "mcp",
+    "description": "Use a structured Response builder object for MCP tool handlers instead of letting each handler produce its own text, so cross-cutting concerns like pagination, snapshots, and images compose cleanly.",
+    "tags": [
+      "mcp",
+      "tool-design",
+      "response-builder",
+      "structured-content",
+      "composition"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/define-tool-response-builder",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "design-an-interface",
     "slug": "design-an-interface",
     "category": "misc",
@@ -13026,6 +13673,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/misc/write-a-skill",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "declarative-audio-effects-chain-registry",
+    "slug": "declarative-audio-effects-chain-registry",
+    "category": "ml-ops",
+    "description": "Describe DSP effect chains as JSON with a typed registry so they round-trip through DB, HTTP, and UI without per-effect branching.",
+    "tags": [
+      "audio",
+      "dsp",
+      "registry",
+      "pedalboard",
+      "json-schema"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ml-ops/declarative-audio-effects-chain-registry",
     "has_content": false
   },
   {
@@ -13094,6 +13759,42 @@
   },
   {
     "kind": "skill",
+    "name": "custom-tracing-processor",
+    "slug": "custom-tracing-processor",
+    "category": "observability",
+    "description": "Implement a TracingProcessor to forward agent traces to a custom backend (e.g., Langfuse, DataDog).",
+    "tags": [
+      "openai-agents",
+      "tracing",
+      "custom-processor",
+      "langfuse",
+      "monitoring"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/custom-tracing-processor",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cycle-estimation-via-bandwidth-and-wave-efficiency",
+    "slug": "cycle-estimation-via-bandwidth-and-wave-efficiency",
+    "category": "performance-modeling",
+    "description": "Score kernel config candidates with a closed-form cost model combining L1/L2 bandwidth-limited cycles, compute cycles, and wave-efficiency loss from partial final waves.",
+    "tags": [
+      "performance-modeling",
+      "gpu-optimization",
+      "heuristics",
+      "cost-model",
+      "wave-efficiency"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/performance-modeling/cycle-estimation-via-bandwidth-and-wave-efficiency",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a11y-tree-snapshot-with-uids",
     "slug": "a11y-tree-snapshot-with-uids",
     "category": "puppeteer",
@@ -13108,6 +13809,60 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/puppeteer/a11y-tree-snapshot-with-uids",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cuda-home-discovery-without-torch-init",
+    "slug": "cuda-home-discovery-without-torch-init",
+    "category": "pytorch-integration",
+    "description": "Discover CUDA_HOME at module import time without touching PyTorch's internal cuda-home helper, because in some versions it initializes CUDA — which then breaks subsequent `multiprocessing` forks.",
+    "tags": [
+      "cuda-home",
+      "pytorch",
+      "multiprocessing",
+      "fork-safety",
+      "import-time"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/pytorch-integration/cuda-home-discovery-without-torch-init",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "custom-cuda-extension-via-pybind11",
+    "slug": "custom-cuda-extension-via-pybind11",
+    "category": "pytorch-integration",
+    "description": "Expose C++/CUDA kernels to PyTorch via a single pybind11 module grouped by API family, then re-export into a Python package.",
+    "tags": [
+      "pytorch",
+      "pybind11",
+      "cuda-extension",
+      "python-bindings",
+      "packaging"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/pytorch-integration/custom-cuda-extension-via-pybind11",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "deepgram-streaming-with-vad",
+    "slug": "deepgram-streaming-with-vad",
+    "category": "realtime-audio-streaming",
+    "description": "Stream PCM audio to Deepgram with a server-side Silero VAD gate that skips silence, flushes transcripts on hangover, and remaps DG timestamps to wall-clock time.",
+    "tags": [
+      "deepgram",
+      "vad",
+      "silero",
+      "websocket",
+      "streaming-stt"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/realtime-audio-streaming/deepgram-streaming-with-vad",
     "has_content": false
   },
   {
@@ -13197,6 +13952,43 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/reverse-engineering/androidmanifest-to-network-call-flow-tracing",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "decompile-apk-with-jadx",
+    "slug": "decompile-apk-with-jadx",
+    "category": "reverse-engineering",
+    "description": "Decompile an Android APK/JAR/AAR into readable Java sources and resources using jadx, with presets for obfuscated, resource-heavy, and low-memory cases.",
+    "tags": [
+      "android",
+      "reverse-engineering",
+      "jadx",
+      "apk",
+      "decompile"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/reverse-engineering/decompile-apk-with-jadx",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "decompile-jar-with-fernflower-vineflower",
+    "slug": "decompile-jar-with-fernflower-vineflower",
+    "category": "reverse-engineering",
+    "description": "Decompile standard JVM bytecode (JAR/class files) using Fernflower or Vineflower with quality presets, and use it as a second opinion on classes where jadx produces warnings.",
+    "tags": [
+      "fernflower",
+      "vineflower",
+      "jvm",
+      "decompile",
+      "java",
+      "reverse-engineering"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/reverse-engineering/decompile-jar-with-fernflower-vineflower",
     "has_content": false
   },
   {
@@ -13369,6 +14161,40 @@
   },
   {
     "kind": "skill",
+    "name": "debounced-session-persistence-queue",
+    "slug": "debounced-session-persistence-queue",
+    "category": "session-management",
+    "description": "Coalesce rapid session updates into a single debounced async write, serialized per-session to prevent concurrent rewrites of the same .tmp file.",
+    "tags": [
+      "persistence",
+      "debounce",
+      "race-conditions",
+      "session-state"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/session-management/debounced-session-persistence-queue",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "deep-link-url-routing",
+    "slug": "deep-link-url-routing",
+    "category": "session-management",
+    "description": "Custom URL scheme (craftagents://) routes directly into the app: allSessions, specific session, settings, new-chat actions — maps each URL path segment to a renderer-side navigation intent.",
+    "tags": [
+      "deep-link",
+      "url-scheme",
+      "electron",
+      "routing"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/session-management/deep-link-url-routing",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "benchmark",
     "slug": "benchmark",
     "category": "testing",
@@ -13400,6 +14226,21 @@
     "version": "1.1.0",
     "path": "skills/testing/browse",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cross-binding-feature-extraction-parity-testing",
+    "slug": "cross-binding-feature-extraction-parity-testing",
+    "category": "testing",
+    "description": "Generate reference feature vectors from one canonical implementation, store as JSONL, and assert byte-for-byte equality from every other binding (Rust↔Python↔JS↔Go).",
+    "tags": [
+      "magika",
+      "testing"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/cross-binding-feature-extraction-parity-testing",
+    "has_content": true
   },
   {
     "kind": "skill",
@@ -13576,6 +14417,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/testing/tdd",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "credential-prompt-dialog-abstraction",
+    "slug": "credential-prompt-dialog-abstraction",
+    "category": "ui",
+    "description": "Credential dialog abstraction across platforms via ui_interface::msgbox callback.",
+    "tags": [
+      "abstraction",
+      "credential",
+      "dialog",
+      "prompt"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ui/credential-prompt-dialog-abstraction",
     "has_content": false
   },
   {
