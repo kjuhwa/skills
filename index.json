@@ -14192,5 +14192,26 @@
     "version": "1.0.0",
     "path": "skills/workflow/x-filterable-fields-extraction",
     "has_content": false
+  },
+  {
+    "category": "workflow",
+    "description": "Spring Boot springdoc 에서 DTO 코드를 수정하지 않고, OpenApiCustomizer 로 components.schemas 를 walk 하면서 property name 이 특정 패턴(resourceId, agentId 등)인 필드에 pattern + example + x-discovery-* 확장을 후처리 주입한다.",
+    "has_content": false,
+    "kind": "skill",
+    "name": "openapi-customizer-property-name-enricher",
+    "path": "skills/workflow/openapi-customizer-property-name-enricher",
+    "slug": "openapi-customizer-property-name-enricher",
+    "tags": [
+      "cross-cutting",
+      "customizer",
+      "dto-zero-touch",
+      "identifier",
+      "openapi",
+      "spring-boot",
+      "springdoc",
+      "workflow"
+    ],
+    "triggers": "identifier field pattern 전수 부여, resourceId agentId 공통 확장, @Schema 없이 property enrichment, openapi customizer post-process",
+    "version": "1.0.0"
   }
 ]

@@ -2184,6 +2184,15 @@
       "version": "0.1.0-draft",
       "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
       "pinned": false
+    },
+    "openapi-customizer-property-name-enricher": {
+      "category": "workflow",
+      "scope": "user",
+      "installed_at": "2026-04-24",
+      "version": "1.0.0",
+      "source_commit": "74ba6bf",
+      "pinned": false,
+      "linked_knowledge": []
     }
   },
   "knowledge": {
@@ -3935,6 +3944,26 @@
       "installed_at": "2026-04-16T00:40:04Z",
       "source_commit": "a974d4aa7f23782bece6afca241e90813a2c7c5c",
       "linked_skills": []
+    },
+    "identifier-regex-loose-when-legacy-coexists": {
+      "category": "schema-design",
+      "scope": "user",
+      "installed_at": "2026-04-24",
+      "source_commit": "138f0cc",
+      "linked_skills": [
+        "openapi-customizer-property-name-enricher",
+        "swagger-ai-optimization"
+      ]
+    },
+    "grep-existing-annotations-before-parallel-subagent-dispatch": {
+      "category": "agent-orchestration",
+      "scope": "user",
+      "installed_at": "2026-04-24",
+      "source_commit": "f969aaf",
+      "linked_skills": [
+        "parallel-bulk-annotation",
+        "bucket-parallel-java-annotation-dispatch"
+      ]
     }
   }
 }
