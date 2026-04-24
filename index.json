@@ -243,6 +243,22 @@
   },
   {
     "kind": "knowledge",
+    "name": "runtime-mode-approval-policy-and-sandbox-mode",
+    "slug": "runtime-mode-approval-policy-and-sandbox-mode",
+    "category": "api",
+    "description": "T3 Code has a global runtime mode that controls whether commands need approval and what filesystem access is allowed",
+    "tags": [
+      "api",
+      "safety",
+      "design"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/runtime-mode-approval-policy-and-sandbox-mode.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "stomp-heartbeat-10s-bidirectional",
     "slug": "stomp-heartbeat-10s-bidirectional",
     "category": "api",
@@ -1882,6 +1898,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "seekable-abstraction-for-io",
+    "slug": "seekable-abstraction-for-io",
+    "category": "arch",
+    "description": "Python uses a Seekable wrapper to unify bytes / paths / streams under one feature-extraction codepath.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/seekable-abstraction-for-io.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "shallow-clone-mktemp-cleanup-pattern",
     "slug": "shallow-clone-mktemp-cleanup-pattern",
     "category": "arch",
@@ -2044,6 +2075,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "scheduler-and-cron-task-execution-model",
+    "slug": "scheduler-and-cron-task-execution-model",
+    "category": "automation",
+    "description": "File-based lightweight cron alternative — JSON task definitions, report-timestamp cooldown tracking, health-check introspection, max-delay guardrails.",
+    "tags": [
+      "automation",
+      "scheduling",
+      "cron-alternative",
+      "file-based",
+      "agents"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/automation/scheduler-and-cron-task-execution-model.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "ci-gpg-signing-batch-mode-non-interactive",
     "slug": "ci-gpg-signing-batch-mode-non-interactive",
     "category": "ci-cd",
@@ -2114,6 +2163,25 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/clipboard/clipboard-ownership-protocol.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "screen-capture-api-evolution-macos",
+    "slug": "screen-capture-api-evolution-macos",
+    "category": "codecs",
+    "description": "macOS capture has shifted: legacy Quartz CGDisplayCreateImage → ScreenCaptureKit (Monterey+) behind a feature flag.",
+    "tags": [
+      "api",
+      "capture",
+      "codecs",
+      "evolution",
+      "macos",
+      "screen"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/codecs/screen-capture-api-evolution-macos.md",
     "has_content": true
   },
   {
@@ -3684,6 +3752,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "release-auto-update-publish-url",
+    "slug": "release-auto-update-publish-url",
+    "category": "devops",
+    "description": "electron-updater pulls update manifests from https://agents.craft.do/electron/latest — a generic static URL provider, not GitHub Releases or S3 — so Craft Docs Ltd. controls rollout without electron-builder's built-in providers.",
+    "tags": [
+      "electron-updater",
+      "auto-update",
+      "release",
+      "distribution"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/devops/release-auto-update-publish-url.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3864,6 +3949,37 @@
   },
   {
     "kind": "knowledge",
+    "name": "repository-identity-vs-project-vs-thread",
+    "slug": "repository-identity-vs-project-vs-thread",
+    "category": "domain",
+    "description": "A RepositoryIdentity is a logical grouping (e.g., for UI); a Project is environment-local with a workspace root; a Thread is a conversation within a project",
+    "tags": [
+      "domain",
+      "terminology",
+      "modeling"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/repository-identity-vs-project-vs-thread.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "research-paper-published-icse-2025",
+    "slug": "research-paper-published-icse-2025",
+    "category": "domain",
+    "description": "Magika's design and evaluation are published at ICSE 2025 (IEEE/ACM International Conference on Software Engineering).",
+    "tags": [
+      "magika",
+      "domain"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/research-paper-published-icse-2025.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "root-span-error-propagation",
     "slug": "root-span-error-propagation",
     "category": "domain",
@@ -3911,6 +4027,92 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/engineering/condition-based-waiting.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "reproduce-bug-with-failing-test-first",
+    "slug": "reproduce-bug-with-failing-test-first",
+    "category": "engineering",
+    "description": "Before fixing a reported bug, write a test that reproduces it. The test failing proves you understand the bug; the test passing proves the fix works. Especially important for non-deterministic bugs.",
+    "tags": [
+      "tdd",
+      "bug-reproduction",
+      "verification",
+      "non-determinism"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engineering/reproduce-bug-with-failing-test-first.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "root-cause-tracing",
+    "slug": "root-cause-tracing",
+    "category": "engineering",
+    "description": "Trace bugs upward from symptom through the call stack to the true root cause before fixing, avoiding symptom-level patches",
+    "tags": [
+      "superpowers",
+      "engineering"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/engineering/root-cause-tracing.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "sciter-ui-deprecation-path",
+    "slug": "sciter-ui-deprecation-path",
+    "category": "flutter",
+    "description": "Legacy Sciter UI is deprecated; migration path is Flutter desktop for all platforms.",
+    "tags": [
+      "deprecation",
+      "flutter",
+      "path",
+      "sciter"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/flutter/sciter-ui-deprecation-path.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "retry-badcase-token-ratio-heuristic",
+    "slug": "retry-badcase-token-ratio-heuristic",
+    "category": "inference",
+    "description": "VoxCPM retries generation when audio_tokens/text_tokens falls below a threshold (default 6.0), up to a configurable max retry count",
+    "tags": [
+      "inference",
+      "retry",
+      "quality",
+      "heuristic",
+      "tts"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/inference/retry-badcase-token-ratio-heuristic.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "relative-mouse-mode-flutter-only",
+    "slug": "relative-mouse-mode-flutter-only",
+    "category": "input",
+    "description": "Relative mouse (delta-based) mode is Flutter-UI-only; legacy Sciter can't deliver pointer-lock events.",
+    "tags": [
+      "flutter",
+      "input",
+      "mode",
+      "mouse",
+      "only",
+      "relative"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/input/relative-mouse-mode-flutter-only.md",
     "has_content": true
   },
   {
@@ -3988,6 +4190,60 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/llm-agents/agent-runner-loop-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "run-context-and-shared-state",
+    "slug": "run-context-and-shared-state",
+    "category": "llm-agents",
+    "description": "How RunContextWrapper provides typed shared state to tools and hooks without sending it to the LLM.",
+    "tags": [
+      "openai-agents",
+      "context",
+      "shared-state",
+      "dependency-injection",
+      "run-context"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/run-context-and-shared-state.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "rlhf-ppo-trl",
+    "slug": "rlhf-ppo-trl",
+    "category": "llm-fundamentals",
+    "description": "Reinforcement Learning from Human Feedback (RLHF) aligns LLMs to human preferences using a reward model as the environment.",
+    "tags": [
+      "rlhf",
+      "ppo",
+      "trl",
+      "reward-model",
+      "kl-divergence"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-fundamentals/rlhf-ppo-trl.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "safetensors-pth-fallback",
+    "slug": "safetensors-pth-fallback",
+    "category": "model-loading",
+    "description": "VoxCPM loaders try audiovae.safetensors first, fall back to audiovae.pth; new exports should prefer safetensors for safety and speed",
+    "tags": [
+      "safetensors",
+      "checkpoint",
+      "model-loading",
+      "fallback",
+      "compatibility"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/model-loading/safetensors-pth-fallback.md",
     "has_content": true
   },
   {
@@ -6793,6 +7049,22 @@
   },
   {
     "kind": "knowledge",
+    "name": "rpc-channel-namespaces",
+    "slug": "rpc-channel-namespaces",
+    "category": "reference",
+    "description": "The RPC channel namespace convention (system:*, workspaces:*, sessions:*, sources:*, skills:*, credentials:*, LLM_Connection:*, transfer:*) defined in @craft-agent/shared/protocol and used by every client (Electron renderer, CLI, web UI).",
+    "tags": [
+      "rpc",
+      "protocol",
+      "channels"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/rpc-channel-namespaces.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6801,6 +7073,61 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "rpm-version-field-hyphen-constraint",
+    "slug": "rpm-version-field-hyphen-constraint",
+    "category": "rpm",
+    "description": "The RPM `Version` field forbids hyphens; when an upstream version string contains a hyphen (e.g., `1.1.799-1.3.3`), it must be split on the hyphen into `Version` (part before) and `Release` (part after) to satisfy `rpmbuild`.",
+    "tags": [
+      "rpm",
+      "rpmbuild",
+      "version",
+      "packaging",
+      "fedora",
+      "rhel",
+      "version-string"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/rpm/rpm-version-field-hyphen-constraint.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "rollback-strategy-git-based-three-modes",
+    "slug": "rollback-strategy-git-based-three-modes",
+    "category": "safety",
+    "description": "Three rollback modes for failed evolution — hard reset, stash, or none",
+    "tags": [
+      "evolver",
+      "safety",
+      "rollback",
+      "git",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/safety/rollback-strategy-git-based-three-modes.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "sandbox-soft-vs-hard-trade-off",
+    "slug": "sandbox-soft-vs-hard-trade-off",
+    "category": "safety",
+    "description": "OpenSRE's Python sandbox is a \"soft\" sandbox — monkeypatching socket/subprocess/open at the start of an injected preamble. Sufficient for the SRE agent threat model (LLM-generated diagnostic snippets), insufficient for adversarial code; understand the boundary.",
+    "tags": [
+      "sandbox",
+      "threat-model",
+      "security",
+      "llm-generated-code"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/safety/sandbox-soft-vs-hard-trade-off.md",
     "has_content": true
   },
   {
@@ -6820,6 +7147,25 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/schema-design/identifier-regex-loose-when-legacy-coexists.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "sanitized-environment-fingerprint-for-auto-report",
+    "slug": "sanitized-environment-fingerprint-for-auto-report",
+    "category": "security",
+    "description": "Before an autonomous process files a public bug report (GitHub issue, telemetry event, hub submission), pass every string field through a centralized `redactString()` and include only a fixed allowlist of env-fingerprint fields — version, node version, platform/arch, container flag, truncated node id. Never include hostname, cwd, env dump, or raw logs.",
+    "tags": [
+      "pii",
+      "sanitization",
+      "redaction",
+      "auto-reporting",
+      "env-fingerprint",
+      "allowlist"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/sanitized-environment-fingerprint-for-auto-report.md",
     "has_content": true
   },
   {
@@ -6915,6 +7261,24 @@
     "has_content": true
   },
   {
+    "kind": "knowledge",
+    "name": "reverse-document-workflow-example",
+    "slug": "reverse-document-workflow-example",
+    "category": "workflow",
+    "description": "Step-by-step example of using the reverse-document skill to generate docs from existing code",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "reverse-document",
+      "example",
+      "brownfield"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/workflow/reverse-document-workflow-example.md",
+    "has_content": true
+  },
+  {
     "kind": "skill",
     "name": "adopt",
     "slug": "adopt",
@@ -6960,6 +7324,90 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/qa/content-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "regression-suite",
+    "slug": "regression-suite",
+    "category": "",
+    "description": "\"Map test coverage to GDD critical paths, identify fixed bugs without regression tests, flag coverage drift from new features, and maintain tests/regression-suite.md. Run after implementing a bug fix or before a release gate.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/qa/regression-suite",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "release-checklist",
+    "slug": "release-checklist",
+    "category": "",
+    "description": "\"Generates a comprehensive pre-release validation checklist covering build verification, certification requirements, store metadata, and launch readiness.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/release-checklist",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "retrospective",
+    "slug": "retrospective",
+    "category": "",
+    "description": "\"Generates a sprint or milestone retrospective by analyzing completed work, velocity, blockers, and patterns. Produces actionable insights for the next iteration.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/retrospective",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "reverse-document",
+    "slug": "reverse-document",
+    "category": "",
+    "description": "\"Generate design or architecture documents from existing implementation. Works backwards from code/prototypes to create missing planning docs.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/reverse-document",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "review-all-gdds",
+    "slug": "review-all-gdds",
+    "category": "",
+    "description": "\"Holistic cross-GDD consistency and game design review. Reads all system GDDs simultaneously and checks for contradictions between them, stale references, ownership conflicts, formula incompatibilities, and game design theory violations (dominant strategies, economic imbalance, cognitive overload, pillar drift). Run after all MVP GDDs are written, before architecture begins.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/review-all-gdds",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "scope-check",
+    "slug": "scope-check",
+    "category": "",
+    "description": "\"Analyze a feature or sprint for scope creep by comparing current scope against the original plan. Flags additions, quantifies bloat, and recommends cuts. Use when user says 'any scope creep', 'scope review', 'are we staying in scope'.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/scope-check",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "security-audit",
+    "slug": "security-audit",
+    "category": "",
+    "description": "\"Audit the game for security vulnerabilities: save tampering, cheat vectors, network exploits, data exposure, and input validation gaps. Produces a prioritised security report with remediation guidance. Run before any public release or multiplayer launch.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/security-audit",
     "has_content": false
   },
   {
@@ -7082,6 +7530,59 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/coding-agent-cli-backend-interface",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "run-config-global-settings",
+    "slug": "run-config-global-settings",
+    "category": "agents",
+    "description": "Use RunConfig to set run-wide defaults for model, max turns, tracing, and guardrails.",
+    "tags": [
+      "openai-agents",
+      "run-config",
+      "model-settings",
+      "max-turns",
+      "tracing"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/run-config-global-settings",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "run-context-shared-state",
+    "slug": "run-context-shared-state",
+    "category": "agents",
+    "description": "Pass typed shared state to all tools and hooks within an agent run via RunContextWrapper.",
+    "tags": [
+      "openai-agents",
+      "context",
+      "shared-state",
+      "dependency-injection"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/run-context-shared-state",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "sandbox-agent-workspace",
+    "slug": "sandbox-agent-workspace",
+    "category": "agents",
+    "description": "Run an agent inside an isolated sandbox workspace with a manifest-defined filesystem using SandboxAgent.",
+    "tags": [
+      "openai-agents",
+      "sandbox",
+      "workspace",
+      "files",
+      "git-repo"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/sandbox-agent-workspace",
     "has_content": false
   },
   {
@@ -8111,6 +8612,44 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "reserved-slugs-coordinated-list",
+    "slug": "reserved-slugs-coordinated-list",
+    "category": "architecture",
+    "description": "Maintain a single reserved-slug list in both frontend and backend with per-entry category rationale so url-based multi-tenancy never collides with top-level routes.",
+    "tags": [
+      "multi-tenancy",
+      "routing",
+      "reserved-slugs",
+      "url-design",
+      "validation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/reserved-slugs-coordinated-list",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "resolve-cloudflare-protected-download-url",
+    "slug": "resolve-cloudflare-protected-download-url",
+    "category": "automation",
+    "description": "Use Playwright in headless stealth mode to bypass Cloudflare and capture the final download URL from network requests. Derive secondary-architecture URLs by pattern substitution from the resolved primary URL, then verify with HEAD requests.",
+    "tags": [
+      "playwright",
+      "cloudflare",
+      "download",
+      "url-resolution",
+      "stealth",
+      "automation",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/automation/resolve-cloudflare-protected-download-url",
     "has_content": false
   },
   {
@@ -12972,6 +13511,74 @@
   },
   {
     "kind": "skill",
+    "name": "repackage-electron-asar-with-patterns",
+    "slug": "repackage-electron-asar-with-patterns",
+    "category": "electron-packaging",
+    "description": "Extract an Electron .asar archive, apply regex-based patches to minified JS that survive minifier renames by anchoring on stable string literals, then repack. Includes dynamic variable extraction so patches remain version-agnostic.",
+    "tags": [
+      "electron",
+      "asar",
+      "patching",
+      "regex",
+      "minified-js",
+      "build"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/electron-packaging/repackage-electron-asar-with-patterns",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "requesting-code-review",
+    "slug": "requesting-code-review",
+    "category": "engineering",
+    "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/requesting-code-review",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "safe-content-disposition-rfc5987",
+    "slug": "safe-content-disposition-rfc5987",
+    "category": "fastapi",
+    "description": "Build a Content-Disposition header that survives non-ASCII filenames on every browser using the RFC 5987 filename* encoding.",
+    "tags": [
+      "http",
+      "headers",
+      "fastapi",
+      "i18n",
+      "downloads"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/fastapi/safe-content-disposition-rfc5987",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "rust-flutter-ffi-bridge-async-pattern",
+    "slug": "rust-flutter-ffi-bridge-async-pattern",
+    "category": "ffi",
+    "description": "Async Rust-Flutter FFI with tokio channels and StreamSink for bi-directional event streaming.",
+    "tags": [
+      "async",
+      "bridge",
+      "ffi",
+      "flutter",
+      "pattern",
+      "rust"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ffi/rust-flutter-ffi-bridge-async-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "ag-grid-cell-renderer-pattern",
     "slug": "ag-grid-cell-renderer-pattern",
     "category": "frontend",
@@ -13577,6 +14184,44 @@
   },
   {
     "kind": "skill",
+    "name": "sample-count-parallel-path-averaging",
+    "slug": "sample-count-parallel-path-averaging",
+    "category": "inference",
+    "description": "Replicate each input N times inside the batch, run stochastic decoding in parallel, then average the N sampled paths to reduce variance.",
+    "tags": [
+      "monte-carlo",
+      "ensemble",
+      "sampling",
+      "variance-reduction",
+      "autoregressive",
+      "forecasting"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/sample-count-parallel-path-averaging",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "relative-mouse-mode-state-machine",
+    "slug": "relative-mouse-mode-state-machine",
+    "category": "input",
+    "description": "Atomic state tracking for relative mouse mode with exit-shortcut detection across platforms.",
+    "tags": [
+      "input",
+      "machine",
+      "mode",
+      "mouse",
+      "relative",
+      "state"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/input/relative-mouse-mode-state-machine",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13641,6 +14286,46 @@
   },
   {
     "kind": "skill",
+    "name": "safe-remove-all-for-distributed-filesystems",
+    "slug": "safe-remove-all-for-distributed-filesystems",
+    "category": "jit-compilation",
+    "description": "Replace `std::filesystem::remove_all` with a recursive walk that tolerates concurrent mutation on NFS/Lustre — use pre-incremented iterators, skip-permission-denied options, and error-code overloads that never throw.",
+    "tags": [
+      "filesystem",
+      "nfs",
+      "distributed",
+      "concurrency",
+      "error-handling",
+      "cleanup"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/jit-compilation/safe-remove-all-for-distributed-filesystems",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "sandbox-backend-pluggable-architecture",
+    "slug": "sandbox-backend-pluggable-architecture",
+    "category": "linux-sandbox",
+    "description": "Three-backend dispatcher (Host/Bwrap/KVM) with auto-detection priority and env override. Abstract base class defines the interface; concrete implementations handle isolation. Used to run untrusted subprocess workloads on Linux with progressive isolation.",
+    "tags": [
+      "sandbox",
+      "bubblewrap",
+      "bwrap",
+      "kvm",
+      "linux",
+      "isolation",
+      "pluggable",
+      "daemon"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/linux-sandbox/sandbox-backend-pluggable-architecture",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -13672,6 +14357,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "response-pagination-with-metadata",
+    "slug": "response-pagination-with-metadata",
+    "category": "mcp",
+    "description": "Expose pageSize/pageIdx in MCP tool schemas and return pagination metadata (currentPage, totalPages, hasNextPage, startIndex, endIndex) in both the text and structured response so agents can iterate large result sets deterministically.",
+    "tags": [
+      "mcp",
+      "pagination",
+      "token-budget",
+      "response-design",
+      "agent-ux"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/response-pagination-with-metadata",
     "has_content": false
   },
   {
@@ -13769,6 +14472,24 @@
     "version": "0.1.0-draft",
     "path": "skills/mobile/react-native-android-emulator-localhost",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "rope-dynamic-ntk-scaling",
+    "slug": "rope-dynamic-ntk-scaling",
+    "category": "model-architecture",
+    "description": "RoPE with Dynamic NTK scaling to extend context beyond training max position length",
+    "tags": [
+      "rope",
+      "positional-encoding",
+      "context-extension",
+      "transformer",
+      "attention"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/model-architecture/rope-dynamic-ntk-scaling",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -13954,6 +14675,46 @@
   },
   {
     "kind": "skill",
+    "name": "retrofit-okhttp-api-endpoint-extraction",
+    "slug": "retrofit-okhttp-api-endpoint-extraction",
+    "category": "reverse-engineering",
+    "description": "Enumerate and document all HTTP endpoints from decompiled Android code by grepping annotation/builder signatures (Retrofit @GET/@POST, OkHttp Request.Builder, Volley request classes) then capturing method, path, headers, body, response type, and call site for each hit.",
+    "tags": [
+      "android",
+      "reverse-engineering",
+      "retrofit",
+      "okhttp",
+      "volley",
+      "api-extraction",
+      "http"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/reverse-engineering/retrofit-okhttp-api-endpoint-extraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "rpm-package-from-electron-no-hyphens",
+    "slug": "rpm-package-from-electron-no-hyphens",
+    "category": "rpm",
+    "description": "Generate an RPM spec file for an Electron app that correctly splits hyphenated version strings into Version/Release fields, maps Debian architecture names (amd64→x86_64, arm64→aarch64), and disables binary stripping and debug package generation.",
+    "tags": [
+      "rpm",
+      "fedora",
+      "packaging",
+      "electron",
+      "spec",
+      "arch-mapping",
+      "version-string"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/rpm/rpm-package-from-electron-no-hyphens",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "contextual-identifier-detectors-overlap-resolution",
     "slug": "contextual-identifier-detectors-overlap-resolution",
     "category": "safety",
@@ -13968,6 +14729,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/safety/contextual-identifier-detectors-overlap-resolution",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "reversible-pii-masking-context",
+    "slug": "reversible-pii-masking-context",
+    "category": "safety",
+    "description": "Replace sensitive identifiers with stable placeholders before LLM calls and reverse-map them on the way out, using a per-investigation context that survives node-to-node state transitions in a graph pipeline.",
+    "tags": [
+      "masking",
+      "pii",
+      "llm",
+      "reversible",
+      "langgraph"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/reversible-pii-masking-context",
     "has_content": false
   },
   {
@@ -14140,6 +14919,23 @@
   },
   {
     "kind": "skill",
+    "name": "reject-insecure-bind-without-tls",
+    "slug": "reject-insecure-bind-without-tls",
+    "category": "security",
+    "description": "Refuse to bind a token-authenticated WebSocket/HTTP server to a non-loopback address unless TLS is configured, with an explicit --allow-insecure-bind escape hatch.",
+    "tags": [
+      "websocket",
+      "tls",
+      "tokens",
+      "bind-safety"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/reject-insecure-bind-without-tls",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "clearcut-batch-flush-with-retry",
     "slug": "clearcut-batch-flush-with-retry",
     "category": "telemetry",
@@ -14154,6 +14950,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/telemetry/clearcut-batch-flush-with-retry",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "sanitize-tool-params-for-metrics",
+    "slug": "sanitize-tool-params-for-metrics",
+    "category": "telemetry",
+    "description": "When logging tool-invocation metrics, record only privacy-safe derivatives of arguments — string lengths, array counts, enum values — never raw values; drive the transformation from the tool's zod schema.",
+    "tags": [
+      "telemetry",
+      "privacy",
+      "zod",
+      "schema",
+      "metrics"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/telemetry/sanitize-tool-params-for-metrics",
     "has_content": false
   },
   {
@@ -15791,6 +16605,24 @@
   },
   {
     "kind": "skill",
+    "name": "run-messages-incremental-polling",
+    "slug": "run-messages-incremental-polling",
+    "category": "workflow",
+    "description": "Monotonic sequence numbers on streamed task messages enable cheap incremental polling (--since seq) so live UI fetches only the tail, not the whole log.",
+    "tags": [
+      "polling",
+      "streaming",
+      "task-messages",
+      "cli",
+      "pagination"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/run-messages-incremental-polling",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "saga-pattern-data-simulation",
     "slug": "saga-pattern-data-simulation",
     "category": "workflow",
@@ -16142,6 +16974,24 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/x-filterable-fields-extraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "registeropenapiroute-wrapper",
+    "slug": "registeropenapiroute-wrapper",
+    "category": "zod",
+    "description": "Thin wrapper around `@hono/zod-openapi`'s `app.openapi(route, handler)` that casts the handler to `never`, bypassing the TypedResponse constraint while keeping runtime Zod validation of inputs.",
+    "tags": [
+      "zod",
+      "hono",
+      "openapi",
+      "typed-response",
+      "route-registration"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/zod/registeropenapiroute-wrapper",
     "has_content": false
   }
 ]
