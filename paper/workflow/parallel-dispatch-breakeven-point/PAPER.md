@@ -139,23 +139,6 @@ retraction_reason: null
 #      as its own knowledge entry) is a net corpus addition. Implemented
 #      here means "the paper ran its loop and produced durable output,"
 #      not "premise was fully validated."
-    ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
-    note: |
-      Placeholder pointing at the existing pitfall that seeded this paper.
-      The REAL outcome of this experiment is a PROPOSED new knowledge entry
-      (knowledge/decision/parallel-dispatch-useful-output-gate) documenting
-      the refined criterion (useful_output absolute threshold, not coverage
-      fraction). Until that entry is authored, outcomes[] cannot truthfully
-      claim produced_knowledge; this note documents the pending follow-up.
-
-status: draft
-retraction_reason: null
-# Next transitions (follow-up PRs):
-#   1. Author knowledge/decision/parallel-dispatch-useful-output-gate with
-#      the refined useful_output threshold criterion.
-#   2. Rewrite this paper's premise.then to match the refined criterion.
-#   3. Replace the placeholder outcome with the new knowledge ref.
-#   4. Transition status: draft -> implemented.
 ---
 
 # When does parallel subagent dispatch stop paying off?
