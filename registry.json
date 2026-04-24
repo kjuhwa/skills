@@ -2409,6 +2409,191 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "jit-scripted-snake-activation": {
+      "category": "audio",
+      "path": "skills/audio/jit-scripted-snake-activation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "json-schema-from-python-signature": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/json-schema-from-python-signature/SKILL.md",
+      "version": "1.0.0"
+    },
+    "jsonl-audit-logger-best-effort": {
+      "category": "observability",
+      "path": "skills/observability/jsonl-audit-logger-best-effort/SKILL.md",
+      "version": "1.0.0"
+    },
+    "jsonl-session-with-portable-paths": {
+      "category": "session-management",
+      "path": "skills/session-management/jsonl-session-with-portable-paths/SKILL.md",
+      "version": "1.0.0"
+    },
+    "jsonl-stdout-batch-prediction-format": {
+      "category": "cli",
+      "path": "skills/cli/jsonl-stdout-batch-prediction-format/SKILL.md",
+      "version": "1.0.0"
+    },
+    "just-platform-aware-recipes": {
+      "category": "devops",
+      "path": "skills/devops/just-platform-aware-recipes/SKILL.md",
+      "version": "1.0.0"
+    },
+    "jwt-cookie-auth-on-websocket-upgrade": {
+      "category": "security",
+      "path": "skills/security/jwt-cookie-auth-on-websocket-upgrade/SKILL.md",
+      "version": "1.0.0"
+    },
+    "karpathy-llm-coding-guidelines": {
+      "category": "engineering",
+      "path": "skills/engineering/karpathy-llm-coding-guidelines/SKILL.md",
+      "version": "1.0.0"
+    },
+    "kebab-case-argv-serializer": {
+      "category": "cli",
+      "path": "skills/cli/kebab-case-argv-serializer/SKILL.md",
+      "version": "1.0.0"
+    },
+    "kernel-codegen-with-template-instantiation": {
+      "category": "jit-compilation",
+      "path": "skills/jit-compilation/kernel-codegen-with-template-instantiation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "kernel-validation-with-corrupted-cache-detection": {
+      "category": "gpu-kernels",
+      "path": "skills/gpu-kernels/kernel-validation-with-corrupted-cache-detection/SKILL.md",
+      "version": "1.0.0"
+    },
+    "keycode-mapping-multi-platform": {
+      "category": "input",
+      "path": "skills/input/keycode-mapping-multi-platform/SKILL.md",
+      "version": "1.0.0"
+    },
+    "keycode-vk-mapping-windows": {
+      "category": "input",
+      "path": "skills/input/keycode-vk-mapping-windows/SKILL.md",
+      "version": "1.0.0"
+    },
+    "keyed-coalescing-worker-merge-latest-by-key": {
+      "category": "effect-ts",
+      "path": "skills/effect-ts/keyed-coalescing-worker-merge-latest-by-key/SKILL.md",
+      "version": "1.0.0"
+    },
+    "keyring-with-env-fallback-llm-credentials": {
+      "category": "configuration",
+      "path": "skills/configuration/keyring-with-env-fallback-llm-credentials/SKILL.md",
+      "version": "1.0.0"
+    },
+    "kgw-text-watermark-embed-detect": {
+      "category": "security",
+      "path": "skills/security/kgw-text-watermark-embed-detect/SKILL.md",
+      "version": "1.0.0"
+    },
+    "kineto-profiler-bench-with-l2-flush": {
+      "category": "testing-gpu",
+      "path": "skills/testing-gpu/kineto-profiler-bench-with-l2-flush/SKILL.md",
+      "version": "1.0.0"
+    },
+    "lan-discovery-broadcast-protocol": {
+      "category": "networking",
+      "path": "skills/networking/lan-discovery-broadcast-protocol/SKILL.md",
+      "version": "1.0.0"
+    },
+    "langgraph-api-dockerfile-with-healthcheck": {
+      "category": "build",
+      "path": "skills/build/langgraph-api-dockerfile-with-healthcheck/SKILL.md",
+      "version": "1.0.0"
+    },
+    "langgraph-auth-inject-from-runnable-config": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/langgraph-auth-inject-from-runnable-config/SKILL.md",
+      "version": "1.0.0"
+    },
+    "langgraph-compat-shim-import-path-preserved": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/langgraph-compat-shim-import-path-preserved/SKILL.md",
+      "version": "1.0.0"
+    },
+    "langgraph-investigation-pipeline-graph": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/langgraph-investigation-pipeline-graph/SKILL.md",
+      "version": "1.0.0"
+    },
+    "langgraph-loop-bounded-recommendation-routing": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/langgraph-loop-bounded-recommendation-routing/SKILL.md",
+      "version": "1.0.0"
+    },
+    "langgraph-progress-spinner-tracker": {
+      "category": "observability",
+      "path": "skills/observability/langgraph-progress-spinner-tracker/SKILL.md",
+      "version": "1.0.0"
+    },
+    "langsmith-traceable-node-decorator-pattern": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/langsmith-traceable-node-decorator-pattern/SKILL.md",
+      "version": "1.0.0"
+    },
+    "large-tool-response-summarization": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/large-tool-response-summarization/SKILL.md",
+      "version": "1.0.0"
+    },
+    "latency-bucket-tool-invocation-metric": {
+      "category": "mcp",
+      "path": "skills/mcp/latency-bucket-tool-invocation-metric/SKILL.md",
+      "version": "1.0.0"
+    },
+    "launch-checklist": {
+      "category": "production",
+      "path": "skills/production/launch-checklist/SKILL.md",
+      "version": "1.0.0"
+    },
+    "launchd-shell-env-bootstrap": {
+      "category": "electron",
+      "path": "skills/electron/launchd-shell-env-bootstrap/SKILL.md",
+      "version": "1.0.0"
+    },
+    "launcher-common-env-dispatch": {
+      "category": "launcher",
+      "path": "skills/launcher/launcher-common-env-dispatch/SKILL.md",
+      "version": "1.0.0"
+    },
+    "layered-memory-tiering-system": {
+      "category": "memory-management",
+      "path": "skills/memory-management/layered-memory-tiering-system/SKILL.md",
+      "version": "1.0.0"
+    },
+    "lazy-auto-detect-server-entry": {
+      "category": "cli",
+      "path": "skills/cli/lazy-auto-detect-server-entry/SKILL.md",
+      "version": "1.0.0"
+    },
+    "lazy-initialization-of-cuda-driver-symbols": {
+      "category": "jit-compilation",
+      "path": "skills/jit-compilation/lazy-initialization-of-cuda-driver-symbols/SKILL.md",
+      "version": "1.0.0"
+    },
+    "lazy-logger-factory-for-mock-module": {
+      "category": "testing",
+      "path": "skills/testing/lazy-logger-factory-for-mock-module/SKILL.md",
+      "version": "1.0.0"
+    },
+    "lazy-static-global-state-registry": {
+      "category": "patterns",
+      "path": "skills/patterns/lazy-static-global-state-registry/SKILL.md",
+      "version": "1.0.0"
+    },
+    "lazy-static-once-init-pattern": {
+      "category": "patterns",
+      "path": "skills/patterns/lazy-static-once-init-pattern/SKILL.md",
+      "version": "1.0.0"
+    },
+    "learning-signals-extraction-from-errors": {
+      "category": "observability",
+      "path": "skills/observability/learning-signals-extraction-from-errors/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4612,58 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "js-npm-package-for-web-not-standalone-cli": {
+      "category": "decision",
+      "path": "knowledge/decision/js-npm-package-for-web-not-standalone-cli.md"
+    },
+    "karpathy-llm-coding-pitfalls-overview": {
+      "category": "reference",
+      "path": "knowledge/reference/karpathy-llm-coding-pitfalls-overview.md"
+    },
+    "kronos-decoder-only-tokenizer-plus-transformer": {
+      "category": "architecture",
+      "path": "knowledge/architecture/kronos-decoder-only-tokenizer-plus-transformer.md"
+    },
+    "kronos-foundation-model-for-kline-data": {
+      "category": "domain",
+      "path": "knowledge/domain/kronos-foundation-model-for-kline-data.md"
+    },
+    "kronos-paper-model-zoo-demo-links": {
+      "category": "reference",
+      "path": "knowledge/reference/kronos-paper-model-zoo-demo-links.md"
+    },
+    "l2-cache-flush-needed-before-gpu-benchmark": {
+      "category": "gpu-kernels",
+      "path": "knowledge/gpu-kernels/l2-cache-flush-needed-before-gpu-benchmark.md"
+    },
+    "langchain-pydantic-memory-curation": {
+      "category": "conversation-memory-extraction",
+      "path": "knowledge/conversation-memory-extraction/langchain-pydantic-memory-curation.md"
+    },
+    "langgraph-state-update-merge-semantics": {
+      "category": "reference",
+      "path": "knowledge/reference/langgraph-state-update-merge-semantics.md"
+    },
+    "langgraph-stream-modes-events-vs-updates": {
+      "category": "reference",
+      "path": "knowledge/reference/langgraph-stream-modes-events-vs-updates.md"
+    },
+    "language-aware-sentence-chunking": {
+      "category": "text-normalization",
+      "path": "knowledge/text-normalization/language-aware-sentence-chunking.md"
+    },
+    "large-response-summarization-flow": {
+      "category": "architecture",
+      "path": "knowledge/architecture/large-response-summarization-flow.md"
+    },
+    "lazy-static-initialization-cost": {
+      "category": "patterns",
+      "path": "knowledge/patterns/lazy-static-initialization-cost.md"
+    },
+    "legacy-vs-explicit-subcommand-migration": {
+      "category": "cli",
+      "path": "knowledge/cli/legacy-vs-explicit-subcommand-migration.md"
     }
   }
 }
