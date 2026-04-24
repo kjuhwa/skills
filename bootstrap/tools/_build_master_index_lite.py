@@ -34,7 +34,7 @@ def resolve_category(entry: dict) -> str:
     if cat:
         return cat
     parts = (entry.get("path") or "").split("/")
-    if len(parts) >= 2 and parts[0] in {"skills", "knowledge", "technique"}:
+    if len(parts) >= 2 and parts[0] in {"skills", "knowledge", "technique", "paper"}:
         return parts[1]
     return "misc"
 

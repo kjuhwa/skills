@@ -58,7 +58,7 @@ def main() -> None:
         if not cat:
             # Fall back to first path segment after skills/, knowledge/, or technique/.
             parts = (e.get("path") or "").split("/")
-            if len(parts) >= 2 and parts[0] in {"skills", "knowledge", "technique"}:
+            if len(parts) >= 2 and parts[0] in {"skills", "knowledge", "technique", "paper"}:
                 cat = parts[1]
             else:
                 cat = "misc"
@@ -69,6 +69,7 @@ def main() -> None:
     skills_total = sum(1 for e in entries if e.get("kind") == "skill")
     knowledge_total = sum(1 for e in entries if e.get("kind") == "knowledge")
     techniques_total = sum(1 for e in entries if e.get("kind") == "technique")
+    papers_total = sum(1 for e in entries if e.get("kind") == "paper")
     commit, date = hub_git_info()
     now = dt.datetime.now().isoformat(timespec="seconds")
 
@@ -86,6 +87,7 @@ def main() -> None:
     lines.append(f"- **Skills:** {skills_total}")
     lines.append(f"- **Knowledge:** {knowledge_total}")
     lines.append(f"- **Techniques:** {techniques_total}")
+    lines.append(f"- **Papers:** {papers_total}")
     lines.append(f"- **Source commit:** `{commit}` ({date})")
     lines.append(f"- **Generated at:** {now}")
     lines.append("")

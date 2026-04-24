@@ -1,4 +1,4 @@
-"""Rebuild `index.json` from filesystem (skills/**/SKILL.md + knowledge/**/*.md + technique/**/TECHNIQUE.md).
+"""Rebuild `index.json` from filesystem (skills/**/SKILL.md + knowledge/**/*.md + technique/**/TECHNIQUE.md + paper/**/PAPER.md).
 
 Deterministic flat catalog regeneration for the corpus. Called by
 `/hub-publish-all` before push so newly added skills/knowledge become
@@ -30,6 +30,8 @@ STANDARD_KEYS = (
     "kind", "name", "slug", "category", "description",
     "tags", "triggers", "version", "path", "has_content",
     "composes_count", "binding",
+    "examines_count", "perspectives_count", "experiments_count",
+    "outcomes_count", "proposed_builds_count", "paper_type", "paper_status",
 )
 
 
@@ -142,6 +144,54 @@ def entry_from_technique(root: Path, tech_md: Path) -> dict | None:
     }
 
 
+def entry_from_paper(root: Path, paper_md: Path) -> dict | None:
+    raw_text = paper_md.read_text(encoding="utf-8", errors="replace")
+    fm = parse_frontmatter(raw_text)
+    if _is_archived(fm):
+        return None
+    rel = paper_md.relative_to(root).as_posix()
+    path_dir = "/".join(rel.split("/")[:-1])
+    # parse_flat_keys does not read list-shaped fields. Count list items
+    # directly from the raw frontmatter body.
+    if raw_text.startswith("---"):
+        end = raw_text.find("\n---", 3)
+        fm_body = raw_text[3:end] if end != -1 else ""
+    else:
+        fm_body = ""
+    def count_under(section: str, item_marker: str) -> int:
+        count = 0
+        in_section = False
+        for line in fm_body.splitlines():
+            if not line:
+                continue
+            if line[0] not in (" ", "\t"):
+                in_section = line.startswith(f"{section}:")
+                continue
+            if in_section and line.lstrip().startswith(item_marker):
+                count += 1
+        return count
+
+    return {
+        "kind": "paper",
+        "name": fm.get("name", ""),
+        "slug": fm.get("name", ""),
+        "category": fm.get("category", ""),
+        "description": fm.get("description", ""),
+        "tags": fm.get("tags", []),
+        "triggers": fm.get("triggers", []),
+        "version": fm.get("version", ""),
+        "path": path_dir,
+        "has_content": True,
+        "examines_count": count_under("examines", "- kind:"),
+        "perspectives_count": count_under("perspectives", "- name:"),
+        "experiments_count": count_under("experiments", "- name:"),
+        "outcomes_count": count_under("outcomes", "- kind:"),
+        "proposed_builds_count": count_under("proposed_builds", "- slug:"),
+        "paper_type": fm.get("type", "hypothesis"),
+        "paper_status": fm.get("status", "draft"),
+    }
+
+
 def preserve_extras(existing_entries: list[dict], key: str) -> dict:
     """Keep non-standard keys (like source_project, installed_at) from old index."""
     out: dict = {}
@@ -201,6 +251,18 @@ def main() -> int:
     if tech_root.exists():
         for p in sorted(tech_root.rglob("TECHNIQUE.md")):
             e = entry_from_technique(root, p)
+            if e is None:  # archived
+                continue
+            key = (e["kind"], e["path"])
+            if key in extras:
+                e.update(extras[key])
+            entries.append(e)
+
+    # Papers: one folder per paper with PAPER.md inside.
+    paper_root = root / "paper"
+    if paper_root.exists():
+        for p in sorted(paper_root.rglob("PAPER.md")):
+            e = entry_from_paper(root, p)
             if e is None:  # archived
                 continue
             key = (e["kind"], e["path"])

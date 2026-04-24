@@ -25,6 +25,7 @@ HUB_ROOT = Path.home() / ".claude" / "skills-hub" / "remote"
 SKILL_DIR = HUB_ROOT / "skills"
 KNOWLEDGE_DIR = HUB_ROOT / "knowledge"
 TECHNIQUE_DIR = HUB_ROOT / "technique"
+PAPER_DIR = HUB_ROOT / "paper"
 
 REQUIRED = ["name", "description", "category", "tags", "version"]
 # knowledge files often use `summary` instead of `description`.
@@ -214,6 +215,8 @@ def scan_file(path: Path) -> dict:
         )
     if path.name == "TECHNIQUE.md":
         errors.extend(lint_technique_composes(raw))
+    if path.name == "PAPER.md":
+        errors.extend(lint_paper_structure(raw))
     return {"path": str(path), "errors": errors, "missing": missing, "fields": list(fields)}
 
 
@@ -225,7 +228,115 @@ def iter_md_files() -> list[Path]:
         files.extend(KNOWLEDGE_DIR.rglob("*.md"))
     if TECHNIQUE_DIR.exists():
         files.extend(TECHNIQUE_DIR.rglob("TECHNIQUE.md"))
+    if PAPER_DIR.exists():
+        files.extend(PAPER_DIR.rglob("PAPER.md"))
     return files
+
+
+def lint_paper_structure(raw_fm: str) -> list[str]:
+    """Paper-specific structural checks per schema v0.2 §6 rules 1-3.
+
+    Rule 1: premise.if and premise.then both non-empty.
+    Rule 2: examines[] non-empty, every ref resolves on disk.
+    Rule 3: perspectives[] length ≥ 2.
+
+    Deferred to follow-up: type enum, experiments completion, retraction_reason,
+    requires[] resolution, observed_at completeness (v0.2 §6 rules 9-15).
+    """
+    errors: list[str] = []
+
+    # Rule 1: premise
+    has_premise_if = False
+    has_premise_then = False
+    in_premise = False
+    for line in raw_fm.splitlines():
+        if not line:
+            continue
+        if line[0] not in (" ", "\t"):
+            in_premise = line.startswith("premise:")
+            continue
+        if not in_premise:
+            continue
+        stripped = line.strip()
+        if stripped.startswith("if:"):
+            val = stripped.split(":", 1)[1].strip()
+            if val:
+                has_premise_if = True
+        elif stripped.startswith("then:"):
+            val = stripped.split(":", 1)[1].strip()
+            if val:
+                has_premise_then = True
+    if not has_premise_if:
+        errors.append("premise.if missing or empty")
+    if not has_premise_then:
+        errors.append("premise.then missing or empty")
+
+    # Rule 3: perspectives ≥ 2 (count "- name:" lines under perspectives:)
+    perspectives_count = 0
+    in_persp = False
+    for line in raw_fm.splitlines():
+        if not line:
+            continue
+        if line[0] not in (" ", "\t"):
+            in_persp = line.startswith("perspectives:")
+            continue
+        if in_persp and line.lstrip().startswith("- name:"):
+            perspectives_count += 1
+    if perspectives_count < 2:
+        errors.append(f"perspectives[] has {perspectives_count} entries; schema requires ≥ 2")
+
+    # Rule 2: examines[] non-empty + refs resolve
+    examines_entries = []
+    in_examines = False
+    current: dict[str, str] | None = None
+    for line in raw_fm.splitlines():
+        if not line:
+            continue
+        if line[0] not in (" ", "\t"):
+            if current is not None:
+                examines_entries.append(current)
+                current = None
+            in_examines = line.startswith("examines:")
+            continue
+        if not in_examines:
+            continue
+        stripped = line.strip()
+        if stripped.startswith("- kind:"):
+            if current is not None:
+                examines_entries.append(current)
+            current = {"kind": stripped.split(":", 1)[1].strip()}
+        elif current is not None and ":" in stripped and not stripped.startswith("-"):
+            k, v = stripped.split(":", 1)
+            current[k.strip()] = v.strip().strip('"\'')
+    if current is not None:
+        examines_entries.append(current)
+
+    if not examines_entries:
+        errors.append("examines[] is empty; schema requires at least one entry")
+    for i, e in enumerate(examines_entries):
+        kind = e.get("kind", "")
+        ref = e.get("ref", "")
+        if kind == "paper":
+            errors.append(f"examines[{i}]: paper-to-paper citation forbidden in v0")
+            continue
+        if not kind or not ref:
+            errors.append(f"examines[{i}]: missing kind or ref")
+            continue
+        if kind == "skill":
+            target = SKILL_DIR / ref / "SKILL.md"
+        elif kind == "knowledge":
+            target = KNOWLEDGE_DIR / f"{ref}.md"
+        elif kind == "technique":
+            target = TECHNIQUE_DIR / ref / "TECHNIQUE.md"
+        else:
+            errors.append(f"examines[{i}]: unknown kind {kind!r}")
+            continue
+        if not target.exists():
+            errors.append(
+                f"examines[{i}]: {kind} ref not found: {ref!r} "
+                f"(expected {target.relative_to(HUB_ROOT).as_posix()})"
+            )
+    return errors
 
 
 def main() -> int:

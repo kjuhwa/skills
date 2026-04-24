@@ -391,7 +391,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("query", nargs="+", help="키워드 (여러 개 가능)")
     ap.add_argument("-n", "--top", type=int, default=10)
-    ap.add_argument("--kind", choices=("skill", "knowledge", "technique"), default=None)
+    ap.add_argument("--kind", choices=("skill", "knowledge", "technique", "paper"), default=None)
     ap.add_argument("--category", default=None)
     ap.add_argument("--json", dest="as_json", action="store_true")
     ap.add_argument("--html", dest="as_html", action="store_true",
