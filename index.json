@@ -262,6 +262,42 @@
   },
   {
     "kind": "knowledge",
+    "name": "agent-backend-unified-interface",
+    "slug": "agent-backend-unified-interface",
+    "category": "arch",
+    "description": "Unified Go interface for driving multiple coding-agent CLIs (Claude, Codex, OpenCode, OpenClaw, Hermes, Gemini, Pi, Cursor) behind one Execute/Session/Result contract.",
+    "tags": [
+      "agent",
+      "interface",
+      "go",
+      "polymorphism",
+      "coding-agents"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/agent-backend-unified-interface.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-mcp-config-via-temp-file",
+    "slug": "agent-mcp-config-via-temp-file",
+    "category": "arch",
+    "description": "Pass MCP server config to a coding-agent CLI via a temp JSON file (--mcp-config <path>), not inline — controls which MCP servers the spawned agent can see, independent of the parent session.",
+    "tags": [
+      "mcp",
+      "agents",
+      "config",
+      "temp-file",
+      "claude"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/agent-mcp-config-via-temp-file.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "agent-memory-binding-vs-recall",
     "slug": "agent-memory-binding-vs-recall",
     "category": "arch",
@@ -1875,6 +1911,328 @@
   },
   {
     "kind": "knowledge",
+    "name": "agent-loop-architecture-reference",
+    "slug": "agent-loop-architecture-reference",
+    "category": "architecture",
+    "description": "Minimal ~100-line reference architecture for an LLM agent runner loop with generator-based streaming, StepOutcome exit semantics, and periodic tool-schema reset.",
+    "tags": [
+      "llm-agents",
+      "reference",
+      "architecture",
+      "python",
+      "streaming"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/agent-loop-architecture-reference.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-native-software-philosophy",
+    "slug": "agent-native-software-philosophy",
+    "category": "architecture",
+    "description": "Craft Agents' \"Agent Native\" premise — describe what you want, let the agent figure out how, and treat customization itself as a prompt rather than a code change.",
+    "tags": [
+      "product",
+      "philosophy",
+      "agent-native"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/agent-native-software-philosophy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-director-art-director",
+    "slug": "agent-director-art-director",
+    "category": "collaboration",
+    "description": "Art Director agent definition — responsibilities, expertise, and decision scope for visual direction",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "director",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-director-art-director.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-director-creative-director",
+    "slug": "agent-director-creative-director",
+    "category": "collaboration",
+    "description": "Creative Director agent definition — top-level creative authority, vision-keeper role",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "director",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-director-creative-director.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-director-producer",
+    "slug": "agent-director-producer",
+    "category": "collaboration",
+    "description": "Producer agent definition — sprint management, milestone tracking, and team coordination",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "director",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-director-producer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-director-technical-director",
+    "slug": "agent-director-technical-director",
+    "category": "collaboration",
+    "description": "Technical Director agent definition — architecture ownership, ADR authority, and technical strategy",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "director",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-director-technical-director.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-lead-audio-director",
+    "slug": "agent-lead-audio-director",
+    "category": "collaboration",
+    "description": "Audio Director agent — sound design direction, music, and audio pipeline ownership",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "lead",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-lead-audio-director.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-lead-game-designer",
+    "slug": "agent-lead-game-designer",
+    "category": "collaboration",
+    "description": "Game Designer lead agent — GDD authoring, system design, balance ownership",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "lead",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-lead-game-designer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-lead-lead-programmer",
+    "slug": "agent-lead-lead-programmer",
+    "category": "collaboration",
+    "description": "Lead Programmer agent — code review authority, architecture implementation, standard enforcement",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "lead",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-lead-lead-programmer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-lead-level-designer",
+    "slug": "agent-lead-level-designer",
+    "category": "collaboration",
+    "description": "Level Designer lead agent — area/level layout, encounter design, flow authoring",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "lead",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-lead-level-designer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-lead-narrative-director",
+    "slug": "agent-lead-narrative-director",
+    "category": "collaboration",
+    "description": "Narrative Director agent — story, dialogue, lore, and world-building ownership",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "lead",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-lead-narrative-director.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-lead-qa-lead",
+    "slug": "agent-lead-qa-lead",
+    "category": "collaboration",
+    "description": "QA Lead agent — test strategy, coverage tracking, and quality gate authority",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "lead",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-lead-qa-lead.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-lead-systems-designer",
+    "slug": "agent-lead-systems-designer",
+    "category": "collaboration",
+    "description": "Systems Designer agent — meta-game, progression, economy, and interconnected systems design",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "lead",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-lead-systems-designer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-specialist-ai-programmer",
+    "slug": "agent-specialist-ai-programmer",
+    "category": "collaboration",
+    "description": "AI Programmer specialist agent — NPC AI, pathfinding, behavior trees",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "specialist",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-specialist-ai-programmer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-specialist-gameplay-programmer",
+    "slug": "agent-specialist-gameplay-programmer",
+    "category": "collaboration",
+    "description": "Gameplay Programmer specialist agent — mechanics implementation, input, game feel",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "specialist",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-specialist-gameplay-programmer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-specialist-performance-analyst",
+    "slug": "agent-specialist-performance-analyst",
+    "category": "collaboration",
+    "description": "Performance Analyst specialist agent — profiling, budget enforcement, optimization",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "specialist",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-specialist-performance-analyst.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-specialist-technical-artist",
+    "slug": "agent-specialist-technical-artist",
+    "category": "collaboration",
+    "description": "Technical Artist specialist agent — shader authoring, VFX, pipeline optimization",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "specialist",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-specialist-technical-artist.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-specialist-ux-designer",
+    "slug": "agent-specialist-ux-designer",
+    "category": "collaboration",
+    "description": "UX Designer specialist agent — screen flows, HUD design, accessibility implementation",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "specialist",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/collaboration/agent-specialist-ux-designer.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "actuator-endpoints-skip-auth-by-design",
     "slug": "actuator-endpoints-skip-auth-by-design",
     "category": "decision",
@@ -1908,6 +2266,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/admin-role-disabled-secretkey.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-custom-args-blocked-flags",
+    "slug": "agent-custom-args-blocked-flags",
+    "category": "decision",
+    "description": "User-configured custom_args get a deny-list filter for protocol-critical flags only, not every dangerous flag — workspace members are trusted but not trusted to break the wire protocol.",
+    "tags": [
+      "agent",
+      "cli",
+      "security",
+      "custom-args",
+      "filtering"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/agent-custom-args-blocked-flags.md",
     "has_content": true
   },
   {
@@ -3081,6 +3457,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "a11y-uid-tool-targeting-over-selectors",
+    "slug": "a11y-uid-tool-targeting-over-selectors",
+    "category": "domain",
+    "description": "For agent-driven browser automation, targeting DOM elements by short server-assigned UIDs emitted in an a11y-tree snapshot is dramatically more reliable than asking the agent to construct CSS selectors or XPath.",
+    "tags": [
+      "agent-ux",
+      "a11y",
+      "uid",
+      "selector",
+      "element-targeting"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/a11y-uid-tool-targeting-over-selectors.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "account-lockout-configurable-threshold",
     "slug": "account-lockout-configurable-threshold",
     "category": "domain",
@@ -3095,6 +3489,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/account-lockout-configurable-threshold.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-runtime-workspace-triple",
+    "slug": "agent-runtime-workspace-triple",
+    "category": "domain",
+    "description": "The registration unit on the server is the (agent provider × runtime/daemon × workspace) triple — one daemon running on one machine registers one runtime per (provider × watched workspace).",
+    "tags": [
+      "daemon",
+      "runtime",
+      "agents",
+      "registration",
+      "data-model"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/domain/agent-runtime-workspace-triple.md",
     "has_content": true
   },
   {
@@ -3242,6 +3654,76 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/topresource-immediate-generation-invariant.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "a2a-protocol-agent-to-agent-knowledge-exchange",
+    "slug": "a2a-protocol-agent-to-agent-knowledge-exchange",
+    "category": "integration",
+    "description": "Protocol for agents to exchange evolution assets, signal confidence, and federate knowledge",
+    "tags": [
+      "evolver",
+      "integration",
+      "a2a",
+      "federation",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/integration/a2a-protocol-agent-to-agent-knowledge-exchange.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-configuration-reference",
+    "slug": "agent-configuration-reference",
+    "category": "llm-agents",
+    "description": "Reference for all Agent configuration properties — instructions, tools, handoffs, guardrails, model settings, output types, and hooks.",
+    "tags": [
+      "openai-agents",
+      "agent",
+      "configuration",
+      "reference",
+      "api"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/agent-configuration-reference.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-runner-loop-semantics",
+    "slug": "agent-runner-loop-semantics",
+    "category": "llm-agents",
+    "description": "How the Runner agent loop works — turn logic, final output detection, tool call processing, and max_turns behavior.",
+    "tags": [
+      "openai-agents",
+      "runner",
+      "agent-loop",
+      "turns",
+      "tool-calls",
+      "handoffs"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/agent-runner-loop-semantics.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "32-bit-architecture-file-size-support",
+    "slug": "32-bit-architecture-file-size-support",
+    "category": "pitfall",
+    "description": "Switch file-size APIs from usize to u64 to handle >4GB files on 32-bit hosts.",
+    "tags": [
+      "magika",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/32-bit-architecture-file-size-support.md",
     "has_content": true
   },
   {
@@ -5775,6 +6257,66 @@
   },
   {
     "kind": "knowledge",
+    "name": "android-ios-feature-parity-gap",
+    "slug": "android-ios-feature-parity-gap",
+    "category": "platform/mobile",
+    "description": "Android: full codecs + input; iOS: limited input, screen share only, no clipboard file transfer (due to iOS entitlements).",
+    "tags": [
+      "android",
+      "feature",
+      "gap",
+      "ios",
+      "mobile",
+      "parity"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/mobile/android-ios-feature-parity-gap.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "alert-extraction-single-llm-call-pattern",
+    "slug": "alert-extraction-single-llm-call-pattern",
+    "category": "reference",
+    "description": "Combine alert noise-classification and field-extraction in one LLM call with structured output — extracting alert_name, pipeline_name, severity, alert_source, namespace, error_message, log_query, eks_cluster, pod_name, deployment, plus an is_noise bool — halving cost vs a two-call setup.",
+    "tags": [
+      "llm",
+      "alert-extraction",
+      "structured-output",
+      "optimization"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/alert-extraction-single-llm-call-pattern.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "android-decompilation-toolchain-setup",
+    "slug": "android-decompilation-toolchain-setup",
+    "category": "reference",
+    "description": "Install recipes for the Android reverse-engineering toolchain — Java JDK 17+, jadx, Vineflower/Fernflower, dex2jar, and optional apktool/adb — across Ubuntu, Fedora, Arch, and macOS (Homebrew), with verify commands and common troubleshooting.",
+    "tags": [
+      "android",
+      "reverse-engineering",
+      "setup",
+      "install",
+      "java",
+      "jadx",
+      "vineflower",
+      "dex2jar",
+      "apktool",
+      "adb",
+      "reference"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/android-decompilation-toolchain-setup.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -5802,6 +6344,62 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/schema-design/identifier-regex-loose-when-legacy-coexists.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-qa-tester",
+    "slug": "agent-qa-tester",
+    "category": "testing",
+    "description": "QA Tester agent — test case execution, bug reporting, and regression coverage",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "agent",
+      "qa",
+      "testing",
+      "roles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/agent-qa-tester.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "agent-test-spec-template",
+    "slug": "agent-test-spec-template",
+    "category": "testing",
+    "description": "Template for writing agent test specifications in the CCGS testing framework",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "testing",
+      "template",
+      "agent-spec"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/agent-test-spec-template.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "accept-header-prefer-markdown-over-html",
+    "slug": "accept-header-prefer-markdown-over-html",
+    "category": "web",
+    "description": "For agent / LLM ingestion clients, set an Accept header with q-weighted preferences (text/markdown top, text/html next, text/plain after, */* last) so servers that support markdown negotiation return cheaper tokens directly.",
+    "tags": [
+      "web",
+      "http",
+      "accept",
+      "content-negotiation",
+      "markdown",
+      "llm-ingestion"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/web/accept-header-prefer-markdown-over-html.md",
     "has_content": true
   },
   {
@@ -5841,80 +6439,85 @@
     "has_content": true
   },
   {
-    "kind": "paper",
-    "name": "llm-fallback-cost-displacement",
-    "slug": "llm-fallback-cost-displacement",
-    "category": "ai",
-    "description": "Do LLM fallback ladders save cost or displace it — into tail latency, schema drift, and silent degradations?",
-    "tags": "",
+    "kind": "skill",
+    "name": "adopt",
+    "slug": "adopt",
+    "category": "",
+    "description": "\"Brownfield onboarding — audits existing project artifacts for template format compliance (not just existence), classifies gaps by impact, and produces a numbered migration plan. Run this when joining an in-progress project or upgrading from an older template version. Distinct from /project-stage-detect (which checks what exists) — this checks whether what exists will actually work with the template's skills.\"",
+    "tags": [],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/ai/llm-fallback-cost-displacement",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 1,
-    "outcomes_count": 0,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "version": "1.0.0",
+    "path": "skills/meta/adopt",
+    "has_content": false
   },
   {
-    "kind": "paper",
-    "name": "llm-ci-triage-boundary-conditions",
-    "slug": "llm-ci-triage-boundary-conditions",
-    "category": "testing",
-    "description": "Where does LLM-based CI failure triage help vs silently hurt? Mapping the boundary conditions for adoption.",
-    "tags": "",
+    "kind": "skill",
+    "name": "alert-time-window-with-buffer",
+    "slug": "alert-time-window-with-buffer",
+    "category": "agent-sdk",
+    "description": "Compute a query time window that covers the alert plus a 30-min buffer by parsing startsAt from various schemas (Alertmanager nested, top-level, annotations.timestamp), with a 60-min minimum and a sentinel \"0001-01-01\" guard.",
+    "tags": [
+      "time-window",
+      "alerting",
+      "alertmanager",
+      "observability"
+    ],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/testing/llm-ci-triage-boundary-conditions",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 1,
-    "outcomes_count": 0,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "version": "1.0.0",
+    "path": "skills/agent-sdk/alert-time-window-with-buffer",
+    "has_content": false
   },
   {
-    "kind": "paper",
-    "name": "parallel-dispatch-breakeven-point",
-    "slug": "parallel-dispatch-breakeven-point",
-    "category": "workflow",
-    "description": "When does parallel subagent dispatch stop paying off, and what pre-flight probe catches it before tokens are wasted?",
-    "tags": "",
+    "kind": "skill",
+    "name": "agent-cli-detection-path",
+    "slug": "agent-cli-detection-path",
+    "category": "agents",
+    "description": "Auto-detect which coding-agent CLIs (claude, codex, opencode, etc.) are installed on PATH and register a runtime per detected agent × watched workspace.",
+    "tags": [
+      "cli",
+      "agents",
+      "detection",
+      "runtime",
+      "daemon"
+    ],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/workflow/parallel-dispatch-breakeven-point",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 1,
-    "outcomes_count": 2,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "implemented"
+    "version": "1.0.0",
+    "path": "skills/agents/agent-cli-detection-path",
+    "has_content": false
   },
   {
-    "kind": "paper",
-    "name": "technique-layer-composition-value",
-    "slug": "technique-layer-composition-value",
-    "category": "workflow",
-    "description": "Does a technique/ middle layer in a skills hub produce composition value beyond what hub-merge already provides?",
-    "tags": "",
+    "kind": "skill",
+    "name": "agent-lifecycle-hooks",
+    "slug": "agent-lifecycle-hooks",
+    "category": "agents",
+    "description": "Attach RunHooks and AgentHooks to observe and react to agent lifecycle events.",
+    "tags": [
+      "openai-agents",
+      "hooks",
+      "lifecycle",
+      "observability"
+    ],
     "triggers": [],
-    "version": "0.2.0-draft",
-    "path": "paper/workflow/technique-layer-composition-value",
-    "has_content": true,
-    "examines_count": 4,
-    "perspectives_count": 4,
-    "experiments_count": 0,
-    "outcomes_count": 2,
-    "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "version": "1.0.0",
+    "path": "skills/agents/agent-lifecycle-hooks",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "agent-structured-output",
+    "slug": "agent-structured-output",
+    "category": "agents",
+    "description": "Configure an agent to return a Pydantic model as its final output instead of plain text.",
+    "tags": [
+      "openai-agents",
+      "structured-output",
+      "pydantic",
+      "output-type"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/agent-structured-output",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -6925,6 +7528,25 @@
     "version": "0.1.0-draft",
     "path": "skills/arch/tiered-rebalance-schedule",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "accepts-then-convert-two-phase-dispatch",
+    "slug": "accepts-then-convert-two-phase-dispatch",
+    "category": "architecture",
+    "description": "Two-method handler contract — a cheap accepts() that inspects metadata plus optional stream peek, and a convert() that does the real work — with a strict stream-position-invariant between the phases.",
+    "tags": [
+      "architecture",
+      "dispatch",
+      "contract",
+      "binaryio",
+      "invariant",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -9917,6 +10539,24 @@
   },
   {
     "kind": "skill",
+    "name": "android-mediacodec-jni-wrapper",
+    "slug": "android-mediacodec-jni-wrapper",
+    "category": "codecs",
+    "description": "Android MediaCodec FFI bindings for hardware video decode/encode via JNI.",
+    "tags": [
+      "android",
+      "codecs",
+      "jni",
+      "mediacodec",
+      "wrapper"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/codecs/android-mediacodec-jni-wrapper",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "build-error-triage",
     "slug": "build-error-triage",
     "category": "debug",
@@ -12288,6 +12928,58 @@
   },
   {
     "kind": "skill",
+    "name": "a2a-protocol-with-hello-publish-decision",
+    "slug": "a2a-protocol-with-hello-publish-decision",
+    "category": "integration",
+    "description": "A2A protocol messages (HELLO, PUBLISH, DECISION) for agent-to-agent evolution asset exchange",
+    "tags": [
+      "evolver",
+      "integration",
+      "protocol",
+      "a2a"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/integration/a2a-protocol-with-hello-publish-decision",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "agent-handoff-routing",
+    "slug": "agent-handoff-routing",
+    "category": "llm-agents",
+    "description": "Route a conversation to a specialist agent via handoff, making that agent own the next turn.",
+    "tags": [
+      "openai-agents",
+      "handoffs",
+      "routing",
+      "multi-agent",
+      "triage"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/agent-handoff-routing",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "agents-as-tools",
+    "slug": "agents-as-tools",
+    "category": "llm-agents",
+    "description": "Expose specialist agents as callable tools so an orchestrator agent retains control of the final answer.",
+    "tags": [
+      "openai-agents",
+      "agents-as-tools",
+      "orchestrator",
+      "manager-pattern"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "design-an-interface",
     "slug": "design-an-interface",
     "category": "misc",
@@ -12366,6 +13058,60 @@
   },
   {
     "kind": "skill",
+    "name": "agent-tracing-spans",
+    "slug": "agent-tracing-spans",
+    "category": "observability",
+    "description": "Wrap multi-agent workflows in named traces and custom spans for debugging in the OpenAI Traces dashboard.",
+    "tags": [
+      "openai-agents",
+      "tracing",
+      "spans",
+      "debugging",
+      "openai-traces-dashboard"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/agent-tracing-spans",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "anonymous-posthog-telemetry",
+    "slug": "anonymous-posthog-telemetry",
+    "category": "observability",
+    "description": "Ship anonymous PostHog telemetry from an OSS CLI using an embedded write-only key, a silentFetch wrapper that masks SDK stderr noise, DO_NOT_TRACK / per-tool opt-out, and `$process_person_profile: false` to stay in PostHog's anonymous tier.",
+    "tags": [
+      "telemetry",
+      "posthog",
+      "opt-out",
+      "privacy",
+      "cli"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/anonymous-posthog-telemetry",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "a11y-tree-snapshot-with-uids",
+    "slug": "a11y-tree-snapshot-with-uids",
+    "category": "puppeteer",
+    "description": "Give agents an indented text snapshot of the page's accessibility tree where every node has a short opaque `uid` they can pass back to click/fill/hover tools, instead of asking the agent to construct CSS selectors.",
+    "tags": [
+      "accessibility",
+      "a11y",
+      "agent-ux",
+      "element-resolution",
+      "snapshot"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/puppeteer/a11y-tree-snapshot-with-uids",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "improve-codebase-architecture",
     "slug": "improve-codebase-architecture",
     "category": "refactor",
@@ -12411,6 +13157,64 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "android-apk-multi-engine-decompilation",
+    "slug": "android-apk-multi-engine-decompilation",
+    "category": "reverse-engineering",
+    "description": "Decompile APK/XAPK/JAR/AAR with two complementary engines (jadx + Fernflower/Vineflower) and compare outputs per-class to maximize readability — jadx for broad APK coverage with resources, Fernflower for higher-fidelity Java on lambdas/generics/streams.",
+    "tags": [
+      "android",
+      "reverse-engineering",
+      "decompilation",
+      "jadx",
+      "fernflower",
+      "vineflower",
+      "apk"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/reverse-engineering/android-apk-multi-engine-decompilation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "androidmanifest-to-network-call-flow-tracing",
+    "slug": "androidmanifest-to-network-call-flow-tracing",
+    "category": "reverse-engineering",
+    "description": "Trace execution flows in a decompiled Android app from AndroidManifest entry points (Activities, Services, Receivers) through lifecycle hooks, click listeners, ViewModels/Repositories, and DI bindings, down to the final HTTP call — following the Android lifecycle chain to produce a complete UI-to-network map.",
+    "tags": [
+      "android",
+      "reverse-engineering",
+      "call-flow",
+      "dagger",
+      "hilt",
+      "retrofit",
+      "lifecycle"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/reverse-engineering/androidmanifest-to-network-call-flow-tracing",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "aes256gcm-machineid-credential-store",
+    "slug": "aes256gcm-machineid-credential-store",
+    "category": "security",
+    "description": "Cross-platform encrypted credential file (AES-256-GCM) keyed with a PBKDF2-derived key whose salt is pulled from a hardware-stable OS identifier so the store survives hostname/DHCP changes.",
+    "tags": [
+      "credentials",
+      "encryption",
+      "aes-gcm",
+      "pbkdf2",
+      "machine-id"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/security/aes256gcm-machineid-credential-store",
     "has_content": false
   },
   {
@@ -12791,6 +13595,24 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/actor-model-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "agent-feedback-loop",
+    "slug": "agent-feedback-loop",
+    "category": "workflow",
+    "description": "Run an agent repeatedly in a while loop with user or evaluator feedback until a quality threshold is met.",
+    "tags": [
+      "openai-agents",
+      "feedback-loop",
+      "iteration",
+      "quality-control",
+      "while-loop"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/agent-feedback-loop",
     "has_content": false
   },
   {
@@ -14458,61 +15280,5 @@
     "version": "1.0.0",
     "path": "skills/workflow/x-filterable-fields-extraction",
     "has_content": false
-  },
-  {
-    "kind": "technique",
-    "name": "agent-fallback-ladder",
-    "slug": "agent-fallback-ladder",
-    "category": "ai",
-    "description": "\"Hierarchical fallback ladder for LLM calls: per-tier circuit state, strict tier order, pitfalls guarded at entry\"",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/ai/agent-fallback-ladder",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
-  },
-  {
-    "kind": "technique",
-    "name": "root-cause-to-tdd-plan",
-    "slug": "root-cause-to-tdd-plan",
-    "category": "debug",
-    "description": "Bug report → systematic root-cause investigation → classified fix path → GitHub issue with TDD test plan",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/debug/root-cause-to-tdd-plan",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
-  },
-  {
-    "kind": "technique",
-    "name": "fuzz-crash-to-fix-loop",
-    "slug": "fuzz-crash-to-fix-loop",
-    "category": "testing",
-    "description": "\"Iterative loop turning fuzz crashes into TDD'd fixes: investigate → triage → implement → return crash to seed corpus\"",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/testing/fuzz-crash-to-fix-loop",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
-  },
-  {
-    "kind": "technique",
-    "name": "safe-bulk-pr-publishing",
-    "slug": "safe-bulk-pr-publishing",
-    "category": "workflow",
-    "description": "Build N projects in parallel then publish them as many PRs safely — rollback anchor, race-aware PR creation, batch conflict recovery",
-    "tags": "",
-    "triggers": [],
-    "version": "0.1.0-draft",
-    "path": "technique/workflow/safe-bulk-pr-publishing",
-    "has_content": true,
-    "composes_count": 4,
-    "binding": "loose"
   }
 ]
