@@ -1,11 +1,13 @@
 ---
 doc: paper-schema-draft
-status: draft-v0.1
+status: draft-v0.2
 author: kjuhwa@nkia.co.kr
 date: 2026-04-24
 ---
 
-# `paper/` — Hypothesis-Driven Exploration Layer (v0.1)
+# `paper/` — Hypothesis-Driven Exploration Layer (v0.2)
+
+> **v0.2 change summary**: v0.1 was forward-only (premise + proposed_builds). v0.2 closes the loop — papers now have `experiments[]` (backward-looking: what was actually tested) and `outcomes[]` (what the corpus learned). `proposed_builds[]` gains a `requires[]` field to enforce **non-triviality** — a build that doesn't depend on any corpus atom is a signal the paper isn't needed for it. Papers also get a `type` enum so survey/position papers without experiments remain valid.
 
 ## 1. Why
 
@@ -66,11 +68,18 @@ Categories reuse `CATEGORIES.md`. No new enum values.
 
 ```yaml
 ---
-version: 0.1.0
+version: 0.2.0
 name: <slug>
 description: <single line, ≤120 chars — the hypothesis summarized>
 category: <one of CATEGORIES.md>
 tags: [<string>, ...]
+
+type: hypothesis            # NEW in v0.2: hypothesis | survey | position
+                            #   hypothesis: claims something is true and proposes
+                            #     experiments; experiments[] required for implemented
+                            #   survey:     reviews existing corpus patterns; experiments
+                            #     optional; outcomes still expected
+                            #   position:   argues for a stance; experiments not required
 
 premise:                    # REQUIRED — what makes this a paper
   if: <condition statement>
@@ -95,19 +104,44 @@ proposed_builds:            # concrete downstream proposals (optional but expect
   - slug: <kebab-case app/experiment name>
     summary: <what it does, in 1-2 lines>
     scope: poc | demo | production
+    requires:               # NEW in v0.2: corpus refs this build depends on
+      - kind: skill | knowledge | technique
+        ref: <kind-root-relative path>
+        role: <free-text — why this dependency matters>
+
+experiments:                # NEW in v0.2: backward-looking — what was actually tested
+  - name: <kebab-case label>
+    hypothesis: <sub-claim being tested — can be narrower than premise>
+    method: <how it was tested — build X, measure Y, N samples>
+    status: planned | running | completed | abandoned
+    built_as: <optional: ref to example/<slug> if a build was shipped>
+    result: <short observation — only when status=completed>
+    supports_premise: yes | no | partial | null   # null until completed
+    observed_at: <YYYY-MM-DD, when completed>
+
+outcomes:                   # NEW in v0.2: what the corpus learned from this paper
+  - kind: produced_skill | produced_knowledge | produced_technique
+         | updated_skill  | updated_knowledge  | updated_technique
+         | produced_pitfall
+    ref: <kind-root-relative path>
+    note: <1 line — how this paper caused the corpus change>
 
 status: draft               # draft | reviewed | implemented | retracted
+retraction_reason: null     # REQUIRED when status=retracted, else null
 ---
 ```
 
 ### Field rationale
 
+- **`type`** (v0.2) — `hypothesis` papers claim something and must run experiments to earn `status=implemented`. `survey` papers review existing corpus without mandatory experiments but must still produce `outcomes[]`. `position` papers argue a stance without data obligation (but have the lowest trust weight). Default and most common: `hypothesis`.
 - **`premise.if/then`** is the gate that distinguishes a paper from a wiki entry. No `if/then`, no paper.
 - **`examines[]`** makes the paper **cite-able as structured data**, so future tooling can show "which papers reference this technique/skill?"
 - **`perspectives[]`** forces multi-angle analysis — a single-angle paper is really just a note.
 - **`external_refs[]`** — `hub-research` feeds into this. An empty list is allowed but flagged as "internal-only" in `hub-paper-list`.
-- **`proposed_builds[]`** closes the loop to `example/` and new apps. Papers with no proposed builds are allowed but carry a `pure-analysis` tag.
-- **`status`** — retracted papers stay in the tree (historical record) but are ranked last in search.
+- **`proposed_builds[].requires[]`** (v0.2) — **non-triviality gate**. A build whose `requires[]` is empty or trivial is a signal the paper isn't needed for that build. If a proposed build could be made without referencing any corpus atom, the paper adds no justification. Lint emits WARN; author must explicitly confirm or rewrite.
+- **`experiments[]`** (v0.2) — closes the loop. `hypothesis` papers move from `draft` → `implemented` only when at least one experiment completes with a non-null `result` and `supports_premise`. This is what distinguishes a paper from a structured blog post: the paper gets tested.
+- **`outcomes[]`** (v0.2) — the paper's ROI. An outcome is a corpus change the paper caused — new skill/knowledge/technique produced, or existing one updated. A paper with zero outcomes after N weeks is a candidate for retraction: it made no difference to the corpus.
+- **`status`** + **`retraction_reason`** — retracted papers stay in the tree (historical record) but are ranked last in search. `retraction_reason` is required when `status=retracted` so future readers understand what went wrong.
 
 ## 5. Body structure (recommended, not enforced)
 
@@ -150,7 +184,25 @@ Unlike technique which verifies **refs + role + binding consistency**, paper ver
 5. `name` equals the containing directory name.
 6. `status` ∈ {draft, reviewed, implemented, retracted}.
 7. No check on `external_refs` URL reachability (too flaky, too online-dependent).
-8. No check on whether `proposed_builds` actually exist under `example/` (that's what the `implemented` status is for).
+8. No check on whether `proposed_builds` actually exist under `example/` (that's what the `implemented` status is for — see rule 11).
+
+**v0.2 additions:**
+
+9. `type` ∈ {hypothesis, survey, position}. Missing `type` defaults to `hypothesis` in the linter (backward-compat with v0.1 papers).
+10. For `type=hypothesis` only — `status=implemented` requires at least one `experiments[]` entry with `status=completed`, non-null `result`, and `supports_premise` set to one of yes/no/partial. `type=survey` and `type=position` are exempt.
+11. `status=retracted` requires non-null `retraction_reason`.
+12. Every `proposed_builds[i].requires[j].ref` resolves on disk (kind-root-relative path), same check as `examines[]`. Kind restricted to skill/knowledge/technique (no paper nesting in requires, mirrors examines rule).
+13. **Non-triviality WARN (not FAIL)** — emitted when any `proposed_builds[i].requires[]` is empty or contains a single reference that also appears in `examines[]` unchanged (i.e. the build just uses one of the things the paper already points at, no composition). WARN includes the build slug and the guidance "explicitly justify or add more dependencies".
+14. `experiments[i].built_as` if present must resolve to `example/<ref>/` on disk. Missing build while `status=completed` is a WARN (result recorded without artifact evidence — possible but weaker).
+15. `experiments[i].status=completed` requires `result`, `supports_premise`, and `observed_at` all non-null.
+
+**What is still NOT verified** (intentionally, carried from v0.1):
+
+- The claims in `premise`.
+- The accuracy of `perspectives[].summary`.
+- The quality or real existence of `external_refs[]`.
+- Whether an experiment's `result` actually supports the claim it makes (that's a reviewer job).
+- Whether an `outcomes[]` entry was genuinely caused by the paper (authors can overclaim; reviewer judges).
 
 **What is NOT verified** (intentionally):
 - The claims in `premise`.
@@ -227,6 +279,10 @@ If the first pilot paper reads like any of the following, **retract the `paper/`
 - A skill description stretched across multiple files.
 
 The layer earns its keep only if it produces **something a technique or knowledge entry could not have held**. The pilot test this.
+
+**v0.2 addition — empty-loop retraction criterion**: after the layer has accumulated ≥ 5 `type=hypothesis` papers over ≥ 3 months, measure the proportion with non-empty `experiments[]` and non-empty `outcomes[]`. If **both** are below 40 %, the layer has become a forward-only claim-accumulator — exactly the "structured blog post" failure the v0.2 fields were supposed to prevent. Retract the layer, migrate the useful paper bodies to `knowledge/` entries, and close out.
+
+This criterion is ROI-based, not structural. The lint can't catch it because each paper individually passes structure checks; the pattern emerges only across the full paper set. A periodic `/hub-paper-health` report (deferred to v0.3) would surface it.
 
 ## 12. Open issues
 

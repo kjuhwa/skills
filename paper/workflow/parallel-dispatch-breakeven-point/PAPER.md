@@ -1,5 +1,5 @@
 ---
-version: 0.1.0-draft
+version: 0.2.0-draft
 name: parallel-dispatch-breakeven-point
 description: When does parallel subagent dispatch stop paying off, and what pre-flight probe catches it before tokens are wasted?
 category: workflow
@@ -9,6 +9,8 @@ tags:
   - dispatch
   - cost-model
   - pre-check
+
+type: hypothesis
 
 premise:
   if: A bulk-modification task is dispatched to N parallel subagents without a pre-flight coverage check
@@ -44,14 +46,52 @@ proposed_builds:
   - slug: parallel-dispatch-coverage-gate
     summary: Pre-flight skill that scans the target corpus for existing-work markers (grep, git log, sample-read) and refuses to dispatch when coverage exceeds a configurable threshold; delegates to sampling mode above threshold
     scope: poc
+    requires:
+      - kind: skill
+        ref: workflow/parallel-bulk-annotation
+        role: the baseline HOW-TO the gate sits in front of
+      - kind: knowledge
+        ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
+        role: the counter-evidence session that motivates the gate
+      - kind: skill
+        ref: ai/ai-subagent-scope-narrowing
+        role: adjacent pattern for narrowing scope; the gate complements it
   - slug: coverage-threshold-decision-table
     summary: Knowledge entry with a decision table - work-type × prior-coverage × recommended-strategy (parallel-dispatch, single-agent-scan, sampling-only) backed by session data from real runs
     scope: poc
+    requires:
+      - kind: knowledge
+        ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
+        role: seed data point for the decision table's first row
   - slug: parallel-bulk-annotation-preflight-section
     summary: Extension to the existing parallel-bulk-annotation skill adding a "Phase 0 - Pre-flight" section that calls the coverage gate and routes to serial or sampling mode when appropriate
     scope: demo
+    requires:
+      - kind: skill
+        ref: workflow/parallel-bulk-annotation
+        role: the skill being edited — direct dependency
+
+experiments:
+  - name: coverage-threshold-measurement
+    hypothesis: The 70 percent break-even threshold is approximately correct across ≥3 corpus domains, within ±15 percentage points
+    method: |
+      For N target corpus directories with diverse "marker" patterns (e.g. @Schema,
+      @Deprecated, JSDoc tags, i18n keys), compute coverage ratios and simulate
+      parallel vs serial cost using a small JS harness. Compare measured crossover
+      against the 70 % claim.
+    status: planned
+    built_as: example/workflow/coverage-gate-benchmark
+    result: null
+    supports_premise: null
+    observed_at: null
+
+outcomes: []
+# Nothing produced yet. Outcomes section will populate as proposed_builds
+# ship — e.g. when parallel-dispatch-coverage-gate skill is authored,
+# add { kind: produced_skill, ref: workflow/parallel-dispatch-coverage-gate }.
 
 status: draft
+retraction_reason: null
 ---
 
 # When does parallel subagent dispatch stop paying off?

@@ -1,5 +1,5 @@
 ---
-version: 0.1.0-draft
+version: 0.2.0-draft
 name: technique-layer-composition-value
 description: Does a technique/ middle layer in a skills hub produce composition value beyond what hub-merge already provides?
 category: workflow
@@ -8,6 +8,8 @@ tags:
   - composition
   - hub-architecture
   - technique-layer
+
+type: hypothesis
 
 premise:
   if: A skills-hub adds a technique/ layer composing atoms by reference (not copy)
@@ -43,14 +45,49 @@ proposed_builds:
   - slug: hub-paper-commands
     summary: Four /hub-paper-{compose,verify,list,show} commands mirroring /hub-technique-* with verify scoped to structure only (premise presence, examines resolution, perspectives ≥2)
     scope: poc
+    requires:
+      - kind: technique
+        ref: workflow/safe-bulk-pr-publishing
+        role: shape template for composition-by-reference commands
+      - kind: technique
+        ref: debug/root-cause-to-tdd-plan
+        role: second shape template — tests command generality across paper shapes
   - slug: security-domain-technique-3
     summary: A third pilot technique in a domain untouched by the first two (e.g. security/secret-rotation-safe-handover) to further stress schema generality past n=2
     scope: poc
+    requires:
+      - kind: technique
+        ref: workflow/safe-bulk-pr-publishing
+        role: reference shape (linear pipeline)
+      - kind: technique
+        ref: debug/root-cause-to-tdd-plan
+        role: reference shape (decision tree)
   - slug: hub-make-from-paper
     summary: Extension of /hub-make that reads a paper's proposed_builds[] and scaffolds each as an example/ draft, closing the paper → app loop
     scope: demo
+    requires: []
+    # NOTE: empty requires triggers v0.2 non-triviality WARN. Accepted because this
+    # build's dependency is the paper SCHEMA itself, not any specific corpus atom.
+    # A future v0.2.1 may extend requires to allow kind:schema refs.
+
+experiments: []
+# No experiments yet. This paper's premise ("durable composition value") is a
+# long-horizon claim that needs months of usage data. Experiments will be filed
+# against specific sub-claims (e.g. "rename resilience via the lint rule in #1068")
+# once observation windows close.
+
+outcomes:
+  - kind: produced_technique
+    ref: workflow/safe-bulk-pr-publishing
+    note: This paper's examines[0]; the paper framework was drafted alongside this pilot's authoring.
+  - kind: produced_technique
+    ref: debug/root-cause-to-tdd-plan
+    note: This paper's examines[1]; second pilot established shape generality.
+# outcomes[] here is weak — the paper did not CAUSE these techniques; it observes
+# them as pre-existing. A stronger outcomes[] appears once proposed_builds ship.
 
 status: draft
+retraction_reason: null
 ---
 
 # Does the `technique/` middle layer produce durable composition value?
