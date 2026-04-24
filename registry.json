@@ -2409,6 +2409,161 @@
       "category": "build",
       "path": "skills/build/coverage-data-file-under-pytest-cache/SKILL.md",
       "version": "1.0.0"
+    },
+    "personality-state-tracking-with-aggregation": {
+      "category": "observability",
+      "path": "skills/observability/personality-state-tracking-with-aggregation/SKILL.md",
+      "version": "1.0.0"
+    },
+    "pid-aware-temp-dir-uuid-generator": {
+      "category": "jit-compilation",
+      "path": "skills/jit-compilation/pid-aware-temp-dir-uuid-generator/SKILL.md",
+      "version": "1.0.0"
+    },
+    "pid-watchdog-sidecar-survival": {
+      "category": "tauri",
+      "path": "skills/tauri/pid-watchdog-sidecar-survival/SKILL.md",
+      "version": "1.0.0"
+    },
+    "plan-audit-entry-per-step": {
+      "category": "agent-sdk",
+      "path": "skills/agent-sdk/plan-audit-entry-per-step/SKILL.md",
+      "version": "1.0.0"
+    },
+    "plan-based-multi-step-task-decomposition": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/plan-based-multi-step-task-decomposition/SKILL.md",
+      "version": "1.0.0"
+    },
+    "platform-adapter-interface": {
+      "category": "integration",
+      "path": "skills/integration/platform-adapter-interface/SKILL.md",
+      "version": "1.0.0"
+    },
+    "platform-agnostic-file-input-abstraction": {
+      "category": "inference",
+      "path": "skills/inference/platform-agnostic-file-input-abstraction/SKILL.md",
+      "version": "1.0.0"
+    },
+    "platform-bridge-core-provider": {
+      "category": "architecture",
+      "path": "skills/architecture/platform-bridge-core-provider/SKILL.md",
+      "version": "1.0.0"
+    },
+    "platform-screen-capture-abstraction": {
+      "category": "codecs",
+      "path": "skills/codecs/platform-screen-capture-abstraction/SKILL.md",
+      "version": "1.0.0"
+    },
+    "platform-specific-code-organization": {
+      "category": "cross-platform",
+      "path": "skills/cross-platform/platform-specific-code-organization/SKILL.md",
+      "version": "1.0.0"
+    },
+    "playtest-report": {
+      "category": "qa",
+      "path": "skills/qa/playtest-report/SKILL.md",
+      "version": "1.0.0"
+    },
+    "playwright-api-fixtures-cleanup": {
+      "category": "testing",
+      "path": "skills/testing/playwright-api-fixtures-cleanup/SKILL.md",
+      "version": "1.0.0"
+    },
+    "pnpm-catalog-version-pinning": {
+      "category": "monorepo",
+      "path": "skills/monorepo/pnpm-catalog-version-pinning/SKILL.md",
+      "version": "1.0.0"
+    },
+    "polymorphic-assignee-rendering": {
+      "category": "architecture",
+      "path": "skills/architecture/polymorphic-assignee-rendering/SKILL.md",
+      "version": "1.0.0"
+    },
+    "port-forwarding-tunnel-multiplexer": {
+      "category": "networking",
+      "path": "skills/networking/port-forwarding-tunnel-multiplexer/SKILL.md",
+      "version": "1.0.0"
+    },
+    "posthog-analytics-with-opt-out-and-thread-queue": {
+      "category": "cli",
+      "path": "skills/cli/posthog-analytics-with-opt-out-and-thread-queue/SKILL.md",
+      "version": "1.0.0"
+    },
+    "powersync-add-synced-table-two-pr-flow": {
+      "category": "powersync",
+      "path": "skills/powersync/powersync-add-synced-table-two-pr-flow/SKILL.md",
+      "version": "1.0.0"
+    },
+    "powersync-composite-primary-key-seed": {
+      "category": "powersync",
+      "path": "skills/powersync/powersync-composite-primary-key-seed/SKILL.md",
+      "version": "1.0.0"
+    },
+    "powersync-custom-sharedworker-override": {
+      "category": "powersync",
+      "path": "skills/powersync/powersync-custom-sharedworker-override/SKILL.md",
+      "version": "1.0.0"
+    },
+    "powersync-no-foreign-keys-on-sync-backend": {
+      "category": "powersync",
+      "path": "skills/powersync/powersync-no-foreign-keys-on-sync-backend/SKILL.md",
+      "version": "1.0.0"
+    },
+    "powersync-transformable-bucket-storage": {
+      "category": "powersync",
+      "path": "skills/powersync/powersync-transformable-bucket-storage/SKILL.md",
+      "version": "1.0.0"
+    },
+    "ppo-rlhf-trl-gpt2-sentiment": {
+      "category": "llm-agents",
+      "path": "skills/llm-agents/ppo-rlhf-trl-gpt2-sentiment/SKILL.md",
+      "version": "1.0.0"
+    },
+    "pre-release-pr-triage-worktree": {
+      "category": "agents",
+      "path": "skills/agents/pre-release-pr-triage-worktree/SKILL.md",
+      "version": "1.0.0"
+    },
+    "pre-release-version-validation-script": {
+      "category": "release",
+      "path": "skills/release/pre-release-version-validation-script/SKILL.md",
+      "version": "1.0.0"
+    },
+    "predict-mode-dispatch-with-fallback-heuristics": {
+      "category": "inference",
+      "path": "skills/inference/predict-mode-dispatch-with-fallback-heuristics/SKILL.md",
+      "version": "1.0.0"
+    },
+    "presampled-sliding-window-index": {
+      "category": "data-pipeline",
+      "path": "skills/data-pipeline/presampled-sliding-window-index/SKILL.md",
+      "version": "1.0.0"
+    },
+    "privacy-mode-trait-abstraction": {
+      "category": "platform",
+      "path": "skills/platform/privacy-mode-trait-abstraction/SKILL.md",
+      "version": "1.0.0"
+    },
+    "process-singleton-guard-with-lockfile": {
+      "category": "resilience",
+      "path": "skills/resilience/process-singleton-guard-with-lockfile/SKILL.md",
+      "version": "1.0.0"
+    },
+    "profile-scoped-config-dir": {
+      "category": "cli",
+      "path": "skills/cli/profile-scoped-config-dir/SKILL.md",
+      "version": "1.0.0"
+    },
+    "programmatic-dependent-launch-attribute-toggle": {
+      "category": "gpu-kernels",
+      "path": "skills/gpu-kernels/programmatic-dependent-launch-attribute-toggle/SKILL.md",
+      "version": "1.0.0"
+    },
+    "project-stage-detect": {
+      "category": "production",
+      "path": "skills/production/project-stage-detect/SKILL.md",
+      "version": "1.0.0"
     }
   },
   "knowledge": {
@@ -4427,6 +4582,82 @@
     "craft-cli-command-surface": {
       "category": "reference",
       "path": "knowledge/reference/craft-cli-command-surface.md"
+    },
+    "pgvector-pg17-for-ai-native-apps": {
+      "category": "devops",
+      "path": "knowledge/devops/pgvector-pg17-for-ai-native-apps.md"
+    },
+    "pinecone-metadata-filtering-rag": {
+      "category": "vector-search-rag",
+      "path": "knowledge/vector-search-rag/pinecone-metadata-filtering-rag.md"
+    },
+    "playwright-stealth-cloudflare-bypass": {
+      "category": "automation",
+      "path": "knowledge/automation/playwright-stealth-cloudflare-bypass.md"
+    },
+    "plugin-framework-feature-conditional": {
+      "category": "plugin",
+      "path": "knowledge/plugin/plugin-framework-feature-conditional.md"
+    },
+    "plugin-interface-version-convention": {
+      "category": "plugin-architecture",
+      "path": "knowledge/plugin-architecture/plugin-interface-version-convention.md"
+    },
+    "policy-check-sandboxing-evolution": {
+      "category": "safety",
+      "path": "knowledge/safety/policy-check-sandboxing-evolution.md"
+    },
+    "polymorphic-assignees-member-or-agent": {
+      "category": "arch",
+      "path": "knowledge/arch/polymorphic-assignees-member-or-agent.md"
+    },
+    "portable-app-detection-env-var": {
+      "category": "platform",
+      "path": "knowledge/platform/portable-app-detection-env-var.md"
+    },
+    "posix-socket-path-length-limit": {
+      "category": "pitfall",
+      "path": "knowledge/pitfall/posix-socket-path-length-limit.md"
+    },
+    "posthog-cli-telemetry-conventions": {
+      "category": "reference",
+      "path": "knowledge/reference/posthog-cli-telemetry-conventions.md"
+    },
+    "powersync-backend-minimal-indexes": {
+      "category": "powersync",
+      "path": "knowledge/powersync/powersync-backend-minimal-indexes.md"
+    },
+    "powersync-deploy-order-two-pr-invariant": {
+      "category": "powersync",
+      "path": "knowledge/powersync/powersync-deploy-order-two-pr-invariant.md"
+    },
+    "powersync-sharedworker-multi-tab-constraint": {
+      "category": "powersync",
+      "path": "knowledge/powersync/powersync-sharedworker-multi-tab-constraint.md"
+    },
+    "pre-broadcast-log-sanitization": {
+      "category": "security",
+      "path": "knowledge/security/pre-broadcast-log-sanitization.md"
+    },
+    "pre-push-discipline-test-lint-typecheck": {
+      "category": "workflow",
+      "path": "knowledge/workflow/pre-push-discipline-test-lint-typecheck.md"
+    },
+    "priority-lower-is-higher-stable-sort": {
+      "category": "architecture",
+      "path": "knowledge/architecture/priority-lower-is-higher-stable-sort.md"
+    },
+    "privacy-client-secure-credential-handling": {
+      "category": "safety",
+      "path": "knowledge/safety/privacy-client-secure-credential-handling.md"
+    },
+    "privacy-mode-implementation-choices": {
+      "category": "windows",
+      "path": "knowledge/windows/privacy-mode-implementation-choices.md"
+    },
+    "process-title-for-debug-visibility": {
+      "category": "decision",
+      "path": "knowledge/decision/process-title-for-debug-visibility.md"
     }
   }
 }
