@@ -1,0 +1,10 @@
+{
+  "name": "coverage-gate-benchmark",
+  "category": "workflow",
+  "description": "Parallel dispatch break-even cost model — tests paper workflow/parallel-dispatch-breakeven-point's 70% threshold claim against measured corpus coverage across 5 domains",
+  "stack": ["html", "vanilla-js"],
+  "entry": "index.html",
+  "produced_by_paper": "workflow/parallel-dispatch-breakeven-point",
+  "experiment_name": "coverage-threshold-measurement",
+  "created_at": "2026-04-24"
+}

@@ -75,23 +75,59 @@ experiments:
   - name: coverage-threshold-measurement
     hypothesis: The 70 percent break-even threshold is approximately correct across ≥3 corpus domains, within ±15 percentage points
     method: |
-      For N target corpus directories with diverse "marker" patterns (e.g. @Schema,
-      @Deprecated, JSDoc tags, i18n keys), compute coverage ratios and simulate
-      parallel vs serial cost using a small JS harness. Compare measured crossover
-      against the 70 % claim.
-    status: planned
+      Measured prior-work coverage for 5 domains in kjuhwa/skills-hub via grep
+      against the remote cache:
+        (A) skills with triggers populated:    51.1% (239/468)
+        (B) skills with content.md sibling:    36.8% (172/468)
+        (C) knowledge with description field:  55.0% (193/351)
+        (D) knowledge with tags key:          100.0% (351/351)
+        (E) skills with stable version 1.x+:   80.3% (376/468)
+      Built an interactive cost model (example/workflow/coverage-gate-benchmark)
+      that takes (agents, startup cost, verify cost, work cost) and classifies
+      each domain as PARALLEL / BORDERLINE / SAMPLING / NO DISPATCH. Compared
+      classifier output against the paper's 70 percent threshold claim.
+    status: completed
     built_as: example/workflow/coverage-gate-benchmark
-    result: null
-    supports_premise: null
-    observed_at: null
+    result: |
+      The 70 percent threshold as a UNIVERSAL constant is NOT supported by the
+      cost model. Under typical weights (alpha=30s startup, v=5s verify,
+      w=60s work, A=4 agents), parallel wall-clock savings dominate up to
+      ~90%+ coverage for any domain with non-zero useful output. The crossover
+      shifts with the alpha/w ratio; it is not a robust constant.
 
-outcomes: []
-# Nothing produced yet. Outcomes section will populate as proposed_builds
-# ship — e.g. when parallel-dispatch-coverage-gate skill is authored,
-# add { kind: produced_skill, ref: workflow/parallel-dispatch-coverage-gate }.
+      The MEANINGFUL gate discovered is not coverage percentage but
+      "useful_output < absolute threshold" (e.g. fewer than 5 files that
+      actually need work). Domain D (100% coverage, zero useful output)
+      correctly triggers NO DISPATCH; Domain E (80.3% coverage, 92 useful
+      files) still recommends PARALLEL because 92 * work_cost dwarfs
+      A * startup_cost.
+
+      The paper's directional claim holds (very high coverage trends toward
+      non-parallel), but the specific 70 percent number was a single-session
+      observation, not a robust threshold. The premise should be restated in
+      terms of useful_output absolute count rather than coverage fraction.
+    supports_premise: partial
+    observed_at: 2026-04-24
+
+outcomes:
+  - kind: produced_knowledge
+    ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
+    note: |
+      Placeholder pointing at the existing pitfall that seeded this paper.
+      The REAL outcome of this experiment is a PROPOSED new knowledge entry
+      (knowledge/decision/parallel-dispatch-useful-output-gate) documenting
+      the refined criterion (useful_output absolute threshold, not coverage
+      fraction). Until that entry is authored, outcomes[] cannot truthfully
+      claim produced_knowledge; this note documents the pending follow-up.
 
 status: draft
 retraction_reason: null
+# Next transitions (follow-up PRs):
+#   1. Author knowledge/decision/parallel-dispatch-useful-output-gate with
+#      the refined useful_output threshold criterion.
+#   2. Rewrite this paper's premise.then to match the refined criterion.
+#   3. Replace the placeholder outcome with the new knowledge ref.
+#   4. Transition status: draft -> implemented.
 ---
 
 # When does parallel subagent dispatch stop paying off?

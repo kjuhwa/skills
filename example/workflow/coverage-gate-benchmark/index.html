@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parallel Dispatch Coverage Gate — Benchmark</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:0;padding:24px;max-width:1100px;margin-inline:auto;background:#0f1419;color:#d6deeb;line-height:1.55}
+h1{font-size:20px;margin:0 0 4px;color:#fff}
+h2{font-size:15px;margin:28px 0 10px;color:#7fdbca;border-bottom:1px solid #1d3b53;padding-bottom:6px}
+.sub{color:#8aa;font-size:13px;margin-bottom:20px}
+.card{background:#0d1f2d;border:1px solid #1d3b53;border-radius:6px;padding:16px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #1d3b53}
+th{color:#7fdbca;font-weight:600;background:#0a1722}
+tr:hover td{background:#0a2a40}
+.rec{font-weight:600;padding:2px 8px;border-radius:3px;font-size:12px;display:inline-block}
+.rec-parallel{background:#1e4d34;color:#80f7a5}
+.rec-borderline{background:#4d4a1e;color:#f7e580}
+.rec-sampling{background:#4d2a1e;color:#f7a580}
+.rec-nodispatch{background:#3a1a1a;color:#f78080}
+label{display:block;font-size:12px;color:#8aa;margin:10px 0 4px}
+input[type=range]{width:100%;accent-color:#7fdbca}
+.param-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.val{color:#fff;font-weight:600;margin-left:6px}
+.finding{background:#1a2838;border-left:3px solid #7fdbca;padding:12px 14px;margin:14px 0;font-size:13px}
+.finding strong{color:#fff}
+code{background:#1a2838;padding:1px 5px;border-radius:3px;color:#f7e580;font-size:12px}
+canvas{max-width:100%;background:#0a1722;border-radius:4px}
+footer{font-size:12px;color:#667;margin-top:30px;border-top:1px solid #1d3b53;padding-top:12px}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+</style>
+</head>
+<body>
+<h1>Parallel Dispatch Coverage Gate — Benchmark</h1>
+<div class="sub">Experiment artifact for paper <code>workflow/parallel-dispatch-breakeven-point</code>. Tests whether a ~70% coverage threshold for "parallel stops paying off" holds across multiple measured corpus domains.</div>
+
+<div class="card">
+<strong>Premise being tested:</strong> IF a bulk-modification task is dispatched to N parallel subagents without a pre-flight coverage check, THEN beyond a prior-work coverage threshold of roughly 70%, the parallel pattern becomes a net negative.
+</div>
+
+<h2>§1 — Measured corpus coverage (real data)</h2>
+<div class="sub">Coverage values grep'd from <code>kjuhwa/skills-hub</code> at commit snapshot. Five domains chosen for spread from ~37% to 100%.</div>
+<table>
+<thead><tr><th>Domain</th><th class="num">Total files</th><th class="num">Hit</th><th class="num">Coverage</th><th>Measurement</th></tr></thead>
+<tbody id="dataTable"></tbody>
+</table>
+
+<h2>§2 — Cost model (adjust to your environment)</h2>
+<div class="card">
+<div class="param-grid">
+<div>
+<label>Parallel agents A <span class="val" id="Aval">4</span></label>
+<input type="range" id="A" min="2" max="10" value="4">
+</div>
+<div>
+<label>Startup overhead α (sec/agent) <span class="val" id="aval">30</span></label>
+<input type="range" id="alpha" min="5" max="120" value="30">
+</div>
+<div>
+<label>Verify cost v (sec/file, already-done) <span class="val" id="vval">5</span></label>
+<input type="range" id="v" min="1" max="30" value="5">
+</div>
+<div>
+<label>Work cost w (sec/file, real edit+verify) <span class="val" id="wval">60</span></label>
+<input type="range" id="w" min="10" max="300" value="60">
+</div>
+</div>
+</div>
+
+<h2>§3 — Per-domain recommendations</h2>
+<table>
+<thead><tr><th>Domain</th><th class="num">coverage</th><th class="num">t_serial (s)</th><th class="num">t_parallel (s)</th><th class="num">wall-clock saved</th><th class="num">cost overhead</th><th class="num">useful output</th><th>recommendation</th></tr></thead>
+<tbody id="recTable"></tbody>
+</table>
+
+<h2>§4 — Cost & speedup curves</h2>
+<div class="sub">For a representative N=300, curves across 0–100% coverage. Vertical markers show measured domain positions.</div>
+<canvas id="chart" width="1040" height="360"></canvas>
+
+<h2>§5 — Finding</h2>
+<div id="finding" class="finding"></div>
+
+<footer>
+Built 2026-04-24 · <code>example/workflow/coverage-gate-benchmark</code> · ships as experiment artifact for paper #2 (parallel-dispatch-breakeven-point).
+</footer>
+
+<script>
+// Real measurements from kjuhwa/skills-hub corpus
+const DOMAINS = [
+  {key:'A', name:'Skills with triggers: populated',          N:468, coverage:0.511, measurement:'grep -l "^triggers:" on skills/**/SKILL.md'},
+  {key:'B', name:'Skills with content.md sibling',           N:468, coverage:0.368, measurement:'find + check sibling content.md existence'},
+  {key:'C', name:'Knowledge with description: (vs summary:)',N:351, coverage:0.550, measurement:'grep -l "^description:" on knowledge/**/*.md'},
+  {key:'D', name:'Knowledge with tags: key present',         N:351, coverage:1.000, measurement:'grep -l "^tags:" on knowledge/**/*.md'},
+  {key:'E', name:'Skills with version 1.x+ (stable)',        N:468, coverage:0.803, measurement:'grep -lE "^version:\\s*[1-9]" on skills/**/SKILL.md'},
+];
+
+function recommend(coverage, A, alpha, v, w, N) {
+  const useful = (1 - coverage) * N;
+  const avg = coverage * v + (1 - coverage) * w;
+  const tS  = alpha + N * avg;
+  const tP  = alpha + (N / A) * avg;
+  const costS = alpha + N * avg;
+  const costP = A * alpha + N * avg;
+  const saved = (tS - tP) / tS;
+  const overhead = (costP - costS) / costS;
+
+  let rec, cls;
+  if (useful < 5) {
+    rec = 'NO DISPATCH — use grep/sample';
+    cls = 'rec-nodispatch';
+  } else if (overhead > 0.50) {
+    rec = 'SAMPLING MODE';
+    cls = 'rec-sampling';
+  } else if (saved >= 0.50 && overhead < 0.20) {
+    rec = 'PARALLEL';
+    cls = 'rec-parallel';
+  } else if (saved >= 0.30) {
+    rec = 'PARALLEL (borderline)';
+    cls = 'rec-borderline';
+  } else {
+    rec = 'SERIAL';
+    cls = 'rec-sampling';
+  }
+  return { useful, avg, tS, tP, costS, costP, saved, overhead, rec, cls };
+}
+
+function pct(x) { return (x * 100).toFixed(1) + '%'; }
+function fmt(x) { return x.toFixed(0); }
+
+function render() {
+  const A = +document.getElementById('A').value;
+  const alpha = +document.getElementById('alpha').value;
+  const v = +document.getElementById('v').value;
+  const w = +document.getElementById('w').value;
+
+  document.getElementById('Aval').textContent = A;
+  document.getElementById('aval').textContent = alpha;
+  document.getElementById('vval').textContent = v;
+  document.getElementById('wval').textContent = w;
+
+  // Data table
+  const dt = document.getElementById('dataTable');
+  dt.innerHTML = DOMAINS.map(d =>
+    `<tr><td><strong>${d.key}</strong> · ${d.name}</td><td class="num">${d.N}</td><td class="num">${Math.round(d.coverage * d.N)}</td><td class="num">${pct(d.coverage)}</td><td><code>${d.measurement}</code></td></tr>`
+  ).join('');
+
+  // Recommendation table
+  const rt = document.getElementById('recTable');
+  rt.innerHTML = DOMAINS.map(d => {
+    const r = recommend(d.coverage, A, alpha, v, w, d.N);
+    return `<tr>
+      <td><strong>${d.key}</strong> · ${d.name}</td>
+      <td class="num">${pct(d.coverage)}</td>
+      <td class="num">${fmt(r.tS)}</td>
+      <td class="num">${fmt(r.tP)}</td>
+      <td class="num">${pct(r.saved)}</td>
+      <td class="num">${pct(r.overhead)}</td>
+      <td class="num">${Math.round(r.useful)}</td>
+      <td><span class="rec ${r.cls}">${r.rec}</span></td>
+    </tr>`;
+  }).join('');
+
+  // Chart
+  drawChart(A, alpha, v, w, 300);
+
+  // Finding
+  const findings = DOMAINS.map(d => ({ ...d, ...recommend(d.coverage, A, alpha, v, w, d.N) }));
+  const above70 = findings.filter(x => x.coverage >= 0.70);
+  const below70 = findings.filter(x => x.coverage < 0.70);
+  const above70_notParallel = above70.filter(x => !x.rec.startsWith('PARALLEL')).length;
+  const below70_parallel = below70.filter(x => x.rec.startsWith('PARALLEL')).length;
+
+  const f = document.getElementById('finding');
+  let verdict;
+  if (above70.length === 0) {
+    verdict = `<strong>Insufficient data above 70% threshold</strong> — current params happen to push all above-70% domains into PARALLEL. Try reducing work cost (w) to stress the model.`;
+  } else if (above70_notParallel === above70.length && below70_parallel === below70.length) {
+    verdict = `<strong>Premise SUPPORTED by current parameters.</strong> All ${above70.length} domain(s) ≥70% coverage recommend NON-parallel (${above70.map(x=>x.key).join(',')}); all ${below70.length} domain(s) &lt;70% recommend parallel (${below70.map(x=>x.key).join(',')}). The 70% threshold aligns with model output.`;
+  } else {
+    verdict = `<strong>Premise PARTIALLY SUPPORTED.</strong> Threshold depends on cost weights. With current params (A=${A}, α=${alpha}, v=${v}, w=${w}): `
+      + `${above70_notParallel}/${above70.length} above-70% domains correctly flagged NOT-parallel; `
+      + `${below70_parallel}/${below70.length} below-70% domains correctly recommend parallel. `
+      + `The "70%" number is a useful heuristic but not a universal constant — it shifts with the ratio of startup cost α to work cost w.`;
+  }
+  f.innerHTML = verdict;
+}
+
+function drawChart(A, alpha, v, w, N) {
+  const ctx = document.getElementById('chart').getContext('2d');
+  const W = 1040, H = 360, padL = 60, padR = 20, padT = 30, padB = 40;
+  ctx.fillStyle = '#0a1722'; ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#1d3b53'; ctx.lineWidth = 1; ctx.font = '11px monospace'; ctx.fillStyle = '#667';
+  for (let i = 0; i <= 10; i++) {
+    const x = padL + (i/10) * (W - padL - padR);
+    ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, H - padB); ctx.stroke();
+    ctx.fillText((i*10) + '%', x - 10, H - padB + 14);
+  }
+  for (let i = 0; i <= 4; i++) {
+    const y = padT + (i/4) * (H - padT - padB);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    ctx.fillText(((1 - i/4) * 100).toFixed(0) + '%', 10, y + 4);
+  }
+
+  // Axes labels
+  ctx.fillStyle = '#7fdbca'; ctx.fillText('coverage →', W - 100, H - 6);
+  ctx.save(); ctx.translate(14, 20); ctx.fillText('% saved / overhead', 0, 0); ctx.restore();
+
+  // Wall-clock savings curve (green)
+  const xAt = c => padL + c * (W - padL - padR);
+  const yAt = p => padT + (1 - p) * (H - padT - padB);
+  const pts = [];
+  for (let c = 0; c <= 1.001; c += 0.01) {
+    const avg = c * v + (1 - c) * w;
+    const tS = alpha + N * avg;
+    const tP = alpha + (N / A) * avg;
+    const saved = (tS - tP) / tS;
+    pts.push({ c, saved });
+  }
+  ctx.strokeStyle = '#80f7a5'; ctx.lineWidth = 2; ctx.beginPath();
+  pts.forEach((p, i) => (i ? ctx.lineTo(xAt(p.c), yAt(p.saved)) : ctx.moveTo(xAt(p.c), yAt(p.saved))));
+  ctx.stroke();
+  ctx.fillStyle = '#80f7a5'; ctx.fillText('wall-clock saved (parallel vs serial)', padL + 10, padT + 14);
+
+  // Cost overhead curve (orange)
+  ctx.strokeStyle = '#f7a580'; ctx.lineWidth = 2; ctx.beginPath();
+  for (let c = 0; c <= 1.001; c += 0.01) {
+    const avg = c * v + (1 - c) * w;
+    const costS = alpha + N * avg;
+    const costP = A * alpha + N * avg;
+    const over = Math.min(1, (costP - costS) / costS);
+    if (c === 0) ctx.moveTo(xAt(c), yAt(over));
+    else ctx.lineTo(xAt(c), yAt(over));
+  }
+  ctx.stroke();
+  ctx.fillStyle = '#f7a580'; ctx.fillText('cost overhead (capped 100%)', padL + 10, padT + 30);
+
+  // 70% threshold marker
+  ctx.strokeStyle = '#f7e580'; ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(xAt(0.70), padT); ctx.lineTo(xAt(0.70), H - padB); ctx.stroke();
+  ctx.setLineDash([]); ctx.fillStyle = '#f7e580'; ctx.fillText('70% threshold', xAt(0.70) + 4, padT + 48);
+
+  // Domain markers
+  DOMAINS.forEach(d => {
+    const x = xAt(d.coverage);
+    ctx.strokeStyle = '#7fdbca'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, H - padB); ctx.lineTo(x, H - padB - 8); ctx.stroke();
+    ctx.fillStyle = '#7fdbca'; ctx.fillText(d.key, x - 3, H - padB - 12);
+  });
+}
+
+['A','alpha','v','w'].forEach(id =>
+  document.getElementById(id).addEventListener('input', render));
+render();
+</script>
+</body>
+</html>
