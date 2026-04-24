@@ -243,6 +243,73 @@
   },
   {
     "kind": "knowledge",
+    "name": "orchestration-command-event-and-receipt-contract",
+    "slug": "orchestration-command-event-and-receipt-contract",
+    "category": "api",
+    "description": "Client sends commands -> server emits events and receipts -> client observes state updates and completion signals",
+    "tags": [
+      "api",
+      "contract",
+      "orchestration"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/orchestration-command-event-and-receipt-contract.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "origin-whitelist-atomic-hot-swap",
+    "slug": "origin-whitelist-atomic-hot-swap",
+    "category": "api",
+    "description": "Store the WebSocket allowed-origins list in an atomic.Value so it can be hot-swapped without locking the request path, with env-based defaults for dev.",
+    "tags": [
+      "websocket",
+      "cors",
+      "origin",
+      "atomic",
+      "config"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/origin-whitelist-atomic-hot-swap.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "overwrite-reason-field",
+    "slug": "overwrite-reason-field",
+    "category": "api",
+    "description": "MagikaPrediction.overwrite_reason indicates why the final label differs from the raw model prediction.",
+    "tags": [
+      "magika",
+      "api"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/overwrite-reason-field.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pat-vs-jwt-endpoint-parity",
+    "slug": "pat-vs-jwt-endpoint-parity",
+    "category": "api",
+    "description": "Same API endpoints accept both session JWTs (browser) and personal access tokens (CLI/daemon) — the auth middleware dispatches by prefix and treats the two uniformly downstream.",
+    "tags": [
+      "auth",
+      "pat",
+      "jwt",
+      "api-design",
+      "cli"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/api/pat-vs-jwt-endpoint-parity.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "stomp-heartbeat-10s-bidirectional",
     "slug": "stomp-heartbeat-10s-bidirectional",
     "category": "api",
@@ -1756,6 +1823,75 @@
   },
   {
     "kind": "knowledge",
+    "name": "package-boundary-hard-rules",
+    "slug": "package-boundary-hard-rules",
+    "category": "arch",
+    "description": "Monorepo package boundaries are hard constraints — violating them breaks cross-platform architecture.",
+    "tags": [
+      "monorepo",
+      "package-boundaries",
+      "react",
+      "electron",
+      "nextjs"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/package-boundary-hard-rules.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "pdl-launch-attribute-vs-cluster-size-interaction",
+    "slug": "pdl-launch-attribute-vs-cluster-size-interaction",
+    "category": "arch",
+    "description": "",
+    "tags": [
+      "pdl",
+      "cluster",
+      "launch-attributes",
+      "cuda",
+      "kernel-launch",
+      "hopper"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/gpu-kernels/pdl-launch-attribute-vs-cluster-size-interaction.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "per-content-type-threshold-system",
+    "slug": "per-content-type-threshold-system",
+    "category": "arch",
+    "description": "Magika gates predictions with per-content-type confidence thresholds (range ~0.5–0.95), not a single global threshold.",
+    "tags": [
+      "magika",
+      "arch"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/per-content-type-threshold-system.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "per-tool-serialization-via-mutex",
+    "slug": "per-tool-serialization-via-mutex",
+    "category": "arch",
+    "description": "Every incoming MCP tool call in chrome-devtools-mcp acquires a single global `toolMutex` before its handler runs, serializing all tool executions on the shared browser context to avoid CDP concurrency hazards.",
+    "tags": [
+      "mcp",
+      "mutex",
+      "concurrency",
+      "browser-state"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/per-tool-serialization-via-mutex.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "plugin-architecture-runtime-vs-startup-loading",
     "slug": "plugin-architecture-runtime-vs-startup-loading",
     "category": "arch",
@@ -2040,6 +2176,59 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/architecture/agent-native-software-philosophy.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "opensre-investigation-pipeline-architecture",
+    "slug": "opensre-investigation-pipeline-architecture",
+    "category": "architecture",
+    "description": "The OpenSRE agent splits an SRE investigation into six discrete LangGraph nodes (extract → resolve → plan → investigate → diagnose → publish) with a bounded plan-investigate-diagnose loop, dual chat/investigation entry modes, and per-investigation masking that survives state transitions.",
+    "tags": [
+      "langgraph",
+      "agent-pipeline",
+      "sre",
+      "multi-stage"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/opensre-investigation-pipeline-architecture.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "permission-modes-as-product-primitive",
+    "slug": "permission-modes-as-product-primitive",
+    "category": "architecture",
+    "description": "Craft Agents treats three permission modes (explore/ask/execute, internal safe/ask/allow-all) as a first-class product primitive — cycled by SHIFT+TAB, fired as bus events, stored per-session, with a CompiledBashPattern allowlist driving Explore.",
+    "tags": [
+      "permissions",
+      "product",
+      "safety",
+      "bash-validator"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/permission-modes-as-product-primitive.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "permission-system-design-peer-config",
+    "slug": "permission-system-design-peer-config",
+    "category": "auth",
+    "description": "Permissions stored per-peer in Config::get_peer_option(); not global; sync'd via the rendezvous server.",
+    "tags": [
+      "auth",
+      "config",
+      "design",
+      "peer",
+      "permission",
+      "system"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/auth/permission-system-design-peer-config.md",
     "has_content": true
   },
   {
@@ -3176,6 +3365,41 @@
   },
   {
     "kind": "knowledge",
+    "name": "opt-out-usage-stats-with-watchdog-subprocess",
+    "slug": "opt-out-usage-stats-with-watchdog-subprocess",
+    "category": "decision",
+    "description": "Chrome DevTools MCP implements opt-out telemetry by spawning a detached watchdog child, shipping events to Clearcut via a batched buffer, and gating the whole subsystem on `--no-usage-statistics` (or env var) checked before the telemetry logger is even constructed.",
+    "tags": [
+      "telemetry",
+      "opt-out",
+      "privacy",
+      "watchdog",
+      "clearcut"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/opt-out-usage-stats-with-watchdog-subprocess.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "optimistic-mutations-by-default",
+    "slug": "optimistic-mutations-by-default",
+    "category": "decision",
+    "description": "Mutations apply the change locally, send the request, roll back on failure, invalidate on settle. The user never waits for the server.",
+    "tags": [
+      "react-query",
+      "mutations",
+      "optimistic-updates",
+      "ux"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/optimistic-mutations-by-default.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "organization-soft-delete-grace-period",
     "slug": "organization-soft-delete-grace-period",
     "category": "decision",
@@ -3203,6 +3427,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/parallel-dispatch-useful-output-gate.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "personal-access-token-prefix-routing",
+    "slug": "personal-access-token-prefix-routing",
+    "category": "decision",
+    "description": "Personal access tokens use a distinct prefix (mul_) so server code can route \"is this a PAT or a JWT?\" by a cheap string check before parsing.",
+    "tags": [
+      "auth",
+      "pat",
+      "jwt",
+      "token",
+      "security"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/personal-access-token-prefix-routing.md",
     "has_content": true
   },
   {
@@ -3684,6 +3926,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "oss-sync-trademark-boundary",
+    "slug": "oss-sync-trademark-boundary",
+    "category": "devops",
+    "description": "The craft-agents-oss repo is the Apache-2.0 subset of an internal repo; oss-sync script and TRADEMARK.md define the legal boundary — code is open, 'Craft' and 'Craft Agents' names are trademarked, afterPack hooks and Pi agent bits are optionally stripped.",
+    "tags": [
+      "oss",
+      "licensing",
+      "trademark",
+      "apache-2.0"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/devops/oss-sync-trademark-boundary.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a11y-uid-tool-targeting-over-selectors",
     "slug": "a11y-uid-tool-targeting-over-selectors",
     "category": "domain",
@@ -3823,6 +4082,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/domain/one-default-template-per-type-rule.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "packed-fp4-as-int8-aliasing",
+    "slug": "packed-fp4-as-int8-aliasing",
+    "category": "domain",
+    "description": "",
+    "tags": [
+      "fp4",
+      "packed",
+      "int8",
+      "torch-dtype",
+      "type-aliasing"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/fp8-quantization/packed-fp4-as-int8-aliasing.md",
     "has_content": true
   },
   {
@@ -3992,6 +4269,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "openai-agents-sdk-architecture",
+    "slug": "openai-agents-sdk-architecture",
+    "category": "llm-agents",
+    "description": "High-level architecture of the OpenAI Agents Python SDK — agents, runners, tools, handoffs, guardrails, sessions, and tracing.",
+    "tags": [
+      "openai-agents",
+      "architecture",
+      "sdk",
+      "multi-agent",
+      "overview"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/llm-agents/openai-agents-sdk-architecture.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "connection-type-enum-design",
     "slug": "connection-type-enum-design",
     "category": "networking",
@@ -4006,6 +4301,25 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/networking/connection-type-enum-design.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "openai-agents-tracing-model",
+    "slug": "openai-agents-tracing-model",
+    "category": "observability",
+    "description": "How the OpenAI Agents SDK tracing system works — traces vs. spans, automatic instrumentation, custom processors, and flush semantics.",
+    "tags": [
+      "openai-agents",
+      "tracing",
+      "spans",
+      "traces",
+      "observability",
+      "debugging"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/observability/openai-agents-tracing-model.md",
     "has_content": true
   },
   {
@@ -5689,6 +6003,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "over-abstraction-strategy-pattern-for-single-use",
+    "slug": "over-abstraction-strategy-pattern-for-single-use",
+    "category": "pitfall",
+    "description": "LLMs reach for Strategy / ABC / Config classes for single-use code (e.g., calculating one percentage discount). Prefer a single function until a second concrete variant actually exists.",
+    "tags": [
+      "yagni",
+      "over-engineering",
+      "abstractions",
+      "design-patterns"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/over-abstraction-strategy-pattern-for-single-use.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "oz-license-file-placement-flip-flop",
     "slug": "oz-license-file-placement-flip-flop",
     "category": "pitfall",
@@ -6681,6 +7012,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "openclaw-mcp-bridge-three-transports",
+    "slug": "openclaw-mcp-bridge-three-transports",
+    "category": "plugin-architecture",
+    "description": "OpenSRE integrates with OpenClaw (an AI coding assistant) as an MCP server, supporting three transports in one config — stdio (local dev), SSE (hosted), and streamable-http (default) — with a detached-lifetime httpx shim so one pool serves many servers.",
+    "tags": [
+      "mcp",
+      "openclaw",
+      "transports",
+      "integration"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/openclaw-mcp-bridge-three-transports.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "alert-extraction-single-llm-call-pattern",
     "slug": "alert-extraction-single-llm-call-pattern",
     "category": "reference",
@@ -6793,6 +7141,40 @@
   },
   {
     "kind": "knowledge",
+    "name": "output-format-detection-convention",
+    "slug": "output-format-detection-convention",
+    "category": "reference",
+    "description": "OpenSRE picks rich vs plain-text output using a four-tier probe — TRACER_OUTPUT_FORMAT env first, NO_COLOR second, SLACK_WEBHOOK_URL third, sys.stdout.isatty() last — so TTY detection, explicit overrides, and downstream consumers all compose.",
+    "tags": [
+      "cli",
+      "tty-detection",
+      "no-color",
+      "rich"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/output-format-detection-convention.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "param-blocklist-for-telemetry",
+    "slug": "param-blocklist-for-telemetry",
+    "category": "reference",
+    "description": "When logging tool-call params for telemetry, maintain a small explicit blocklist of param names that are opaque internal handles and must never be logged — in chrome-devtools-mcp this is `{uid, reqid, msgid}`.",
+    "tags": [
+      "telemetry",
+      "privacy",
+      "param-blocklist",
+      "opaque-handles"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/param-blocklist-for-telemetry.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "vector-clock-ui-dominance-tri-state-color",
     "slug": "vector-clock-ui-dominance-tri-state-color",
     "category": "reference",
@@ -6801,6 +7183,23 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/reference/vector-clock-ui-dominance-tri-state-color.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "opensre-tool-registry-surfaces",
+    "slug": "opensre-tool-registry-surfaces",
+    "category": "registry",
+    "description": "OpenSRE auto-discovers ~60 investigation tools by walking app.tools/, deduping by name, and tagging each with a \"surface\" (investigation vs chat) so the same module can appear in different agent contexts with different visibility.",
+    "tags": [
+      "tool-registry",
+      "auto-discovery",
+      "surfaces",
+      "plugin"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/opensre-tool-registry-surfaces.md",
     "has_content": true
   },
   {
@@ -6857,6 +7256,39 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/testing/agent-test-spec-template.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "onnx-runtime-version-pinning-history",
+    "slug": "onnx-runtime-version-pinning-history",
+    "category": "version-quirk",
+    "description": "ONNX Runtime went through a pin → repin → unpin cycle (rc.11 → rc.12 → unpinned).",
+    "tags": [
+      "magika",
+      "version-quirk"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/version-quirk/onnx-runtime-version-pinning-history.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "paren-natural-language-voice-control",
+    "slug": "paren-natural-language-voice-control",
+    "category": "voice-design",
+    "description": "VoxCPM2 interprets parenthesized natural-language prefixes as voice control instructions with no special tokens required",
+    "tags": [
+      "voice-design",
+      "tts",
+      "control",
+      "natural-language",
+      "prompt"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/voice-design/paren-natural-language-voice-control.md",
     "has_content": true
   },
   {
@@ -6960,6 +7392,30 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/qa/content-audit",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "patch-notes",
+    "slug": "patch-notes",
+    "category": "",
+    "description": "\"Generate player-facing patch notes from git history, sprint data, and internal changelogs. Translates developer language into clear, engaging player communication.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/patch-notes",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "perf-profile",
+    "slug": "perf-profile",
+    "category": "",
+    "description": "\"Structured performance profiling workflow. Identifies bottlenecks, measures against budgets, and generates optimization recommendations with priority rankings.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/engineering/perf-profile",
     "has_content": false
   },
   {
@@ -8111,6 +8567,77 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/architecture/accepts-then-convert-two-phase-dispatch",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "one-websocket-port-for-ws-and-http",
+    "slug": "one-websocket-port-for-ws-and-http",
+    "category": "architecture",
+    "description": "Run a web UI + WebSocket RPC on the same port by passing an httpHandler to the WsRpcServer — Node's http upgrade event lets one server serve both.",
+    "tags": [
+      "websocket",
+      "http",
+      "port-sharing",
+      "webui"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/one-websocket-port-for-ws-and-http",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "optimistic-mutation-pattern",
+    "slug": "optimistic-mutation-pattern",
+    "category": "architecture",
+    "description": "Standard React Query optimistic-update pattern with snapshot/restore on failure and onSettled invalidation — for CRUD mutations in realtime apps.",
+    "tags": [
+      "react-query",
+      "optimistic",
+      "mutations",
+      "ux",
+      "patterns"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/architecture/optimistic-mutation-pattern",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "permission-bitmask-control-abstraction",
+    "slug": "permission-bitmask-control-abstraction",
+    "category": "auth",
+    "description": "Permission flags encoded as ControlPermissions bitmask with permission_info protobuf messages.",
+    "tags": [
+      "abstraction",
+      "auth",
+      "bitmask",
+      "control",
+      "permission"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/auth/permission-bitmask-control-abstraction",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "persistent-process-memory-scanner-for-ui-state-extraction",
+    "slug": "persistent-process-memory-scanner-for-ui-state-extraction",
+    "category": "automation",
+    "description": "Cheat-Engine-style differential memory scanning to locate dynamic UI state fields in processes that don't expose them via API or DOM.",
+    "tags": [
+      "automation",
+      "windows",
+      "memory-scanning",
+      "reverse-engineering",
+      "ui-extraction"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/automation/persistent-process-memory-scanner-for-ui-state-extraction",
     "has_content": false
   },
   {
@@ -10292,6 +10819,25 @@
   },
   {
     "kind": "skill",
+    "name": "persistent-env-vars-via-generated-envs-py",
+    "slug": "persistent-env-vars-via-generated-envs-py",
+    "category": "build-system",
+    "description": "Capture build-time environment variables into a generated `envs.py` that the installed package reads at import time, so user-chosen cache paths or flags persist across pip installs without shell rc files.",
+    "tags": [
+      "setup-py",
+      "environment-variables",
+      "wheels",
+      "build-time",
+      "python-package",
+      "persistence"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build-system/persistent-env-vars-via-generated-envs-py",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "autoplan",
     "slug": "autoplan",
     "category": "cli",
@@ -10931,6 +11477,24 @@
     "version": "0.1.0-draft",
     "path": "skills/cli/paired-flag-multi-instance-registration",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "persistent-cli-daemon-with-autostart",
+    "slug": "persistent-cli-daemon-with-autostart",
+    "category": "cli",
+    "description": "Design a CLI where subcommands invoke a background daemon over a local socket, the first call autostarts the daemon, and `start`/`stop`/`status` subcommands give the user manual control.",
+    "tags": [
+      "cli",
+      "daemon",
+      "yargs",
+      "lifecycle",
+      "ipc"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/persistent-cli-daemon-with-autostart",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -13577,6 +14141,51 @@
   },
   {
     "kind": "skill",
+    "name": "ort-crate-onnx-runtime-session-configuration",
+    "slug": "ort-crate-onnx-runtime-session-configuration",
+    "category": "inference",
+    "description": "Configure ONNX Runtime via the ort crate's session builder: inter/intra threads, optimization level, parallel execution, embedded model bytes.",
+    "tags": [
+      "magika",
+      "inference"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/ort-crate-onnx-runtime-session-configuration",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "overwrite-map-for-non-canonical-types",
+    "slug": "overwrite-map-for-non-canonical-types",
+    "category": "inference",
+    "description": "Apply a configurable map after inference to redirect non-canonical model labels to canonical user-facing types (e.g. randombytes → unknown), recording the overwrite reason.",
+    "tags": [
+      "magika",
+      "inference"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/overwrite-map-for-non-canonical-types",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "per-content-type-confidence-threshold-dispatch",
+    "slug": "per-content-type-confidence-threshold-dispatch",
+    "category": "inference",
+    "description": "Apply per-content-type confidence thresholds (read from config) and a 3-mode dispatch (best_guess / medium_confidence / high_confidence) to gate model predictions vs generic fallbacks.",
+    "tags": [
+      "magika",
+      "inference"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/inference/per-content-type-confidence-threshold-dispatch",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
     "name": "a2a-protocol-with-hello-publish-decision",
     "slug": "a2a-protocol-with-hello-publish-decision",
     "category": "integration",
@@ -13672,6 +14281,78 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "output-guardrail-with-agent",
+    "slug": "output-guardrail-with-agent",
+    "category": "llm-agents",
+    "description": "Use a fast/cheap agent to validate the main agent's output before returning it to the user.",
+    "tags": [
+      "openai-agents",
+      "output-guardrail",
+      "agent-validator",
+      "safety",
+      "quality"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/output-guardrail-with-agent",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "parallel-agent-runs",
+    "slug": "parallel-agent-runs",
+    "category": "llm-agents",
+    "description": "Run multiple agent instances concurrently with asyncio.gather() and pick the best result.",
+    "tags": [
+      "openai-agents",
+      "parallelization",
+      "asyncio",
+      "gather",
+      "best-of-n"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/parallel-agent-runs",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "persistent-false-buffer-scaling-toggle",
+    "slug": "persistent-false-buffer-scaling-toggle",
+    "category": "lora",
+    "description": "Enable/disable LoRA via persistent=False buffer mutation, compatible with torch.compile",
+    "tags": [
+      "lora",
+      "pytorch",
+      "torch-compile",
+      "buffer",
+      "fine-tuning"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/lora/persistent-false-buffer-scaling-toggle",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "parallel-text-and-structured-response",
+    "slug": "parallel-text-and-structured-response",
+    "category": "mcp",
+    "description": "Return every MCP tool result as a parallel pair — a Markdown `content` array for humans/agents, and a `structuredContent` object with the exact same fields for programmatic consumers, gated by an `experimentalStructuredContent` flag.",
+    "tags": [
+      "mcp",
+      "response-format",
+      "structured-content",
+      "dual-output",
+      "markdown"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/parallel-text-and-structured-response",
     "has_content": false
   },
   {
@@ -13790,6 +14471,24 @@
   },
   {
     "kind": "skill",
+    "name": "optional-denoiser-lazy-import",
+    "slug": "optional-denoiser-lazy-import",
+    "category": "model-loading",
+    "description": "Lazy-load an optional audio denoiser pipeline only when explicitly enabled at construction time",
+    "tags": [
+      "model-loading",
+      "lazy-import",
+      "optional-dependency",
+      "denoiser",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/model-loading/optional-denoiser-lazy-import",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-tracing-spans",
     "slug": "agent-tracing-spans",
     "category": "observability",
@@ -13826,6 +14525,23 @@
   },
   {
     "kind": "skill",
+    "name": "personality-report-generation-with-percentiles",
+    "slug": "personality-report-generation-with-percentiles",
+    "category": "observability",
+    "description": "Generate human-readable personality report with success rates, velocity, and trait analysis",
+    "tags": [
+      "evolver",
+      "observability",
+      "reporting",
+      "agent-telemetry"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/observability/personality-report-generation-with-percentiles",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "claude-cli-unattended-wrapper",
     "slug": "claude-cli-unattended-wrapper",
     "category": "operations",
@@ -13847,6 +14563,47 @@
   },
   {
     "kind": "skill",
+    "name": "opus-encoding-on-mcu",
+    "slug": "opus-encoding-on-mcu",
+    "category": "opus-codec-firmware",
+    "description": "Configure the embedded Opus 1.2.1 encoder on a Zephyr RTOS MCU with a ring-buffer feed, CELT/Hybrid modes, and a callback-based output for BLE transmission.",
+    "tags": [
+      "opus",
+      "zephyr",
+      "firmware",
+      "ble",
+      "wearable",
+      "mcu",
+      "ring-buffer"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/opus-codec-firmware/opus-encoding-on-mcu",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "orphaned-daemon-termination-guard",
+    "slug": "orphaned-daemon-termination-guard",
+    "category": "process",
+    "description": "Kill an orphaned background daemon when no non-daemon sibling process is alive. Prevents LevelDB/file lock contention after unclean parent shutdown. Pattern: scan for daemon PIDs, then check if any non-daemon parent process exists before killing.",
+    "tags": [
+      "daemon",
+      "orphan",
+      "process",
+      "bash",
+      "leveldb",
+      "lock",
+      "cleanup",
+      "startup"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/process/orphaned-daemon-termination-guard",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a11y-tree-snapshot-with-uids",
     "slug": "a11y-tree-snapshot-with-uids",
     "category": "puppeteer",
@@ -13861,6 +14618,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/puppeteer/a11y-tree-snapshot-with-uids",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "optional-dependency-deferred-exception",
+    "slug": "optional-dependency-deferred-exception",
+    "category": "python",
+    "description": "Import a heavy/optional dependency inside try/except at module load, stash sys.exc_info() for later, and raise a tailored MissingDependencyException with the original traceback only when the feature is actually invoked.",
+    "tags": [
+      "python",
+      "optional-dependency",
+      "packaging",
+      "extras",
+      "imports"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/python/optional-dependency-deferred-exception",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "optional-torch-symbol-import-try-except",
+    "slug": "optional-torch-symbol-import-try-except",
+    "category": "pytorch-integration",
+    "description": "Wrap `from ._C import symbol_a, symbol_b` in `try/except ImportError` so your package still loads when the CUDA runtime/toolkit version is too old for TensorMap-using kernels — degraded functionality, not a hard crash.",
+    "tags": [
+      "python-packaging",
+      "import-time",
+      "cuda-compatibility",
+      "graceful-degradation",
+      "pybind11"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/pytorch-integration/optional-torch-symbol-import-try-except",
     "has_content": false
   },
   {
@@ -13968,6 +14761,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/safety/contextual-identifier-detectors-overlap-resolution",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "output-guardrail-check",
+    "slug": "output-guardrail-check",
+    "category": "safety",
+    "description": "Validate or block agent output before returning it to the user using @output_guardrail.",
+    "tags": [
+      "openai-agents",
+      "guardrails",
+      "output-validation",
+      "safety",
+      "sensitive-data"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/safety/output-guardrail-check",
     "has_content": false
   },
   {
@@ -14137,6 +14948,23 @@
     "version": "1.0.0",
     "path": "skills/security/openssl-4-migration-checklist",
     "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "openai-conversation-session",
+    "slug": "openai-conversation-session",
+    "category": "session-management",
+    "description": "Persist conversation history across multiple Runner.run() calls automatically using OpenAIConversationsSession.",
+    "tags": [
+      "openai-agents",
+      "sessions",
+      "conversation-history",
+      "multi-turn"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/session-management/openai-conversation-session",
+    "has_content": false
   },
   {
     "kind": "skill",
@@ -14402,6 +15230,41 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/testing-gpu/cosine-similarity-diff-for-fp8-numerics",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "permission-mode-shift-tab-cycle",
+    "slug": "permission-mode-shift-tab-cycle",
+    "category": "ui",
+    "description": "Bind SHIFT+TAB at the chat input to cycle through permission modes (safe/ask/allow-all), show the current mode as a persistent indicator, and fire a change event so automations can react in real time.",
+    "tags": [
+      "ux",
+      "permissions",
+      "keybindings",
+      "agent-ui"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/ui/permission-mode-shift-tab-cycle",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "paren-prefix-voice-description",
+    "slug": "paren-prefix-voice-description",
+    "category": "voice-design",
+    "description": "Control voice characteristics via natural language description in parentheses prepended to the TTS input text",
+    "tags": [
+      "voice-design",
+      "tts",
+      "prompt-engineering",
+      "control",
+      "natural-language"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/voice-design/paren-prefix-voice-description",
     "has_content": false
   },
   {
