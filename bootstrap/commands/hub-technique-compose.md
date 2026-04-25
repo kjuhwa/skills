@@ -90,6 +90,30 @@ Authoring workflow for the `technique/` middle layer. Produces a `.technique-dra
 - **Never silently reject draft atoms**. If an atom is `*-draft`, prompt: "this atom is still in draft — compose anyway? (y/n)" — don't assume.
 - Authoring is a **write pass**; verification is a **separate pass** (step 7). Do not collapse them — keep the separation so the user sees the draft before it gets validated.
 
+## Discovery — _suggest_techniques.py
+
+If you don't already have a technique idea, run:
+
+```
+python ~/.claude/skills-hub/remote/bootstrap/tools/_suggest_techniques.py
+```
+
+The tool walks every existing technique's `composes[]` AND every paper's `proposed_builds[].requires[]`, finds atom bundles that recur in ≥2 different parent entries, and ranks them as candidate new techniques. Output looks like:
+
+```
+--- Bundle 1 (4 atoms) ---
+  • knowledge/pitfall/idempotency-implementation-pitfall
+  • skill/architecture/optimistic-mutation-pattern
+  • skill/backend/migration-processor-pipeline
+  • skill/workflow/idempotency-data-simulation
+  Parents containing ≥2 of these atoms:
+    [technique] db/idempotent-migration-with-resume-checkpoint  (3 of 4)
+    [technique] frontend/optimistic-mutation-with-server-reconcile  (3 of 4)
+    [build] db/migration-checkpoint-overhead/migration-checkpoint-granularity-benchmark  (2 of 4)
+```
+
+The tool runs automatically via `precheck.py` (post-merge / post-commit hooks). Bundles are *suggestions* — false positives include common dependencies that aren't worth their own technique. Use the parent list to judge whether the bundle is a genuine pattern or coincidental overlap.
+
 ## Out of scope (v0.1)
 
 - Publishing to remote hub (`/hub-technique-publish` — later).

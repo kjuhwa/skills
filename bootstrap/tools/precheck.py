@@ -61,6 +61,7 @@ def main() -> int:
     steps.append(("orphan-audit", [py, "_audit_orphan_atoms.py"]))
     steps.append(("paper-loops-audit", [py, "_audit_paper_loops.py"]))
     steps.append(("paper-falsifiability-audit", [py, "_audit_paper_falsifiability.py"]))
+    steps.append(("technique-suggestions", [py, "_suggest_techniques.py"]))
 
     for label, cmd in steps:
         rc = run(label, cmd)
