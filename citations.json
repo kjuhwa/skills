@@ -2,7 +2,7 @@
   "schema": 2,
   "totals": {
     "paper_citations": 111,
-    "technique_citations": 62,
+    "technique_citations": 65,
     "atoms_cited": 61,
     "atoms_produced": 3
   },
@@ -218,6 +218,12 @@
           "kind": "technique",
           "ref": "arch/feature-flag-killswitch-with-circuit-state",
           "role": "counter-evidence",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/gated-fallback-chain",
+          "role": "silent-failure-warning",
           "via": "composes"
         }
       ]
@@ -563,6 +569,12 @@
           "ref": "ai/agent-fallback-ladder",
           "role": "primary-call-shape",
           "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/gated-fallback-chain",
+          "role": "fallback-shape",
+          "via": "composes"
         }
       ]
     },
@@ -656,6 +668,12 @@
           "kind": "technique",
           "ref": "arch/feature-flag-killswitch-with-circuit-state",
           "role": "feature-flag-shape",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/gated-fallback-chain",
+          "role": "rollout-gate",
           "via": "composes"
         },
         {
