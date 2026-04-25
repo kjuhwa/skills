@@ -41,7 +41,7 @@ examines:
 
 perspectives:
   - name: Lock Granularity Tradeoff
-    summary: Per-event lock guarantees event-level exclusivity but pays N×lock-acquire on hot keys. Per-bucket lock loses event exclusivity for bounded contention. Tradeoff: correctness vs throughput.
+    summary: Per-event lock guarantees event-level exclusivity but pays N×lock-acquire on hot keys. Per-bucket lock loses event exclusivity for bounded contention — correctness granularity vs throughput.
   - name: Workload Shape Determines Crossover
     summary: Lock contention scales with event_rate × 1/key_cardinality. Low-card+high-rate (100 events/s on 5 hot keys) hits the wall fast; high-card+low-rate (1 event/s on 1000 keys) never contends at N=32.
   - name: Failure-Mode Shift Under Contention
