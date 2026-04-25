@@ -23,6 +23,7 @@ composes:
     ref: pitfall/finite-state-machine-implementation-pitfall
     version: "*"
     role: state-transition-counter-evidence
+    note: state-transition-counter-evidence
 
 binding: loose
 
@@ -34,6 +35,20 @@ verify:
 # Finite-State Machine: Monotonic Ratchet
 
 > A state machine where every transition moves forward; no transition leads back to a previously-occupied state. Distinct from saga (which can reverse via compensation) and from generic FSMs (which often allow cycles). The "ratchet" property guarantees an audit-able forward-only timeline.
+
+<!-- references-section:begin -->
+## Composes
+
+**skill — `workflow/finite-state-machine-data-simulation`**  _(version: `*`)_
+state-machine-baseline
+
+**skill — `input/relative-mouse-mode-state-machine`**  _(version: `*`)_
+concrete-state-machine-example
+
+**knowledge — `pitfall/finite-state-machine-implementation-pitfall`**  _(version: `*`)_
+state-transition-counter-evidence
+
+<!-- references-section:end -->
 
 ## When to use
 

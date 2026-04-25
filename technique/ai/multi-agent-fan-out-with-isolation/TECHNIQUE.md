@@ -35,6 +35,20 @@ verify:
 
 > A coordinator dispatches N parallel sub-agents, each with a disjoint scope. Sub-agents do not communicate with each other mid-task; results fan-in only at the coordinator. Bulkhead isolation prevents one sub-agent's failure from contaminating peers. Distinct from a single agent with parallel tool calls (no scope partitioning) and from agent-as-tool patterns (sequential, not parallel).
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `agents/basic-agent-runner`**  _(version: `*`)_
+agent-runtime-baseline
+
+**skill — `ai/ai-subagent-scope-narrowing`**  _(version: `*`)_
+scope-discipline
+
+**skill — `workflow/bulkhead-data-simulation`**  _(version: `*`)_
+isolation-shape
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Task naturally decomposes into independent sub-tasks (parallel scans, parallel transforms)

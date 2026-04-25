@@ -35,6 +35,20 @@ verify:
 
 > A long-running schema/data migration that can crash and restart at any point and still complete correctly. Each step is idempotent (re-running has no effect after first run); a persistent checkpoint table records which steps completed.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `backend/migration-processor-pipeline`**  _(version: `*`)_
+migration-shape-baseline
+
+**skill — `workflow/idempotency-data-simulation`**  _(version: `*`)_
+per-step-idempotency-pattern
+
+**knowledge — `pitfall/idempotency-implementation-pitfall`**  _(version: `*`)_
+counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Migration touches enough rows that one process restart is plausible during the run

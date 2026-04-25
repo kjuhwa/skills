@@ -42,6 +42,23 @@ verify:
 
 > Pilot #1 was a linear pipeline, #2 a decision tree, #3 an event-driven loop. This pilot is a **hierarchical fallback ladder** — N tiers ordered by cost and confidence, each tier gated by its own circuit-breaker state. A request flows down the ladder until one tier answers; a failure opens that tier's breaker and the next request skips it automatically.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `ai/ai-call-with-mock-fallback`**  _(version: `*`)_
+primary-call-shape
+
+**skill — `cli/graceful-version-fallback-tier-order`**  _(version: `*`)_
+tier-ordering-rule
+
+**knowledge — `pitfall/circuit-breaker-implementation-pitfall`**  _(version: `*`)_
+circuit-state-guard
+
+**knowledge — `pitfall/retry-strategy-implementation-pitfall`**  _(version: `*`)_
+retry-pitfall-guard
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Multiple LLM providers (or model tiers within one provider) with different cost/latency/reliability profiles

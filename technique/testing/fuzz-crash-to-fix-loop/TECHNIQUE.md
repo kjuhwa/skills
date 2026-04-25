@@ -42,6 +42,23 @@ verify:
 
 > Pilot #1 was a linear pipeline, pilot #2 was a decision tree. This technique is an **event-driven iterative loop** — each crash discovered by the fuzzer triggers one cycle, and the fixed crash input returns to the seed corpus so every subsequent fuzz round regression-checks it. The loop terminates not on a wall-clock budget but on a **signal**: N consecutive clean fuzz rounds.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `testing/fuzz-corpus-seed-management`**  _(version: `*`)_
+crash-source
+
+**skill — `debug/investigate`**  _(version: `^1.0.0`)_
+root-cause-per-crash
+
+**skill — `debug/triage-issue`**  _(version: `*`)_
+issue-and-plan
+
+**skill — `testing/tdd`**  _(version: `*`)_
+fix-implementation
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Long-running fuzz campaigns (CI fuzz bots, nightly fuzz jobs)

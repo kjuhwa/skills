@@ -35,6 +35,20 @@ verify:
 
 > Traffic shifts to the new release in increments (1%, 5%, 25%, 50%, 100%) with KPI gates between steps. If a KPI regresses past threshold, the system auto-reverts the last step. Distinguished from strangler-fig (much shorter timescale), and from manual canary (where humans approve each step).
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `workflow/canary-release-data-simulation`**  _(version: `*`)_
+canary-shape-baseline
+
+**skill — `backend/conditional-feature-flag-rollout`**  _(version: `*`)_
+traffic-control-implementation
+
+**knowledge — `pitfall/canary-release-implementation-pitfall`**  _(version: `*`)_
+counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Service has stable KPIs (error rate, p99 latency) that fail loudly when broken

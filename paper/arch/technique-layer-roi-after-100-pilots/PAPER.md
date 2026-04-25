@@ -25,7 +25,8 @@ examines:
     role: example-of-uncited-technique
   - kind: paper
     ref: workflow/technique-layer-composition-value
-    role: sister meta paper — asks "does the layer produce durable value?", this paper asks "is value distributed evenly or concentrated?"
+    role: sister meta paper
+    note: "sister meta paper — asks \"does the layer produce durable value?\", this paper asks \"is value distributed evenly or concentrated?\""
 
 perspectives:
   - name: Power-Law Citation
@@ -76,6 +77,37 @@ retraction_reason: null
 ## Background
 
 The hub currently has ≈17 techniques (4 on main, 13 in drafts). This paper extrapolates to N=100 and predicts the citation distribution. Either confirms the layer earns its keep (top techniques carry the value) or surfaces the empty-loop retraction risk in concrete terms.
+
+<!-- references-section:begin -->
+## References (examines)
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+example-of-cited-technique
+
+**technique — `debug/root-cause-to-tdd-plan`**
+example-of-cited-technique
+
+**technique — `testing/fuzz-crash-to-fix-loop`**
+example-of-uncited-technique
+
+**technique — `ai/agent-fallback-ladder`**
+example-of-uncited-technique
+
+**paper — `workflow/technique-layer-composition-value`**
+sister meta paper — asks "does the layer produce durable value?", this paper asks "is value distributed evenly or concentrated?"
+
+
+## Build dependencies (proposed_builds)
+
+### `technique-citation-graph-builder`  _(scope: poc)_
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+starting-node-for-graph-walk
+
+**technique — `debug/root-cause-to-tdd-plan`**
+starting-node-for-graph-walk
+
+<!-- references-section:end -->
 
 ## Perspectives
 

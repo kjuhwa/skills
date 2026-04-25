@@ -35,6 +35,20 @@ verify:
 
 > Both old and new credentials are accepted during a bounded overlap window; clients migrate at their own pace; at window end, only new is accepted. Distinguished from instant rotation (causes downtime) and from indefinite multi-credential acceptance (security drift).
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `security/aes256gcm-machineid-credential-store`**  _(version: `*`)_
+credential-storage-baseline
+
+**skill — `llm-agents/hermes-credential-pool-failover`**  _(version: `*`)_
+rotation-with-failover-shape
+
+**knowledge — `pitfall/refresh-token-do-not-regenerate`**  _(version: `*`)_
+rotation-counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Distributed clients cannot all be updated atomically (mobile apps, third-party integrations)

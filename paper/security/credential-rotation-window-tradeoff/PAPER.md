@@ -74,6 +74,34 @@ retraction_reason: null
 
 `technique/security/credential-rotation-overlap-window` describes the overlap-window shape but leaves window length as "domain choice." Industry default of 7-30d is rarely revisited. This paper proposes shorter is better.
 
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `security/aes256gcm-machineid-credential-store`**
+credential-store-shape
+
+**skill — `llm-agents/hermes-credential-pool-failover`**
+rotation-with-failover-shape
+
+**knowledge — `pitfall/refresh-token-do-not-regenerate`**
+rotation-counter-evidence
+
+**knowledge — `pitfall/circuit-breaker-implementation-pitfall`**
+emergency-revocation-context
+
+
+## Build dependencies (proposed_builds)
+
+### `rotation-window-simulator`  _(scope: poc)_
+
+**skill — `security/aes256gcm-machineid-credential-store`**
+realistic-credential-shape
+
+**knowledge — `pitfall/refresh-token-do-not-regenerate`**
+failure-modes-to-account-for
+
+<!-- references-section:end -->
+
 ## Perspectives
 
 (see frontmatter)

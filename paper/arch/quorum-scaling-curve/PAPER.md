@@ -17,6 +17,7 @@ examines:
   - kind: skill
     ref: algorithms/gossip-round-rng-seeded-reproducible-sim
     role: alternative-shape-for-comparison
+    note: alternative-shape-for-comparison
   - kind: knowledge
     ref: pitfall/raft-consensus-implementation-pitfall
     role: counter-evidence

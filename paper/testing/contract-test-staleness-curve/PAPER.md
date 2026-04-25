@@ -74,6 +74,34 @@ retraction_reason: null
 
 `technique/testing/contract-test-with-consumer-verification` proposes quorum-vote contract tests but assumes votes are informed. This paper questions that assumption.
 
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `safety/interface-contract-validation`**
+contract-validation-shape
+
+**skill — `testing/tdd`**
+test-discipline-baseline
+
+**skill — `workflow/idempotency-data-simulation`**
+replay-safety-pattern
+
+**knowledge — `pitfall/idempotency-implementation-pitfall`**
+similar-decay-pattern
+
+
+## Build dependencies (proposed_builds)
+
+### `contract-test-staleness-detector`  _(scope: poc)_
+
+**skill — `safety/interface-contract-validation`**
+contract-shape-to-instrument
+
+**skill — `testing/tdd`**
+test-execution-discipline
+
+<!-- references-section:end -->
+
 ## Perspectives
 
 (see frontmatter)

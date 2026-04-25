@@ -64,7 +64,8 @@ composes:                       # the core field: which atomic units are combine
                                 # ※ can diverge from frontmatter category,
                                 #   so use the actual path (pilot finding)
     version: "^1.0.0"           # semver range (loose) or exact value (pinned)
-    role: orchestrator          # this atom's job in the composition (free text)
+    role: orchestrator          # short label (≤30 chars) — this atom's job in the composition
+    note: optional long-form prose if you need to explain the role in narrative
   - kind: knowledge
     ref: workflow/batch-pr-conflict-recovery
     version: "*"                # any version allowed

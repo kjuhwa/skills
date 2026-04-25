@@ -74,6 +74,34 @@ retraction_reason: null
 
 `technique/frontend/optimistic-mutation-with-server-reconcile` documents the shape but leaves the question of *when* to use it open. This paper claims optimistic UI is conditionally good — bounded by server reliability.
 
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `architecture/optimistic-mutation-pattern`**
+optimistic-shape
+
+**skill — `workflow/idempotency-data-simulation`**
+idempotency-discipline
+
+**knowledge — `pitfall/idempotency-implementation-pitfall`**
+counter-evidence
+
+**knowledge — `pitfall/circuit-breaker-implementation-pitfall`**
+failure-mode-similarity
+
+
+## Build dependencies (proposed_builds)
+
+### `optimistic-ui-rollback-frequency-monitor`  _(scope: poc)_
+
+**skill — `architecture/optimistic-mutation-pattern`**
+subject-component
+
+**knowledge — `pitfall/idempotency-implementation-pitfall`**
+realistic-failure-shape
+
+<!-- references-section:end -->
+
 ## Perspectives
 
 (see frontmatter)

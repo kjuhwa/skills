@@ -35,6 +35,20 @@ verify:
 
 > The client updates UI immediately upon user action, predicting the server response. When the actual server response arrives, the client reconciles: accept (response matches prediction) or rollback (divergence). Distinct from polling, from real-time sync, and from blocking-spinner UX.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `architecture/optimistic-mutation-pattern`**  _(version: `*`)_
+optimistic-shape-baseline
+
+**skill — `workflow/idempotency-data-simulation`**  _(version: `*`)_
+server-side-idempotency
+
+**knowledge — `pitfall/idempotency-implementation-pitfall`**  _(version: `*`)_
+counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Latency between client and server is user-perceptible (≥ 200ms)

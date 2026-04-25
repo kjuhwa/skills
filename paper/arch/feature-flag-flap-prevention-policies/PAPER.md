@@ -74,6 +74,34 @@ retraction_reason: null
 
 `technique/arch/feature-flag-killswitch-with-circuit-state` documents the breaker shape but specifies hysteresis as "operator-tuned." This paper proposes the tuning rule.
 
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `backend/conditional-feature-flag-rollout`**
+feature-flag-shape
+
+**skill — `workflow/circuit-breaker-data-simulation`**
+circuit-state-shape
+
+**knowledge — `pitfall/circuit-breaker-implementation-pitfall`**
+counter-evidence
+
+**knowledge — `pitfall/canary-release-implementation-pitfall`**
+similar-flap-pattern
+
+
+## Build dependencies (proposed_builds)
+
+### `hysteresis-tuning-tool`  _(scope: poc)_
+
+**skill — `backend/conditional-feature-flag-rollout`**
+flag-control-baseline
+
+**knowledge — `pitfall/circuit-breaker-implementation-pitfall`**
+known-bugs-to-avoid
+
+<!-- references-section:end -->
+
 ## Perspectives
 
 (see frontmatter)

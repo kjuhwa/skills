@@ -41,6 +41,23 @@ verify:
 
 > A pipeline for producing many independent artifacts in parallel and shipping them as individual PRs. The individual skills and knowledge entries already exist; this technique fixes **the order and the wiring points** that keep the flow safe.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `workflow/parallel-build-sequential-publish`**  _(version: `^1.0.0`)_
+orchestrator
+
+**skill — `workflow/rollback-anchor-tag-before-destructive-op`**  _(version: `*`)_
+pre-flight-safety
+
+**knowledge — `workflow/batch-pr-conflict-recovery`**  _(version: `*`)_
+failure-recovery
+
+**knowledge — `pitfall/gh-pr-create-race-with-auto-merge`**  _(version: `*`)_
+known-pitfall
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Producing 10+ independent projects/examples/migrations in one batch, each needing its own PR

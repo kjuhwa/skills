@@ -74,6 +74,34 @@ retraction_reason: null
 
 `technique/db/idempotent-migration-with-resume-checkpoint` describes the pattern but does not specify granularity. Practitioners default to either too-fine (per-row) or no-checkpoint. This paper argues for per-batch as the canonical choice.
 
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `backend/migration-processor-pipeline`**
+migration-shape
+
+**skill — `workflow/idempotency-data-simulation`**
+idempotency-discipline
+
+**knowledge — `pitfall/idempotency-implementation-pitfall`**
+counter-evidence
+
+**knowledge — `pitfall/dead-letter-queue-implementation-pitfall`**
+failed-row-handling
+
+
+## Build dependencies (proposed_builds)
+
+### `migration-checkpoint-granularity-benchmark`  _(scope: poc)_
+
+**skill — `backend/migration-processor-pipeline`**
+migration-pipeline-baseline
+
+**skill — `workflow/idempotency-data-simulation`**
+idempotency-pattern
+
+<!-- references-section:end -->
+
 ## Perspectives
 
 (see frontmatter)

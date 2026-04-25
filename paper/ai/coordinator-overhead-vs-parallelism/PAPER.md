@@ -23,9 +23,11 @@ examines:
   - kind: knowledge
     ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
     role: counter-evidence-from-prior-paper
+    note: counter-evidence-from-prior-paper
   - kind: paper
     ref: workflow/parallel-dispatch-breakeven-point
-    role: prior paper establishing parallel-dispatch can be net negative — this paper extends to the coordinator-overhead axis
+    role: prior-paper
+    note: prior paper establishing parallel-dispatch can be net negative — this paper extends to the coordinator-overhead axis
 
 perspectives:
   - name: Coordinator Time is Serial
@@ -76,6 +78,37 @@ retraction_reason: null
 ## Background
 
 `technique/ai/multi-agent-fan-out-with-isolation` describes the shape; this paper measures the curve.
+
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `agents/basic-agent-runner`**
+agent-runtime-baseline
+
+**skill — `ai/ai-subagent-scope-narrowing`**
+scope-discipline-baseline
+
+**skill — `workflow/bulkhead-data-simulation`**
+isolation-baseline
+
+**knowledge — `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch`**
+counter-evidence-from-prior-paper
+
+**paper — `workflow/parallel-dispatch-breakeven-point`**
+prior paper establishing parallel-dispatch can be net negative — this paper extends to the coordinator-overhead axis
+
+
+## Build dependencies (proposed_builds)
+
+### `coordinator-overhead-benchmark`  _(scope: poc)_
+
+**skill — `agents/basic-agent-runner`**
+harness-runtime
+
+**knowledge — `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch`**
+pre-flight-check-pattern
+
+<!-- references-section:end -->
 
 ## Perspectives
 

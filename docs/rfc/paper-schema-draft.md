@@ -90,7 +90,8 @@ premise:                    # REQUIRED — what makes this a paper
 examines:                   # what this paper analyzes / cites (hub refs)
   - kind: technique | skill | knowledge | paper       # v0.2.1: paper added
     ref: <kind-root-relative path>
-    role: <free-text, e.g. "subject of analysis", "supporting evidence", "cited related work">
+    role: <short label, ≤30 chars — e.g. "subject", "baseline", "counter-evidence", "prior-paper">
+    note: <optional, long-form prose — moved out of role to keep frontmatter tables narrow>
 
 perspectives:               # angles/lenses applied to the subject — at least 2 required
   - name: <short label>
@@ -109,7 +110,8 @@ proposed_builds:            # concrete downstream proposals (optional but expect
     requires:               # NEW in v0.2: corpus refs this build depends on
       - kind: skill | knowledge | technique
         ref: <kind-root-relative path>
-        role: <free-text — why this dependency matters>
+        role: <short label, ≤30 chars — why this dependency matters>
+        note: <optional, long-form prose>
 
 experiments:                # NEW in v0.2: backward-looking — what was actually tested
   - name: <kebab-case label>

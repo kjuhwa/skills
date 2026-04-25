@@ -50,6 +50,29 @@ verify:
 
 > Pilots #1–#6 each had a fixed structural asymmetry: orchestrator → workers (linear), one decision point with branches (tree), one processor with cycles (loop), root → tiers (ladder), single forward+reverse chain (saga), one producer + one consumer + feedback (backpressure). This pilot is **flat multi-peer voting** — N peers with no permanent hierarchy, decisions reached via quorum agreement, leadership (when needed) rotates among them. There is no orchestrator and no follower role; each peer is a full participant in every decision.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `workflow/raft-consensus-data-simulation`**  _(version: `*`)_
+consensus-baseline
+
+**skill — `algorithms/gossip-round-rng-seeded-reproducible-sim`**  _(version: `*`)_
+gossip-alternative-shape
+
+**skill — `backend/service-discovery-replica-leader-tracking`**  _(version: `*`)_
+leader-tracking-implementation
+
+**knowledge — `pitfall/raft-consensus-implementation-pitfall`**  _(version: `*`)_
+consensus-counter-evidence
+
+**knowledge — `decision/phi-accrual-failure-detector-over-binary-timeout`**  _(version: `*`)_
+failure-detection-rationale
+
+**knowledge — `pitfall/quorum-visualization-off-by-one`**  _(version: `*`)_
+quorum-math-counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - A small cluster (3–9 peers typical) needs to agree on shared state

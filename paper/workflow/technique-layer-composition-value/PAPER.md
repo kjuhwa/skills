@@ -18,16 +18,20 @@ premise:
 examines:
   - kind: technique
     ref: workflow/safe-bulk-pr-publishing
-    role: pilot #1 (linear pipeline, 4 composes)
+    role: pilot-linear
+    note: "pilot #1 (linear pipeline, 4 composes)"
   - kind: technique
     ref: debug/root-cause-to-tdd-plan
-    role: pilot #2 (decision tree, 4 composes)
+    role: pilot-decision
+    note: "pilot #2 (decision tree, 4 composes)"
   - kind: skill
     ref: workflow/parallel-build-sequential-publish
-    role: atom whose relocation surfaced the layout mismatch (RFC §4 evidence)
+    role: atom-whose
+    note: atom whose relocation surfaced the layout mismatch (RFC §4 evidence)
   - kind: knowledge
     ref: workflow/batch-pr-conflict-recovery
-    role: atom demonstrating failure-mode role in pilot #1
+    role: atom-demonstrating
+    note: "atom demonstrating failure-mode role in pilot #1"
 
 perspectives:
   - name: Maintainability
@@ -48,20 +52,24 @@ proposed_builds:
     requires:
       - kind: technique
         ref: workflow/safe-bulk-pr-publishing
-        role: shape template for composition-by-reference commands
+        role: shape-template
+        note: shape template for composition-by-reference commands
       - kind: technique
         ref: debug/root-cause-to-tdd-plan
-        role: second shape template — tests command generality across paper shapes
+        role: second shape template
+        note: second shape template — tests command generality across paper shapes
   - slug: security-domain-technique-3
     summary: A third pilot technique in a domain untouched by the first two (e.g. security/secret-rotation-safe-handover) to further stress schema generality past n=2
     scope: poc
     requires:
       - kind: technique
         ref: workflow/safe-bulk-pr-publishing
-        role: reference shape (linear pipeline)
+        role: reference-shape
+        note: reference shape (linear pipeline)
       - kind: technique
         ref: debug/root-cause-to-tdd-plan
-        role: reference shape (decision tree)
+        role: reference-shape
+        note: reference shape (decision tree)
   - slug: hub-make-from-paper
     summary: Extension of /hub-make that reads a paper's proposed_builds[] and scaffolds each as an example/ draft, closing the paper → app loop
     scope: demo
@@ -117,6 +125,42 @@ Two pilots shipped on purpose different shapes:
 - **Pilot #2** — decision tree, four composes: investigate → hypothesize → (build-error-triage | triage-issue)
 
 Schema supported both without modification.
+
+<!-- references-section:begin -->
+## References (examines)
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+pilot #1 (linear pipeline, 4 composes)
+
+**technique — `debug/root-cause-to-tdd-plan`**
+pilot #2 (decision tree, 4 composes)
+
+**skill — `workflow/parallel-build-sequential-publish`**
+atom whose relocation surfaced the layout mismatch (RFC §4 evidence)
+
+**knowledge — `workflow/batch-pr-conflict-recovery`**
+atom demonstrating failure-mode role in pilot #1
+
+
+## Build dependencies (proposed_builds)
+
+### `hub-paper-commands`  _(scope: poc)_
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+shape template for composition-by-reference commands
+
+**technique — `debug/root-cause-to-tdd-plan`**
+second shape template — tests command generality across paper shapes
+
+### `security-domain-technique-3`  _(scope: poc)_
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+reference shape (linear pipeline)
+
+**technique — `debug/root-cause-to-tdd-plan`**
+reference shape (decision tree)
+
+<!-- references-section:end -->
 
 ## Perspectives
 

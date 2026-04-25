@@ -47,6 +47,7 @@ proposed_builds:
       - kind: knowledge
         ref: pitfall/canary-release-implementation-pitfall
         role: failure-modes-to-validate-against
+        note: failure-modes-to-validate-against
 
 experiments:
   - name: threshold-vs-revert-ratio
@@ -73,6 +74,34 @@ retraction_reason: null
 ## Background
 
 The `technique/devops/canary-rollout-with-auto-revert` describes the auto-revert shape but specifies thresholds as "configurable" without guidance. This paper proposes the calibration rule.
+
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `workflow/canary-release-data-simulation`**
+canary-shape
+
+**skill — `backend/conditional-feature-flag-rollout`**
+traffic-control-implementation
+
+**knowledge — `pitfall/canary-release-implementation-pitfall`**
+counter-evidence
+
+**knowledge — `pitfall/circuit-breaker-implementation-pitfall`**
+similar-flap-failure-mode
+
+
+## Build dependencies (proposed_builds)
+
+### `canary-threshold-calibration-tool`  _(scope: poc)_
+
+**skill — `workflow/canary-release-data-simulation`**
+replay-harness
+
+**knowledge — `pitfall/canary-release-implementation-pitfall`**
+failure-modes-to-validate-against
+
+<!-- references-section:end -->
 
 ## Perspectives
 

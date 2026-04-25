@@ -35,6 +35,20 @@ verify:
 
 > A pipeline where each stage internally fan-outs to N parallel workers and fan-ins at the next stage's barrier. Workers in one stage are bulkhead-isolated from each other (no shared mutable state, separate resource pools). Distinct from `parallel-build-sequential-publish` (which has no per-stage barriers) and from generic parallel-map (which lacks bulkhead).
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `workflow/bulkhead-data-simulation`**  _(version: `*`)_
+isolation-shape-baseline
+
+**skill — `design/bulkhead-visualization-pattern`**  _(version: `*`)_
+visualization-reference
+
+**knowledge — `pitfall/bulkhead-implementation-pitfall`**  _(version: `*`)_
+counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Multi-stage pipeline where each stage benefits from parallelism but downstream depends on all upstream completing

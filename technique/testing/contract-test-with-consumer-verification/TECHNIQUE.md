@@ -35,6 +35,20 @@ verify:
 
 > A producer publishes a candidate change. Each consumer runs its own contract test against the candidate independently. Compatibility is decided by quorum vote (e.g. ≥ 2/3 consumers pass) rather than unanimity. Distinct from consumer-driven contracts (Pact: usually require all consumers pass) and from producer-driven (consumers absorb breakage).
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `safety/interface-contract-validation`**  _(version: `*`)_
+schema-validation-shape
+
+**skill — `testing/tdd`**  _(version: `*`)_
+test-discipline
+
+**skill — `workflow/idempotency-data-simulation`**  _(version: `*`)_
+replay-safety-pattern
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Many consumers depend on one producer; some may be stale or abandoned

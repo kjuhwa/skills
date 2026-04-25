@@ -66,8 +66,14 @@ Authoring workflow for the `technique/` middle layer. Produces a `.technique-dra
      - ...
      ```
    - If `--from <existing-slug>` was passed, seed body from that file and mark sections TODO.
+   - The `## Composes` section is NOT written by hand — step 6 generates it from the frontmatter.
 
-6. **Immediate verification**:
+6. **Inject Composes section** (vertical, narrow-friendly mirror of frontmatter)
+   - Run: `python ~/.claude/skills-hub/remote/bootstrap/tools/_inject_references_section.py --only technique --write`
+     (idempotent; bounded by `<!-- references-section:begin/end -->` markers).
+   - Inserts `## Composes` immediately before `## When to use`.
+
+7. **Immediate verification**:
    - Run `/hub-technique-verify <slug>`.
    - If FAIL, print the verifier output and offer: re-open for edit, revert (delete the draft folder), or leave as-is.
    - If PASS/WARN, print location and next-step hint:
@@ -82,7 +88,7 @@ Authoring workflow for the `technique/` middle layer. Produces a `.technique-dra
 - **Never write to** `~/.claude/techniques/` — that's the installed root, reserved for publish flow (not in v0.1 scope).
 - **Never call remote**. Authoring uses only the already-synced `~/.claude/skills-hub/remote/`. Stale cache → warn and suggest `/hub-sync`.
 - **Never silently reject draft atoms**. If an atom is `*-draft`, prompt: "this atom is still in draft — compose anyway? (y/n)" — don't assume.
-- Authoring is a **write pass**; verification is a **separate pass** (step 6). Do not collapse them — keep the separation so the user sees the draft before it gets validated.
+- Authoring is a **write pass**; verification is a **separate pass** (step 7). Do not collapse them — keep the separation so the user sees the draft before it gets validated.
 
 ## Out of scope (v0.1)
 

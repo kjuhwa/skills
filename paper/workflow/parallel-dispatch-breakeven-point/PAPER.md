@@ -22,16 +22,20 @@ premise:
 examines:
   - kind: skill
     ref: workflow/parallel-bulk-annotation
-    role: the canonical HOW-TO for parallel bulk annotation dispatch
+    role: canonical-how-to
+    note: the canonical HOW-TO for parallel bulk annotation dispatch
   - kind: skill
     ref: workflow/bucket-parallel-java-annotation-dispatch
-    role: a specific variant (Java + bucket partitioning) — same HOW-TO assumption
+    role: specific-variant
+    note: a specific variant (Java + bucket partitioning) — same HOW-TO assumption
   - kind: knowledge
     ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
-    role: counter-evidence — a real session where 3 of 4 parallel agents did zero useful work because prior coverage was ~90 percent
+    role: counter-evidence
+    note: counter-evidence — a real session where 3 of 4 parallel agents did zero useful work because prior coverage was ~90 percent
   - kind: skill
     ref: ai/ai-subagent-scope-narrowing
-    role: adjacent pattern for narrowing scope before dispatch; the "decide what to parallelize" side of the problem
+    role: adjacent-pattern
+    note: "adjacent pattern for narrowing scope before dispatch; the \"decide what to parallelize\" side of the problem"
 
 perspectives:
   - name: Cost Model
@@ -52,27 +56,32 @@ proposed_builds:
     requires:
       - kind: skill
         ref: workflow/parallel-bulk-annotation
-        role: the baseline HOW-TO the gate sits in front of
+        role: baseline-how-to
+        note: the baseline HOW-TO the gate sits in front of
       - kind: knowledge
         ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
-        role: the counter-evidence session that motivates the gate
+        role: counter-evidence
+        note: the counter-evidence session that motivates the gate
       - kind: skill
         ref: ai/ai-subagent-scope-narrowing
-        role: adjacent pattern for narrowing scope; the gate complements it
+        role: adjacent-pattern
+        note: adjacent pattern for narrowing scope; the gate complements it
   - slug: coverage-threshold-decision-table
     summary: Knowledge entry with a decision table - work-type × prior-coverage × recommended-strategy (parallel-dispatch, single-agent-scan, sampling-only) backed by session data from real runs
     scope: poc
     requires:
       - kind: knowledge
         ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
-        role: seed data point for the decision table's first row
+        role: seed-data
+        note: "seed data point for the decision table's first row"
   - slug: parallel-bulk-annotation-preflight-section
     summary: Extension to the existing parallel-bulk-annotation skill adding a "Phase 0 - Pre-flight" section that calls the coverage gate and routes to serial or sampling mode when appropriate
     scope: demo
     requires:
       - kind: skill
         ref: workflow/parallel-bulk-annotation
-        role: the skill being edited — direct dependency
+        role: the skill being edited
+        note: the skill being edited — direct dependency
 
 experiments:
   - name: coverage-threshold-measurement
@@ -172,6 +181,47 @@ And one pitfall, authored mid-session when the pattern broke under it:
 - `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch` — a real session where 4 parallel agents were dispatched to annotate DTO files, 3 returned "zero changes — already annotated," and the user paid for 3 wasted agent rounds because prior coverage was not checked first.
 
 The pitfall is the counter-evidence for this paper. The skills tell you *how* to parallelize; the pitfall tells you *when it stops paying off*. The two pieces of information are split across kinds and across files, and nothing in the hub enforces that a user reading the skill also encounters the pitfall.
+
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `workflow/parallel-bulk-annotation`**
+the canonical HOW-TO for parallel bulk annotation dispatch
+
+**skill — `workflow/bucket-parallel-java-annotation-dispatch`**
+a specific variant (Java + bucket partitioning) — same HOW-TO assumption
+
+**knowledge — `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch`**
+counter-evidence — a real session where 3 of 4 parallel agents did zero useful work because prior coverage was ~90 percent
+
+**skill — `ai/ai-subagent-scope-narrowing`**
+adjacent pattern for narrowing scope before dispatch; the "decide what to parallelize" side of the problem
+
+
+## Build dependencies (proposed_builds)
+
+### `parallel-dispatch-coverage-gate`  _(scope: poc)_
+
+**skill — `workflow/parallel-bulk-annotation`**
+the baseline HOW-TO the gate sits in front of
+
+**knowledge — `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch`**
+the counter-evidence session that motivates the gate
+
+**skill — `ai/ai-subagent-scope-narrowing`**
+adjacent pattern for narrowing scope; the gate complements it
+
+### `coverage-threshold-decision-table`  _(scope: poc)_
+
+**knowledge — `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch`**
+seed data point for the decision table's first row
+
+### `parallel-bulk-annotation-preflight-section`  _(scope: demo)_
+
+**skill — `workflow/parallel-bulk-annotation`**
+the skill being edited — direct dependency
+
+<!-- references-section:end -->
 
 ## Perspectives
 

@@ -35,6 +35,20 @@ verify:
 
 > Two systems run in parallel during the entire migration window. A dial controls what fraction of traffic each handles; the dial moves only forward (or pauses). Distinguished from blue-green deploy (instant cutover) and canary (small constant slice) by being a long-lived, gradually-evolving ratio rather than a momentary switch.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `workflow/strangler-fig-data-simulation`**  _(version: `*`)_
+shape-baseline
+
+**skill — `backend/migration-processor-pipeline`**  _(version: `*`)_
+data-migration-shape
+
+**knowledge — `pitfall/strangler-fig-implementation-pitfall`**  _(version: `*`)_
+counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - Replacing a long-lived production system where instant cutover is too risky

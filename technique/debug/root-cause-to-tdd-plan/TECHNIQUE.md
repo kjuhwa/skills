@@ -41,6 +41,23 @@ verify:
 
 > A decision tree that takes an error/bug report through **systematic root-cause investigation → classification-driven path → GitHub issue with TDD test plan**. Designed to carry an unclear incident all the way to a safe fix plan without shortcuts.
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `debug/investigate`**  _(version: `^1.0.0`)_
+phase-orchestrator
+
+**skill — `debug/build-error-triage`**  _(version: `^1.0.0`)_
+branch-build-error
+
+**skill — `debug/triage-issue`**  _(version: `*`)_
+artifact-producer
+
+**knowledge — `pitfall/ai-guess-mark-and-review-checklist`**  _(version: `*`)_
+hypothesis-guard
+
+<!-- references-section:end -->
+
 ## When to use
 
 - A bug/incident report with observable symptoms but unclear cause

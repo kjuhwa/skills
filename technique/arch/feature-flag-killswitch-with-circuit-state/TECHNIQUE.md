@@ -35,6 +35,20 @@ verify:
 
 > Each feature flag is wrapped by a per-flag circuit breaker. If the feature's error rate crosses a threshold, the breaker trips and the flag is force-disabled until an operator manually re-arms it. Distinct from automatic circuit breakers (which retry probes) and from plain feature flags (which require manual disable on bad data).
 
+<!-- references-section:begin -->
+## Composes
+
+**skill — `backend/conditional-feature-flag-rollout`**  _(version: `*`)_
+feature-flag-shape
+
+**skill — `workflow/circuit-breaker-data-simulation`**  _(version: `*`)_
+circuit-state-shape
+
+**knowledge — `pitfall/circuit-breaker-implementation-pitfall`**  _(version: `*`)_
+counter-evidence
+
+<!-- references-section:end -->
+
 ## When to use
 
 - New features deployed via flags need a fast-disable path independent of code-deploy cycle

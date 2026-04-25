@@ -32,6 +32,7 @@ composes:
     ref: pitfall/idempotency-implementation-pitfall
     version: "*"
     role: compensation-safety-counter-evidence
+    note: compensation-safety-counter-evidence
 
 binding: loose
 
@@ -46,6 +47,26 @@ verify:
 # Saga with Compensation Chain
 
 > Pilot #1 was a linear pipeline, #2 a decision tree, #3 an event-driven loop, #4 a hierarchical ladder. This pilot is a **forward chain + reverse compensation chain** — the unique property is that the technique runs in two opposite directions on the same step list, and the relationship between them (LIFO inverse) is itself the load-bearing invariant.
+
+<!-- references-section:begin -->
+## Composes
+
+**skill — `workflow/saga-pattern-data-simulation`**  _(version: `*`)_
+forward-chain-baseline
+
+**skill — `workflow/idempotency-data-simulation`**  _(version: `*`)_
+per-step-idempotency-shape
+
+**skill — `workflow/rollback-anchor-tag-before-destructive-op`**  _(version: `*`)_
+pre-flight-audit-anchor
+
+**knowledge — `pitfall/saga-pattern-implementation-pitfall`**  _(version: `*`)_
+forward-chain-counter-evidence
+
+**knowledge — `pitfall/idempotency-implementation-pitfall`**  _(version: `*`)_
+compensation-safety-counter-evidence
+
+<!-- references-section:end -->
 
 ## When to use
 

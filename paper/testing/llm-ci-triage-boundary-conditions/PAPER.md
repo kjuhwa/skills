@@ -20,22 +20,28 @@ premise:
 examines:
   - kind: skill
     ref: testing/llm-integration-test-failure-diagnosis
-    role: the subject — the LLM-auto-diagnose pattern being analyzed
+    role: the subject
+    note: the subject — the LLM-auto-diagnose pattern being analyzed
   - kind: skill
     ref: debug/investigate
-    role: baseline — the human systematic 4-phase triage the LLM is proposed to replace or precede
+    role: baseline
+    note: baseline — the human systematic 4-phase triage the LLM is proposed to replace or precede
   - kind: skill
     ref: debug/triage-issue
-    role: downstream consumer — what happens to the LLM verdict (issue created, auto-closed, escalated)
+    role: downstream consumer
+    note: downstream consumer — what happens to the LLM verdict (issue created, auto-closed, escalated)
   - kind: knowledge
     ref: decision/caveats-absence-confidence-cap
-    role: counter-evidence — existing corpus stance on capping confidence when caveats are absent, directly relevant to LLM over-confidence failure mode
+    role: counter-evidence
+    note: counter-evidence — existing corpus stance on capping confidence when caveats are absent, directly relevant to LLM over-confidence failure mode
   - kind: paper
     ref: workflow/parallel-dispatch-breakeven-point
-    role: prior paper sourcing the silent-failure-mode framing this paper applies to triage
+    role: prior-paper
+    note: prior paper sourcing the silent-failure-mode framing this paper applies to triage
   - kind: paper
     ref: workflow/technique-layer-composition-value
-    role: meta paper anchoring the "measure before adopt" stance this paper takes for LLM-triage
+    role: meta-paper
+    note: "meta paper anchoring the \"measure before adopt\" stance this paper takes for LLM-triage"
 
 perspectives:
   - name: Noise-vs-Signal Boundary
@@ -56,20 +62,24 @@ proposed_builds:
     requires:
       - kind: skill
         ref: testing/llm-integration-test-failure-diagnosis
-        role: the LLM triager whose output the dashboard instruments
+        role: llm-triager
+        note: the LLM triager whose output the dashboard instruments
       - kind: knowledge
         ref: decision/caveats-absence-confidence-cap
-        role: guides the confidence-cap visualization rules
+        role: guides-confidence-cap
+        note: guides the confidence-cap visualization rules
   - slug: llm-triage-false-known-flake-pitfall
     summary: New pitfall knowledge entry documenting the "LLM confidently labeled as known flake but was actually a regression" failure mode, with reproduction heuristics and the escalation check that would have caught it.
     scope: poc
     requires:
       - kind: knowledge
         ref: decision/caveats-absence-confidence-cap
-        role: seed — the closest existing entry to refine
+        role: seed
+        note: seed — the closest existing entry to refine
       - kind: skill
         ref: testing/llm-integration-test-failure-diagnosis
-        role: the source pattern the pitfall contextualizes
+        role: source-pattern
+        note: the source pattern the pitfall contextualizes
   - slug: hybrid-llm-human-triage-router
     summary: New skill that routes CI failures through LLM triage first, then escalates to human systematic investigation when LLM confidence is below a configurable threshold OR when the failure signature is novel (no seen-before match).
     scope: demo
@@ -79,10 +89,12 @@ proposed_builds:
         role: the LLM step the router gates
       - kind: skill
         ref: debug/investigate
-        role: the human-systematic fallback the router escalates to
+        role: human-systematic
+        note: the human-systematic fallback the router escalates to
       - kind: skill
         ref: debug/triage-issue
-        role: the shared downstream both paths feed into
+        role: shared-downstream
+        note: the shared downstream both paths feed into
 
 experiments:
   - name: mixed-failure-classification-replay
@@ -126,6 +138,59 @@ And one knowledge entry directly relevant:
 - `decision/caveats-absence-confidence-cap` — a hub-wide position that LLM output confidence should be capped when caveats are absent. Central to this paper's silent-failure argument.
 
 This paper does NOT claim the LLM approach is wrong. It claims the effectiveness is **conditional on failure-mix composition**, and the conditioning is unmeasured in most adoption stories.
+
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `testing/llm-integration-test-failure-diagnosis`**
+the subject — the LLM-auto-diagnose pattern being analyzed
+
+**skill — `debug/investigate`**
+baseline — the human systematic 4-phase triage the LLM is proposed to replace or precede
+
+**skill — `debug/triage-issue`**
+downstream consumer — what happens to the LLM verdict (issue created, auto-closed, escalated)
+
+**knowledge — `decision/caveats-absence-confidence-cap`**
+counter-evidence — existing corpus stance on capping confidence when caveats are absent, directly relevant to LLM over-confidence failure mode
+
+**paper — `workflow/parallel-dispatch-breakeven-point`**
+prior paper sourcing the silent-failure-mode framing this paper applies to triage
+
+**paper — `workflow/technique-layer-composition-value`**
+meta paper anchoring the "measure before adopt" stance this paper takes for LLM-triage
+
+
+## Build dependencies (proposed_builds)
+
+### `llm-triage-confidence-dashboard`  _(scope: poc)_
+
+**skill — `testing/llm-integration-test-failure-diagnosis`**
+the LLM triager whose output the dashboard instruments
+
+**knowledge — `decision/caveats-absence-confidence-cap`**
+guides the confidence-cap visualization rules
+
+### `llm-triage-false-known-flake-pitfall`  _(scope: poc)_
+
+**knowledge — `decision/caveats-absence-confidence-cap`**
+seed — the closest existing entry to refine
+
+**skill — `testing/llm-integration-test-failure-diagnosis`**
+the source pattern the pitfall contextualizes
+
+### `hybrid-llm-human-triage-router`  _(scope: demo)_
+
+**skill — `testing/llm-integration-test-failure-diagnosis`**
+the LLM step the router gates
+
+**skill — `debug/investigate`**
+the human-systematic fallback the router escalates to
+
+**skill — `debug/triage-issue`**
+the shared downstream both paths feed into
+
+<!-- references-section:end -->
 
 ## Perspectives
 
