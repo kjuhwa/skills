@@ -6,7 +6,7 @@
 [![Bootstrap](https://img.shields.io/github/v/tag/kjuhwa/skills-hub?filter=bootstrap/v*&label=bootstrap&color=purple)](https://github.com/kjuhwa/skills-hub/tags)
 [![Closed loops](https://img.shields.io/badge/closed_loops-3-2563eb?style=flat-square&logo=arc)](./paper)
 [![Papers](https://img.shields.io/badge/papers-15-indigo?style=flat-square)](./paper)
-[![Techniques](https://img.shields.io/badge/techniques-18-teal?style=flat-square)](./technique)
+[![Techniques](https://img.shields.io/badge/techniques-19-teal?style=flat-square)](./technique)
 [![Skills](https://img.shields.io/badge/skills-1,105-blue?style=flat-square)](./index.json)
 [![Knowledge](https://img.shields.io/badge/knowledge-894-green?style=flat-square)](./knowledge)
 [![Examples](https://img.shields.io/badge/examples-622-orange?style=flat-square)](./example)
@@ -278,7 +278,7 @@ The corpus measures itself:
 | Hypothesis papers with closed loop | 3 / 13 | `_audit_paper_loops.py` |
 | Stale hypothesis papers (≥30d, planned exp) | 0 / 13 | `_audit_paper_loops.py --only-stale` |
 | Falsifiability-flagged papers | 0 / 13 hypothesis | `_audit_paper_falsifiability.py` |
-| IMRaD-compliant body structure | 1 / 15 | `_audit_paper_imrad.py` |
+| IMRaD-compliant body structure | **15 / 15 (100%)** | `_audit_paper_imrad.py` |
 | Papers with `preprint/` package | 1 / 15 | `paper/<…>/<…>/preprint/paper.tex` |
 | §11 retraction signal | not fired | strict ratio (`experiments[]` AND `outcomes[]` both empty) is 0/15 — every paper carries at least planned experiments. Threshold 60 % at N≥5. |
 | Suggested technique bundles ≥3 atoms | 2 strong candidates | `_suggest_techniques.py` |
