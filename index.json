@@ -514,6 +514,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "chi-router-for-go-apis",
+    "slug": "chi-router-for-go-apis",
+    "category": "arch",
+    "description": "go-chi/chi is the router of choice for REST APIs with middleware groups, URL params, and nested routing — simpler than gin/echo while keeping idiomatic net/http compatibility.",
+    "tags": [
+      "go",
+      "chi",
+      "router",
+      "middleware",
+      "api"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/arch/chi-router-for-go-apis.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "claude-plugin-skill-md-is-sufficient",
     "slug": "claude-plugin-skill-md-is-sufficient",
     "category": "arch",
@@ -2098,6 +2116,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "built-in-session-tools-parity",
+    "slug": "built-in-session-tools-parity",
+    "category": "architecture",
+    "description": "Session-scoped tools (SubmitPlan, config_validate) live in session-tools-core and are wired identically into Claude and Pi backends via separate stdio MCP servers — parity tested by claude/session-tool-parity.test.ts and pi/session-tool-parity.test.ts.",
+    "tags": [
+      "session-tools",
+      "mcp",
+      "parity",
+      "multi-backend"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/architecture/built-in-session-tools-parity.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "audiovae-v2-asymmetric-rationale",
     "slug": "audiovae-v2-asymmetric-rationale",
     "category": "audio",
@@ -2112,6 +2147,59 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/audio/audiovae-v2-asymmetric-rationale.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "chrome-extension-based-web-automation-via-cdp",
+    "slug": "chrome-extension-based-web-automation-via-cdp",
+    "category": "automation",
+    "description": "Browser automation via Chrome extension + CDP bridge that preserves the user's real login state — Selenium-free, Playwright-free, survives autofill and closed shadow DOM.",
+    "tags": [
+      "browser-automation",
+      "chrome-extension",
+      "cdp",
+      "web-scraping",
+      "selenium-alternative"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/automation/chrome-extension-based-web-automation-via-cdp.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "bun-auto-loads-cwd-env",
+    "slug": "bun-auto-loads-cwd-env",
+    "category": "bun",
+    "description": "Bun unconditionally loads `.env`, `.env.local`, `.env.development`, `.env.production` from the CWD before user code runs — regardless of framework.",
+    "tags": [
+      "bun",
+      "dotenv",
+      "process-env",
+      "gotcha"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/bun/bun-auto-loads-cwd-env.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "bun-compile-freezes-import-meta",
+    "slug": "bun-compile-freezes-import-meta",
+    "category": "bun",
+    "description": "Inside a `bun build --compile` binary, `import.meta.url` and `import.meta.dir` are frozen to the build host's filesystem path and point to nothing on the user's machine.",
+    "tags": [
+      "bun",
+      "compile",
+      "import-meta",
+      "native-binary",
+      "gotcha"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/bun/bun-compile-freezes-import-meta.md",
     "has_content": true
   },
   {
@@ -2733,6 +2821,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/decision/canvas-trail-fade-vs-clear.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "categories-array-for-performance-tracing",
+    "slug": "categories-array-for-performance-tracing",
+    "category": "decision",
+    "description": "To get a trace that DevTools' TraceEngine can parse with full insights, you must start `page.tracing.start` with the same category array DevTools uses internally — missing a `disabled-by-default-devtools.*` category silently drops insights you'd otherwise get.",
+    "tags": [
+      "chrome-tracing",
+      "cdp",
+      "categories",
+      "devtools",
+      "performance"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/decision/categories-array-for-performance-tracing.md",
     "has_content": true
   },
   {
@@ -4077,6 +4183,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "cfg-and-timesteps-tradeoffs",
+    "slug": "cfg-and-timesteps-tradeoffs",
+    "category": "inference",
+    "description": "VoxCPM CFG defaults to 2.0 (range 1–3) and inference steps to 10 (range 4–30); RTF scales inversely with steps",
+    "tags": [
+      "cfg",
+      "timesteps",
+      "inference",
+      "quality",
+      "latency"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/inference/cfg-and-timesteps-tradeoffs.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "a2a-protocol-agent-to-agent-knowledge-exchange",
     "slug": "a2a-protocol-agent-to-agent-knowledge-exchange",
     "category": "integration",
@@ -4110,6 +4234,27 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/integration/azure-document-intelligence-opt-in-converter.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "bubblewrap-virtual-root-tmpfs-isolation",
+    "slug": "bubblewrap-virtual-root-tmpfs-isolation",
+    "category": "linux-sandbox",
+    "description": "`bwrap --tmpfs /` creates an empty virtual root; you then explicitly bind-mount each path the process needs, giving full PID and mount namespace isolation. `--die-with-parent` and `--new-session` prevent orphan daemons after the parent exits.",
+    "tags": [
+      "bubblewrap",
+      "bwrap",
+      "sandbox",
+      "namespace",
+      "tmpfs",
+      "isolation",
+      "linux",
+      "security"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/linux-sandbox/bubblewrap-virtual-root-tmpfs-isolation.md",
     "has_content": true
   },
   {
@@ -4461,6 +4606,21 @@
   },
   {
     "kind": "knowledge",
+    "name": "block-size-stream-re-read-limit",
+    "slug": "block-size-stream-re-read-limit",
+    "category": "pitfall",
+    "description": "When re-reading a stream during feature extraction, cap the read at block_size — never read the whole stream.",
+    "tags": [
+      "magika",
+      "pitfall"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/block-size-stream-re-read-limit.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "bloom-filter-false-positive-saturation-cliff",
     "slug": "bloom-filter-false-positive-saturation-cliff",
     "category": "pitfall",
@@ -4571,6 +4731,22 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/chaos-engineering-implementation-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "checkpoint-capture-race-concurrent-turns-same-thread",
+    "slug": "checkpoint-capture-race-concurrent-turns-same-thread",
+    "category": "pitfall",
+    "description": "If turns can start before prior checkpoints finish, checkpoint refs and diffs can get confused; serialize turn start/completion",
+    "tags": [
+      "pitfall",
+      "checkpoint",
+      "concurrency"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/pitfall/checkpoint-capture-race-concurrent-turns-same-thread.md",
     "has_content": true
   },
   {
@@ -6880,6 +7056,24 @@
   },
   {
     "kind": "knowledge",
+    "name": "ccgs-upgrading",
+    "slug": "ccgs-upgrading",
+    "category": "process",
+    "description": "Upgrade guide for migrating between CCGS template versions",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "upgrade",
+      "migration",
+      "versioning"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/process/ccgs-upgrading.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "alert-extraction-single-llm-call-pattern",
     "slug": "alert-extraction-single-llm-call-pattern",
     "category": "reference",
@@ -6967,6 +7161,24 @@
     "triggers": [],
     "version": "",
     "path": "knowledge/reference/bash-lc-single-quote-cron-keepalive.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ccgs-readme",
+    "slug": "ccgs-readme",
+    "category": "reference",
+    "description": "Claude Code Game Studios project overview and quick-start reference",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "readme",
+      "overview",
+      "getting-started"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/reference/ccgs-readme.md",
     "has_content": true
   },
   {
@@ -7109,6 +7321,23 @@
   },
   {
     "kind": "knowledge",
+    "name": "blocked-env-vars-for-mcp-subprocess",
+    "slug": "blocked-env-vars-for-mcp-subprocess",
+    "category": "security",
+    "description": "The denylist of environment variables stripped before spawning a stdio MCP subprocess — sensitive app/auth tokens and well-known third-party API keys.",
+    "tags": [
+      "mcp",
+      "env-vars",
+      "subprocess",
+      "denylist"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/security/blocked-env-vars-for-mcp-subprocess.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "agent-qa-tester",
     "slug": "agent-qa-tester",
     "category": "testing",
@@ -7146,6 +7375,116 @@
   },
   {
     "kind": "knowledge",
+    "name": "bun-mock-module-process-global",
+    "slug": "bun-mock-module-process-global",
+    "category": "testing",
+    "description": "Bun's `mock.module()` permanently rewires the process-wide module cache; `mock.restore()` does not undo it.",
+    "tags": [
+      "bun",
+      "testing",
+      "mock",
+      "gotcha"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/bun-mock-module-process-global.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ccgs-quality-rubric",
+    "slug": "ccgs-quality-rubric",
+    "category": "testing",
+    "description": "Quality rubric for evaluating CCGS skill outputs — scoring criteria and thresholds",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "quality",
+      "rubric",
+      "testing",
+      "evaluation"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/ccgs-quality-rubric.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ccgs-testing-catalog",
+    "slug": "ccgs-testing-catalog",
+    "category": "testing",
+    "description": "YAML catalog of all CCGS skill tests with their test types and coverage targets",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "testing",
+      "catalog",
+      "skill-tests",
+      "registry"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/ccgs-testing-catalog.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ccgs-testing-claude-context",
+    "slug": "ccgs-testing-claude-context",
+    "category": "testing",
+    "description": "Claude context instructions for the CCGS Skill Testing Framework directory",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "claude-md",
+      "testing",
+      "skill-testing"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/ccgs-testing-claude-context.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ccgs-testing-framework-readme",
+    "slug": "ccgs-testing-framework-readme",
+    "category": "testing",
+    "description": "CCGS Skill Testing Framework overview — how to write and run skill tests using the catalog",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "testing",
+      "skill-testing",
+      "framework",
+      "quality"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/testing/ccgs-testing-framework-readme.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "chinese-multichar-token-char-splitter",
+    "slug": "chinese-multichar-token-char-splitter",
+    "category": "tokenizer",
+    "description": "VoxCPM wraps the tokenizer to split multi-character Chinese tokens back to single characters for per-character TTS pronunciation granularity",
+    "tags": [
+      "tokenizer",
+      "chinese",
+      "tts",
+      "llama",
+      "character-level"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/tokenizer/chinese-multichar-token-char-splitter.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "accept-header-prefer-markdown-over-html",
     "slug": "accept-header-prefer-markdown-over-html",
     "category": "web",
@@ -7173,6 +7512,24 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/workflow/batch-pr-conflict-recovery.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "ccgs-claude-project-instructions",
+    "slug": "ccgs-claude-project-instructions",
+    "category": "workflow",
+    "description": "Main CLAUDE.md project instructions for Claude Code Game Studios — defines roles, phases, and workflow conventions",
+    "tags": [
+      "game-studios",
+      "ccgs",
+      "claude-md",
+      "project-setup",
+      "workflow"
+    ],
+    "triggers": [],
+    "version": "",
+    "path": "knowledge/workflow/ccgs-claude-project-instructions.md",
     "has_content": true
   },
   {
@@ -7281,6 +7638,54 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/qa/balance-check",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "brainstorm",
+    "slug": "brainstorm",
+    "category": "",
+    "description": "\"Guided game concept ideation — from zero idea to a structured game concept document. Uses professional studio ideation techniques, player psychology frameworks, and structured creative exploration.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/design/brainstorm",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bug-report",
+    "slug": "bug-report",
+    "category": "",
+    "description": "\"Creates a structured bug report from a description, or analyzes code to identify potential bugs. Ensures every bug report has full reproduction steps, severity assessment, and context.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/bug-report",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bug-triage",
+    "slug": "bug-triage",
+    "category": "",
+    "description": "\"Read all open bugs in production/qa/bugs/, re-evaluate priority vs. severity, assign to sprints, surface systemic trends, and produce a triage report. Run at sprint start or when the bug count grows enough to need re-prioritization.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/bug-triage",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "changelog",
+    "slug": "changelog",
+    "category": "",
+    "description": "\"Auto-generates a changelog from git commits, sprint data, and design documents. Produces both internal and player-facing versions.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/production/changelog",
     "has_content": false
   },
   {
@@ -7456,6 +7861,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/agents/basic-agent-runner",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bumpversion-changelog-stamp-release",
+    "slug": "bumpversion-changelog-stamp-release",
+    "category": "agents",
+    "description": "Finalize a release by stamping the changelog, running bumpversion across all tracked files, and creating a signed tag — without pushing.",
+    "tags": [
+      "release",
+      "bumpversion",
+      "changelog",
+      "semver",
+      "git-tag"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/agents/bumpversion-changelog-stamp-release",
     "has_content": false
   },
   {
@@ -10772,6 +11195,92 @@
   },
   {
     "kind": "skill",
+    "name": "build-sh-test-sh-shell-script-stdlib",
+    "slug": "build-sh-test-sh-shell-script-stdlib",
+    "category": "build",
+    "description": "Each language subdirectory ships build.sh and test.sh with a shared color.sh helper, so CI calls the same scripts that developers run locally.",
+    "tags": [
+      "magika",
+      "build"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/build-sh-test-sh-shell-script-stdlib",
+    "has_content": true
+  },
+  {
+    "kind": "skill",
+    "name": "bun-multi-platform-server-packager",
+    "slug": "bun-multi-platform-server-packager",
+    "category": "build",
+    "description": "Assemble a self-contained cross-platform Bun server distribution by scanning imports, copying the transitive dep tree, bundling platform-specific native modules, and emitting entry scripts + Dockerfile.",
+    "tags": [
+      "bun",
+      "packaging",
+      "cross-platform",
+      "distribution"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/bun-multi-platform-server-packager",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bundle-ts-as-cjs-for-node-require",
+    "slug": "bundle-ts-as-cjs-for-node-require",
+    "category": "build",
+    "description": "Bundle a TypeScript helper as a single CJS file so it can be loaded via node --require / bun --preload into any arbitrary subprocess without requiring the child to have access to your node_modules.",
+    "tags": [
+      "esbuild",
+      "cjs",
+      "bundle",
+      "node-require",
+      "preload"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/bundle-ts-as-cjs-for-node-require",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bundled-uv-python-toolchain",
+    "slug": "bundled-uv-python-toolchain",
+    "category": "build",
+    "description": "Bundle the 'uv' binary (platform-specific) with your Electron/CLI app, wire CRAFT_UV + CRAFT_SCRIPTS env, and let uv auto-download a pinned Python on first tool-invoke — zero-install Python tools for users who never had Python.",
+    "tags": [
+      "python",
+      "uv",
+      "bundling",
+      "cross-platform",
+      "electron"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/bundled-uv-python-toolchain",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "chunked-rpc-for-large-websocket-payloads",
+    "slug": "chunked-rpc-for-large-websocket-payloads",
+    "category": "build",
+    "description": "Send large (>5MB) RPC arguments over WebSocket as a sequence of base64 chunks via transfer:start/chunk/commit channels with per-chunk retry, a sha256 checksum, and a placeholder in the original call's arg array.",
+    "tags": [
+      "websocket",
+      "rpc",
+      "chunking",
+      "large-payloads",
+      "retry"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/build/chunked-rpc-for-large-websocket-payloads",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "coverage-data-file-under-pytest-cache",
     "slug": "coverage-data-file-under-pytest-cache",
     "category": "build",
@@ -10804,6 +11313,42 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/build-system/cmake-cuda-extension-with-git-submodule-vendoring",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bun-compile-binary-resolve",
+    "slug": "bun-compile-binary-resolve",
+    "category": "bun",
+    "description": "Resolve external native binaries at runtime via env → config → vendor-dir chain when shipping a `bun build --compile` binary where `import.meta.url` is frozen.",
+    "tags": [
+      "bun",
+      "compile",
+      "binary",
+      "resolver",
+      "vendor"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/bun/bun-compile-binary-resolve",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bundled-defaults-generator",
+    "slug": "bundled-defaults-generator",
+    "category": "bun",
+    "description": "Inline source-text via JSON-escaped string literals at build time (with `--check` mode) so compiled Bun binaries and Node can both load them.",
+    "tags": [
+      "bun",
+      "codegen",
+      "compile",
+      "bundled-defaults",
+      "validation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/bun/bundled-defaults-generator",
     "has_content": false
   },
   {
@@ -10925,6 +11470,23 @@
     "triggers": [],
     "version": "0.1.0",
     "path": "skills/cli/gstack/careful",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "centralized-config-with-env-override",
+    "slug": "centralized-config-with-env-override",
+    "category": "cli",
+    "description": "Centralized config thresholds with environment variable override pattern for timeouts and limits",
+    "tags": [
+      "evolver",
+      "cli",
+      "config",
+      "env-vars"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/cli/centralized-config-with-env-override",
     "has_content": false
   },
   {
@@ -13443,6 +14005,43 @@
   },
   {
     "kind": "skill",
+    "name": "cfg-zero-star-guidance",
+    "slug": "cfg-zero-star-guidance",
+    "category": "diffusion",
+    "description": "Classifier-Free Guidance with CFG-Zero-Star negative-prompt projection scaling for flow-matching diffusion",
+    "tags": [
+      "diffusion",
+      "cfg",
+      "flow-matching",
+      "guidance",
+      "audio"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/diffusion/cfg-zero-star-guidance",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "bun-hoisted-linker-web-build",
+    "slug": "bun-hoisted-linker-web-build",
+    "category": "docker",
+    "description": "Use `bun install --linker=hoisted` in multi-stage Dockerfiles that build Vite/Rollup frontends, because Bun's default isolated linker places packages under `node_modules/.bun/` via symlinks that Rollup cannot resolve.",
+    "tags": [
+      "bun",
+      "docker",
+      "vite",
+      "rollup",
+      "linker",
+      "monorepo"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/docker/bun-hoisted-linker-web-build",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "document-release",
     "slug": "document-release",
     "category": "docs",
@@ -13559,6 +14158,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/electron-packaging/asar-directory-patching-workflow",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "canvas-coordinate-transformation-model",
+    "slug": "canvas-coordinate-transformation-model",
+    "category": "flutter",
+    "description": "Canvas transform state (x, y, scale, scrollX, scrollY) serialization for remote rendering.",
+    "tags": [
+      "canvas",
+      "coordinate",
+      "flutter",
+      "model",
+      "transformation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/flutter/canvas-coordinate-transformation-model",
     "has_content": false
   },
   {
@@ -14187,6 +14804,42 @@
   },
   {
     "kind": "skill",
+    "name": "block-size-constrained-enumeration-with-register-pressure",
+    "slug": "block-size-constrained-enumeration-with-register-pressure",
+    "category": "gpu-kernels",
+    "description": "When enumerating GEMM block sizes, reject candidates where both block_m and block_n exceed 128 — the register file on Hopper/Blackwell cannot support both dims going large simultaneously.",
+    "tags": [
+      "register-pressure",
+      "gpu-optimization",
+      "kernel-tuning",
+      "hopper",
+      "blackwell"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/gpu-kernels/block-size-constrained-enumeration-with-register-pressure",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cached-heap-snapshot-worker",
+    "slug": "cached-heap-snapshot-worker",
+    "category": "heap-snapshot",
+    "description": "Load a Chrome heap snapshot (`.heapsnapshot`) once into a DevTools worker proxy, cache by absolute path, and answer aggregates/stats/staticData queries against the cached proxy to avoid re-parsing multi-gigabyte files on every query.",
+    "tags": [
+      "heap-snapshot",
+      "devtools",
+      "worker",
+      "streaming",
+      "caching"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/heap-snapshot/cached-heap-snapshot-worker",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "autoregressive-rolling-context-buffer",
     "slug": "autoregressive-rolling-context-buffer",
     "category": "inference",
@@ -14325,6 +14978,26 @@
   },
   {
     "kind": "skill",
+    "name": "bubblewrap-namespace-sandbox-config",
+    "slug": "bubblewrap-namespace-sandbox-config",
+    "category": "linux-sandbox",
+    "description": "Build a bwrap invocation with a JSON-driven mount config (RO binds, RW binds, disabled defaults). Validates paths, blocks forbidden mounts, and enforces that RW mounts stay under $HOME. Merges user config over the default arg list.",
+    "tags": [
+      "bwrap",
+      "bubblewrap",
+      "sandbox",
+      "linux",
+      "namespace",
+      "mount",
+      "json-config"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/linux-sandbox/bubblewrap-namespace-sandbox-config",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "agent-handoff-routing",
     "slug": "agent-handoff-routing",
     "category": "llm-agents",
@@ -14356,6 +15029,58 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/llm-agents/agents-as-tools",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "block-speculative-decoding-loop",
+    "slug": "block-speculative-decoding-loop",
+    "category": "llm-agents",
+    "description": "Block-level speculative decoding — draft a block of tokens from a small model, verify with the target model in one forward pass, accept the longest matching prefix + 1.",
+    "tags": [
+      "speculative-decoding",
+      "block-diffusion",
+      "draft-model",
+      "inference",
+      "kv-cache"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/block-speculative-decoding-loop",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "chain-of-thought-prompting",
+    "slug": "chain-of-thought-prompting",
+    "category": "llm-agents",
+    "description": "Apply chain-of-thought prompting (zero-shot CoT, few-shot CoT, Self-Consistency) to improve LLM multi-step reasoning.",
+    "tags": [
+      "chain-of-thought",
+      "prompting",
+      "reasoning"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/llm-agents/chain-of-thought-prompting",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cdp-host-page-tool-discovery",
+    "slug": "cdp-host-page-tool-discovery",
+    "category": "mcp",
+    "description": "Let a web page expose its own MCP-like tools to the automation agent via a custom `devtoolstooldiscovery` event and CDP listener introspection, then bridge them as MCP tools at runtime.",
+    "tags": [
+      "mcp",
+      "cdp",
+      "in-page-tools",
+      "event-bridge",
+      "ajv"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/mcp/cdp-host-page-tool-discovery",
     "has_content": false
   },
   {
@@ -14585,6 +15310,56 @@
   },
   {
     "kind": "skill",
+    "name": "brute-force-format-detection-peek",
+    "slug": "brute-force-format-detection-peek",
+    "category": "preprocessing",
+    "description": "Two-tier format detection — fast path on extension+mimetype, slow 'brute force' fallback that peeks at bytes (OLE magic, XML root element, JSON keys) and restores stream position — used when headers lie but the format has a reliable byte-level fingerprint.",
+    "tags": [
+      "preprocessing",
+      "file-type",
+      "magic-bytes",
+      "ole",
+      "xml",
+      "fingerprint",
+      "python"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/preprocessing/brute-force-format-detection-peek",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "calendar-time-feature-encoding",
+    "slug": "calendar-time-feature-encoding",
+    "category": "preprocessing",
+    "description": "Decompose a timestamp into minute, hour, weekday, day, month integer columns and feed each through a small embedding that is summed into the model input.",
+    "tags": [
+      "time-features",
+      "temporal-embedding",
+      "calendar",
+      "transformer",
+      "time-series"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/preprocessing/calendar-time-feature-encoding",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "brainstorming",
+    "slug": "brainstorming",
+    "category": "process",
+    "description": "\"You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.\"",
+    "tags": [],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/process/brainstorming",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "a11y-tree-snapshot-with-uids",
     "slug": "a11y-tree-snapshot-with-uids",
     "category": "puppeteer",
@@ -14667,6 +15442,21 @@
     "version": "0.1.0-draft",
     "path": "skills/refactor/request-refactor-plan",
     "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "cargo-dist-multi-platform-rust-cli-release",
+    "slug": "cargo-dist-multi-platform-rust-cli-release",
+    "category": "release",
+    "description": "Use cargo-dist to build, sign, and ship a Rust CLI as platform-specific binaries with shell + PowerShell installers and GitHub Attestations.",
+    "tags": [
+      "magika",
+      "release"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/release/cargo-dist-multi-platform-rust-cli-release",
+    "has_content": true
   },
   {
     "kind": "skill",
@@ -15004,6 +15794,24 @@
   },
   {
     "kind": "skill",
+    "name": "bun-mock-module-isolation",
+    "slug": "bun-mock-module-isolation",
+    "category": "testing",
+    "description": "Split per-package Bun tests into multiple `bun test` invocations to avoid irreversible `mock.module()` cache pollution.",
+    "tags": [
+      "bun",
+      "testing",
+      "mock",
+      "isolation",
+      "monorepo"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/testing/bun-mock-module-isolation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "deterministic-coverage-verification",
     "slug": "deterministic-coverage-verification",
     "category": "testing",
@@ -15218,6 +16026,24 @@
   },
   {
     "kind": "skill",
+    "name": "bun-workspaces-export-map",
+    "slug": "bun-workspaces-export-map",
+    "category": "tooling",
+    "description": "Expose a deep subpath export map ('./agent', './config/types', './utils/paths', ...) from a shared workspace package so consumers import stable, internal-hidden surfaces instead of reaching into src directly.",
+    "tags": [
+      "monorepo",
+      "bun",
+      "workspaces",
+      "package-exports",
+      "tree-shaking"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/tooling/bun-workspaces-export-map",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
     "name": "argbind-function-signature-cli-binding",
     "slug": "argbind-function-signature-cli-binding",
     "category": "training",
@@ -15250,6 +16076,24 @@
     "triggers": [],
     "version": "1.0.0",
     "path": "skills/training/audio-text-packing-with-loss-masks",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "branded-git-path-types",
+    "slug": "branded-git-path-types",
+    "category": "typescript",
+    "description": "Use branded string types (`RepoPath`, `WorktreePath`, `BranchName`) with constructor helpers to prevent accidentally passing one string primitive where another is expected.",
+    "tags": [
+      "typescript",
+      "branded-types",
+      "type-safety",
+      "git",
+      "phantom-types"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/typescript/branded-git-path-types",
     "has_content": false
   },
   {
@@ -15539,6 +16383,23 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/canary-release-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "candidate-elevation-with-success-streak",
+    "slug": "candidate-elevation-with-success-streak",
+    "category": "workflow",
+    "description": "Track success streak and elevate low-confidence external assets after repeated validation",
+    "tags": [
+      "evolver",
+      "workflow",
+      "trust",
+      "federation"
+    ],
+    "triggers": [],
+    "version": "1.0.0",
+    "path": "skills/workflow/candidate-elevation-with-success-streak",
     "has_content": false
   },
   {
