@@ -94,7 +94,18 @@ Authoring workflow for the `paper/` exploration layer. Produces `.paper-draft/<c
     ## Limitations
     ```
 
-13. **Immediate verification**
+    The `## References (examines)` and `## Build dependencies` sections are NOT
+    written by hand — step 13 generates them from the frontmatter. Don't
+    duplicate the data manually.
+
+13. **Inject References section** (vertical, narrow-friendly mirror of frontmatter)
+    - Run: `python ~/.claude/skills-hub/remote/bootstrap/tools/_inject_references_section.py --only paper --write`
+      (or pass the specific PAPER.md path; the tool is idempotent and bounded by
+      `<!-- references-section:begin/end -->` markers).
+    - Inserts `## References (examines)` and (if any build has requires[])
+      `## Build dependencies (proposed_builds)` immediately before `## Perspectives`.
+
+14. **Immediate verification**
     - Run `/hub-paper-verify <slug>`
     - If FAIL, show errors and offer: edit, revert, leave as-is
     - If PASS, print location + next-step hints
@@ -102,7 +113,8 @@ Authoring workflow for the `paper/` exploration layer. Produces `.paper-draft/<c
 ## Rules
 
 - **Premise is not optional**. No if/then → no paper.
-- `examines[].kind: paper` rejected (v0 nesting ban).
+- `examines[].kind: paper` is allowed (v0.2.1 lifted the v0 ban — citations are flat references, not compositional nesting).
+- `proposed_builds[].requires[].kind: paper` is still rejected (compositional path).
 - **Never call remote** during compose.
 - **Never write to** `~/.claude/papers/` — that's the installed root.
 - Authoring and verification are separate passes (step 13).
