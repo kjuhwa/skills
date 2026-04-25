@@ -5,9 +5,11 @@ author: kjuhwa@nkia.co.kr
 date: 2026-04-24
 ---
 
-# `paper/` — Hypothesis-Driven Exploration Layer (v0.2)
+# `paper/` — Hypothesis-Driven Exploration Layer (v0.2.1)
 
 > **v0.2 change summary**: v0.1 was forward-only (premise + proposed_builds). v0.2 closes the loop — papers now have `experiments[]` (backward-looking: what was actually tested) and `outcomes[]` (what the corpus learned). `proposed_builds[]` gains a `requires[]` field to enforce **non-triviality** — a build that doesn't depend on any corpus atom is a signal the paper isn't needed for it. Papers also get a `type` enum so survey/position papers without experiments remain valid.
+
+> **v0.2.1 change summary**: lift the v0 ban on `examines[].kind: paper`. Academic-style citations between papers within the hub are now first-class. The original ban was inherited from technique composition (where nesting risks cycles); for papers the citation is a flat reference, not compositional nesting, so the concern does not apply. Lint now resolves paper refs against `paper/<ref>/PAPER.md` on disk just like skill/knowledge/technique refs.
 
 ## 1. Why
 
@@ -85,10 +87,10 @@ premise:                    # REQUIRED — what makes this a paper
   if: <condition statement>
   then: <predicted outcome>
 
-examines:                   # what this paper analyzes (hub refs)
-  - kind: technique | skill | knowledge
+examines:                   # what this paper analyzes / cites (hub refs)
+  - kind: technique | skill | knowledge | paper       # v0.2.1: paper added
     ref: <kind-root-relative path>
-    role: <free-text, e.g. "subject of analysis", "supporting evidence", "counter-example">
+    role: <free-text, e.g. "subject of analysis", "supporting evidence", "cited related work">
 
 perspectives:               # angles/lenses applied to the subject — at least 2 required
   - name: <short label>
@@ -218,7 +220,7 @@ A paper either asserts correct things or it doesn't. That is a reviewer job, not
 
 ## 7. v0 scope limits (revisitable in v0.2)
 
-- **No paper-to-paper references** in `examines[]`. Academic papers cite papers, so this is uncomfortable — but in v0 the same cycle/coupling risk applies as with technique nesting. Revisit once we have ≥5 papers.
+- ~~**No paper-to-paper references** in `examines[]`.~~ **Lifted in v0.2.1** — academic citations between hub papers are now first-class via `examines[].kind: paper`. The original ban was inherited from technique composition (where nesting risks cycles); for papers the citation is a flat reference, not compositional nesting, so the concern does not apply. Lint resolves paper refs against `paper/<ref>/PAPER.md` on disk just like skill/knowledge/technique refs.
 - **No rich citation format** (BibTeX, DOI, etc.). External refs stay free-form URL + title.
 - **No schema for `perspectives[]` names** (like "theoretical", "economic", "ethical"). Free text. We'll propose a controlled vocabulary only if we see 10+ papers converge on the same labels.
 

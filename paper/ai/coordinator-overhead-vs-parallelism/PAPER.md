@@ -23,6 +23,9 @@ examines:
   - kind: knowledge
     ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
     role: counter-evidence-from-prior-paper
+  - kind: paper
+    ref: workflow/parallel-dispatch-breakeven-point
+    role: prior paper establishing parallel-dispatch can be net negative — this paper extends to the coordinator-overhead axis
 
 perspectives:
   - name: Coordinator Time is Serial

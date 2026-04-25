@@ -234,7 +234,7 @@ def iter_md_files() -> list[Path]:
 
 
 def lint_paper_structure(raw_fm: str) -> list[str]:
-    """Paper-specific structural checks per schema v0.2 §6 rules 1-3.
+    """Paper-specific structural checks per schema v0.2 §6 rules 1-3 (v0.2.1: paper-citation allowed).
 
     Rule 1: premise.if and premise.then both non-empty.
     Rule 2: examines[] non-empty, every ref resolves on disk.
@@ -317,7 +317,15 @@ def lint_paper_structure(raw_fm: str) -> list[str]:
         kind = e.get("kind", "")
         ref = e.get("ref", "")
         if kind == "paper":
-            errors.append(f"examines[{i}]: paper-to-paper citation forbidden in v0")
+            # v0.2.1: paper-to-paper citation in examines[] is allowed.
+            # academic citations are flat references, not compositional nesting,
+            # so the cycle/coupling concern from technique composes[] does not apply.
+            target = PAPER_DIR / ref / "PAPER.md"
+            if not target.exists():
+                errors.append(
+                    f"examines[{i}]: paper ref not found: {ref!r} "
+                    f"(expected {target.relative_to(HUB_ROOT).as_posix()})"
+                )
             continue
         if not kind or not ref:
             errors.append(f"examines[{i}]: missing kind or ref")

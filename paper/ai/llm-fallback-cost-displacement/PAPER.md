@@ -30,6 +30,15 @@ examines:
   - kind: knowledge
     ref: pitfall/retry-strategy-implementation-pitfall
     role: counter-evidence — retry-inside-tier vs fall-through confusion
+  - kind: paper
+    ref: testing/llm-ci-triage-boundary-conditions
+    role: sibling paper on LLM boundary conditions — same silent-failure family
+  - kind: paper
+    ref: workflow/parallel-dispatch-breakeven-point
+    role: prior paper on cost displacement under parallelism — analogous shape on a different axis
+  - kind: paper
+    ref: workflow/technique-layer-composition-value
+    role: meta paper on layer ROI — anchors the cost-vs-value framing this paper inherits
 
 perspectives:
   - name: Nominal vs Tail Cost

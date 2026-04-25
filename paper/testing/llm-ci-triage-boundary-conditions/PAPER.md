@@ -30,6 +30,12 @@ examines:
   - kind: knowledge
     ref: decision/caveats-absence-confidence-cap
     role: counter-evidence — existing corpus stance on capping confidence when caveats are absent, directly relevant to LLM over-confidence failure mode
+  - kind: paper
+    ref: workflow/parallel-dispatch-breakeven-point
+    role: prior paper sourcing the silent-failure-mode framing this paper applies to triage
+  - kind: paper
+    ref: workflow/technique-layer-composition-value
+    role: meta paper anchoring the "measure before adopt" stance this paper takes for LLM-triage
 
 perspectives:
   - name: Noise-vs-Signal Boundary

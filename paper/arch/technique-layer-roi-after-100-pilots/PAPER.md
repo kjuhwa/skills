@@ -23,6 +23,9 @@ examines:
   - kind: technique
     ref: ai/agent-fallback-ladder
     role: example-of-uncited-technique
+  - kind: paper
+    ref: workflow/technique-layer-composition-value
+    role: sister meta paper — asks "does the layer produce durable value?", this paper asks "is value distributed evenly or concentrated?"
 
 perspectives:
   - name: Power-Law Citation

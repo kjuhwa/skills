@@ -22,7 +22,7 @@ Run schema v0.2 §6 rules against one paper (or all). **Structure-only by design
    - `kind: skill` → `skills/<ref>/SKILL.md`
    - `kind: knowledge` → `knowledge/<ref>.md`
    - `kind: technique` → `technique/<ref>/TECHNIQUE.md`
-   - `kind: paper` → **rejected** (v0 nesting ban)
+   - `kind: paper` → `paper/<ref>/PAPER.md` (v0.2.1: paper-to-paper citations are first-class; the original v0 ban was lifted because citations are flat references, not compositional nesting)
 4. **Perspectives ≥ 2**: WARN at 1 (upgraded to FAIL under `--strict`)
 5. **Description length**: ≤120 chars (WARN if exceeded unless `--strict`)
 6. **Name matches folder**: `name` == containing directory name
