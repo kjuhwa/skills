@@ -63,6 +63,7 @@ def main() -> int:
     steps.append(("paper-falsifiability-audit", [py, "_audit_paper_falsifiability.py"]))
     steps.append(("paper-imrad-audit", [py, "_audit_paper_imrad.py"]))
     steps.append(("paper-v03-audit", [py, "_audit_paper_v03.py"]))
+    steps.append(("paper-frontmatter-length-audit", [py, "_audit_paper_frontmatter_length.py"]))
     steps.append(("technique-suggestions", [py, "_suggest_techniques.py"]))
 
     for label, cmd in steps:
