@@ -9364,5 +9364,236 @@
         "consolidate-batch-publish-pr-conflicts"
       ]
     }
+  },
+  "techniques": {
+    "arch/saga-with-compensation-chain": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "data/producer-consumer-backpressure-loop": {
+      "category": "data",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "arch/multi-peer-quorum-decision-loop": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "arch/finite-state-machine-monotonic-ratchet": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "arch/strangler-fig-traffic-shifting": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "workflow/fan-out-fan-in-with-bulkhead": {
+      "category": "workflow",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "security/credential-rotation-overlap-window": {
+      "category": "security",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "db/idempotent-migration-with-resume-checkpoint": {
+      "category": "db",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "frontend/optimistic-mutation-with-server-reconcile": {
+      "category": "frontend",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "devops/canary-rollout-with-auto-revert": {
+      "category": "devops",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "ai/multi-agent-fan-out-with-isolation": {
+      "category": "ai",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "arch/feature-flag-killswitch-with-circuit-state": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    },
+    "testing/contract-test-with-consumer-verification": {
+      "category": "testing",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "binding": "loose"
+    }
+  },
+  "papers": {
+    "arch/saga-vs-2pc-cost-curve": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "data/backpressure-vs-rate-limit-comparison": {
+      "category": "data",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "arch/quorum-scaling-curve": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "devops/canary-auto-revert-calibration": {
+      "category": "devops",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "security/credential-rotation-window-tradeoff": {
+      "category": "security",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "frontend/optimistic-ui-flicker-tolerance": {
+      "category": "frontend",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "ai/coordinator-overhead-vs-parallelism": {
+      "category": "ai",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "db/migration-checkpoint-overhead": {
+      "category": "db",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "testing/contract-test-staleness-curve": {
+      "category": "testing",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "arch/feature-flag-flap-prevention-policies": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    },
+    "arch/technique-layer-roi-after-100-pilots": {
+      "category": "arch",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.2.0-draft",
+      "source_commit": "release/technique-paper-batch-20260425",
+      "pinned": false,
+      "type": "hypothesis",
+      "status": "draft"
+    }
   }
 }
