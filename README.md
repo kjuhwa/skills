@@ -261,6 +261,10 @@ status: draft | reviewed | implemented | retracted
 ```
 Schema: `docs/rfc/paper-schema-draft.md`. Verification is **structure only** — claim correctness is reviewer judgment, never a lint check. The complementary [falsifiability advisory](./bootstrap/tools/_audit_paper_falsifiability.py) flags `type: hypothesis` papers whose `premise.then` lacks a measurable predicate.
 
+**Body structure — IMRaD.** Per [§5 of the schema doc](./docs/rfc/paper-schema-draft.md), bodies follow the international convention: `## Introduction / ## Methods / ## Results / ## Discussion`. Methods + Results apply only to `type: hypothesis`; survey/position papers carry just Introduction + Discussion. Compliance is audited by [`_audit_paper_imrad.py`](./bootstrap/tools/_audit_paper_imrad.py); migration is incremental.
+
+**Optional `preprint/` directory.** A paper may carry a venue-ready LaTeX render at `paper/<category>/<slug>/preprint/paper.tex` for submission to arXiv / OpenReview / workshop venues. The first such package lives at [`paper/workflow/parallel-dispatch-breakeven-point/preprint/`](./paper/workflow/parallel-dispatch-breakeven-point/preprint/) — frontmatter remains canonical, the preprint is hand-mirrored from the IMRaD body.
+
 ---
 
 ## Stats (live)
@@ -274,7 +278,9 @@ The corpus measures itself:
 | Hypothesis papers with closed loop | 3 / 13 | `_audit_paper_loops.py` |
 | Stale hypothesis papers (≥30d, planned exp) | 0 / 13 | `_audit_paper_loops.py --only-stale` |
 | Falsifiability-flagged papers | 0 / 13 hypothesis | `_audit_paper_falsifiability.py` |
-| §11 retraction signal | not fired | empty-loop ratio = 12/15 (80%); threshold 60% at N≥5, but ratio is dropping as loops close |
+| IMRaD-compliant body structure | 1 / 15 | `_audit_paper_imrad.py` |
+| Papers with `preprint/` package | 1 / 15 | `paper/<…>/<…>/preprint/paper.tex` |
+| §11 retraction signal | not fired | strict ratio (`experiments[]` AND `outcomes[]` both empty) is 0/15 — every paper carries at least planned experiments. Threshold 60 % at N≥5. |
 | Suggested technique bundles ≥3 atoms | 2 strong candidates | `_suggest_techniques.py` |
 
 These numbers are recomputed by `precheck.py` on every post-merge / post-commit hook fire. See [`bootstrap/tools/`](./bootstrap/tools/) for the audit + index pipeline.
