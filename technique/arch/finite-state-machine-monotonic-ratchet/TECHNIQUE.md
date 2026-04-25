@@ -23,6 +23,7 @@ composes:
     ref: pitfall/finite-state-machine-implementation-pitfall
     version: "*"
     role: state-transition-counter-evidence
+    note: state-transition-counter-evidence
 
 binding: loose
 

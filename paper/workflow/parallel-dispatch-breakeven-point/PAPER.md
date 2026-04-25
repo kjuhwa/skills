@@ -22,16 +22,20 @@ premise:
 examines:
   - kind: skill
     ref: workflow/parallel-bulk-annotation
-    role: the canonical HOW-TO for parallel bulk annotation dispatch
+    role: canonical-how-to
+    note: the canonical HOW-TO for parallel bulk annotation dispatch
   - kind: skill
     ref: workflow/bucket-parallel-java-annotation-dispatch
-    role: a specific variant (Java + bucket partitioning) — same HOW-TO assumption
+    role: specific-variant
+    note: a specific variant (Java + bucket partitioning) — same HOW-TO assumption
   - kind: knowledge
     ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
-    role: counter-evidence — a real session where 3 of 4 parallel agents did zero useful work because prior coverage was ~90 percent
+    role: counter-evidence
+    note: counter-evidence — a real session where 3 of 4 parallel agents did zero useful work because prior coverage was ~90 percent
   - kind: skill
     ref: ai/ai-subagent-scope-narrowing
-    role: adjacent pattern for narrowing scope before dispatch; the "decide what to parallelize" side of the problem
+    role: adjacent-pattern
+    note: "adjacent pattern for narrowing scope before dispatch; the \"decide what to parallelize\" side of the problem"
 
 perspectives:
   - name: Cost Model
@@ -52,27 +56,32 @@ proposed_builds:
     requires:
       - kind: skill
         ref: workflow/parallel-bulk-annotation
-        role: the baseline HOW-TO the gate sits in front of
+        role: baseline-how-to
+        note: the baseline HOW-TO the gate sits in front of
       - kind: knowledge
         ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
-        role: the counter-evidence session that motivates the gate
+        role: counter-evidence
+        note: the counter-evidence session that motivates the gate
       - kind: skill
         ref: ai/ai-subagent-scope-narrowing
-        role: adjacent pattern for narrowing scope; the gate complements it
+        role: adjacent-pattern
+        note: adjacent pattern for narrowing scope; the gate complements it
   - slug: coverage-threshold-decision-table
     summary: Knowledge entry with a decision table - work-type × prior-coverage × recommended-strategy (parallel-dispatch, single-agent-scan, sampling-only) backed by session data from real runs
     scope: poc
     requires:
       - kind: knowledge
         ref: agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch
-        role: seed data point for the decision table's first row
+        role: seed-data
+        note: "seed data point for the decision table's first row"
   - slug: parallel-bulk-annotation-preflight-section
     summary: Extension to the existing parallel-bulk-annotation skill adding a "Phase 0 - Pre-flight" section that calls the coverage gate and routes to serial or sampling mode when appropriate
     scope: demo
     requires:
       - kind: skill
         ref: workflow/parallel-bulk-annotation
-        role: the skill being edited — direct dependency
+        role: the skill being edited
+        note: the skill being edited — direct dependency
 
 experiments:
   - name: coverage-threshold-measurement

@@ -47,6 +47,7 @@ proposed_builds:
       - kind: knowledge
         ref: pitfall/canary-release-implementation-pitfall
         role: failure-modes-to-validate-against
+        note: failure-modes-to-validate-against
 
 experiments:
   - name: threshold-vs-revert-ratio

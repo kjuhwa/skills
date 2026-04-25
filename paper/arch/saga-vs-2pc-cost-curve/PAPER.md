@@ -14,6 +14,7 @@ examines:
   - kind: technique
     ref: workflow/safe-bulk-pr-publishing
     role: shape-comparison-baseline-for-multi-step
+    note: shape-comparison-baseline-for-multi-step
   - kind: skill
     ref: workflow/saga-pattern-data-simulation
     role: saga-shape
@@ -47,6 +48,7 @@ proposed_builds:
       - kind: knowledge
         ref: pitfall/saga-pattern-implementation-pitfall
         role: avoid-known-saga-bugs-in-benchmark
+        note: avoid-known-saga-bugs-in-benchmark
 
 experiments:
   - name: saga-vs-2pc-crossover-point

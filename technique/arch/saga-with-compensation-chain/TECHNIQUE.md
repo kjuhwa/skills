@@ -32,6 +32,7 @@ composes:
     ref: pitfall/idempotency-implementation-pitfall
     version: "*"
     role: compensation-safety-counter-evidence
+    note: compensation-safety-counter-evidence
 
 binding: loose
 

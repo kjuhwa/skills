@@ -20,18 +20,22 @@ composes:
     ref: backend/kafka-consumer-semaphore-chunking
     version: "*"
     role: bounded-buffer-implementation-example
+    note: bounded-buffer-implementation-example
   - kind: knowledge
     ref: pitfall/backpressure-implementation-pitfall
     version: "*"
     role: feedback-mechanism-counter-evidence
+    note: feedback-mechanism-counter-evidence
   - kind: knowledge
     ref: pitfall/dead-letter-queue-implementation-pitfall
     version: "*"
     role: overflow-handling-counter-evidence
+    note: overflow-handling-counter-evidence
   - kind: knowledge
     ref: pitfall/rate-limiter-implementation-pitfall
     version: "*"
     role: rate-vs-buffer-distinction-counter-evidence
+    note: rate-vs-buffer-distinction-counter-evidence
 
 binding: loose
 

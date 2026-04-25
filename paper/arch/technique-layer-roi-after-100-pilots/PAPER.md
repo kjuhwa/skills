@@ -25,7 +25,8 @@ examines:
     role: example-of-uncited-technique
   - kind: paper
     ref: workflow/technique-layer-composition-value
-    role: sister meta paper — asks "does the layer produce durable value?", this paper asks "is value distributed evenly or concentrated?"
+    role: sister meta paper
+    note: "sister meta paper — asks \"does the layer produce durable value?\", this paper asks \"is value distributed evenly or concentrated?\""
 
 perspectives:
   - name: Power-Law Citation

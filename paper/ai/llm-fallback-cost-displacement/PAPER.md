@@ -20,25 +20,32 @@ premise:
 examines:
   - kind: skill
     ref: ai/ai-call-with-mock-fallback
-    role: the simplest fallback shape — 2-tier baseline
+    role: the simplest fallback shape
+    note: the simplest fallback shape — 2-tier baseline
   - kind: skill
     ref: cli/graceful-version-fallback-tier-order
-    role: the tier-ordering rule that the ladder inherits
+    role: tier-ordering
+    note: the tier-ordering rule that the ladder inherits
   - kind: knowledge
     ref: pitfall/circuit-breaker-implementation-pitfall
-    role: counter-evidence — silent fallback as the canonical failure mode
+    role: counter-evidence
+    note: counter-evidence — silent fallback as the canonical failure mode
   - kind: knowledge
     ref: pitfall/retry-strategy-implementation-pitfall
-    role: counter-evidence — retry-inside-tier vs fall-through confusion
+    role: counter-evidence
+    note: counter-evidence — retry-inside-tier vs fall-through confusion
   - kind: paper
     ref: testing/llm-ci-triage-boundary-conditions
-    role: sibling paper on LLM boundary conditions — same silent-failure family
+    role: sibling-paper
+    note: sibling paper on LLM boundary conditions — same silent-failure family
   - kind: paper
     ref: workflow/parallel-dispatch-breakeven-point
-    role: prior paper on cost displacement under parallelism — analogous shape on a different axis
+    role: prior-paper
+    note: prior paper on cost displacement under parallelism — analogous shape on a different axis
   - kind: paper
     ref: workflow/technique-layer-composition-value
-    role: meta paper on layer ROI — anchors the cost-vs-value framing this paper inherits
+    role: meta paper on layer ROI
+    note: meta paper on layer ROI — anchors the cost-vs-value framing this paper inherits
 
 perspectives:
   - name: Nominal vs Tail Cost
@@ -59,30 +66,36 @@ proposed_builds:
     requires:
       - kind: skill
         ref: ai/ai-call-with-mock-fallback
-        role: the baseline call shape the dashboard instruments
+        role: baseline-call
+        note: the baseline call shape the dashboard instruments
       - kind: knowledge
         ref: pitfall/circuit-breaker-implementation-pitfall
-        role: informs which metrics are indicators of the silent-failure shape
+        role: informs-which
+        note: informs which metrics are indicators of the silent-failure shape
   - slug: llm-fallback-schema-validator-middleware
     summary: Middleware that validates every tier's output against a registered schema and rejects cross-tier drift. Rejection triggers an explicit error rather than silently propagating the mismatched payload downstream.
     scope: poc
     requires:
       - kind: skill
         ref: ai/ai-call-with-mock-fallback
-        role: the tiered call shape the middleware wraps
+        role: tiered-call
+        note: the tiered call shape the middleware wraps
       - kind: knowledge
         ref: pitfall/circuit-breaker-implementation-pitfall
-        role: codifies the silent-failure failure mode the middleware prevents
+        role: codifies-silent-failure
+        note: codifies the silent-failure failure mode the middleware prevents
   - slug: llm-fallback-cost-budget-governor
     summary: Budget governor that short-circuits the ladder entirely when month-to-date cost exceeds a configurable ceiling. When activated, returns explicit "budget exceeded, degraded response" rather than silently spending into the next tier.
     scope: demo
     requires:
       - kind: skill
         ref: cli/graceful-version-fallback-tier-order
-        role: the tier-ordering pattern the governor overrides when budget is exhausted
+        role: tier-ordering
+        note: the tier-ordering pattern the governor overrides when budget is exhausted
       - kind: knowledge
         ref: pitfall/retry-strategy-implementation-pitfall
-        role: retry-storm behavior is the class of failure the governor catches
+        role: retry-storm
+        note: retry-storm behavior is the class of failure the governor catches
 
 experiments:
   - name: ladder-latency-vs-nominal-cost-benchmark
