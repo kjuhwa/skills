@@ -66,6 +66,19 @@ Tags:        [oauth, token, refresh]
 2. **Resolve** — find the entry per resolution order above.
 3. **Read** — load the file(s) from local path or remote cache.
 4. **Render** — show metadata header + file content (respecting `--raw` and `--section`).
+5. **Append `Cited by` block** (skipped under `--raw`) — open `~/.claude/skills-hub/remote/citations.json`, look up the key `<kind>/<ref>` for the resolved entry, and render the `cited_by` list:
+
+   ```
+   --- Cited by ---
+   technique  workflow/safe-bulk-pr-publishing  · role: orchestrator    · via: composes
+   paper      workflow/parallel-dispatch-breakeven-point  · role: counter-evidence  · via: examines
+   paper      workflow/parallel-dispatch-breakeven-point  · role: gate-input  · via: requires:parallel-dispatch-coverage-gate
+   ```
+
+   - Group by kind (`technique` first, then `paper`); within a kind sort by ref.
+   - Show at most 8 entries; tail the rest as `… and N more`.
+   - If the atom has zero citations, render `--- Cited by ---  (none yet)`. This is informative — uncited atoms are exactly what `paper/arch/technique-layer-roi-after-100-pilots` is measuring.
+   - If `citations.json` is missing or older than the entry's last modification, advise `precheck.py` (the post-merge / post-commit hook regenerates it automatically).
 
 ## Rules
 
