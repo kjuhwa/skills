@@ -29,6 +29,40 @@ composes:
     version: "*"
     role: hypothesis-guard
 
+recipe:
+  one_line: "Take an unclear bug to a GitHub issue with embedded TDD plan. 4-phase investigation (investigate → analyze → hypothesize → implement) gates against AI-guess pitfalls."
+  preconditions:
+    - "Bug or incident has observable symptoms but cause is not yet identified"
+    - "Deliverable must be a GitHub issue with an embedded TDD test plan"
+    - "Time budget allows investigation-first work (this technique is slow by design)"
+  anti_conditions:
+    - "Obvious one-line fixes — investigation overhead is unjustified"
+    - "In-production hotfixes — investigation-first cadence is too slow"
+    - "Irreproducible incidents — different triage pattern needed"
+  failure_modes:
+    - signal: "A hypothesis becomes asserted as fact without evidence"
+      atom_ref: "knowledge:pitfall/ai-guess-mark-and-review-checklist"
+      remediation: "Mark the guess explicitly, run the AI-guess checklist, require re-review before implement phase"
+  assembly_order:
+    - phase: investigate
+      uses: phase-orchestrator
+    - phase: analyze
+      uses: phase-orchestrator
+    - phase: hypothesize
+      uses: phase-orchestrator
+      branches:
+        - condition: "build error class"
+          next: build-triage
+        - condition: "general bug class"
+          next: implement
+    - phase: build-triage
+      uses: branch-build-error
+      branches:
+        - condition: "issue identified"
+          next: implement
+    - phase: implement
+      uses: artifact-producer
+
 binding: loose
 
 verify:

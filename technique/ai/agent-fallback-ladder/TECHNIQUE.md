@@ -29,6 +29,25 @@ composes:
     version: "*"
     role: retry-pitfall-guard
 
+recipe:
+  one_line: "Hierarchical fallback ladder for LLM calls — N tiers ordered by cost/confidence, each gated by its own circuit-breaker state. Cheap-first, graceful degradation."
+  preconditions:
+    - "Multiple LLM providers or model tiers with distinct cost/latency/reliability profiles"
+    - "Tasks where a cheaper model often suffices but a stronger one must be available on demand"
+    - "Cost-sensitive pipelines where expected common-case cost should be the cheapest tier"
+  anti_conditions:
+    - "Single-provider deployment — no ladder, no decision"
+    - "Output schema varies across tiers in incompatible ways — fallback that can't produce required schema is worse than failed call"
+    - "Latency-critical user-facing paths — ladder traversal time is unacceptable"
+    - "Security-sensitive calls — weakest tier doesn't meet required guarantees"
+  failure_modes:
+    - signal: "Cascade storm — every request traverses all tiers (primary rate-limited)"
+      atom_ref: "knowledge:pitfall/circuit-breaker-implementation-pitfall"
+      remediation: "Verify each tier has independent circuit state; check breakers aren't all simultaneously open"
+    - signal: "Retry storm at one tier exhausts budget before fallback activates"
+      atom_ref: "knowledge:pitfall/retry-strategy-implementation-pitfall"
+      remediation: "Bound retries per-tier; tier exhaustion must fall through, not retry"
+
 binding: loose
 
 verify:

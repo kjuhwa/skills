@@ -24,6 +24,21 @@ composes:
     version: "*"
     role: counter-evidence
 
+recipe:
+  one_line: "Per-flag circuit breaker — error rate above threshold trips OPEN, manual half-open re-arm prevents auto-flapping. Operator owns recovery."
+  preconditions:
+    - "Feature is deployed via a flag and needs fast-disable independent of code-deploy cycle"
+    - "Per-flag error rate is observable (instrumented at flag check site)"
+    - "Manual re-arming is acceptable — protects against auto-flap"
+  anti_conditions:
+    - "Flags toggle infrequently and humans monitor each one directly"
+    - "No per-flag error instrumentation — generic service breaker suffices"
+    - "Auto-recovery is required — manual rearming is too slow"
+  failure_modes:
+    - signal: "Breaker flaps repeatedly between OPEN and HALF-OPEN"
+      atom_ref: "knowledge:pitfall/circuit-breaker-implementation-pitfall"
+      remediation: "Manual re-arm is by design; auto-flapping means the half-open path is auto-transitioning instead of waiting for operator"
+
 binding: loose
 
 verify:

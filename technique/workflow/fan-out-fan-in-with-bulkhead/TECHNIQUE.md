@@ -24,6 +24,21 @@ composes:
     version: "*"
     role: counter-evidence
 
+recipe:
+  one_line: "Multi-stage pipeline with synchronous fan-in barriers between stages and bulkhead-isolated workers within each stage. Failure-isolated, latency = max(worker)."
+  preconditions:
+    - "Multi-stage pipeline where downstream stages depend on full completion of upstream"
+    - "Worker failure must not cascade into peer workers (resource isolation matters)"
+    - "Wall-clock dominated by the slowest worker per stage, not by serialization"
+  anti_conditions:
+    - "Single-stage map-reduce — just use parallel-map"
+    - "Workers have natural inter-dependencies within a stage — use saga"
+    - "Resource contention is acceptable or desired (shared pool by design)"
+  failure_modes:
+    - signal: "A single worker failure aborts peer workers in the same stage"
+      atom_ref: "knowledge:pitfall/bulkhead-implementation-pitfall"
+      remediation: "Verify per-worker resource quotas; failure should be logged at the barrier, not propagated to peers"
+
 binding: loose
 
 verify:
