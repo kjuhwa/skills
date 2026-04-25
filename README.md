@@ -1,20 +1,37 @@
 # skills-hub
 
-> **A 4-tier knowledge stack for Claude Code.** Atoms (skills + knowledge) compose into **techniques** (recipes that reference, never copy) and feed **papers** (hypothesis-driven analyses that close the loop with experiments). All schema-validated, all installable with one slash command.
+> **A self-correcting knowledge stack for Claude Code.** Atoms (skills + knowledge) compose into **techniques**, and **papers** test their own premises with experiments — partial refutations rewrite the premise, produce new corpus entries, and feed back into the catalog. Three papers have already closed their loops; this README documents how.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Bootstrap](https://img.shields.io/github/v/tag/kjuhwa/skills-hub?filter=bootstrap/v*&label=bootstrap&color=purple)](https://github.com/kjuhwa/skills-hub/tags)
-[![Techniques](https://img.shields.io/badge/techniques-17-teal)](./technique)
-[![Papers](https://img.shields.io/badge/papers-15-indigo)](./paper)
-[![Skills](https://img.shields.io/badge/skills-1105-blue)](./index.json)
-[![Knowledge](https://img.shields.io/badge/knowledge-894-green)](./knowledge)
-[![Examples](https://img.shields.io/badge/examples-29-orange)](./example)
+[![Closed loops](https://img.shields.io/badge/closed_loops-3-2563eb?style=flat-square&logo=arc)](./paper)
+[![Papers](https://img.shields.io/badge/papers-15-indigo?style=flat-square)](./paper)
+[![Techniques](https://img.shields.io/badge/techniques-18-teal?style=flat-square)](./technique)
+[![Skills](https://img.shields.io/badge/skills-1,105-blue?style=flat-square)](./index.json)
+[![Knowledge](https://img.shields.io/badge/knowledge-894-green?style=flat-square)](./knowledge)
+[![Examples](https://img.shields.io/badge/examples-622-orange?style=flat-square)](./example)
+
+---
+
+## What's different
+
+Most catalogs are **read-only knowledge** — patterns, decisions, recipes you look up. This one is **read-write**: papers carry hypotheses about the corpus, run experiments against them, and **rewrite themselves when reality disagrees**.
+
+Three papers have done this so far:
+
+| # | Paper | Predicted | Measured | Verdict |
+|---|---|---|---|---|
+| 1 | `workflow/parallel-dispatch-breakeven-point` | parallel dispatch becomes net negative past 70% prior coverage | useful_output absolute count is the better gate | **partial** — premise rewritten, produced 1 new knowledge entry + 1 example |
+| 2 | `arch/technique-layer-roi-after-100-pilots` | ≤20% of techniques cited 2+ times at N=100 | 11.8% at N=17, 97.3% atom-orphan rate at N=2000 | **partial** — power-law shape supported earlier than expected, generalized to atom layer |
+| 3 | `arch/feature-flag-flap-prevention-policies` | hysteresis ratio 1.5–2x is universal optimum | flap-invariant on spiky workloads; "wider delays trip" was actually about debouncing, not hysteresis | **partial** — premise rewritten, produced [`example/arch/hysteresis-tuning-tool`](./example/arch/hysteresis-tuning-tool) |
+
+Every loop closed at `partial`, not `yes`. That's the schema's intended shape: papers shipped as drafts and survived a real experiment usually need *some* refinement. The gap between the original claim and what the data actually supports is exactly where the corpus learns.
 
 ---
 
 ## The Four Layers
 
-The hub is built around two axes: **enforcement** (atoms → techniques) and **exploration** (papers → outcomes). Each layer has a distinct job.
+Two axes — **enforcement** (atoms → techniques) where everything has a pass/fail lint, and **exploration** (papers) where claims test themselves.
 
 | Layer | What it is | Job | Schema gate |
 |---|---|---|---|
@@ -22,12 +39,6 @@ The hub is built around two axes: **enforcement** (atoms → techniques) and **e
 | **`knowledge/`** | Atomic, non-executable fact / decision / pitfall | "X is true because…" | frontmatter validated |
 | **`technique/`** | Composition recipe — references 2+ atoms, never copies | "this is the *shape* of how X is done" | `composes[]` resolves; no technique-nesting (v0) |
 | **`paper/`** | Hypothesis-driven argument with `premise.if/then`, `examines[]`, `experiments[]`, `outcomes[]` | "is X actually true? what happens if…?" | structure only (premise non-empty, ≥2 perspectives, refs resolve, completed-experiment fields consistent) |
-
-**The exploration loop** (paper layer): a `hypothesis` paper transitions `draft → implemented` only when at least one `experiments[]` entry completes with a non-null `result` and `supports_premise`. If the result refines or refutes the premise, the paper rewrites itself and emits a new corpus entry via `outcomes[]`. Empty experiments + empty outcomes across ≥5 papers triggers **layer retraction** — the schema's own self-corrective gate.
-
-**Why techniques exist**: `/hub-merge` absorbs entries (good for true duplicates). `technique/` *references* atoms, so each atom retains independent versioning and can evolve under its compose call. A technique is never the canonical home for the procedure; it's the canonical home for the *pattern of combination*.
-
-### Architecture at a glance
 
 ```mermaid
 graph TB
@@ -58,7 +69,11 @@ graph TB
   class exploration,enforcement,atoms axisLabel
 ```
 
-The live citation graph generated from `citations.json` (15 papers · 17 techniques · 54 cited atoms) is at [`docs/citation-graph.mmd`](./docs/citation-graph.mmd) — auto-rebuilt by post-merge / post-commit git hooks. Implemented papers are highlighted; draft papers are dashed.
+The **live citation graph** of the actual corpus is in [`docs/citation-graph.mmd`](./docs/citation-graph.mmd) — auto-rebuilt by post-merge / post-commit git hooks, rendered directly by GitHub. Implemented papers show solid blue; drafts dashed.
+
+**The exploration loop**: a `hypothesis` paper transitions `draft → implemented` only when at least one experiment completes with a non-null `result` and `supports_premise`. If the experiment partially refutes the original premise, the paper rewrites itself and emits new corpus entries via `outcomes[]`. Empty experiments + empty outcomes across ≥5 papers triggers **layer retraction** — the schema's own self-corrective gate.
+
+**Why techniques exist**: `/hub-merge` *absorbs* atoms (good for true duplicates). `technique/` *references* atoms, so each atom retains independent versioning and can evolve under its compose call. A technique is the canonical home for the *pattern of combination*, not for the procedure itself. New techniques are surfaced from atom co-occurrence patterns by `_suggest_techniques.py`; #1120 was the first technique authored from a scanner suggestion.
 
 ---
 
@@ -77,15 +92,36 @@ powershell -ExecutionPolicy Bypass -File $HOME\.claude\skills-hub\remote\bootstr
 The installer wires up slash commands, registers git hooks, and seeds `~/.claude/`. Restart Claude Code, then in any session:
 
 ```
-/hub-find "<query>"           ranked corpus search (KO↔EN synonyms)
-/hub-install <name>           pull a skill / knowledge entry locally
-/hub-paper-list               browse hypothesis-driven papers
-/hub-technique-list           browse composition recipes
-/hub-extract                  mine the current project for new patterns
-/hub-publish --pr             ship drafts back as a PR
+/hub-suggest "<task description>"     pre-impl discovery — surfaces papers & techniques first, then atoms
+/hub-paper-list --stale               papers ready to close (hypothesis + planned experiment + age ≥30d)
+/hub-list --orphans                   uncited atoms — empirical input for the long-tail hypothesis paper
+/hub-paper-experiment-run <slug>      guided loop closure — collect result, suggest premise rewrite, transition status
+/hub-paper-from-technique <slug>      scaffold a paper that interrogates an existing technique
 ```
 
 `git pull` alone keeps you current — the post-merge hook re-runs `install.sh` whenever `bootstrap/` changes.
+
+---
+
+## What you actually get
+
+When you ask Claude Code to implement something, the pre-implementation hook silently runs `/hub-find` and surfaces matches across **all four layers**, with priority `paper > technique > skill > knowledge`. Concrete: when you say "구현해줘 / implement parallel dispatch", you get this *before* writing code:
+
+```
+[paper/workflow]    parallel-dispatch-breakeven-point
+                    Past 70% prior coverage parallel dispatch is net negative
+                    (REFINED 2026-04 — useful_output absolute count is the gate)
+                    type=hypothesis status=implemented
+[technique/arch]    gated-fallback-chain
+                    Tiered fallback behind a feature flag with circuit-breaker awareness
+                    composes 3 atoms
+
+  ① 페이퍼 읽고 premise/perspectives 반영
+  ② proposed_builds 에서 scaffold 시도 (/hub-make)
+  ③ 건너뛰기
+```
+
+You decide whether the paper's findings change your approach *before* writing the code. The skills + knowledge are the implementation primitives; the paper is the warning that someone already measured this and the answer was non-trivial.
 
 ---
 
@@ -104,13 +140,16 @@ skills/                       # atomic executable procedures
     SKILL.md + content.md
 knowledge/                    # atomic non-executable facts
   <category>/<slug>.md
-example/                      # ready-to-install reference projects (29)
+example/                      # ready-to-install reference projects (622)
+docs/
+  rfc/                        # paper-schema-draft.md, technique-schema-draft.md
+  citation-graph.mmd          # live, auto-regenerated visualization
 bootstrap/
   commands/                   # slash-command sources
-  tools/                      # python helpers (lint, indexers, injectors)
+  tools/                      # python helpers (lint, indexers, audits, injectors, suggesters)
   install.{sh,ps1}            # installers
-docs/rfc/                     # paper-schema-draft.md, technique-schema-draft.md
 CATEGORIES.md                 # canonical category list
+citations.json                # reverse-lookup index (cited_by + produced_by)
 index.json                    # flat catalog (auto-rebuilt by post-* git hooks)
 registry.json                 # installed-entry manifest
 ```
@@ -126,10 +165,11 @@ After installation, `~/.claude/skills-hub/` mirrors `tools/`, `bin/`, generated 
 | Command | Purpose |
 |---|---|
 | `/hub-paper-compose <slug>` | Authoring flow — premise → examines → perspectives → proposed_builds → planned experiments. Auto-verifies. |
+| `/hub-paper-from-technique <slug>` | Scaffold a paper draft that interrogates an existing technique — pre-fills examines, perspectives, one experiment skeleton |
+| `/hub-paper-experiment-run <slug>` | **Guided loop closure** — collect result + supports_premise + observed_at, prompt premise rewrite when partial/refute, transition status |
 | `/hub-paper-verify <slug> \| --all` | Schema §6 gate — structure only, never validates claim substance |
-| `/hub-paper-list [--status/--type/--category]` | Status-grouped table; emits the §11 retraction signal at scale |
+| `/hub-paper-list [--status/--type/--stale]` | Status-grouped table; `--stale` flags hypothesis papers ready to close |
 | `/hub-paper-show <slug>` | Body + inline-expanded `examines[]`/`requires[]`; experiments rendered as a status table |
-| `/hub-find --kind paper <query>` | Search papers via the main `/hub-find` |
 
 ### Technique layer
 
@@ -137,7 +177,7 @@ After installation, `~/.claude/skills-hub/` mirrors `tools/`, `bin/`, generated 
 |---|---|
 | `/hub-technique-compose <slug>` | Pick atoms, assign roles, generate `TECHNIQUE.md`, auto-verify |
 | `/hub-technique-verify <slug> \| --all` | Schema §9 gate — composes refs exist, no nesting |
-| `/hub-technique-list [--drafts-only \| --installed-only]` | Local drafts + installed |
+| `/hub-technique-list [--drafts-only]` | Local drafts + installed |
 | `/hub-technique-show <slug>` | Body + expanded `composes[]` with inline atom descriptions |
 
 ### Atomic layers (skills + knowledge)
@@ -145,10 +185,10 @@ After installation, `~/.claude/skills-hub/` mirrors `tools/`, `bin/`, generated 
 | Command | Purpose |
 |---|---|
 | `/hub-find "<query>"` | Ranked search (180+ KO↔EN synonyms; scores name/description/tags/triggers) |
-| `/hub-suggest "<task>"` | Pre-implementation discovery — interprets intent, offers install/reference |
+| `/hub-suggest "<task>"` | **Pre-implementation discovery — searches all 4 layers**, surfaces paper/technique first |
 | `/hub-install <name> [@version]` | Install one entry (`--all` for bulk, `--example` for demo projects) |
-| `/hub-list` | What's installed (`--kind skills\|knowledge\|techniques\|papers\|examples`) |
-| `/hub-show <name>` | Display full content of an installed entry |
+| `/hub-list [--orphans]` | What's installed; `--orphans` surfaces uncited atoms with empirical hub-wide rate |
+| `/hub-show <name>` | Display content + **`Cited by`** block (techniques/papers that reference it) + **`Produced by`** block (papers whose outcomes shipped this atom) |
 | `/hub-extract [keyword]` | Mine the current project; `--session` narrows to current session |
 | `/hub-publish [--only ...] [--pr]` | Review drafts → branch + PR (one PR carries skills + knowledge + technique + paper drafts) |
 | `/hub-sync` | Pull remote + refresh installs + rebuild indexes |
@@ -158,11 +198,13 @@ After installation, `~/.claude/skills-hub/` mirrors `tools/`, `bin/`, generated 
 
 `/hub-merge`, `/hub-split`, `/hub-refactor`, `/hub-condense`, `/hub-cleanup` — all read-only on remote, produce drafts that ship through the normal publish flow.
 
-`/hub-commands-update [--version=x.y.z]` rolls the slash-commands forward or back to a tagged release. `/hub-commands-publish --bump=patch --pr` publishes local edits with a `bootstrap/v*` tag.
+`/hub-commands-update [--version=x.y.z]` rolls the slash commands forward or back to a tagged release. `/hub-commands-publish --bump=patch --pr` publishes local edits with a `bootstrap/v*` tag.
 
 ---
 
 ## Authoring
+
+Each layer has its own concept page in the [wiki](https://github.com/kjuhwa/skills-hub/wiki) — start there for full schema details. Quick reference:
 
 ### Skill (`skills/<category>/<slug>/SKILL.md`)
 
@@ -217,9 +259,25 @@ experiments:
 outcomes: [...]
 status: draft | reviewed | implemented | retracted
 ```
-Schema: `docs/rfc/paper-schema-draft.md`. Verification is **structure only** — claim correctness is reviewer judgment, never a lint check.
+Schema: `docs/rfc/paper-schema-draft.md`. Verification is **structure only** — claim correctness is reviewer judgment, never a lint check. The complementary [falsifiability advisory](./bootstrap/tools/_audit_paper_falsifiability.py) flags `type: hypothesis` papers whose `premise.then` lacks a measurable predicate.
 
-`role` stays as a compact label; long prose goes into the optional `note:` field. Both `_inject_references_section.py` (body section generator) and `_compress_role.py` (role/note splitter) are idempotent and run from `bootstrap/tools/`.
+---
+
+## Stats (live)
+
+The corpus measures itself:
+
+| Signal | Value | Source |
+|---|---|---|
+| Atoms cited by ≥1 entry | 61 / 2,000 (3.0%) | `citations.json` |
+| Atoms produced by paper outcomes | 3 | `citations.json` (schema 2) |
+| Hypothesis papers with closed loop | 3 / 13 | `_audit_paper_loops.py` |
+| Stale hypothesis papers (≥30d, planned exp) | 0 / 13 | `_audit_paper_loops.py --only-stale` |
+| Falsifiability-flagged papers | 0 / 13 hypothesis | `_audit_paper_falsifiability.py` |
+| §11 retraction signal | not fired | empty-loop ratio = 12/15 (80%); threshold 60% at N≥5, but ratio is dropping as loops close |
+| Suggested technique bundles ≥3 atoms | 2 strong candidates | `_suggest_techniques.py` |
+
+These numbers are recomputed by `precheck.py` on every post-merge / post-commit hook fire. See [`bootstrap/tools/`](./bootstrap/tools/) for the audit + index pipeline.
 
 ---
 
@@ -229,8 +287,6 @@ Schema: `docs/rfc/paper-schema-draft.md`. Verification is **structure only** —
 |---|---|
 | Per-skill | `skills/<name>/v<semver>` |
 | Bootstrap (commands + tools) | `bootstrap/v<semver>` |
-
-Tags are annotated and created automatically by `/hub-publish-skills` and `/hub-commands-publish`. Knowledge / techniques / papers are content-addressed; their history *is* the trail.
 
 ```
 /hub-install my-skill@1.1.0           # pinned install
@@ -248,6 +304,8 @@ Recent releases: see [tags](https://github.com/kjuhwa/skills-hub/tags). Your ins
 2. Review locally — sanitize, add examples, refine triggers; run the layer's `*-verify` to confirm structure.
 3. `/hub-publish --pr` opens a branch + PR. Knowledge commits land first so skills/techniques can reference fresh slugs in the same branch.
 4. Never push to `main` directly. Category proposals edit `CATEGORIES.md` in the same PR that adds the first entry using the new category.
+
+For papers specifically: a draft can stay at `status: draft` indefinitely with `experiments[].status: planned`. To reach `implemented`, run `/hub-paper-experiment-run` once the experiment actually completes — partial refutations rewrite the premise, full refutations move the paper to `retracted`. Both outcomes are valuable; the schema records them faithfully.
 
 Skills must be **generalizable** — no business names, credentials, internal URLs. `extract` writes only to draft dirs (already in `.gitignore`).
 
