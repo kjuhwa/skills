@@ -308,6 +308,45 @@ def score_entry(entry: dict, tokens: list[tuple[str, float]]) -> int:
     return int(round(score))
 
 
+def paper_display_summary(entry: dict) -> tuple[str, str]:
+    """Return (summary, advisory) per paper-schema-draft.md §15.3 injection contract.
+
+    For non-paper entries, returns (description, "") unchanged. For papers:
+      - draft / reviewed         → (description, "")
+      - implemented + verdict    → (verdict_one_line + " (refined N×, last YYYY-MM)",
+                                    "")
+      - implemented (no verdict) → (description, "[verdict missing]")
+      - retracted                → (description, "retracted: <reason>")
+    """
+    if entry.get("kind") != "paper":
+        return (entry.get("description") or "", "")
+
+    status = (entry.get("paper_status") or "").strip()
+    description = (entry.get("description") or "").strip()
+    verdict = (entry.get("verdict_one_line") or "").strip()
+    revisions = entry.get("premise_revisions") or 0
+    last_date = (entry.get("last_revision_date") or "").strip()
+    retraction_reason = (entry.get("retraction_reason") or "").strip()
+
+    if status == "retracted":
+        advisory = f"retracted: {retraction_reason}" if retraction_reason else "retracted"
+        return (description, advisory)
+    if status == "implemented":
+        if verdict:
+            suffix = ""
+            if revisions >= 1:
+                # Truncate ISO date to YYYY-MM per §15.3 ("last YYYY-MM").
+                ym = last_date[:7] if len(last_date) >= 7 else last_date
+                if ym:
+                    suffix = f" (refined {revisions}×, last {ym})"
+                else:
+                    suffix = f" (refined {revisions}×)"
+            return (verdict + suffix, "")
+        return (description, "[verdict missing]")
+    # draft / reviewed / unknown
+    return (description, "")
+
+
 def render_html(raw_tokens: list[str], expanded: list[tuple[str, float]],
                 top: list[tuple[int, dict]], total: int) -> str:
     """다크 테마 카드 UI."""
@@ -318,13 +357,17 @@ def render_html(raw_tokens: list[str], expanded: list[tuple[str, float]],
     cards: list[str] = []
     for s, e in top:
         name = html.escape(e.get("name") or "")
-        desc = html.escape((e.get("description") or "").strip())
+        summary, advisory = paper_display_summary(e)
+        desc = html.escape(summary.strip())
         kind = html.escape(e.get("kind") or "")
         cat = html.escape(e.get("category") or "")
         path = html.escape(e.get("path") or "")
         tags = e.get("tags") or []
         tag_html = "".join(
             f'<span class="tag">{html.escape(t)}</span>' for t in tags
+        )
+        advisory_html = (
+            f'<p class="advisory">{html.escape(advisory)}</p>' if advisory else ""
         )
         cards.append(f"""
 <article class="card">
@@ -334,6 +377,7 @@ def render_html(raw_tokens: list[str], expanded: list[tuple[str, float]],
     <h2>{name}</h2>
   </header>
   <p class="desc">{desc or "<em>(설명 없음)</em>"}</p>
+  {advisory_html}
   <div class="tags">{tag_html}</div>
   <code class="path">{path}</code>
 </article>""")
@@ -367,6 +411,7 @@ def render_html(raw_tokens: list[str], expanded: list[tuple[str, float]],
             text-align: center; }}
   .kind {{ color: #8fb7e0; font-size: 12px; font-family: ui-monospace, monospace; }}
   .desc {{ margin: 2px 0 8px; color: #c5d0dc; }}
+  .advisory {{ margin: 0 0 8px; color: #f0a070; font-size: 12px; font-style: italic; }}
   .tags {{ display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }}
   .tag {{ background: #26344a; color: #8fb7e0; font-size: 11px;
           padding: 2px 8px; border-radius: 999px; }}
@@ -425,12 +470,20 @@ def main() -> int:
         s = score_entry(e, expanded)
         if s > 0:
             scored.append((s, e))
-    scored.sort(key=lambda pair: (-pair[0], pair[1].get("name", "")))
+    # §15.3 sort: retracted papers ranked last regardless of score, then score
+    # desc, then name asc for stable tiebreak.
+    scored.sort(key=lambda pair: (
+        1 if pair[1].get("paper_status") == "retracted" else 0,
+        -pair[0],
+        pair[1].get("name", ""),
+    ))
     top = scored[: args.top]
 
     if args.as_json:
-        out = [
-            {
+        out = []
+        for s, e in top:
+            summary, advisory = paper_display_summary(e)
+            row = {
                 "score": s,
                 "kind": e.get("kind"),
                 "category": e.get("category"),
@@ -439,8 +492,13 @@ def main() -> int:
                 "tags": e.get("tags", []),
                 "path": e.get("path", ""),
             }
-            for s, e in top
-        ]
+            # Paper-only injection-contract fields. Always include both keys
+            # for paper entries so downstream consumers can branch on
+            # "advisory present" without a key check.
+            if e.get("kind") == "paper":
+                row["display_summary"] = summary
+                row["advisory"] = advisory
+            out.append(row)
         payload = json.dumps(out, ensure_ascii=False, indent=2)
         if args.out:
             Path(args.out).write_text(payload, encoding="utf-8")
@@ -473,12 +531,15 @@ def main() -> int:
         kind = e.get("kind", "?")
         cat = e.get("category", "")
         name = e.get("name", "")
-        desc = (e.get("description") or "").replace("\n", " ")
-        if len(desc) > 160:
-            desc = desc[:159] + "…"
+        summary, advisory = paper_display_summary(e)
+        desc = summary.replace("\n", " ")
+        if len(desc) > 200:
+            desc = desc[:199] + "…"
         path = e.get("path", "")
         print(f"[{s:3}]  {kind}/{cat:15} {name}")
         print(f"       {desc}")
+        if advisory:
+            print(f"       ⚠ {advisory}")
         print(f"       path: {path}")
         print()
     return 0

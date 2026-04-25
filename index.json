@@ -15461,13 +15461,17 @@
     "version": "0.2.0-draft",
     "path": "paper/ai/coordinator-overhead-vs-parallelism",
     "has_content": true,
-    "examines_count": 4,
+    "examines_count": 5,
     "perspectives_count": 4,
     "experiments_count": 1,
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15480,13 +15484,17 @@
     "version": "0.2.0-draft",
     "path": "paper/ai/llm-fallback-cost-displacement",
     "has_content": true,
-    "examines_count": 4,
+    "examines_count": 7,
     "perspectives_count": 4,
     "experiments_count": 1,
     "outcomes_count": 0,
     "proposed_builds_count": 3,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15502,16 +15510,20 @@
       "hypothesis"
     ],
     "triggers": [],
-    "version": "0.2.0-draft",
+    "version": "0.3.0-draft",
     "path": "paper/arch/feature-flag-flap-prevention-policies",
     "has_content": true,
     "examines_count": 4,
     "perspectives_count": 4,
     "experiments_count": 1,
-    "outcomes_count": 0,
+    "outcomes_count": 1,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "implemented",
+    "verdict_one_line": "Hysteresis ratio doesn't fix flap on spiky workloads (invariant at 1.21/h across 1.2x-3.0x); apply 1.5-2.0x only on borderline-noise (bursty/drifting). Trip-detection delay is a debouncing concern, not hysteresis — don't conflate.",
+    "premise_revisions": 1,
+    "last_revision_date": "2026-04-25",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15536,7 +15548,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15561,7 +15577,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15577,16 +15597,20 @@
       "hypothesis"
     ],
     "triggers": [],
-    "version": "0.2.0-draft",
+    "version": "0.3.0-draft",
     "path": "paper/arch/technique-layer-roi-after-100-pilots",
     "has_content": true,
-    "examines_count": 4,
+    "examines_count": 5,
     "perspectives_count": 4,
     "experiments_count": 1,
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "implemented",
+    "verdict_one_line": "Long-tail citation shape is structural, not threshold-gated. Visible at N=17 (11.8% techniques 2+ cited) and N=2000 (97.3% atom orphan). Author techniques only when atom co-occurrence demonstrates a real pattern — not speculatively.",
+    "premise_revisions": 1,
+    "last_revision_date": "2026-04-25",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15611,7 +15635,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15636,7 +15664,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15661,7 +15693,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15686,7 +15722,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15710,7 +15750,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15735,7 +15779,11 @@
     "outcomes_count": 0,
     "proposed_builds_count": 1,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15748,13 +15796,17 @@
     "version": "0.2.0-draft",
     "path": "paper/testing/llm-ci-triage-boundary-conditions",
     "has_content": true,
-    "examines_count": 4,
+    "examines_count": 6,
     "perspectives_count": 4,
     "experiments_count": 1,
     "outcomes_count": 0,
     "proposed_builds_count": 3,
     "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15764,7 +15816,7 @@
     "description": "When does parallel subagent dispatch stop paying off, and what pre-flight probe catches it before tokens are wasted?",
     "tags": "",
     "triggers": [],
-    "version": "0.2.0-draft",
+    "version": "0.3.0-draft",
     "path": "paper/workflow/parallel-dispatch-breakeven-point",
     "has_content": true,
     "examines_count": 4,
@@ -15773,7 +15825,11 @@
     "outcomes_count": 2,
     "proposed_builds_count": 3,
     "paper_type": "hypothesis",
-    "paper_status": "implemented"
+    "paper_status": "implemented",
+    "verdict_one_line": "Before parallel-dispatching to N agents, count useful_output absolute (not coverage %); if useful_output < ~5 files, skip parallel — α·N startup is pure waste regardless of coverage.",
+    "premise_revisions": 1,
+    "last_revision_date": "2026-04-24",
+    "retraction_reason": ""
   },
   {
     "kind": "paper",
@@ -15791,8 +15847,12 @@
     "experiments_count": 0,
     "outcomes_count": 2,
     "proposed_builds_count": 3,
-    "paper_type": "hypothesis",
-    "paper_status": "draft"
+    "paper_type": "position",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
   },
   {
     "kind": "skill",
@@ -35524,6 +35584,46 @@
     "path": "technique/arch/finite-state-machine-monotonic-ratchet",
     "has_content": true,
     "composes_count": 3,
+    "binding": "loose"
+  },
+  {
+    "kind": "technique",
+    "name": "gated-fallback-chain",
+    "slug": "gated-fallback-chain",
+    "category": "arch",
+    "description": "Tiered fallback chain rolled out behind a feature flag, with circuit-breaker pitfall awareness — fail loud, not silent.",
+    "tags": [
+      "fallback",
+      "circuit-breaker",
+      "feature-flag",
+      "resilience",
+      "composition"
+    ],
+    "triggers": [],
+    "version": "0.1.0",
+    "path": "technique/arch/gated-fallback-chain",
+    "has_content": true,
+    "composes_count": 3,
+    "binding": "loose"
+  },
+  {
+    "kind": "technique",
+    "name": "idempotent-mutation-with-rollback",
+    "slug": "idempotent-mutation-with-rollback",
+    "category": "arch",
+    "description": "Compose an idempotent mutation pipeline with a rollback path — apply once, retry safely, undo cleanly. Domain-agnostic (DB, frontend, distributed).",
+    "tags": [
+      "idempotency",
+      "rollback",
+      "mutation",
+      "retry-safe",
+      "composition"
+    ],
+    "triggers": [],
+    "version": "0.1.0",
+    "path": "technique/arch/idempotent-mutation-with-rollback",
+    "has_content": true,
+    "composes_count": 4,
     "binding": "loose"
   },
   {

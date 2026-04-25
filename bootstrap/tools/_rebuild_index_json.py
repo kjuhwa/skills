@@ -26,12 +26,20 @@ import json
 import sys
 from pathlib import Path
 
+try:
+    import yaml  # used only for nested paper frontmatter (v0.3 verdict block)
+    _HAVE_YAML = True
+except ImportError:
+    _HAVE_YAML = False
+
 STANDARD_KEYS = (
     "kind", "name", "slug", "category", "description",
     "tags", "triggers", "version", "path", "has_content",
     "composes_count", "binding",
     "examines_count", "perspectives_count", "experiments_count",
     "outcomes_count", "proposed_builds_count", "paper_type", "paper_status",
+    # v0.3 injection-contract fields (paper kind only, populated when present)
+    "verdict_one_line", "premise_revisions", "last_revision_date", "retraction_reason",
 )
 
 
@@ -171,6 +179,39 @@ def entry_from_paper(root: Path, paper_md: Path) -> dict | None:
                 count += 1
         return count
 
+    # v0.3 amendment fields (paper-schema-draft.md §15) live in nested YAML
+    # blocks (verdict.one_line, premise_history[], applicability.*) that the
+    # flat parser at the top of this file cannot reach. Use yaml.safe_load here
+    # — best-effort, optional dependency.
+    verdict_one_line = ""
+    premise_revisions = 0
+    last_revision_date = ""
+    retraction_reason = (fm.get("retraction_reason") or "").strip()
+    # Treat the YAML scalar literal "null" the flat parser leaves as a string.
+    if retraction_reason.lower() in ("null", "none"):
+        retraction_reason = ""
+    if _HAVE_YAML and fm_body:
+        try:
+            full_fm = yaml.safe_load(fm_body) or {}
+        except yaml.YAMLError:
+            full_fm = {}
+        verdict = full_fm.get("verdict") or {}
+        if isinstance(verdict, dict):
+            verdict_one_line = (verdict.get("one_line") or "").strip()
+        history = full_fm.get("premise_history") or []
+        if isinstance(history, list):
+            premise_revisions = len(history)
+            if history and isinstance(history[-1], dict):
+                last = history[-1].get("date")
+                # yaml.safe_load auto-converts ISO dates to datetime.date.
+                # Accept both str and date for §15.3 "(refined N×, last YYYY-MM)".
+                if last is not None:
+                    last_revision_date = str(last).strip()
+        # Prefer nested-parsed retraction_reason if flat-parser missed it.
+        nested_reason = full_fm.get("retraction_reason")
+        if isinstance(nested_reason, str) and nested_reason.strip():
+            retraction_reason = nested_reason.strip()
+
     return {
         "kind": "paper",
         "name": fm.get("name", ""),
@@ -189,6 +230,13 @@ def entry_from_paper(root: Path, paper_md: Path) -> dict | None:
         "proposed_builds_count": count_under("proposed_builds", "- slug:"),
         "paper_type": fm.get("type", "hypothesis"),
         "paper_status": fm.get("status", "draft"),
+        # v0.3 §15.3 injection-contract fields. Empty string / 0 when absent so
+        # downstream consumers (hub_search) can detect "field missing" without
+        # KeyError.
+        "verdict_one_line": verdict_one_line,
+        "premise_revisions": premise_revisions,
+        "last_revision_date": last_revision_date,
+        "retraction_reason": retraction_reason,
     }
 
 
