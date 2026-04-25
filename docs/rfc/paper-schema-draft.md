@@ -408,3 +408,110 @@ Before authoring pilot 1, confirm:
 3. **Pilot target**: the meta-paper above (technique layer as subject). ← proposed, but open to an outside-the-session topic if you'd rather start with something that isn't self-referential.
 
 If all three are acceptable, step 2 (author pilot 1) proceeds. Any single "no" redirects the schema.
+
+---
+
+## 15. v0.3 amendment — LLM-consumption optimization (proposed 2026-04-26)
+
+> **Why**: v0.2 closed the experimental loop (premise → experiment → outcome). It still leaves the paper's *injectable verdict* implicit — an LLM reading at pre-implementation time has to read the rewritten premise AND the experiments narrative AND the discussion to recover "so what should I do differently." For a corpus that markets itself as "knowledge surfaced before code is written," that recovery cost is the primary leak. v0.3 adds optional, structured fields that make the verdict, decision rule, and applicability machine-extractable. All v0.3 fields are OPTIONAL on existing papers; new compose flows default to populating them; an audit reports per-paper compliance without failing lint.
+
+### 15.1 New frontmatter fields
+
+```yaml
+verdict:                              # populated when status=implemented
+  one_line: <≤200 chars — "if you're about to X, do/don't Y because Z">
+  rule:
+    when: <preconditions for the rule to fire>
+    do:   <action or non-action>
+    threshold: <optional, "<metric> <op> <value> <unit>" e.g. "useful_output < 5 files">
+  belief_revision:
+    before_reading: <what a reasonable engineer would assume without this paper>
+    after_reading:  <what they should assume instead>
+
+applicability:
+  applies_when:
+    - <condition / workload class / scale>
+  does_not_apply_when:                # explicit non-applicability — protects against over-citation
+    - <condition that invalidates the verdict>
+  invalidated_if_observed:            # falsification triggers — when to re-run the experiment
+    - <observable signal that means the result no longer holds>
+  decay:
+    half_life: <"6 months" | "until <library> v3" | "indefinite">
+    why:       <what specifically would cause decay>
+
+premise_history:                      # rewrite log — current premise is the latest revision
+  - revision: 1
+    date: <YYYY-MM-DD>
+    if:   <prior premise.if>
+    then: <prior premise.then>
+    cause: <which experiment + observation forced the rewrite>
+
+# experiments[i] gains optional sub-fields:
+experiments:
+  - measured:                         # structured numeric extracts — referenceable by other papers/techniques
+      - metric:    <name>
+        value:     <number>
+        unit:      <string>
+        condition: <which cell / configuration>
+    refutes:  [<quoted phrase from original premise>, ...]
+    confirms: [<quoted phrase from original premise>, ...]
+```
+
+### 15.2 New verification rules
+
+**Required** (FAIL when `type=hypothesis` AND `status=implemented`):
+
+16. `verdict.one_line` non-empty.
+17. `verdict.rule.do` non-empty.
+18. `applicability.applies_when` length ≥ 1.
+
+**Advisory** (WARN, never FAIL):
+
+- `verdict.rule.threshold` empty when `experiments[].result` contains numeric tokens (likely missed extraction).
+- `premise_history[]` empty when any experiment has `supports_premise: partial` (likely missed rewrite log — partial verdicts almost always imply a rewrite).
+- `applicability.does_not_apply_when` empty when any experiment cell has `supports_premise: no` or `partial` (the "no" cells ARE the does-not-apply conditions; surface them).
+- `verdict.belief_revision.before_reading` empty when `premise_history[]` length ≥ 2 (the "before" should mirror the original premise the corpus would have absorbed).
+
+### 15.3 Injection contract
+
+When `/hub-find`, `/hub-suggest`, or the pre-implementation hook surfaces a paper:
+
+| `status` | What gets shown |
+|---|---|
+| `draft` / `reviewed` | `description` (current behavior) |
+| `implemented` with `verdict.one_line` | `verdict.one_line` + "(refined N×, last YYYY-MM)" — pulled from `premise_history[]` length |
+| `implemented` without `verdict.one_line` | `description` + "[verdict missing]" advisory |
+| `retracted` | `description` + `retraction_reason`, ranked last (current behavior) |
+
+Rationale: at pre-implementation the LLM has seconds of context budget. `description` is library-card style ("when does parallel dispatch stop paying off"); `verdict.one_line` is action-oriented ("count useful_output before parallelizing; if < 5 files, skip"). The first invites a re-read; the second prevents wrong code in-flight.
+
+### 15.4 Why these specific fields (LLM-consumption rationale)
+
+- **`verdict.one_line`** — highest-bandwidth field for injection. One sentence that, in isolation, changes a code-writing decision.
+- **`verdict.rule.{when,do,threshold}`** — extracts the decision into a machine-checkable shape. A future PR-lint can grep these and warn when a diff violates a published rule (e.g. parallel dispatch added without a `useful_output` probe).
+- **`belief_revision.before/after`** — the *delta* between common assumption and measured truth. This is the only artifact in the schema that an LLM **cannot** reconstruct from the rewritten premise alone, because the rewritten premise hides the prior wrong belief.
+- **`applicability.does_not_apply_when` + `invalidated_if_observed`** — protect against over-application. The hysteresis paper found "spiky workloads invariant to ratio"; without structured `does_not_apply_when`, an LLM may cite the 1.5x ratio for spiky workloads, which the data refuted. The current schema buries this in Discussion prose.
+- **`decay.half_life`** — measurements stale. A 2026-04 result on Claude Opus 4.6 may not hold for 4.7. Explicit decay turns the freshness check into a metadata read instead of forcing a re-experiment.
+- **`premise_history[]`** — the *rewrite trail* is the highest-value artifact in the corpus for an LLM. A paper that rewrote its premise twice taught the corpus more than one that landed first try. Surfacing the trail explicitly lets the LLM reason about which parts of a domain remain unstable. Currently lives only as `# Rewritten YYYY-MM-DD` comments next to `premise.then` (see `paper/workflow/parallel-dispatch-breakeven-point/PAPER.md:18-20`) — invisible to tooling.
+- **`experiments[i].measured[]`** — structured numbers prevent re-extraction from prose. Other papers/techniques can reference `measured[].value` directly, building a shared quantitative substrate (the corpus's first step toward composable empirical claims).
+- **`experiments[i].refutes[]` / `confirms[]`** — granular link from experiment cells back to premise sub-claims. Currently a `supports_premise: partial` verdict is a black box; this opens it so an LLM can answer "which specific part of the premise survived?" without parsing the result table.
+
+### 15.5 Auditor stance — what is still NOT verified
+
+Carrying the v0.1 / v0.2 rule: **structure only, never substance**.
+
+- `verdict.one_line` non-empty does not mean it's *correct*. Reviewer judgement.
+- `belief_revision.before_reading` does not have to match what an LLM would actually have predicted — it's the author's claim about prior assumption.
+- `decay.half_life` is a guess; no tool checks whether the result has actually decayed. (A future `_audit_paper_decay.py` could watch `observed_at` age and surface candidates, but lint stays silent.)
+
+### 15.6 Migration
+
+- All v0.3 fields OPTIONAL on v0.2 papers. The 15 existing papers continue to verify under §6 + §6.v0.2 rules without modification.
+- New `_audit_paper_v03.py` runs in `precheck.py`, reports per-paper compliance count (e.g. "verdict.one_line missing on 12/13 implemented papers"). Informational, not blocking — same stance as `_audit_paper_imrad.py`.
+- `/hub-paper-compose` v0.3 generates the new fields by default for new papers.
+- For existing implemented papers, a one-shot `/hub-paper-extract-verdict <slug>` reads body + experiments and proposes draft `verdict` + `applicability` + `premise_history` blocks for author review (does not write to disk without approval).
+- **Self-corrective gate**: if v0.3 field adoption stays below 30% across `implemented` papers after 90 days, retract the amendment. Same stance as §11 — the amendment earns its keep only if authors find the LLM-injection win worth the extra fields.
+
+### 15.7 Why this is a v0.3 not a v0.2.3
+
+v0.2.x amendments (paper-nesting in examines, IMRaD body) were strictly additive and did not change what tooling **shows** to consumers. v0.3 changes the injection contract (§15.3) — what `/hub-find` and pre-impl hook display when surfacing an implemented paper. That's a consumer-facing behavior change, hence a minor version bump.
