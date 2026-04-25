@@ -130,20 +130,33 @@ def remove_existing_managed(body: str) -> str:
     return MANAGED_RE.sub("", body)
 
 
-def insert_before_heading(body: str, heading: str, block: str) -> tuple[str, bool]:
-    """Insert `block` immediately before the first occurrence of `heading` (e.g. '## Perspectives').
+def insert_before_first_heading(body: str, headings: list[str], block: str) -> tuple[str, bool]:
+    """Insert `block` immediately before the first found heading from the priority list.
 
-    Returns (new_body, inserted_flag).
-    If heading is not found, append to end.
+    Returns (new_body, inserted_flag). The list is tried in order; the first
+    matching heading wins. If none match, the block is appended at the end of body.
+
+    Priority list lets the same injector handle both the legacy body shape
+    (Premise / Background / Perspectives / Limitations / Provenance) and the
+    IMRaD shape (Introduction / Methods / Results / Discussion / Provenance).
+    Legacy papers anchor on '## Perspectives'; IMRaD papers anchor on
+    '## Provenance' as a fallback so the block lands in the references slot
+    rather than after Provenance.
     """
     if not block:
         return body, False
-    pat = re.compile(rf"(?m)^{re.escape(heading)}[ \t]*$")
-    m = pat.search(body)
-    if not m:
-        sep = "" if body.endswith("\n\n") else ("\n" if body.endswith("\n") else "\n\n")
-        return body + sep + block + "\n", True
-    return body[: m.start()] + block + "\n" + body[m.start() :], True
+    for heading in headings:
+        pat = re.compile(rf"(?m)^{re.escape(heading)}[ \t]*$")
+        m = pat.search(body)
+        if m:
+            return body[: m.start()] + block + "\n" + body[m.start() :], True
+    sep = "" if body.endswith("\n\n") else ("\n" if body.endswith("\n") else "\n\n")
+    return body + sep + block + "\n", True
+
+
+def insert_before_heading(body: str, heading: str, block: str) -> tuple[str, bool]:
+    """Compatibility wrapper for single-heading insertion (used by techniques)."""
+    return insert_before_first_heading(body, [heading], block)
 
 
 def process_paper(path: Path, write: bool) -> tuple[bool, str]:
@@ -159,7 +172,12 @@ def process_paper(path: Path, write: bool) -> tuple[bool, str]:
     if not block:
         new_body = cleaned_body
     else:
-        new_body, _ = insert_before_heading(cleaned_body, "## Perspectives", block)
+        # Anchor priority: legacy '## Perspectives' first (so existing papers don't
+        # move), then IMRaD '## Provenance' (so IMRaD bodies place the block in
+        # the references slot, not after Provenance), then append at end.
+        new_body, _ = insert_before_first_heading(
+            cleaned_body, ["## Perspectives", "## Provenance"], block
+        )
 
     new_text = fm_block + new_body
     if new_text == text:

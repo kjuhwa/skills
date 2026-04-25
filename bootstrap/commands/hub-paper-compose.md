@@ -78,21 +78,39 @@ Authoring workflow for the `paper/` exploration layer. Produces `.paper-draft/<c
     ```
     # <Title>
 
-    ## Premise
-    Expand if/then from frontmatter.
+    ## Introduction
+    Restate premise.if/then in narrative form.
+    Cite examines[] (the auto-injected ## References (examines) block sits here).
+    Note prior work — external_refs[], related papers, RFCs.
+    End with a one-sentence statement of what the paper sets out to test.
 
-    ## Background
-    Cite examines[].
+    ## Methods
+    (hypothesis papers only — survey/position papers omit this section)
+    Restate experiments[i].method in narrative form, reproducible.
 
-    ## Perspectives
-    ### <perspective 1>
-    ### <perspective 2>
+    ## Results
+    (hypothesis papers only)
+    Report experiments[i].result verbatim or expanded.
+    For status=draft, write `(pending)`.
 
-    ## External Context
-    ## Proposed Builds
-    ## Open Questions
-    ## Limitations
+    ## Discussion
+    Interpret results through perspectives[].
+    State supports_premise verdict + premise rewrite if any.
+    Limitations subsection (replaces old `## Limitations`).
+    Future Work subsection (replaces old `## Open Questions`).
+
+    ## References
+    Auto-injected ## Build dependencies block lands here.
+    Numbered list of external_refs[].
+
+    ## Provenance
+    Authoring date, batch, loop-closure history, premise rewrites.
     ```
+
+    Body structure follows IMRaD per `docs/rfc/paper-schema-draft.md` §5. Compliance
+    is **advisory** (audited by `_audit_paper_imrad.py`), not gating — but new
+    papers should ship with IMRaD by default. Section `Methods` and `Results` apply
+    only to `type: hypothesis`.
 
     The `## References (examines)` and `## Build dependencies` sections are NOT
     written by hand — step 13 generates them from the frontmatter. Don't
