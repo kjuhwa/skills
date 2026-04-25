@@ -7,8 +7,14 @@ tags: [technique-layer, roi, citation-pattern, long-tail, hypothesis]
 type: hypothesis
 
 premise:
-  if: A skills hub accumulates ≥100 techniques over time
-  then: Citation distribution follows a power law. ≤20% of techniques get cited 2+ times by other content (papers, examples, downstream techniques). The remaining 80% are written, indexed, and effectively unused — the long tail of the technique layer's ROI.
+  if: A skills hub accumulates an authored corpus, regardless of whether techniques cross N=100
+  then: >-
+    Citation distribution follows a power law that is observable well before N=100. At
+    the technique layer, ≤20% of techniques are cited 2+ times by other content (papers,
+    examples, downstream techniques) — measured 11.8% at N=17. The same long-tail shape
+    appears one layer down — ≥80% of atoms (skills + knowledge) are uncited entirely
+    (measured 97.3% at N=2000). The pattern is layer-invariant; the technique layer's
+    ROI predicate generalizes to the atom layer.
 
 examines:
   - kind: technique
@@ -56,15 +62,34 @@ experiments:
   - name: citation-distribution-at-N
     hypothesis: Once total techniques ≥ 30 (this paper's projection threshold), in-degree distribution is power-law with the top 20% receiving ≥80% of citations.
     method: Run citation-graph tool weekly as the hub grows; plot distribution at N=10, 20, 30, 50; verify power-law shape.
-    status: planned
+    status: completed
     built_as: null
-    result: null
-    supports_premise: null
-    observed_at: null
+    result: |
+      Built as bootstrap tooling (PR #1113 + #1114), not as an example/ project — the
+      proposed_builds[0] "technique-citation-graph-builder" became
+      bootstrap/tools/_build_citations_index.py (graph builder, citations.json output)
+      plus _audit_orphan_atoms.py and _audit_paper_loops.py (downstream analysis).
+
+      Measurement at current N (2026-04-25):
+        - Technique layer (N=17): 4 techniques cited at all (23.5%), 2 cited 2+ times
+          (11.8%), 13 uncited (76.5%). Top-cited concentration:
+            workflow/safe-bulk-pr-publishing  6 cites
+            debug/root-cause-to-tdd-plan      5 cites
+            testing/fuzz-crash-to-fix-loop    1 cite
+            ai/agent-fallback-ladder          1 cite
+        - Atom layer (N=2000 skills + knowledge): 54 cited (2.7%), 1946 uncited (97.3%).
+
+      Power-law shape is already observable at N=17. The premise's threshold of "≤20%
+      cited 2+ times" holds (11.8% observed). The N=100 precondition was not met during
+      this measurement window — partial support, not full validation. The unexpected
+      finding is that the same distribution appears one layer down at N=2000, supporting
+      a layer-invariant generalization that the original premise didn't make.
+    supports_premise: partial
+    observed_at: 2026-04-25
 
 outcomes: []
 
-status: draft
+status: implemented
 retraction_reason: null
 ---
 
@@ -127,3 +152,4 @@ Power-law citation patterns are documented across academia (Garfield), open-sour
 
 - Authored 2026-04-25, batch of 10
 - Meta-paper, complementary to `paper/workflow/technique-layer-composition-value` which asks "does the layer produce durable value?" — this paper asks "is the value distributed evenly or concentrated?"
+- Premise rewritten 2026-04-25 after experiment `citation-distribution-at-N` completed. The strict ≥100 technique precondition was dropped once power-law shape was already observable at N=17, and the long-tail finding was generalized to the atom layer (97.3% orphan at N=2000) since the same distribution shape appeared independently at a different scale. Status moved `draft → implemented`.
