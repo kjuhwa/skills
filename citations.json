@@ -1,9 +1,10 @@
 {
-  "schema": 1,
+  "schema": 2,
   "totals": {
-    "paper_citations": 99,
+    "paper_citations": 111,
     "technique_citations": 62,
-    "atoms_cited": 61
+    "atoms_cited": 61,
+    "atoms_produced": 3
   },
   "citations": {
     "knowledge/agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch": {
@@ -62,8 +63,23 @@
         }
       ]
     },
+    "knowledge/decision/parallel-dispatch-useful-output-gate": {
+      "produced_by": [
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "outcome_kind": "produced_knowledge"
+        }
+      ]
+    },
     "knowledge/decision/phi-accrual-failure-detector-over-binary-timeout": {
       "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/quorum-scaling-curve",
+          "role": "failure-detection-context",
+          "via": "examines"
+        },
         {
           "kind": "technique",
           "ref": "arch/multi-peer-quorum-decision-loop",
@@ -84,6 +100,18 @@
     },
     "knowledge/pitfall/backpressure-implementation-pitfall": {
       "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "data/backpressure-vs-rate-limit-comparison",
+          "role": "backpressure-counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "data/backpressure-vs-rate-limit-comparison",
+          "role": "seed-data-point",
+          "via": "requires:producer-control-decision-table"
+        },
         {
           "kind": "technique",
           "ref": "data/producer-consumer-backpressure-loop",
@@ -198,6 +226,12 @@
       "cited_by": [
         {
           "kind": "paper",
+          "ref": "data/backpressure-vs-rate-limit-comparison",
+          "role": "overflow-failure-mode",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
           "ref": "db/migration-checkpoint-overhead",
           "role": "failed-row-handling",
           "via": "examines"
@@ -295,6 +329,18 @@
     "knowledge/pitfall/raft-consensus-implementation-pitfall": {
       "cited_by": [
         {
+          "kind": "paper",
+          "ref": "arch/quorum-scaling-curve",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/quorum-scaling-curve",
+          "role": "avoid-known-bugs-in-harness",
+          "via": "requires:quorum-throughput-benchmark"
+        },
+        {
           "kind": "technique",
           "ref": "arch/multi-peer-quorum-decision-loop",
           "role": "consensus-counter-evidence",
@@ -304,6 +350,18 @@
     },
     "knowledge/pitfall/rate-limiter-implementation-pitfall": {
       "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "data/backpressure-vs-rate-limit-comparison",
+          "role": "rate-limit-counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "data/backpressure-vs-rate-limit-comparison",
+          "role": "seed-data-point",
+          "via": "requires:producer-control-decision-table"
+        },
         {
           "kind": "technique",
           "ref": "data/producer-consumer-backpressure-loop",
@@ -538,6 +596,12 @@
     },
     "skill/algorithms/gossip-round-rng-seeded-reproducible-sim": {
       "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/quorum-scaling-curve",
+          "role": "alternative-shape-for-comparison",
+          "via": "examines"
+        },
         {
           "kind": "technique",
           "ref": "arch/multi-peer-quorum-decision-loop",
@@ -887,6 +951,12 @@
     "skill/workflow/backpressure-data-simulation": {
       "cited_by": [
         {
+          "kind": "paper",
+          "ref": "data/backpressure-vs-rate-limit-comparison",
+          "role": "backpressure-shape",
+          "via": "examines"
+        },
+        {
           "kind": "technique",
           "ref": "data/producer-consumer-backpressure-loop",
           "role": "backpressure-shape-baseline",
@@ -1067,6 +1137,18 @@
     "skill/workflow/raft-consensus-data-simulation": {
       "cited_by": [
         {
+          "kind": "paper",
+          "ref": "arch/quorum-scaling-curve",
+          "role": "consensus-shape-baseline",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/quorum-scaling-curve",
+          "role": "harness-implementation",
+          "via": "requires:quorum-throughput-benchmark"
+        },
+        {
           "kind": "technique",
           "ref": "arch/multi-peer-quorum-decision-loop",
           "role": "consensus-baseline",
@@ -1164,6 +1246,13 @@
           "role": "reference-shape",
           "via": "requires:security-domain-technique-3"
         }
+      ],
+      "produced_by": [
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "outcome_kind": "produced_technique"
+        }
       ]
     },
     "technique/testing/fuzz-crash-to-fix-loop": {
@@ -1213,6 +1302,13 @@
           "ref": "workflow/technique-layer-composition-value",
           "role": "reference-shape",
           "via": "requires:security-domain-technique-3"
+        }
+      ],
+      "produced_by": [
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "outcome_kind": "produced_technique"
         }
       ]
     }
