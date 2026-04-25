@@ -5394,6 +5394,18 @@
       "category": "testing",
       "path": "skills/testing/zustand-store-mock-hoisted/SKILL.md",
       "version": "1.0.0"
+    },
+    "consolidate-batch-publish-pr-conflicts": {
+      "category": "workflow",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/combined-20260425-session-0920",
+      "pinned": false,
+      "linked_knowledge": [
+        "batch-pr-conflict-recovery",
+        "union-merge-catalog-first-seen-wins"
+      ]
     }
   },
   "knowledge": {
@@ -9332,6 +9344,25 @@
     "zustand-selector-stable-references": {
       "category": "pitfall",
       "path": "knowledge/pitfall/zustand-selector-stable-references.md"
+    },
+    "bash-var-length-counts-bytes-not-chars": {
+      "category": "pitfall",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/combined-20260425-session-0920",
+      "pinned": false
+    },
+    "union-merge-catalog-first-seen-wins": {
+      "category": "decision",
+      "scope": "global",
+      "installed_at": "2026-04-25",
+      "version": "0.1.0-draft",
+      "source_commit": "release/combined-20260425-session-0920",
+      "pinned": false,
+      "linked_skills": [
+        "consolidate-batch-publish-pr-conflicts"
+      ]
     }
   }
 }
