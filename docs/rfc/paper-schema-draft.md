@@ -151,35 +151,78 @@ retraction_reason: null     # REQUIRED when status=retracted, else null
 - **`outcomes[]`** (v0.2) — the paper's ROI. An outcome is a corpus change the paper caused — new skill/knowledge/technique produced, or existing one updated. A paper with zero outcomes after N weeks is a candidate for retraction: it made no difference to the corpus.
 - **`status`** + **`retraction_reason`** — retracted papers stay in the tree (historical record) but are ranked last in search. `retraction_reason` is required when `status=retracted` so future readers understand what went wrong.
 
-## 5. Body structure (recommended, not enforced)
+## 5. Body structure — IMRaD (v0.2.2+)
+
+The paper body adopts the **IMRaD** convention from international scientific writing — Introduction / Methods / Results / Discussion — so a closed-loop paper reads like a small research note and stays portable to preprint formats (arXiv, workshop venues).
+
+### Required sections by paper type
+
+| `type` | Required sections |
+|---|---|
+| `hypothesis` | Introduction, Methods, Results, Discussion |
+| `survey` | Introduction, Discussion |
+| `position` | Introduction, Discussion |
+
+`Methods` and `Results` apply only to `hypothesis` papers. While `status ∈ {draft, reviewed}`, the Methods section may carry the *planned* experiment design and Results may contain `(pending)`. Once `status: implemented`, both sections must be substantive (advisory length ≥ 80 chars).
+
+### Canonical body template
 
 ```
 # <Title>
 
-## Premise
-... expand the if/then from frontmatter with supporting intuition.
+## Introduction
+- Restates `premise.if/then` with supporting intuition.
+- Cites `examines[]` corpus entries (the auto-injected `## References (examines)`
+  block lands here as a sub-block — it's the citation list, not free prose).
+- Names what's been done before — RFCs, prior papers, external links from `external_refs[]`.
+- Ends with a one-sentence statement of what the paper sets out to test.
 
-## Background
-... what corpus pieces are we examining (cite examines[]).
+## Methods
+- Restates `experiments[i].method` in narrative form, with enough detail that an
+  independent reviewer could reproduce the measurement.
+- For `type: survey` and `type: position`, this section is omitted.
 
-## Perspectives
-### <perspective 1 name>
-...
-### <perspective 2 name>
-...
+## Results
+- Reports `experiments[i].result` verbatim or expanded — the data, not the
+  interpretation.
+- Tables, figures, raw counts. No "this means…" language.
+- For `type: hypothesis` papers in draft, write `(pending)`.
+- For `type: survey` and `type: position`, this section is omitted.
 
-## External Context
-... cite external_refs[]; synthesize.
+## Discussion
+- Interprets the results in light of the perspectives (frontmatter `perspectives[]`).
+- States `supports_premise` verdict and the premise rewrite if any.
+- Lists limitations (replaces the older "## Limitations" stand-alone heading).
+- Names follow-up work (replaces the older "## Open Questions" heading).
 
-## Proposed Builds
-### <build slug>
-... what to build, why this paper's claims require it.
+## References
+- Auto-injected `## Build dependencies (proposed_builds)` block lands here.
+- External `external_refs[]` rendered as a numbered list.
 
-## Open Questions
-## Limitations
+## Provenance
+- Authoring date, batch, loop-closure history, premise rewrites.
 ```
 
-Body format is free markdown. The frontmatter is the structured surface.
+### Mapping from the legacy v0.1 body
+
+The pre-IMRaD convention used `Premise / Background / Perspectives / External Context / Proposed Builds / Open Questions / Limitations / Provenance`. Each maps cleanly:
+
+| Legacy heading | IMRaD location |
+|---|---|
+| Premise | Introduction (opening paragraph) |
+| Background | Introduction (next paragraph) |
+| Perspectives | Discussion (one paragraph per perspective name) |
+| External Context | Introduction (after Background) |
+| Proposed Builds | References (or moved to Discussion as future work) |
+| Open Questions | Discussion (Future Work subsection) |
+| Limitations | Discussion (Limitations subsection) |
+| Provenance | Provenance (kept) |
+
+The **frontmatter remains canonical**. The body is the human-facing rendering of the same data, structured for portability — frontmatter feeds tooling, IMRaD body feeds reviewers and external preprint venues.
+
+### Verification
+
+`/hub-paper-verify` does not enforce IMRaD compliance — it stays structural. A separate audit `_audit_paper_imrad.py` (analogous to the falsifiability advisory) reports per-paper non-compliance, runs in `precheck.py`, and is informational. Existing papers can migrate at their own pace; new compose flows generate IMRaD bodies by default.
 
 ## 6. Verification rules (structure-only, v0.1)
 

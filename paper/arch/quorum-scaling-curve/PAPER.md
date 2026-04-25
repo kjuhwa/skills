@@ -78,6 +78,34 @@ retraction_reason: null
 
 The hub's `technique/arch/multi-peer-quorum-decision-loop` describes the shape but not the optimal N. Engineering folklore says "3 or 5"; this paper attempts to ground that with a measurable curve.
 
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `workflow/raft-consensus-data-simulation`**
+consensus-shape-baseline
+
+**skill — `algorithms/gossip-round-rng-seeded-reproducible-sim`**
+alternative-shape-for-comparison
+
+**knowledge — `pitfall/raft-consensus-implementation-pitfall`**
+counter-evidence
+
+**knowledge — `decision/phi-accrual-failure-detector-over-binary-timeout`**
+failure-detection-context
+
+
+## Build dependencies (proposed_builds)
+
+### `quorum-throughput-benchmark`  _(scope: poc)_
+
+**skill — `workflow/raft-consensus-data-simulation`**
+harness-implementation
+
+**knowledge — `pitfall/raft-consensus-implementation-pitfall`**
+avoid-known-bugs-in-harness
+
+<!-- references-section:end -->
+
 ## Perspectives
 
 (see frontmatter)

@@ -90,6 +90,34 @@ retraction_reason: null
 
 The hub has both the backpressure technique (`technique/data/producer-consumer-backpressure-loop`) and pitfalls for both backpressure and rate limiting. What is missing is the **decision rule** for when to pick which. Most teams default to one based on familiarity rather than the problem shape.
 
+<!-- references-section:begin -->
+## References (examines)
+
+**skill — `workflow/backpressure-data-simulation`**
+backpressure-shape
+
+**knowledge — `pitfall/backpressure-implementation-pitfall`**
+backpressure-counter-evidence
+
+**knowledge — `pitfall/rate-limiter-implementation-pitfall`**
+rate-limit-counter-evidence
+
+**knowledge — `pitfall/dead-letter-queue-implementation-pitfall`**
+overflow-failure-mode
+
+
+## Build dependencies (proposed_builds)
+
+### `producer-control-decision-table`  _(scope: poc)_
+
+**knowledge — `pitfall/backpressure-implementation-pitfall`**
+seed-data-point
+
+**knowledge — `pitfall/rate-limiter-implementation-pitfall`**
+seed-data-point
+
+<!-- references-section:end -->
+
 ## Perspectives
 
 (see frontmatter)

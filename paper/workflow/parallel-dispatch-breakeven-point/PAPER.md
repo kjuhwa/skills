@@ -152,35 +152,146 @@ retraction_reason: null
 
 # When does parallel subagent dispatch stop paying off?
 
-## Premise
+## Introduction
 
-**If** a bulk-modification task is dispatched to N parallel subagents without a pre-flight **useful-output** probe, **then** when `useful_output = (1 - coverage) * N` falls below a small absolute threshold (≈ 5 files), parallel dispatch becomes pure waste **regardless of coverage percentage**. Coverage alone is misleading because a large N at moderate coverage can still justify parallel, while a small useful_output cannot.
+A bulk-modification task dispatched to N parallel subagents pays a fixed startup overhead (per agent) plus a verification cost per file each agent must Read before deciding whether to act. When prior-work coverage is high, the dispatch can return zero useful changes from most agents while still paying the full overhead. The hub's existing parallelism skills describe *how* to dispatch but do not flag *when not to*.
 
-This is a cost-model claim, and a tooling claim. The cost model says there is a break-even point determined by useful_output against agent startup overhead. The tooling claim says the hub has the HOW-TO but not the GATE — the decision that must happen *before* the HOW-TO fires.
+This paper sets out to identify the gate criterion: a single rule a pre-flight check can apply to refuse the dispatch when waste dominates. The original draft proposed a 70% coverage threshold; the experiment in this paper tests that claim against measured corpus data.
+
+### Background — what's already in the hub
+
+Three parallelism skills:
+
+- `workflow/parallel-bulk-annotation` — canonical how-to for annotating many files across parallel agents
+- `workflow/bucket-parallel-java-annotation-dispatch` — Java-specific variant using bucket partitioning
+- `ai/ai-subagent-scope-narrowing` — adjacent concept, narrowing what gets dispatched
+
+And one pitfall authored mid-session when the pattern broke:
+
+- `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch` — 4 parallel agents dispatched to annotate DTO files, 3 returned "zero changes — already annotated," 3 agent rounds wasted because prior coverage was not checked first.
+
+The pitfall is the counter-evidence for this paper. The skills tell you *how* to parallelize; the pitfall tells you *when it stops paying off*. The two pieces of information are split across kinds and across files; nothing in the hub enforces that a user reading the skill also encounters the pitfall.
 
 ### Premise revision (2026-04-24)
 
-The original premise stated a **"70 percent coverage threshold"**. The `coverage-threshold-measurement` experiment (see `experiments[0]`, built as `example/workflow/coverage-gate-benchmark`) tested that claim against 5 measured corpus domains and found the 70 percent number was not a robust constant — it shifts with the α / w cost ratio. The meaningful gate turned out to be **absolute useful_output count**, not coverage fraction.
+The original premise stated a *70 percent coverage threshold*. The experiment in §Methods/§Results tested that claim against 5 measured corpus domains and found the 70 percent number was not a robust constant — it shifts with the α/w cost ratio. The meaningful gate turned out to be **absolute useful_output count**, not coverage fraction. The premise.then was rewritten to match this finding.
 
-The revised premise above uses that refined criterion. The original wording is preserved here for traceability:
+Original wording, preserved for traceability:
 
-> **[original, superseded]** IF a bulk-modification task is dispatched to N parallel subagents without a pre-flight coverage check, THEN beyond a prior-work coverage threshold of roughly 70 percent, the parallel pattern becomes a net negative — serial single-agent scan with targeted dispatch is cheaper, yet existing skills describe HOW to parallelize uniformly without surfacing WHEN NOT to.
+> *[original, superseded]* IF a bulk-modification task is dispatched to N parallel subagents without a pre-flight coverage check, THEN beyond a prior-work coverage threshold of roughly 70 percent, the parallel pattern becomes a net negative — serial single-agent scan with targeted dispatch is cheaper, yet existing skills describe HOW to parallelize uniformly without surfacing WHEN NOT to.
 
-The refined criterion is published separately as `knowledge/decision/parallel-dispatch-useful-output-gate`.
+The refined criterion is published separately as `knowledge/decision/parallel-dispatch-useful-output-gate` (an outcome of this paper's experiment).
 
-## Background
+### Prior art
 
-The hub already carries multiple skills on parallel subagent dispatch for bulk work:
+`external_refs[]` is empty at draft. Relevant directions for `/hub-research`:
 
-- `workflow/parallel-bulk-annotation` — the canonical how-to for annotating many files across parallel agents
-- `workflow/bucket-parallel-java-annotation-dispatch` — a Java-specific variant using bucket partitioning
-- `ai/ai-subagent-scope-narrowing` — the adjacent concept of narrowing what gets dispatched
+- Parallel algorithm amortization literature — when does fork-join pay off at small N?
+- Queueing theory cost models for server-side workload dispatch, adapted for agent-as-worker.
+- LLM token cost vs developer tooling cost-benefit analysis.
+- Whether other agent frameworks (LangGraph, AutoGen, Crew) ship pre-flight gates for parallel dispatch.
 
-And one pitfall, authored mid-session when the pattern broke under it:
+Filling these in would ground the threshold claim in prior art rather than treating it as intuition.
 
-- `agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch` — a real session where 4 parallel agents were dispatched to annotate DTO files, 3 returned "zero changes — already annotated," and the user paid for 3 wasted agent rounds because prior coverage was not checked first.
+## Methods
 
-The pitfall is the counter-evidence for this paper. The skills tell you *how* to parallelize; the pitfall tells you *when it stops paying off*. The two pieces of information are split across kinds and across files, and nothing in the hub enforces that a user reading the skill also encounters the pitfall.
+### Cost model
+
+Total dispatch cost is approximately:
+
+```
+total_cost = (N agents × startup_overhead α)
+           + (N × per_agent_verification_time v)
+           + (sum of per-agent real_work time w · useful_output)
+```
+
+With prior coverage `c ∈ [0, 1]`, fixed agent count `N`, and total file count `T`:
+
+- `useful_output = (1 - c) · T` files actually need work
+- `N × α` is paid regardless of `c` — fixed
+- `N × v` scales with verification of the full split (every agent reads its slice)
+- Real-work time scales with `useful_output × w`
+
+Wall-clock parallel ≈ `(α + v · T/N + w · useful_output / N)`.
+Wall-clock serial ≈ `(α + v · T + w · useful_output)`.
+
+The crossover is where `parallel_total_cost ≥ serial_total_cost` — driven by the α/w ratio and the absolute useful_output, **not** by coverage fraction alone.
+
+### Pre-flight probe
+
+The probe is one second of shell:
+
+```bash
+total=$(find <scope> -name "*.java" | wc -l)
+hit=$(grep -rln "@Schema" <scope> | wc -l)
+coverage=$((hit * 100 / total))
+useful=$((total - hit))
+```
+
+The decision can fire on `useful` (absolute count) or `coverage` (fraction). The experiment tests which is the more robust gate criterion.
+
+### Workload selection
+
+Five domains within `kjuhwa/skills-hub` measured via grep against the remote cache:
+
+| Domain | Marker probe | Total | Hit |
+|---|---|---|---|
+| (A) skills with triggers populated | YAML key `triggers:` non-empty | 468 | 239 |
+| (B) skills with `content.md` sibling | file exists | 468 | 172 |
+| (C) knowledge with `description:` field | YAML key non-empty | 351 | 193 |
+| (D) knowledge with `tags:` key | YAML key present | 351 | 351 |
+| (E) skills with stable version 1.x+ | semver gte 1.0.0 | 468 | 376 |
+
+### Cost-model harness
+
+`example/workflow/coverage-gate-benchmark` (the artifact built for this experiment) takes the tuple `(agents, α, v, w, useful, T)` and classifies each domain as `PARALLEL | BORDERLINE | SAMPLING | NO DISPATCH`. Default weights: `α = 30s`, `v = 5s`, `w = 60s`, `agents = 4`. The classifier compares its output against the paper's original 70%-coverage rule for each domain.
+
+## Results
+
+The 70 percent coverage threshold as a *universal* constant is **not** supported by the cost model. Under the default weights, parallel wall-clock savings dominate up to ~90%+ coverage for any domain with non-zero useful output. The crossover shifts with the α/w ratio; it is not a robust constant.
+
+| Domain | Coverage | Useful | Cost-model verdict | Original 70%-rule verdict |
+|---|---:|---:|---|---|
+| (A) triggers populated | 51.1% | 229 | PARALLEL | PARALLEL |
+| (B) content.md sibling | 36.8% | 296 | PARALLEL | PARALLEL |
+| (C) knowledge description | 55.0% | 158 | PARALLEL | PARALLEL |
+| (D) knowledge tags | 100.0% | 0 | NO DISPATCH | NO DISPATCH |
+| (E) skills stable v1+ | 80.3% | 92 | **PARALLEL** | SAMPLING (mismatch) |
+
+Domain D (zero useful_output, full coverage) is correctly rejected by both rules. Domain E exposes the discrepancy: at 80.3% coverage the original rule says "switch to sampling," but the cost model says "still parallelize" because 92 × w = 92 minutes of real work dwarfs 4 × α = 2 minutes of agent startup. Coverage fraction alone misclassified.
+
+The discovered gate is not coverage percentage but **useful_output absolute count** — when fewer than ~5 files actually need work, parallel dispatch is pure waste regardless of coverage. The directional claim (very high coverage trends toward non-parallel) holds; the specific 70 percent number was a single-session observation, not a robust threshold.
+
+`supports_premise: partial`. Premise rewritten to match.
+
+## Discussion
+
+### Why coverage fraction misled
+
+Coverage is a *ratio*, not an *absolute*. A domain with 92 useful files at 80% coverage has the same parallel justification as a domain with 92 useful files at 30% coverage — the parallel work scales with the absolute, the agent startup is paid once. The original premise inherited an intuition from the pitfall session (where useful_output was small because total was small) and over-generalized to fraction.
+
+### User cognition gap
+
+"How to parallelize" is a teachable procedure that composes well as a skill. "When NOT to parallelize" is a judgment call requiring a cost-curve mental model the skill author has to encode. The hub has many skills saying *how*, and one pitfall saying *don't always*. These are asymmetric in discoverability — how-to skills get triggered by keyword matching ("bulk annotation"); the pitfall gets found only if the user searches `/hub-find "wasted agent parallel"`.
+
+This paper's third proposed build addresses that asymmetry: a dedicated **gate skill** whose entire job is the decision. A gate is a first-class skill with its own triggers, not a paragraph buried inside a how-to.
+
+### Failure modes are silent
+
+A parallel dispatch that wastes tokens fails silently — all N agents return success, wall-clock time looks similar to the productive case, the only signal is the token bill at month-end. Silent failure accumulates across sessions. The gate converts silent waste into a visible decision: "Coverage 92% / useful=3 — parallel not justified, switch to sampling." The user can override, but the override is explicit and auditable.
+
+### Limitations
+
+- **n=1 original evidence**: the 70% threshold rested on one observed session. Even after the experiment runs, the data points are 5 hub-internal domains; cross-organization replication is needed to claim full generality.
+- **Cost weights are illustrative**: α, v, w are set to plausible values from agent-runner observation, not measured per-deployment. A team with much faster startup or much slower verification will see a different crossover.
+- **No actual implementation of the gate skill**: the proposed builds are POC-scoped; the paper is a call for work, not a claim of completed work.
+- **Counter-argument not fully explored**: in deployments where token costs are negligible (local models, fixed-cost inference), the gate's value drops. The assumption that tokens cost enough to justify the gate may not hold universally.
+
+### Future work
+
+1. Re-run the cost-model harness against domains in 2-3 other repositories to test cross-corpus stability of the useful_output gate.
+2. Make the coverage probe automatic via a `/hub-make --parallel` hook, or keep it opt-in via the gate skill. Automatic risks false positives; opt-in risks being forgotten.
+3. Decide whether the existing parallel skills should be **retracted** and replaced with gate-mediated variants, or just annotated with a `Phase 0 — Pre-flight` section. The preflight-section proposal is annotation; retraction is more honest about the asymmetry.
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -223,150 +334,10 @@ the skill being edited — direct dependency
 
 <!-- references-section:end -->
 
-## Perspectives
-
-### 1. Cost Model
-
-Naïve intuition: parallel dispatch is faster, so parallel dispatch is cheaper. This is wall-clock reasoning.
-
-The actual cost is roughly:
-
-```
-total_cost = (N agents × startup_overhead)
-           + (N × per_agent_verification_time)
-           + (sum of per-agent token spend)
-```
-
-If prior coverage is `c` (fraction of files already done):
-
-- `N × startup_overhead` is paid regardless of `c`. Fixed.
-- `N × verification_time` grows with `c` because agents still Read → analyze → conclude "nothing to change."
-- Token spend scales with `(1 - c) × real_work` plus `c × verification_noise`.
-
-At `c = 0`, parallel wins by a large margin (all agents do real work).
-At `c = 1`, parallel pays the fixed cost for zero output — pure waste.
-Somewhere between, the line crosses. The pitfall observed `c ≈ 0.9` in practice and the crossover hit hard.
-
-The threshold is not universal — it depends on the ratio of verification time to real-work time per file. Java DTOs with heavy compile-check verification push the break-even down (closer to `c = 0.5`). Simple text edits push it up (closer to `c = 0.8`).
-
-### 2. Instrumentation
-
-The probe that catches the bad case is cheap:
-
-```bash
-# What fraction of target files already carry the marker?
-total=$(find <scope> -name "*.java" | wc -l)
-hit=$(grep -rln "@Schema" <scope> | wc -l)
-coverage=$((hit * 100 / total))
-```
-
-This is one second of shell, run before any subagent starts. It is not in any of the parallel skills currently in the hub.
-
-Two possible reasons:
-
-1. **Coverage is a variable the skill cannot predict ahead of time**, so it was omitted as out of scope.
-2. **The skill was authored for the common case** (a fresh codebase with little prior coverage), and the tail case (high prior coverage) was never observed by the author — until the session that produced the pitfall.
-
-Both are reasonable. Neither is an argument against adding the probe; they are reasons the probe was not there yet.
-
-### 3. User Cognition
-
-"How to parallelize" is a teachable procedure — N agents, split the input, collect results. It composes well as a skill because it is a procedure.
-
-"When NOT to parallelize" is a judgment call. To encode it, the skill author has to carry a mental model of the cost curve and express the threshold as a rule. That is harder to write, and easier to get wrong.
-
-The result: the hub has many skills saying *how*, and one pitfall saying *don't always*. These are not symmetric. The how-to skills get triggered by keyword matching ("bulk annotation"); the pitfall gets found only if the user happens to search `/hub-find "wasted agent parallel"`. The pitfall's discoverability is much lower than the risk it documents.
-
-This paper's third proposed build addresses the asymmetry directly: a dedicated **gate skill** whose entire job is the decision. A gate is a first-class skill with its own triggers and `description`, not a paragraph buried inside a how-to. Its purpose is to be found first.
-
-### 4. Failure Modes
-
-A parallel dispatch that wastes tokens fails **silently**:
-
-- All N agents return success.
-- Wall-clock time looks similar to the productive case.
-- The only signal is a token bill at month-end, or an observant user noticing `Agent 2 modified 0 files, Agent 3 modified 0 files` in the logs.
-
-Silent failure accumulates across sessions. A user who has been bitten once learns to probe — but only for this one domain. They don't generalize.
-
-Loud failure is rarer and more useful. A gate that rejects the dispatch with
-
-```
-Coverage 92% — parallel dispatch not justified. Switch to:
-  sampling (find untreated files → single agent)
-  or serial scan (1 agent reads all, reports untreated)
-```
-
-converts silent waste into a visible decision point. The user can override ("run anyway") but the override is explicit and auditable.
-
-## External Context
-
-`external_refs[]` empty at draft. Relevant `hub-research` topics:
-
-- Parallel algorithm amortization literature — when does fork-join pay off at small N?
-- Queueing theory cost models for server-side workload dispatch, adapted for agent-as-worker.
-- LLM token cost vs developer tooling cost-benefit analysis.
-- Whether any other agent frameworks (LangGraph, AutoGen, Crew) ship pre-flight gates for parallel dispatch.
-
-Filling these in would let the paper ground its threshold claim in prior art rather than treating it as intuition.
-
-## Proposed Builds
-
-### `parallel-dispatch-coverage-gate` (POC)
-
-A skill whose job is **the decision, not the work**. Inputs:
-
-- `scope` — target corpus (glob or path)
-- `marker` — grep pattern that identifies already-done files
-- `threshold` — decision boundary (default 0.7)
-
-Output: one of `dispatch-parallel | switch-to-sampling | switch-to-serial`, with numeric justification (`hit=X / total=Y = c`).
-
-The skill is deliberately narrow. It does not dispatch, it does not annotate, it does not recover. It answers one question.
-
-### `coverage-threshold-decision-table` (POC)
-
-Knowledge entry in the `decision` category. A table of the form:
-
-| Work type | Verify cost | Threshold |
-|---|---|---|
-| Java DTO annotation | High (compile) | 0.5 |
-| Text content edits | Low (regex) | 0.8 |
-| Schema migration | Very high (integration test) | 0.3 |
-| ... | ... | ... |
-
-Populated from real session data, augmented as new domains report their own numbers. A living document, version-bumped on every row addition.
-
-### `parallel-bulk-annotation-preflight-section` (DEMO)
-
-An edit to the existing `workflow/parallel-bulk-annotation` skill that adds a `Phase 0 — Pre-flight` section at the top:
-
-```
-Before any agent spawn, run:
-  /hub-suggest "coverage-gate" — or follow the gate skill inline.
-
-Threshold: see knowledge/decision/coverage-threshold-decision-table for
-your work type. When coverage ≥ threshold, switch mode (sampling or serial)
-and return; do not proceed to Phase 1.
-```
-
-This is the least-invasive way to make the gate discoverable — it lives where the how-to already lives.
-
-## Open Questions
-
-1. Is the threshold really ~0.7, or is it highly domain-specific? The paper asserts "roughly 70 percent" based on one pitfall observation. The decision table in the second proposed build exists partly to answer this question with more data.
-2. Can the coverage probe be made automatic — a hook that runs on any `/hub-make --parallel` invocation? Or does it have to be opt-in via the gate skill? Automatic risks false positives; opt-in risks being forgotten.
-3. Should the existing parallel skills be **retracted** and replaced with gate-mediated variants, or just annotated? The preflight-section proposal is annotation; retraction would force the decision. The former is pragmatic, the latter is honest.
-
-## Limitations
-
-- **n=1 evidence**: the 70% threshold claim rests on one observed session (the pitfall). Without additional data points across domains the number is illustrative, not authoritative.
-- **No actual implementation**: this paper proposes but does not ship. The proposed builds are scoped as POC specifically so the paper is a call for work, not a claim of completed work.
-- **Counter-argument not fully explored**: perhaps parallel dispatch is CHEAP ENOUGH in absolute terms that the break-even doesn't matter at typical token prices. The paper assumes tokens cost enough to make the gate worth building. That assumption may not hold in all deployment contexts (e.g., local models).
-
 ## Provenance
 
 - Authored: 2026-04-24
-- Status: pilot #2 for the `paper/` layer schema v0.1 — non-self-referential (subject outside this session's work, unlike paper #1)
-- Schema doc: `paper-schema-draft.md`
-- Sibling paper: `.paper-draft/workflow/technique-layer-composition-value/PAPER.md`
+- Status: pilot #2 for the `paper/` layer schema v0.1 — non-self-referential (subject outside the schema rollout session, unlike paper #1)
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 (v0.2.2). Pre-IMRaD body is preserved in git history (commits before 2026-04-25 on `feat/paper-imrad-structure`); no semantic claims were rewritten during the migration, only section reorganization.
+- Schema doc: `docs/rfc/paper-schema-draft.md`
+- Sibling paper: `paper/workflow/technique-layer-composition-value` (now `type: position`)

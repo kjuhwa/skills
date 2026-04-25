@@ -93,7 +93,7 @@ The goal is to lower the floor for paper authoring against existing techniques, 
 8. **Write the draft:**
    - Target: `.paper-draft/<category>/<slug>/PAPER.md`.
    - Frontmatter assembled from steps 3-7. Version `0.2.0-draft`. Status `draft`.
-   - Body skeleton (same as `/hub-paper-compose`) with `## Background` pre-filled with a paragraph naming the technique and pointing to its TECHNIQUE.md.
+   - Body skeleton (IMRaD per `/hub-paper-compose`) with the `## Introduction` section pre-filled with a Background subsection naming the technique and pointing to its TECHNIQUE.md. `## Methods` is pre-seeded from `experiments[0].method`; `## Results` is `(pending)` until the experiment closes via `/hub-paper-experiment-run`.
    - Auto-inject `## References (examines)` and `## Build dependencies` body sections via `_inject_references_section.py`.
 
 9. **Immediate verification:**
