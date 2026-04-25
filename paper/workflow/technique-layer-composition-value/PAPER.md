@@ -9,7 +9,7 @@ tags:
   - hub-architecture
   - technique-layer
 
-type: hypothesis
+type: position
 
 premise:
   if: A skills-hub adds a technique/ layer composing atoms by reference (not copy)
@@ -79,10 +79,16 @@ proposed_builds:
     # A future v0.2.1 may extend requires to allow kind:schema refs.
 
 experiments: []
-# No experiments yet. This paper's premise ("durable composition value") is a
-# long-horizon claim that needs months of usage data. Experiments will be filed
-# against specific sub-claims (e.g. "rename resilience via the lint rule in #1068")
-# once observation windows close.
+# This is a type=position paper — no experiments required by the schema.
+# The original draft was type=hypothesis, but the falsifiability advisory
+# correctly flagged the premise.then as qualitative (no numeric threshold,
+# no comparator). Re-typed to position, which is the honest categorisation:
+# this paper argues for the technique layer's existence based on observed
+# pilots, rather than predicting a specific measurable outcome at scale.
+#
+# Future quantification can spawn separate type=hypothesis papers against
+# specific sub-claims (e.g., paper/arch/technique-layer-roi-after-100-pilots
+# already does this for citation distribution at the layer level).
 
 outcomes:
   - kind: produced_technique

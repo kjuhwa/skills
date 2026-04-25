@@ -8,7 +8,13 @@ type: hypothesis
 
 premise:
   if: A system needs to control producer rate to match consumer capacity
-  then: Backpressure (consumer-driven feedback) outperforms rate limiting (producer-side cap) when consumer capacity is variable; rate limiting outperforms backpressure when producer is uncontrolled (untrusted external traffic). Choosing the wrong one causes either dropped traffic or wasted capacity.
+  then: >-
+    Backpressure outperforms rate-limiting (≥30% lower drop rate at the same throughput
+    target) when consumer-capacity coefficient of variation σ/μ ≥ 0.3. Rate-limiting
+    outperforms backpressure (≥50% lower buffer-overflow rate) when the producer is
+    uncontrolled — i.e., ≥10% of inbound traffic originates outside the SLO contract.
+    Below the pair (σ/μ < 0.2, untrusted-share < 5%), both perform within 10% of each
+    other and the default choice is moot.
 
 examines:
   - kind: skill
@@ -53,8 +59,15 @@ proposed_builds:
 
 experiments:
   - name: backpressure-vs-rate-limit-workload-replay
-    hypothesis: Across 4 workload classes (steady, bursty, hostile, slow-consumer), backpressure wins ≥3 cases when producer is trusted; rate-limit wins ≥3 cases when producer is hostile.
-    method: Synthesize 4 workload generators; run each through both control mechanisms; measure p99 latency, drop rate, total throughput.
+    hypothesis: >-
+      In a 4-cell workload matrix (consumer σ/μ ∈ {0.1, 0.5} × untrusted-share ∈ {0%, 25%}),
+      backpressure achieves ≥30% lower drop rate at σ/μ ≥ 0.3 with trusted producer; rate-
+      limiting achieves ≥50% lower buffer-overflow rate with ≥10% untrusted share. The
+      crossover region (σ/μ ≈ 0.2, untrusted-share ≈ 5%) shows <10% delta between the two.
+    method: >-
+      Synthesize 4 workload generators (one per matrix cell). Run each for 5 minutes through
+      both control mechanisms. Measure drop rate, p99 latency, total throughput, and DLQ
+      depth. Compute pairwise % deltas per metric per cell.
     status: planned
     built_as: null
     result: null
