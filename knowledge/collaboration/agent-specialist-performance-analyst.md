@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-specialist-performance-analyst
 summary: Performance Analyst specialist agent — profiling, budget enforcement, optimization
 category: collaboration

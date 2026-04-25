@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: a2a-protocol-agent-to-agent-knowledge-exchange
 summary: Protocol for agents to exchange evolution assets, signal confidence, and federate knowledge
 category: integration

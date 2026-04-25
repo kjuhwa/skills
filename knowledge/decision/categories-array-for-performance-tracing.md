@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: categories-array-for-performance-tracing
 summary: To get a trace that DevTools' TraceEngine can parse with full insights, you must start `page.tracing.start` with the same category array DevTools uses internally — missing a `disabled-by-default-devtools.*` category silently drops insights you'd otherwise get.
 category: decision

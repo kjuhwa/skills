@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ccgs-testing-claude-context
 summary: Claude context instructions for the CCGS Skill Testing Framework directory
 category: testing

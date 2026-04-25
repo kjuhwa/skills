@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: block-size-stream-re-read-limit
 type: knowledge
 category: pitfall

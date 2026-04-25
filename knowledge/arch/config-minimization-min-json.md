@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: config-minimization-min-json
 type: knowledge
 category: arch

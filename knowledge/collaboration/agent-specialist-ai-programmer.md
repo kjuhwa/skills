@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-specialist-ai-programmer
 summary: AI Programmer specialist agent — NPC AI, pathfinding, behavior trees
 category: collaboration

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claudecode-env-breaks-nested-spawn
 summary: Claude Agent SDK's nesting guard sees CLAUDECODE=1 in a child process env and refuses to run — must strip before spawn when your CLI runs inside another Claude session.
 category: pitfall

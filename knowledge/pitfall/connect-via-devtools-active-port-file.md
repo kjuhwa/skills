@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: connect-via-devtools-active-port-file
 summary: When Chrome is launched with `--user-data-dir` and remote debugging but the port is auto-chosen, connect by reading the `DevToolsActivePort` file in the user-data-dir — line 1 is the port, line 2 is the browser-target path — to construct `ws://127.0.0.1:<port><path>`.
 category: pitfall

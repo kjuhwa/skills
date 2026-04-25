@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-mcp-config-via-temp-file
 summary: Pass MCP server config to a coding-agent CLI via a temp JSON file (--mcp-config <path>), not inline — controls which MCP servers the spawned agent can see, independent of the parent session.
 category: arch

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: anthropic-skill-authoring-best-practices
 summary: Anthropic's official guidance on writing discoverable, well-structured skills that Claude uses successfully
 category: reference

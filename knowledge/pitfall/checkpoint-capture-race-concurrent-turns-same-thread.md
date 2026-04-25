@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: checkpoint-capture-race-concurrent-turns-same-thread
 summary: If turns can start before prior checkpoints finish, checkpoint refs and diffs can get confused; serialize turn start/completion
 type: knowledge

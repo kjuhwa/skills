@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: appimage-fuse-chrome-sandbox-incompatibility
 summary: Electron's `chrome-sandbox` requires the setuid-root bit (permissions 4755) to create unprivileged user namespaces; AppImages mount via FUSE as a non-root user, which prevents the sandbox from functioning — the workaround is `--no-sandbox` in the AppImage launcher.
 category: appimage

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: clearcut-source-and-client-type-constants
 summary: Shipping events to Google Clearcut requires two well-known numeric constants in every LogRequest: `log_source` (assigned per project — chrome-devtools-mcp uses 2839) and `client_info.client_type` (47 for CLI-like tools), wrapped around a `source_extension_json` stringified event.
 category: reference

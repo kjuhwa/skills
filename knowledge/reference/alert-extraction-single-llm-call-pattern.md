@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: alert-extraction-single-llm-call-pattern
 summary: Combine alert noise-classification and field-extraction in one LLM call with structured output — extracting alert_name, pipeline_name, severity, alert_source, namespace, error_message, log_query, eks_cluster, pod_name, deployment, plus an is_noise bool — halving cost vs a two-call setup.
 category: reference

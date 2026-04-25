@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ccgs-testing-catalog
 summary: YAML catalog of all CCGS skill tests with their test types and coverage targets
 category: testing

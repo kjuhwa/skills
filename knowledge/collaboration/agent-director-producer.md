@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-director-producer
 summary: Producer agent definition — sprint management, milestone tracking, and team coordination
 category: collaboration

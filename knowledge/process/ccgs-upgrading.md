@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ccgs-upgrading
 summary: Upgrade guide for migrating between CCGS template versions
 category: process

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: blocked-env-vars-for-mcp-subprocess
 summary: The denylist of environment variables stripped before spawning a stdio MCP subprocess — sensitive app/auth tokens and well-known third-party API keys.
 category: security

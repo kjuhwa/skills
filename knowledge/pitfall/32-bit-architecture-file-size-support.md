@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: 32-bit-architecture-file-size-support
 type: knowledge
 category: pitfall

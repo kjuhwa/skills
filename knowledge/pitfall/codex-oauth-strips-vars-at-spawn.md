@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: codex-oauth-strips-vars-at-spawn
 summary: Codex (ChatGPT Plus OAuth via Pi SDK) looks at specific env vars at subprocess spawn; leaving CODEX_SESSION_ID / OPENAI_API_KEY from an earlier run can misroute the current session to the wrong account.
 category: pitfall

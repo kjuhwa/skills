@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: autopilots-and-triggers-model
 summary: Autopilots are scheduled automations that dispatch agent tasks (create an issue or run an agent directly); triggers are the scheduling layer (cron now, webhook/api future).
 category: domain

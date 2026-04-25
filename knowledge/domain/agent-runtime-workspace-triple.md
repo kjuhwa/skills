@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-runtime-workspace-triple
 summary: The registration unit on the server is the (agent provider × runtime/daemon × workspace) triple — one daemon running on one machine registers one runtime per (provider × watched workspace).
 category: domain

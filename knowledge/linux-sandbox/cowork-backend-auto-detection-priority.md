@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: cowork-backend-auto-detection-priority
 summary: Sandbox backend selection should prefer the most-isolated available option (bwrap > kvm > host) using functional tests, not just binary presence; expose the active backend via a `--doctor` diagnostic command and allow override via an environment variable.
 category: linux-sandbox

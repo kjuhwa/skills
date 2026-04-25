@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: batch-processing-vs-single-file
 type: knowledge
 category: api

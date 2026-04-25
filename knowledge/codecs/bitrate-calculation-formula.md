@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bitrate-calculation-formula
 type: knowledge
 category: codecs

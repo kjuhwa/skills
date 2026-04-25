@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-lead-game-designer
 summary: Game Designer lead agent — GDD authoring, system design, balance ownership
 category: collaboration

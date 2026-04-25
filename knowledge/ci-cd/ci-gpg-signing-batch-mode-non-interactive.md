@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ci-gpg-signing-batch-mode-non-interactive
 summary: GPG signing in CI requires `--batch --yes` flags, a pre-imported key, and `git config user.signingKey` set; without a TTY, pinentry will fail and the signing step hangs or errors unless all interactive prompts are bypassed.
 category: ci-cd

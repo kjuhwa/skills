@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: android-decompilation-toolchain-setup
 summary: Install recipes for the Android reverse-engineering toolchain — Java JDK 17+, jadx, Vineflower/Fernflower, dex2jar, and optional apktool/adb — across Ubuntu, Fedora, Arch, and macOS (Homebrew), with verify commands and common troubleshooting.
 category: reference

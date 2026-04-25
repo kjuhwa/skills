@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-specialist-ux-designer
 summary: UX Designer specialist agent — screen flows, HUD design, accessibility implementation
 category: collaboration

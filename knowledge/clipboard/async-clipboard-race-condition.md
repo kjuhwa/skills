@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: async-clipboard-race-condition
 type: knowledge
 category: clipboard

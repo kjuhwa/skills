@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: cli-release-via-git-tag
 summary: CLI releases are cut from semver tags on main — push a tag, GitHub Actions runs tests, GoReleaser builds multi-platform binaries and updates the Homebrew tap.
 category: api

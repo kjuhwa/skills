@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-runner-loop-semantics
 summary: How the Runner agent loop works — turn logic, final output detection, tool call processing, and max_turns behavior.
 category: llm-agents

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-backend-unified-interface
 summary: Unified Go interface for driving multiple coding-agent CLIs (Claude, Codex, OpenCode, OpenClaw, Hermes, Gemini, Pi, Cursor) behind one Execute/Session/Result contract.
 category: arch

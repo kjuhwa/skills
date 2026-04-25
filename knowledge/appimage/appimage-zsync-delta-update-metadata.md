@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: appimage-zsync-delta-update-metadata
 summary: Locally-built AppImages lack the `.zsync` metadata file required for binary delta updates; only AppImages published via GitHub Releases with the correct metadata (embedded `update` field) get efficient delta updates through tools like AppImageUpdate.
 category: appimage

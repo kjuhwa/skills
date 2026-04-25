@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claude-stream-json-protocol
 summary: Claude Code CLI's stream-json mode emits typed JSON events (assistant, user, system, result, log) that wrap content blocks like text/thinking/tool_use/tool_result.
 category: api

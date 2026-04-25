@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claude-session-resume-semantics
 summary: If claude --resume <id> doesn't find the session, Claude silently generates a fresh session and exits. Treat emitted_id != requested_id AND failed status as "resume didn't land".
 category: api

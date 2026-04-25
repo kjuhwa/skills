@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-custom-args-blocked-flags
 summary: User-configured custom_args get a deny-list filter for protocol-critical flags only, not every dangerous flag — workspace members are trusted but not trusted to break the wire protocol.
 category: decision

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ccgs-quality-rubric
 summary: Quality rubric for evaluating CCGS skill outputs — scoring criteria and thresholds
 category: testing

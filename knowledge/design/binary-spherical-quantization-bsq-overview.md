@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: binary-spherical-quantization-bsq-overview
 summary: BSQ replaces a learned VQ-VAE codebook with sign-quantization on a unit sphere — no codebook parameters, straight-through gradients, and a differentiable entropy regularizer.
 category: design

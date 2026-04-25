@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-lead-qa-lead
 summary: QA Lead agent — test strategy, coverage tracking, and quality gate authority
 category: collaboration

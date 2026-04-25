@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bun-mock-module-process-global
 summary: Bun's `mock.module()` permanently rewires the process-wide module cache; `mock.restore()` does not undo it.
 category: testing

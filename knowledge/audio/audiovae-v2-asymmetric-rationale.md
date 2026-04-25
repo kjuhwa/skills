@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: audiovae-v2-asymmetric-rationale
 summary: AudioVAE V2 encodes at 16kHz for compute efficiency but decodes to 48kHz via learned upsampling, eliminating external resamplers
 category: audio

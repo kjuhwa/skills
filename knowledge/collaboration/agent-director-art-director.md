@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-director-art-director
 summary: Art Director agent definition — responsibilities, expertise, and decision scope for visual direction
 category: collaboration

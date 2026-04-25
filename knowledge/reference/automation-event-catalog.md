@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: automation-event-catalog
 summary: Complete list of events fired on the per-workspace automation bus — LabelAdd/Remove, PermissionModeChange, FlagChange, SessionStatusChange, SchedulerTick, PreToolUse, PostToolUse, SessionStart/End.
 category: reference

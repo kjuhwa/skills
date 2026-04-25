@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-lead-narrative-director
 summary: Narrative Director agent — story, dialogue, lore, and world-building ownership
 category: collaboration

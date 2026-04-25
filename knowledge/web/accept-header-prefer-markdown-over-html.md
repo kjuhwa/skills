@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: accept-header-prefer-markdown-over-html
 summary: For agent / LLM ingestion clients, set an Accept header with q-weighted preferences (text/markdown top, text/html next, text/plain after, */* last) so servers that support markdown negotiation return cheaper tokens directly.
 category: web

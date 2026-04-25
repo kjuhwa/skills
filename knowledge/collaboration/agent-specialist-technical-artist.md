@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-specialist-technical-artist
 summary: Technical Artist specialist agent — shader authoring, VFX, pipeline optimization
 category: collaboration

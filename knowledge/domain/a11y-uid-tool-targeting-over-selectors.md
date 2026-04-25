@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: a11y-uid-tool-targeting-over-selectors
 summary: For agent-driven browser automation, targeting DOM elements by short server-assigned UIDs emitted in an a11y-tree snapshot is dramatically more reliable than asking the agent to construct CSS selectors or XPath.
 category: domain

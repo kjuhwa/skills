@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: architecture-registry
 summary: Architecture registry YAML defining system modules and their relationships
 category: registry

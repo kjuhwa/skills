@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: cli-release-accompanies-prod-deploy
 summary: Every production deployment of the server must be accompanied by a matching CLI release, so server-CLI protocol changes never ship skewed.
 category: decision

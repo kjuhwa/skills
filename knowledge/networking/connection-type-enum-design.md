@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: connection-type-enum-design
 type: knowledge
 category: networking

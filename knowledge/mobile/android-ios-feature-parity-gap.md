@@ -1,7 +1,8 @@
 ---
+version: 0.1.0-draft
 name: android-ios-feature-parity-gap
 type: knowledge
-category: platform/mobile
+category: mobile
 summary: Android: full codecs + input; iOS: limited input, screen share only, no clipboard file transfer (due to iOS entitlements).
 confidence: high
 tags: [android, feature, gap, ios, mobile, parity]

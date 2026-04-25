@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-lead-level-designer
 summary: Level Designer lead agent — area/level layout, encounter design, flow authoring
 category: collaboration

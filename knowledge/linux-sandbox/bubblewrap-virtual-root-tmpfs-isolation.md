@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bubblewrap-virtual-root-tmpfs-isolation
 summary: `bwrap --tmpfs /` creates an empty virtual root; you then explicitly bind-mount each path the process needs, giving full PID and mount namespace isolation. `--die-with-parent` and `--new-session` prevent orphan daemons after the parent exits.
 category: linux-sandbox

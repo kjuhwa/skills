@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-qa-tester
 summary: QA Tester agent — test case execution, bug reporting, and regression coverage
 category: testing

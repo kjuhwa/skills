@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: chi-router-for-go-apis
 summary: go-chi/chi is the router of choice for REST APIs with middleware groups, URL params, and nested routing — simpler than gin/echo while keeping idiomatic net/http compatibility.
 category: arch

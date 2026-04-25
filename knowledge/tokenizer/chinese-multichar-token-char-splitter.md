@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: chinese-multichar-token-char-splitter
 summary: VoxCPM wraps the tokenizer to split multi-character Chinese tokens back to single characters for per-character TTS pronunciation granularity
 category: tokenizer

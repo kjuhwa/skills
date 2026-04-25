@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ci-push-race-condition-retry-rebase-loop
 summary: Parallel CI jobs pushing to the same branch (e.g., `gh-pages`) race; solve with a `git pull --rebase` + retry loop with exponential backoff, or serialize jobs with `needs:` dependencies to avoid the race entirely.
 category: ci-cd

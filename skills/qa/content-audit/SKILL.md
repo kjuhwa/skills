@@ -1,4 +1,5 @@
 ---
+category: qa
 name: content-audit
 description: "Audit GDD-specified content counts against implemented content. Identifies what's planned vs built."
 argument-hint: "[system-name | --summary | (no arg = full audit)]"

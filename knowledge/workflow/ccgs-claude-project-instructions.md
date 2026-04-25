@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ccgs-claude-project-instructions
 summary: Main CLAUDE.md project instructions for Claude Code Game Studios — defines roles, phases, and workflow conventions
 category: workflow

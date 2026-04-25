@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: azure-document-intelligence-opt-in-converter
 summary: Markitdown integrates Azure AI Document Intelligence as an opt-in, top-priority converter when the user supplies docintel_endpoint — upgrades PDF/DOCX/PPTX/XLSX/HTML/images from local parsers to server-side OCR + layout-aware markdown.
 category: integration

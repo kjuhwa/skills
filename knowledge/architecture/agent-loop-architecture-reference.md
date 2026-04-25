@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-loop-architecture-reference
 summary: Minimal ~100-line reference architecture for an LLM agent runner loop with generator-based streaming, StepOutcome exit semantics, and periodic tool-schema reset.
 category: architecture

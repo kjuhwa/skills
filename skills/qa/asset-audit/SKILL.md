@@ -1,4 +1,5 @@
 ---
+category: qa
 name: asset-audit
 description: "Audits game assets for compliance with naming conventions, file size budgets, format standards, and pipeline requirements. Identifies orphaned assets, missing references, and standard violations."
 argument-hint: "[category|all]"

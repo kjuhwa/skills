@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: blast-radius-calculation-git-diff-stat
 summary: Estimate evolution impact by computing git diff stats and change scope
 category: safety

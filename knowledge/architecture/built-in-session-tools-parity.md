@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: built-in-session-tools-parity
 summary: Session-scoped tools (SubmitPlan, config_validate) live in session-tools-core and are wired identically into Claude and Pi backends via separate stdio MCP servers — parity tested by claude/session-tool-parity.test.ts and pi/session-tool-parity.test.ts.
 category: architecture

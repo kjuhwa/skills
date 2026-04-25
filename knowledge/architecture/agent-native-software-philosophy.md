@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-native-software-philosophy
 summary: Craft Agents' "Agent Native" premise — describe what you want, let the agent figure out how, and treat customization itself as a prompt rather than a code change.
 category: architecture

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ccgs-testing-framework-readme
 summary: CCGS Skill Testing Framework overview — how to write and run skill tests using the catalog
 category: testing

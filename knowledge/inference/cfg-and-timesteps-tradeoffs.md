@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: cfg-and-timesteps-tradeoffs
 summary: VoxCPM CFG defaults to 2.0 (range 1–3) and inference steps to 10 (range 4–30); RTF scales inversely with steps
 category: inference

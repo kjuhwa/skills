@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-director-technical-director
 summary: Technical Director agent definition — architecture ownership, ADR authority, and technical strategy
 category: collaboration

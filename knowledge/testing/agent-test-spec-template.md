@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-test-spec-template
 summary: Template for writing agent test specifications in the CCGS testing framework
 category: testing

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-specialist-gameplay-programmer
 summary: Gameplay Programmer specialist agent — mechanics implementation, input, game feel
 category: collaboration

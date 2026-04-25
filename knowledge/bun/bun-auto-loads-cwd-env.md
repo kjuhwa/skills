@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bun-auto-loads-cwd-env
 summary: Bun unconditionally loads `.env`, `.env.local`, `.env.development`, `.env.production` from the CWD before user code runs — regardless of framework.
 category: bun

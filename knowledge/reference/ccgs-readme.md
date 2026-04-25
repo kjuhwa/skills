@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: ccgs-readme
 summary: Claude Code Game Studios project overview and quick-start reference
 category: reference

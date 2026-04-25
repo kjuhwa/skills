@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-lead-lead-programmer
 summary: Lead Programmer agent — code review authority, architecture implementation, standard enforcement
 category: collaboration

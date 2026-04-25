@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-lead-systems-designer
 summary: Systems Designer agent — meta-game, progression, economy, and interconnected systems design
 category: collaboration

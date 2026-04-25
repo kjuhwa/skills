@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: chrome-extension-based-web-automation-via-cdp
 summary: Browser automation via Chrome extension + CDP bridge that preserves the user's real login state — Selenium-free, Playwright-free, survives autofill and closed shadow DOM.
 category: automation

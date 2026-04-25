@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-configuration-reference
 summary: Reference for all Agent configuration properties — instructions, tools, handoffs, guardrails, model settings, output types, and hooks.
 category: llm-agents

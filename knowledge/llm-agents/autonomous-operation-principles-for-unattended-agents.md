@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: autonomous-operation-principles-for-unattended-agents
 summary: Principles for unattended agent self-operation — task selection by reusability×future-value, bounded experimentation, three-piece completion ritual, and permission boundaries.
 category: llm-agents

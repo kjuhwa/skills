@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: codex-seatbelt-ignores-network-access
 summary: On macOS, Codex CLI's Seatbelt sandbox in workspace-write mode silently ignores network_access=true, causing "no such host" errors inside agent sessions.
 category: pitfall

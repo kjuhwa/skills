@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claudecode-env-var-leakage
 summary: When spawning Claude Code from a parent Claude Code session, strip CLAUDECODE*, CLAUDE_CODE_* env vars so the child doesn't inherit the parent's session state.
 category: pitfall

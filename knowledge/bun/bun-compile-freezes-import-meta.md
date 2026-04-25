@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bun-compile-freezes-import-meta
 summary: Inside a `bun build --compile` binary, `import.meta.url` and `import.meta.dir` are frozen to the build host's filesystem path and point to nothing on the user's machine.
 category: bun

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: condition-based-waiting
 summary: Replace arbitrary sleep/timeouts in tests with explicit condition polling to eliminate flaky timing-dependent failures
 category: engineering

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: bash-lc-single-quote-cron-keepalive
 summary: When scheduling a long-running node loop from cron, pm2, or any other runner that serialises the command string through several escape layers, wrap the whole payload as `bash -lc 'node index.js --loop'` — one set of single quotes, no composition, no `; echo EXIT:$?` tails, to avoid nested-quote breakage.
 category: reference

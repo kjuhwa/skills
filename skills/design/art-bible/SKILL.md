@@ -1,4 +1,6 @@
 ---
+category: design
+tags: [design, art, bible]
 name: art-bible
 description: "Guided, section-by-section Art Bible authoring. Creates the visual identity specification that gates all asset production. Run after /brainstorm is approved and before /map-systems or any GDD authoring begins."
 argument-hint: "[--review full|lean|solo]"

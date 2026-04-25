@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: audio-device-enumeration-platform-divergence
 type: knowledge
 category: codecs

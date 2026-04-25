@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: config-dir-layout
 summary: Full layout of ~/.craft-agent/ including app-level config/credentials/preferences/themes and per-workspace subdirs for sessions, sources, skills, statuses, automations.
 category: reference

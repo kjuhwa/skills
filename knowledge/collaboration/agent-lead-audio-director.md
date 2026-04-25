@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-lead-audio-director
 summary: Audio Director agent — sound design direction, music, and audio pipeline ownership
 category: collaboration

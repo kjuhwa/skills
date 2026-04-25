@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: claude-cli-hook-bypass-envs
 summary: Three environment variables — `DISABLE_OMC=1`, `OMC_SKIP_HOOKS=*`, `CLAUDE_DISABLE_SESSION_HOOKS=1` — neutralize the oh-my-claudecode harness and Claude's own SessionStart/Stop hooks so a spawned `claude -p` child can run unattended without a parent-side hook printing to stdout or hijacking stdin.
 category: reference

@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: cli-implemented-in-rust-for-speed
 type: knowledge
 category: arch

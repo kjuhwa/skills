@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: clipboard-ownership-protocol
 type: knowledge
 category: clipboard

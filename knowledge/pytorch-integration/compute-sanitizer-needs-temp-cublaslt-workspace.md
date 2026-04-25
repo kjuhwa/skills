@@ -1,5 +1,7 @@
 ---
+version: 0.1.0-draft
 name: compute-sanitizer-needs-temp-cublaslt-workspace
+description: A library that holds a persistent `torch::Tensor` cuBLASLt workspace (32 MB, allocated once at module init) hits `cud...
 type: knowledge
 category: pitfall
 confidence: medium

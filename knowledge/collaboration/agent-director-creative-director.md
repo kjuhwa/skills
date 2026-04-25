@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: agent-director-creative-director
 summary: Creative Director agent definition — top-level creative authority, vision-keeper role
 category: collaboration

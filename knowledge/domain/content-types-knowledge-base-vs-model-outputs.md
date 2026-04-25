@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: content-types-knowledge-base-vs-model-outputs
 type: knowledge
 category: domain

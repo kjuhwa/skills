@@ -1,4 +1,5 @@
 ---
+version: 0.1.0-draft
 name: collaborative-design-principles
 summary: Collaborative design principles for multi-agent game development workflows
 category: collaboration
