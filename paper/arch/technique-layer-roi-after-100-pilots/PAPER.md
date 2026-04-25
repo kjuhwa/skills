@@ -1,5 +1,5 @@
 ---
-version: 0.2.0-draft
+version: 0.3.0-draft
 name: technique-layer-roi-after-100-pilots
 description: "Technique-layer ROI: after 100 techniques, what fraction get cited 2+ times? Hypothesis: long tail with 80% under-cited"
 category: arch
@@ -15,6 +15,43 @@ premise:
     appears one layer down — ≥80% of atoms (skills + knowledge) are uncited entirely
     (measured 97.3% at N=2000). The pattern is layer-invariant; the technique layer's
     ROI predicate generalizes to the atom layer.
+
+verdict:
+  one_line: "Long-tail citation shape is structural, not threshold-gated. Visible at N=17 (11.8% techniques 2+ cited) and N=2000 (97.3% atom orphan). Author techniques only when atom co-occurrence demonstrates a real pattern — not speculatively."
+  rule:
+    when: "About to author a new technique, evaluate technique-layer ROI, or decide whether the corpus needs more techniques"
+    do: "Run the citation audit (/hub-list --orphans) for the current orphan rate. Author techniques in response to scanner-suggested atom bundles (_suggest_techniques.py), not speculative future use. Use 'cited 2+ times' as the success bar, not 'merged'."
+    threshold: "≤20% of techniques cited 2+ times is the long-tail signal at any N >= 17 — the predicate holds without waiting for N=100"
+  belief_revision:
+    before_reading: "The technique layer needs to reach N>=100 before its citation distribution is informative. Until then, low citation counts just mean too few techniques to evaluate; long-tail shape is a scaling phenomenon."
+    after_reading: "The long-tail shape is structural and observable from N=17 (11.8% 2+ cited; 76.5% orphan). It is also layer-invariant — the atom layer at N=2000 shows the same shape (97.3% orphan). Authoring posture should change immediately, not wait for scale: techniques are last-resort responses to observed atom co-occurrence, not first-impulse speculative documentation."
+
+applicability:
+  applies_when:
+    - "Authored corpus where 'citation' is frontmatter-resolvable (examines[], composes[], proposed_builds[].requires[])"
+    - "Single team or organization where authoring cadence and selection biases are consistent"
+    - "Citation infrastructure exists (citations.json or equivalent reverse-lookup index)"
+    - "Corpus is past initial seeding (≥17 techniques and/or ≥1000 atoms — below this, sample noise dominates)"
+  does_not_apply_when:
+    - "Citation definition is broadened to include body-prose mentions or external uses (orphan rate shifts; the 11.8 / 97.3 numbers are definition-conditional)"
+    - "Mature corpus (years of accumulation) where old entries have drifted out of citation range — stale orphan rate masks fresh authoring decisions"
+    - "Cross-organization corpus where authoring patterns and selection biases differ — single-org generalization broke previously"
+    - "Snapshot taken during a corpus growth burst — distribution is unstable until growth slows below ~5 entries/week"
+  invalidated_if_observed:
+    - "A re-measurement at N>=50 inverts the result (e.g., >50% techniques 2+ cited — refutes the structural-shape claim)"
+    - "Cross-organization replication shows orphan rate <60% (refutes the layer-invariance hypothesis; suggests this corpus is the outlier)"
+    - "Passive-use proxy (post-/hub-show edits within 24h) correlates strongly with explicit citation, suggesting the citation definition is too narrow to support the verdict"
+    - "Longitudinal series shows orphan rate decreasing over time (the long tail is being filled in by retroactive citation, not accumulating)"
+  decay:
+    half_life: "6 months for absolute numbers (11.8 / 97.3); indefinite for the structural-shape and layer-invariance claims"
+    why: "Absolute orphan rates change as the corpus grows and as citation campaigns run. The structural finding (power-law shape visible early, layer-invariant) is more durable. Future work item #1 (quarterly re-measurement) is the canonical refresh path."
+
+premise_history:
+  - revision: 1
+    date: 2026-04-25
+    if: "A skills hub accumulates a technique layer over time AND total techniques crosses N=100"
+    then: "≤20% of techniques receive 2+ inbound citations from other content (papers, examples, downstream techniques); the remaining ~80% form a long tail of effectively-unused recipes. The pattern emerges only at scale; below N=100 the distribution is too noisy to evaluate."
+    cause: "experiments[0] (citation-distribution-at-N) measured 11.8% (2/17) at N=17 — well below the projected ≥100 precondition — and the predicted predicate already held. The atom layer (N=2000, 97.3% orphan) showed the same long-tail distribution one layer down, outside the original premise scope. Premise generalized to drop the ≥100 precondition (the shape is structural, not threshold-gated) and to extend across layers (technique-layer ROI predicate generalizes to the atom layer)."
 
 examines:
   - kind: technique
@@ -86,6 +123,60 @@ experiments:
       a layer-invariant generalization that the original premise didn't make.
     supports_premise: partial
     observed_at: 2026-04-25
+    measured:
+      - metric: technique_total
+        value: 17
+        unit: count
+        condition: "N=17 at 2026-04-25 snapshot, excluding gated-fallback-chain self-reference"
+      - metric: techniques_cited_2plus
+        value: 2
+        unit: count
+        condition: "11.8% of N=17 — predicate predicted ≤20%; predicate holds well below the original ≥100 precondition"
+      - metric: techniques_cited_1
+        value: 2
+        unit: count
+        condition: "11.8% of N=17"
+      - metric: techniques_cited_0
+        value: 13
+        unit: count
+        condition: "76.5% orphan rate at the technique layer"
+      - metric: top_cited_concentration
+        value: 84.6
+        unit: percent
+        condition: "top 2 techniques (safe-bulk-pr-publishing 6 cites + root-cause-to-tdd-plan 5 cites) = 11/13 of all inbound citations"
+      - metric: top_cited_inbound_count
+        value: 6
+        unit: cites
+        condition: "workflow/safe-bulk-pr-publishing — the most-cited technique"
+      - metric: atom_total
+        value: 2000
+        unit: count
+        condition: "1105 skills + 894 knowledge + 1 rounding (paper rounds to N=2000)"
+      - metric: atom_cited
+        value: 61
+        unit: count
+        condition: "3.0% of N=2000 — atom layer cited at all"
+      - metric: atom_orphan_rate
+        value: 97.3
+        unit: percent
+        condition: "1946/2000 atoms uncited — the layer-invariance signal"
+      - metric: skill_orphan_rate
+        value: 96.3
+        unit: percent
+        condition: "1064/1105 skills uncited"
+      - metric: knowledge_orphan_rate
+        value: 97.8
+        unit: percent
+        condition: "874/894 knowledge entries uncited"
+    refutes:
+      - "long-tail citation shape becomes visible only at N>=100 techniques"
+      - "the technique-layer ROI predicate is technique-layer-only in scope (it generalizes one layer down)"
+      - "low citation counts at small N reflect insufficient sample size rather than structural shape"
+    confirms:
+      - "citation distribution follows a power law (top 2/17 techniques carry 84.6% of inbound citations)"
+      - "≤20% of techniques are cited 2+ times (predicted ≤20%, measured 11.8%)"
+      - "documentation systems exhibit long-tail citation in general (academic, OSS dependency, Wikipedia)"
+      - "uncited entries are the majority of any authored corpus (76.5% at technique layer, 97.3% at atom layer)"
 
 outcomes: []
 

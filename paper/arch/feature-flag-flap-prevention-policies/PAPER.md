@@ -1,5 +1,5 @@
 ---
-version: 0.2.0-draft
+version: 0.3.0-draft
 name: feature-flag-flap-prevention-policies
 description: "Feature flag breakers flap; hypothesis hysteresis ratio 1.5-2x is optimal — narrower flaps, wider delays trip"
 category: arch
@@ -18,6 +18,42 @@ premise:
     requirement), NOT by hysteresis ratio — the original claim that 'wider delays
     trip' conflated two orthogonal mechanisms. Optimal ratio is workload-conditional;
     the paper's original 1.5-2x claim holds for borderline-noise workloads only.
+
+verdict:
+  one_line: "Hysteresis ratio doesn't fix flap on spiky workloads (invariant at 1.21/h across 1.2x-3.0x); apply 1.5-2.0x only on borderline-noise (bursty/drifting). Trip-detection delay is a debouncing concern, not hysteresis — don't conflate."
+  rule:
+    when: "About to tune circuit-breaker hysteresis on a feature flag with an error-rate trip threshold"
+    do: "Classify workload first (smooth / spiky / bursty / drifting). Apply hysteresis ratio 1.5-2.0x for bursty/drifting. For spiky workloads, hysteresis is wasted budget — switch to debouncing (consecutive-sample requirement) instead."
+    threshold: "ratio in [1.5, 2.0] for bursty/drifting; debounce_N >= 2 for spiky; ratio < 1.3 fails flap on every workload"
+  belief_revision:
+    before_reading: "A single hysteresis ratio (1.5-2x) is the universal optimum across workloads, balancing flap suppression with trip-detection delay."
+    after_reading: "Hysteresis is a borderline-noise solution, not a distinct-spike solution. The 1.5-2x range applies only to bursty/drifting workloads. Spiky workloads need debouncing — wider hysteresis cannot help because each spike trips and clears fully below any reset-water. 'Wider delays trip' was a debouncing claim conflated under hysteresis; the two mechanisms are orthogonal."
+
+applicability:
+  applies_when:
+    - "Feature flag (or service) has a circuit breaker tied to a continuous metric with a trip threshold (error rate, latency, queue depth)"
+    - "Workload class is identifiable as one of smooth / spiky / bursty / drifting (hybrid workloads need decomposition before applying the rule)"
+    - "Single-sample trip is acceptable for the deployment (otherwise debouncing geometry dominates regardless of hysteresis)"
+  does_not_apply_when:
+    - "Workload is spiky — error rate produces distinct above-threshold events that trip and clear fully; hysteresis flap rate invariant at 1.21/h across [1.2x, 3.0x]"
+    - "Trip-detection delay is the primary failure cost — hysteresis does not affect detection latency; debouncing is the lever"
+    - "Adversarial workloads (alternating just-above-H and just-below-L) — no tested ratio protects against worst case"
+    - "Cold-start, configuration-change, or cascade-failure scenarios — the cost model is steady-state only"
+  invalidated_if_observed:
+    - "A real-incident replay against the simulator reveals flap rate >2x simulator prediction for the matched workload class (suggests workload taxonomy is too coarse)"
+    - "Debouncing-extended 2D experiment shows (R=1.5, debounce_N=3) does NOT outperform (R=2.0, debounce_N=1) on every workload (current future-work hypothesis)"
+    - "Trip-water shifted from H=0.10 changes optimal ratio by >25% on bursty/drifting (current measurement is single-trip-water)"
+    - "Sampling rate finer than 1-sample/min surfaces hysteresis effects on spiky workloads currently masked by discretization"
+  decay:
+    half_life: "indefinite for the bursty/drifting result; ~12 months for the spiky-invariant claim"
+    why: "The cost model is workload-shape-driven, not breaker-implementation-driven — it survives library changes (Hystrix → resilience4j → custom). The fragility is in the 1-sample/min discretization assumption: finer sampling could reveal hysteresis effects on spiky workloads currently masked by the cell quantization."
+
+premise_history:
+  - revision: 1
+    date: 2026-04-25
+    if: "A feature flag has a circuit breaker tied to error rate"
+    then: "Hysteresis ratio 1.5-2x is the universal optimum across all workload classes: ≤1 flap/hour AND ≤10 min trip-detection delay. Narrower ratios fail the flap criterion; wider ratios delay trip."
+    cause: "experiments[0] (hysteresis-ratio-tradeoff). 20-cell Monte Carlo (4 workloads × 5 ratios, seed=42) found: (1) spiky workload flap invariant at 1.21/h regardless of ratio in [1.2x, 3.0x], refuting the universal-optimum claim; (2) trip-detection delay was 0 min in every cell because hysteresis ratio doesn't affect detection latency — only debouncing does, exposing a conflation in the original 'wider delays trip' branch. Premise rewritten to be workload-conditional and to extract the debouncing claim as a separate orthogonal axis."
 
 examines:
   - kind: skill
@@ -97,6 +133,61 @@ experiments:
       controls. Premise rewritten to reflect both findings.
     supports_premise: partial
     observed_at: 2026-04-25
+    measured:
+      - metric: flap_rate
+        value: 0.75
+        unit: transitions_per_hour
+        condition: "smooth workload, R=1.2x"
+      - metric: flap_rate
+        value: 0.67
+        unit: transitions_per_hour
+        condition: "smooth workload, R=3.0x"
+      - metric: flap_rate
+        value: 1.21
+        unit: transitions_per_hour
+        condition: "spiky workload, R=1.2x — pivotal: invariant across all 5 ratios"
+      - metric: flap_rate
+        value: 1.21
+        unit: transitions_per_hour
+        condition: "spiky workload, R=3.0x — invariance confirms hysteresis cannot help spiky"
+      - metric: flap_rate
+        value: 2.54
+        unit: transitions_per_hour
+        condition: "bursty workload, R=1.2x — narrowest ratio fails the flap criterion"
+      - metric: flap_rate
+        value: 1.00
+        unit: transitions_per_hour
+        condition: "bursty workload, R=1.5x — first ratio meeting the ≤1/h criterion on bursty"
+      - metric: flap_rate
+        value: 0.92
+        unit: transitions_per_hour
+        condition: "drifting workload, R=1.2x"
+      - metric: flap_rate
+        value: 0.08
+        unit: transitions_per_hour
+        condition: "drifting workload, R=2.0x — clearest hysteresis effect (11.5x reduction vs 1.2x)"
+      - metric: trip_detection_delay
+        value: 0.0
+        unit: minutes
+        condition: "every cell — vacuous because single-sample trip; hysteresis cannot affect detection latency"
+      - metric: cell_count
+        value: 20
+        unit: cells
+        condition: "4 workloads × 5 ratios"
+      - metric: simulation_samples
+        value: 1440
+        unit: samples
+        condition: "24h × 1-sample/min, seed=42"
+    refutes:
+      - "ratio 1.5x produces ≤1 flap/hour on ALL workloads"
+      - "wider hysteresis delays trip detection"
+      - "a single hysteresis ratio is universally optimal"
+      - "trip-detection delay is governed by hysteresis ratio"
+    confirms:
+      - "narrower ratio (R<1.3x) fails the flap criterion on bursty workloads"
+      - "hysteresis reduces flap on borderline-noise workloads (bursty 2.54→1.00 at R=1.5x; drifting 0.92→0.08 at R=2.0x)"
+      - "single-threshold breakers flap when error rate hovers near the threshold (R=1.0x is the worst case the dead zone is meant to fix)"
+      - "spike-shaped workloads bypass the dead zone entirely (each spike both trips and clears below any reset-water L = H/R)"
 
 outcomes:
   - kind: produced_example
