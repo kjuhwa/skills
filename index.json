@@ -6059,6 +6059,18 @@
   },
   {
     "kind": "knowledge",
+    "name": "union-merge-catalog-first-seen-wins",
+    "slug": "union-merge-catalog-first-seen-wins",
+    "category": "decision",
+    "description": "\"When union-merging catalog JSON across N PR branches, use first-seen-wins per slug to preserve install metadata\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.1.0-draft",
+    "path": "knowledge/decision/union-merge-catalog-first-seen-wins.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "use-label-not-mime-type-in-workflows",
     "slug": "use-label-not-mime-type-in-workflows",
     "category": "decision",
@@ -9402,6 +9414,18 @@
     "triggers": [],
     "version": "0.1.0-draft",
     "path": "knowledge/pitfall/backpressure-implementation-pitfall.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
+    "name": "bash-var-length-counts-bytes-not-chars",
+    "slug": "bash-var-length-counts-bytes-not-chars",
+    "category": "pitfall",
+    "description": "\"Bash ${#var} returns byte length, not character count; UTF-8 multibyte (Korean, em-dash) inflates apparent length\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.1.0-draft",
+    "path": "knowledge/pitfall/bash-var-length-counts-bytes-not-chars.md",
     "has_content": true
   },
   {
@@ -33661,6 +33685,18 @@
     "triggers": "",
     "version": "1.0.0",
     "path": "skills/workflow/consistent-hashing-data-simulation",
+    "has_content": false
+  },
+  {
+    "kind": "skill",
+    "name": "consolidate-batch-publish-pr-conflicts",
+    "slug": "consolidate-batch-publish-pr-conflicts",
+    "category": "workflow",
+    "description": "\"Consolidate N conflicting batch-publish PRs: filesystem cherry-pick + catalog union-merge, keeping install metadata\"",
+    "tags": "",
+    "triggers": "",
+    "version": "0.1.0-draft",
+    "path": "skills/workflow/consolidate-batch-publish-pr-conflicts",
     "has_content": false
   },
   {
