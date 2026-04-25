@@ -53,6 +53,7 @@ def main() -> int:
     steps.append(("master-index", [py, "_build_master_index.py"]))
     steps.append(("master-index-lite", [py, "_build_master_index_lite.py"]))
     steps.append(("category-indexes", [py, "_build_category_indexes.py"]))
+    steps.append(("citations-index", [py, "_build_citations_index.py"]))
 
     for label, cmd in steps:
         rc = run(label, cmd)

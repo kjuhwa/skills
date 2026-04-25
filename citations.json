@@ -1,0 +1,1220 @@
+{
+  "schema": 1,
+  "totals": {
+    "paper_citations": 99,
+    "technique_citations": 62,
+    "atoms_cited": 61
+  },
+  "citations": {
+    "knowledge/agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/coordinator-overhead-vs-parallelism",
+          "role": "counter-evidence-from-prior-paper",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/coordinator-overhead-vs-parallelism",
+          "role": "pre-flight-check-pattern",
+          "via": "requires:coordinator-overhead-benchmark"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "seed-data",
+          "via": "requires:coverage-threshold-decision-table"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "counter-evidence",
+          "via": "requires:parallel-dispatch-coverage-gate"
+        }
+      ]
+    },
+    "knowledge/decision/caveats-absence-confidence-cap": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "guides-confidence-cap",
+          "via": "requires:llm-triage-confidence-dashboard"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "seed",
+          "via": "requires:llm-triage-false-known-flake-pitfall"
+        }
+      ]
+    },
+    "knowledge/decision/phi-accrual-failure-detector-over-binary-timeout": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/multi-peer-quorum-decision-loop",
+          "role": "failure-detection-rationale",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/ai-guess-mark-and-review-checklist": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "debug/root-cause-to-tdd-plan",
+          "role": "hypothesis-guard",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/backpressure-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "data/producer-consumer-backpressure-loop",
+          "role": "feedback-mechanism-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/bulkhead-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "workflow/fan-out-fan-in-with-bulkhead",
+          "role": "counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/canary-release-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/feature-flag-flap-prevention-policies",
+          "role": "similar-flap-pattern",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "devops/canary-auto-revert-calibration",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "devops/canary-auto-revert-calibration",
+          "role": "failure-modes-to-validate-against",
+          "via": "requires:canary-threshold-calibration-tool"
+        },
+        {
+          "kind": "technique",
+          "ref": "devops/canary-rollout-with-auto-revert",
+          "role": "counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/circuit-breaker-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "informs-which",
+          "via": "requires:llm-fallback-latency-cost-dashboard"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "codifies-silent-failure",
+          "via": "requires:llm-fallback-schema-validator-middleware"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/feature-flag-flap-prevention-policies",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/feature-flag-flap-prevention-policies",
+          "role": "known-bugs-to-avoid",
+          "via": "requires:hysteresis-tuning-tool"
+        },
+        {
+          "kind": "paper",
+          "ref": "devops/canary-auto-revert-calibration",
+          "role": "similar-flap-failure-mode",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "frontend/optimistic-ui-flicker-tolerance",
+          "role": "failure-mode-similarity",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "security/credential-rotation-window-tradeoff",
+          "role": "emergency-revocation-context",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "ai/agent-fallback-ladder",
+          "role": "circuit-state-guard",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/feature-flag-killswitch-with-circuit-state",
+          "role": "counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/dead-letter-queue-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "db/migration-checkpoint-overhead",
+          "role": "failed-row-handling",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "data/producer-consumer-backpressure-loop",
+          "role": "overflow-handling-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/finite-state-machine-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/finite-state-machine-monotonic-ratchet",
+          "role": "state-transition-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/gh-pr-create-race-with-auto-merge": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "workflow/safe-bulk-pr-publishing",
+          "role": "known-pitfall",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/idempotency-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/saga-vs-2pc-cost-curve",
+          "role": "compensation-safety-concern",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "db/migration-checkpoint-overhead",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "frontend/optimistic-ui-flicker-tolerance",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "frontend/optimistic-ui-flicker-tolerance",
+          "role": "realistic-failure-shape",
+          "via": "requires:optimistic-ui-rollback-frequency-monitor"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/contract-test-staleness-curve",
+          "role": "similar-decay-pattern",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/saga-with-compensation-chain",
+          "role": "compensation-safety-counter-evidence",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "db/idempotent-migration-with-resume-checkpoint",
+          "role": "counter-evidence",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "frontend/optimistic-mutation-with-server-reconcile",
+          "role": "counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/quorum-visualization-off-by-one": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/multi-peer-quorum-decision-loop",
+          "role": "quorum-math-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/raft-consensus-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/multi-peer-quorum-decision-loop",
+          "role": "consensus-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/rate-limiter-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "data/producer-consumer-backpressure-loop",
+          "role": "rate-vs-buffer-distinction-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/refresh-token-do-not-regenerate": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "security/credential-rotation-window-tradeoff",
+          "role": "rotation-counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "security/credential-rotation-window-tradeoff",
+          "role": "failure-modes-to-account-for",
+          "via": "requires:rotation-window-simulator"
+        },
+        {
+          "kind": "technique",
+          "ref": "security/credential-rotation-overlap-window",
+          "role": "rotation-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/retry-strategy-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "retry-storm",
+          "via": "requires:llm-fallback-cost-budget-governor"
+        },
+        {
+          "kind": "technique",
+          "ref": "ai/agent-fallback-ladder",
+          "role": "retry-pitfall-guard",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/saga-pattern-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/saga-vs-2pc-cost-curve",
+          "role": "saga-counter-evidence",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/saga-vs-2pc-cost-curve",
+          "role": "avoid-known-saga-bugs-in-benchmark",
+          "via": "requires:saga-vs-2pc-microbenchmark"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/saga-with-compensation-chain",
+          "role": "forward-chain-counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/pitfall/strangler-fig-implementation-pitfall": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/strangler-fig-traffic-shifting",
+          "role": "counter-evidence",
+          "via": "composes"
+        }
+      ]
+    },
+    "knowledge/workflow/batch-pr-conflict-recovery": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "atom-demonstrating",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "workflow/safe-bulk-pr-publishing",
+          "role": "failure-recovery",
+          "via": "composes"
+        }
+      ]
+    },
+    "paper/testing/llm-ci-triage-boundary-conditions": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "sibling-paper",
+          "via": "examines"
+        }
+      ]
+    },
+    "paper/workflow/parallel-dispatch-breakeven-point": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/coordinator-overhead-vs-parallelism",
+          "role": "prior-paper",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "prior-paper",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "prior-paper",
+          "via": "examines"
+        }
+      ]
+    },
+    "paper/workflow/technique-layer-composition-value": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "meta paper on layer ROI",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/technique-layer-roi-after-100-pilots",
+          "role": "sister meta paper",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "meta-paper",
+          "via": "examines"
+        }
+      ]
+    },
+    "skill/agents/basic-agent-runner": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/coordinator-overhead-vs-parallelism",
+          "role": "agent-runtime-baseline",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/coordinator-overhead-vs-parallelism",
+          "role": "harness-runtime",
+          "via": "requires:coordinator-overhead-benchmark"
+        },
+        {
+          "kind": "technique",
+          "ref": "ai/multi-agent-fan-out-with-isolation",
+          "role": "agent-runtime-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/ai/ai-call-with-mock-fallback": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "the simplest fallback shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "baseline-call",
+          "via": "requires:llm-fallback-latency-cost-dashboard"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "tiered-call",
+          "via": "requires:llm-fallback-schema-validator-middleware"
+        },
+        {
+          "kind": "technique",
+          "ref": "ai/agent-fallback-ladder",
+          "role": "primary-call-shape",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/ai/ai-subagent-scope-narrowing": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/coordinator-overhead-vs-parallelism",
+          "role": "scope-discipline-baseline",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "adjacent-pattern",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "adjacent-pattern",
+          "via": "requires:parallel-dispatch-coverage-gate"
+        },
+        {
+          "kind": "technique",
+          "ref": "ai/multi-agent-fan-out-with-isolation",
+          "role": "scope-discipline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/algorithms/gossip-round-rng-seeded-reproducible-sim": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/multi-peer-quorum-decision-loop",
+          "role": "gossip-alternative-shape",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/architecture/optimistic-mutation-pattern": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "frontend/optimistic-ui-flicker-tolerance",
+          "role": "optimistic-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "frontend/optimistic-ui-flicker-tolerance",
+          "role": "subject-component",
+          "via": "requires:optimistic-ui-rollback-frequency-monitor"
+        },
+        {
+          "kind": "technique",
+          "ref": "frontend/optimistic-mutation-with-server-reconcile",
+          "role": "optimistic-shape-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/backend/conditional-feature-flag-rollout": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/feature-flag-flap-prevention-policies",
+          "role": "feature-flag-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/feature-flag-flap-prevention-policies",
+          "role": "flag-control-baseline",
+          "via": "requires:hysteresis-tuning-tool"
+        },
+        {
+          "kind": "paper",
+          "ref": "devops/canary-auto-revert-calibration",
+          "role": "traffic-control-implementation",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/feature-flag-killswitch-with-circuit-state",
+          "role": "feature-flag-shape",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "devops/canary-rollout-with-auto-revert",
+          "role": "traffic-control-implementation",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/backend/kafka-consumer-semaphore-chunking": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "data/producer-consumer-backpressure-loop",
+          "role": "bounded-buffer-implementation-example",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/backend/migration-processor-pipeline": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "db/migration-checkpoint-overhead",
+          "role": "migration-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "db/migration-checkpoint-overhead",
+          "role": "migration-pipeline-baseline",
+          "via": "requires:migration-checkpoint-granularity-benchmark"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/strangler-fig-traffic-shifting",
+          "role": "data-migration-shape",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "db/idempotent-migration-with-resume-checkpoint",
+          "role": "migration-shape-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/backend/service-discovery-replica-leader-tracking": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/multi-peer-quorum-decision-loop",
+          "role": "leader-tracking-implementation",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/cli/graceful-version-fallback-tier-order": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "tier-ordering",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "ai/llm-fallback-cost-displacement",
+          "role": "tier-ordering",
+          "via": "requires:llm-fallback-cost-budget-governor"
+        },
+        {
+          "kind": "technique",
+          "ref": "ai/agent-fallback-ladder",
+          "role": "tier-ordering-rule",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/debug/build-error-triage": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "debug/root-cause-to-tdd-plan",
+          "role": "branch-build-error",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/debug/investigate": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "baseline",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "human-systematic",
+          "via": "requires:hybrid-llm-human-triage-router"
+        },
+        {
+          "kind": "technique",
+          "ref": "debug/root-cause-to-tdd-plan",
+          "role": "phase-orchestrator",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "testing/fuzz-crash-to-fix-loop",
+          "role": "root-cause-per-crash",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/debug/triage-issue": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "downstream consumer",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "shared-downstream",
+          "via": "requires:hybrid-llm-human-triage-router"
+        },
+        {
+          "kind": "technique",
+          "ref": "debug/root-cause-to-tdd-plan",
+          "role": "artifact-producer",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "testing/fuzz-crash-to-fix-loop",
+          "role": "issue-and-plan",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/design/bulkhead-visualization-pattern": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "workflow/fan-out-fan-in-with-bulkhead",
+          "role": "visualization-reference",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/input/relative-mouse-mode-state-machine": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/finite-state-machine-monotonic-ratchet",
+          "role": "concrete-state-machine-example",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/llm-agents/hermes-credential-pool-failover": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "security/credential-rotation-window-tradeoff",
+          "role": "rotation-with-failover-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "security/credential-rotation-overlap-window",
+          "role": "rotation-with-failover-shape",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/safety/interface-contract-validation": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "testing/contract-test-staleness-curve",
+          "role": "contract-validation-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/contract-test-staleness-curve",
+          "role": "contract-shape-to-instrument",
+          "via": "requires:contract-test-staleness-detector"
+        },
+        {
+          "kind": "technique",
+          "ref": "testing/contract-test-with-consumer-verification",
+          "role": "schema-validation-shape",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/security/aes256gcm-machineid-credential-store": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "security/credential-rotation-window-tradeoff",
+          "role": "credential-store-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "security/credential-rotation-window-tradeoff",
+          "role": "realistic-credential-shape",
+          "via": "requires:rotation-window-simulator"
+        },
+        {
+          "kind": "technique",
+          "ref": "security/credential-rotation-overlap-window",
+          "role": "credential-storage-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/testing/fuzz-corpus-seed-management": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "testing/fuzz-crash-to-fix-loop",
+          "role": "crash-source",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/testing/llm-integration-test-failure-diagnosis": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "the subject",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "the LLM step the router gates",
+          "via": "requires:hybrid-llm-human-triage-router"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "llm-triager",
+          "via": "requires:llm-triage-confidence-dashboard"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/llm-ci-triage-boundary-conditions",
+          "role": "source-pattern",
+          "via": "requires:llm-triage-false-known-flake-pitfall"
+        }
+      ]
+    },
+    "skill/testing/tdd": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "testing/contract-test-staleness-curve",
+          "role": "test-discipline-baseline",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/contract-test-staleness-curve",
+          "role": "test-execution-discipline",
+          "via": "requires:contract-test-staleness-detector"
+        },
+        {
+          "kind": "technique",
+          "ref": "testing/contract-test-with-consumer-verification",
+          "role": "test-discipline",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "testing/fuzz-crash-to-fix-loop",
+          "role": "fix-implementation",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/backpressure-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "data/producer-consumer-backpressure-loop",
+          "role": "backpressure-shape-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/bucket-parallel-java-annotation-dispatch": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "specific-variant",
+          "via": "examines"
+        }
+      ]
+    },
+    "skill/workflow/bulkhead-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "ai/coordinator-overhead-vs-parallelism",
+          "role": "isolation-baseline",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "ai/multi-agent-fan-out-with-isolation",
+          "role": "isolation-shape",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "workflow/fan-out-fan-in-with-bulkhead",
+          "role": "isolation-shape-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/canary-release-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "devops/canary-auto-revert-calibration",
+          "role": "canary-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "devops/canary-auto-revert-calibration",
+          "role": "replay-harness",
+          "via": "requires:canary-threshold-calibration-tool"
+        },
+        {
+          "kind": "technique",
+          "ref": "devops/canary-rollout-with-auto-revert",
+          "role": "canary-shape-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/circuit-breaker-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/feature-flag-flap-prevention-policies",
+          "role": "circuit-state-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/feature-flag-killswitch-with-circuit-state",
+          "role": "circuit-state-shape",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/finite-state-machine-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/finite-state-machine-monotonic-ratchet",
+          "role": "state-machine-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/idempotency-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "db/migration-checkpoint-overhead",
+          "role": "idempotency-discipline",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "db/migration-checkpoint-overhead",
+          "role": "idempotency-pattern",
+          "via": "requires:migration-checkpoint-granularity-benchmark"
+        },
+        {
+          "kind": "paper",
+          "ref": "frontend/optimistic-ui-flicker-tolerance",
+          "role": "idempotency-discipline",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "testing/contract-test-staleness-curve",
+          "role": "replay-safety-pattern",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/saga-with-compensation-chain",
+          "role": "per-step-idempotency-shape",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "db/idempotent-migration-with-resume-checkpoint",
+          "role": "per-step-idempotency-pattern",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "frontend/optimistic-mutation-with-server-reconcile",
+          "role": "server-side-idempotency",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "testing/contract-test-with-consumer-verification",
+          "role": "replay-safety-pattern",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/parallel-build-sequential-publish": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "atom-whose",
+          "via": "examines"
+        },
+        {
+          "kind": "technique",
+          "ref": "workflow/safe-bulk-pr-publishing",
+          "role": "orchestrator",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/parallel-bulk-annotation": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "canonical-how-to",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "the skill being edited",
+          "via": "requires:parallel-bulk-annotation-preflight-section"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/parallel-dispatch-breakeven-point",
+          "role": "baseline-how-to",
+          "via": "requires:parallel-dispatch-coverage-gate"
+        }
+      ]
+    },
+    "skill/workflow/raft-consensus-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/multi-peer-quorum-decision-loop",
+          "role": "consensus-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/rollback-anchor-tag-before-destructive-op": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/saga-with-compensation-chain",
+          "role": "pre-flight-audit-anchor",
+          "via": "composes"
+        },
+        {
+          "kind": "technique",
+          "ref": "workflow/safe-bulk-pr-publishing",
+          "role": "pre-flight-safety",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/saga-pattern-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/saga-vs-2pc-cost-curve",
+          "role": "saga-shape",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/saga-vs-2pc-cost-curve",
+          "role": "saga-implementation-baseline",
+          "via": "requires:saga-vs-2pc-microbenchmark"
+        },
+        {
+          "kind": "technique",
+          "ref": "arch/saga-with-compensation-chain",
+          "role": "forward-chain-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "skill/workflow/strangler-fig-data-simulation": {
+      "cited_by": [
+        {
+          "kind": "technique",
+          "ref": "arch/strangler-fig-traffic-shifting",
+          "role": "shape-baseline",
+          "via": "composes"
+        }
+      ]
+    },
+    "technique/ai/agent-fallback-ladder": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/technique-layer-roi-after-100-pilots",
+          "role": "example-of-uncited-technique",
+          "via": "examines"
+        }
+      ]
+    },
+    "technique/debug/root-cause-to-tdd-plan": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/technique-layer-roi-after-100-pilots",
+          "role": "example-of-cited-technique",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/technique-layer-roi-after-100-pilots",
+          "role": "starting-node-for-graph-walk",
+          "via": "requires:technique-citation-graph-builder"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "pilot-decision",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "second shape template",
+          "via": "requires:hub-paper-commands"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "reference-shape",
+          "via": "requires:security-domain-technique-3"
+        }
+      ]
+    },
+    "technique/testing/fuzz-crash-to-fix-loop": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/technique-layer-roi-after-100-pilots",
+          "role": "example-of-uncited-technique",
+          "via": "examines"
+        }
+      ]
+    },
+    "technique/workflow/safe-bulk-pr-publishing": {
+      "cited_by": [
+        {
+          "kind": "paper",
+          "ref": "arch/saga-vs-2pc-cost-curve",
+          "role": "shape-comparison-baseline-for-multi-step",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/technique-layer-roi-after-100-pilots",
+          "role": "example-of-cited-technique",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "arch/technique-layer-roi-after-100-pilots",
+          "role": "starting-node-for-graph-walk",
+          "via": "requires:technique-citation-graph-builder"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "pilot-linear",
+          "via": "examines"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "shape-template",
+          "via": "requires:hub-paper-commands"
+        },
+        {
+          "kind": "paper",
+          "ref": "workflow/technique-layer-composition-value",
+          "role": "reference-shape",
+          "via": "requires:security-domain-technique-3"
+        }
+      ]
+    }
+  }
+}

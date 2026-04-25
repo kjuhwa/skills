@@ -13,32 +13,45 @@ argument-hint: <task description>
    - `$ARGUMENTS` 에서 의미 토큰만 뽑는다. 불용어(은/는/을/를/해줘/구현 등)는 제거.
    - 기술 용어(spring, kafka, jwt, websocket, mongo, react, …)는 원형 유지.
 
-2. **검색 실행**
+2. **검색 실행 (4-layer)**
+   - 핵심: skill/knowledge **그리고** technique/paper 까지 같이 검색해서 사용자가 한 단계 위 추상에서 이미 검토된 패턴이 있는지 알 수 있게 한다.
    ```bash
-   hub-search "<추출된 키워드>" -n 5
+   hub-search "<추출된 키워드>" -n 8
    ```
-   PATH 에 없으면 `py ~/.claude/skills-hub/tools/hub_search.py` 로 대체.
+   결과는 kind 별로 묶어서 본다 (skill / knowledge / technique / paper). PATH 에 없으면 `py ~/.claude/skills-hub/tools/hub_search.py` 로 대체.
 
 3. **강한 매칭 판정**
    - 상위 결과 **score ≥ 10** AND
    - `name` 토큰이 키워드와 겹치거나 `tags` 에 키워드 2개 이상 포함
+   - 우선순위: 같은 점수면 **paper > technique > skill > knowledge** 순. 위 레이어가 더 높은 추상에서 작업을 본다.
    - 미달이면 "허브에서 직접 연관된 항목을 찾지 못했습니다" 리포트 후 종료.
 
 4. **제시 형식**
    ```
-   [kind/category] <name> · <description 한 줄> · <path>
+   [paper/<category>] <slug> · <description 한 줄> · <path> · type=<hypothesis|survey|position> status=<status>
+   [technique/<category>] <slug> · <description 한 줄> · <path> · composes <N> atoms
+   [skill/<category>] <name> · <description 한 줄> · <path>
+   [knowledge/<category>] <slug> · <summary 한 줄> · <path>
    ```
-   상위 1~3 개만. 점수 부여 근거도 한 줄.
+   상위 1~5 개만 (kind 가 섞여있으면 각 1개씩 우선). 점수 부여 근거도 한 줄.
 
-5. **사용자 선택**
-   - **Skills**:
+5. **사용자 선택** (kind 별로 다름)
+   - **Paper** (먼저 보여주는 게 핵심):
+     - ① 읽고 premise/perspectives/limitations 반영 — `/hub-paper-show <slug>` 자동 실행
+     - ② 이 paper 의 `proposed_builds[]` 중 작업과 맞는 게 있으면 `/hub-make` 로 scaffold 시도
+     - ③ 건너뛰기
+   - **Technique**:
+     - ① 참조 — `/hub-technique-show <slug>` 로 composes[] 와 phase sequence 보고 적용
+     - ② composes[] 의 atom 들 일괄 설치 — `/hub-install` 을 atom 마다 호출
+     - ③ 건너뛰기
+   - **Skill**:
      - ① 참조만 — `~/.claude/skills-hub/remote/<path>/SKILL.md` + `content.md` 읽어서 본 작업에 반영
      - ② 설치 — `/hub-install <name>` 호출
      - ③ 건너뛰기
    - **Knowledge** (knowledge 는 설치 개념 없음):
      - ① 읽고 반영 — `~/.claude/skills-hub/remote/<path>` 읽어서 인용
      - ② 건너뛰기
-   - 혼합 결과면 각각 물어본다.
+   - 혼합 결과면 각각 물어본다. paper 가 있으면 먼저 보여줘서 사용자가 "이미 분석된 cost 곡선·threshold·tradeoff" 를 인지한 채로 진행하게 한다.
 
 6. **응답 후 진행**
    - ①/② 선택 시: 해당 MD 를 읽고, 응답 본문에 이름+경로 인용.
