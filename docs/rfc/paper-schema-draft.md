@@ -220,6 +220,23 @@ The pre-IMRaD convention used `Premise / Background / Perspectives / External Co
 
 The **frontmatter remains canonical**. The body is the human-facing rendering of the same data, structured for portability — frontmatter feeds tooling, IMRaD body feeds reviewers and external preprint venues.
 
+### Optional `preprint/` subdirectory
+
+A paper may carry `paper/<category>/<slug>/preprint/` for venue-ready submissions:
+
+```
+paper/<category>/<slug>/
+  PAPER.md             # source of truth (frontmatter + IMRaD body)
+  preprint/            # optional, venue-ready render
+    paper.tex
+    references.bib
+    build.sh           # pdflatex + bibtex pipeline
+    README.md          # documents the source-of-truth contract
+    .gitignore         # excludes pdflatex aux files + paper.pdf
+```
+
+The preprint is **hand-mirrored** from the IMRaD body — when PAPER.md changes, the preprint must be updated alongside it. A future tool `_paper_to_latex.py` could automate the conversion; the v0.2.2 spec leaves it manual. The preprint exists for venues that need a PDF (arXiv, OpenReview, workshop submissions); the host catalog continues to cite the canonical `PAPER.md` path, not the preprint.
+
 ### Verification
 
 `/hub-paper-verify` does not enforce IMRaD compliance — it stays structural. A separate audit `_audit_paper_imrad.py` (analogous to the falsifiability advisory) reports per-paper non-compliance, runs in `precheck.py`, and is informational. Existing papers can migrate at their own pace; new compose flows generate IMRaD bodies by default.

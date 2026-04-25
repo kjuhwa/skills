@@ -1,0 +1,330 @@
+% arXiv-compatible preprint of paper/workflow/parallel-dispatch-breakeven-point.
+% Source-of-truth for the content remains the PAPER.md frontmatter + body in the
+% parent directory. This LaTeX file is a hand-rendered preprint counterpart that
+% mirrors the IMRaD body for venues that need a PDF.
+%
+% Build:
+%   pdflatex paper.tex
+%   bibtex paper
+%   pdflatex paper.tex
+%   pdflatex paper.tex
+%
+% Or invoke the helper:  bash build.sh
+%
+% Class choice: standard `article` keeps the source portable to arXiv, OpenReview,
+% and most workshop templates. Switch to `acmart` / `IEEEtran` / a venue-specific
+% class only when an actual venue is targeted.
+
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{amsmath}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
+  urlcolor=blue!70!black,
+}
+
+\title{When Does Parallel Subagent Dispatch Stop Paying Off?\\
+\large A useful-output cost gate for bulk-modification workloads in LLM agent pipelines}
+
+\author{kjuhwa\thanks{kjuhwa@nkia.co.kr; \texttt{kjuhwa/skills-hub}}}
+
+\date{April 24, 2026 \quad (preprint v1, IMRaD body finalized 2026-04-25)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A bulk-modification task dispatched to $N$ parallel LLM subagents pays a fixed
+startup overhead per agent plus a verification cost per file every agent must
+read before deciding whether to act. When prior-work coverage is high, the
+dispatch can return zero useful changes from most agents while still paying
+the full overhead. The original draft of this work proposed a 70\,\%
+prior-coverage threshold above which parallel dispatch is net negative.
+A cost-model harness applied to five corpus domains in
+\texttt{kjuhwa/skills-hub} (range $36.8\,\%$--$100\,\%$ coverage) refutes
+the 70\,\% claim as a universal constant and identifies a more robust gate:
+\textbf{absolute useful-output count}, not coverage fraction. The revised
+criterion is that parallel dispatch is unjustified when fewer than
+$\sim 5$ files actually need real work, regardless of coverage. The
+directional claim (very high coverage trends toward non-parallel) survives;
+the specific threshold does not. We summarize the cost model, the workload
+selection, and the implications for tool design when the catalog of
+``how to parallelize'' skills lacks a corresponding ``when not to'' gate.
+\end{abstract}
+
+\section{Introduction}
+
+A bulk-modification task dispatched to $N$ parallel subagents pays a fixed
+startup overhead per agent plus a verification cost per file each agent must
+\emph{Read} before deciding whether to act. When prior-work coverage is high,
+the dispatch can return zero useful changes from most agents while still
+paying the full overhead. Existing parallelism guidance focuses on
+\emph{how} to dispatch but not on \emph{when not to}.
+
+This paper sets out to identify the gate criterion: a single rule a
+pre-flight check can apply to refuse a dispatch when waste dominates. The
+original draft proposed a 70\,\% coverage threshold; the experiment in this
+paper tests that claim against measured corpus data.
+
+\subsection{Background}
+
+In the host catalog, three procedure-level entries describe parallel
+dispatch:
+\begin{itemize}
+\item \texttt{workflow/parallel-bulk-annotation} --- canonical \emph{how-to}
+  for annotating many files across parallel agents.
+\item \texttt{workflow/bucket-parallel-java-annotation-dispatch} --- a
+  language-specific variant using bucket partitioning.
+\item \texttt{ai/ai-subagent-scope-narrowing} --- the adjacent concept of
+  narrowing what gets dispatched.
+\end{itemize}
+
+And one pitfall, authored mid-session when the pattern broke:
+\begin{itemize}
+\item \texttt{agent-orchestration/grep-existing-annotations-before-parallel-subagent-dispatch}
+  --- four parallel agents dispatched to annotate Java DTO files; three
+  returned ``zero changes --- already annotated''; three agent rounds
+  wasted because prior coverage was not checked first.
+\end{itemize}
+
+The pitfall is the counter-evidence for this work. The skills tell you
+\emph{how} to parallelize; the pitfall tells you \emph{when it stops paying
+off}. The two pieces are split across kinds and across files; nothing
+enforces that a user reading the skill also encounters the pitfall.
+
+\subsection{Premise revision (2026-04-24)}
+
+The original premise stated a \emph{70\,\% coverage threshold}. The
+experiment in \S\ref{sec:methods}--\S\ref{sec:results} tested that claim
+against five measured corpus domains and found the 70\,\% number was not a
+robust constant --- it shifts with the $\alpha/w$ cost ratio. The meaningful
+gate turned out to be \textbf{absolute useful-output count}, not coverage
+fraction.
+
+\subsection{Prior art}
+
+External references are not yet cited here. Relevant directions include
+parallel-algorithm amortization literature on fork-join break-even, queueing
+theory cost models adapted for agent-as-worker, LLM token-cost analysis in
+developer tooling, and pre-flight gate patterns in other agent frameworks
+(LangGraph, AutoGen, Crew). Filling these in would ground the threshold
+claim in prior art rather than treating it as intuition; this paper makes
+no claim of completeness on that front.
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Cost model}
+
+Total dispatch cost is approximately
+\begin{equation}
+C_{\text{total}} = N\alpha + Nv\frac{T}{N} + w \cdot \mathrm{useful},
+\end{equation}
+where $\alpha$ is per-agent startup overhead, $v$ is per-file
+verification cost, $w$ is per-file real-work cost, $T$ is total file
+count split across $N$ agents, and $\mathrm{useful} = (1 - c) \cdot T$
+is the count of files that actually need work given prior coverage
+$c \in [0, 1]$.
+
+Wall-clock for parallel dispatch is approximately
+\begin{equation}
+W_{\parallel} \approx \alpha + v \frac{T}{N} + w \frac{\mathrm{useful}}{N},
+\end{equation}
+while the serial baseline is
+\begin{equation}
+W_{\text{serial}} \approx \alpha + vT + w \cdot \mathrm{useful}.
+\end{equation}
+The crossover is where $C_{\text{total}}$ stops dominating
+$C_{\text{serial}}$, driven by the $\alpha/w$ ratio and the absolute
+$\mathrm{useful}$ count, \emph{not} by $c$ alone. Coverage fraction is a
+proxy that fails when total $T$ varies between domains.
+
+\subsection{Pre-flight probe}
+
+The probe is one second of shell:
+\begin{verbatim}
+total=$(find <scope> -name "*.java" | wc -l)
+hit=$(grep -rln "@Schema" <scope> | wc -l)
+coverage=$((hit * 100 / total))
+useful=$((total - hit))
+\end{verbatim}
+The decision can fire on \texttt{useful} (absolute count) or
+\texttt{coverage} (fraction). The experiment tests which of the two is the
+more robust gate criterion in practice.
+
+\subsection{Workload selection}
+\label{sec:workloads}
+
+Five domains within the host catalog were measured via grep against the
+remote cache (Table~\ref{tab:workloads}).
+
+\begin{table}[h]
+\centering
+\caption{Measured corpus domains (April 2026 snapshot).}
+\label{tab:workloads}
+\begin{tabular}{lllrr}
+\toprule
+ID & Domain & Marker & Total & Hit \\
+\midrule
+A & skills with \texttt{triggers:} populated & YAML key non-empty & 468 & 239 \\
+B & skills with \texttt{content.md} sibling & file exists & 468 & 172 \\
+C & knowledge with \texttt{description:} & YAML key non-empty & 351 & 193 \\
+D & knowledge with \texttt{tags:} & YAML key present & 351 & 351 \\
+E & skills with stable version $\geq 1.0$ & semver gate & 468 & 376 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cost-model harness}
+
+A small classifier (\texttt{example/workflow/coverage-gate-benchmark} in
+the host catalog) consumes the tuple $(N, \alpha, v, w, \mathrm{useful}, T)$
+and emits one of \texttt{PARALLEL}, \texttt{BORDERLINE}, \texttt{SAMPLING},
+\texttt{NO DISPATCH}. Default weights for this run:
+$\alpha = 30$\,s, $v = 5$\,s, $w = 60$\,s, $N = 4$. The classifier output is
+compared per-domain against the original 70\,\%-coverage rule.
+
+\section{Results}
+\label{sec:results}
+
+The 70\,\% coverage threshold as a \emph{universal} constant is not
+supported. Under the default weights, parallel wall-clock savings dominate
+up to $\sim 90\,\%$ coverage for any domain with non-zero useful output.
+The crossover shifts with the $\alpha/w$ ratio; it is not a robust
+constant.
+
+\begin{table}[h]
+\centering
+\caption{Per-domain classification under cost model vs original 70\,\% rule.}
+\label{tab:results}
+\begin{tabular}{lrrll}
+\toprule
+ID & Coverage $c$ & Useful & Cost-model verdict & 70\,\%-rule verdict \\
+\midrule
+A & 51.1\,\% & 229 & \textsc{PARALLEL} & \textsc{PARALLEL} \\
+B & 36.8\,\% & 296 & \textsc{PARALLEL} & \textsc{PARALLEL} \\
+C & 55.0\,\% & 158 & \textsc{PARALLEL} & \textsc{PARALLEL} \\
+D & 100.0\,\% & 0 & \textsc{NO DISPATCH} & \textsc{NO DISPATCH} \\
+E & 80.3\,\% & 92 & \textbf{\textsc{PARALLEL}} & \textsc{SAMPLING} (mismatch) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Domain D (zero useful output, full coverage) is correctly rejected by both
+rules. Domain E exposes the discrepancy: at 80.3\,\% coverage, the original
+rule says ``switch to sampling,'' but the cost model says ``still
+parallelize'' because $92 \times w = 92$ minutes of real work dwarfs
+$N \times \alpha = 2$ minutes of agent startup. Coverage fraction alone
+misclassifies.
+
+The discovered gate is not coverage percentage but
+\textbf{useful-output absolute count}: when fewer than $\sim 5$ files
+actually need work, parallel dispatch is pure waste regardless of $c$. The
+directional claim (very high coverage trends toward non-parallel) holds;
+the specific 70\,\% number was a single-session observation, not a robust
+threshold. We classify the verdict as \emph{partial support} and rewrite
+the premise to match.
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Why coverage fraction misled}
+
+Coverage is a ratio, not an absolute. A domain with 92 useful files at
+80\,\% coverage has the same parallel justification as a domain with 92
+useful files at 30\,\% coverage --- the parallel work scales with the
+absolute, the agent startup is paid once. The original premise inherited
+an intuition from one pitfall session (where useful output was small
+because total was small) and over-generalized to fraction.
+
+\subsection{Asymmetric discoverability}
+
+``How to parallelize'' is a teachable procedure that composes well as a
+catalog skill. ``When not to parallelize'' is a judgment call requiring
+a cost-curve mental model the author has to encode. The host catalog has
+many \emph{how-to} skills and one pitfall; these are asymmetric in
+discoverability --- how-to skills get triggered by keyword matching
+(``bulk annotation''), the pitfall gets found only if the user searches
+for ``wasted agent parallel.'' The proposed remedy is a dedicated gate
+skill whose entire job is the decision, so the gate is found first.
+
+\subsection{Failure modes are silent}
+
+A parallel dispatch that wastes tokens fails silently --- all $N$ agents
+return success, wall-clock looks similar to the productive case, the only
+signal is the token bill. Silent failure accumulates across sessions. The
+gate converts silent waste into a visible decision: \emph{``coverage
+92\,\%, useful 3 --- parallel not justified, switch to sampling.''} The
+user can override, but the override is explicit and auditable.
+
+\subsection{Limitations}
+
+\begin{itemize}
+\item \textbf{$n=1$ original evidence.} The 70\,\% threshold rested on one
+  observed session. Even after the experiment runs, the data points are
+  five hub-internal domains; cross-organization replication is needed
+  to claim full generality.
+\item \textbf{Cost weights are illustrative.} $\alpha$, $v$, $w$ are
+  plausible values from agent-runner observation, not measured per
+  deployment. A team with much faster startup or much slower
+  verification will see a different crossover.
+\item \textbf{Gate skill is unbuilt.} The proposed builds are
+  POC-scoped; the paper is a call for work, not a claim of completed
+  work.
+\item \textbf{Counter-argument unexplored.} In deployments where token
+  costs are negligible (local models, fixed-cost inference), the gate's
+  value drops. The assumption that tokens cost enough to justify the
+  gate may not hold universally.
+\end{itemize}
+
+\subsection{Future work}
+
+\begin{enumerate}
+\item Re-run the harness against domains in 2--3 other repositories to
+  test cross-corpus stability of the useful-output gate.
+\item Decide whether the coverage probe should be automatic (a hook on
+  any \texttt{/hub-make --parallel} invocation) or opt-in via the gate
+  skill. Automatic risks false positives; opt-in risks being forgotten.
+\item Decide whether existing parallel skills should be \emph{retracted}
+  and replaced with gate-mediated variants, or just annotated with a
+  ``Phase 0 --- pre-flight'' section. The annotation is pragmatic; the
+  retraction is more honest about the asymmetry.
+\end{enumerate}
+
+\section*{Provenance and source of truth}
+
+This is a preprint counterpart of the source-of-truth paper at\\
+\texttt{paper/workflow/parallel-dispatch-breakeven-point/PAPER.md} in the
+\texttt{kjuhwa/skills-hub} repository. The PAPER.md frontmatter carries
+\texttt{premise.if/then}, \texttt{examines[]}, \texttt{experiments[]} (with
+\texttt{result}, \texttt{supports\_premise}, \texttt{observed\_at}), and
+\texttt{outcomes[]} entries (\texttt{produced\_knowledge:
+decision/parallel-dispatch-useful-output-gate};
+\texttt{produced\_example: workflow/coverage-gate-benchmark}).
+The body adopts the IMRaD structure documented in
+\texttt{docs/rfc/paper-schema-draft.md} \S 5. The status is
+\texttt{implemented}: experiments[0] completed with
+\texttt{supports\_premise: partial} and the corpus changes above were
+shipped.
+
+\paragraph{Schema and tooling.}
+The paper schema, the auto-injected references block, the IMRaD
+compliance audit, and the citations index that powers the host catalog's
+discovery flow are all open-source under the same repository. See the
+\texttt{bootstrap/tools/} directory for the audit and indexer pipeline.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

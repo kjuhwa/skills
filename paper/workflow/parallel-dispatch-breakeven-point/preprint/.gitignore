@@ -1,0 +1,11 @@
+# Build artifacts from pdflatex / bibtex
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+paper.pdf
