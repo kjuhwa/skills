@@ -15,7 +15,7 @@ type: hypothesis
 
 premise:
   if: A multi-tier LLM fallback ladder is added to a call pipeline expecting cheaper tiers to absorb most traffic
-  then: The nominal token cost drops as expected, but two other costs rise — (a) p99 latency increases by 2-5x because cascading tier traversals happen on the tail, and (b) schema/quality drift on fallback tiers creates silent downstream failures — such that NET cost is lower only when the primary tier's failure rate is < 15 percent AND downstream consumers actually validate tier output schema. Below/above those conditions, the ladder displaces cost rather than saves it.
+  then: Token cost drops; p99 rises 2-5x (cascading tiers on tail); schema drift on fallback tiers creates silent failures. Net positive only when primary failure <15% AND consumers validate schema.
 
 examines:
   - kind: skill
@@ -41,7 +41,7 @@ examines:
   - kind: paper
     ref: workflow/parallel-dispatch-breakeven-point
     role: prior-paper
-    note: prior paper on cost displacement under parallelism — analogous shape on a different axis
+    note: prior paper — analogous cost-displacement shape on a different axis
   - kind: paper
     ref: workflow/technique-layer-composition-value
     role: meta paper on layer ROI
@@ -49,13 +49,13 @@ examines:
 
 perspectives:
   - name: Nominal vs Tail Cost
-    summary: Token cost is measured on the mean call; latency cost is measured on the tail. A ladder can reduce the mean (cheap tier serves most requests) while multiplying the tail (failed primary → retry → tier 2 → possible retry → tier 3). User-facing experience is dominated by the tail.
+    summary: Token cost is on the mean; latency on the tail. A ladder reduces the mean (cheap tier serves most calls) while multiplying the tail (cascading traversals). User experience is tail-dominated.
   - name: Schema Drift
-    summary: Tier 1 returns structured JSON; tier 3 returns plain text. Without downstream schema validation, the fallback-produced output poisons consumers that assume consistency. Silent schema drift is the LLM-era equivalent of the circuit-breaker silent fallback.
+    summary: Tier 1 returns structured JSON; tier 3 returns plain text. Without schema validation, fallback output poisons consumers assuming consistency. Silent schema drift is LLM-era silent fallback.
   - name: Cost-Budget Trigger
-    summary: A ladder without a cost-budget governor can exhaust budget on cascade storms (every request goes through all tiers because primary is rate-limited). The budget is the real circuit-breaker; token cost alone is the wrong metric.
+    summary: Without a cost-budget governor, ladders exhaust budget on cascade storms (every call traverses all tiers when primary is rate-limited). Budget is the real breaker; token cost is the wrong metric.
   - name: Failure Rate Threshold
-    summary: The premise asserts a 15 percent primary-failure-rate threshold. Below that, tiers 2/3 activate rarely and the ladder is pure insurance. Above that, cascade storms dominate and the ladder becomes the problem.
+    summary: The premise asserts a 15% primary-failure threshold. Below it, tiers 2/3 activate rarely and the ladder is pure insurance. Above it, cascade storms dominate and the ladder becomes the problem.
 
 external_refs: []
 
@@ -73,7 +73,7 @@ proposed_builds:
         role: informs-which
         note: informs which metrics are indicators of the silent-failure shape
   - slug: llm-fallback-schema-validator-middleware
-    summary: Middleware that validates every tier's output against a registered schema and rejects cross-tier drift. Rejection triggers an explicit error rather than silently propagating the mismatched payload downstream.
+    summary: Middleware validating every tier's output against a registered schema, rejecting cross-tier drift. Rejection triggers an explicit error instead of silently propagating mismatched payloads.
     scope: poc
     requires:
       - kind: skill
@@ -85,7 +85,7 @@ proposed_builds:
         role: codifies-silent-failure
         note: codifies the silent-failure failure mode the middleware prevents
   - slug: llm-fallback-cost-budget-governor
-    summary: Budget governor that short-circuits the ladder entirely when month-to-date cost exceeds a configurable ceiling. When activated, returns explicit "budget exceeded, degraded response" rather than silently spending into the next tier.
+    summary: Budget governor that short-circuits the ladder when month-to-date cost exceeds a ceiling. Returns explicit "budget exceeded, degraded response" instead of silently cascading into tiers.
     scope: demo
     requires:
       - kind: skill
@@ -99,14 +99,11 @@ proposed_builds:
 
 experiments:
   - name: ladder-latency-vs-nominal-cost-benchmark
-    hypothesis: A 3-tier LLM fallback ladder reduces mean token cost by ≥ 30 percent but increases p99 latency by ≥ 2x vs a single-tier baseline, across a representative workload of 500 calls where primary failure rate ranges 0-40 percent
-    method: |
-      Construct a test harness with 3 LLM tiers (Claude-Opus → Claude-Haiku →
-      cached-response). Replay a representative workload of N = 500 calls with
-      primary failure rate varied across [0, 5, 15, 30, 40] percent (injected
-      via fault-injection proxy). Measure per-tier activation count, per-call
-      token cost, p50/p95/p99 latency. Compute mean token cost delta and p99
-      latency delta vs single-tier baseline for each failure-rate bucket.
+    hypothesis: A 3-tier LLM fallback ladder reduces mean token cost by ≥30% but increases p99 latency by ≥2x vs single-tier baseline, across a 500-call workload at primary failure rates 0-40%
+    method: |-
+      3-tier harness (Opus → Haiku → cached). Replay 500 calls at primary
+      failure rates [0, 5, 15, 30, 40]% via fault injection. Measure per-tier
+      activations, token cost, p50/p95/p99. See body §Methods.
     status: planned
     built_as: null
     result: null
