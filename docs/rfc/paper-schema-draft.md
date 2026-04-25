@@ -515,3 +515,87 @@ Carrying the v0.1 / v0.2 rule: **structure only, never substance**.
 ### 15.7 Why this is a v0.3 not a v0.2.3
 
 v0.2.x amendments (paper-nesting in examines, IMRaD body) were strictly additive and did not change what tooling **shows** to consumers. v0.3 changes the injection contract (§15.3) — what `/hub-find` and pre-impl hook display when surfacing an implemented paper. That's a consumer-facing behavior change, hence a minor version bump.
+
+---
+
+## 16. Frontmatter brevity convention (proposed 2026-04-26)
+
+> **What changes**: introduces a soft convention that frontmatter string values stay short (≤ 200 chars). Long-form prose belongs in the body (IMRaD `## Methods` / `## Results` / `## Discussion`), not in YAML frontmatter. The convention is **soft** (advisory, not enforced by `/hub-paper-verify`) so existing papers continue to verify; an audit (`_audit_paper_frontmatter_length.py`) reports per-paper offenders in `precheck.py`. Migration is incremental.
+
+### 16.1 Why
+
+GitHub auto-renders YAML frontmatter as a key/value table with sub-tables for nested list-of-dicts (`examines[]`, `perspectives[]`, `experiments[]`, etc.). The sub-table cells do **not** wrap text. A `experiments[i].result` string of 1500 chars makes the entire page horizontally scrollable, defeating the readability the frontmatter table was supposed to provide.
+
+Measured on the current corpus (2026-04-26): 15/15 papers have ≥1 frontmatter string field exceeding 120 chars. The worst offenders cluster in `experiments[].result` (up to 1465 chars), `experiments[].method` (up to 670 chars), and `premise.then` (up to 696 chars). The first two are pure narrative — body `## Methods` / `## Results` already carry the same content. The frontmatter copy is redundant.
+
+### 16.2 The cap
+
+Frontmatter string fields should be ≤ 200 chars. Concrete fields by category:
+
+| Field | Cap | Where the long-form content goes |
+|---|---|---|
+| `description` | 120 (existing v0.1 rule 5) | n/a — single-line library card |
+| `premise.if` / `premise.then` | 200 | Body `## Introduction` |
+| `examines[].note` / `examines[].role` | 80 each | Body `## References (examines)` |
+| `perspectives[].summary` | 200 | Body `## Discussion` |
+| `proposed_builds[].summary` | 200 | Body `### Future work` |
+| `experiments[].method` | 200 | Body `## Methods` |
+| `experiments[].result` | 200 | Body `## Results` |
+| `experiments[].measured[i].condition` | 120 | n/a — short label |
+| `outcomes[].note` | 200 | Body Discussion |
+| `verdict.one_line` | 200 (§15.3 implicit) | n/a |
+| `verdict.rule.{when, do, threshold}` | 200 each | Body Discussion if needed |
+| `applicability.*` (each list entry) | 120 | Body `### Limitations` |
+| `premise_history[].cause` | 200 | Body "Premise revision" section |
+
+The 200-char cap is the **page-wrap point** — most desktop viewers render a YAML cell of 200 chars within ~1.5 lines without horizontal scroll. Mobile viewers may still scroll, but the magnitude is bounded.
+
+### 16.3 Migration pattern
+
+For oversized fields, the canonical replacement compresses to a verdict + cross-reference:
+
+```yaml
+# BEFORE
+experiments:
+  - name: hysteresis-ratio-tradeoff
+    result: |
+      24h × 4 workloads × 5 ratios = 20 cells (deterministic, seed=42).
+      Flap rate (transitions/h):
+        smooth         0.75   0.75   0.71   0.71   0.67
+        spiky          1.21   1.21   1.21   1.21   1.21
+        ...
+      [1465 chars total]
+
+# AFTER
+experiments:
+  - name: hysteresis-ratio-tradeoff
+    result: |
+      Spiky workload flap invariant at 1.21/h across [1.2x, 3.0x];
+      hysteresis fixes flap on bursty/drifting only. Trip-detection
+      delay vacuous (single-sample trip). See body §Results for the
+      20-cell flap matrix.
+```
+
+The body `## Results` retains the full table verbatim — no information loss, just relocation. The `experiments[].measured[]` v0.3 block (§15) already holds the structured numerics, so machine-readable consumers don't need to parse the result prose at all.
+
+### 16.4 Audit
+
+`_audit_paper_frontmatter_length.py` (new) walks all PAPER.md frontmatters and reports per-field char counts above the cap. Informational, exits 0 even with offenders. Same posture as `_audit_paper_imrad.py` and `_audit_paper_v03.py` — wired into `precheck.py`, reports compliance percentage, never blocks.
+
+### 16.5 Verification posture
+
+`/hub-paper-verify` does NOT enforce §16. The convention is a writing guideline; structure-only verification is preserved. The `--strict` flag may upgrade §16 advisories to FAIL in a future revision if the convention proves stable.
+
+### 16.6 Why a soft convention, not a hard rule
+
+A hard cap would force migration of all 15 existing papers in one PR. A soft convention lets the audit surface offenders, migration happen at authoring cadence, and a §15.6-style adoption signal monitor whether the convention is being followed.
+
+If frontmatter-length compliance stays below 60% across the corpus after 90 days from this amendment's merge, the convention is a candidate for retraction or hardening.
+
+### 16.7 Migration plan
+
+This amendment ships in three sequential PRs:
+
+1. **§16 schema amendment** (this PR) — defines the cap and the migration pattern. No code change.
+2. **`_audit_paper_frontmatter_length.py`** — informational reporter wired into `precheck.py`. Exits 0 even with offenders. Establishes the baseline (which papers need migration, by how much).
+3. **Bulk migration** — compress `experiments[].result` and `experiments[].method` across the 15 existing papers (the two largest offenders). Body `## Results` / `## Methods` already carry the full narrative; frontmatter compresses to ≤200-char verdict + cross-reference. `premise.then` and other domain-specific fields are migrated case-by-case based on whether they can be shortened without losing schema-load-bearing meaning.
