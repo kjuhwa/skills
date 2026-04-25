@@ -67,13 +67,35 @@ retraction_reason: null
 
 # Canary Auto-Revert: Calibrating Thresholds
 
-## Premise
+## Introduction
 
 (see frontmatter)
 
-## Background
+### Background
 
 The `technique/devops/canary-rollout-with-auto-revert` describes the auto-revert shape but specifies thresholds as "configurable" without guidance. This paper proposes the calibration rule.
+
+### Prior art
+
+Datadog, Prometheus, Spinnaker provide KPI monitoring; few document threshold-tuning methodology. Useful research: anomaly detection literature, Tukey fences, EWMA-based thresholds.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+(see frontmatter)
+
+### Limitations
+
+- Replay-based validation assumes historical data is representative
+- "False positive" definition relies on retrospective verdict; some judgment calls
+- Slow-burn issues are explicitly out of scope
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -103,20 +125,7 @@ failure-modes-to-validate-against
 
 <!-- references-section:end -->
 
-## Perspectives
-
-(see frontmatter)
-
-## External Context
-
-Datadog, Prometheus, Spinnaker provide KPI monitoring; few document threshold-tuning methodology. Useful research: anomaly detection literature, Tukey fences, EWMA-based thresholds.
-
-## Limitations
-
-- Replay-based validation assumes historical data is representative
-- "False positive" definition relies on retrospective verdict; some judgment calls
-- Slow-burn issues are explicitly out of scope
-
 ## Provenance
 
 - Authored 2026-04-25, batch of 10
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

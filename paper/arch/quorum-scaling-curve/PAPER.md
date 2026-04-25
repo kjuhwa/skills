@@ -70,13 +70,35 @@ retraction_reason: null
 
 # Quorum Scaling Curve: Where is the Sweet Spot?
 
-## Premise
+## Introduction
 
 (see frontmatter)
 
-## Background
+### Background
 
 The hub's `technique/arch/multi-peer-quorum-decision-loop` describes the shape but not the optimal N. Engineering folklore says "3 or 5"; this paper attempts to ground that with a measurable curve.
+
+### Prior art
+
+Etcd, Consul, ZooKeeper deployment guides recommend N=3 or N=5; this paper would compare those recommendations against a benchmark.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+(see frontmatter)
+
+### Limitations
+
+- "Sweet spot" is workload-dependent; this paper assumes a generic mixed read/write workload
+- Network topology (single AZ, multi-AZ, multi-region) drastically shifts the curve; the paper's N=5 sweet-spot claim assumes single-AZ
+- Failure tolerance requirements may force higher N regardless of performance
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -106,20 +128,7 @@ avoid-known-bugs-in-harness
 
 <!-- references-section:end -->
 
-## Perspectives
-
-(see frontmatter)
-
-## External Context
-
-Etcd, Consul, ZooKeeper deployment guides recommend N=3 or N=5; this paper would compare those recommendations against a benchmark.
-
-## Limitations
-
-- "Sweet spot" is workload-dependent; this paper assumes a generic mixed read/write workload
-- Network topology (single AZ, multi-AZ, multi-region) drastically shifts the curve; the paper's N=5 sweet-spot claim assumes single-AZ
-- Failure tolerance requirements may force higher N regardless of performance
-
 ## Provenance
 
 - Authored 2026-04-25, batch of 10
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

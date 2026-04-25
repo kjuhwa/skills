@@ -68,13 +68,39 @@ retraction_reason: null
 
 # Saga vs 2PC: At what N does saga become cheaper?
 
-## Premise
+## Introduction
 
 **If** a multi-step distributed transaction can be implemented as either saga (forward + compensation) or 2PC (synchronous prepare / commit), **then** saga is cheaper when N ≥ 3 services AND failure rate is non-trivial; 2PC is cheaper when N = 2. The crossover sits between N=2 and N=3 in typical workloads.
 
-## Background
+### Background
 
 The hub carries the saga shape (`workflow/saga-pattern-data-simulation`) and pitfall (`pitfall/saga-pattern-implementation-pitfall`), but no comparable 2PC technique. The community wisdom — "use saga for distributed transactions" — is true for N ≥ 3 but is often wrongly applied at N = 2 where 2PC's simplicity wins.
+
+### Prior art
+
+`/hub-research` would pull: Google Spanner's TrueTime+2PC vs choreography-based saga deployments, academic papers on coordination cost in distributed transactions.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+(see frontmatter)
+
+### Proposed builds (rationale)
+
+(see frontmatter)
+
+### Limitations
+
+- Crossover claim is qualitative-quantitative (between N=2 and N=3) but needs the experiment to fix the constant
+- Real systems blend the two — practical "saga that uses 2PC for the inner pair" hybrids exist; this paper treats them as pure
+- N treats services as homogeneous; real systems have heterogeneous failure rates per service
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -104,25 +130,8 @@ avoid-known-saga-bugs-in-benchmark
 
 <!-- references-section:end -->
 
-## Perspectives
-
-(see frontmatter)
-
-## External Context
-
-`/hub-research` would pull: Google Spanner's TrueTime+2PC vs choreography-based saga deployments, academic papers on coordination cost in distributed transactions.
-
-## Proposed Builds
-
-(see frontmatter)
-
-## Limitations
-
-- Crossover claim is qualitative-quantitative (between N=2 and N=3) but needs the experiment to fix the constant
-- Real systems blend the two — practical "saga that uses 2PC for the inner pair" hybrids exist; this paper treats them as pure
-- N treats services as homogeneous; real systems have heterogeneous failure rates per service
-
 ## Provenance
 
 - Authored 2026-04-25, batch of 10 papers
 - Schema: `docs/rfc/paper-schema-draft.md`
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

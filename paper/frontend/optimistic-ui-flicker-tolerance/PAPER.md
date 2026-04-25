@@ -66,13 +66,31 @@ retraction_reason: null
 
 # Optimistic UI: Flicker Tolerance Curve
 
-## Premise
+## Introduction
 
 (see frontmatter)
 
-## Background
+### Background
 
 `technique/frontend/optimistic-mutation-with-server-reconcile` documents the shape but leaves the question of *when* to use it open. This paper claims optimistic UI is conditionally good — bounded by server reliability.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+(see frontmatter)
+
+### Limitations
+
+- User-study methodology — small samples have wide confidence intervals
+- Subjective satisfaction is hard to compare across user populations
+- Mitigation techniques (mentioned in perspectives) shift the curve; the paper's claim is for the unmitigated case
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -102,16 +120,7 @@ realistic-failure-shape
 
 <!-- references-section:end -->
 
-## Perspectives
-
-(see frontmatter)
-
-## Limitations
-
-- User-study methodology — small samples have wide confidence intervals
-- Subjective satisfaction is hard to compare across user populations
-- Mitigation techniques (mentioned in perspectives) shift the curve; the paper's claim is for the unmitigated case
-
 ## Provenance
 
 - Authored 2026-04-25, batch of 10
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

@@ -71,13 +71,35 @@ retraction_reason: null
 
 # Multi-Agent Coordinator: Overhead vs Parallelism
 
-## Premise
+## Introduction
 
 (see frontmatter)
 
-## Background
+### Background
 
 `technique/ai/multi-agent-fan-out-with-isolation` describes the shape; this paper measures the curve.
+
+### Prior art
+
+`paper/workflow/parallel-dispatch-breakeven-point` already established that parallel dispatch can be net negative at high prior coverage; this paper extends that finding to the coordinator-overhead axis.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+(see frontmatter)
+
+### Limitations
+
+- Highly task-dependent; "typical workloads" assumption is fragile
+- Coordinator overhead is partly an artifact of current LLM token-based pricing; cheaper inference would shift the curve right
+- Parallelism gain assumes independent sub-tasks; real tasks have implicit dependencies that compound at high N
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -110,21 +132,8 @@ pre-flight-check-pattern
 
 <!-- references-section:end -->
 
-## Perspectives
-
-(see frontmatter)
-
-## External Context
-
-`paper/workflow/parallel-dispatch-breakeven-point` already established that parallel dispatch can be net negative at high prior coverage; this paper extends that finding to the coordinator-overhead axis.
-
-## Limitations
-
-- Highly task-dependent; "typical workloads" assumption is fragile
-- Coordinator overhead is partly an artifact of current LLM token-based pricing; cheaper inference would shift the curve right
-- Parallelism gain assumes independent sub-tasks; real tasks have implicit dependencies that compound at high N
-
 ## Provenance
 
 - Authored 2026-04-25, batch of 10
 - Sibling: `paper/parallel-dispatch-breakeven-point` (different axis, same parent claim that parallelism has a ceiling)
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

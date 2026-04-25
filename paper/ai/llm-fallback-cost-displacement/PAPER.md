@@ -121,7 +121,7 @@ retraction_reason: null
 
 # Do LLM fallback ladders save cost, or displace it?
 
-## Premise
+## Introduction
 
 **If** a multi-tier LLM fallback ladder is added to a call pipeline expecting cheaper tiers to absorb most traffic, **then** the nominal token cost drops as expected, but two other costs rise:
 
@@ -130,7 +130,7 @@ retraction_reason: null
 
 Net cost is lower **only** when primary failure rate is < 15 percent AND downstream consumers actually validate tier output schema. Below the first condition, tiers 2/3 are dead weight. Above it, cascade storms dominate. Without the second condition, the ladder is a schema-drift generator dressed as resilience.
 
-## Background
+### Background
 
 The hub carries the baseline ingredients:
 
@@ -140,6 +140,91 @@ The hub carries the baseline ingredients:
 - `knowledge/pitfall/retry-strategy-implementation-pitfall` — retry-within-tier vs fall-through confusion, which compounds latency in ladder scenarios.
 
 A proposed technique `ai/agent-fallback-ladder` composes these atoms into a hierarchical ladder with per-tier circuit state. The technique answers "what is the shape?". This paper answers **"does the shape actually save money?"**
+
+### Prior art
+
+`external_refs[]` is empty. Useful sources to pull in via `/hub-research`:
+
+- Anthropic / OpenAI pricing tables for typical tier deltas (Opus vs Haiku, GPT-4 vs GPT-4-mini)
+- Chaos-engineering literature on cascade failures (Netflix Hystrix post-mortems) — the LLM version is the same shape on a new surface
+- Academic work on "partial ordering of quality-of-service tiers" (QoS literature from networking)
+- Prior empirical studies on multi-provider LLM routing cost tradeoffs, if any exist
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+### 1. Nominal vs Tail Cost
+
+Cost is usually quoted as "mean tokens per call times price." For a ladder, the mean is optimistic — it assumes most calls terminate at the cheap tier, which is exactly what the ladder is designed for on the happy path. The **tail** tells a different story:
+
+```
+p50 call: served by tier 1  → 1 tier traversal,  1x latency
+p99 call: primary fails, retry fails, tier 2 fails → 3-4 tier traversals, 3-5x latency
+```
+
+If the user-facing SLO is latency-based (e.g., 99 percent of responses under 2 s), the ladder may satisfy the mean-cost budget while breaking the latency SLO. This is the first form of cost displacement — cost shifts from "dollars per month" to "tail latency the user notices."
+
+### 2. Schema Drift
+
+A tier 1 model trained to return `{"answer": ..., "reasoning": [...]}` is not contract-bound to the tier 3 model. Tier 3 may return plain text. Without downstream validation:
+
+```python
+response = call_with_fallback(prompt)
+answer = response["answer"]       # works for tier 1
+                                  # raises KeyError for tier 3
+```
+
+The exception is loud if the downstream bothers to parse. The **silent** case is worse — the downstream accepts whatever it gets and forwards a malformed payload to yet another consumer. This is the LLM-era manifestation of the `circuit-breaker-implementation-pitfall` — silent fallback poisoning the consumer.
+
+### 3. Cost-Budget Trigger
+
+Token cost is measured per call. Budget is measured per month. A ladder without a budget governor can consume a month of budget in an afternoon during a primary-outage cascade storm — every request traverses all tiers because tier 1 is hard-down. The per-call cost looks fine; the cumulative cost is catastrophic.
+
+The budget must be a first-class circuit-breaker signal, not just a cost ceiling. When exceeded, the ladder should refuse further traversals and return explicit degradation — the pattern the third proposed build prototypes.
+
+### 4. Failure Rate Threshold
+
+The premise asserts a 15 percent primary-failure-rate threshold. The intuition:
+
+- **Below 15 percent**: fallback tiers activate rarely; ladder cost is pure insurance at modest premium.
+- **Around 15 percent**: ladder is break-even — savings from primary-tier discounts are offset by cascade-induced latency and secondary token spend.
+- **Above 15 percent**: cascade storms dominate — tier 2 becomes the default, tier 3 activates frequently, p99 breaks down.
+
+The 15 percent number is a working estimate. The planned experiment tightens it.
+
+### Proposed builds (rationale)
+
+### `llm-fallback-latency-cost-dashboard` (POC)
+
+Per-tier activation rate, per-tier latency contribution to p50/p95/p99, schema-validation failure count. Makes the mean-vs-tail gap visible in one screen. Without this, adoption of the ladder is based on nominal cost alone and the tail cost is invisible.
+
+### `llm-fallback-schema-validator-middleware` (POC)
+
+Middleware that validates every tier's output against a registered schema. Rejection triggers an explicit error. Prevents the silent-schema-drift failure mode that the `circuit-breaker-implementation-pitfall` warns against in the generic case.
+
+### `llm-fallback-cost-budget-governor` (DEMO)
+
+Budget governor that short-circuits the entire ladder when month-to-date cost exceeds a ceiling. Returns explicit "budget exceeded, degraded response" instead of silently cascading into the next tier during a cascade storm.
+
+### Limitations
+
+- **No measurement yet.** The experiment is planned, not executed. The 15 percent threshold is an estimate.
+- **Single provider-family assumption.** The ladder model assumes tiers within one provider (or across providers with similar output schemas). Cross-family ladders (e.g., Anthropic → local Llama) have additional drift dimensions this paper does not address.
+- **Ignores caching.** A proper cost model includes a response cache layer in front of the ladder. Cache-hit rate interacts with the ladder in ways the simple premise does not capture.
+- **No multi-region effects.** Cross-region tier fallback adds network latency that compounds the tail; this paper treats all tiers as network-equivalent.
+
+### Future work
+
+1. Is the 15 percent primary-failure-rate threshold stable across provider pairings, or is it a function of the price delta between tiers? (Larger delta → ladder tolerates higher failure rates before cost displacement dominates.)
+2. Can the schema-validation middleware be implemented **generically** across LLM tiers, or does it need a per-task schema registry? The latter is higher overhead but more correct.
+3. Is cost displacement an unconditional red flag, or a legitimate engineering tradeoff in some domains? For a user-facing chat product, tail latency is the killer. For a batch data-enrichment pipeline, tail latency is a non-issue and the ladder is a clean win.
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -194,83 +279,6 @@ retry-storm behavior is the class of failure the governor catches
 
 <!-- references-section:end -->
 
-## Perspectives
-
-### 1. Nominal vs Tail Cost
-
-Cost is usually quoted as "mean tokens per call times price." For a ladder, the mean is optimistic — it assumes most calls terminate at the cheap tier, which is exactly what the ladder is designed for on the happy path. The **tail** tells a different story:
-
-```
-p50 call: served by tier 1  → 1 tier traversal,  1x latency
-p99 call: primary fails, retry fails, tier 2 fails → 3-4 tier traversals, 3-5x latency
-```
-
-If the user-facing SLO is latency-based (e.g., 99 percent of responses under 2 s), the ladder may satisfy the mean-cost budget while breaking the latency SLO. This is the first form of cost displacement — cost shifts from "dollars per month" to "tail latency the user notices."
-
-### 2. Schema Drift
-
-A tier 1 model trained to return `{"answer": ..., "reasoning": [...]}` is not contract-bound to the tier 3 model. Tier 3 may return plain text. Without downstream validation:
-
-```python
-response = call_with_fallback(prompt)
-answer = response["answer"]       # works for tier 1
-                                  # raises KeyError for tier 3
-```
-
-The exception is loud if the downstream bothers to parse. The **silent** case is worse — the downstream accepts whatever it gets and forwards a malformed payload to yet another consumer. This is the LLM-era manifestation of the `circuit-breaker-implementation-pitfall` — silent fallback poisoning the consumer.
-
-### 3. Cost-Budget Trigger
-
-Token cost is measured per call. Budget is measured per month. A ladder without a budget governor can consume a month of budget in an afternoon during a primary-outage cascade storm — every request traverses all tiers because tier 1 is hard-down. The per-call cost looks fine; the cumulative cost is catastrophic.
-
-The budget must be a first-class circuit-breaker signal, not just a cost ceiling. When exceeded, the ladder should refuse further traversals and return explicit degradation — the pattern the third proposed build prototypes.
-
-### 4. Failure Rate Threshold
-
-The premise asserts a 15 percent primary-failure-rate threshold. The intuition:
-
-- **Below 15 percent**: fallback tiers activate rarely; ladder cost is pure insurance at modest premium.
-- **Around 15 percent**: ladder is break-even — savings from primary-tier discounts are offset by cascade-induced latency and secondary token spend.
-- **Above 15 percent**: cascade storms dominate — tier 2 becomes the default, tier 3 activates frequently, p99 breaks down.
-
-The 15 percent number is a working estimate. The planned experiment tightens it.
-
-## External Context
-
-`external_refs[]` is empty. Useful sources to pull in via `/hub-research`:
-
-- Anthropic / OpenAI pricing tables for typical tier deltas (Opus vs Haiku, GPT-4 vs GPT-4-mini)
-- Chaos-engineering literature on cascade failures (Netflix Hystrix post-mortems) — the LLM version is the same shape on a new surface
-- Academic work on "partial ordering of quality-of-service tiers" (QoS literature from networking)
-- Prior empirical studies on multi-provider LLM routing cost tradeoffs, if any exist
-
-## Proposed Builds
-
-### `llm-fallback-latency-cost-dashboard` (POC)
-
-Per-tier activation rate, per-tier latency contribution to p50/p95/p99, schema-validation failure count. Makes the mean-vs-tail gap visible in one screen. Without this, adoption of the ladder is based on nominal cost alone and the tail cost is invisible.
-
-### `llm-fallback-schema-validator-middleware` (POC)
-
-Middleware that validates every tier's output against a registered schema. Rejection triggers an explicit error. Prevents the silent-schema-drift failure mode that the `circuit-breaker-implementation-pitfall` warns against in the generic case.
-
-### `llm-fallback-cost-budget-governor` (DEMO)
-
-Budget governor that short-circuits the entire ladder when month-to-date cost exceeds a ceiling. Returns explicit "budget exceeded, degraded response" instead of silently cascading into the next tier during a cascade storm.
-
-## Open Questions
-
-1. Is the 15 percent primary-failure-rate threshold stable across provider pairings, or is it a function of the price delta between tiers? (Larger delta → ladder tolerates higher failure rates before cost displacement dominates.)
-2. Can the schema-validation middleware be implemented **generically** across LLM tiers, or does it need a per-task schema registry? The latter is higher overhead but more correct.
-3. Is cost displacement an unconditional red flag, or a legitimate engineering tradeoff in some domains? For a user-facing chat product, tail latency is the killer. For a batch data-enrichment pipeline, tail latency is a non-issue and the ladder is a clean win.
-
-## Limitations
-
-- **No measurement yet.** The experiment is planned, not executed. The 15 percent threshold is an estimate.
-- **Single provider-family assumption.** The ladder model assumes tiers within one provider (or across providers with similar output schemas). Cross-family ladders (e.g., Anthropic → local Llama) have additional drift dimensions this paper does not address.
-- **Ignores caching.** A proper cost model includes a response cache layer in front of the ladder. Cache-hit rate interacts with the ladder in ways the simple premise does not capture.
-- **No multi-region effects.** Cross-region tier fallback adds network latency that compounds the tail; this paper treats all tiers as network-equivalent.
-
 ## Provenance
 
 - Authored: 2026-04-24
@@ -281,3 +289,4 @@ Budget governor that short-circuits the entire ladder when month-to-date cost ex
   - `paper/workflow/technique-layer-composition-value` (meta)
   - `paper/workflow/parallel-dispatch-breakeven-point` (implemented)
   - `paper/testing/llm-ci-triage-boundary-conditions` (boundary-conditions)
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

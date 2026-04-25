@@ -119,13 +119,13 @@ retraction_reason: null
 
 # Where does LLM-based CI failure triage help vs silently hurt?
 
-## Premise
+## Introduction
 
 **If** an LLM-based triage step (exemplified by the Auto-Diagnose pattern in [`testing/llm-integration-test-failure-diagnosis`](../../../skills/testing/llm-integration-test-failure-diagnosis/SKILL.md)) is wired into a CI integration-test failure pipeline, **then** it reduces mean-time-to-diagnose for noise-heavy classes (flakes, environment drift, dependency churn) but introduces silent misclassification on novel logic bugs — making it net positive ONLY when the team's failure mix is roughly > 60 percent noise. Below that ratio, the cost of regressions hidden as "known flakes" exceeds the triage-time savings.
 
 This claim has two halves. The first half (noise reduction) is what vendors advertise. The second half (silent cost on novel bugs) is rarely measured because the failure mode is invisible by definition — a mislabeled regression is found only when production bites back.
 
-## Background
+### Background
 
 The hub carries the baseline ingredients:
 
@@ -138,6 +138,105 @@ And one knowledge entry directly relevant:
 - `decision/caveats-absence-confidence-cap` — a hub-wide position that LLM output confidence should be capped when caveats are absent. Central to this paper's silent-failure argument.
 
 This paper does NOT claim the LLM approach is wrong. It claims the effectiveness is **conditional on failure-mix composition**, and the conditioning is unmeasured in most adoption stories.
+
+### Prior art
+
+`external_refs[]` is empty. The paper would be strengthened by pulling in:
+
+- Google's Auto-Diagnose paper (the system `testing/llm-integration-test-failure-diagnosis` is based on) and its 71-case study methodology
+- LLM calibration literature (Tetlock-style forecasting, Brier score) applied to code-triage outputs
+- Prior art on ROC/precision-recall measurement in test classification
+- Any other framework (LangGraph, Humanloop, etc.) that ships CI-triage with calibration as a first-class feature vs bolted on
+
+`/hub-research` would populate this list.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+### 1. Noise-vs-Signal Boundary
+
+Classification accuracy for an LLM-based triager is not a single number. It factors across failure classes:
+
+- **Flakes** (timing, retry-able): very high recognition rate — the LLM sees ten thousand similar logs in training.
+- **Environment drift** (dependency version skew, missing env var): high.
+- **Dependency churn** (new major version breaks API): moderate — depends on how recent.
+- **Novel logic bugs** (off-by-one, rare race, domain-specific invariant violation): **low and rarely admitted as low by the LLM itself**.
+
+The last class is the killer. The LLM produces a plausible diagnosis even when its actual confidence should be near zero. Auto-Diagnose's 90 percent headline is a weighted average that obscures the per-class breakdown.
+
+### 2. Escalation Path
+
+What happens to an LLM verdict determines whether the triage step is a gain or a loss:
+
+- **Auto-close as "known flake"**: regression-hiding risk. Silent failure mode.
+- **Always file a ticket**: the triage step saves no human time — it just moves the label upstream.
+- **Hybrid routing**: LLM-confident verdicts auto-close or auto-escalate; low-confidence verdicts go to human systematic investigation. This is what the paper's third proposed build prototypes.
+
+No adoption path is neutral. The decision happens implicitly if not explicitly.
+
+### 3. Cost Model
+
+Back-of-envelope:
+
+```
+llm_cost_per_triage   ≈ N_tokens × token_price
+engineer_cost_saved   ≈ (mean_human_triage_time − residual_human_triage_time) × eng_rate
+                      × fraction_correctly_triaged_by_llm
+```
+
+Break-even depends on:
+- Flake rate (the LLM's best class) as fraction of total failures
+- Engineer hourly rate
+- LLM token cost per triage (~100 k tokens for a noisy log is common)
+- Per-failure time savings
+
+At 80 percent flake rate and typical current token pricing, LLM triage is clearly net positive. At 30 percent flake rate with high novel-bug rate, the silent-misclass risk can flip the sign. The 60 percent threshold in the premise is the paper's rough estimate; the experiment tightens it.
+
+### 4. Silent Failure Mode
+
+The worst failure is not an obvious misclassification (which a reviewer catches) but a confident "known flake" label on what is actually a new regression. This is the same failure shape flagged in paper [`workflow/parallel-dispatch-breakeven-point`](../../workflow/parallel-dispatch-breakeven-point/PAPER.md) — loud failures teach the team; silent failures accumulate.
+
+A team that adopts LLM triage without a confidence calibration dashboard cannot distinguish a 92 percent-accurate triager from a 75 percent-accurate-but-overconfident triager. Both produce the same log volume. The second one ships regressions.
+
+### Proposed builds (rationale)
+
+### `llm-triage-confidence-dashboard` (POC)
+
+A dashboard showing LLM triage confidence vs retrospectively verified outcome over N weeks. Surfaces:
+
+- Per-class accuracy (flake / env / dep / novel) as time series
+- Calibration curve: did 90 percent-confident verdicts actually hit 90 percent accuracy?
+- Regression-hit rate attributable to mislabeled "known flake" verdicts
+
+Without this, adoption is faith-based. With it, the break-even from the premise can be measured.
+
+### `llm-triage-false-known-flake-pitfall` (POC)
+
+A new pitfall knowledge entry documenting the specific silent-failure shape, with reproduction heuristics and the escalation check that would have caught it. Seed from `decision/caveats-absence-confidence-cap`. This entry is the paper's minimal corpus contribution if nothing else ships.
+
+### `hybrid-llm-human-triage-router` (DEMO)
+
+A new skill that routes CI failures through LLM triage first, then escalates to human systematic investigation (`debug/investigate`) when LLM confidence is below a threshold OR when the failure signature is novel (no seen-before match in a running fingerprint log). Completes the loop that the confidence dashboard measures.
+
+### Limitations
+
+- **No measurement yet.** The 60 percent threshold is an estimate. The experiment is planned but not run.
+- **LLM capability is a moving target.** A 2025-era LLM's per-class accuracy will likely improve. The paper's conclusions may have a 12–18 month shelf life before needing a refresh.
+- **Assumes retrospective ground truth.** The experiment requires known post-mortem verdicts for historical CI failures. Teams without rigorous post-mortems cannot reproduce the measurement directly.
+- **Single pattern examined.** The paper generalizes from one specific auto-diagnose skill. Other LLM-triage approaches (chain-of-thought, multi-agent debate, retrieval-augmented) may have different accuracy profiles.
+
+### Future work
+
+1. Is the 60 percent noise-mix threshold stable across organizations, or is it a moving target driven by the LLM's training data recency? The experiment addresses the former; only longitudinal observation can answer the latter.
+2. Can the LLM reliably self-flag low-confidence verdicts? If yes, the hybrid router is trivial. If no, the router needs an external signal (e.g. embedding similarity to previously seen failures).
+3. Is "silent misclassification" genuinely worse than "slow human triage" in terms of production impact, or is it just a different distribution of cost? The answer depends on how regressions manifest in the specific system.
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -192,97 +291,6 @@ the shared downstream both paths feed into
 
 <!-- references-section:end -->
 
-## Perspectives
-
-### 1. Noise-vs-Signal Boundary
-
-Classification accuracy for an LLM-based triager is not a single number. It factors across failure classes:
-
-- **Flakes** (timing, retry-able): very high recognition rate — the LLM sees ten thousand similar logs in training.
-- **Environment drift** (dependency version skew, missing env var): high.
-- **Dependency churn** (new major version breaks API): moderate — depends on how recent.
-- **Novel logic bugs** (off-by-one, rare race, domain-specific invariant violation): **low and rarely admitted as low by the LLM itself**.
-
-The last class is the killer. The LLM produces a plausible diagnosis even when its actual confidence should be near zero. Auto-Diagnose's 90 percent headline is a weighted average that obscures the per-class breakdown.
-
-### 2. Escalation Path
-
-What happens to an LLM verdict determines whether the triage step is a gain or a loss:
-
-- **Auto-close as "known flake"**: regression-hiding risk. Silent failure mode.
-- **Always file a ticket**: the triage step saves no human time — it just moves the label upstream.
-- **Hybrid routing**: LLM-confident verdicts auto-close or auto-escalate; low-confidence verdicts go to human systematic investigation. This is what the paper's third proposed build prototypes.
-
-No adoption path is neutral. The decision happens implicitly if not explicitly.
-
-### 3. Cost Model
-
-Back-of-envelope:
-
-```
-llm_cost_per_triage   ≈ N_tokens × token_price
-engineer_cost_saved   ≈ (mean_human_triage_time − residual_human_triage_time) × eng_rate
-                      × fraction_correctly_triaged_by_llm
-```
-
-Break-even depends on:
-- Flake rate (the LLM's best class) as fraction of total failures
-- Engineer hourly rate
-- LLM token cost per triage (~100 k tokens for a noisy log is common)
-- Per-failure time savings
-
-At 80 percent flake rate and typical current token pricing, LLM triage is clearly net positive. At 30 percent flake rate with high novel-bug rate, the silent-misclass risk can flip the sign. The 60 percent threshold in the premise is the paper's rough estimate; the experiment tightens it.
-
-### 4. Silent Failure Mode
-
-The worst failure is not an obvious misclassification (which a reviewer catches) but a confident "known flake" label on what is actually a new regression. This is the same failure shape flagged in paper [`workflow/parallel-dispatch-breakeven-point`](../../workflow/parallel-dispatch-breakeven-point/PAPER.md) — loud failures teach the team; silent failures accumulate.
-
-A team that adopts LLM triage without a confidence calibration dashboard cannot distinguish a 92 percent-accurate triager from a 75 percent-accurate-but-overconfident triager. Both produce the same log volume. The second one ships regressions.
-
-## External Context
-
-`external_refs[]` is empty. The paper would be strengthened by pulling in:
-
-- Google's Auto-Diagnose paper (the system `testing/llm-integration-test-failure-diagnosis` is based on) and its 71-case study methodology
-- LLM calibration literature (Tetlock-style forecasting, Brier score) applied to code-triage outputs
-- Prior art on ROC/precision-recall measurement in test classification
-- Any other framework (LangGraph, Humanloop, etc.) that ships CI-triage with calibration as a first-class feature vs bolted on
-
-`/hub-research` would populate this list.
-
-## Proposed Builds
-
-### `llm-triage-confidence-dashboard` (POC)
-
-A dashboard showing LLM triage confidence vs retrospectively verified outcome over N weeks. Surfaces:
-
-- Per-class accuracy (flake / env / dep / novel) as time series
-- Calibration curve: did 90 percent-confident verdicts actually hit 90 percent accuracy?
-- Regression-hit rate attributable to mislabeled "known flake" verdicts
-
-Without this, adoption is faith-based. With it, the break-even from the premise can be measured.
-
-### `llm-triage-false-known-flake-pitfall` (POC)
-
-A new pitfall knowledge entry documenting the specific silent-failure shape, with reproduction heuristics and the escalation check that would have caught it. Seed from `decision/caveats-absence-confidence-cap`. This entry is the paper's minimal corpus contribution if nothing else ships.
-
-### `hybrid-llm-human-triage-router` (DEMO)
-
-A new skill that routes CI failures through LLM triage first, then escalates to human systematic investigation (`debug/investigate`) when LLM confidence is below a threshold OR when the failure signature is novel (no seen-before match in a running fingerprint log). Completes the loop that the confidence dashboard measures.
-
-## Open Questions
-
-1. Is the 60 percent noise-mix threshold stable across organizations, or is it a moving target driven by the LLM's training data recency? The experiment addresses the former; only longitudinal observation can answer the latter.
-2. Can the LLM reliably self-flag low-confidence verdicts? If yes, the hybrid router is trivial. If no, the router needs an external signal (e.g. embedding similarity to previously seen failures).
-3. Is "silent misclassification" genuinely worse than "slow human triage" in terms of production impact, or is it just a different distribution of cost? The answer depends on how regressions manifest in the specific system.
-
-## Limitations
-
-- **No measurement yet.** The 60 percent threshold is an estimate. The experiment is planned but not run.
-- **LLM capability is a moving target.** A 2025-era LLM's per-class accuracy will likely improve. The paper's conclusions may have a 12–18 month shelf life before needing a refresh.
-- **Assumes retrospective ground truth.** The experiment requires known post-mortem verdicts for historical CI failures. Teams without rigorous post-mortems cannot reproduce the measurement directly.
-- **Single pattern examined.** The paper generalizes from one specific auto-diagnose skill. Other LLM-triage approaches (chain-of-thought, multi-agent debate, retrieval-augmented) may have different accuracy profiles.
-
 ## Provenance
 
 - Authored: 2026-04-24
@@ -291,3 +299,4 @@ A new skill that routes CI failures through LLM triage first, then escalates to 
 - Sibling papers:
   - `paper/workflow/technique-layer-composition-value` (meta, self-referential)
   - `paper/workflow/parallel-dispatch-breakeven-point` (implemented, produced a knowledge outcome)
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

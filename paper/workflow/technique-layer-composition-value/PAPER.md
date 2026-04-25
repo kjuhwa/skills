@@ -106,13 +106,13 @@ retraction_reason: null
 
 # Does the `technique/` middle layer produce durable composition value?
 
-## Premise
+## Introduction
 
 **If** a skills-hub adds a `technique/` layer that composes atoms by reference (not by copy), **then** durable composition value emerges — recipes that survive atom updates, generalize across shapes (linear pipelines and branching decision trees), and serve as cite-able units for papers and apps — value that `hub-merge` alone cannot reproduce.
 
 This is a proposal, not a proof. The evidence below is from one rollout across roughly thirty hours and fifteen PRs; the claim is that the value is **durable**, which is a longer-horizon bet. What the rollout can show is whether the **shape** of the value is the shape the claim predicts.
 
-## Background
+### Background
 
 Before this rollout the hub had two tiers with a gap:
 
@@ -132,43 +132,18 @@ Two pilots shipped on purpose different shapes:
 
 Schema supported both without modification.
 
-<!-- references-section:begin -->
-## References (examines)
+### Prior art
 
-**technique — `workflow/safe-bulk-pr-publishing`**
-pilot #1 (linear pipeline, 4 composes)
+`external_refs[]` is deliberately empty at first draft. Relevant searches for `/hub-research`:
 
-**technique — `debug/root-cause-to-tdd-plan`**
-pilot #2 (decision tree, 4 composes)
+- "Composition layers between primitive and application" in developer-tool ecosystems (build tools, package managers, agent frameworks).
+- UNIX pipes and small-tools philosophy as a reference model for by-reference composition.
+- "Behavior trees" and "state machines" literature for decision-tree shape validation (relevant to pilot #2).
+- Prior work on documentation-as-code where structured prose cites structured artifacts (literate programming, Jupyter, MDX).
 
-**skill — `workflow/parallel-build-sequential-publish`**
-atom whose relocation surfaced the layout mismatch (RFC §4 evidence)
+A reviewer filling these in would strengthen the paper materially. Absence is flagged but not fatal.
 
-**knowledge — `workflow/batch-pr-conflict-recovery`**
-atom demonstrating failure-mode role in pilot #1
-
-
-## Build dependencies (proposed_builds)
-
-### `hub-paper-commands`  _(scope: poc)_
-
-**technique — `workflow/safe-bulk-pr-publishing`**
-shape template for composition-by-reference commands
-
-**technique — `debug/root-cause-to-tdd-plan`**
-second shape template — tests command generality across paper shapes
-
-### `security-domain-technique-3`  _(scope: poc)_
-
-**technique — `workflow/safe-bulk-pr-publishing`**
-reference shape (linear pipeline)
-
-**technique — `debug/root-cause-to-tdd-plan`**
-reference shape (decision tree)
-
-<!-- references-section:end -->
-
-## Perspectives
+## Discussion
 
 ### 1. Maintainability
 
@@ -248,18 +223,7 @@ What the rollout was *not*:
 - Not free of user feedback. #1061 (language consistency) would not have been caught by any automated check — it took the user noticing.
 - Not obvious in size. The 13 PRs were not budgeted in advance. If the pattern is replicable, the estimate for a paper-layer rollout is ~8–12 PRs, with similar open-ended tail.
 
-## External Context
-
-`external_refs[]` is deliberately empty at first draft. Relevant searches for `/hub-research`:
-
-- "Composition layers between primitive and application" in developer-tool ecosystems (build tools, package managers, agent frameworks).
-- UNIX pipes and small-tools philosophy as a reference model for by-reference composition.
-- "Behavior trees" and "state machines" literature for decision-tree shape validation (relevant to pilot #2).
-- Prior work on documentation-as-code where structured prose cites structured artifacts (literate programming, Jupyter, MDX).
-
-A reviewer filling these in would strengthen the paper materially. Absence is flagged but not fatal.
-
-## Proposed Builds
+### Proposed builds (rationale)
 
 ### `hub-paper-commands` (POC)
 
@@ -290,18 +254,54 @@ Extension of `/hub-make` that takes a paper slug, reads its `proposed_builds[]`,
 
 Carries a specific risk: if the paper's `proposed_builds[]` are too abstract, the scaffolds are empty folders. `/hub-make-from-paper` should refuse to scaffold a build whose `summary` is under ~60 characters, forcing the paper author to write a concrete-enough stub.
 
-## Open Questions
-
-1. When a `proposed_builds[]` item becomes a real `example/` entry, how is the back-link recorded? (§12 Q2 of the schema draft.) Proposal: add optional `example_ref` to each proposed_build; transition `status` to `implemented` when any proposed_build has a resolved `example_ref`.
-2. Is `examines[].kind: doc` (for citing `docs/rfc/...`) worth adding? Avoided in v0 for scope, but documents in the repo are legitimately cite-able subjects. Probably yes in v0.1.x or v0.2.
-3. Does the `no paper-to-paper citation` rule (§7) survive first contact with real writing? Academic papers cite papers. Watch for authors routing around it via `external_refs` (citing the paper by URL to its GitHub blob) — if that happens, v0.2 should lift the restriction.
-
-## Limitations
+### Limitations
 
 - **n=1** paper. Generalization claims rest on one test. A second paper on an unrelated topic is needed before the layer's generality is anything more than asserted.
 - **Self-referential pilot.** This paper's subject is the layer immediately above it in the hub and its proposed builds include the tooling for its own layer. That is not a neutral test. A paper on something the author did not recently ship would be a stronger check.
 - **Durability is asserted, not measured.** The premise claims value "survives atom updates" and "generalizes across shapes." The evidence is one rename event (#1063) and two shapes (n=2). A longer window and more pilots are required before that claim is anything more than plausible.
 - **Retraction criteria not exercised.** §11 of the schema says the layer retracts if the first pilot looks like an RFC or blog post. This paper does enough differently (structured citations, multi-angle, concrete proposed builds) to not obviously trigger retraction, but the determination requires a reviewer who did not author it.
+
+### Future work
+
+1. When a `proposed_builds[]` item becomes a real `example/` entry, how is the back-link recorded? (§12 Q2 of the schema draft.) Proposal: add optional `example_ref` to each proposed_build; transition `status` to `implemented` when any proposed_build has a resolved `example_ref`.
+2. Is `examines[].kind: doc` (for citing `docs/rfc/...`) worth adding? Avoided in v0 for scope, but documents in the repo are legitimately cite-able subjects. Probably yes in v0.1.x or v0.2.
+3. Does the `no paper-to-paper citation` rule (§7) survive first contact with real writing? Academic papers cite papers. Watch for authors routing around it via `external_refs` (citing the paper by URL to its GitHub blob) — if that happens, v0.2 should lift the restriction.
+
+<!-- references-section:begin -->
+## References (examines)
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+pilot #1 (linear pipeline, 4 composes)
+
+**technique — `debug/root-cause-to-tdd-plan`**
+pilot #2 (decision tree, 4 composes)
+
+**skill — `workflow/parallel-build-sequential-publish`**
+atom whose relocation surfaced the layout mismatch (RFC §4 evidence)
+
+**knowledge — `workflow/batch-pr-conflict-recovery`**
+atom demonstrating failure-mode role in pilot #1
+
+
+## Build dependencies (proposed_builds)
+
+### `hub-paper-commands`  _(scope: poc)_
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+shape template for composition-by-reference commands
+
+**technique — `debug/root-cause-to-tdd-plan`**
+second shape template — tests command generality across paper shapes
+
+### `security-domain-technique-3`  _(scope: poc)_
+
+**technique — `workflow/safe-bulk-pr-publishing`**
+reference shape (linear pipeline)
+
+**technique — `debug/root-cause-to-tdd-plan`**
+reference shape (decision tree)
+
+<!-- references-section:end -->
 
 ## Provenance
 
@@ -309,3 +309,4 @@ Carries a specific risk: if the paper's `proposed_builds[]` are too abstract, th
 - Status: pilot #1 for the `paper/` layer schema v0.1
 - Schema doc: `paper-schema-draft.md`
 - Subject material: shipped in PRs #1058 through #1070 on `kjuhwa/skills-hub`, tags `bootstrap/v2.6.14` through `bootstrap/v2.6.17`
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

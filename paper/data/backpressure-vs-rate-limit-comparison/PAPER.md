@@ -82,13 +82,35 @@ retraction_reason: null
 
 # Backpressure vs Rate Limiting: Which Tool When?
 
-## Premise
+## Introduction
 
 (see frontmatter)
 
-## Background
+### Background
 
 The hub has both the backpressure technique (`technique/data/producer-consumer-backpressure-loop`) and pitfalls for both backpressure and rate limiting. What is missing is the **decision rule** for when to pick which. Most teams default to one based on familiarity rather than the problem shape.
+
+### Prior art
+
+Useful sources via `/hub-research`: AWS API Gateway vs SQS-with-Lambda case studies, the "Tail at Scale" paper, Netflix's Hystrix retrospective.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+(see frontmatter)
+
+### Limitations
+
+- The premise's "trusted producer" axis is binary; real systems have gradients (semi-trusted internal services)
+- Paper treats latency and drop-rate as primary; production also cares about cost, observability, ops complexity
+- 4 workload classes are a simplification of real distributions
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -118,21 +140,8 @@ seed-data-point
 
 <!-- references-section:end -->
 
-## Perspectives
-
-(see frontmatter)
-
-## External Context
-
-Useful sources via `/hub-research`: AWS API Gateway vs SQS-with-Lambda case studies, the "Tail at Scale" paper, Netflix's Hystrix retrospective.
-
-## Limitations
-
-- The premise's "trusted producer" axis is binary; real systems have gradients (semi-trusted internal services)
-- Paper treats latency and drop-rate as primary; production also cares about cost, observability, ops complexity
-- 4 workload classes are a simplification of real distributions
-
 ## Provenance
 
 - Authored 2026-04-25, batch of 10
 - Sibling: `paper/parallel-dispatch-breakeven-point` (related cost-model paper)
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.

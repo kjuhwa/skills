@@ -66,13 +66,31 @@ retraction_reason: null
 
 # Contract Test Staleness Curve
 
-## Premise
+## Introduction
 
 (see frontmatter)
 
-## Background
+### Background
 
 `technique/testing/contract-test-with-consumer-verification` proposes quorum-vote contract tests but assumes votes are informed. This paper questions that assumption.
+
+## Methods
+
+(planned — see `experiments[0].method` in frontmatter for the full design. This section becomes substantive when `status: implemented` and is checked for length by `_audit_paper_imrad.py` at that point.)
+
+## Results
+
+(pending — experiment status: planned. Run `/hub-paper-experiment-run <slug>` once the experiment completes to populate this section from `experiments[0].result`.)
+
+## Discussion
+
+(see frontmatter)
+
+### Limitations
+
+- "Stale" definition is judgment-laden; this paper uses behavioral relevance which is harder to automate
+- 5-codebase sample is small; generalization is qualitative
+- Doesn't account for organizational discipline differences across teams
 
 <!-- references-section:begin -->
 ## References (examines)
@@ -102,16 +120,7 @@ test-execution-discipline
 
 <!-- references-section:end -->
 
-## Perspectives
-
-(see frontmatter)
-
-## Limitations
-
-- "Stale" definition is judgment-laden; this paper uses behavioral relevance which is harder to automate
-- 5-codebase sample is small; generalization is qualitative
-- Doesn't account for organizational discipline differences across teams
-
 ## Provenance
 
 - Authored 2026-04-25, batch of 10
+- Body migrated to IMRaD structure 2026-04-25 per `docs/rfc/paper-schema-draft.md` §5 by `_migrate_paper_to_imrad.py`. Pre-IMRaD body is preserved in git history; no semantic claims were rewritten during the migration. For hypothesis-type drafts, Methods + Results sections are stubs until the experiment completes.
