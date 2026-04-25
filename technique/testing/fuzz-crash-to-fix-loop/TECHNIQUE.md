@@ -29,6 +29,33 @@ composes:
     version: "*"
     role: fix-implementation
 
+recipe:
+  one_line: "Iterative loop turning fuzz crashes into TDD'd fixes. Each crash becomes one cycle; fixed inputs return to the seed corpus for permanent regression cover."
+  preconditions:
+    - "Long-running fuzz campaign (CI fuzz bots, nightly fuzz jobs)"
+    - "Crashes are reproducible deterministically (or made so before entering loop)"
+    - "Codebase has memory-safety, input-validation, or parser bugs that recur"
+  anti_conditions:
+    - "One-shot bug fix — loop overhead is wasted"
+    - "No fuzz target — UI or declarative code lacks input space"
+    - "Non-deterministic crashes (timing races, layout-dependent) — first make reproducer deterministic"
+  assembly_order:
+    - phase: dedup
+      uses: crash-source
+      branches:
+        - condition: "new crash signature"
+          next: investigate
+        - condition: "duplicate of seen signature"
+          next: done
+    - phase: investigate
+      uses: root-cause-per-crash
+    - phase: triage
+      uses: issue-and-plan
+    - phase: implement
+      uses: fix-implementation
+    - phase: corpus-feedback
+      uses: crash-source
+
 binding: loose
 
 verify:

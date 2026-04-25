@@ -29,6 +29,48 @@ composes:
     version: "*"
     role: known-pitfall
 
+recipe:
+  one_line: "Ship 10+ independent artifacts as separate PRs against an auto-merge repo. Anchor first, build parallel, publish serial; recover from catalog-file conflicts via batch-merge."
+  preconditions:
+    - "Producing 10+ independent projects/examples/migrations in one batch, each needing its own PR"
+    - "Repo has auto-merge enabled or sequential merging is acceptable"
+    - "Build phase does not require git operations (file creation only)"
+  anti_conditions:
+    - "Single PR — overhead exceeds value; use the atoms directly"
+    - "PRs depend on each other — ordering/merge strategy differs; different technique needed"
+    - "No catalog/index file that could conflict — failure-recovery atom is wasted budget"
+  failure_modes:
+    - signal: "Catalog-file conflict storm during sequential publish"
+      atom_ref: "knowledge:workflow/batch-pr-conflict-recovery"
+      remediation: "Pause publish, batch-merge catalog updates, then resume"
+    - signal: "PR creation race with auto-merge causes lost PRs"
+      atom_ref: "knowledge:pitfall/gh-pr-create-race-with-auto-merge"
+      remediation: "Race-aware retry loop in publish phase detects and re-creates"
+  assembly_order:
+    - phase: anchor
+      uses: pre-flight-safety
+    - phase: build
+      uses: orchestrator
+      branches:
+        - condition: "all builds succeeded"
+          next: publish
+        - condition: "any build failed"
+          next: done
+    - phase: publish
+      uses: orchestrator
+      branches:
+        - condition: "catalog conflict storm detected"
+          next: recover
+        - condition: "no conflicts"
+          next: done
+    - phase: recover
+      uses: failure-recovery
+      branches:
+        - condition: "catalog updates merged"
+          next: publish
+        - condition: "manual intervention required"
+          next: done
+
 binding: loose
 
 verify:
