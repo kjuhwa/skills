@@ -153,6 +153,67 @@ def check_file(path: Path, kind_label: str, slug: str) -> dict:
     }
 
 
+def path_from_row(row: dict) -> Path:
+    """Reconstruct the on-disk path from a row's kind + slug."""
+    kind, slug = row["kind"], row["slug"]
+    if kind == "paper":
+        return PAPER_DIR / slug / "PAPER.md"
+    if kind == "technique":
+        return TECHNIQUE_DIR / slug / "TECHNIQUE.md"
+    if kind == "knowledge":
+        return KNOWLEDGE_DIR / f"{slug}.md"
+    if kind == "skill":
+        return SKILLS_DIR / slug / "SKILL.md"
+    raise ValueError(f"unknown kind: {kind}")
+
+
+# Used by apply_fix to relocate the offending line and quote-wrap its value.
+KV_LINE_FIX_RE = re.compile(r"^(\s*)(- )?([\w-]+): (.+)$")
+
+
+def apply_fix(row: dict, dry_run: bool = False) -> tuple[int, list[tuple[int, str, str]]]:
+    """Quote-wrap offending values in this row's file.
+
+    Returns (changes, preview) where preview is a list of (line_no, old, new)
+    triples for printing. When dry_run=False, the file is written back.
+    """
+    if not row["offenders"]:
+        return 0, []
+    path = path_from_row(row)
+    text = path.read_text(encoding="utf-8")
+    lines = text.split("\n")
+    preview: list[tuple[int, str, str]] = []
+    changes = 0
+    # Process in reverse line order so earlier offenders' line numbers stay
+    # valid even when an earlier line's content is replaced (it isn't here —
+    # quote-wrap doesn't add or remove lines — but reverse-order is the safe
+    # convention if future fixes ever do).
+    for offender in sorted(row["offenders"], key=lambda o: -o["line"]):
+        line_idx = offender["line"] - 1
+        if line_idx >= len(lines):
+            continue
+        line = lines[line_idx]
+        m = KV_LINE_FIX_RE.match(line)
+        if not m:
+            continue
+        indent, list_marker, k, value = m.groups()
+        if k != offender["key"]:
+            continue
+        # Skip if already quoted (defensive — scan_frontmatter shouldn't have
+        # flagged a quoted value, but tolerate audit/fix races).
+        if value.startswith(('"', "'")):
+            continue
+        # Escape any internal double quotes.
+        esc = value.replace('"', '\\"')
+        new_line = f'{indent}{list_marker or ""}{k}: "{esc}"'
+        preview.append((offender["line"], line, new_line))
+        lines[line_idx] = new_line
+        changes += 1
+    if changes and not dry_run:
+        path.write_text("\n".join(lines), encoding="utf-8")
+    return changes, preview
+
+
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--only-flagged", action="store_true",
@@ -166,7 +227,16 @@ def main() -> int:
                    help="skip knowledge/<…>.md")
     p.add_argument("--no-skills", action="store_true",
                    help="skip skills/<…>/SKILL.md")
+    p.add_argument("--fix", action="store_true",
+                   help="apply quote-wrap to each flagged offender; writes files in place")
+    p.add_argument("--dry-run", action="store_true",
+                   help="with --fix, preview changes without writing")
     args = p.parse_args()
+    if args.dry_run and not args.fix:
+        print("--dry-run is only meaningful with --fix; ignoring", file=sys.stderr)
+    if args.fix and args.json:
+        print("--fix and --json are mutually exclusive; pick one", file=sys.stderr)
+        return 2
 
     rows: list[dict] = []
     # paper/ — file is in <slug>/PAPER.md
@@ -194,6 +264,44 @@ def main() -> int:
     compliance_pct = (
         100.0 * (len(rows) - len(flagged)) / len(rows) if rows else 0.0
     )
+
+    if args.fix:
+        if not flagged:
+            print(f"Nothing to fix — {len(rows)} files clean.")
+            return 0
+        total_changes = 0
+        files_touched = 0
+        for r in flagged:
+            changes, preview = apply_fix(r, dry_run=args.dry_run)
+            if changes:
+                files_touched += 1
+                total_changes += changes
+                marker = "DRY-RUN " if args.dry_run else ""
+                print(f"{marker}{r['kind']}/{r['slug']}  ({changes} line(s))")
+                for line_no, old, new in preview:
+                    print(f"  L{line_no}")
+                    print(f"    - {old.rstrip()[:120]}")
+                    print(f"    + {new.rstrip()[:120]}")
+        verb = "would write" if args.dry_run else "wrote"
+        print(
+            f"\n{verb} {total_changes} line change(s) across {files_touched} file(s)."
+        )
+        if not args.dry_run:
+            # Re-scan to confirm clean.
+            re_rows = [check_file(path_from_row(r), r["kind"], r["slug"]) for r in flagged]
+            still_flagged = [r for r in re_rows if not r["compliant"]]
+            if still_flagged:
+                print(
+                    f"\n[VERIFY] {len(still_flagged)} file(s) still flagged after fix — "
+                    "manual review required (likely a value already starting with a quote, "
+                    "or a multi-line scalar the regex did not match).",
+                    file=sys.stderr,
+                )
+                for r in still_flagged:
+                    print(f"  ! {r['kind']}/{r['slug']}", file=sys.stderr)
+                return 1
+            print("[VERIFY] all fixed files now pass strict-YAML scan.")
+        return 0
 
     display_rows = flagged if args.only_flagged else rows
 
