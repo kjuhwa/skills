@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Strict-YAML compliance audit for paper/<…>/PAPER.md and technique/<…>/TECHNIQUE.md.
+"""Strict-YAML compliance audit for frontmatter across paper/, technique/, knowledge/, and skills/.
 
 PyYAML's safe_load is lenient about mid-string colons inside unquoted plain
 scalars: it accepts strings like "Tradeoff: correctness vs throughput" as a
@@ -38,6 +38,8 @@ except (AttributeError, OSError):
 HUB_ROOT = Path(__file__).resolve().parents[2]
 PAPER_DIR = HUB_ROOT / "paper"
 TECHNIQUE_DIR = HUB_ROOT / "technique"
+KNOWLEDGE_DIR = HUB_ROOT / "knowledge"
+SKILLS_DIR = HUB_ROOT / "skills"
 
 # Match an unquoted scalar entry: <indent>(- )?<key>: <value>
 # Captures (indent, list-marker, key, value) so the value can be inspected.
@@ -141,11 +143,11 @@ def scan_frontmatter(path: Path) -> list[dict]:
     return offenders
 
 
-def check_file(path: Path, kind_root: Path, kind_label: str) -> dict:
+def check_file(path: Path, kind_label: str, slug: str) -> dict:
     offenders = scan_frontmatter(path)
     return {
         "kind": kind_label,
-        "slug": path.relative_to(kind_root).parent.as_posix(),
+        "slug": slug,
         "offenders": offenders,
         "compliant": not offenders,
     }
@@ -156,18 +158,37 @@ def main() -> int:
     p.add_argument("--only-flagged", action="store_true",
                    help="only show files with strict-YAML hazards")
     p.add_argument("--json", action="store_true")
-    p.add_argument("--include-techniques", action="store_true", default=True,
-                   help="also scan technique/<…>/TECHNIQUE.md (default: on)")
     p.add_argument("--papers-only", action="store_true",
                    help="restrict scan to paper/<…>/PAPER.md")
+    p.add_argument("--no-techniques", action="store_true",
+                   help="skip technique/<…>/TECHNIQUE.md")
+    p.add_argument("--no-knowledge", action="store_true",
+                   help="skip knowledge/<…>.md")
+    p.add_argument("--no-skills", action="store_true",
+                   help="skip skills/<…>/SKILL.md")
     args = p.parse_args()
 
     rows: list[dict] = []
+    # paper/ — file is in <slug>/PAPER.md
     for p_ in sorted(PAPER_DIR.glob("**/PAPER.md")):
-        rows.append(check_file(p_, PAPER_DIR, "paper"))
-    if not args.papers_only and args.include_techniques and TECHNIQUE_DIR.exists():
-        for t_ in sorted(TECHNIQUE_DIR.glob("**/TECHNIQUE.md")):
-            rows.append(check_file(t_, TECHNIQUE_DIR, "technique"))
+        slug = p_.relative_to(PAPER_DIR).parent.as_posix()
+        rows.append(check_file(p_, "paper", slug))
+    if not args.papers_only:
+        # technique/ — file is in <slug>/TECHNIQUE.md
+        if not args.no_techniques and TECHNIQUE_DIR.exists():
+            for t_ in sorted(TECHNIQUE_DIR.glob("**/TECHNIQUE.md")):
+                slug = t_.relative_to(TECHNIQUE_DIR).parent.as_posix()
+                rows.append(check_file(t_, "technique", slug))
+        # knowledge/ — file is <slug>.md (no enclosing dir)
+        if not args.no_knowledge and KNOWLEDGE_DIR.exists():
+            for k_ in sorted(KNOWLEDGE_DIR.glob("**/*.md")):
+                slug = k_.relative_to(KNOWLEDGE_DIR).with_suffix("").as_posix()
+                rows.append(check_file(k_, "knowledge", slug))
+        # skills/ — file is in <slug>/SKILL.md
+        if not args.no_skills and SKILLS_DIR.exists():
+            for s_ in sorted(SKILLS_DIR.glob("**/SKILL.md")):
+                slug = s_.relative_to(SKILLS_DIR).parent.as_posix()
+                rows.append(check_file(s_, "skill", slug))
 
     flagged = [r for r in rows if not r["compliant"]]
     compliance_pct = (
