@@ -65,6 +65,7 @@ def main() -> int:
     steps.append(("paper-v03-audit", [py, "_audit_paper_v03.py"]))
     steps.append(("paper-frontmatter-length-audit", [py, "_audit_paper_frontmatter_length.py"]))
     steps.append(("technique-v02-audit", [py, "_audit_technique_v02.py"]))
+    steps.append(("paper-shape-claim-audit", [py, "_audit_paper_shape_claim.py"]))
     steps.append(("paper-yaml-strict-audit", [py, "_audit_paper_yaml_strict.py"]))
     steps.append(("technique-suggestions", [py, "_suggest_techniques.py"]))
 
