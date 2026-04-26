@@ -24,6 +24,35 @@ composes:
     version: "*"
     role: rotation-counter-evidence
 
+recipe:
+  one_line: "Issue new credential alongside old. Both accepted during bounded overlap window. Auto-revoke old at window end. Clients migrate at own pace, no synchronized cutover."
+  preconditions:
+    - "Distributed clients cannot all be updated atomically (mobile apps, third-party integrations)"
+    - "Brief downtime for re-auth is unacceptable for the deployment"
+    - "Compliance allows hours-to-days of dual-credential validity"
+  anti_conditions:
+    - "Single-tenant single-client system — instant rotation is simpler"
+    - "Compromise scenario — old credential MUST be revoked immediately, no overlap allowed"
+    - "Compliance requires single-credential-only at every instant"
+  failure_modes:
+    - signal: "Refresh token regenerated during rotation, invalidating active sessions across all clients"
+      atom_ref: "knowledge:pitfall/refresh-token-do-not-regenerate"
+      remediation: "Rotation issues NEW credentials but does not regenerate refresh tokens. Clients keep their refresh, swap their access."
+  assembly_order:
+    - phase: issue-new
+      uses: credential-storage-baseline
+    - phase: overlap-window
+      uses: rotation-with-failover-shape
+      branches:
+        - condition: "window timer fires normally"
+          next: revoke-old
+        - condition: "compromise detected mid-window"
+          next: emergency-revoke
+    - phase: revoke-old
+      uses: credential-storage-baseline
+    - phase: emergency-revoke
+      uses: rotation-with-failover-shape
+
 binding: loose
 
 verify:
