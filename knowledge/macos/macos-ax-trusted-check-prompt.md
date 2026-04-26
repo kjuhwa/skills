@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: macos-ax-trusted-check-prompt
 type: knowledge
 category: macos
-summary: macOS accessibility check: use kAXTrustedCheckOptionPrompt to auto-prompt the user for consent.
+summary: "macOS accessibility check: use kAXTrustedCheckOptionPrompt to auto-prompt the user for consent."
 confidence: medium
 tags: [check, macos, platform, prompt, trusted]
 linked_skills: []

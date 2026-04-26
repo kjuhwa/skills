@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: connection-type-enum-design
 type: knowledge
 category: networking
-summary: ConnType enum: RDP (over relay), Direct TCP, Direct UDP, LAN discovery — drives fallback logic.
+summary: "ConnType enum: RDP (over relay), Direct TCP, Direct UDP, LAN discovery — drives fallback logic."
 confidence: medium
 tags: [connection, design, enum, networking, type]
 linked_skills: []

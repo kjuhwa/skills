@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: multi-audio-resampling-backends
 type: knowledge
 category: codecs
-summary: Resampling backends: Dasp (pure Rust, slow), Rubato (FFT, faster), SampleRate (libsamplerate, fastest).
+summary: "Resampling backends: Dasp (pure Rust, slow), Rubato (FFT, faster), SampleRate (libsamplerate, fastest)."
 confidence: medium
 tags: [audio, backends, codecs, multi, resampling]
 linked_skills: []

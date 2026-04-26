@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: service-mesh-implementation-pitfall
-description: Common traps when building service mesh tooling: stale config, identity confusion, and sidecar startup races
+description: "Common traps when building service mesh tooling: stale config, identity confusion, and sidecar startup races"
 category: pitfall
 tags:
   - service

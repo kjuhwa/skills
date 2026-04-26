@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: electron-builder-per-platform-filtering
-summary: electron-builder.yml uses per-platform extraResources + files: exclusions to ship only the target's Bun/Codex/Copilot binaries and the matching ripgrep vendor — trimming installer size by 60-80%.
+summary: "electron-builder.yml uses per-platform extraResources + files: exclusions to ship only the target's Bun/Codex/Copilot binaries and the matching ripgrep vendor — trimming installer size by 60-80%."
 category: devops
 tags: [electron-builder, packaging, per-platform, installer-size]
 confidence: medium

@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: retry-strategy-implementation-pitfall
-description: Common failure modes when building retry strategy demos: unbounded growth, jitter miscalculation, and thundering herd blind spots
+description: "Common failure modes when building retry strategy demos: unbounded growth, jitter miscalculation, and thundering herd blind spots"
 category: pitfall
 tags:
   - retry

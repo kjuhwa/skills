@@ -4,7 +4,7 @@ version: 0.1.0-draft
 tags: [arch, dual, redis, lock, access, control]
 title: Two Redis instances — one for distributed locks, one for access control
 category: arch
-summary: The service connects to two separate Redis instances: Lock Control (default port 6399) and Access Control (default port 6389). They are not interchangeable.
+summary: "The service connects to two separate Redis instances: Lock Control (default port 6399) and Access Control (default port 6389). They are not interchangeable."
 source:
   kind: project
   ref: lucida-cm@0c4edd30

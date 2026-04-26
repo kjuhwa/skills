@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: redos-in-dns-detector-character-class
-summary: DNS-style hostname detectors with patterns like (.label)+ are vulnerable to catastrophic backtracking (ReDoS) flagged by CodeQL. Fix: exclude '.' from the inner character class so the outer alternation cannot ambiguously match the same characters.
+summary: "DNS-style hostname detectors with patterns like (.label)+ are vulnerable to catastrophic backtracking (ReDoS) flagged by CodeQL. Fix: exclude '.' from the inner character class so the outer alternation cannot ambiguously match the same characters."
 category: pitfall
 tags: [regex, redos, security, codeql, hostname-detector]
 source_type: extracted-from-git

@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: udp-kcp-protocol-choice-justification
 type: knowledge
 category: networking
-summary: KCP-over-UDP is preferred for WAN: better than pure TCP on lossy/high-latency links; faster RPC than QUIC in this app's domain.
+summary: "KCP-over-UDP is preferred for WAN: better than pure TCP on lossy/high-latency links; faster RPC than QUIC in this app's domain."
 confidence: high
 tags: [choice, justification, kcp, networking, protocol, udp]
 linked_skills: []

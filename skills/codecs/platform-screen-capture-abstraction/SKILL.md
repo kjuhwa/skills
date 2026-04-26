@@ -1,6 +1,6 @@
 ---
 name: platform-screen-capture-abstraction
-description: Pluggable screen-capture backends: Windows DXGI, macOS Quartz, Linux X11/Wayland behind one Capturer trait.
+description: "Pluggable screen-capture backends: Windows DXGI, macOS Quartz, Linux X11/Wayland behind one Capturer trait."
 category: codecs
 version: 1.0.0
 version_origin: extracted

@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: text-rendering-font-fallback
 type: knowledge
 category: flutter
-summary: Flutter text rendering falls back: system defaults + bundled Google Fonts for CJK coverage.
+summary: "Flutter text rendering falls back: system defaults + bundled Google Fonts for CJK coverage."
 confidence: medium
 tags: [fallback, flutter, font, rendering, text]
 linked_skills: []

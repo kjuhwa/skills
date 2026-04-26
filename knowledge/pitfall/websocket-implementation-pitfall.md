@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: websocket-implementation-pitfall
-description: Common WebSocket mistakes: missing masking, ignored close codes, no heartbeat, reconnect storms
+description: "Common WebSocket mistakes: missing masking, ignored close codes, no heartbeat, reconnect storms"
 category: pitfall
 tags:
   - websocket

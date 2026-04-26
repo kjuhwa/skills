@@ -1,6 +1,6 @@
 ---
 name: pnpm-catalog-version-pinning
-description: Use pnpm's catalog: references in pnpm-workspace.yaml to guarantee a single version of shared deps across all monorepo packages.
+description: "Use pnpm's catalog: references in pnpm-workspace.yaml to guarantee a single version of shared deps across all monorepo packages."
 category: monorepo
 version: 1.0.0
 tags: [pnpm, monorepo, versioning, workspace, react]

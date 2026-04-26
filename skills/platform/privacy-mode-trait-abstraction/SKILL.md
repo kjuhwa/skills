@@ -1,6 +1,6 @@
 ---
 name: privacy-mode-trait-abstraction
-description: Pluggable privacy-mode implementations: Windows MAG, exclude-from-capture, virtual-display drivers.
+description: "Pluggable privacy-mode implementations: Windows MAG, exclude-from-capture, virtual-display drivers."
 category: platform
 version: 1.0.0
 version_origin: extracted

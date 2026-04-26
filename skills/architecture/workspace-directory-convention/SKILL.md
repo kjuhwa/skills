@@ -1,6 +1,6 @@
 ---
 name: workspace-directory-convention
-description: Workspace-as-a-directory: a single ~/.craft-agent/workspaces/{id}/ folder holds config.json, automations.json, sessions/, sources/, skills/, statuses/ — every feature reads/writes its own subtree so the workspace is portable in one zip.
+description: "Workspace-as-a-directory: a single ~/.craft-agent/workspaces/{id}/ folder holds config.json, automations.json, sessions/, sources/, skills/, statuses/ — every feature reads/writes its own subtree so the workspace is portable in one zip."
 category: architecture
 version: 1.0.0
 version_origin: extracted

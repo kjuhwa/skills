@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: native-module-stub-layered-fallback
-summary: When stubbing a missing native module for a different OS, use a layered fallback strategy: route to the framework equivalent where one exists (e.g., `BrowserWindow.isMaximized()`), no-op for OS-specific features with no equivalent, and an explicit stub for auth flows that signals unavailability without crashing.
+summary: "When stubbing a missing native module for a different OS, use a layered fallback strategy: route to the framework equivalent where one exists (e.g., `BrowserWindow.isMaximized()`), no-op for OS-specific features with no equivalent, and an explicit stub for auth flows that signals unavailability without crashing."
 category: native-modules
 tags: [native-modules, stub, electron, linux, platform-compatibility, node-gyp, fallback]
 source_type: extracted-from-git

@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: audio-device-enumeration-platform-divergence
 type: knowledge
 category: codecs
-summary: Audio device enumeration: CPAL (Win/Mac), PulseAudio (Linux non-headless), default fallback.
+summary: "Audio device enumeration: CPAL (Win/Mac), PulseAudio (Linux non-headless), default fallback."
 confidence: medium
 tags: [audio, codecs, device, divergence, enumeration, platform]
 linked_skills: []

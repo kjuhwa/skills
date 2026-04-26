@@ -1,6 +1,6 @@
 ---
 name: deep-link-url-routing
-description: Custom URL scheme (craftagents://) routes directly into the app: allSessions, specific session, settings, new-chat actions — maps each URL path segment to a renderer-side navigation intent.
+description: "Custom URL scheme (craftagents://) routes directly into the app: allSessions, specific session, settings, new-chat actions — maps each URL path segment to a renderer-side navigation intent."
 category: session-management
 version: 1.0.0
 version_origin: extracted

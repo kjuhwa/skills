@@ -1,6 +1,6 @@
 ---
 name: anonymous-posthog-telemetry
-description: Ship anonymous PostHog telemetry from an OSS CLI using an embedded write-only key, a silentFetch wrapper that masks SDK stderr noise, DO_NOT_TRACK / per-tool opt-out, and `$process_person_profile: false` to stay in PostHog's anonymous tier.
+description: "Ship anonymous PostHog telemetry from an OSS CLI using an embedded write-only key, a silentFetch wrapper that masks SDK stderr noise, DO_NOT_TRACK / per-tool opt-out, and `$process_person_profile: false` to stay in PostHog's anonymous tier."
 category: observability
 version: 1.0.0
 version_origin: extracted

@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: linux-desktop-manager-detection-heuristics
 type: knowledge
 category: linux
-summary: DE detection: check $XDG_CURRENT_DESKTOP, parse .desktop files, fallback to sysinfo.
+summary: "DE detection: check $XDG_CURRENT_DESKTOP, parse .desktop files, fallback to sysinfo."
 confidence: medium
 tags: [desktop, detection, heuristics, linux, manager, platform]
 linked_skills: []

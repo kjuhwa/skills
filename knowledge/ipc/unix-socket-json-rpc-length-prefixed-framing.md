@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: unix-socket-json-rpc-length-prefixed-framing
-summary: Length-prefixed JSON over a Unix domain socket (4-byte big-endian length header + JSON body) provides portable, framing-safe RPC: one-shot connections for synchronous request/response and a persistent connection for server-pushed events.
+summary: "Length-prefixed JSON over a Unix domain socket (4-byte big-endian length header + JSON body) provides portable, framing-safe RPC: one-shot connections for synchronous request/response and a persistent connection for server-pushed events."
 category: ipc
 tags: [unix-socket, json-rpc, ipc, framing, length-prefix, node.js, daemon, protocol]
 source_type: extracted-from-git

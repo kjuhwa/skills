@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: cross-platform-codec-initialization-order
 type: knowledge
 category: codecs
-summary: Codec precedence at runtime: hwcodec > vram > software, chosen by probing device capability and user config.
+summary: "Codec precedence at runtime: hwcodec > vram > software, chosen by probing device capability and user config."
 confidence: high
 tags: [codec, codecs, cross, initialization, order, platform]
 linked_skills: []

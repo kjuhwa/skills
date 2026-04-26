@@ -1,6 +1,6 @@
 ---
 name: display-device-enumeration-platform
-description: Per-OS display enumeration: Windows EnumDisplayDevices, macOS CGDisplayCopyAllDisplays, Linux XRandR.
+description: "Per-OS display enumeration: Windows EnumDisplayDevices, macOS CGDisplayCopyAllDisplays, Linux XRandR."
 category: platform
 version: 1.0.0
 version_origin: extracted

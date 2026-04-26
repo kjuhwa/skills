@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: redact-network-headers-by-default
-summary: Network request formatters default to redacting headers (`redactNetworkHeaders: true`) because cookies, Authorization, API keys live there; users opt into raw headers explicitly for debugging auth flows.
+summary: "Network request formatters default to redacting headers (`redactNetworkHeaders: true`) because cookies, Authorization, API keys live there; users opt into raw headers explicitly for debugging auth flows."
 category: decision
 confidence: medium
 tags: [privacy, network, redaction, headers, security]

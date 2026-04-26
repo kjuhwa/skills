@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: craft-cli-command-surface
-summary: One-page reference for the craft-cli command taxonomy: info/health, resource listing, session ops, streaming send, power-user invoke/listen, self-contained run, and the 21-step --validate-server.
+summary: "One-page reference for the craft-cli command taxonomy: info/health, resource listing, session ops, streaming send, power-user invoke/listen, self-contained run, and the 21-step --validate-server."
 category: reference
 tags: [cli, rpc, reference]
 confidence: medium

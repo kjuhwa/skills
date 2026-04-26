@@ -1,6 +1,6 @@
 ---
 name: ort-crate-onnx-runtime-session-configuration
-description: Configure ONNX Runtime via the ort crate's session builder: inter/intra threads, optimization level, parallel execution, embedded model bytes.
+description: "Configure ONNX Runtime via the ort crate's session builder: inter/intra threads, optimization level, parallel execution, embedded model bytes."
 category: inference
 version: 1.0.0
 version_origin: extracted

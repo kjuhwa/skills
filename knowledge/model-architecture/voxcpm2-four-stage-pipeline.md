@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: voxcpm2-four-stage-pipeline
-summary: VoxCPM2 generates speech via a four-stage pipeline: LocEnc → TSLM → RALM → LocDiT diffusion
+summary: "VoxCPM2 generates speech via a four-stage pipeline: LocEnc → TSLM → RALM → LocDiT diffusion"
 category: model-architecture
 tags: [voxcpm, architecture, tts, diffusion, pipeline]
 confidence: high

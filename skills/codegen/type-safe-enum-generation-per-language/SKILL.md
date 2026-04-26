@@ -1,6 +1,6 @@
 ---
 name: type-safe-enum-generation-per-language
-description: Generate per-language enums from a single content_types JSON: Rust enum, Python StrEnum, TypeScript union literal, Go const iota — with from_string, to_string, and SIZE constants.
+description: "Generate per-language enums from a single content_types JSON: Rust enum, Python StrEnum, TypeScript union literal, Go const iota — with from_string, to_string, and SIZE constants."
 category: codegen
 version: 1.0.0
 version_origin: extracted
