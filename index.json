@@ -943,7 +943,7 @@
     "name": "dual-redis-lock-vs-access-control",
     "slug": "dual-redis-lock-vs-access-control",
     "category": "arch",
-    "description": "The service connects to two separate Redis instances: Lock Control (default port 6399) and Access Control (default port 6389). They are not interchangeable.",
+    "description": "\"The service connects to two separate Redis instances: Lock Control (default port 6399) and Access Control (default port 6389). They are not interchangeable.\"",
     "tags": [
       "arch",
       "dual",
@@ -3427,7 +3427,7 @@
     "name": "debug-vs-release-build-differences",
     "slug": "debug-vs-release-build-differences",
     "category": "build-system",
-    "description": "Release: optimized codecs + LTO. Debug: flexi_logger on desktop, android_logger on Android.",
+    "description": "\"Release: optimized codecs + LTO. Debug: flexi_logger on desktop, android_logger on Android.\"",
     "tags": [
       "build",
       "debug",
@@ -3699,7 +3699,7 @@
     "name": "audio-device-enumeration-platform-divergence",
     "slug": "audio-device-enumeration-platform-divergence",
     "category": "codecs",
-    "description": "Audio device enumeration: CPAL (Win/Mac), PulseAudio (Linux non-headless), default fallback.",
+    "description": "\"Audio device enumeration: CPAL (Win/Mac), PulseAudio (Linux non-headless), default fallback.\"",
     "tags": [
       "audio",
       "codecs",
@@ -3735,7 +3735,7 @@
     "name": "cross-platform-codec-initialization-order",
     "slug": "cross-platform-codec-initialization-order",
     "category": "codecs",
-    "description": "Codec precedence at runtime: hwcodec > vram > software, chosen by probing device capability and user config.",
+    "description": "\"Codec precedence at runtime: hwcodec > vram > software, chosen by probing device capability and user config.\"",
     "tags": [
       "codec",
       "codecs",
@@ -3808,7 +3808,7 @@
     "name": "hardware-codec-feature-matrix",
     "slug": "hardware-codec-feature-matrix",
     "category": "codecs",
-    "description": "hwcodec backend coverage: Intel QSV (Windows/Linux), NVIDIA NVENC (all platforms), AMD AVC/HEVC (Windows), Android MediaCodec.",
+    "description": "\"hwcodec backend coverage: Intel QSV (Windows/Linux), NVIDIA NVENC (all platforms), AMD AVC/HEVC (Windows), Android MediaCodec.\"",
     "tags": [
       "codec",
       "codecs",
@@ -3826,7 +3826,7 @@
     "name": "multi-audio-resampling-backends",
     "slug": "multi-audio-resampling-backends",
     "category": "codecs",
-    "description": "Resampling backends: Dasp (pure Rust, slow), Rubato (FFT, faster), SampleRate (libsamplerate, fastest).",
+    "description": "\"Resampling backends: Dasp (pure Rust, slow), Rubato (FFT, faster), SampleRate (libsamplerate, fastest).\"",
     "tags": [
       "audio",
       "backends",
@@ -3844,7 +3844,7 @@
     "name": "screen-capture-api-evolution-macos",
     "slug": "screen-capture-api-evolution-macos",
     "category": "codecs",
-    "description": "macOS capture has shifted: legacy Quartz CGDisplayCreateImage → ScreenCaptureKit (Monterey+) behind a feature flag.",
+    "description": "\"macOS capture has shifted: legacy Quartz CGDisplayCreateImage → ScreenCaptureKit (Monterey+) behind a feature flag.\"",
     "tags": [
       "api",
       "capture",
@@ -4187,7 +4187,7 @@
     "name": "config-system-four-tiers",
     "slug": "config-system-four-tiers",
     "category": "configuration",
-    "description": "Four config tiers: Settings (persistent), Local (user), Display (per-display), Built-in (defaults).",
+    "description": "\"Four config tiers: Settings (persistent), Local (user), Display (per-display), Built-in (defaults).\"",
     "tags": [
       "config",
       "configuration",
@@ -5185,7 +5185,7 @@
     "name": "mcp-design-principles-for-agent-tools",
     "slug": "mcp-design-principles-for-agent-tools",
     "category": "decision",
-    "description": "Seven design principles that make MCP tool servers usable by LLM agents: agent-agnostic protocol, token-optimized returns, small deterministic primitives, self-healing errors, dual human+machine output, progressive complexity, and reference-over-value for heavy assets.",
+    "description": "\"Seven design principles that make MCP tool servers usable by LLM agents: agent-agnostic protocol, token-optimized returns, small deterministic primitives, self-healing errors, dual human+machine output, progressive complexity, and reference-over-value for heavy assets.\"",
     "tags": [
       "mcp",
       "design-principles",
@@ -5641,7 +5641,7 @@
     "name": "redact-network-headers-by-default",
     "slug": "redact-network-headers-by-default",
     "category": "decision",
-    "description": "Network request formatters default to redacting headers (`redactNetworkHeaders: true`) because cookies, Authorization, API keys live there; users opt into raw headers explicitly for debugging auth flows.",
+    "description": "\"Network request formatters default to redacting headers (`redactNetworkHeaders: true`) because cookies, Authorization, API keys live there; users opt into raw headers explicitly for debugging auth flows.\"",
     "tags": [
       "privacy",
       "network",
@@ -6284,7 +6284,7 @@
     "name": "electron-builder-per-platform-filtering",
     "slug": "electron-builder-per-platform-filtering",
     "category": "devops",
-    "description": "electron-builder.yml uses per-platform extraResources + files: exclusions to ship only the target's Bun/Codex/Copilot binaries and the matching ripgrep vendor — trimming installer size by 60-80%.",
+    "description": "\"electron-builder.yml uses per-platform extraResources + files: exclusions to ship only the target's Bun/Codex/Copilot binaries and the matching ripgrep vendor — trimming installer size by 60-80%.\"",
     "tags": [
       "electron-builder",
       "packaging",
@@ -7535,7 +7535,7 @@
     "name": "session-id-window-mapping",
     "slug": "session-id-window-mapping",
     "category": "flutter",
-    "description": "Desktop: unique session_id per connection; multi-window mapping via params['window_id'].",
+    "description": "\"Desktop: unique session_id per connection; multi-window mapping via params['window_id'].\"",
     "tags": [
       "flutter",
       "mapping",
@@ -7552,7 +7552,7 @@
     "name": "text-rendering-font-fallback",
     "slug": "text-rendering-font-fallback",
     "category": "flutter",
-    "description": "Flutter text rendering falls back: system defaults + bundled Google Fonts for CJK coverage.",
+    "description": "\"Flutter text rendering falls back: system defaults + bundled Google Fonts for CJK coverage.\"",
     "tags": [
       "fallback",
       "flutter",
@@ -7794,7 +7794,7 @@
     "name": "input-event-queue-semantics",
     "slug": "input-event-queue-semantics",
     "category": "input",
-    "description": "Input processing: queue events, batch per frame, avoid stale state during handoff.",
+    "description": "\"Input processing: queue events, batch per frame, avoid stale state during handoff.\"",
     "tags": [
       "event",
       "input",
@@ -7811,7 +7811,7 @@
     "name": "input-mode-keyboard-layout-dependency",
     "slug": "input-mode-keyboard-layout-dependency",
     "category": "input",
-    "description": "Two input modes: Unicode (layout-independent) vs Layout (layout-dependent; needed for modifiers).",
+    "description": "\"Two input modes: Unicode (layout-independent) vs Layout (layout-dependent; needed for modifiers).\"",
     "tags": [
       "dependency",
       "input",
@@ -7921,7 +7921,7 @@
     "name": "unix-socket-json-rpc-length-prefixed-framing",
     "slug": "unix-socket-json-rpc-length-prefixed-framing",
     "category": "ipc",
-    "description": "Length-prefixed JSON over a Unix domain socket (4-byte big-endian length header + JSON body) provides portable, framing-safe RPC: one-shot connections for synchronous request/response and a persistent connection for server-pushed events.",
+    "description": "\"Length-prefixed JSON over a Unix domain socket (4-byte big-endian length header + JSON body) provides portable, framing-safe RPC: one-shot connections for synchronous request/response and a persistent connection for server-pushed events.\"",
     "tags": [
       "unix-socket",
       "json-rpc",
@@ -7998,7 +7998,7 @@
     "name": "linux-desktop-manager-detection-heuristics",
     "slug": "linux-desktop-manager-detection-heuristics",
     "category": "linux",
-    "description": "DE detection: check $XDG_CURRENT_DESKTOP, parse .desktop files, fallback to sysinfo.",
+    "description": "\"DE detection: check $XDG_CURRENT_DESKTOP, parse .desktop files, fallback to sysinfo.\"",
     "tags": [
       "desktop",
       "detection",
@@ -8534,7 +8534,7 @@
     "name": "huggingface-transformers-text-classification-pipeline",
     "slug": "huggingface-transformers-text-classification-pipeline",
     "category": "llm-fundamentals",
-    "description": "Pre-trained BERT-style models can be fine-tuned for text classification in two ways: a fully decoupled custom pipeline for learning purposes, or the integrated run_classification.py script from HuggingFace examples.",
+    "description": "\"Pre-trained BERT-style models can be fine-tuned for text classification in two ways: a fully decoupled custom pipeline for learning purposes, or the integrated run_classification.py script from HuggingFace examples.\"",
     "tags": [
       "huggingface",
       "transformers",
@@ -8681,7 +8681,7 @@
     "name": "macos-ax-trusted-check-prompt",
     "slug": "macos-ax-trusted-check-prompt",
     "category": "macos",
-    "description": "macOS accessibility check: use kAXTrustedCheckOptionPrompt to auto-prompt the user for consent.",
+    "description": "\"macOS accessibility check: use kAXTrustedCheckOptionPrompt to auto-prompt the user for consent.\"",
     "tags": [
       "check",
       "macos",
@@ -8718,7 +8718,7 @@
     "name": "android-ios-feature-parity-gap",
     "slug": "android-ios-feature-parity-gap",
     "category": "mobile",
-    "description": "Android: full codecs + input; iOS: limited input, screen share only, no clipboard file transfer (due to iOS entitlements).",
+    "description": "\"Android: full codecs + input; iOS: limited input, screen share only, no clipboard file transfer (due to iOS entitlements).\"",
     "tags": [
       "android",
       "feature",
@@ -8774,7 +8774,7 @@
     "name": "voxcpm2-four-stage-pipeline",
     "slug": "voxcpm2-four-stage-pipeline",
     "category": "model-architecture",
-    "description": "VoxCPM2 generates speech via a four-stage pipeline: LocEnc → TSLM → RALM → LocDiT diffusion",
+    "description": "\"VoxCPM2 generates speech via a four-stage pipeline: LocEnc → TSLM → RALM → LocDiT diffusion\"",
     "tags": [
       "voxcpm",
       "architecture",
@@ -8828,7 +8828,7 @@
     "name": "native-module-stub-layered-fallback",
     "slug": "native-module-stub-layered-fallback",
     "category": "native-modules",
-    "description": "When stubbing a missing native module for a different OS, use a layered fallback strategy: route to the framework equivalent where one exists (e.g., `BrowserWindow.isMaximized()`), no-op for OS-specific features with no equivalent, and an explicit stub for auth flows that signals unavailability without crashing.",
+    "description": "\"When stubbing a missing native module for a different OS, use a layered fallback strategy: route to the framework equivalent where one exists (e.g., `BrowserWindow.isMaximized()`), no-op for OS-specific features with no equivalent, and an explicit stub for auth flows that signals unavailability without crashing.\"",
     "tags": [
       "native-modules",
       "stub",
@@ -8848,7 +8848,7 @@
     "name": "connection-type-enum-design",
     "slug": "connection-type-enum-design",
     "category": "networking",
-    "description": "ConnType enum: RDP (over relay), Direct TCP, Direct UDP, LAN discovery — drives fallback logic.",
+    "description": "\"ConnType enum: RDP (over relay), Direct TCP, Direct UDP, LAN discovery — drives fallback logic.\"",
     "tags": [
       "connection",
       "design",
@@ -8920,7 +8920,7 @@
     "name": "udp-kcp-protocol-choice-justification",
     "slug": "udp-kcp-protocol-choice-justification",
     "category": "networking",
-    "description": "KCP-over-UDP is preferred for WAN: better than pure TCP on lossy/high-latency links; faster RPC than QUIC in this app's domain.",
+    "description": "\"KCP-over-UDP is preferred for WAN: better than pure TCP on lossy/high-latency links; faster RPC than QUIC in this app's domain.\"",
     "tags": [
       "choice",
       "justification",
@@ -9317,7 +9317,7 @@
     "name": "api-versioning-implementation-pitfall",
     "slug": "api-versioning-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common traps when building API version visualizations: off-by-one lifecycle states, diff semantic loss, and traffic share math",
+    "description": "\"Common traps when building API version visualizations: off-by-one lifecycle states, diff semantic loss, and traffic share math\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -9568,7 +9568,7 @@
     "name": "cdc-implementation-pitfall",
     "slug": "cdc-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common CDC mistakes: losing position state, mishandling tombstones, and breaking transaction boundaries",
+    "description": "\"Common CDC mistakes: losing position state, mishandling tombstones, and breaking transaction boundaries\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -9980,7 +9980,7 @@
     "name": "crdt-implementation-pitfall",
     "slug": "crdt-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common CRDT bugs: naive LWW tiebreaking, OR-Set tag reuse, and counter double-counting on replay",
+    "description": "\"Common CRDT bugs: naive LWW tiebreaking, OR-Set tag reuse, and counter double-counting on replay\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -10068,7 +10068,7 @@
     "name": "dead-letter-queue-implementation-pitfall",
     "slug": "dead-letter-queue-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common failure modes when building DLQ tooling: replay loops, payload loss, and silent growth",
+    "description": "\"Common failure modes when building DLQ tooling: replay loops, payload loss, and silent growth\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -10340,7 +10340,7 @@
     "name": "finite-state-machine-implementation-pitfall",
     "slug": "finite-state-machine-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common FSM bugs: undefined-transition silent no-ops, guard side effects, and async timer drift during state changes.",
+    "description": "\"Common FSM bugs: undefined-transition silent no-ops, guard side effects, and async timer drift during state changes.\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -10510,7 +10510,7 @@
     "name": "health-check-implementation-pitfall",
     "slug": "health-check-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common failure modes when building health-check systems: self-check blind spots, probe-induced load, and stale-cache green lies",
+    "description": "\"Common failure modes when building health-check systems: self-check blind spots, probe-induced load, and stale-cache green lies\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -10816,7 +10816,7 @@
     "name": "lantern-implementation-pitfall",
     "slug": "lantern-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common failure modes when building lantern visualizations: additive-blend saturation, flicker desync, and ember leak",
+    "description": "\"Common failure modes when building lantern visualizations: additive-blend saturation, flicker desync, and ember leak\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -10928,7 +10928,7 @@
     "name": "log-aggregation-implementation-pitfall",
     "slug": "log-aggregation-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common failure modes when building log aggregation visualizations: memory blowup, scroll jank, and meaningless heatmaps",
+    "description": "\"Common failure modes when building log aggregation visualizations: memory blowup, scroll jank, and meaningless heatmaps\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -11466,7 +11466,7 @@
     "name": "powersync-sharedworker-multi-tab-constraint",
     "slug": "powersync-sharedworker-multi-tab-constraint",
     "category": "pitfall",
-    "description": "When `enableMultiTabs: true` (the default on Chrome/Edge/Firefox), PowerSync spawns a SharedWorker that manages a sin...",
+    "description": "\"When `enableMultiTabs: true` (the default on Chrome/Edge/Firefox), PowerSync spawns a SharedWorker that manages a sin...\"",
     "tags": [
       "powersync",
       "sharedworker",
@@ -11661,7 +11661,7 @@
     "name": "redos-in-dns-detector-character-class",
     "slug": "redos-in-dns-detector-character-class",
     "category": "pitfall",
-    "description": "DNS-style hostname detectors with patterns like (.label)+ are vulnerable to catastrophic backtracking (ReDoS) flagged by CodeQL. Fix: exclude '.' from the inner character class so the outer alternation cannot ambiguously match the same characters.",
+    "description": "\"DNS-style hostname detectors with patterns like (.label)+ are vulnerable to catastrophic backtracking (ReDoS) flagged by CodeQL. Fix: exclude '.' from the inner character class so the outer alternation cannot ambiguously match the same characters.\"",
     "tags": [
       "regex",
       "redos",
@@ -11726,7 +11726,7 @@
     "name": "retry-strategy-implementation-pitfall",
     "slug": "retry-strategy-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common failure modes when building retry strategy demos: unbounded growth, jitter miscalculation, and thundering herd blind spots",
+    "description": "\"Common failure modes when building retry strategy demos: unbounded growth, jitter miscalculation, and thundering herd blind spots\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -11797,7 +11797,7 @@
     "name": "service-mesh-implementation-pitfall",
     "slug": "service-mesh-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common traps when building service mesh tooling: stale config, identity confusion, and sidecar startup races",
+    "description": "\"Common traps when building service mesh tooling: stale config, identity confusion, and sidecar startup races\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -12203,7 +12203,7 @@
     "name": "strangler-fig-implementation-pitfall",
     "slug": "strangler-fig-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common failure modes when building strangler-fig migration tooling: premature legacy retirement, shadow drift, dependency blindness",
+    "description": "\"Common failure modes when building strangler-fig migration tooling: premature legacy retirement, shadow drift, dependency blindness\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -12630,7 +12630,7 @@
     "name": "websocket-implementation-pitfall",
     "slug": "websocket-implementation-pitfall",
     "category": "pitfall",
-    "description": "Common WebSocket mistakes: missing masking, ignored close codes, no heartbeat, reconnect storms",
+    "description": "\"Common WebSocket mistakes: missing masking, ignored close codes, no heartbeat, reconnect storms\"",
     "tags": "",
     "triggers": [],
     "version": "0.1.0-draft",
@@ -12812,6 +12812,25 @@
   },
   {
     "kind": "knowledge",
+    "name": "yaml-mid-string-colon-strict-parser-mismatch",
+    "slug": "yaml-mid-string-colon-strict-parser-mismatch",
+    "category": "pitfall",
+    "description": "PyYAML accepts mid-string colon-space in unquoted scalars but Ruby Psych and GitHub renderer reject as malformed mapping",
+    "tags": [
+      "yaml",
+      "parser-strictness",
+      "frontmatter",
+      "github-render",
+      "pyyaml",
+      "psych"
+    ],
+    "triggers": [],
+    "version": "0.1.0-draft",
+    "path": "knowledge/pitfall/yaml-mid-string-colon-strict-parser-mismatch.md",
+    "has_content": true
+  },
+  {
+    "kind": "knowledge",
     "name": "zero-length-byte-handling",
     "slug": "zero-length-byte-handling",
     "category": "pitfall",
@@ -12865,7 +12884,7 @@
     "name": "portable-app-detection-env-var",
     "slug": "portable-app-detection-env-var",
     "category": "platform",
-    "description": "Portable mode detection: check RUSTDESK_APPNAME env var; changes temp dir and config paths.",
+    "description": "\"Portable mode detection: check RUSTDESK_APPNAME env var; changes temp dir and config paths.\"",
     "tags": [
       "app",
       "detection",
@@ -13173,7 +13192,7 @@
     "name": "craft-cli-command-surface",
     "slug": "craft-cli-command-surface",
     "category": "reference",
-    "description": "One-page reference for the craft-cli command taxonomy: info/health, resource listing, session ops, streaming send, power-user invoke/listen, self-contained run, and the 21-step --validate-server.",
+    "description": "\"One-page reference for the craft-cli command taxonomy: info/health, resource listing, session ops, streaming send, power-user invoke/listen, self-contained run, and the 21-step --validate-server.\"",
     "tags": [
       "cli",
       "rpc",
@@ -13644,7 +13663,7 @@
     "name": "langgraph-state-update-merge-semantics",
     "slug": "langgraph-state-update-merge-semantics",
     "category": "reference",
-    "description": "LangGraph nodes return partial dicts that the framework merges into state. OpenSRE's _merge_state helper shows the convention: messages are appended (not replaced), other keys overwrite — useful for replicating LangGraph behaviour outside a graph (testing, CLI runners).",
+    "description": "\"LangGraph nodes return partial dicts that the framework merges into state. OpenSRE's _merge_state helper shows the convention: messages are appended (not replaced), other keys overwrite — useful for replicating LangGraph behaviour outside a graph (testing, CLI runners).\"",
     "tags": [
       "langgraph",
       "state",
@@ -13837,7 +13856,7 @@
     "name": "sessions-status-workflow",
     "slug": "sessions-status-workflow",
     "category": "reference",
-    "description": "Sessions carry a dynamic status (default: Todo → In Progress → Needs Review → Done) stored per-workspace; customizable via statuses/ folder and used by UI + automations (SessionStatusChange event).",
+    "description": "\"Sessions carry a dynamic status (default: Todo → In Progress → Needs Review → Done) stored per-workspace; customizable via statuses/ folder and used by UI + automations (SessionStatusChange event).\"",
     "tags": [
       "sessions",
       "status",
@@ -14106,7 +14125,7 @@
     "name": "feature-flag-rust-unwrap-policy",
     "slug": "feature-flag-rust-unwrap-policy",
     "category": "rust-rules",
-    "description": "Policy: no unwrap()/expect() except in tests (readability) and lock acquisition (poison only).",
+    "description": "\"Policy: no unwrap()/expect() except in tests (readability) and lock acquisition (poison only).\"",
     "tags": [
       "feature",
       "flag",
@@ -14957,7 +14976,7 @@
     "name": "privacy-mode-implementation-choices",
     "slug": "privacy-mode-implementation-choices",
     "category": "windows",
-    "description": "Three privacy-mode strategies coexist: MAG (fast but limited), exclude-from-capture (Win10 2004+), virtual-display (fullscreen gaming).",
+    "description": "\"Three privacy-mode strategies coexist: MAG (fast but limited), exclude-from-capture (Win10 2004+), virtual-display (fullscreen gaming).\"",
     "tags": [
       "choices",
       "implementation",
@@ -15357,7 +15376,7 @@
     "name": "session-story-lifecycle",
     "slug": "session-story-lifecycle",
     "category": "workflow",
-    "description": "End-to-end story lifecycle example: readiness check, implementation, review, and completion",
+    "description": "\"End-to-end story lifecycle example: readiness check, implementation, review, and completion\"",
     "tags": [
       "game-studios",
       "ccgs",
@@ -15498,6 +15517,29 @@
   },
   {
     "kind": "paper",
+    "name": "cost-displacement-shape-cross-paper-survey",
+    "slug": "cost-displacement-shape-cross-paper-survey",
+    "category": "arch",
+    "description": "\"Survey of 4 hypothesis papers converging on the same cost-displacement shape across domains — does the shape generalize?\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "paper/arch/cost-displacement-shape-cross-paper-survey",
+    "has_content": true,
+    "examines_count": 5,
+    "perspectives_count": 4,
+    "experiments_count": 0,
+    "outcomes_count": 0,
+    "proposed_builds_count": 1,
+    "paper_type": "survey",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
+  },
+  {
+    "kind": "paper",
     "name": "feature-flag-flap-prevention-policies",
     "slug": "feature-flag-flap-prevention-policies",
     "category": "arch",
@@ -15614,6 +15656,29 @@
   },
   {
     "kind": "paper",
+    "name": "change-stream-lock-contention-scaling-curve",
+    "slug": "change-stream-lock-contention-scaling-curve",
+    "category": "backend",
+    "description": "\"Does per-event lock in change-stream-resilient-consumer scale beyond N≈8 instances, or does contention dominate?\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "paper/backend/change-stream-lock-contention-scaling-curve",
+    "has_content": true,
+    "examines_count": 5,
+    "perspectives_count": 4,
+    "experiments_count": 1,
+    "outcomes_count": 0,
+    "proposed_builds_count": 3,
+    "paper_type": "hypothesis",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
+  },
+  {
+    "kind": "paper",
     "name": "backpressure-vs-rate-limit-comparison",
     "slug": "backpressure-vs-rate-limit-comparison",
     "category": "data",
@@ -15692,6 +15757,29 @@
     "experiments_count": 1,
     "outcomes_count": 0,
     "proposed_builds_count": 1,
+    "paper_type": "hypothesis",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
+  },
+  {
+    "kind": "paper",
+    "name": "figma-ai-variant-mode-collapse-threshold",
+    "slug": "figma-ai-variant-mode-collapse-threshold",
+    "category": "frontend",
+    "description": "\"At what N does AI-explored React variants suffer mode collapse, exceeding usefully-distinguishable count?\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "paper/frontend/figma-ai-variant-mode-collapse-threshold",
+    "has_content": true,
+    "examines_count": 5,
+    "perspectives_count": 4,
+    "experiments_count": 1,
+    "outcomes_count": 0,
+    "proposed_builds_count": 3,
     "paper_type": "hypothesis",
     "paper_status": "draft",
     "verdict_one_line": "",
@@ -15810,6 +15898,29 @@
   },
   {
     "kind": "paper",
+    "name": "ai-swagger-gap-fill-confidence-distribution",
+    "slug": "ai-swagger-gap-fill-confidence-distribution",
+    "category": "workflow",
+    "description": "\"Do AI-filled @Schema values follow a Pareto distribution where 80% of consumer breakage comes from 20% of fields?\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "paper/workflow/ai-swagger-gap-fill-confidence-distribution",
+    "has_content": true,
+    "examines_count": 5,
+    "perspectives_count": 4,
+    "experiments_count": 1,
+    "outcomes_count": 0,
+    "proposed_builds_count": 3,
+    "paper_type": "hypothesis",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
+  },
+  {
+    "kind": "paper",
     "name": "parallel-dispatch-breakeven-point",
     "slug": "parallel-dispatch-breakeven-point",
     "category": "workflow",
@@ -15829,6 +15940,75 @@
     "verdict_one_line": "Before parallel-dispatching to N agents, count useful_output absolute (not coverage %); if useful_output < ~5 files, skip parallel — α·N startup is pure waste regardless of coverage.",
     "premise_revisions": 1,
     "last_revision_date": "2026-04-24",
+    "retraction_reason": ""
+  },
+  {
+    "kind": "paper",
+    "name": "safe-bulk-pr-anchor-phase-necessity",
+    "slug": "safe-bulk-pr-anchor-phase-necessity",
+    "category": "workflow",
+    "description": "\"Is the rollback-anchor pre-flight phase in safe-bulk-pr-publishing necessary for all N, or only at scale?\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "paper/workflow/safe-bulk-pr-anchor-phase-necessity",
+    "has_content": true,
+    "examines_count": 5,
+    "perspectives_count": 4,
+    "experiments_count": 1,
+    "outcomes_count": 0,
+    "proposed_builds_count": 3,
+    "paper_type": "hypothesis",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
+  },
+  {
+    "kind": "paper",
+    "name": "soft-convention-phase-ordering-necessity",
+    "slug": "soft-convention-phase-ordering-necessity",
+    "category": "workflow",
+    "description": "\"Is the 4-phase ordering (schema → audit → dogfood → enforce) necessary, or do other orderings work too?\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "paper/workflow/soft-convention-phase-ordering-necessity",
+    "has_content": true,
+    "examines_count": 5,
+    "perspectives_count": 4,
+    "experiments_count": 1,
+    "outcomes_count": 0,
+    "proposed_builds_count": 3,
+    "paper_type": "hypothesis",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
+    "retraction_reason": ""
+  },
+  {
+    "kind": "paper",
+    "name": "swagger-spec-hardening-size-crossover",
+    "slug": "swagger-spec-hardening-size-crossover",
+    "category": "workflow",
+    "description": "\"At what spec size N does swagger-spec-ai-agent-hardening pay for itself? Measure value-vs-cost crossover.\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "paper/workflow/swagger-spec-hardening-size-crossover",
+    "has_content": true,
+    "examines_count": 5,
+    "perspectives_count": 4,
+    "experiments_count": 1,
+    "outcomes_count": 0,
+    "proposed_builds_count": 3,
+    "paper_type": "hypothesis",
+    "paper_status": "draft",
+    "verdict_one_line": "",
+    "premise_revisions": 0,
+    "last_revision_date": "",
     "retraction_reason": ""
   },
   {
@@ -16697,7 +16877,7 @@
     "name": "ai-call-with-mock-fallback",
     "slug": "ai-call-with-mock-fallback",
     "category": "ai",
-    "description": "Wrap unreliable LLM/AI calls with a deterministic mock fallback so the UI always receives a valid shape — annotate the response with a `mock: true` or `error:` field so the client can show a badge.",
+    "description": "\"Wrap unreliable LLM/AI calls with a deterministic mock fallback so the UI always receives a valid shape — annotate the response with a `mock: true` or `error:` field so the client can show a badge.\"",
     "tags": [
       "llm",
       "resilience",
@@ -18125,7 +18305,7 @@
     "name": "workspace-directory-convention",
     "slug": "workspace-directory-convention",
     "category": "architecture",
-    "description": "Workspace-as-a-directory: a single ~/.craft-agent/workspaces/{id}/ folder holds config.json, automations.json, sessions/, sources/, skills/, statuses/ — every feature reads/writes its own subtree so the workspace is portable in one zip.",
+    "description": "\"Workspace-as-a-directory: a single ~/.craft-agent/workspaces/{id}/ folder holds config.json, automations.json, sessions/, sources/, skills/, statuses/ — every feature reads/writes its own subtree so the workspace is portable in one zip.\"",
     "tags": [
       "config",
       "workspaces",
@@ -21601,7 +21781,7 @@
     "name": "gstack-openclaw-ceo-review",
     "slug": "gstack-openclaw-ceo-review",
     "category": "cli",
-    "description": "CEO/founder-mode plan review. Rethink the problem, find the 10-star product, challenge premises, expand scope when it creates a better product. Four modes: SCOPE EXPANSION (dream big), SELECTIVE EXPANSION (hold scope + cherry-pick), HOLD SCOPE (maximum rigor), SCOPE REDUCTION (strip to essentials). Use when asked to review a plan, challenge this, CEO review, poke holes, think bigger, or expand scope.",
+    "description": "\"CEO/founder-mode plan review. Rethink the problem, find the 10-star product, challenge premises, expand scope when it creates a better product. Four modes: SCOPE EXPANSION (dream big), SELECTIVE EXPANSION (hold scope + cherry-pick), HOLD SCOPE (maximum rigor), SCOPE REDUCTION (strip to essentials). Use when asked to review a plan, challenge this, CEO review, poke holes, think bigger, or expand scope.\"",
     "tags": [
       "cli",
       "gstack",
@@ -21619,7 +21799,7 @@
     "name": "gstack-openclaw-investigate",
     "slug": "gstack-openclaw-investigate",
     "category": "cli",
-    "description": "Systematic debugging with root cause investigation. Four phases: investigate, analyze, hypothesize, implement. Iron Law: no fixes without root cause. Use when asked to debug, fix a bug, investigate an error, or root cause analysis. Proactively use when user reports errors, stack traces, unexpected behavior, or says something stopped working.",
+    "description": "\"Systematic debugging with root cause investigation. Four phases: investigate, analyze, hypothesize, implement. Iron Law: no fixes without root cause. Use when asked to debug, fix a bug, investigate an error, or root cause analysis. Proactively use when user reports errors, stack traces, unexpected behavior, or says something stopped working.\"",
     "tags": [
       "cli",
       "gstack",
@@ -21636,7 +21816,7 @@
     "name": "gstack-openclaw-office-hours",
     "slug": "gstack-openclaw-office-hours",
     "category": "cli",
-    "description": "Product interrogation with six forcing questions. Two modes: startup diagnostic (demand reality, status quo, desperate specificity, narrowest wedge, observation, future-fit) and builder brainstorm. Use when asked to brainstorm, \"is this worth building\", \"I have an idea\", \"office hours\", or \"help me think through this\". Proactively use when user describes a new product idea or wants to think through design decisions before any code is written.",
+    "description": "\"Product interrogation with six forcing questions. Two modes: startup diagnostic (demand reality, status quo, desperate specificity, narrowest wedge, observation, future-fit) and builder brainstorm. Use when asked to brainstorm, \\\"is this worth building\\\", \\\"I have an idea\\\", \\\"office hours\\\", or \\\"help me think through this\\\". Proactively use when user describes a new product idea or wants to think through design decisions before any code is written.\"",
     "tags": [
       "cli",
       "gstack",
@@ -22458,7 +22638,7 @@
     "name": "platform-screen-capture-abstraction",
     "slug": "platform-screen-capture-abstraction",
     "category": "codecs",
-    "description": "Pluggable screen-capture backends: Windows DXGI, macOS Quartz, Linux X11/Wayland behind one Capturer trait.",
+    "description": "\"Pluggable screen-capture backends: Windows DXGI, macOS Quartz, Linux X11/Wayland behind one Capturer trait.\"",
     "tags": [
       "abstraction",
       "capture",
@@ -22547,7 +22727,7 @@
     "name": "type-safe-enum-generation-per-language",
     "slug": "type-safe-enum-generation-per-language",
     "category": "codegen",
-    "description": "Generate per-language enums from a single content_types JSON: Rust enum, Python StrEnum, TypeScript union literal, Go const iota — with from_string, to_string, and SIZE constants.",
+    "description": "\"Generate per-language enums from a single content_types JSON: Rust enum, Python StrEnum, TypeScript union literal, Go const iota — with from_string, to_string, and SIZE constants.\"",
     "tags": [
       "magika",
       "codegen"
@@ -26975,7 +27155,7 @@
     "name": "ort-crate-onnx-runtime-session-configuration",
     "slug": "ort-crate-onnx-runtime-session-configuration",
     "category": "inference",
-    "description": "Configure ONNX Runtime via the ort crate's session builder: inter/intra threads, optimization level, parallel execution, embedded model bytes.",
+    "description": "\"Configure ONNX Runtime via the ort crate's session builder: inter/intra threads, optimization level, parallel execution, embedded model bytes.\"",
     "tags": [
       "magika",
       "inference"
@@ -27492,7 +27672,7 @@
     "name": "unix-socket-permission-attributes",
     "slug": "unix-socket-permission-attributes",
     "category": "ipc",
-    "description": "parity-tokio-ipc SecurityAttributes for Unix socket permissions (Windows equivalent: DACLs).",
+    "description": "\"parity-tokio-ipc SecurityAttributes for Unix socket permissions (Windows equivalent: DACLs).\"",
     "tags": [
       "attributes",
       "ipc",
@@ -29640,7 +29820,7 @@
     "name": "pnpm-catalog-version-pinning",
     "slug": "pnpm-catalog-version-pinning",
     "category": "monorepo",
-    "description": "Use pnpm's catalog: references in pnpm-workspace.yaml to guarantee a single version of shared deps across all monorepo packages.",
+    "description": "\"Use pnpm's catalog: references in pnpm-workspace.yaml to guarantee a single version of shared deps across all monorepo packages.\"",
     "tags": [
       "pnpm",
       "monorepo",
@@ -29809,7 +29989,7 @@
     "name": "anonymous-posthog-telemetry",
     "slug": "anonymous-posthog-telemetry",
     "category": "observability",
-    "description": "Ship anonymous PostHog telemetry from an OSS CLI using an embedded write-only key, a silentFetch wrapper that masks SDK stderr noise, DO_NOT_TRACK / per-tool opt-out, and `$process_person_profile: false` to stay in PostHog's anonymous tier.",
+    "description": "\"Ship anonymous PostHog telemetry from an OSS CLI using an embedded write-only key, a silentFetch wrapper that masks SDK stderr noise, DO_NOT_TRACK / per-tool opt-out, and `$process_person_profile: false` to stay in PostHog's anonymous tier.\"",
     "tags": [
       "telemetry",
       "posthog",
@@ -30361,7 +30541,7 @@
     "name": "display-device-enumeration-platform",
     "slug": "display-device-enumeration-platform",
     "category": "platform",
-    "description": "Per-OS display enumeration: Windows EnumDisplayDevices, macOS CGDisplayCopyAllDisplays, Linux XRandR.",
+    "description": "\"Per-OS display enumeration: Windows EnumDisplayDevices, macOS CGDisplayCopyAllDisplays, Linux XRandR.\"",
     "tags": [
       "device",
       "display",
@@ -30378,7 +30558,7 @@
     "name": "privacy-mode-trait-abstraction",
     "slug": "privacy-mode-trait-abstraction",
     "category": "platform",
-    "description": "Pluggable privacy-mode implementations: Windows MAG, exclude-from-capture, virtual-display drivers.",
+    "description": "\"Pluggable privacy-mode implementations: Windows MAG, exclude-from-capture, virtual-display drivers.\"",
     "tags": [
       "abstraction",
       "mode",
@@ -30661,7 +30841,7 @@
     "name": "orphaned-daemon-termination-guard",
     "slug": "orphaned-daemon-termination-guard",
     "category": "process",
-    "description": "Kill an orphaned background daemon when no non-daemon sibling process is alive. Prevents LevelDB/file lock contention after unclean parent shutdown. Pattern: scan for daemon PIDs, then check if any non-daemon parent process exists before killing.",
+    "description": "\"Kill an orphaned background daemon when no non-daemon sibling process is alive. Prevents LevelDB/file lock contention after unclean parent shutdown. Pattern: scan for daemon PIDs, then check if any non-daemon parent process exists before killing.\"",
     "tags": [
       "daemon",
       "orphan",
@@ -31638,7 +31818,7 @@
     "name": "pre-release-version-validation-script",
     "slug": "pre-release-version-validation-script",
     "category": "release",
-    "description": "Pre-release script validates: tag matches pyproject version, copyright headers exist on all source files, package metadata fields complete, type checker passes.",
+    "description": "\"Pre-release script validates: tag matches pyproject version, copyright headers exist on all source files, package metadata fields complete, type checker passes.\"",
     "tags": [
       "magika",
       "release"
@@ -32523,7 +32703,7 @@
     "name": "deep-link-url-routing",
     "slug": "deep-link-url-routing",
     "category": "session-management",
-    "description": "Custom URL scheme (craftagents://) routes directly into the app: allSessions, specific session, settings, new-chat actions — maps each URL path segment to a renderer-side navigation intent.",
+    "description": "\"Custom URL scheme (craftagents://) routes directly into the app: allSessions, specific session, settings, new-chat actions — maps each URL path segment to a renderer-side navigation intent.\"",
     "tags": [
       "deep-link",
       "url-scheme",
@@ -35560,9 +35740,26 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Coordinator dispatches N parallel sub-agents on disjoint scopes. No mid-task communication. Bulkhead isolation; results fan-in only at coordinator synthesis.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
+  },
+  {
+    "kind": "technique",
+    "name": "swagger-spec-selective-two-pass-loading",
+    "slug": "swagger-spec-selective-two-pass-loading",
+    "category": "ai",
+    "description": "\"AI-consumer two-pass swagger loader — skim summaries, AI selects relevant operations, deep-load schemas only for selected ops. Token-cost displacement past spec-size crossover.\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "technique/ai/swagger-spec-selective-two-pass-loading",
+    "has_content": true,
+    "composes_count": 4,
+    "binding": "loose",
+    "recipe_one_line": "AI consumer of large swagger spec: pass-1 loads paths+summaries+tags only, AI selects relevant ops for the task, pass-2 deep-loads full request/response schemas for selected ops only. Saves tokens past a per-spec crossover threshold.",
+    "recipe_preconditions_count": 4,
+    "recipe_anti_conditions_count": 4
   },
   {
     "kind": "technique",
@@ -35594,9 +35791,9 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "State machine where every transition is one-way; no edge leads back to a previously-occupied state. Audit-anchored forward-only timeline.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35617,9 +35814,9 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Tiered fallback chain wrapped in a feature flag; each tier transition is surfaced explicitly to caller. Fail loud — never silent.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35640,9 +35837,9 @@
     "has_content": true,
     "composes_count": 4,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Mutation pipeline with idempotency keys + checkpoint resume + rollback path. At-least-once-safe, exactly-once-effect. Domain-agnostic.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35657,9 +35854,9 @@
     "has_content": true,
     "composes_count": 6,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "N flat peers, term-bound leader rotation, phi-accrual failure detection, quorum off-by-one safe math. No permanent leader, no permanent follower.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35674,9 +35871,9 @@
     "has_content": true,
     "composes_count": 5,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Forward chain executes steps with compensating actions registered per step. On failure, reverse-chain compensations LIFO-undo. Idempotent every step; audit-anchored before fire.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35691,9 +35888,26 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Two systems run in parallel. Traffic dial moves only forward (or pauses) over weeks/months. KPI gate per step, auto-revert on regression.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
+  },
+  {
+    "kind": "technique",
+    "name": "change-stream-resilient-consumer",
+    "slug": "change-stream-resilient-consumer",
+    "category": "backend",
+    "description": "\"MongoDB change-stream consumer — survives elections, field-filters, coordinates instances via distributed lock\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "technique/backend/change-stream-resilient-consumer",
+    "has_content": true,
+    "composes_count": 4,
+    "binding": "loose",
+    "recipe_one_line": "MongoDB change stream consumer that survives elections + network hiccups, filters by changed field, and coordinates across instances via a distributed lock.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 4
   },
   {
     "kind": "technique",
@@ -35708,9 +35922,9 @@
     "has_content": true,
     "composes_count": 5,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Bounded-buffer producer-consumer with reverse signal channel. Self-regulating — backpressure slows producer when buffer fills; resume signal restarts on drain.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35725,9 +35939,9 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Long-running migration with per-step idempotency + persistent checkpoint table. Restart picks up at last checkpoint; never re-runs completed steps.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35759,9 +35973,26 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Stage release through traffic percentages (1/5/25/50/100) with KPI gates between each. Auto-revert on regression — no human approval per step.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
+  },
+  {
+    "kind": "technique",
+    "name": "figma-driven-ai-react-design-system",
+    "slug": "figma-driven-ai-react-design-system",
+    "category": "frontend",
+    "description": "\"Figma tokens → Tailwind theme, AI-explored React variants via Code Connect binding, semantic-token discipline enforced\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "technique/frontend/figma-driven-ai-react-design-system",
+    "has_content": true,
+    "composes_count": 5,
+    "binding": "loose",
+    "recipe_one_line": "Take Figma tokens through Tailwind v4 theme generation, AI-explore radically different React component variants in parallel, bind via Code Connect, enforce semantic-tokens-only.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 4
   },
   {
     "kind": "technique",
@@ -35776,9 +36007,9 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Client updates UI immediately on user action (optimistic prediction). Reconcile against server response — accept on match, rollback on divergence.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35793,9 +36024,9 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Issue new credential alongside old. Both accepted during bounded overlap window. Auto-revoke old at window end. Clients migrate at own pace, no synchronized cutover.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35810,9 +36041,9 @@
     "has_content": true,
     "composes_count": 3,
     "binding": "loose",
-    "recipe_one_line": "",
-    "recipe_preconditions_count": 0,
-    "recipe_anti_conditions_count": 0
+    "recipe_one_line": "Producer publishes candidate change. Each consumer runs contract test independently. Quorum vote (e.g. ≥2/3 pass) decides compatibility — not unanimity.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 3
   },
   {
     "kind": "technique",
@@ -35864,5 +36095,39 @@
     "recipe_one_line": "Ship 10+ independent artifacts as separate PRs against an auto-merge repo. Anchor first, build parallel, publish serial; recover from catalog-file conflicts via batch-merge.",
     "recipe_preconditions_count": 3,
     "recipe_anti_conditions_count": 3
+  },
+  {
+    "kind": "technique",
+    "name": "soft-convention-4pr-cascade",
+    "slug": "soft-convention-4pr-cascade",
+    "category": "workflow",
+    "description": "\"Roll out a soft convention via 4 sequential PRs — schema amendment, informational audit, dogfood, hard enforcement\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "technique/workflow/soft-convention-4pr-cascade",
+    "has_content": true,
+    "composes_count": 5,
+    "binding": "loose",
+    "recipe_one_line": "Cascade a soft convention through 4 sequential PRs — schema amendment, informational audit, dogfood on existing entries, hard enforcement promotion. Each PR small and independently mergeable.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 4
+  },
+  {
+    "kind": "technique",
+    "name": "swagger-spec-ai-agent-hardening",
+    "slug": "swagger-spec-ai-agent-hardening",
+    "category": "workflow",
+    "description": "\"Spring Boot springdoc spec hardening for AI agents — baseline, bulk-annotate, externalize, runtime-inject, gap-guard\"",
+    "tags": "",
+    "triggers": [],
+    "version": "0.2.0-draft",
+    "path": "technique/workflow/swagger-spec-ai-agent-hardening",
+    "has_content": true,
+    "composes_count": 6,
+    "binding": "loose",
+    "recipe_one_line": "Optimize a Spring Boot OpenAPI spec for AI consumption — bulk-annotate via subagent buckets, externalize long text, runtime-inject patterns, guard AI-filled gaps with the review checklist.",
+    "recipe_preconditions_count": 3,
+    "recipe_anti_conditions_count": 4
   }
 ]
