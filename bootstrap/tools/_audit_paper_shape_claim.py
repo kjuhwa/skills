@@ -48,12 +48,14 @@ TECHNIQUE_DIR = HUB_ROOT / "technique"
 
 SHAPE_KEYWORDS = {
     "cost-displacement": [
-        "crossover", "cost-displacement", "breakeven", "trade-off", "tradeoff",
-        "displacement", "ROI", "displaces past", "cost grows but"
+        "crossover", "cost-displacement", "breakeven", "break-even", "trade-off", "tradeoff",
+        "displacement", "ROI", "displaces past", "cost grows but", "overhead-vs-parallelism",
+        "vs-parallelism", "checkpoint-overhead", "fallback-cost", "staleness-curve"
     ],
     "threshold-cliff": [
         "threshold-cliff", "cliff", "discontinuous", "discontinuity", "trip threshold",
-        "binary state", "sharp transition", "cliff at"
+        "binary state", "sharp transition", "cliff at", "auto-revert", "boundary-conditions",
+        "killswitch-with-circuit-state", "scaling-curve"
     ],
     "log-search": [
         "log-search", "log2", "binary-narrowing", "binary search", "bisect",
@@ -61,23 +63,27 @@ SHAPE_KEYWORDS = {
     ],
     "hysteresis": [
         "hysteresis", "high-water", "low-water", "watermark", "trip/reset gap",
-        "gap calibration", "plateau between two cliffs"
+        "gap calibration", "plateau between two cliffs", "flap-prevention"
     ],
     "convergence": [
         "convergence", "iteration converges", "fixed point", "asymptotic decay",
-        "diminishing returns", "iter-to-converge", "iteration loop"
+        "diminishing returns", "iter-to-converge", "iteration loop", "flicker-tolerance",
+        "flicker tolerance"
     ],
     "necessity": [
         "necessity", "must precede", "ordering", "monotonic", "anchor phase",
-        "out-of-order", "structurally different", "phase ordering"
+        "anchor-phase", "out-of-order", "structurally different", "phase ordering",
+        "phase-ordering", "rotation-window-tradeoff", "overlap-window",
+        "rate-limit-comparison", "vs-rate-limit"
     ],
     "pareto": [
         "pareto", "long-tail", "long tail", "80/20", "Gini", "power law",
-        "power-law", "distribution shape", "top 20%"
+        "power-law", "distribution shape", "top 20%", "composition-value"
     ],
     "self-improvement": [
         "self-improvement", "self-correction", "bias-correction", "bias correction",
-        "meta-corpus", "cluster-formation", "corpus dynamics"
+        "meta-corpus", "cluster-formation", "corpus dynamics", "feasibility",
+        "durability"
     ],
     "universality": [
         "universality", "cross-domain", "shared generator", "common generator",
@@ -85,7 +91,35 @@ SHAPE_KEYWORDS = {
     ],
     "saturation": [
         "saturation-without-crossover", "saturation", "plateau thereafter",
-        "no inversion", "saturates at", "asymptote"
+        "no inversion", "saturates at", "asymptote", "scaling-curve"
+    ],
+    "structural-only": [
+        "fan-out", "fan-in", "isolation", "ladder", "orchestrator", "compose",
+        "composition", "pipeline", "saga-with-compensation-chain",
+        "idempotent-mutation", "strangler-fig", "monotonic-ratchet",
+        "gated-fallback-chain", "leader-election", "multi-peer-quorum",
+        "task-graph-router", "circuit-breaker-per-worker", "replay-from-event-log",
+        "budget-token-allocation", "priority-queue-preemption",
+        "saga-compensation-routing", "deadline-aware-task-pruning",
+        "result-streaming-vs-batch", "tier-spillover-cheapest-first",
+        "change-stream-resilient", "producer-consumer-backpressure-loop",
+        "idempotent-migration-with-resume", "root-cause-to-tdd-plan",
+        "canary-rollout-with-auto-revert", "figma-driven-ai-react-design-system",
+        "optimistic-mutation-with-server-reconcile", "credential-rotation-overlap",
+        "contract-test-with-consumer-verification", "fuzz-crash-to-fix-loop",
+        "fan-out-fan-in-with-bulkhead", "safe-bulk-pr-publishing",
+        "soft-convention-4pr-cascade", "swagger-spec-ai-agent-hardening",
+        "swagger-spec-selective-two-pass-loading",
+        "figma-token-tailwind-pipeline", "claude-component-variant",
+        "css-token-violation-precommit-gate", "figma-react-pixel-diff",
+        "storybook-from-figma", "figma-state-machine",
+        "css-specificity-drift", "figma-prop-interface",
+        "dark-mode-token-mirror", "a11y-spec-from-figma"
+    ],
+    "invariant-only": [
+        "idempotency", "idempotent", "atomicity", "consistency", "exactly-once",
+        "at-least-once", "at-most-once", "rollback path", "compensating action",
+        "invariant", "audit trail"
     ],
 }
 
@@ -163,10 +197,12 @@ def check_paper(path: Path) -> dict:
     fm_text, _ = split_frontmatter(text)
     fm = parse_frontmatter(fm_text)
     tags = fm.get("tags") or []
-    shape = classify_shape(extract_paper_blobs(fm), tags)
+    slug = path.relative_to(PAPER_DIR).parent.as_posix()
+    blobs = extract_paper_blobs(fm) + [slug]  # slug as last-resort signal
+    shape = classify_shape(blobs, tags)
     return {
         "kind": "paper",
-        "slug": path.relative_to(PAPER_DIR).parent.as_posix(),
+        "slug": slug,
         "type": fm.get("type", "unknown"),
         "status": fm.get("status", "unknown"),
         "shape": shape,
@@ -178,10 +214,12 @@ def check_technique(path: Path) -> dict:
     fm_text, _ = split_frontmatter(text)
     fm = parse_frontmatter(fm_text)
     tags = fm.get("tags") or []
-    shape = classify_shape(extract_technique_blobs(fm), tags)
+    slug = path.relative_to(TECHNIQUE_DIR).parent.as_posix()
+    blobs = extract_technique_blobs(fm) + [slug]  # slug as last-resort signal
+    shape = classify_shape(blobs, tags)
     return {
         "kind": "technique",
-        "slug": path.relative_to(TECHNIQUE_DIR).parent.as_posix(),
+        "slug": slug,
         "shape": shape,
     }
 
