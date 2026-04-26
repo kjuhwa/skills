@@ -24,6 +24,35 @@ composes:
     version: "*"
     role: counter-evidence
 
+recipe:
+  one_line: "Stage release through traffic percentages (1/5/25/50/100) with KPI gates between each. Auto-revert on regression — no human approval per step."
+  preconditions:
+    - "Service has stable KPIs (error rate, p99 latency) that fail loudly on regression"
+    - "Continuous deployment infra can shift traffic ratio programmatically"
+    - "Regression rollback within minutes is acceptable for the deployment context"
+  anti_conditions:
+    - "KPIs are slow-emerging — memory leak takes hours and canary finishes before signal arrives"
+    - "Service has no traffic split capability (load balancer or service mesh required)"
+    - "Compliance requires human approval at every step — use manual canary instead"
+  failure_modes:
+    - signal: "Auto-revert flaps repeatedly between 1% and 0% on noisy KPI"
+      atom_ref: "knowledge:pitfall/canary-release-implementation-pitfall"
+      remediation: "Add hysteresis between trip and reset thresholds; use longer KPI sample windows; consider debouncing"
+  assembly_order:
+    - phase: deploy
+      uses: traffic-control-implementation
+    - phase: ramp
+      uses: canary-shape-baseline
+      branches:
+        - condition: "KPI passes at each step"
+          next: promote
+        - condition: "KPI fails at any step"
+          next: auto-revert
+    - phase: promote
+      uses: canary-shape-baseline
+    - phase: auto-revert
+      uses: counter-evidence
+
 binding: loose
 
 verify:

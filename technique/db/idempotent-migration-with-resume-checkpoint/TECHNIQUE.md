@@ -24,6 +24,38 @@ composes:
     version: "*"
     role: counter-evidence
 
+recipe:
+  one_line: "Long-running migration with per-step idempotency + persistent checkpoint table. Restart picks up at last checkpoint; never re-runs completed steps."
+  preconditions:
+    - "Migration touches enough rows that one process restart is plausible during the run"
+    - "Restart-from-scratch would be impossibly slow or partially destructive"
+    - "Multiple operators may participate — one starts, another resumes"
+  anti_conditions:
+    - "Migration small enough to complete within a single transaction (use a regular transaction)"
+    - "Steps with non-idempotent side effects that can't be made idempotent (use transactional outbox)"
+    - "One-shot deployment where rollback is preferred over resume"
+  failure_modes:
+    - signal: "Restart re-runs an already-completed step and corrupts state because the step was not actually idempotent"
+      atom_ref: "knowledge:pitfall/idempotency-implementation-pitfall"
+      remediation: "Per-step idempotency must be verified, not assumed; checkpoint alone is insufficient if a step is destructive on second run"
+  assembly_order:
+    - phase: init
+      uses: migration-shape-baseline
+    - phase: step-loop
+      uses: per-step-idempotency-pattern
+      branches:
+        - condition: "step completes"
+          next: record-checkpoint
+        - condition: "process crashes mid-step"
+          next: resume
+    - phase: record-checkpoint
+      uses: migration-shape-baseline
+    - phase: resume
+      uses: per-step-idempotency-pattern
+      branches:
+        - condition: "checkpoint recovered"
+          next: step-loop
+
 binding: loose
 
 verify:
