@@ -41,6 +41,39 @@ composes:
       hash equivalence). Catches double-apply bugs before they ship.
     version: "*"
 
+recipe:
+  one_line: "Mutation pipeline with idempotency keys + checkpoint resume + rollback path. At-least-once-safe, exactly-once-effect. Domain-agnostic."
+  preconditions:
+    - "Mutation must be retry-safe under at-least-once delivery (network failure mid-call, message-bus redelivery, manual re-trigger)"
+    - "Mutation has observable side effects (DB write, balance change, external API) that must be performed exactly once"
+    - "Pipeline can persist idempotency keys + checkpoint state durably across crashes"
+  anti_conditions:
+    - "Mutation is naturally idempotent (PUT-style overwrite) — no pipeline overhead needed"
+    - "No durable state available for checkpoints — pipeline cannot resume after crash"
+    - "Side effects are unrecoverable in principle (sending email, charging card without refund) — rollback path doesn't exist"
+  failure_modes:
+    - signal: "Retry causes double-apply because idempotency key check happens after side effect, not before"
+      atom_ref: "knowledge:pitfall/idempotency-implementation-pitfall"
+      remediation: "Idempotency key check must precede side effect; verification harness drives repeated execution and asserts state-hash equivalence"
+  assembly_order:
+    - phase: register-key
+      uses: pipeline-orchestrator
+    - phase: forward-mutate
+      uses: forward-step
+      branches:
+        - condition: "key seen before"
+          next: skip-already-applied
+        - condition: "first time this key"
+          next: apply
+    - phase: apply
+      uses: forward-step
+    - phase: checkpoint
+      uses: pipeline-orchestrator
+    - phase: skip-already-applied
+      uses: pipeline-orchestrator
+    - phase: verify-invariants
+      uses: verification-harness
+
 binding: loose
 
 verify:

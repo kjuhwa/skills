@@ -24,6 +24,37 @@ composes:
     version: "*"
     role: counter-evidence
 
+recipe:
+  one_line: "Two systems run in parallel. Traffic dial moves only forward (or pauses) over weeks/months. KPI gate per step, auto-revert on regression."
+  preconditions:
+    - "Replacing a long-lived production system where instant cutover is too risky"
+    - "Migration window measured in weeks/months, not hours"
+    - "KPI parity must be observed at every traffic ratio step before advancing"
+  anti_conditions:
+    - "Hot-fix or compatibility patch — blue-green is faster"
+    - "Small percentage validation for a feature — canary is the right shape"
+    - "New system has not yet handled any production-like load — ramp from 1% with monitor instead"
+  failure_modes:
+    - signal: "Dial moves backward under pressure (regression panic); breaks the monotonic ratchet expected by both systems"
+      atom_ref: "knowledge:pitfall/strangler-fig-implementation-pitfall"
+      remediation: "Dial moves forward or PAUSES — never backward. If regression occurs, pause until investigated; do not ratchet down. Auto-revert is a separate failsafe (full revert), not a backward step."
+  assembly_order:
+    - phase: parallel-deploy
+      uses: shape-baseline
+    - phase: ramp-step
+      uses: shape-baseline
+      branches:
+        - condition: "KPI parity confirmed"
+          next: advance-dial
+        - condition: "KPI regression"
+          next: pause-or-auto-revert
+    - phase: advance-dial
+      uses: data-migration-shape
+    - phase: pause-or-auto-revert
+      uses: shape-baseline
+    - phase: final-cutover
+      uses: data-migration-shape
+
 binding: loose
 
 verify:

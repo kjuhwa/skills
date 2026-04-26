@@ -37,6 +37,45 @@ composes:
     version: "*"
     role: quorum-math-counter-evidence
 
+recipe:
+  one_line: "N flat peers, term-bound leader rotation, phi-accrual failure detection, quorum off-by-one safe math. No permanent leader, no permanent follower."
+  preconditions:
+    - "≥3 peers needed for any meaningful quorum (N=2 is degenerate; N=3 is minimum useful)"
+    - "Network partitions are expected and must not corrupt state"
+    - "Decision throughput acceptable at consensus latency (round-trip × N peers per decision)"
+  anti_conditions:
+    - "Single-leader system acceptable — use Raft directly without rotation overhead"
+    - "Strong consistency not required — gossip/eventual consistency is cheaper"
+    - "N=1 or N=2 — no quorum possible; pick a different pattern"
+  failure_modes:
+    - signal: "Leader election flap during partition; multiple peers each elect themselves"
+      atom_ref: "knowledge:pitfall/raft-consensus-implementation-pitfall"
+      remediation: "Term-bound election with random election timeout; majority-vote rule prevents two leaders in same term"
+    - signal: "Binary timeout misclassifies slow peer as failed; quorum drops below threshold under transient slowness"
+      atom_ref: "knowledge:decision/phi-accrual-failure-detector-over-binary-timeout"
+      remediation: "Use phi-accrual detector (continuous suspicion score) instead of binary up/down; tune phi threshold per workload"
+    - signal: "Quorum calculation off-by-one — N=4 requires 3 votes (not 2); silent corruption when 2 voters disagree"
+      atom_ref: "knowledge:pitfall/quorum-visualization-off-by-one"
+      remediation: "Quorum formula = floor(N/2)+1; visualize with explicit N=4→3 case in test fixtures"
+  assembly_order:
+    - phase: peer-init
+      uses: consensus-baseline
+    - phase: leader-election
+      uses: leader-tracking-implementation
+    - phase: propose
+      uses: consensus-baseline
+    - phase: vote-collect
+      uses: consensus-baseline
+      branches:
+        - condition: "≥quorum votes received"
+          next: commit
+        - condition: "below quorum or timeout"
+          next: re-propose-or-step-down
+    - phase: commit
+      uses: consensus-baseline
+    - phase: re-propose-or-step-down
+      uses: leader-tracking-implementation
+
 binding: loose
 
 verify:

@@ -37,6 +37,50 @@ composes:
     role: rate-vs-buffer-distinction-counter-evidence
     note: rate-vs-buffer-distinction-counter-evidence
 
+recipe:
+  one_line: "Bounded-buffer producer-consumer with reverse signal channel. Self-regulating — backpressure slows producer when buffer fills; resume signal restarts on drain."
+  preconditions:
+    - "Producer publishes work faster than consumer can process it, sustained or bursty"
+    - "Producer can be slowed (cooperative) or paused without losing pending work"
+    - "Buffer overflow has a defined sink (DLQ or explicit drop policy)"
+  anti_conditions:
+    - "Producer cannot be slowed (external API push) — use rate-limiter instead"
+    - "Pure throughput optimization with no buffer-fill risk — use unbounded queue + alerts"
+    - "Strict ordering required across producer + consumer — backpressure may reorder"
+  failure_modes:
+    - signal: "Backpressure signal lost mid-flight; producer continues at full rate while consumer drowns"
+      atom_ref: "knowledge:pitfall/backpressure-implementation-pitfall"
+      remediation: "Signal channel must be reliable (TCP-like ack, not best-effort UDP); periodic re-broadcast of current backpressure state"
+    - signal: "DLQ silently fills; overflow events lost to operator visibility"
+      atom_ref: "knowledge:pitfall/dead-letter-queue-implementation-pitfall"
+      remediation: "DLQ has explicit alert on depth > threshold; reprocessing path mandatory; audit trail per DLQ entry"
+    - signal: "Backpressure conflated with rate-limit; producer rate-limited but buffer-fill behavior unchanged"
+      atom_ref: "knowledge:pitfall/rate-limiter-implementation-pitfall"
+      remediation: "Backpressure is feedback-from-buffer; rate-limit is fixed-token-bucket. Distinct mechanisms; do not substitute one for the other."
+  assembly_order:
+    - phase: produce
+      uses: backpressure-shape-baseline
+    - phase: enqueue
+      uses: bounded-buffer-implementation-example
+      branches:
+        - condition: "buffer below high-water"
+          next: consume
+        - condition: "buffer at high-water"
+          next: signal-backpressure
+    - phase: consume
+      uses: bounded-buffer-implementation-example
+    - phase: signal-backpressure
+      uses: backpressure-shape-baseline
+      branches:
+        - condition: "buffer drains below low-water"
+          next: signal-resume
+        - condition: "buffer overflows despite signal"
+          next: dlq
+    - phase: signal-resume
+      uses: backpressure-shape-baseline
+    - phase: dlq
+      uses: bounded-buffer-implementation-example
+
 binding: loose
 
 verify:

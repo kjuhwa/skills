@@ -25,6 +25,30 @@ composes:
     role: state-transition-counter-evidence
     note: state-transition-counter-evidence
 
+recipe:
+  one_line: "State machine where every transition is one-way; no edge leads back to a previously-occupied state. Audit-anchored forward-only timeline."
+  preconditions:
+    - "Lifecycle modeling where rollback is unsafe (issued credential → revoked, never reissued; published article → archived)"
+    - "Compliance-sensitive flows where every state change must be an append-only event"
+    - "Distributed coordination where reverse transitions would require negotiated consensus"
+  anti_conditions:
+    - "Workflows with legitimate retry/undo — use saga pattern instead"
+    - "States that can flap based on transient conditions — use circuit breaker instead"
+    - "Systems where reverse paths exist but are rare — express the rare reverse as a NEW forward state"
+  failure_modes:
+    - signal: "Transition spec accepts a back-edge during construction; ratchet invariant broken silently"
+      atom_ref: "knowledge:pitfall/finite-state-machine-implementation-pitfall"
+      remediation: "Compile-time guard rejecting any transition whose target is in already-visited set; verify via static analysis before runtime"
+  assembly_order:
+    - phase: model
+      uses: state-machine-baseline
+    - phase: guard-construct
+      uses: state-machine-baseline
+    - phase: transition
+      uses: concrete-state-machine-example
+    - phase: audit-emit
+      uses: state-machine-baseline
+
 binding: loose
 
 verify:

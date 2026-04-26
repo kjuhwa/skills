@@ -28,6 +28,42 @@ composes:
       that hides the real problem from downstream consumers. Codifies what to
       surface explicitly instead of swallowing.
 
+recipe:
+  one_line: "Tiered fallback chain wrapped in a feature flag; each tier transition is surfaced explicitly to caller. Fail loud — never silent."
+  preconditions:
+    - "A primary call has a useful fallback path AND consequences of silent failure are non-trivial (data drift, billing surprise, regression masking)"
+    - "Fallback chain is a new pattern in the codebase — needs a wire-level revert path while teams adapt"
+    - "Failures of primary should be observable to caller even when fallback succeeds (downstream needs the tier-transition signal)"
+  anti_conditions:
+    - "Fallback is bulkhead isolation, not a chain — separate technique (workflow/fan-out-fan-in-with-bulkhead)"
+    - "System tolerates true silent fallback (e.g. DNS resolution where any answer is acceptable)"
+    - "Asynchronous / fire-and-forget calls — chain shape works for synchronous request/response paths only"
+  failure_modes:
+    - signal: "Fallback succeeds but caller unaware that primary failed — silent degradation in downstream metrics"
+      atom_ref: "knowledge:pitfall/circuit-breaker-implementation-pitfall"
+      remediation: "Surface tier-transition in response payload (e.g. tier-served field); log primary failure even when fallback handles it; alert on fallback rate > threshold"
+  assembly_order:
+    - phase: flag-check
+      uses: rollout-gate
+    - phase: primary-call
+      uses: fallback-shape
+      branches:
+        - condition: "primary succeeds"
+          next: return
+        - condition: "primary fails"
+          next: fallback-tier
+    - phase: fallback-tier
+      uses: fallback-shape
+      branches:
+        - condition: "fallback succeeds"
+          next: return-with-transition-surface
+        - condition: "fallback also fails"
+          next: terminal-error
+    - phase: return-with-transition-surface
+      uses: fallback-shape
+    - phase: terminal-error
+      uses: fallback-shape
+
 binding: loose
 
 verify:
