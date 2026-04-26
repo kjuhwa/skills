@@ -24,6 +24,31 @@ composes:
     version: "*"
     role: replay-safety-pattern
 
+recipe:
+  one_line: "Producer publishes candidate change. Each consumer runs contract test independently. Quorum vote (e.g. ≥2/3 pass) decides compatibility — not unanimity."
+  preconditions:
+    - "Many consumers depend on one producer; some may be stale or abandoned"
+    - "Unanimity is unrealistic — at least one consumer always lags"
+    - "Compatibility decision needs to be data-driven, not ship-and-pray"
+  anti_conditions:
+    - "Few consumers (3 or fewer) — unanimity is practical and stricter"
+    - "Compliance requires zero breaking changes — all consumers must pass"
+    - "Consumers cannot run their own tests in CI — no ownership of consumer-side instrumentation"
+  assembly_order:
+    - phase: candidate
+      uses: schema-validation-shape
+    - phase: broadcast
+      uses: schema-validation-shape
+    - phase: consumer-test
+      uses: test-discipline
+    - phase: quorum-decide
+      uses: replay-safety-pattern
+      branches:
+        - condition: "≥ quorum threshold pass"
+          next: ship
+        - condition: "below quorum threshold"
+          next: investigate
+
 binding: loose
 
 verify:

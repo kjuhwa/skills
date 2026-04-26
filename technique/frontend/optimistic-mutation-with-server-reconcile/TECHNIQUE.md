@@ -24,6 +24,35 @@ composes:
     version: "*"
     role: counter-evidence
 
+recipe:
+  one_line: "Client updates UI immediately on user action (optimistic prediction). Reconcile against server response — accept on match, rollback on divergence."
+  preconditions:
+    - "Latency between client and server is user-perceptible (≥200ms)"
+    - "Action is high-frequency (likes, edits, drag-drop) and server can usually validate"
+    - "Server failures are rare enough that occasional rollback is tolerable as UX"
+  anti_conditions:
+    - "Server has high failure rate — rollback flicker becomes the norm"
+    - "Action has irreversible side-effects on third parties (sending email, charging card) — pessimistic UI required"
+    - "Real-time multi-user collaboration — use OT/CRDT instead"
+  failure_modes:
+    - signal: "Server idempotency key not honored, duplicate mutations land"
+      atom_ref: "knowledge:pitfall/idempotency-implementation-pitfall"
+      remediation: "Verify server actually deduplicates by idempotency key, not just accepts the header. Test with intentional duplicate POSTs."
+  assembly_order:
+    - phase: predict
+      uses: optimistic-shape-baseline
+    - phase: send-with-key
+      uses: server-side-idempotency
+    - phase: reconcile
+      uses: optimistic-shape-baseline
+      branches:
+        - condition: "response matches prediction"
+          next: done
+        - condition: "response diverges"
+          next: rollback
+    - phase: rollback
+      uses: optimistic-shape-baseline
+
 binding: loose
 
 verify:

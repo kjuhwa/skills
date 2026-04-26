@@ -34,6 +34,38 @@ composes:
     role: compensation-safety-counter-evidence
     note: compensation-safety-counter-evidence
 
+recipe:
+  one_line: "Forward chain executes steps with compensating actions registered per step. On failure, reverse-chain compensations LIFO-undo. Idempotent every step; audit-anchored before fire."
+  preconditions:
+    - "Multi-step distributed transaction where each step has a known compensating action"
+    - "Steps cross service boundaries — local DB transactions cannot span them"
+    - "Eventual consistency is acceptable; atomic isolation is not required"
+  anti_conditions:
+    - "Steps share a database — use a regular DB transaction"
+    - "No compensating action exists for a step (irreversible side effect) — saga can't undo"
+    - "Strong isolation required — saga has eventual consistency, not isolation"
+  failure_modes:
+    - signal: "Compensation runs but the original action's side effect persists in a downstream system"
+      atom_ref: "knowledge:pitfall/saga-pattern-implementation-pitfall"
+      remediation: "Verify each compensating action independently, do not assume it undoes cleanly. Test compensation against real downstream state."
+    - signal: "Re-running a compensation produces different result — compensation is not idempotent"
+      atom_ref: "knowledge:pitfall/idempotency-implementation-pitfall"
+      remediation: "All compensations must be idempotent; verify via repeated invocation in CI before adding to saga"
+  assembly_order:
+    - phase: anchor
+      uses: pre-flight-audit-anchor
+    - phase: forward-chain
+      uses: forward-chain-baseline
+      branches:
+        - condition: "all steps succeed"
+          next: commit
+        - condition: "any step fails"
+          next: compensate
+    - phase: commit
+      uses: forward-chain-baseline
+    - phase: compensate
+      uses: per-step-idempotency-shape
+
 binding: loose
 
 verify:

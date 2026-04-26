@@ -24,6 +24,26 @@ composes:
     version: "*"
     role: isolation-shape
 
+recipe:
+  one_line: "Coordinator dispatches N parallel sub-agents on disjoint scopes. No mid-task communication. Bulkhead isolation; results fan-in only at coordinator synthesis."
+  preconditions:
+    - "Task naturally decomposes into independent sub-tasks (parallel scans, parallel transforms)"
+    - "Sub-agents share no state — communication mid-task is unnecessary AND forbidden"
+    - "Coordinator can synthesize sub-agent results at fan-in"
+  anti_conditions:
+    - "Sub-agents need to consult each other mid-task — use a different orchestration pattern"
+    - "Task is sequential by nature — a single agent suffices"
+    - "Coordinator has no way to verify sub-agent correctness independently — invites silent confabulation"
+  assembly_order:
+    - phase: scope-partition
+      uses: scope-discipline
+    - phase: dispatch
+      uses: agent-runtime-baseline
+    - phase: isolated-execute
+      uses: isolation-shape
+    - phase: fan-in-synthesize
+      uses: agent-runtime-baseline
+
 binding: loose
 
 verify:
