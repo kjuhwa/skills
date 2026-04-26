@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: sessions-status-workflow
-summary: Sessions carry a dynamic status (default: Todo → In Progress → Needs Review → Done) stored per-workspace; customizable via statuses/ folder and used by UI + automations (SessionStatusChange event).
+summary: "Sessions carry a dynamic status (default: Todo → In Progress → Needs Review → Done) stored per-workspace; customizable via statuses/ folder and used by UI + automations (SessionStatusChange event)."
 category: reference
 tags: [sessions, status, workflow, dynamic]
 confidence: medium

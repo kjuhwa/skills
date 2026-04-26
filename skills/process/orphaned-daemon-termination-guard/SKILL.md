@@ -1,6 +1,6 @@
 ---
 name: orphaned-daemon-termination-guard
-description: Kill an orphaned background daemon when no non-daemon sibling process is alive. Prevents LevelDB/file lock contention after unclean parent shutdown. Pattern: scan for daemon PIDs, then check if any non-daemon parent process exists before killing.
+description: "Kill an orphaned background daemon when no non-daemon sibling process is alive. Prevents LevelDB/file lock contention after unclean parent shutdown. Pattern: scan for daemon PIDs, then check if any non-daemon parent process exists before killing."
 category: process
 version: 1.0.0
 tags: [daemon, orphan, process, bash, leveldb, lock, cleanup, startup]

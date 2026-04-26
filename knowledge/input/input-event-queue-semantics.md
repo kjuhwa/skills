@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: input-event-queue-semantics
 type: knowledge
 category: input
-summary: Input processing: queue events, batch per frame, avoid stale state during handoff.
+summary: "Input processing: queue events, batch per frame, avoid stale state during handoff."
 confidence: medium
 tags: [event, input, queue, semantics]
 linked_skills: []

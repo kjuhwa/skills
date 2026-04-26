@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: lantern-implementation-pitfall
-description: Common failure modes when building lantern visualizations: additive-blend saturation, flicker desync, and ember leak
+description: "Common failure modes when building lantern visualizations: additive-blend saturation, flicker desync, and ember leak"
 category: pitfall
 tags:
   - lantern

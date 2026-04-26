@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: screen-capture-api-evolution-macos
 type: knowledge
 category: codecs
-summary: macOS capture has shifted: legacy Quartz CGDisplayCreateImage → ScreenCaptureKit (Monterey+) behind a feature flag.
+summary: "macOS capture has shifted: legacy Quartz CGDisplayCreateImage → ScreenCaptureKit (Monterey+) behind a feature flag."
 confidence: high
 tags: [api, capture, codecs, evolution, macos, screen]
 linked_skills: []

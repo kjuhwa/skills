@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: langgraph-state-update-merge-semantics
-summary: LangGraph nodes return partial dicts that the framework merges into state. OpenSRE's _merge_state helper shows the convention: messages are appended (not replaced), other keys overwrite — useful for replicating LangGraph behaviour outside a graph (testing, CLI runners).
+summary: "LangGraph nodes return partial dicts that the framework merges into state. OpenSRE's _merge_state helper shows the convention: messages are appended (not replaced), other keys overwrite — useful for replicating LangGraph behaviour outside a graph (testing, CLI runners)."
 category: reference
 tags: [langgraph, state, merge, conventions]
 source_type: extracted-from-git

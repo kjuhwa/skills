@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: debug-vs-release-build-differences
 type: knowledge
 category: build-system
-summary: Release: optimized codecs + LTO. Debug: flexi_logger on desktop, android_logger on Android.
+summary: "Release: optimized codecs + LTO. Debug: flexi_logger on desktop, android_logger on Android."
 confidence: medium
 tags: [build, debug, differences, release, system]
 linked_skills: []

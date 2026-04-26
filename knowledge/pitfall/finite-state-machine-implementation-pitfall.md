@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: finite-state-machine-implementation-pitfall
-description: Common FSM bugs: undefined-transition silent no-ops, guard side effects, and async timer drift during state changes.
+description: "Common FSM bugs: undefined-transition silent no-ops, guard side effects, and async timer drift during state changes."
 category: pitfall
 tags:
   - finite

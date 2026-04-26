@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: privacy-mode-implementation-choices
 type: knowledge
 category: windows
-summary: Three privacy-mode strategies coexist: MAG (fast but limited), exclude-from-capture (Win10 2004+), virtual-display (fullscreen gaming).
+summary: "Three privacy-mode strategies coexist: MAG (fast but limited), exclude-from-capture (Win10 2004+), virtual-display (fullscreen gaming)."
 confidence: high
 tags: [choices, implementation, mode, platform, privacy, windows]
 linked_skills: []

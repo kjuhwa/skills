@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: mcp-design-principles-for-agent-tools
-summary: Seven design principles that make MCP tool servers usable by LLM agents: agent-agnostic protocol, token-optimized returns, small deterministic primitives, self-healing errors, dual human+machine output, progressive complexity, and reference-over-value for heavy assets.
+summary: "Seven design principles that make MCP tool servers usable by LLM agents: agent-agnostic protocol, token-optimized returns, small deterministic primitives, self-healing errors, dual human+machine output, progressive complexity, and reference-over-value for heavy assets."
 category: decision
 confidence: high
 tags: [mcp, design-principles, agent-ux, token-budget, api-design]

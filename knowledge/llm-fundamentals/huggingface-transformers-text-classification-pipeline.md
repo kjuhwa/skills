@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: huggingface-transformers-text-classification-pipeline
-summary: Pre-trained BERT-style models can be fine-tuned for text classification in two ways: a fully decoupled custom pipeline for learning purposes, or the integrated run_classification.py script from HuggingFace examples.
+summary: "Pre-trained BERT-style models can be fine-tuned for text classification in two ways: a fully decoupled custom pipeline for learning purposes, or the integrated run_classification.py script from HuggingFace examples."
 category: llm-fundamentals
 tags: [huggingface, transformers, bert, classification, fine-tuning]
 confidence: medium

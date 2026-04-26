@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: input-mode-keyboard-layout-dependency
 type: knowledge
 category: input
-summary: Two input modes: Unicode (layout-independent) vs Layout (layout-dependent; needed for modifiers).
+summary: "Two input modes: Unicode (layout-independent) vs Layout (layout-dependent; needed for modifiers)."
 confidence: high
 tags: [dependency, input, keyboard, layout, mode]
 linked_skills: []

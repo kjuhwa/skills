@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: portable-app-detection-env-var
 type: knowledge
 category: platform
-summary: Portable mode detection: check RUSTDESK_APPNAME env var; changes temp dir and config paths.
+summary: "Portable mode detection: check RUSTDESK_APPNAME env var; changes temp dir and config paths."
 confidence: medium
 tags: [app, detection, env, platform, portable, var]
 linked_skills: []

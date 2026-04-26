@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: powersync-sharedworker-multi-tab-constraint
-description: When `enableMultiTabs: true` (the default on Chrome/Edge/Firefox), PowerSync spawns a SharedWorker that manages a sin...
+description: "When `enableMultiTabs: true` (the default on Chrome/Edge/Firefox), PowerSync spawns a SharedWorker that manages a sin..."
 type: knowledge
 category: pitfall
 confidence: high

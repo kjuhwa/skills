@@ -1,6 +1,6 @@
 ---
 name: pre-release-version-validation-script
-description: Pre-release script validates: tag matches pyproject version, copyright headers exist on all source files, package metadata fields complete, type checker passes.
+description: "Pre-release script validates: tag matches pyproject version, copyright headers exist on all source files, package metadata fields complete, type checker passes."
 category: release
 version: 1.0.0
 version_origin: extracted

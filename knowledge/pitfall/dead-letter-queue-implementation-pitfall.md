@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: dead-letter-queue-implementation-pitfall
-description: Common failure modes when building DLQ tooling: replay loops, payload loss, and silent growth
+description: "Common failure modes when building DLQ tooling: replay loops, payload loss, and silent growth"
 category: pitfall
 tags:
   - dead

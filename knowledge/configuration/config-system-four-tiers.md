@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: config-system-four-tiers
 type: knowledge
 category: configuration
-summary: Four config tiers: Settings (persistent), Local (user), Display (per-display), Built-in (defaults).
+summary: "Four config tiers: Settings (persistent), Local (user), Display (per-display), Built-in (defaults)."
 confidence: medium
 tags: [config, configuration, four, system, tiers]
 linked_skills: []

@@ -1,6 +1,6 @@
 ---
 name: unix-socket-permission-attributes
-description: parity-tokio-ipc SecurityAttributes for Unix socket permissions (Windows equivalent: DACLs).
+description: "parity-tokio-ipc SecurityAttributes for Unix socket permissions (Windows equivalent: DACLs)."
 category: ipc
 version: 1.0.0
 version_origin: extracted

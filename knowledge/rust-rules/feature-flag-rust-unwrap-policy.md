@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: feature-flag-rust-unwrap-policy
 type: knowledge
 category: rust-rules
-summary: Policy: no unwrap()/expect() except in tests (readability) and lock acquisition (poison only).
+summary: "Policy: no unwrap()/expect() except in tests (readability) and lock acquisition (poison only)."
 confidence: medium
 tags: [feature, flag, policy, rules, rust, unwrap]
 linked_skills: []

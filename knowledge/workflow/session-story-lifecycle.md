@@ -1,7 +1,7 @@
 ---
 version: 0.1.0-draft
 name: session-story-lifecycle
-summary: End-to-end story lifecycle example: readiness check, implementation, review, and completion
+summary: "End-to-end story lifecycle example: readiness check, implementation, review, and completion"
 category: workflow
 confidence: medium
 tags: [game-studios, ccgs, story, lifecycle, session-example, dev-story]

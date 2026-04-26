@@ -3,7 +3,7 @@ version: 0.1.0-draft
 name: session-id-window-mapping
 type: knowledge
 category: flutter
-summary: Desktop: unique session_id per connection; multi-window mapping via params['window_id'].
+summary: "Desktop: unique session_id per connection; multi-window mapping via params['window_id']."
 confidence: medium
 tags: [flutter, mapping, session, window]
 linked_skills: []
