@@ -25,6 +25,24 @@ Authoring workflow for the `paper/` exploration layer. Produces `.paper-draft/<c
    - AskUserQuestion: `premise.then` — "THEN predicted outcome, single sentence: ..."
    - Warn if either is empty or < 20 chars; confirm continue.
 
+2.5. **Shape category prompt** (per paper #1188 verdict rule)
+
+   AskUserQuestion: "What primary shape claim does this paper make? Pick from:
+   - cost-displacement crossover **(NOTE: per #1188 verdict, this is the corpus default-bias to resist; use only if the technique's actual shape is genuinely crossover)**
+   - threshold-cliff
+   - log-search
+   - hysteresis
+   - convergence
+   - necessity
+   - pareto distribution
+   - self-improvement (meta-corpus)
+   - cross-domain universality (meta-shape)
+   - saturation-without-crossover
+   - other (specify)"
+
+   - **If cost-displacement chosen**: AskUserQuestion: "Why cost-displacement? Per #1188, default to the technique's ACTUAL shape, not crossover lens. Justify in 1-2 sentences."
+   - Capture chosen shape; will be referenced in step 5.5 for cluster check and step 12 for write.
+
 3. **Paper type**
    - If `--type` not provided, ask:
      - `hypothesis` — claims something; must run experiments to reach `status=implemented` (default, most papers)
@@ -42,6 +60,18 @@ Authoring workflow for the `paper/` exploration layer. Produces `.paper-draft/<c
    - Capture `ref` as kind-root-relative physical path; verify file exists
    - Reject `kind: paper` (v0 nesting ban)
    - Prompt for `role` (free-text)
+
+5.5. **Cluster context check** (per paper #1205 verdict rule — N=3 saturation)
+
+   - Run `bootstrap/tools/_audit_paper_shape_claim.py --json` (from #1222) to tally existing papers in the selected shape category
+   - Report: "Shape `<chosen>` currently has **N papers** in the corpus."
+   - **If N == 0**: this is the 1st paper (single, opens new shape). No additional prompt.
+   - **If N == 1**: this is the 2nd paper (cluster forming). AskUserQuestion: "What sub-question does this paper cover (existence / calibration / variant)?"
+   - **If N == 2**: this is the 3rd paper (completes 3-paper cluster). AskUserQuestion: "What sub-question does this paper close (existence / calibration / variant)?"
+   - **If N == 3**: WARN — "Shape `<chosen>` has reached the N=3 saturation point per paper #1205. Adding a 4th paper requires explicit distinct sub-question justification (else it is corpus padding)."
+     - AskUserQuestion: "What distinct sub-question does this paper cover that the existing 3 don't? (e.g., variant within variant, cross-tool, multi-author replication, durability past observation)"
+     - **Block authoring if justification is empty or matches an existing sub-question** — author must either rephrase or pick a different shape.
+   - **If N >= 4**: STRONG WARN — "Shape already past saturation. Confirm justification is genuinely distinct from prior 4+ papers."
 
 6. **Write perspectives[]** (≥2 required)
    - Loop: `name` + `summary` (1-2 lines)
@@ -73,6 +103,17 @@ Authoring workflow for the `paper/` exploration layer. Produces `.paper-draft/<c
     - Allowed values: `produced_skill | produced_knowledge | produced_technique | produced_pitfall | produced_example | updated_skill | updated_knowledge | updated_technique`
 
 11. **status** — default `draft`. `retraction_reason` stays null.
+
+11.5. **Adherence checklist** (per paper #1200 verdict rule)
+
+   Before writing, confirm the bias-correction discipline is followed. Show 4 explicit checkboxes; require all 4 to be ticked or have explicit justification:
+
+   - [ ] **Checked the technique's actual shape claim BEFORE writing premise** (#1188 rule)
+   - [ ] **Picked shape from the catalog**, not by default-lens
+   - [ ] **Cluster position justified** (4+ papers in shape category requires distinct sub-question per #1205)
+   - [ ] **PR description will reference this paper's worked-example index** (paper #N of bias-correction sequence; auditor in #1222 reports the running count)
+
+   - If any checkbox is unticked: print rationale prompt and either tick or proceed with WARN (logged to draft frontmatter as `compose_adherence_unticked: ["..."]`)
 
 12. **Write the file** to `.paper-draft/<category>/<slug>/PAPER.md` with v0.2 frontmatter + body scaffold:
     ```
